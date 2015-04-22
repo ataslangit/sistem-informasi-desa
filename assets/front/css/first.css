@@ -1,6 +1,33 @@
+/*
+	Website Source: Aplikasi SID versi 3.04 with Custom Design by @siayi
+	Project Source URL : http://www.combine.or.id
+	
+  	Copyright: (c) 2014 COMBINE Resource Institution.
+	
+	License: GNU/GPL Version 3. http://www.gnu.org/licenses/gpl.html
+	
+	Aplikasi Sistem Informasi Desa (SID) dibangun dan dikembangkan oleh COMBINE Resource Institution sejak tahun 2009. Sistem ini dikelola dengan merujuk pada lisensi GNU General Public License Version 3.
+*/
+/*---------------------------------------------------------------------------------*/
 * { margin: 0; padding: 0;}
-body { text-align: left; font-family:  Helvetica, Verdana, Arial, sans-serif;  }
-div { font-size: 12px; }
+body { text-align: left; font-family:  Verdana, Arial, Helvetica, sans-serif;background: #CCCCCC;
+background-image: linear-gradient(top, #DBEBFF 20%, #6695BD 50%, #8FC2E3 75%, #5494CC 90%); 
+background-image: -o-linear-gradient(top, #DBEBFF 20%, #6695BD 50%, #8FC2E3 75%, #5494CC 90%); 
+background-image: -moz-linear-gradient(top, #DBEBFF 20%, #6695BD 50%, #8FC2E3 75%, #5494CC 90%); 
+background-image: -webkit-linear-gradient(top, #DBEBFF 20%, #6695BD 50%, #8FC2E3 75%, #5494CC 90%); 
+background-image: -ms-linear-gradient(top, #DBEBFF 20%, #6695BD 50%, #8FC2E3 75%, #5494CC 90%); 
+background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0.2, #DBEBFF), color-stop(0.5, #6695BD), color-stop(0.75, #8FC2E3), color-stop(0.9, #5494CC) );
+background-image: -webkit-gradient( 
+linear, 
+left top, 
+left bottom, 
+color-stop(0.2, #DBEBFF), 
+color-stop(0.5, #6695BD), 
+color-stop(0.75, #8FC2E3), 
+color-stop(0.9, #5494CC) );
+padding: 0px;
+color: #000000;}
+div { font-size: 11px; }
 img { border: 0; }
 ul { list-style: none; margin: 0; padding: 0px; }
 a, a:active { text-decoration: none; background-color: inherit; color: #18507C; }
@@ -27,19 +54,33 @@ div#header {position:relative; clear: both; width: 940px; height: 130px; margin:
 #sid-logo{float:left;margin-top:10px;margin-left:10px;}
 #sid-logo img{ width:100px; height:100px;}
 
-#menu_vert {border-left:12px solid #eee; border-right:6px solid #eee; border-bottom:1px solid #eee;border-top:1px solid #777;position:relative; right:19px; top:4px; width:522px;height:30px;background: url(images/tb2.jpg) repeat center top;
+/* 
+#menu_vert {border-left:12px solid #eee; border-right:6px solid #eee; border-bottom:1px solid #eee;border-top:1px solid #777;position:relative; right:19px; top:4px; width:600px;height:30px;background: url(images/tb2.jpg) repeat center top;
     box-shadow:1px 4px 4px #555;
     -moz-box-shadow:-3px 1px 3px #000;
     -webkit-box-shadow:1px 1px 3px #000;-webkit-border-radius: 2px; -moz-border-radius: 2px;border-radius: 2px;}
+*/
+/*
 #menu_vert2 { position:relative; right:4px; top:5px; width:520px; background:#222;padding-left:5px; border-top:3px solid #222;}
-
+*/
+/*
 .sub #menu_vert {margin: 0px 0px 0px 5px;}
-
+*/
+.sub #menu_vert {margin: 2px 0px 0px 5px;}
 #menuwrapper {	float:left;}
-
+/*
 #mainmenu { float:left; width:930px;height:30px;margin-bottom:15px;border:1px #5898D8 solid; background:#204C88;-webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;
 			background: url(images/tb.jpg) repeat center top;}
+*/
+#mainmenu { float:left; width:930px;height:1px;margin-bottom:15px;border:1px #559845 solid; background:#003567;
+background-color: #003567;
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#88C425), to(#003567));
+background-image: -moz-linear-gradient(#88C425, #003567);
+background-image: -o-linear-gradient(#88C425, #003567);
+background-image: linear-gradient(#88C425, #003567);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#88C425', EndColorStr='#003567');
 
+-webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;}
 .sub #mainmenu {margin-bottom: 15px;margin-left:5px;}
 
 #mainmenuget {	float:left;	}

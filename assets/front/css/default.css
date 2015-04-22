@@ -1,27 +1,24 @@
 
 /* Global navigation */
 #global-nav { float: left; }
-			
-	#global-nav>li { float: left; margin-left: 15px; position: relative; }
+	#global-nav>li { float: left; margin-left: 20px; position: relative; }
 
 		#global-nav a {
-			color: #ffffef;
+			color: #fff;
 			display: block;
 			height: 30px;
 			line-height: 30px;
 			text-decoration: none;
 			font-weight: bold;
 			text-transform: capitalize;
-			text-shadow:1px 1px 1px #444;  
 		}
-		#global-nav a.current, #global-nav a.current:hover { color: #666; }
-		#global-nav a:hover { color: #ffff00;}
+		#global-nav a.current, #global-nav a.current:hover { color: #BAE57B; }
+		#global-nav a:hover { color: #fff;}
 		#global-nav a:active { color: #bbb; }
 		
 		
 		/* Subnavigation */
 		#global-nav ul {
-			z-index:99999999;
 			background: url(images/subnav_bg.png) no-repeat center top;
 			display: none;
 			left: -15px;
@@ -29,6 +26,7 @@
 			padding-bottom: 1px;
 			position: absolute;
 			width: 180px;
+			z-index: 10;
 		}
 		#global-nav>li:hover ul { display: block; }
 			#global-nav li {
@@ -41,9 +39,9 @@
 				line-height: 27px;
 				padding-left: 10px;
 			 }
-			#global-nav ul a:hover { background-color: #0d365d; }
+			#global-nav ul a:hover { background-color: #333333; }
 			#global-nav ul a:active, #global-nav ul a.current { /* The second is for if you set a current submenu */
-				background-color: #1f2122;
+				background-color: #333333;
 				position: relative;
 				top: 1px;
 			}
