@@ -13,10 +13,18 @@
 		<script src="<?php echo base_url()?>assets/front/js/jquery.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/layout.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/jquery.colorbox.js"></script>
-		<script>
+		<!--<script>
 			$(document).ready(function(){
 				$(".group2").colorbox({rel:'group2', transition:"fade"});
 				$(".group3").colorbox({rel:'group3', transition:"fade"});
+			});
+		</script>-->
+		<script>
+		$(document).ready(function(){
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
 			});
 		</script>
 	</head>
@@ -26,6 +34,16 @@
 		<div style="position:absolute; width:9999px; visibility:hidden; display:none"></div>
 		
 		<div id="content">
+				<div id="top">
+						<ul class="topnav">
+<link type='text/css' href="<?php echo base_url()?>assets/front/css/default.css" rel='Stylesheet' />
+<script src="<?php echo base_url()?>assets/front/js/cufon-yui.js"></script><!-- Cufon core and fonts -->
+<script src="<?php echo base_url()?>assets/front/js/main.js"></script><!-- Custom functions -->
+<div id='top'>
+<ul id="topnav">
+</ul>
+</div>
+</div>
 			<div id="header">
 				<div id="headleft">
 <div id="sid-logo"><img src="<?php echo base_url()?>assets/images/logo/<?php echo $desa['logo']?>" alt=""/></div>
