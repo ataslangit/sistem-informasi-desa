@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>SID Desa Ciburial - Login</title>
+  <title>SID 3.04 Login</title>
   <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login-new.css" media="screen" type="text/css" />
 </head>
 <body>
 	<div id="loginform">
-		<a href="<?php echo site_url()?>/index.php/first">
+		<a href="<?php echo site_url()?>first">
 		<div id="facebook">
 			<div id="sid">SID</div>
 			<div id="connect">ver.</div>
@@ -24,7 +24,7 @@
 		<input name="username" type="text" placeholder="username" value="" required>
 		<input name="password" type="password" placeholder="password" value="" required>
 		<button type="submit" id="but">LOGIN</button>
-			<?php if($_SESSION['siteman']==-1){ ?>
+			<?php  if($_SESSION['siteman']==-1){ ?>
 			<div id="note">
 				Login Gagal. Username atau Password yang Anda masukkan salah!
 			</div>
@@ -32,8 +32,7 @@
 		</form>
 		</div>
 		<div id="facebook2">
-			<!--<div id="kab2">powered by: <a href="http://combine.or.id" target="_blank">combine.or.id</a></div> -->
-			<div id="kab2">Didayai oleh: <a href="http://ciburial.desa.id" target="_blank">ciburial.desa.id</a></div> 
+			<div id="kab2">powered by: <a href="http://combine.or.id" target="_blank">combine.or.id</a></div>
 		</div>
 	</div>
 </body>
