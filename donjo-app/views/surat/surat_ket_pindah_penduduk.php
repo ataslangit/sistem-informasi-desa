@@ -132,8 +132,8 @@ table.form.detail td{
 	</thead>
 
 	<tbody>
-		<?php  if($anggota != NULL){$i=0;?>
-		<?php  foreach($anggota AS $data){ $i++;?>
+		<?php  if($pengikut != NULL){$i=0;?>
+		<?php  foreach($pengikut AS $data){ $i++;?>
 		<tr>
             <td align="center" width="2"><?php echo $i?></td>
 			<td align="center" width="5">
@@ -245,12 +245,19 @@ table.form.detail td{
         <div class="left">     
             <a href="<?php echo site_url()?>surat" class="uibutton icon prev">Kembali</a>
         </div>
-        <div class="right">
+<!--       <div class="right">
             <div class="uibutton-group">
                 <button class="uibutton" type="reset">Clear</button>
                 <button class="uibutton confirm" type="submit" >Cetak</button>
             </div>
-        </div>
+        </div>-->
+<div class="right">
+<div class="uibutton-group">
+<button class="uibutton" type="reset">Clear</button>
+<button type="button" onclick="$('#'+'validasi').attr('action','<?php echo $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
+<button type="button" onclick="$('#'+'validasi').attr('action','<?php echo $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button>
+</div>
+</div>
     </div> </form>
 </div>
 </td></tr></table>

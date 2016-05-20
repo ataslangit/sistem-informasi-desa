@@ -7,7 +7,7 @@
 		<title>Website Desa <?php echo unpenetration($desa['nama_desa'])?></title>
 		
 		<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
-		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
+		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' /> 
 		<link type='text/css' href="<?php echo base_url()?>assets/css/ui-buttons.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
 		<script src="<?php echo base_url()?>assets/front/js/jquery.js"></script>
@@ -63,10 +63,10 @@
 					<div id="menu_vert2" style="height:90px;">
 					<?php  $i=0;foreach($slide AS $data){?>
 					<?php  if($data['gambar']!='' AND $i<4){if(is_file("assets/front/artikel/kecil_".$data['gambar'])) {?>
-						<img src="<?php echo base_url()?>/assets/front/artikel/kecil_<?php echo $data['gambar']?>" width="127" height="90"><?php 
+						<img src="<?php echo base_url()?>/assets/front/artikel/kecil_<?php echo $data['gambar']?>" width="140" height="90"><?php 
 						$i++;}elseif(is_file("assets/front/artikel/".$data['gambar'])){?>
 						
-						<img src="<?php echo base_url()?>/assets/front/artikel/<?php echo $data['gambar']?>" width="127" height="90"><?php 
+						<img src="<?php echo base_url()?>/assets/front/artikel/<?php echo $data['gambar']?>" width="140" height="90"><?php 
 						$i++;}?>
 					<?php }}?>
 					</div>

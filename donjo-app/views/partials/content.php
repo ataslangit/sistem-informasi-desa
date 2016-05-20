@@ -1,5 +1,3 @@
-
-
 <?php if($headline){?>
 <div class="themes nobig2">
 <div class='title'>

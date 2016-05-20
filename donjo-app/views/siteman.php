@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>SID 3.04 Login</title>
+  <title>SID Desa Ciburial - Login</title>
   <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login-new.css" media="screen" type="text/css" />
 </head>
 <body>
@@ -32,7 +32,8 @@
 		</form>
 		</div>
 		<div id="facebook2">
-			<div id="kab2">powered by: <a href="http://combine.or.id" target="_blank">combine.or.id</a></div>
+			<!--<div id="kab2">powered by: <a href="http://combine.or.id" target="_blank">combine.or.id</a></div> -->
+			<div id="kab2">Didayai oleh: <a href="http://ciburial.desa.id" target="_blank">ciburial.desa.id</a></div> 
 		</div>
 	</div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>404 Page Not Found</title>
+<title>404 Halaman Tidak Ditemukan</title>
 <style type="text/css">
 
 ::selection{ background-color: #E13300; color: white; }

@@ -1,5 +1,3 @@
-
-
 <?php if($single_artikel['id']){?>
 <div class="themes bigfull">
 <div class='title'>

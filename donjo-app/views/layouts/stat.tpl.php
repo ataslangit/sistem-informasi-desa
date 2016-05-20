@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <title>Grafik Statistik Penduduk</title>

@@ -387,8 +387,8 @@ div#header {position:relative; clear: both; width: 930px; height: 150px; margin:
 #sid-logo p{ padding:12px 0px 0px 0px; font-size:12px; font-style:italic; color:#f0f0f0; line-height:12px; }
 #logo img{ margin:18px 0px 0px -5px; cursor:pointer; }
 */
-#headright{width:530px; float:right;}
-#headleft{width:356px; float:left;}
+#headright{width:600px; float:right;}
+#headleft{width:330px; float:left;}
 #sid-judul{position:relative;left:5px;top:13px;font-size: 22px;color:#204C88; font-weight: bold; }
 #sid-info{position:relative;left:5px;top:12px;font-size: 16px;color:#204C88; font-weight: bold;}
 #sid-moto{position:relative;left:5px;top:9px;font-size: 16px;color:#204C88;font-weight: bold;}
@@ -498,7 +498,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#88C425', EndC
 	line-height: 27px;
 	padding-left: 10px;
 	 }
-#global-nav ul a:hover { background-color:#333333 ; }
+#global-nav ul a:hover { background-color:#ffcc33 ; }
 #global-nav ul a:active, #global-nav ul a.current { /* The second is for if you set a current submenu */
 	background-color: #333333;
 	position: relative;
@@ -758,7 +758,13 @@ list-style-type: none;
     color: #f0f0f0;
     text-shadow: 0px 0px 3px rgba(0,0,0, .5);
 }
-#mainmenu { float:right; width:928px;height:36px;margin-bottom:2px;border:0px #00356 solid; background:#0099ff;
+#mainmenu { 
+	float:right; 
+	width:928px;
+	height:36px;
+	/* margin-bottom:2px; */
+	/* border:0px #00356 solid; */
+	background:#0099ff;
 	background: rgb(0,78,152); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(0,78,152,1) 2%, rgba(0,65,127,1) 95%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(0,78,152,1)), color-stop(95%,rgba(0,65,127,1))); /* Chrome,Safari4+ */
@@ -767,8 +773,8 @@ list-style-type: none;
 	background: -ms-linear-gradient(top, rgba(0,78,152,1) 2%,rgba(0,65,127,1) 95%); /* IE10+ */
 	background: linear-gradient(top, rgba(0,78,152,1) 2%,rgba(0,65,127,1) 95%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0099ff', endColorstr='#0099ff',GradientType=0 ); /* IE6-9 */
-	border-bottom:2px solid #ff3300;
-	border-top:2px solid #ff3300;
+	 /* border-bottom:2px solid #ff3300; */
+	/* border-top:2px solid #ff3300; */
 	text-align:center;
 }
 #mainmenu ul {
@@ -780,8 +786,8 @@ list-style-type: none;
 #mainmenu li {
 	float:left;
 	padding:5px 0 6px;
-	border-left:1px solid #19538b;
-	border-right:1px solid #00417f;
+	/* border-left:1px solid #19538b; */
+	/* border-right:1px solid #00417f; */
 	position:relative;
 }
 #mainmenu li.first {
