@@ -7,12 +7,10 @@ Versi aplikasi Sistem Informasi Desa (SID) ini adalah versi 3.04
 Aplikasi Sistem Informasi Desa (SID) adalah sistem olah data dan informasi berbasis komputer yang dapat dikelola oleh pemerintah dan komunitas desa dalam dua ranah: 
 
 1. Offline 
-
-Aplikasi diinstall dalam komputer server di kantor desa dan dioperasikan sebagai server (pusat data) yang bersifat lokal. Oleh karena tidak terhubung ke internet, SID offline hanya bisa diakses dalam jaringan lokal. Sistem offline ini direkomendasikan untuk diterapkan dalam penggunaan aplikasi SID harian. Database dari hasil proses olah data secara offline itu dapat diunggah ke sistem online secara berkala. 
+ Aplikasi diinstall dalam komputer server di kantor desa dan dioperasikan sebagai server (pusat data) yang bersifat lokal. Oleh karena tidak terhubung ke internet, SID offline hanya bisa diakses dalam jaringan lokal. Sistem offline ini direkomendasikan untuk diterapkan dalam penggunaan aplikasi SID harian. Database dari hasil proses olah data secara offline itu dapat diunggah ke sistem online secara berkala. 
 
 2. Online 
-
-SID akan optimal jika terhubung ke internet sebagai sistem online berbasis web. SID online akan otomatis berfungsi juga sebagai website desa. Website desa ini memiliki fungsi yang terbagi dalam dua bagian, yakni bagian depan (front-end) yang bisa diakses oleh publik dan bagian dalam (back-end) yang hanya bisa diakses oleh administrator sistem.
+ SID akan optimal jika terhubung ke internet sebagai sistem online berbasis web. SID online akan otomatis berfungsi juga sebagai website desa. Website desa ini memiliki fungsi yang terbagi dalam dua bagian, yakni bagian depan (front-end) yang bisa diakses oleh publik dan bagian dalam (back-end) yang hanya bisa diakses oleh administrator sistem.
 
 
 ## MANAJEMEN AKSES SID
@@ -22,15 +20,15 @@ Aplikasi SID dirancang sejak awal oleh CRI untuk mengelola data dasar desa dan i
 Tingkat user (pengguna) dalam SID:
 
 1. Administrator : adalah orang/tim yang bertanggung jawab penuh atas olah data dan informasi dalam SID dan website desa. Orang/tim ini ditunjuk oleh pemerintah desa disahkan dengan surat keputusan kepala desa.
-- Peran olah data : entry, edit, delete data dasar
-- Peran olah informasi : tulis, edit, publish artikel website
+ - Peran olah data : entry, edit, delete data dasar
+ - Peran olah informasi : tulis, edit, publish artikel website
 
 2. Operator: adalah orang/tim yang bertugas membantu administrator mengelola data dan informasi, tetapi dengan kewenangan yang lebih terbatas.
-- Peran olah data : entry, edit data dasar
-- Peran olah informasi : tulis, edit artikel website
+ - Peran olah data : entry, edit data dasar
+ - Peran olah informasi : tulis, edit artikel website
 
 3. Redaksi: adalah orang/tim yang bertugas sebagai redaksi media website desa dan hanya dapat melakukan olah informasi berupa artikel website.
-- Peran olah informasi : tulis, edit artikel
+ - Peran olah informasi : tulis, edit artikel
 
 
 ## TAHAP MEMBANGUN SID
@@ -58,19 +56,14 @@ Aplikasi Sistem Informasi Desa (SID) dibangun dan dikembangkan oleh COMBINE Reso
 
 ## KONTAK DAN INFORMASI
 
-COMBINE Resource Institution
+ COMBINE Resource Institution
+ Alamat: Jl. K.H. Ali Maksum No. 183 Panggungharjo, Sewon, Bantul, D.I. Yogyakarta 55188 INDONESIA
+ Telp. / Faks. : +62 274 - 411 123
+ e-mail: office[at]combine.or.id
+ Twitter: @combineri
+ Group Facebook: Sistem Informasi Desa 
 
-Alamat: Jl. K.H. Ali Maksum No. 183 Panggungharjo, Sewon, Bantul, D.I. Yogyakarta 55188 INDONESIA
-
-Telp. / Faks. : +62 274 - 411 123
-
-e-mail: office[at]combine.or.id
-
-Twitter: @combineri
-
-Group Facebook: Sistem Informasi Desa 
-
-Website:
+ Website:
 - http://combine.or.id (Lembaga)
 - http://lumbungkomunitas.net (Program Lumbung Komunitas - Divis Pengembangan dan Penerapan SID)
 - http://sid.web.id (Portal Jaringan Komunitas Pengguna SID)
