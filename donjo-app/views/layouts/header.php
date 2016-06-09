@@ -8,7 +8,7 @@
 	<title>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
     <!-- Bootstrap -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/style.css"> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,10 +20,11 @@
 	
 	<!-- Original -->
 		<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
-		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
+		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' /> 
 		<link type='text/css' href="<?php echo base_url()?>assets/css/font-awesome.min.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/css/ui-buttons.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
+
 		<script src="<?php echo base_url()?>assets/front/js/stscode.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/jquery.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/layout.js"></script>
