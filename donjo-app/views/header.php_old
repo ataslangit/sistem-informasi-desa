@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Sistem Informasi Desa Terbaru</title>
+
+    <!-- Bootstrap -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/style.css"> 
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+<body>
+<div class="ui-layout-north" id="header">
+	<div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""/></a></div>
+	<div id="sid-judul">SID Sistem Informasi Desa</div>
+	<div id="sid-info"><?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>,  <?php echo unpenetration($desa['nama_kabupaten'])?></div>
+	<div id="userbox" class="wrapper-dropdown-3" tabindex="1">
+  <div class="avatar">
+		<?php if($foto){?>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt=""/>
+		<?php }else{?>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+		<?php }?>
+	</div>
+<div class="info">
+	<div><strong>Anda Login sebagai</strong></div>
+<div><?php echo $nama?></div>
+</div>
+
+<ul class="dropdown" tabindex="1">
+	<li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="icon-gear icon-large"></i>Setting User</a></li>
+<?php  if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>
+	<li><a href="<?php echo site_url()?>hom_desa"><i class="icon-home icon-large"></i>SID Home</a></li>
+	<li><a href="<?php echo site_url()?>penduduk"><i class="icon-group icon-large"></i>Penduduk</a></li>
+	<li><a href="<?php echo site_url()?>statistik"><i class="icon-bar-chart icon-large"></i>Statistik</a></li>
+	<li><a href="<?php echo site_url()?>surat"><i class="icon-print icon-large"></i>Cetak Surat</a></li>
+	<li><a href="<?php echo site_url()?>analisis"><i class="icon-dashboard icon-large"></i>Analisis</a></li>
+	<li><a href="<?php echo site_url()?>program_bantuan"><i class="icon-folder-open icon-large"></i>Program</a></li>
+<?php  }?>
+<?php  if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>	
+	<?php  if($_SESSION['grup']==1){?>
+		<li><a href="<?php echo site_url()?>man_user/clear"><i class="icon-user icon-large"></i>Pengguna</a></li>
+		<li><a href="<?php echo site_url()?>database"><i class="icon-hdd icon-large"></i>Database</a></li>
+	<?php  }?>
+	<li><a href="<?php echo site_url()?>sms"><i class="icon-envelope-alt icon-large"></i>SMS</a></li>
+	<li><a href="<?php echo site_url()?>web"><i class="icon-cloud icon-large"></i>Admin Web</a></li>
+<?php  }?>
+<li><a href="<?php echo site_url()?>siteman"><i class="icon-off icon-large"></i>Log Out</a></li>
+</ul>
+
+</div>
+</div>
+<div id="sidebar" >
+</div>
+<div class="ui-layout-center" id="wrapper">
+
+
+<!-- NOTIFICATION 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>--><?php  if(@$_SESSION['success']==1): ?>
+<script type="text/javascript">
+$('document').ready(function(){
+notification('success','Data Berhasil Disimpan')();
+});
+</script><?php  elseif(@$_SESSION['success']==-1): ?>
+<script type="text/javascript">
+$('document').ready(function(){
+notification('error','Data Gagal Disimpan')();
+});
+</script><?php  elseif(@$_SESSION['success']==-2): ?>
+<script type="text/javascript">
+$('document').ready(function(){
+notification('error','Simpan data gagal, nama id sudah ada!')();
+});
+</script><?php  elseif(@$_SESSION['success']==-3): ?>
+<script type="text/javascript">
+$('document').ready(function(){
+notification('error','Simpan data gagal, nama id sudah ada!')();
+});
+</script><?php  endif; ?><?php  $_SESSION['success']=0; ?>
+<!-- ************ -->
+<!-- ************ -->
+
+<div class="module-panel">
+	<div class="contentm" style="overflow: hidden;">
+		<?php if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>
+		<a class="cpanel" href="<?php echo site_url()?>hom_desa/about">
+			<img src="<?php echo base_url()?>assets/images/cpanel/go-home-5.png" alt=""/>
+			<span>SID Home</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>penduduk/clear">
+			<img src="<?php echo base_url()?>assets/images/cpanel/preferences-contact-list.png" alt=""/>
+			<span>Penduduk</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>statistik">
+			<img src="<?php echo base_url()?>assets/images/cpanel/statistik.png" alt=""/>
+			<span>Statistik</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>surat">
+			<img src="<?php echo base_url()?>assets/images/cpanel/applications-office-5.png" alt=""/>
+			<span>Cetak Surat</span>
+		</a> 
+		<a class="cpanel" href="<?php echo site_url()?>analisis_master/clear">
+			<img src="<?php echo base_url()?>assets/images/cpanel/analysis.png" alt=""/>
+		<span>Analisis</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>program_bantuan" title="Program Bantuan">
+			<img src="<?php echo base_url()?>assets/images/cpanel/program.png" alt=""/>
+		<span>Bantuan</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>data_persil/clear" title="Data Persil">
+			<img src="<?php echo base_url()?>assets/images/cpanel/persil.png" alt=""/>
+		<span>Persil</span>
+		</a>
+		
+		<a class="cpanel" href="<?php echo site_url()?>plan">
+			<img src="<?php echo base_url()?>assets/images/cpanel/plan.png" alt=""/>
+			<span>Plan</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>gis">
+			<img src="<?php echo base_url()?>assets/images/cpanel/gis.png" alt=""/>
+			<span>Peta</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>sms">
+			<img src="<?php echo base_url()?>assets/images/cpanel/mail-send-receive.png" alt=""/>
+			<span>SMS</span>
+		</a>
+		<?php if($_SESSION['grup']==1){?>
+		<a class="cpanel" href="<?php echo site_url()?>man_user/clear">
+			<img src="<?php echo base_url()?>assets/images/cpanel/system-users.png" alt=""/>
+			<span>Pengguna</span>
+		</a>
+		<a class="cpanel" href="<?php echo site_url()?>database">
+			<img src="<?php echo base_url()?>assets/images/cpanel/database.png" alt=""/>
+			<span>Database</span>
+		</a>
+		<?php }?>
+		<?php }?>
+		<a class="cpanel" href="<?php echo site_url()?>web">
+			<img src="<?php echo base_url()?>assets/images/cpanel/message-news.png" alt=""/>
+			<span>Admin Web</span>
+		</a>
+		<?php if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>
+		<a class="cpanel" href="<?php echo site_url()?>lapor">
+			<img src="<?php echo base_url()?>assets/images/cpanel/mail-reply-all.png" alt=""/>
+			<span><b><?php echo $lapor;?></b> Laporan</span>
+		</a>
+		<?php }?>
+	</div>
+</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>

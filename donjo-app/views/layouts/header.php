@@ -1,9 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<title>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
-		<meta content="utf-8" http-equiv="encoding">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
+    <!-- Bootstrap -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/style.css"> 
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<!-- Original -->
 		<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/css/font-awesome.min.css" rel='Stylesheet' />
@@ -18,9 +33,8 @@
 				$(".group2").colorbox({rel:'group2', transition:"fade"});
 				$(".group3").colorbox({rel:'group3', transition:"fade"});
 			});
-		</script>
+		</script>	
 	</head>
-	<body>
 		<div id="maincontainer">
 			<div id="topsection">
 				<div class="innertube">
