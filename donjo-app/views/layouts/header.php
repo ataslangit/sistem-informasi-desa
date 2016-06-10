@@ -8,7 +8,7 @@
 	<title>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
     <!-- Bootstrap -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
-	<!-- <link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/bs/css/style.css"> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
