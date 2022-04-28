@@ -16,7 +16,7 @@
 <div id="contentpane">    
 	<form id="mainform" name="mainform" action="" method="post">
     <div class="ui-layout-north panel">
-    <h3>Manajemen Klasifikasi Analisis - <a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></h3>
+    <h3>Manajemen Klasifikasi Analisis - <a href="<?php echo site_url()?>/analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></h3>
         <div class="left">
             <div class="uibutton-group">
                 <a href="<?php echo site_url('analisis_klasifikasi/form')?>" class="uibutton tipsy south" title="Tambah Data" ><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Klasifikasi Baru</a>
@@ -91,7 +91,7 @@
     <div class="ui-layout-south panel bottom">
         <div class="left"> 
           <form id="paging" action="<?php echo site_url('analisis_klasifikasi')?>" method="post">
-<a href="<?php echo site_url()?>analisis_klasifikasi/leave" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/analisis_klasifikasi/leave" class="uibutton icon prev">Kembali</a>
 		  <label></label>
             <select name="per_page" onchange="$('#paging').submit()" >
               <option value="20" <?php  selected($per_page,20); ?> >20</option>

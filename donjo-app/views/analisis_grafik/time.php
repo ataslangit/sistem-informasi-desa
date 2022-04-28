@@ -90,7 +90,7 @@ tr#total{
 		</tbody>
         </table>
 <div class="left"> 
-<a href="<?php echo site_url()?>analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
 </div>
     </div>
 </div>

@@ -7,8 +7,8 @@
 		<fieldset><legend>Laporan : </legend>
 			<div class="lmenu">
 				<ul>
-				<li ><a href="<?php echo site_url()?>sid_laporan_bulanan">Laporan Bulanan</a></li>
-				<li ><a href="<?php echo site_url()?>sid_laporan_kelompok">Data Kelompok Rentan</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_bulanan">Laporan Bulanan</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_kelompok">Data Kelompok Rentan</a></li>
 				</ul>
 			</div>
 		</fieldset>
@@ -16,11 +16,11 @@
 		<fieldset><legend>Penduduk Desa</legend>
 			<div class="lmenu">
 				<ul>
-				<li ><a href="<?php echo site_url()?>sid_laporan_penduduk_status">Penduduk Tetap</a></li>
-				<li ><a href="<?php echo site_url()?>sid_laporan_pasif">Penduduk Pasif</a></li>
-				<li ><a href="<?php echo site_url()?>sid_laporan_tetap_pasif">Tetap + Pasif</a></li>
-				<li ><a href="<?php echo site_url()?>sid_laporan_pendatang">Penduduk Pendatang</a></li>
-				<li ><a href="<?php echo site_url()?>sid_laporan_tetap_pendatang">Pendatang + Tetap</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_penduduk_status">Penduduk Tetap</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_pasif">Penduduk Pasif</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_tetap_pasif">Tetap + Pasif</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_pendatang">Penduduk Pendatang</a></li>
+				<li ><a href="<?php echo site_url()?>/sid_laporan_tetap_pendatang">Pendatang + Tetap</a></li>
 				</ul>
 			</div>
 		</fieldset>

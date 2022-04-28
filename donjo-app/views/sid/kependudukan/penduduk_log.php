@@ -26,7 +26,7 @@ source: keyword
             </div>
         </div>
 <div class="right"> 
-<a href="<?php echo site_url()?>penduduk" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/penduduk" class="uibutton icon prev">Kembali</a>
 </div>
     </div>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">

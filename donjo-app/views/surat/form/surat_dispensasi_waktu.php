@@ -40,7 +40,7 @@ padding:5px;
 <div id="sidecontent2" class="lmenu">
 <ul>
 <?php foreach($menu_surat AS $data){?>
-       <li <?php  if($data['url_surat']==$lap){?>class="selected"<?php  }?>><a href="<?php echo site_url()?>surat/<?php echo $data['url_surat']?>"><?php echo $data['nama']?></a></li>
+       <li <?php  if($data['url_surat']==$lap){?>class="selected"<?php  }?>><a href="<?php echo site_url()?>/surat/<?php echo $data['url_surat']?>"><?php echo $data['nama']?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -134,7 +134,7 @@ padding:5px;
    
 <div class="ui-layout-south panel bottom">
 <div class="left">     
-<a href="<?php echo site_url()?>surat" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/surat" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">

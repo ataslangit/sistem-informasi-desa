@@ -14,7 +14,7 @@
 <div id="contentpane">    
 	<form id="mainform" name="mainform" action="" method="post">
     <div class="ui-layout-north panel">
-    <h3>Entry Data Analisis Keluarga - <a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></a> Periode : <?php echo $analisis_periode?></h3>
+    <h3>Entry Data Analisis Keluarga - <a href="<?php echo site_url()?>/analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><a href="<?php echo site_url()?>/analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></a> Periode : <?php echo $analisis_periode?></h3>
     </div>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <div class="table-panel top">
@@ -122,7 +122,7 @@
     <div class="ui-layout-south panel bottom">
         <div class="left"> 
           <form id="paging" action="<?php echo site_url('analisis_laporan_keluarga')?>" method="post">
-<a href="<?php echo site_url()?>analisis_laporan_keluarga/leave" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/analisis_laporan_keluarga/leave" class="uibutton icon prev">Kembali</a>
 		  <label></label>
             <select name="per_page" onchange="$('#paging').submit()" >
               <option value="20" <?php  selected($per_page,20); ?> >20</option>
