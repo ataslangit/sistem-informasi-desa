@@ -1,8 +1,10 @@
-# SID 3.04
-Versi aplikasi Sistem Informasi Desa (SID) ini adalah versi 3.04
+# SID - Sistem Informasi Desa
+Pada versi ini dapat digunakan untuk upgrade dari sistem yang dikembangkan oleh CRI pada v3.x.
+Dengan adanya versi ini, kini dapat kompatibel dengan PHP7 atau yang terbaru.
+Hanya perlu ubahan pada pengaturan database saja.
+Jika ada Ide, bug atau lainyya dapat mengisi issue pada https://github.com/girirupo/sistem-informasi-desa/issues 
 
-
-## APAKAH SISTEM INFORMASI (SID)? 
+## APAKAH SISTEM INFORMASI DESA (SID)? 
 
 Aplikasi Sistem Informasi Desa (SID) adalah sistem olah data dan informasi berbasis komputer yang dapat dikelola oleh pemerintah dan komunitas desa dalam dua ranah: 
 
