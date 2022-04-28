@@ -65,25 +65,25 @@ if ($_SESSION['mandiri'] <> 1) {
 
 					<tr style="border-bottom:1px solid #111;">
 						<td>
-							<h4><a href="<?= site_url(); ?>first/mandiri/1/1" class="">Profil Ku </a> </h4>
+							<h4><a href="<?= site_url('first/mandiri/1/1') ?>" class="">Profil Ku </a> </h4>
 						</td>
 						<td></td>
 					</tr>
 					<tr style="border-bottom:1px solid #111;">
 						<td>
-							<h4><a href="<?= site_url(); ?>first/mandiri/1/2" class="">Layanan </a> </h4>
+							<h4><a href="<?= site_url('first/mandiri/1/2') ?>" class="">Layanan </a> </h4>
 						</td>
 						<td></td>
 					</tr>
 					<tr style="border-bottom:1px solid #111;">
 						<td>
-							<h4><a href="<?= site_url(); ?>first/mandiri/1/3" class="">Lapor </a> </h4>
+							<h4><a href="<?= site_url('first/mandiri/1/3') ?>" class="">Lapor </a> </h4>
 						</td>
 						<td></td>
 					</tr>
 					<tr style="border-bottom:1px solid #111;">
 						<td>
-							<h4><a href="<?= site_url(); ?>first/logout" class=""> Keluar</a></h4>
+							<h4><a href="<?= site_url('first/logout') ?>" class=""> Keluar</a></h4>
 						</td>
 						<td></td>
 					</tr>
@@ -142,7 +142,7 @@ if ($agenda) {
 ?>
 	<div class="box box-primary box-solid">
 		<div class="box-header">
-			<h3 class="box-title"><a href="<?php echo site_url(); ?>first/kategori/4"><i class="fa fa-calendar"></i> Agenda</a></h3>
+			<h3 class="box-title"><a href="<?php echo site_url('first/kategori/4') ?>"><i class="fa fa-calendar"></i> Agenda</a></h3>
 		</div>
 		<div class="box-body">
 			<ul class="sidebar-latest">
@@ -161,7 +161,7 @@ if ($agenda) {
 
 <div class="box box-warning box-solid">
 	<div class="box-header">
-		<h3 class="box-title"><a href="<?php echo site_url(); ?>first/gallery"><i class="fa fa-camera"></i> Galeri Foto</a></h3>
+		<h3 class="box-title"><a href="<?php echo site_url('first/gallery') ?>"><i class="fa fa-camera"></i> Galeri Foto</a></h3>
 	</div>
 	<div class="box-body">
 		<ul class="sidebar-latest">
