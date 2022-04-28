@@ -6,7 +6,8 @@ class Analisis_respon_model extends CI_Model
 {
     public function __construct()
     {
-        parent::__construct();        $this->load->helper('excel');
+        parent::__construct();
+        $this->load->helper('excel');
     }
 
     public function autocomplete()

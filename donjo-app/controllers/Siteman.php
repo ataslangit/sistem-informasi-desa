@@ -6,7 +6,8 @@ class Siteman extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();        $this->load->model('header_model');
+        parent::__construct();
+        $this->load->model('header_model');
         $this->load->model('user_model');
     }
 

@@ -187,14 +187,6 @@
                                             <td><?php echo $data['pendidikan'] ?></td>
                                             <td><?php echo $data['pekerjaan'] ?></td>
                                             <td><?php echo $data['kawin'] ?></td>
-
-                                            <!--<td><?php if ($data['status'] == 1) {
-                                                        echo "Tetap";
-                                                    } elseif ($data['status'] == 2) {
-                                                        echo "Tidak Aktif";
-                                                    } else {
-                                                        echo "Pendatang";
-                                                    } ?></td>-->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

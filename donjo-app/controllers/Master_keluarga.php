@@ -9,7 +9,8 @@ class Master_keluarga extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();        $this->load->model('user_model');
+        parent::__construct();
+        $this->load->model('user_model');
         $this->load->model('master_analisis_keluarga_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup < 1) {
