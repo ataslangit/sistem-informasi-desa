@@ -1,7 +1,8 @@
-## SID 4.1.0
+## SID dev
 ### Perubahan
 - Menggunakan composer dan public folder demi kemudahan dan keamanan
 - Format kode
+- Hapus konstruktor kosong
 
 ### Penambahan
 - Menggunakan `.env` untuk pengaturan basic
