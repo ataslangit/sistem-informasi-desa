@@ -2,11 +2,6 @@
 
 class Config_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function get_data()
     {
         $sql   = 'SELECT * FROM config WHERE 1';
@@ -287,7 +282,7 @@ class Config_model extends CI_Model
 			(6, 'Penggunaan / Pemakaian Alat KB', 31, 0, 12, 0, 1, 11, 1, 1),
 			(7, 'Status penguasaan bangunan tempat tinggal yang ditempati', 30, 13, 23, 24, 25, 24, 1, 1),
 			(8, 'Jumlah keluarga dalam rumah tangga', 29, 7, 21, 21, 22, 5, 1, 1),
-			(9, 'Luas lantai bangunan tempat tinggal _______________ m²', 28, 0, 20, 22, 21, 20, 1, 1),
+			(9, 'Luas lantai bangunan tempat tinggal _______________ mï¿½', 28, 0, 20, 22, 21, 20, 1, 1),
 			(10, 'Jenis lantai tempat tinggal terluas (60% lebih) terbuat dari :', 27, 11, 15, 20, 23, 21, 1, 1),
 			(11, 'Jenis dinding tempat tinggal terluas (60% lebih) terbuat dari :', 26, 10, 19, 17, 20, 22, 1, 1),
 			(12, 'Jenis atap tempat tinggal terluas (60% lebih) terbuat dari :', 25, 9, 13, 18, 19, 23, 1, 1),
@@ -298,7 +293,7 @@ class Config_model extends CI_Model
 			(17, 'Tempat pembuangan akhir tinja', 20, 0, 2, 5, 4, 14, 1, 1),
 			(18, 'Jarak tempat pembuangan akhir tinja dari sumber air minum', 19, 0, 1, 4, 3, 13, 1, 1),
 			(19, 'Kepemilikan aset (selain tanah, bangunan dan emas)', 18, 0, 17, 10, 24, 6, 1, 1),
-			(20, 'kepemilikan tanah (selain yang ditempati), berapa luasannya _______________ m²', 17, 12, 6, 7, 10, 27, 1, 1),
+			(20, 'kepemilikan tanah (selain yang ditempati), berapa luasannya _______________ mï¿½', 17, 12, 6, 7, 10, 27, 1, 1),
 			(21, 'kepemilikan emas, berapa gram kepemilikan emas ____10 gram___', 16, 0, 5, 2, 9, 7, 1, 1),
 			(22, 'Cara memperoleh aset', 15, 0, 16, 9, 8, 9, 1, 1),
 			(23, 'Kepemilikan sarana tekekomunikasi', 14, 0, 7, 3, 2, 8, 1, 1),
@@ -363,8 +358,8 @@ class Config_model extends CI_Model
 			(33, 7, 5, 'Milik Orang tua/sanak/saudara', 1),
 			(34, 8, 1, '1 keluarga', 2),
 			(35, 8, 2, '> 1 keluarga', 1),
-			(36, 9, 1, '=> 8 m²/orang', 2),
-			(37, 9, 2, '< 8 m²/orang', 1),
+			(36, 9, 1, '=> 8 mï¿½/orang', 2),
+			(37, 9, 2, '< 8 mï¿½/orang', 1),
 			(38, 10, 1, 'Marmer/ batu alam', 6),
 			(39, 10, 2, 'Keramik', 5),
 			(40, 10, 3, 'Tegel', 4),

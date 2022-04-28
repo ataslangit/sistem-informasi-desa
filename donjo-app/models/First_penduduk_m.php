@@ -2,11 +2,6 @@
 
 class First_penduduk_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function list_data($lap = 0, $o = 0)
     {
         switch ($lap) {

@@ -20,11 +20,6 @@
  */
 ?><?php class Plan_area_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT nama FROM area';
