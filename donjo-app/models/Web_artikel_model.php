@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_artikel_model extends CI_Model
 {
     public function autocomplete()
@@ -88,7 +90,6 @@ class Web_artikel_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id DESC';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT a.*,k.kategori AS kategori FROM artikel a LEFT JOIN kategori k ON a.id_kategori = k.id WHERE id_kategori = ? ';
@@ -184,9 +185,6 @@ class Web_artikel_model extends CI_Model
             $data['enabled'] = 2;
         }
 
-        //$data['isi'] = $data['isi'].$data['link_dokumen'];
-        //unset($data['link_dokumen']);
-
         $lokasi_file = $_FILES['dokumen']['tmp_name'];
         $tipe_file   = $_FILES['dokumen']['type'];
         $nama_file   = $_FILES['dokumen']['name'];
@@ -200,27 +198,10 @@ class Web_artikel_model extends CI_Model
         }
 
         if (! empty($lokasi_file)) {
-            if ($tipe_file === 'application/x-download'
-                    || $tipe_file === 'application/pdf'
-                    || $tipe_file === 'application/zip'
-                    || $tipe_file === 'application/ppt'
-                    || $tipe_file === 'application/pptx'
-                    || $tipe_file === 'application/rar'
-                    || $tipe_file === 'application/excel'
-                    || $tipe_file === 'application/msword'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    || $tipe_file === 'text/rtf'
-                    || $tipe_file === 'application/powerpoint'
-                    || $tipe_file === 'application/vnd.ms-powerpoint'
-                    || $tipe_file === 'application/vnd.ms-excel'
-                    || $tipe_file === 'application/msexcel'
-                    || $tipe_file === 'application/x-zip') {
-                UploadDocument2($nama_file);
-            }
+            UploadDocument2($nama_file);
         }
-
-        $outp = $this->db->insert('artikel', $data);
+        $data['isi'] = str_replace('<table>', "<table class='table table-striped'>", $data['isi']);
+        $outp        = $this->db->insert('artikel', $data);
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -231,8 +212,7 @@ class Web_artikel_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-
-        $fp = time();
+        $fp   = time();
 
         $lokasi_file = $_FILES['gambar']['tmp_name'];
         $tipe_file   = $_FILES['gambar']['type'];
@@ -257,7 +237,6 @@ class Web_artikel_model extends CI_Model
         } else {
             unset($data['gambar1']);
         }
-
         $lokasi_file2 = $_FILES['gambar2']['tmp_name'];
         $tipe_file2   = $_FILES['gambar2']['type'];
         $nama_file2   = $_FILES['gambar2']['name'];
@@ -269,7 +248,6 @@ class Web_artikel_model extends CI_Model
         } else {
             unset($data['gambar2']);
         }
-
         $lokasi_file3 = $_FILES['gambar3']['tmp_name'];
         $tipe_file3   = $_FILES['gambar3']['type'];
         $nama_file3   = $_FILES['gambar3']['name'];
@@ -281,7 +259,6 @@ class Web_artikel_model extends CI_Model
         } else {
             unset($data['gambar3']);
         }
-
         $lokasi_file = $_FILES['dokumen']['tmp_name'];
         $tipe_file   = $_FILES['dokumen']['type'];
         $nama_file   = $_FILES['dokumen']['name'];
@@ -295,24 +272,7 @@ class Web_artikel_model extends CI_Model
         }
 
         if (! empty($lokasi_file)) {
-            if ($tipe_file === 'application/x-download'
-                    || $tipe_file === 'application/pdf'
-                    || $tipe_file === 'application/zip'
-                    || $tipe_file === 'application/ppt'
-                    || $tipe_file === 'application/pptx'
-                    || $tipe_file === 'application/rar'
-                    || $tipe_file === 'application/excel'
-                    || $tipe_file === 'application/msword'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    || $tipe_file === 'text/rtf'
-                    || $tipe_file === 'application/powerpoint'
-                    || $tipe_file === 'application/vnd.ms-powerpoint'
-                    || $tipe_file === 'application/vnd.ms-excel'
-                    || $tipe_file === 'application/msexcel'
-                    || $tipe_file === 'application/x-zip') {
-                UploadDocument2($nama_file);
-            }
+            UploadDocument2($nama_file);
         }
 
         if (isset($data['gambar_hapus'])) {
@@ -339,6 +299,7 @@ class Web_artikel_model extends CI_Model
             unset($data['gambar3_hapus']);
         }
 
+        $data['isi'] = str_replace('<table>', "<table class='table table-striped'> ", $data['isi']);
         $this->db->where('id', $id);
         $outp = $this->db->update('artikel', $data);
         if ($outp) {
@@ -410,9 +371,6 @@ class Web_artikel_model extends CI_Model
         $query = $this->db->query($sql, $id);
 
         return $query->row_array();
-
-        //$judul=str_split($data['nama'],15);
-        //$data['judul'] = "<h3>".$judul[6]."</h3>";
     }
 
     public function get_headline()
@@ -442,11 +400,7 @@ class Web_artikel_model extends CI_Model
         $i = 0;
 
         while ($i < count($data)) {
-
-            //$judul=str_split($data[$i]['nama'],15);
-            //$data[$i]['judul'] = "<h3>".$judul[6]."</h3>";
             $id = $data[$i]['id'];
-            //$data['link'] = site_url("first/artikel/$id");
 
             $pendek                = str_split($data[$i]['isi'], 100);
             $data[$i]['isi_short'] = $pendek[0];

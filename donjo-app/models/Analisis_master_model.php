@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Analisis_master_model extends CI_Model
 {
     public function autocomplete()
@@ -36,7 +38,7 @@ class Analisis_master_model extends CI_Model
     {
         if (isset($_SESSION['filter'])) {
             $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.id = {$kf}";
+            $filter_sql = " AND u.subjek_tipe = {$kf}";
 
             return $filter_sql;
         }
@@ -73,8 +75,6 @@ class Analisis_master_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nama'; break;
 
@@ -88,14 +88,12 @@ class Analisis_master_model extends CI_Model
 
             case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
 
-            default:$order_sql = ' ORDER BY u.nama';
+            default:$order_sql = ' ORDER BY u.id';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
-        $sql = 'SELECT u.*,s.subjek FROM analisis_master u LEFT JOIN analisis_ref_subjek s ON u.subjek_tipe = s.id   WHERE 1 ';
+        $sql = 'SELECT u.*,s.subjek FROM analisis_master u LEFT JOIN analisis_ref_subjek s ON u.subjek_tipe = s.id WHERE 1 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -106,7 +104,6 @@ class Analisis_master_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -140,10 +137,8 @@ class Analisis_master_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_master', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -153,6 +148,8 @@ class Analisis_master_model extends CI_Model
 
     public function delete($id = '')
     {
+        $this->sub_delete($id);
+
         $sql  = 'DELETE FROM analisis_master WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
 
@@ -169,9 +166,9 @@ class Analisis_master_model extends CI_Model
 
         if (count($id_cb)) {
             foreach ($id_cb as $id) {
-                $sql  = 'DELETE FROM analisis_master WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
+                $this->delete($id);
             }
+            $outp = true;
         } else {
             $outp = false;
         }
@@ -181,6 +178,33 @@ class Analisis_master_model extends CI_Model
         } else {
             $_SESSION['success'] = -1;
         }
+    }
+
+    public function sub_delete($id = '')
+    {
+        $sql = 'DELETE FROM analisis_parameter WHERE id_indikator IN(SELECT id FROM analisis_indikator WHERE id_master = ?)';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_respon WHERE id_periode IN(SELECT id FROM analisis_periode WHERE id_master=?)';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_kategori_indikator WHERE id_master=?';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_klasifikasi WHERE id_master=?';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_respon_hasil WHERE id_master=?';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_partisipasi WHERE id_master=?';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_periode WHERE id_master=?';
+        $this->db->query($sql, $id);
+
+        $sql = 'DELETE FROM analisis_indikator WHERE id_master=?';
+        $this->db->query($sql, $id);
     }
 
     public function get_analisis_master($id = 0)
@@ -202,6 +226,14 @@ class Analisis_master_model extends CI_Model
     public function list_kelompok()
     {
         $sql   = 'SELECT * FROM kelompok_master';
+        $query = $this->db->query($sql);
+
+        return $query->result_array();
+    }
+
+    public function list_analisis_child()
+    {
+        $sql   = 'SELECT * FROM analisis_master WHERE subjek_tipe = 1';
         $query = $this->db->query($sql);
 
         return $query->result_array();

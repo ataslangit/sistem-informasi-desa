@@ -1,28 +1,8 @@
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<?php  /*
-<td class="side-point">
-
-<fieldset>
-<legend>Kategori point</legend>
-<div class="lpoint">
-<ul>
-<li <?php  if($tip==1)echo "class='selected'";?>><a href="<?php  echo site_url("point/index/1")?>">Atas</a></li>
-<li <?php  if($tip==2)echo "class='selected'";?>><a href="<?php  echo site_url("point/index/2")?>">Atas Kiri</a></li>
-
-<?php  /*
-<li ><a href="Samping">Samping</a></li>
-<li ><a href="Tengah">Tengah</a></li>
-<li ><a href="Bawah">Bawah</a></li>
-
-</ul>
-</div>
-</fieldset>
-
-</td>
-*/?>
+<?php
+?>
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub point</h3>
@@ -57,27 +37,27 @@
 </tr>
 </thead>
 <tbody>
-<?php  foreach ($subpoint as $data) {?>
+<?php foreach ($subpoint as $data) {?>
 <tr>
 <td align="center" width="2"><?= $data['no']?></td>
 <td align="center" width="5">
 <input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 </td>
 <td><div class="uibutton-group">
-<a href="<?= site_url("point/ajax_add_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-edit tipsy south" target="ajax-modalc" rel="window" header="Edit Point" title="Edit Data">Edit</a><a href="<?= site_url("point/delete_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data">Hapus</a><?php  if ($data['enabled'] === '2'):?><a href="<?= site_url("point/point_lock_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-lock tipsy south" title="Enable point"></a><?php  elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("point/point_unlock_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-unlock tipsy south" title="Disable point">Aktif</a><?php  endif; ?>
+<a href="<?= site_url("point/ajax_add_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-edit tipsy south" target="ajax-modalc" rel="window" header="Edit Point" title="Edit Data">Edit</a><a href="<?= site_url("point/delete_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data">Hapus</a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("point/point_lock_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-lock tipsy south" title="Enable point"></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("point/point_unlock_sub_point/{$point}/{$data['id']}")?>" class="uibutton icon-unlock tipsy south" title="Disable point">Aktif</a><?php endif; ?>
 </div></td>
 <td width="150"><?= $data['nama']?></td>
 <td width="50"><?= $data['aktif']?></td>
 <td align="center" width="50"><img src="<?= base_url('assets/images/gis/point')?>/<?= $data['simbol']?>"></td>
 <td></td>
-<?php  }?>
+<?php }?>
 </tbody>
 </table>
 </div>
 </form>
 <div class="ui-layout-south panel bottom">
 <div class="left">
-<a href="<?= site_url()?>point/index/1" class="uibutton icon prev">Kembali</a>
+<a href="<?= site_url()?>/point/index/1" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 </div>

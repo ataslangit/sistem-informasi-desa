@@ -36,7 +36,6 @@ class Pengurus extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         $data['main']    = $this->pamong_model->list_data();
         $data['keyword'] = $this->pamong_model->autocomplete();
         $nav['act']      = 1;

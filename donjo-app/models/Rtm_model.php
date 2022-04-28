@@ -1,10 +1,12 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Rtm_model extends CI_Model
 {
     public function autocomplete()
     {
-        $sql   = 'SELECT t.nama,t.kk_level FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1  ';
+        $sql   = 'SELECT t.nama,t.kk_level FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
@@ -56,7 +58,7 @@ class Rtm_model extends CI_Model
             $cari       = $_SESSION['cari'];
             $kw         = penetration($this->db->escape_like_str($cari));
             $kw         = '%' . $kw . '%';
-            $search_sql = " AND t.nama LIKE '{$kw}'";
+            $search_sql = " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}') ";
 
             return $search_sql;
         }
@@ -144,7 +146,7 @@ class Rtm_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
-        $sql = 'SELECT COUNT(u.id) AS id FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON t.id_rtm = u.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1  ';
+        $sql = 'SELECT COUNT(u.id) AS id FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON t.id_rtm = u.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE t.rtm_level = 1 ';
         $sql .= $this->search_sql();
         $sql .= $this->dusun_sql();
         $sql .= $this->rw_sql();
@@ -164,8 +166,6 @@ class Rtm_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.no_kk'; break;
 
@@ -182,7 +182,6 @@ class Rtm_model extends CI_Model
             default:$order_sql = ' ';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT u.*,t.nama AS kepala_kk,(SELECT COUNT(id) FROM tweb_penduduk WHERE id_rtm = u.id ) AS jumlah_anggota,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON u.id = t.id_rtm AND t.rtm_level = 1 LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
@@ -198,7 +197,6 @@ class Rtm_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -207,6 +205,59 @@ class Rtm_model extends CI_Model
             if ($data[$i]['jumlah_anggota'] === 0) {
                 $data[$i]['jumlah_anggota'] = '-';
             }
+
+            $i++;
+            $j++;
+        }
+
+        return $data;
+    }
+
+    public function list_data_pbdt($o = 0, $offset = 0, $limit = 500)
+    {
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.no_kk'; break;
+
+            case 2: $order_sql = ' ORDER BY u.no_kk DESC'; break;
+
+            case 3: $order_sql = ' ORDER BY kepala_kk'; break;
+
+            case 4: $order_sql = ' ORDER BY kepala_kk DESC'; break;
+
+            case 5: $order_sql = ' ORDER BY g.nama'; break;
+
+            case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
+
+            default:$order_sql = ' ';
+        }
+
+        $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
+
+        $sql = 'SELECT u.*,t.nama AS kepala_kk,(SELECT COUNT(id) FROM tweb_penduduk WHERE id_rtm = u.id ) AS jumlah_anggota,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON u.id = t.id_rtm AND t.rtm_level = 1 LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
+
+        $sql .= $this->search_sql();
+
+        $sql .= $this->dusun_sql();
+        $sql .= $this->rw_sql();
+        $sql .= $this->rt_sql();
+        $sql .= $order_sql;
+        $sql .= $paging_sql;
+
+        $query = $this->db->query($sql);
+        $data  = $query->result_array();
+
+        $i = 0;
+        $j = $offset;
+
+        while ($i < count($data)) {
+            $data[$i]['no'] = $j + 1;
+            if ($data[$i]['jumlah_anggota'] === 0) {
+                $data[$i]['jumlah_anggota'] = '-';
+            }
+
+            $sqlp                = 'SELECT nama FROM tweb_penduduk WHERE id_rtm = ? AND rtm_level <> 1';
+            $query               = $this->db->query($sqlp, $data[$i]['id']);
+            $data[$i]['anggota'] = $query->result_array();
 
             $i++;
             $j++;
@@ -238,7 +289,6 @@ class Rtm_model extends CI_Model
         $default['rtm_level'] = 1;
         $this->db->where('id', $nik);
         $this->db->update('tweb_penduduk', $default);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -250,7 +300,6 @@ class Rtm_model extends CI_Model
     {
         $temp['id_rtm']    = 0;
         $temp['rtm_level'] = 0;
-
         $this->db->where('id_rtm', $id);
         $outp = $this->db->update('tweb_penduduk', $temp);
 
@@ -295,7 +344,6 @@ class Rtm_model extends CI_Model
         $data              = $_POST;
         $temp['id_rtm']    = $id;
         $temp['rtm_level'] = 2;
-
         $this->db->where('id', $data['nik']);
         $outp = $this->db->update('tweb_penduduk', $temp);
 
@@ -316,8 +364,23 @@ class Rtm_model extends CI_Model
     {
         $data = $_POST;
 
+        if ($data['rtm_level'] === 1) {
+            $sql    = 'SELECT id_rtm FROM tweb_penduduk WHERE id=?';
+            $query  = $this->db->query($sql, $id);
+            $r      = $query->row_array();
+            $id_rtm = $r['id_rtm'];
+
+            $del['rtm_level'] = 2;
+            $this->db->where('id_rtm', $id_rtm);
+
+            $this->db->update('tweb_penduduk', $del);
+            $rtm['nik_kepala'] = $id;
+            $this->db->where('id', $id_rtm);
+            $outp = $this->db->update('tweb_rtm', $rtm);
+        }
+
         $this->db->where('id', $id);
-        $outp = $this->db->update('tweb_penduduk', $data);
+        $this->db->update('tweb_penduduk', $data);
 
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -408,7 +471,6 @@ class Rtm_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -422,12 +484,11 @@ class Rtm_model extends CI_Model
 
     public function list_anggota($id = 0)
     {
-        $sql = 'SELECT b.dusun,b.rw,b.rt,u.id,nik,dokumen_pasport,dokumen_kitas,x.nama as sex,u.rtm_level,tempatlahir,tanggallahir,a.nama as agama, d.nama as pendidikan,j.nama as pekerjaan,w.nama as status_kawin,f.nama as warganegara,nama_ayah,nama_ibu,g.nama as golongan_darah,u.nama,status,h.nama AS hubungan FROM tweb_penduduk u LEFT JOIN tweb_penduduk_agama a ON u.agama_id = a.id LEFT JOIN tweb_penduduk_pekerjaan j ON u.pekerjaan_id = j.id LEFT JOIN tweb_penduduk_pendidikan_kk d ON u.pendidikan_kk_id = d.id LEFT JOIN tweb_penduduk_warganegara f ON u.warganegara_id = f.id LEFT JOIN tweb_golongan_darah g ON u.golongan_darah_id = g.id LEFT JOIN tweb_penduduk_kawin w ON u.status_kawin = w.id LEFT JOIN tweb_penduduk_sex x ON u.sex = x.id LEFT JOIN tweb_rtm_hubungan h ON u.rtm_level = h.id LEFT JOIN tweb_wil_clusterdesa b ON u.id_cluster = b.id WHERE id_rtm = ? ORDER BY rtm_level';
+        $sql = 'SELECT b.dusun,b.rw,b.rt,u.id,nik,x.nama as sex,k.no_kk,u.rtm_level,tempatlahir,tanggallahir,a.nama as agama, d.nama as pendidikan,j.nama as pekerjaan,w.nama as status_kawin,f.nama as warganegara,nama_ayah,nama_ibu,g.nama as golongan_darah,u.nama,status,h.nama AS hubungan FROM tweb_penduduk u LEFT JOIN tweb_keluarga k ON u.id_kk = k.id LEFT JOIN tweb_penduduk_agama a ON u.agama_id = a.id LEFT JOIN tweb_penduduk_pekerjaan j ON u.pekerjaan_id = j.id LEFT JOIN tweb_penduduk_pendidikan_kk d ON u.pendidikan_kk_id = d.id LEFT JOIN tweb_penduduk_warganegara f ON u.warganegara_id = f.id LEFT JOIN tweb_golongan_darah g ON u.golongan_darah_id = g.id LEFT JOIN tweb_penduduk_kawin w ON u.status_kawin = w.id LEFT JOIN tweb_penduduk_sex x ON u.sex = x.id LEFT JOIN tweb_rtm_hubungan h ON u.rtm_level = h.id LEFT JOIN tweb_wil_clusterdesa b ON u.id_cluster = b.id WHERE id_rtm = ? ORDER BY rtm_level';
 
         $query = $this->db->query($sql, [$id]);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -443,7 +504,7 @@ class Rtm_model extends CI_Model
 
     public function get_kepala_kk($id)
     {
-        $sql   = 'SELECT nik,u.nama,r.no_kk FROM tweb_penduduk u LEFT JOIN tweb_rtm r ON u.id_rtm WHERE r.id = ?  AND u.rtm_level =1 LIMIT 1';
+        $sql   = 'SELECT nik,u.nama,r.no_kk,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_rtm r ON u.id_rtm = r.id LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE r.id = ? AND u.rtm_level =1 LIMIT 1';
         $query = $this->db->query($sql, [$id]);
 
         return $query->row_array();

@@ -8,7 +8,6 @@ $(function(){
 <?php }?>{id:0,name:'<a href="form/0/1"><h5>Tambah Data Penduduk Baru</h5></a>',info:''}
  ];
 nik.total = nik.results.length;
-
 $('#nik_kepala').flexbox(nik, {
 resultTemplate: '<div><label></label>{name}</div><div>{info}</div>',
 watermark: 'Ketik no nik di sini..',
@@ -22,7 +21,14 @@ $("#nik_detail").show();
 });
 </script>
 <?php }?>
-
+<script>
+	$(function() {
+		var keyword = <?= $list_no_kk?> ;
+		$( "#no_kk" ).autocomplete({
+			source: keyword
+		});
+   });
+</script>
 <style>
 table.form.detail th{
  padding:5px;
@@ -33,36 +39,30 @@ table.form.detail td{
  padding:5px;
 }
 </style>
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
 <h3>Form Manajemen KK</h3>
 </div>
 <div id="contentpane">
 <form id="mainform" name="mainform" action="<?= $form_action?>" method="post" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-
 <table class="form">
 <?php if (empty($new)) {?><tr>
 <th width="120">Nomor KK</th>
 <td><input class="inputbox <?php if ($new > 0 && $rt_sel > 0) {?>required<?php }?>" type="text" name="no_kk" id="no_kk" size="25" value="<?= $kk['no_kk']?>"></td>
 </tr><?php }?>
-
 <tr>
-<?php if ($new) {?><th width="120">Data Kepala KK Baru</th><?php } else {?><th>NIK / Nama Kepala KK</th><?php }?>
+<?php if ($new) {?><th width="120">Data Kepala Keluarga Baru</th><?php } else {?><th>NIK / Nama Kepala Keluarga</th><?php }?>
 <td>
 <div id="nik_kepala" name="nik_kepala"></div>
 </td>
 </tr>
 <?php if ($kk) {?>
-
 <?php } elseif ($new) {?>
 <input type="hidden" name="new" value="1">
-
 <tr>
 <th width="100">Dusun</th>
 <td><select name="dusun" onchange="formAction('mainform','<?= site_url('keluarga/form/0/1')?>')" <?php if ($dusun) {?>class="required"<?php }?>>
@@ -72,7 +72,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>RW</th>
 <td><select name="rw" onchange="formAction('mainform','<?= site_url('keluarga/form/0/1')?>')" <?php if ($rw) {?>class="required"<?php }?>>
@@ -82,7 +81,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>RT</th>
 <td><select name="rt" onchange="formAction('mainform','<?= site_url('keluarga/form/0/1')?>')" <?php if ($rt) {?>class="required"<?php }?>>
@@ -93,10 +91,6 @@ table.form.detail td{
 </td>
 </tr>
 <?php if ($rt_sel) {?>
-
-
-
-
 <tr>
 <th class="top">Foto</th>
 <td>
@@ -105,29 +99,22 @@ table.form.detail td{
 </div>
 </td>
 </tr>
-
 <tr>
 <th>Ganti Foto</th>
 <td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
 </tr>
-
 <tr>
 <th width="120">Nomor KK</th>
-<td><input class="inputbox required" type="text" name="no_kk" id="no_kk" size="25" value="<?= $kk['no_kk']?>"></td>
+<td><input class="inputbox required" type="text" name="no_kk" id="no_kk" class="no_kk" size="25" value="<?= $kk['no_kk']?>"></td>
 </tr>
-
 <tr>
 <th>Nama</th>
 <td><input name="nama" type="text" class="inputbox required" size="60"/></td>
 </tr>
-
-
 <tr>
 <th>NIK</th>
 <td><input name="nik" type="text" class="inputbox required" size="30"/></td>
 </tr>
-
-
 <tr>
 <th>Jenis Kelamin</th>
 <td>
@@ -139,17 +126,14 @@ table.form.detail td{
 </div>
 </td>
 </tr>
-
 <tr>
 <th>Tempat Lahir</th>
 <td><input name="tempatlahir" type="text" class="inputbox" size="65"/></td>
 </tr>
-
 <tr>
 <th>Tanggal Lahir</th>
 <td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20"/></td>
 </tr>
-
 <tr>
 <th>Agama</th>
 <td><select name="agama_id" class="required">
@@ -159,7 +143,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Pendidikan dalam KK</th>
 <td><select name="pendidikan_kk_id">
@@ -169,7 +152,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Pekerjaan</th>
 <td><select name="pekerjaan_id">
@@ -179,7 +161,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Status Perkawinan</th>
 <td><select name="status_kawin">
@@ -189,7 +170,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Hubungan dalam Keluarga</th>
 <td><select name="kk_level">
@@ -199,7 +179,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Kewarganegaraan</th>
 <td><select name="warganegara_id">
@@ -209,37 +188,30 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>No Pasport</th>
 <td><input name="dokumen_pasport" type="text" class="inputbox" size="20" /></td>
 </tr>
-
 <tr>
 <th>No Kitas/Kitap</th>
 <td><input name="dokumen_kitas" type="text" class="inputbox" size="20"/></td>
 </tr>
-
 <tr>
 <th>NIK Ayah</th>
 <td><input name="ayah_nik" type="text" class="inputbox" size="30" /></td>
 </tr>
-
 <tr>
 <th>NIK Ibu</th>
 <td><input name="ibu_nik" type="text" class="inputbox" size="30" /></td>
 </tr>
-
 <tr>
 <th>Nama Ayah</th>
 <td><input name="nama_ayah" type="text" class="inputbox" size="60" /></td>
 </tr>
-
 <tr>
 <th>Nama Ibu</th>
 <td><input name="nama_ibu" type="text" class="inputbox" size="60" /></td>
 </tr>
-
 <tr>
 <th>Golongan Darah</th>
 <td><select name="golongan_darah_id" class="required">
@@ -249,7 +221,6 @@ table.form.detail td{
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Status</th>
 <td>
@@ -259,21 +230,16 @@ table.form.detail td{
 </div>
 </td>
 </tr>
-
-
 <?php }
 }?></table>
 </div>
-
-
-
 <div class="ui-layout-south panel bottom">
 <div class="left">
 <a href="<?= site_url()?>/keluarga" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

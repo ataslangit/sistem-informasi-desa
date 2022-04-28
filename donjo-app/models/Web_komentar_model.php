@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_komentar_model extends CI_Model
 {
     public function autocomplete()
@@ -73,11 +75,9 @@ class Web_komentar_model extends CI_Model
 
             default:$order_sql = ' ORDER BY tgl_upload DESC';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT * FROM komentar WHERE 1 ';
-
         if ($cas === 2) {
             $sql .= ' AND id_artikel = 775';
         } else {
@@ -194,9 +194,6 @@ class Web_komentar_model extends CI_Model
         $query = $this->db->query($sql, $id);
 
         return $query->row_array();
-
-        //$judul=str_split($data['nama'],15);
-        //$data['judul'] = "<h3>".$judul[6]."</h3>";
     }
 
     public function komentar_show()
@@ -208,11 +205,7 @@ class Web_komentar_model extends CI_Model
         $i = 0;
 
         while ($i < count($data)) {
-
-            //$judul=str_split($data[$i]['nama'],15);
-            //$data[$i]['judul'] = "<h3>".$judul[6]."</h3>";
             $id = $data[$i]['id'];
-            //$data['link'] = site_url("first/komentar/$id");
 
             $pendek                = str_split($data[$i]['isi'], 100);
             $data[$i]['isi_short'] = $pendek[0];
@@ -227,7 +220,7 @@ class Web_komentar_model extends CI_Model
     public function insert_comment($id = 0)
     {
         $data = $_POST;
-        //$data['id_user'] = $_SESSION['user'];
+
         $data['id_komentar'] = $id;
         $outp                = $this->db->insert('komentar', $data);
 

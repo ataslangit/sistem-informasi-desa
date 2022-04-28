@@ -9,7 +9,7 @@ class Penduduk_log extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3'], true)) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
 
@@ -29,9 +29,8 @@ class Penduduk_log extends CI_Controller
     public function index($p = 1, $o = 0)
     {
         $_SESSION['log'] = 1;
-
-        $data['p'] = $p;
-        $data['o'] = $o;
+        $data['p']       = $p;
+        $data['o']       = $o;
 
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
@@ -44,7 +43,6 @@ class Penduduk_log extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['sex'])) {
             $data['sex'] = $_SESSION['sex'];
         } else {
@@ -77,25 +75,21 @@ class Penduduk_log extends CI_Controller
         } else {
             $data['agama'] = '';
         }
-
         if (isset($_SESSION['pekerjaan_id'])) {
             $data['pekerjaan_id'] = $_SESSION['pekerjaan_id'];
         } else {
             $data['pekerjaan_id'] = '';
         }
-
         if (isset($_SESSION['status'])) {
             $data['status'] = $_SESSION['status'];
         } else {
             $data['status'] = '';
         }
-
         if (isset($_SESSION['pendidikan_id'])) {
             $data['pendidikan_id'] = $_SESSION['pendidikan_id'];
         } else {
             $data['pendidikan_id'] = '';
         }
-
         if (isset($_SESSION['status_penduduk'])) {
             $data['status_penduduk'] = $_SESSION['status_penduduk'];
         } else {
@@ -215,7 +209,6 @@ class Penduduk_log extends CI_Controller
     public function cetak($o = 0)
     {
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-
         $this->load->view('sid/kependudukan/penduduk_print', $data);
     }
 

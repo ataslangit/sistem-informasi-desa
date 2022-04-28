@@ -1,22 +1,33 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class User_model extends CI_Model
 {
     public function siteman()
     {
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $password = hash_password($this->input->post('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE username=?';
         $query = $this->db->query($sql, [$username]);
         $row   = $query->row();
+        if ($row) {
+            if ($password === $row->password) {
+                $this->reset_timer();
+                $data['session'] = hash_password(time() . $password);
+                $this->db->where('id', $row->id);
+                $this->db->update('user', $data);
 
-        if ($password === $row->password) {
-            $_SESSION['siteman']  = 1;
-            $_SESSION['sesi']     = $row->session;
-            $_SESSION['user']     = $row->id;
-            $_SESSION['grup']     = $row->id_grup;
-            $_SESSION['per_page'] = 10;
+                $_SESSION['siteman'] = 1;
+                $_SESSION['sesi']    = $data['session'];
+                //$_SESSION['sesi'] = $row->session;
+                $_SESSION['user']     = $row->id;
+                $_SESSION['grup']     = $row->id_grup;
+                $_SESSION['per_page'] = 10;
+            } else {
+                $_SESSION['siteman'] = -1;
+            }
         } else {
             $_SESSION['siteman'] = -1;
         }
@@ -24,17 +35,45 @@ class User_model extends CI_Model
 
     public function sesi_grup($sesi = '')
     {
-        $sql   = 'SELECT id_grup FROM user WHERE session=?';
+        $sql   = "SELECT id_grup FROM user WHERE session=? AND session <> ''";
         $query = $this->db->query($sql, [$sesi]);
         $row   = $query->row_array();
+        if ($this->cek_login()) {
+            if (isset($row['id_grup'])) {
+                return $row['id_grup'];
+            }
+        } else {
+            $_SESSION['siteman'] = -2;
+            $this->logout();
 
-        return $row['id_grup'];
+            return null;
+        }
+    }
+
+    //time out
+    public function reset_timer()
+    {
+        $time                = 3600; //15menit
+        $_SESSION['timeout'] = time() + $time;
+    }
+
+    public function cek_login()
+    {
+        $timeout = $_SESSION['timeout'];
+        if (time() < $timeout) {
+            $this->reset_timer();
+
+            return true;
+        }
+        unset($_SESSION['timeout']);
+
+        return false;
     }
 
     public function login()
     {
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $password = hash_password($this->input->post('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE id_grup=1 LIMIT 1';
         $query = $this->db->query($sql);
@@ -55,7 +94,7 @@ class User_model extends CI_Model
     {
         if (isset($_SESSION['user'])) {
             $id  = $_SESSION['user'];
-            $sql = 'UPDATE user SET last_login=NOW() WHERE id=?';
+            $sql = "UPDATE user SET last_login=NOW(),session='' WHERE id=?";
             $this->db->query($sql, $id);
         }
 
@@ -78,11 +117,6 @@ class User_model extends CI_Model
         }
 
         unset($_SESSION['user'], $_SESSION['sesi'], $_SESSION['cari'], $_SESSION['filter']);
-
-        //$this->create_xml();
-
-        //if($this->sid_online())
-        //	$this->send_data();
     }
 
     public function autocomplete()
@@ -91,9 +125,8 @@ class User_model extends CI_Model
 					UNION SELECT nama FROM user';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-
-        $i    = 0;
-        $outp = '';
+        $i     = 0;
+        $outp  = '';
 
         while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['username'] . "'";
@@ -145,8 +178,6 @@ class User_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.username'; break;
 
@@ -162,15 +193,10 @@ class User_model extends CI_Model
 
             default:$order_sql = ' ORDER BY u.username';
         }
-
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        //Main Query
-        $sql = 'SELECT u.*,g.nama as grup
+        $sql        = 'SELECT u.*,g.nama as grup
 					FROM user u, user_grup g
 					WHERE u.id_grup = g.id';
-
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
         $sql .= $order_sql;
@@ -178,10 +204,8 @@ class User_model extends CI_Model
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-
-        //Formating Output
-        $i = 0;
-        $j = $offset;
+        $i     = 0;
+        $j     = $offset;
 
         while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
@@ -195,7 +219,7 @@ class User_model extends CI_Model
     public function insert()
     {
         $data             = $_POST;
-        $data['password'] = md5($data['password']);
+        $data['password'] = hash_password($data['password']);
         unset($data['old_foto'], $data['foto']);
 
         $lokasi_file = $_FILES['foto']['tmp_name'];
@@ -211,7 +235,7 @@ class User_model extends CI_Model
             }
         }
 
-        $data['session'] = md5(now());
+        $data['session'] = hash_password(now());
 
         $outp = $this->db->insert('user', $data);
 
@@ -245,7 +269,7 @@ class User_model extends CI_Model
             $this->db->where('id', $id);
             $outp = $this->db->update('user', $data);
         } else {
-            $data['password'] = md5($data['password']);
+            $data['password'] = hash_password($data['password']);
             $this->db->where('id', $id);
             $outp = $this->db->update('user', $data);
         }
@@ -307,7 +331,6 @@ class User_model extends CI_Model
         $query = $this->db->query($sql, $id);
         $data  = $query->row_array();
 
-        //Formating Output
         $data['password'] = 'radiisi';
 
         return $data;
@@ -323,10 +346,28 @@ class User_model extends CI_Model
 
     public function update_setting($id = 0)
     {
-        $password   = md5($this->input->post('pass_lama'));
+        $password   = hash_password($this->input->post('pass_lama'));
         $pass_baru  = $this->input->post('pass_baru');
         $pass_baru1 = $this->input->post('pass_baru1');
         $nama       = $this->input->post('nama');
+
+        $data = $_POST;
+        unset($data['old_foto'], $data['foto']);
+
+        $lokasi_file = $_FILES['foto']['tmp_name'];
+        $tipe_file   = $_FILES['foto']['type'];
+        $nama_file   = $_FILES['foto']['name'];
+        $old_foto    = $this->input->post('old_foto');
+        if (! empty($lokasi_file)) {
+            if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
+                $_SESSION['success'] = -1;
+            } else {
+                UploadFoto($nama_file, $old_foto);
+                $data['foto'] = $nama_file;
+            }
+        }
+        $sql = "UPDATE user SET foto = '{$nama_file}' WHERE id=?";
+        $this->db->query($sql, [$id]);
 
         $sql   = 'SELECT password,id_grup,session FROM user WHERE id=?';
         $query = $this->db->query($sql, [$id]);
@@ -335,7 +376,7 @@ class User_model extends CI_Model
         if ($password === $row->password) {
             if ($pass_baru !== '') {
                 if ($pass_baru === $pass_baru1) {
-                    $pass_baru = md5($pass_baru);
+                    $pass_baru = hash_password($pass_baru);
                     $sql       = 'UPDATE user SET password=? WHERE id=?';
                     $outp      = $this->db->query($sql, [$pass_baru, $id]);
                 }
@@ -372,25 +413,20 @@ class User_model extends CI_Model
 
     public function create_xml()
     {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-        $desa  = $query->row_array();
-
+        $sql    = 'SELECT * FROM config WHERE 1';
+        $query  = $this->db->query($sql);
+        $desa   = $query->row_array();
         $nl     = "\r\n";
         $string = '';
 
-        //DESA
         $string .= '<desa>' . $nl;
         $string .= '<nama>' . $desa['nama_desa'] . '</nama>' . $nl;
         $string .= '<kode>' . $desa['kode_kabupaten'] . $desa['kode_kecamatan'] . $desa['kode_desa'] . '</kode>' . $nl;
         $string .= '<lat>' . $desa['lat'] . '</lat>' . $nl;
         $string .= '<lng>' . $desa['lng'] . '</lng>' . $nl;
 
-        //.......
-
         $string .= '</desa>' . $nl . $nl;
 
-        //wilayah
         $sql     = 'SELECT DISTINCT(dusun) FROM tweb_wil_clusterdesa';
         $query   = $this->db->query($sql);
         $wilayah = $query->result_array();
@@ -402,8 +438,6 @@ class User_model extends CI_Model
         }
 
         $string .= '</wilayah>' . $nl . $nl;
-
-        //pendeuduk
 
         $sql      = 'SELECT * FROM data_surat';
         $query    = $this->db->query($sql);
@@ -428,14 +462,10 @@ class User_model extends CI_Model
         $handle   = fopen($path . 'sycn_data_' . $ccyymmdd . '.xml', 'w+b');
         fwrite($handle, $string);
         fclose($handle);
-
-        //echo $string;
     }
 
     public function send_data()
     {
-        //$ip = "sid.web.id";
-
         $ip      = '127.0.0.1';
         $Connect = fsockopen($ip, '80', $errno, $errstr, 1);
         if ($Connect) {

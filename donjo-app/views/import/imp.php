@@ -1,138 +1,129 @@
 <div id="pageC">
 <!-- Start of Space Admin -->
-	<table class="inner">
-	<tr style="vertical-align:top">
-		<td style="background:#fff;padding:0px;">
-			<div class="content-header">
-			</div>
-			<div id="contentpane">
-				<div class="ui-layout-north panel">
-					<h3>Import Data Desa</h3>
-				</div>
-				<div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-					<div class="left">
-							<!--impor data xls-->
-							<form action="<?= $form_action?>" method="post" enctype="multipart/form-data" id="excell">
-               <table class="form">
-								<tr>
-									<td width="500" colspan="3">
-										<p font-size="14px";>
-										Mempersiapkan data dengan bentuk excel untuk import ke dalam database SID:
-										<br>
-										<ol>
+<div id="contentpane">
+	<div class="ui-layout-north panel">
+		<h3>Import Database Kependudukan</h3>
+	</div>
+	<div class="ui-layout-center" id="maincontent" style="padding: 5px;">
+		<div class="left">
+				<!--impor data xls-->
 
-										<li value="1">Pastikan format data yang akan diimport sudah sesuai dengan aturan import data:
-										<dl>
-										<dl>-> Boleh menggunakan tanda ' (petik satu) dalam penggunaan nama,
-										<br><dl>-> Struktur RT RW, jika tidak ada dalam struktur wilayah desa diganti dengan tanda � (min/strip/dash)
-										<br><dl>-> Data (Jenis Kelamin, Agama, Pendidikan, Pekerjaan, Status Perkawinan, Status Hubungan dalam Keluarga, Kewarganegaraan, Golongan darah, Jamkesmas, raskin, klasifikasi sosial ekonomi) terwakili dengan Kode Nomor. Misal : laki-laki terwakili dengan nomor 1 dan perempuan dengan nomor 2<br>
-										</dl>
-										<li>Simpan (Save) file Excel sebagai .xls file (jika Anda memakai excel 2007 gunakan Save As pilih format .xls) </ul>
-										<li>Pastikan format excel ber-ekstensi .xls format Excel 2003</ul>
+		<h4>Import Data Penduduk dan Keluarga (Basis NIK dan Nomor KK)</h4>
+				<form action="<?= $form_action?>" method="post" enctype="multipart/form-data" id="excell">
+				<table class="form">
+					<tr>
+						<td width="500" colspan="3">
+							<p font-size="14px";>
+							Mempersiapkan database dengan tipe spreadsheet (.xls) untuk diimport ke dalam database SID:
+							<br>
+							<ol>
+							<li value="1">Pastikan format data yang akan diimport sudah sesuai dengan aturan import data:
+							<dl>
+							<dl>-> Boleh menggunakan tanda ' (petik satu) dalam penggunaan nama,
+							<br><dl>-> Struktur RT RW, jika tidak ada dalam struktur wilayah desa diganti dengan tanda (min/strip/dash)
+							<br><dl>-> Data (Jenis Kelamin, Agama, Pendidikan, Pekerjaan, Status Perkawinan, Status Hubungan dalam Keluarga, Kewarganegaraan, Golongan darah, Jamkesmas, raskin, klasifikasi sosial ekonomi) terwakili dengan Kode Nomor. Misal : laki-laki terwakili dengan nomor 1 dan perempuan dengan nomor 2<br>
+							</dl>
+							<li>Simpan (Save) file spreadsheet sebagai .xls file (jika Anda memakai excel 2007 gunakan Save As pilih format .xls) </ul>
+							<li>Pastikan tipe spreadsheet berekstensi .xls format Excel 2003</ul>
+							<li>Data yang dibutuhkan untuk import dengan memenuhi aturan data.
+							</ol>
+							UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url()?>assets/import/ATURANDATA.xls">Aturan Data</a>
+							<a class="uibutton confirm" href="<?= base_url()?>assets/import/ContohFormat.xls">Contoh Format</a><br>
+							</p>
+						</td>
+						<td>
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td width="150">
+							Pilih File .xls:
+						</td>
+						<td width="250">
+							<input name="userfile" type="file" />
+						<td>
+							<a href="#" onclick="document.getElementById('excell').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url()?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Penduduk</a>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+					</tr>
+				<?php if (isset($_SESSION['gagal'])) {?>
+					<tr>
+						<td width="150">
+						<p>Jumlah Data Gagal
+						</td>
+						<td colspan="3">
 
-										<li>Data yang dibutuhkan untuk Import dengan memenuhi aturan data<a href="<?= base_url()?>assets/import/ATURANDATA.xls"> sebagai berikut</a><br>
-										<li>Contoh urutan format dapat dilihat pada <a href="<?= base_url()?>assets/import/ContohFormat.xls">tautan berikut</a><br>
-										</ol>
-										</p>
-									</td>
-									<td>
-									&nbsp;
-									</td>
-								</tr>
-								<tr>
-									<td width="150">
-										Pilih File .xls:
-									</td>
-									<td width="250">
-										<input name="userfile" type="file" />
-									<td>
-										<a href="#" onclick="document.getElementById('excell').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Prosses ini biasa memakan waktu antara 1 (satu) Menit hingga 45 Menit, tergantung kecepatan komputer dan juga jumlah data penduduk yang di masukkan.<div align='center'><img src='<?= base_url()?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import</a>
-									</td>
-									<td>
-										&nbsp;
-									</td>
-								</tr>
-							<?php if (isset($_SESSION['gagal'])) {?>
-								<tr>
-									<td width="150">
-									<p>Jumlah Data Gagal
-									</td>
-									<td colspan="3">
+							<?= $_SESSION['gagal']?>
+						</td>
+					</tr>
+					<tr>
+						<td width="150">
+						<p>Letak Baris Data Gagal:
+						</td>
+						<td colspan="3">
 
-										<?= $_SESSION['gagal']?>
-									</td>
-								</tr>
-								<tr>
-									<td width="150">
-									<p>Letak Baris Data Gagal:
-									</td>
-									<td colspan="3">
+							<?= $_SESSION['baris']?>
+						</td>
+					</tr>
+					<tr>
+						<td width="150">
+						<p>Total Data Berhasil:
+						</td>
+						<td colspan="3">
 
-										<?= $_SESSION['baris']?>
-									</td>
-								</tr>
-								<tr>
-									<td width="150">
-									<p>Tota Data Berhasil:
-									</td>
-									<td colspan="3">
+							<?= $_SESSION['sukses']?>
+						</td>
+					</tr>
+				<?php }?>
+				</table>
+				</form>
+				<!--impor data xls-->
+		<br>
+		<h4>Import Pengelompokan Data Rumah Tangga</h4>
+				<form action="<?= $form_action3?>" method="post" enctype="multipart/form-data" id="kelompok">
+				<table class="form">
+					<tr>
+						<td width="500" colspan="3">
+							<p font-size="14px";>
+							Pengelompokan data penduduk yang sudah tersimpan di dalam database SID, sehingga terkelompokkan secara otomatis berdasarkan nomor urut rumah tangga:
+							<br>
+							<ol>
+							<li value="1">Pastikan format data yang akan diimport sudah sesuai dengan aturan import data:
+							<li>Simpan (Save) file speradsheet sebagai .xls file (jika Anda memakai excel 2007 gunakan Save As pilih format .xls) </ul>
+							<li>Pastikan tipe spreadsheet berekstensi .xls format Excel 2003</ul>
+							<li>Data yang dibutuhkan untuk import dengan memenuhi aturan data.
+							</ol>
+							UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url()?>assets/import/ATURANGRUP.xls">Aturan Data</a>
+							<a class="uibutton confirm" href="<?= base_url()?>assets/import/ContohGrup.xls">Contoh Format</a><br>
+							</p>
+						</td>
+						<td>
+						&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td width="150">
+							Pilih File .xls:
+						</td>
+						<td width="250">
+							<input name="userfile" type="file" />
+						<td>
+							<a href="#" onclick="document.getElementById('kelompok').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan juga jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url()?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Pengelompokan Rumah Tangga</a>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+					</tr>
+				</table>
+				</form>
 
-										<?= $_SESSION['sukses']?>
-									</td>
-								</tr>
-							<?php }?>
-							</table>
-							</form>
-							<!--impor data xls-->
-
-							<!--impor data siak-->
-							<div>
-								<h4>Impor Data SIAK</h4>
-								<div>
-									<?php
-                                    if (strlen(@$_SESSION['SIAK']) > 1) {
-                                        echo $_SESSION['SIAK'];
-                                    }
-                                    $_SESSION['SIAK'] = '';
-
-                                    $max_upload   = (int) (ini_get('upload_max_filesize'));
-                                    $max_post     = (int) (ini_get('post_max_size'));
-                                    $memory_limit = (int) (ini_get('memory_limit'));
-                                    $upload_mb    = min($max_upload, $max_post, $memory_limit);
-                                    echo '<p>Batas Maksimal Pengunggahan Berkas <strong>' . $upload_mb . ' MB</strong></p>
-									<p>Proses ini akan membutuhkan waktu beberapa menit, menyesuaikan dengan spesifikasi
-									komputer server SID dan sambungan internet yang tersedia.</p>';
-
-                                    ?>
-								</div>
-								<div>
-									<form id="mainform" action="<?= $form_action2; ?>" method="post" enctype="multipart/form-data">
-									<table>
-										<tr><td>Berkas DK :</td>
-											<td><input type="file" name="file_dk" id="file_dk"/></td></tr>
-										<tr><td>Berkas BW :</td>
-											<td><input type="file" name="file_bw" id="file_bw"/></td></tr>
-										<tr><td>&nbsp;</td>
-											<td>
-												<a onclick="formAction('mainform','<?= $form_action2 ?>')" class="uibutton special"  target="confirm2" message="Proses Import Sedang Berlangsung!!!" header="Harap Tunggu"> Import </a>
-											</td></tr>
-									</table>
-									</form>
-								</div>
-							</div>
-							<!--impor data siak-->
-            </div>
-				<div class="ui-layout-south panel bottom">
-					<div class="left">
-						<div class="table-info"></div>
-        </div>
-        <div class="right">
-        </div>
-			</div>
 		</div>
-	</td></tr></table>
 </div>
-
+<div class="ui-layout-south panel bottom"></div>
+</div>
+</div>
 <?php unset($_SESSION['sukses']); ?>
 <?php unset($_SESSION['baris']); ?>
 <?php unset($_SESSION['gagal']); ?>

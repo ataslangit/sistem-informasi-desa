@@ -34,14 +34,13 @@ $(function(){
 	font-weight:normal;
 }
 </style>
-
 <div id="active-menu">Data Responden</div>
 <div class="content-header">
-    <h3>Form Manajemen Responden</h3>
+ <h3>Form Manajemen Responden</h3>
 </div>
 <div id="contentpane">
-    <form id="validasi" action="<?= $form_action?>" method="POST">
-    <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
+ <form id="validasi" action="<?= $form_action?>" method="POST">
+ <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <input type="hidden" name="rt" value="">
 <table>
 	<?php $last = '';
@@ -60,18 +59,18 @@ foreach ($list_jawab as $data) {?>
 	<?php $last = $data['pertanyaan'];
     }?>
 </table>
-    </div>
+ </div>
 
-    <div class="ui-layout-south panel bottom">
-        <div class="left">
-            <a href="<?= site_url()?>/admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
-        </div>
-        <div class="right">
-            <div class="uibutton-group">
-                <button class="uibutton" type="reset">Clear</button>
-                <button class="uibutton confirm" type="submit" >Simpan</button>
-            </div>
-        </div>
-    </div>
+ <div class="ui-layout-south panel bottom">
+ <div class="left">
+ <a href="<?= site_url()?>/admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
+ </div>
+ <div class="right">
+ <div class="uibutton-group">
+
+ <button class="uibutton confirm" type="submit" >Simpan</button>
+ </div>
+ </div>
+ </div>
 </form>
 </div>

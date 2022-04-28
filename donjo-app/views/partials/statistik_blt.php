@@ -14,12 +14,12 @@
 						title: {
 							text: 'Kelas Sosial'
 						},
-                        categories: [
-						<?php  $i = 0;
+ categories: [
+						<?php $i = 0;
 
 foreach ($main as $data) {
     $i++; ?>
-						  <?= "'{$data['nama']}',"; ?>
+						 <?= "'{$data['nama']}',"; ?>
 						<?php
 }?>
 						]
@@ -38,7 +38,7 @@ foreach ($main as $data) {
 						y: 70,
 						floating: true,
 						shadow: true,
-                        enabled:false
+ enabled:false
 					},
 					tooltip: {
 						formatter: function() {
@@ -48,18 +48,18 @@ foreach ($main as $data) {
 					},
 					plotOptions: {
 						series: {
-                            colorByPoint: true
-                        },
-                        column: {
+ colorByPoint: true
+ },
+ column: {
 							pointPadding: 0.2,
 							borderWidth: 0
 						}
 					},
-				        series: [{
+				 series: [{
 						name: 'Populasi',
 						data: [
-						<?php  foreach ($main as $data) {?>
-						  <?= $data['jumlah'] . ','; ?>
+						<?php foreach ($main as $data) {?>
+						 <?= $data['jumlah'] . ','; ?>
 						<?php }?>]
 
 					},{
@@ -67,8 +67,8 @@ foreach ($main as $data) {
 						colorByPoint: false,
 						color:'#80699B',
 						data: [
-						<?php  foreach ($main as $data) {?>
-						  <?= $data['raskin'] . ','; ?>
+						<?php foreach ($main as $data) {?>
+						 <?= $data['raskin'] . ','; ?>
 						<?php }?>]
 
 					}]
@@ -78,7 +78,6 @@ foreach ($main as $data) {
 			});
 
 </script>
-
 <?= '
 	<div class="box box-danger">
 		<div class="box-header with-border">
@@ -100,7 +99,6 @@ foreach ($main as $data) {
 			</div>
 		</div>
 	</div>
-
 	<div class="box box-danger">
 		<div class="box-header with-border">
 			<h3 class="box-title">Tabel Data Penerima Bantuan Langsung Tunai</h3>
@@ -153,41 +151,40 @@ foreach ($main as $data) {
 </div>
 <div class='entry'>
 <link href="<?= base_url()?>assets/front/general.css" rel="stylesheet" type="text/css" />
-
 	<div id="container" style="min-width: 550px; height: 500px; margin: 0 auto"></div>
 	<div id="contentpane">
-    <div class="ui-layout-north panel top">
-    </div>
-    <div class="ui-layout-south panel bottom" style="max-height: 350px;overflow:auto; font-size:11px;">
-        <table class="list"  style="font-size:12px;">
+ <div class="ui-layout-north panel top">
+ </div>
+ <div class="ui-layout-south panel bottom" style="max-height: 350px;overflow:auto; font-size:11px;">
+ <table class="list" style="font-size:12px;">
 		<thead>
-            <tr>
-                <th>No</th>
-				<th align="left" align="center">Statistik</th>
-				<th align="left" align="center">Populasi</th>
-				<th align="left" align="center">Memperoleh Bantuan Langsung Tunai</th>
+ <tr>
+ <th>No</th>
+				<th>Statistik</th>
+				<th>Populasi</th>
+				<th>Memperoleh Bantuan Langsung Tunai</th>
 
 			</tr>
 		</thead>
 		<tbody>
-        <?php   $i = 0; $j = 0;
+ <?php $i = 0; $j = 0;
 
 foreach ($main as $data): ?>
 		<tr>
-          <td align="center" width="2"><?= $data['id']?></td>
-          <td><?= $data['nama']?></td>
-          <td><?= $data['jumlah']?></td>
-          <td><?= $data['blt']?></td>
-		  </tr><?php  $i = $i + $data['jumlah']; ?><?php  $j = $j + $data['blt']; ?>
-        <?php  endforeach; ?>
+ <td align="center" width="2"><?= $data['id']?></td>
+ <td><?= $data['nama']?></td>
+ <td><?= $data['jumlah']?></td>
+ <td><?= $data['blt']?></td>
+		 </tr><?php $i = $i + $data['jumlah']; ?><?php $j = $j + $data['blt']; ?>
+ <?php endforeach; ?>
 		<tr>
 			<td colspan="2"><b>Jumlah</b></td>
 			<td><b><?= $i; ?></b></td>
 			<td><b><?= $j; ?></b></td>
 		</tr>
 		</tbody>
-        </table>
-    </div>
+ </table>
+ </div>
 </div>
 </div>
 </div>

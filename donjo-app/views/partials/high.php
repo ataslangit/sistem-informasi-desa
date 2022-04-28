@@ -19,7 +19,7 @@
 						title: {
 							text: 'Statistik'
 						},
-                        categories: [<?php $i = 0;
+ categories: [<?php $i = 0;
 
 foreach ($stat as $data) {
     $i++; ?><?php if ($data['jumlah'] !== '-') {
@@ -41,7 +41,7 @@ foreach ($stat as $data) {
 						y: 70,
 						floating: true,
 						shadow: true,
-                        enabled:true
+ enabled:true
 					},
 					tooltip: {
 						formatter: function() {
@@ -51,14 +51,14 @@ foreach ($stat as $data) {
 					},
 					plotOptions: {
 						series: {
-                            colorByPoint: true
-                        },
-                        column: {
+ colorByPoint: true
+ },
+ column: {
 							pointPadding: 0.2,
 							borderWidth: 0
 						}
 					},
-				        series: [{
+				 series: [{
 						name: 'Populasi',
 						data: [<?php foreach ($stat as $data) {?><?php if ($data['jumlah'] !== '-') {
         echo $data['jumlah'] . ',';

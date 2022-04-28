@@ -18,9 +18,10 @@ class Hom_desa extends CI_Controller
 
     public function index()
     {
-        $nav['act']   = 0;
-        $header       = $this->header_model->get_data();
-        $data['main'] = $this->config_model->get_data();
+        $_SESSION['delik'] = 0;
+        $nav['act']        = 0;
+        $header            = $this->header_model->get_data();
+        $data['main']      = $this->config_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('home/nav', $nav);
         $this->load->view('home/konfigurasi_form', $data);
@@ -75,31 +76,17 @@ class Hom_desa extends CI_Controller
         redirect('hom_desa');
     }
 
-    public function upgrade_silent()
-    {
-        $nav['act'] = 0;
-        $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/upgrade_form');
-        $this->load->view('footer');
-    }
-
-    public function upgrader()
-    {
-        $kode = $_POST['upkode'];
-        if ($kode === 'formasikombinasi') {
-            $this->config_model->upgrade();
-        } else {
-            $_SESSION['success'] = -1;
-        }
-
-        redirect('hom_desa/upgrade_silent');
-    }
-
     public function kosong_pend()
     {
         $this->config_model->kosong_pend();
         redirect('hom_desa');
+    }
+
+    public function undelik()
+    {
+        if (isset($_SESSION['delik'])) {
+            unset($_SESSION['delik']);
+        }
+        redirect('analisis_master/clear');
     }
 }

@@ -40,13 +40,11 @@ class Kelompok extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['state'])) {
             $data['state'] = $_SESSION['state'];
         } else {
             $data['state'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -56,8 +54,7 @@ class Kelompok extends CI_Controller
         $data['main']        = $this->kelompok_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']     = $this->kelompok_model->autocomplete();
         $data['list_master'] = $this->kelompok_model->list_master();
-
-        $header = $this->header_model->get_data();
+        $header              = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $nav['act'] = 4;
@@ -69,10 +66,10 @@ class Kelompok extends CI_Controller
 
     public function anggota($id = 0)
     {
-        $data['kel']  = $id;
-        $data['main'] = $this->kelompok_model->list_anggota($id);
-
-        $header = $this->header_model->get_data();
+        $data['kel']      = $id;
+        $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
+        $data['main']     = $this->kelompok_model->list_anggota($id);
+        $header           = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $nav['act'] = 4;
@@ -107,11 +104,18 @@ class Kelompok extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function form_anggota($id = 0)
+    public function form_anggota($id = 0, $id_a = 0)
     {
-        $data['kelompok']    = null;
-        $data['form_action'] = site_url("kelompok/insert_a/{$id}");
-
+        if ($id_a === 0) {
+            $data['kelompok']    = null;
+            $data['pend']        = null;
+            $data['form_action'] = site_url("kelompok/insert_a/{$id}");
+        } else {
+            $data['kelompok']    = $id;
+            $data['pend']        = $this->kelompok_model->get_anggota($id, $id_a);
+            $data['form_action'] = site_url("kelompok/update_a/{$id}/{$id_a}");
+            //echo $id.$id_a;
+        }
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
@@ -131,6 +135,40 @@ class Kelompok extends CI_Controller
         $this->load->view('kelompok/nav2');
         $this->load->view('kelompok/panduan');
         $this->load->view('footer');
+    }
+
+    public function cetak()
+    {
+        $data['header'] = $this->header_model->get_data();
+        $data['main']   = $this->kelompok_model->list_data();
+
+        $this->load->view('kelompok/cetak', $data);
+    }
+
+    public function excel()
+    {
+        $data['header'] = $this->header_model->get_data();
+        $data['main']   = $this->kelompok_model->list_data();
+
+        $this->load->view('kelompok/excel', $data);
+    }
+
+    public function cetak_a($id = 0)
+    {
+        $data['header']   = $this->header_model->get_data();
+        $data['main']     = $this->kelompok_model->list_anggota($id);
+        $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
+
+        $this->load->view('kelompok/anggota/cetak', $data);
+    }
+
+    public function excel_a($id = 0)
+    {
+        $data['header']   = $this->header_model->get_data();
+        $data['main']     = $this->kelompok_model->list_anggota($id);
+        $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
+
+        $this->load->view('kelompok/anggota/excel', $data);
     }
 
     public function menu($id = '')
@@ -205,6 +243,12 @@ class Kelompok extends CI_Controller
         redirect("kelompok/index/{$p}/{$o}");
     }
 
+    public function update_a($id = '', $id_a = 0)
+    {
+        $this->kelompok_model->update_a($id, $id_a);
+        redirect("kelompok/anggota/{$id}");
+    }
+
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_model->delete($id);
@@ -227,5 +271,16 @@ class Kelompok extends CI_Controller
     {
         $this->kelompok_model->delete_a($a);
         redirect("kelompok/anggota/{$id}");
+    }
+
+    public function to_master($id = 0)
+    {
+        $filter = $id;
+        if ($filter !== 0) {
+            $_SESSION['filter'] = $filter;
+        } else {
+            unset($_SESSION['filter']);
+        }
+        redirect('kelompok');
     }
 }

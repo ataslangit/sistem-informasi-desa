@@ -210,22 +210,20 @@ td.maincontent{
 		position:absolute;
 		left:51px;
 		top:5px;
-		font-size: 13px;
-		color:#ffff77;
-		text-shadow:1px 1px 1.2px #111;
+		font-size: 14px;
+		color:#fed865;
+		text-shadow:1px 1px 1px #555;
         height:15px;
-		font-weight:bold;
     }
     #sid-info{
 		position:absolute;
 		left:52px;
 		top:22px;
-		font-size: 15px;
-		color:#ffff77;
-		text-shadow:1px 1px 1.2px #111;
-		font-weight:bold;
+		font-size: 16px;
+		color:#ffe875;
+		text-shadow:0.5px 0.5px 1.5px #666;
     }
-    #sid-logo{
+    #sid-logo{font-family: 'Bitstream Vera Sans',helvetica,sans-serif;
         float:left;
 		padding-left: 5px;
 		margin-top:1px

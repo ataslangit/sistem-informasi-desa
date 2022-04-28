@@ -23,7 +23,6 @@ class Program_bantuan extends CI_Controller
         $this->load->view('header', $header);
         $data['tampil']  = 0;
         $data['program'] = $this->program_bantuan_model->get_program(false);
-
         $this->load->view('program_bantuan/program', $data);
         $this->load->view('footer');
     }
@@ -35,7 +34,6 @@ class Program_bantuan extends CI_Controller
 
         $data['tampil']  = $sasaran;
         $data['program'] = $this->program_bantuan_model->list_program($sasaran);
-
         $this->load->view('program_bantuan/program', $data);
         $this->load->view('footer');
     }
@@ -44,13 +42,11 @@ class Program_bantuan extends CI_Controller
     {
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         if (isset($_POST['nik'])) {
             $data['individu'] = $this->program_bantuan_model->add_peserta($_POST['nik'], $id);
         } else {
             $data['individu'] = null;
         }
-
         $data['program'] = $this->program_bantuan_model->get_program($id);
 
         $this->load->view('program_bantuan/detail', $data);
@@ -61,7 +57,6 @@ class Program_bantuan extends CI_Controller
     {
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['program'] = $this->program_bantuan_model->get_peserta_program($cat, $id);
 
         $this->load->view('program_bantuan/peserta', $data);
@@ -77,7 +72,6 @@ class Program_bantuan extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');
         $this->form_validation->set_rules('edate', 'Tanggal akhir', 'required');
-
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
         if ($this->form_validation->run() === false) {
@@ -98,18 +92,14 @@ class Program_bantuan extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');
         $this->form_validation->set_rules('edate', 'Tanggal akhir', 'required');
-
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['program'] = $this->program_bantuan_model->get_program($id);
-
         if ($this->form_validation->run() === false) {
             $this->load->view('program_bantuan/edit', $data);
         } else {
             $this->program_bantuan_model->update_program($id);
             redirect('program_bantuan/');
-            //			$this->load->view('program_bantuan/formsuccess');
         }
 
         $this->load->view('footer');
@@ -131,10 +121,8 @@ class Program_bantuan extends CI_Controller
     public function unduhsheet($id = 0)
     {
         if ($id > 0) {
-            // Print xls untuk data x
             $data['desa']    = $this->header_model->get_data();
             $data['peserta'] = $this->program_bantuan_model->get_program($id);
-
             $this->load->view('program_bantuan/unduh-sheet', $data);
         }
     }

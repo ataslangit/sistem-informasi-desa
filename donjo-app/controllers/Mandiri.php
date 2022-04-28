@@ -27,32 +27,25 @@ class Mandiri extends CI_Controller
     {
         $data['p'] = $p;
         $data['o'] = $o;
-
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
         } else {
             $data['cari'] = '';
         }
-
         if (isset($_SESSION['filter'])) {
             $data['filter'] = $_SESSION['filter'];
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
         $data['per_page'] = $_SESSION['per_page'];
+        $data['paging']   = $this->mandiri_model->paging($p, $o);
+        $data['main']     = $this->mandiri_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
+        $data['keyword']  = $this->mandiri_model->autocomplete();
 
-        $data['paging']  = $this->mandiri_model->paging($p, $o);
-        $data['main']    = $this->mandiri_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword'] = $this->mandiri_model->autocomplete();
-
-        //$data['penduduk'] = $this->mandiri_model->list_penduduk();
-        //$data['form_action'] = site_url("mandiri/insert/");
-        $header = $this->header_model->get_data();
-
+        $header     = $this->header_model->get_data();
         $nav['act'] = 1;
         $this->load->view('header', $header);
 

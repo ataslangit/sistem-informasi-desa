@@ -1,23 +1,22 @@
 <script>
 $(function(){
 	$('#'+'manual').show();
-    var link = {};
-    link.results = [
+ var link = {};
+ link.results = [
 		<?php foreach ($link as $data) {?>
-	   {id:'artikel/<?= $data['id']?>',name:'<?= $data['judul']?>',info:'Halaman Berisi <?= $data['judul']?>'},
+	 {id:'artikel/<?= $data['id']?>',name:'<?= $data['judul']?>',info:'Halaman Berisi <?= $data['judul']?>'},
 		<?php }?>
-	   {id:'gallery',name:'Gallery',info:'Halaman Gallery'},
-		    ];
+	 {id:'gallery',name:'Gallery',info:'Halaman Gallery'},
+		 ];
 link.total = link.results.length;
-
 $('#link').flexbox(link, {
 	resultTemplate: '<div><label>No link : </label>{name}</div><div>{info}</div>',
 	watermark: 'Pilih Menu Link',
-    width: 260,
-    noResultsText :'Tidak ada no link yang sesuai..',
-	    onSelect: function() {
+ width: 260,
+ noResultsText :'Tidak ada no link yang sesuai..',
+	 onSelect: function() {
 		$('#'+'manual').hide();
-    }
+ }
 });
 });
 </script>
@@ -35,8 +34,6 @@ $('#link').flexbox(link, {
 <li <?php if ($tip === 2) {
     echo "class='selected'";
 }?>><a href="<?= site_url('kategori')?>">Kategori / Menu Dinamis</a></li>
-
-
 </ul>
 </div>
 </fieldset>
@@ -50,7 +47,6 @@ $('#link').flexbox(link, {
 <th>Nama Menu</th>
 <td><input class="inputbox" type="text" name="nama" value="<?= $menu['nama']?>" size="40"/></td>
 </tr>
-
 <?php if ($menu) {?>
 <tr>
 <th>Link Sebelumnya</th>
@@ -72,7 +68,7 @@ $('#link').flexbox(link, {
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

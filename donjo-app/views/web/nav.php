@@ -5,7 +5,10 @@
 	<a href="<?= site_url('web/index/1')?>">Artikel</a>
 	</li>
 	<li <?php if ($act === 1) {?>class="selected"<?php }?>>
-	<a href="<?= site_url('menu/index/1')?>">Menu</a>
+	<a href="<?= site_url('menu/index/1')?>">Menu Statis</a>
+	</li>
+	<li <?php if ($act === 7) {?>class="selected"<?php }?>>
+	<a href="<?= site_url('kategori/index/1')?>">Menu Dinamis / Kategori</a>
 	</li>
 	<li <?php if ($act === 2) {?>class="selected"<?php }?>>
 	<a href="<?= site_url('komentar')?>">Komentar</a>
@@ -20,7 +23,6 @@
 	<a href="<?= site_url('sosmed')?>">Media Sosial</a>
 	</li>
 <?php } else {?>
-
 	<li <?php if ($act === 0) {?>class="selected"<?php }?>>
 	<a href="<?= site_url('web/index/1')?>">Artikel</a>
 	</li>

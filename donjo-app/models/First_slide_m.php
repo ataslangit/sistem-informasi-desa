@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class First_slide_m extends CI_Model
 {
     public function slide_show()

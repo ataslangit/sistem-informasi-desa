@@ -19,8 +19,8 @@
 </div>
 <div class="ui-layout-south panel bottom bawah">
 	<div class="right">
-        <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
 		<button class="uibutton confirm" type="submit">Upload</button>
 		</div>
 	</div>

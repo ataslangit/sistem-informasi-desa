@@ -1,16 +1,4 @@
 <?php
-/*
-echo "
-    <div class=\"callout callout-danger\">
-        <h4>Pesan</h4>
-        <p>Kontent:</p>
-        <p>".$single_artikel["id"]."</p>
-    </div>
-
-";
-
-*/
-
 if ($single_artikel['id']) {
     echo '
 	<div class="artikel" id="artikel-' . $single_artikel['judul'] . '">
@@ -25,11 +13,11 @@ if ($single_artikel['id']) {
         }
     }
     echo '
-		<div class="teks">' . $single_artikel['isi'] . '</div>';
+		<div class="teks" style="text-align:justify;">' . $single_artikel['isi'] . '</div>';
 
     if ($single_artikel['dokumen'] !== '') {
         if (is_file('assets/files/dokumen/' . $single_artikel['dokumen'])) {
-            echo '<p>Dokumen Lampiran : <a href="' . base_url() . 'assets/files/dokumen/' . $single_artikel['dokumen'] . '" title="">' . $single_artikel['link_dokumen'] . '</a></p><br/>';
+            echo '<p>Dokumen Lampiran : <a target="_blank" href="' . base_url() . 'assets/files/dokumen/' . $single_artikel['dokumen'] . '" title="">' . $single_artikel['link_dokumen'] . '</a></p><br/>';
         }
     }
     if ($single_artikel['gambar1'] !== '') {
@@ -53,13 +41,25 @@ if ($single_artikel['id']) {
     echo '
 		<div class="form-group" style="clear:both;">
 			<ul id="pageshare" title="bagikan ke teman anda" class="pagination">
-				<li class="sbutton" id="fb"><a name="fb_share" href="http://www.facebook.com/sharer.php?u="' . site_url() . '/first/artikel/' . $single_artikel['id'] . '">Share</a></li>
-				<li class="sbutton" id="rt"><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a></li>
+			'; ?>
+
+		<?php
+        if (isset($single_artikel['gambar'])) {
+            $gambar = $single_artikel['gambar'];
+        } elseif (isset($single_artikel['gambar1'])) {
+            $gambar = $single_artikel['gambar1'];
+        } elseif (isset($single_artikel['gambar2'])) {
+            $gambar = $single_artikel['gambar2'];
+        } elseif (isset($single_artikel['gambar3'])) {
+            $gambar = $single_artikel['gambar4'];
+        } ?>
+			<li class="sbutton" id="FB.Share" name="FB.Share"><a target="_blank" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?= urlencode($single_artikel['judul']); ?>&amp;p[summary]=<?= urlencode($single_artikel['judul']) ?>&amp;p[url]=<?= urlencode(current_url()); ?>&amp;p[images][0]=<?= urlencode(base_url() . 'assets/files/artikel/kecil_' . $gambar); ?>">share on FB</a></li>
+				<?= '
+				<li class="sbutton" id="rt"><a target="_blank" href= "http://twitter.com/share" class="twitter-share-button">Tweet</a></li>
 			</ul>
-			<!--
-			<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-			<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-			-->
+			'; ?>
+
+		<?= '
 		</div>
 		<div class="form-group">
 		';
@@ -108,7 +108,6 @@ if ($single_artikel['id']) {
 			</div>
 		</div>
 	</div>
-
 	';
 } else {
     echo '
@@ -116,9 +115,10 @@ if ($single_artikel['id']) {
 		<div class="box box-danger box-solid">
 			<div class="box-header"><h3 class="box-title">Maaf, data tidak ditemukan</h3></div>
 			<div class="box-body">
-				Anda telah terdampar di halaman yang datanya tidak ada lagi di web ini. Mohon periksa kembali, atau laporkan kepada kami.
+				Anda telah terdampar di halaman yang datanya tidak ada lagi di web ini. Mohon periksa kembali atau laporkan kepada kami.
 			</div>
 		</div>
 	</div>
 	';
 }
+?>

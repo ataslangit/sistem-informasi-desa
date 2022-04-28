@@ -11,7 +11,6 @@ class Point extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_point_model');
-
         $this->load->database();
     }
 
@@ -38,7 +37,6 @@ class Point extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -47,9 +45,8 @@ class Point extends CI_Controller
         $data['paging']  = $this->plan_point_model->paging($p, $o);
         $data['main']    = $this->plan_point_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->plan_point_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 0;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 0;
 
         $this->load->view('header', $header);
 
@@ -63,8 +60,6 @@ class Point extends CI_Controller
         $data['p'] = $p;
         $data['o'] = $o;
 
-        //$data['link']        = $this->plan_point_model->list_link();
-
         if ($id) {
             $data['point']       = $this->plan_point_model->get_point($id);
             $data['form_action'] = site_url("point/update/{$id}/{$p}/{$o}");
@@ -72,7 +67,6 @@ class Point extends CI_Controller
             $data['point']       = null;
             $data['form_action'] = site_url('point/insert');
         }
-
         $data['simbol'] = $this->plan_point_model->list_simbol();
         $header         = $this->header_model->get_data();
 
@@ -100,11 +94,6 @@ class Point extends CI_Controller
 
     public function ajax_add_sub_point($point = 0, $id = 0)
     {
-
-        //$data['point'] = $point;
-
-        //$data['link']        = $this->plan_point_model->list_link();
-
         if ($id) {
             $data['point']       = $this->plan_point_model->get_point($id);
             $data['form_action'] = site_url("point/update_sub_point/{$point}/{$id}");
@@ -112,7 +101,6 @@ class Point extends CI_Controller
             $data['point']       = null;
             $data['form_action'] = site_url("point/insert_sub_point/{$point}");
         }
-
         $data['simbol'] = $this->plan_point_model->list_simbol();
         $this->load->view('point/ajax_add_sub_point_form', $data);
     }

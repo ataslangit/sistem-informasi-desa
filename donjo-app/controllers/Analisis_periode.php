@@ -14,11 +14,12 @@ class Analisis_periode extends CI_Controller
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
+        $_SESSION['submenu']  = 'Data Periode';
+        $_SESSION['asubmenu'] = 'analisis_periode';
     }
 
-    public function clear($id = 0)
+    public function clear()
     {
-        $_SESSION['analisis_master'] = $id;
         unset($_SESSION['cari'], $_SESSION['state']);
 
         redirect('analisis_periode');
@@ -48,7 +49,6 @@ class Analisis_periode extends CI_Controller
         } else {
             $data['state'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -59,8 +59,7 @@ class Analisis_periode extends CI_Controller
         $data['keyword']         = $this->analisis_periode_model->autocomplete();
         $data['analisis_master'] = $this->analisis_periode_model->get_analisis_master();
         $data['list_state']      = $this->analisis_periode_model->list_state();
-
-        $header = $this->header_model->get_data();
+        $header                  = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $this->load->view('analisis_master/nav');

@@ -6,8 +6,7 @@ class Siteman extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
-        $this->load->model('header_model');
+        parent::__construct();        $this->load->model('header_model');
         $this->load->model('user_model');
     }
 
@@ -16,7 +15,6 @@ class Siteman extends CI_Controller
         $this->user_model->logout();
         $header = $this->header_model->get_config();
 
-        //Initialize Session ------------
         if (! isset($_SESSION['siteman'])) {
             $_SESSION['siteman'] = 0;
         }
@@ -25,27 +23,27 @@ class Siteman extends CI_Controller
         $_SESSION['cari']       = '';
         $_SESSION['pengumuman'] = 0;
         $_SESSION['sesi']       = 'kosong';
-        //-------------------------------
+        $_SESSION['timeout']    = 0;
 
         $this->load->view('siteman', $header);
         $_SESSION['siteman'] = 0;
     }
 
+    /**
+     * Proses auth
+     *
+     * @return void
+     */
     public function auth()
     {
         $this->user_model->siteman();
-        redirect('main');
+
+        return redirect('main');
     }
 
     public function login()
     {
-        $this->user_model->login();
-        $header = $this->header_model->get_config();
-        $this->load->view('siteman', $header);
-    }
-
-    public function flash()
-    {
-        $this->load->view('config');
+        $this->user_model->logout();
+        redirect('siteman');
     }
 }

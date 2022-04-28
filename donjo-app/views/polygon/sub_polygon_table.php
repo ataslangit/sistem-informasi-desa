@@ -1,28 +1,8 @@
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<?php /*
-<td class="side-polygon">
-
-<fieldset>
-<legend>Kategori polygon</legend>
-<div class="lpolygon">
-<ul>
-<li <?php if($tip==1)echo "class='selected'";?>><a href="<?php echo site_url("polygon/index/1")?>">Atas</a></li>
-<li <?php if($tip==2)echo "class='selected'";?>><a href="<?php echo site_url("polygon/index/2")?>">Atas Kiri</a></li>
-
-<?php /*
-<li ><a href="Samping">Samping</a></li>
-<li ><a href="Tengah">Tengah</a></li>
-<li ><a href="Bawah">Bawah</a></li>
-
-</ul>
-</div>
-</fieldset>
-
-</td>
-*/?>
+<?php
+?>
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub polygon</h3>

@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Plan_point_model extends CI_Model
 {
     public function autocomplete()
@@ -44,7 +46,7 @@ class Plan_point_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
-        $sql = 'SELECT COUNT(id) AS id FROM point  WHERE tipe = 0 ';
+        $sql = 'SELECT COUNT(id) AS id FROM point WHERE tipe = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
@@ -72,10 +74,9 @@ class Plan_point_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        $sql = 'SELECT * FROM point WHERE tipe = 0  ';
+        $sql = 'SELECT * FROM point WHERE tipe = 0 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -107,19 +108,7 @@ class Plan_point_model extends CI_Model
     public function insert()
     {
         $data = $_POST;
-        /*
-          $lokasi_file = $_FILES['simbol']['tmp_name'];
-          $tipe_file   = $_FILES['simbol']['type'];
-          $nama_file   = $_FILES['simbol']['name'];
-          if (!empty($lokasi_file)){
-            if ($tipe_file == "image/png" OR $tipe_file == "image/gif"){
-                UploadSimbol($nama_file);
-                $data['simbol'] = $nama_file;
-                $outp = $this->db->insert('point',$data);
-            }
-          } else {
-                $data['simbol'] = "house.png";	*/
-        //	}
+
         $outp = $this->db->insert('point', $data);
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -131,24 +120,9 @@ class Plan_point_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-        /*
-                $lokasi_file = $_FILES['simbol']['tmp_name'];
-                  $tipe_file   = $_FILES['simbol']['type'];
-                  $nama_file   = $_FILES['simbol']['name'];
-                  if (!empty($lokasi_file)){
-                    if ($tipe_file == "image/png" OR $tipe_file == "image/gif"){
-                        UploadSimbol($nama_file);
-                        $data['simbol'] = $nama_file;
-                        $this->db->where('id',$id);
-                        $outp = $this->db->update('point',$data);
-                    }
-                    $_SESSION['success']=1;
-                  }
-            */
-        //unset($data['simbol']);
+
         $this->db->where('id', $id);
         $outp = $this->db->update('point', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -214,30 +188,10 @@ class Plan_point_model extends CI_Model
 
     public function insert_sub_point($parrent = 0)
     {
-        /*
-              $lokasi_file = $_FILES['simbol']['tmp_name'];
-              $tipe_file   = $_FILES['simbol']['type'];
-              $nama_file   = $_FILES['simbol']['name'];
-              if (!empty($lokasi_file)){
-                if ($tipe_file == "image/png" OR $tipe_file == "image/gif"){
-                    UploadSimbol($nama_file);
-                    $data = $_POST;
-                    $data['simbol'] = $nama_file;
-                    $data['parrent'] = $parrent;
-                    $data['tipe'] = 2;
-                    $outp = $this->db->insert('point',$data);
-                    if($outp) $_SESSION['success']=1;
-                } else {
-                    $_SESSION['success']=-1;
-                }
-              }else{
-                $data['simbol'] = "house.png";
-                */
         $data            = $_POST;
         $data['parrent'] = $parrent;
         $data['tipe']    = 2;
         $outp            = $this->db->insert('point', $data);
-        //}
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -248,25 +202,9 @@ class Plan_point_model extends CI_Model
     public function update_sub_point($id = 0)
     {
         $data = $_POST;
-        /*
-          $lokasi_file = $_FILES['simbol']['tmp_name'];
-          $tipe_file   = $_FILES['simbol']['type'];
-          $nama_file   = $_FILES['simbol']['name'];
-          if (!empty($lokasi_file)){
-        if ($tipe_file == "image/png" OR $tipe_file == "image/gif"){
-            UploadSimbol($nama_file);
-            $data['simbol'] = $nama_file;
-            $this->db->where('id',$id);
-            $outp = $this->db->update('point',$data);
-        }
-        $_SESSION['success']=1;
-          }else{
 
-        unset($data['simbol']);
-        */
         $this->db->where('id', $id);
         $outp = $this->db->update('point', $data);
-        //	}
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -344,9 +282,6 @@ class Plan_point_model extends CI_Model
 
     public function list_point_atas()
     {
-
-        //$sql   = "SELECT m.*,s.nama as sub_point,s.simbol as s_simbol FROM point m LEFT JOIN point s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM point m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
@@ -380,9 +315,6 @@ class Plan_point_model extends CI_Model
 
     public function list_point_kiri()
     {
-
-        //$sql   = "SELECT m.*,s.nama as sub_point,s.simbol as s_simbol FROM point m LEFT JOIN point s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM point m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);

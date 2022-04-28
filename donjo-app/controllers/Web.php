@@ -9,7 +9,7 @@ class Web extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3', '4'], true)) {
+        if (! in_array($grup, ['1', '2',  '3', '4'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -48,7 +48,6 @@ class Web extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -60,9 +59,8 @@ class Web extends CI_Controller
         $data['list_kategori'] = $this->web_artikel_model->list_kategori();
         $data['kategori']      = $this->web_artikel_model->get_kategori($cat);
         $data['cat']           = $cat;
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 0;
+        $header                = $this->header_model->get_data();
+        $nav['act']            = 0;
 
         $this->load->view('header', $header);
         $this->load->view('web/nav', $nav);

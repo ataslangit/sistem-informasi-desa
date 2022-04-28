@@ -7,10 +7,15 @@ class Statistik extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $_SESSION['filter'] = 77;
+        unset($_SESSION['log']);
+        $_SESSION['status_dasar'] = 1;
+        unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
+
         $this->load->model('user_model');
         $this->load->model('laporan_penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3'], true)) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -90,8 +95,6 @@ class Statistik extends CI_Controller
         $data['lap']  = $lap;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh'; break;
-
             case 1: $data['stat'] = 'Pekerjaan'; break;
 
             case 2: $data['stat'] = 'Status Perkawinan'; break;
@@ -102,17 +105,17 @@ class Statistik extends CI_Controller
 
             case 5: $data['stat'] = 'Warga Negara'; break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status Kependudukan'; break;
 
             case 7: $data['stat'] = 'Golongan Darah'; break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Difabilitas (Cacat)'; break;
 
             case 10: $data['stat'] = 'Sakit Menahun'; break;
 
             case 11: $data['stat'] = 'Jamkesmas'; break;
 
-            case 12: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 0: $data['stat'] = 'Pendidikan dalam KK'; break;
 
             case 13: $data['stat'] = 'Umur (Detail)'; break;
 
@@ -378,9 +381,8 @@ class Statistik extends CI_Controller
     {
         $data['lap']  = 13;
         $data['main'] = $this->laporan_penduduk_model->list_data_rentang();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '2';
+        $header       = $this->header_model->get_data();
+        $menu['act']  = '2';
 
         $this->load->view('header', $header);
         //$this->load->view('statistik/menu');

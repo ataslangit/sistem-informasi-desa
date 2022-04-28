@@ -2,7 +2,6 @@
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
 <h3>Form Manajemen Gallery</h3>
 </div>
@@ -38,7 +37,7 @@
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

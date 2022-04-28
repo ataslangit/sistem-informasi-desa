@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Sms_model extends CI_Model
 {
     public function autocomplete()
@@ -12,17 +14,14 @@ class Sms_model extends CI_Model
         $outp = '';
 
         while ($i < count($data)) {
-            //$data[$i]['no_hp'] = preg_replace("/[\,]+$/","hahaha",$data[$i]['no_hp']);
             $outp .= ",'" . $data[$i]['SenderNumber'] . "'";
             $i++;
         }
         $outp = substr($outp, 1);
 
         return '[' . $outp . ']';
-        //$outp = preg_replace("%/\*(?:(?!\*/).)*\*/%s","hahaha","$outp");
     }
 
-    //$data[$i]['no_hp'] = preg_replace("%/\*(?:(?!\*/).)*\*/%s","",$data[$i]['no_hp']);
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
@@ -85,8 +84,6 @@ class Sms_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.SenderNumber'; break;
 
@@ -103,10 +100,8 @@ class Sms_model extends CI_Model
             default:$order_sql = ' ORDER BY u.ReceivingDateTime DESC';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT p.nama,u.* FROM inbox u LEFT JOIN kontak k on u.SenderNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
         $sql .= $this->search_sql();
@@ -117,7 +112,6 @@ class Sms_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -127,7 +121,7 @@ class Sms_model extends CI_Model
     public function paging_terkirim($p = 1, $o = 0)
     {
         $sql = 'SELECT count(u.ID) as id FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
-        //$sql     .= $this->search_sql();
+
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -143,8 +137,6 @@ class Sms_model extends CI_Model
 
     public function list_data_terkirim($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.DestinationNumber'; break;
 
@@ -161,13 +153,10 @@ class Sms_model extends CI_Model
             default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT p.nama,u.* FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
-        //$sql .= $this->search_sql();
         $sql .= $this->filter_sql();
         $sql .= $order_sql;
         $sql .= $paging_sql;
@@ -175,7 +164,6 @@ class Sms_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -185,7 +173,7 @@ class Sms_model extends CI_Model
     public function paging_tertunda($p = 1, $o = 0)
     {
         $sql = 'SELECT count(u.ID) as id FROM outbox u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
-        //$sql     .= $this->search_sql();
+
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -201,8 +189,6 @@ class Sms_model extends CI_Model
 
     public function list_data_tertunda($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.DestinationNumber'; break;
 
@@ -219,13 +205,10 @@ class Sms_model extends CI_Model
             default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT p.nama,u.* FROM outbox u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
-        //$sql .= $this->search_sql();
         $sql .= $this->filter_sql();
         $sql .= $order_sql;
         $sql .= $paging_sql;
@@ -233,7 +216,6 @@ class Sms_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -518,9 +500,8 @@ class Sms_model extends CI_Model
     public function send_broadcast($o = 0)
     {
         $isi = $_SESSION['TextDecoded1'];
-        //Main Query
-        $sql = 'SELECT no_hp FROM kontak k LEFT JOIN tweb_penduduk u on k.id_pend=u.id LEFT JOIN tweb_wil_clusterdesa a on u.id_cluster=a.id WHERE 1 ';
 
+        $sql = 'SELECT no_hp FROM kontak k LEFT JOIN tweb_penduduk u on k.id_pend=u.id LEFT JOIN tweb_wil_clusterdesa a on u.id_cluster=a.id WHERE 1 ';
         $sql .= $this->sex_sql();
         $sql .= $this->dusun_sql();
         $sql .= $this->rw_sql();
@@ -563,21 +544,17 @@ class Sms_model extends CI_Model
 
     public function list_data_kontak($o = 0, $offset = 0, $limit = 500)
     {
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = "SELECT a.*, b.nama, b.alamat_sekarang, (CASE WHEN sex='1' THEN 'Laki-laki' ELSE 'Perempuan' END) AS sex FROM kontak a LEFT JOIN tweb_penduduk b ON a.id_pend=b.id WHERE 1";
 
         $sql .= $this->search_kontak_sql();
-        //$sql .= $this->filter_sql();
-        //$sql .= $order_sql;
+
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -649,21 +626,17 @@ class Sms_model extends CI_Model
 
     public function list_data_grup($o = 0, $offset = 0, $limit = 500)
     {
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
-        $sql = "SELECT * FROM (SELECT a.nama_grup, (SELECT COUNT(id_kontak) FROM kontak_grup WHERE id_kontak<>'0' AND nama_grup=a.nama_grup) as jumlah_kontak FROM kontak_grup  a WHERE id_kontak='0'  ) AS TB WHERE 1 ";
+        $sql = "SELECT * FROM (SELECT a.nama_grup, (SELECT COUNT(id_kontak) FROM kontak_grup WHERE id_kontak<>'0' AND nama_grup=a.nama_grup) as jumlah_kontak FROM kontak_grup a WHERE id_kontak='0' ) AS TB WHERE 1 ";
 
         $sql .= $this->search_grup_sql();
-        //$sql .= $this->filter_sql();
-        //$sql .= $order_sql;
+
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -756,17 +729,15 @@ class Sms_model extends CI_Model
     public function list_data_anggota($id = 0, $o = 0, $offset = 0, $limit = 500)
     {
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        $sql = "SELECT a.*,c.*,b.*,(CASE when sex='1' then 'Laki-laki' else 'Perempuan' end) as sex FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
+        $sql        = "SELECT a.*,c.*,b.*,(CASE when sex='1' then 'Laki-laki' else 'Perempuan' end) as sex FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
 
         $sql .= $this->search_anggota_sql();
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-
-        $i = 0;
-        $j = $offset;
+        $i     = 0;
+        $j     = $offset;
 
         return $data;
     }
@@ -825,7 +796,7 @@ class Sms_model extends CI_Model
     public function paging_polling($p = 1, $o = 0)
     {
         $sql = 'SELECT count(id_polling) as id FROM polling ';
-        //$sql     .= $this->search_sql();
+
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -842,13 +813,12 @@ class Sms_model extends CI_Model
     public function list_data_polling($o = 0, $offset = 0, $limit = 500)
     {
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-        $sql        = 'SELECT a.*,(SELECT COUNT(b.id) FROM pertanyaan b WHERE b.id_polling=a.id_polling) as jumlah_pertanyaan  FROM polling a';
+        $sql        = 'SELECT a.*,(SELECT COUNT(b.id) FROM pertanyaan b WHERE b.id_polling=a.id_polling) as jumlah_pertanyaan FROM polling a';
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -890,7 +860,7 @@ class Sms_model extends CI_Model
         $id_cb = $_POST['id_cb'];
         if (count($id_cb)) {
             foreach ($id_cb as $id) {
-                $sql  = "DELETE FROM  polling WHERE id_polling='{$id}' ";
+                $sql  = "DELETE FROM polling WHERE id_polling='{$id}' ";
                 $outp = $this->db->query($sql, [$id]);
             }
         } else {
@@ -924,17 +894,15 @@ class Sms_model extends CI_Model
     public function list_data_pertanyaan($id = 0, $o = 0, $offset = 0, $limit = 500)
     {
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        $sql = "SELECT a.*,c.*,b.*,(CASE when sex='1' then 'Laki-laki' else 'Perempuan' end) as sex FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
+        $sql        = "SELECT a.*,c.*,b.*,(CASE when sex='1' then 'Laki-laki' else 'Perempuan' end) as sex FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
 
         $sql .= $this->search_anggota_sql();
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-
-        $i = 0;
-        $j = $offset;
+        $i     = 0;
+        $j     = $offset;
 
         return $data;
     }

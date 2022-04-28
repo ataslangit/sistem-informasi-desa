@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Kelompok_model extends CI_Model
 {
     public function autocomplete()
@@ -47,7 +49,7 @@ class Kelompok_model extends CI_Model
         $sql = 'SELECT COUNT(id) AS id FROM kelompok u WHERE 1';
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
-        //$sql .= $this->state_sql();
+
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -63,8 +65,6 @@ class Kelompok_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nama'; break;
 
@@ -81,22 +81,19 @@ class Kelompok_model extends CI_Model
             default:$order_sql = ' ORDER BY u.nama';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
-        $sql = 'SELECT u.*,s.kelompok AS master,c.nama AS ketua FROM kelompok u LEFT JOIN kelompok_master s ON u.id_master = s.id LEFT JOIN tweb_penduduk c ON u.id_ketua = c.id  WHERE 1 ';
+        $sql = 'SELECT u.*,s.kelompok AS master,c.nama AS ketua,(SELECT COUNT(id) FROM kelompok_anggota WHERE id_kelompok = u.id) AS jml_anggota FROM kelompok u LEFT JOIN kelompok_master s ON u.id_master = s.id LEFT JOIN tweb_penduduk c ON u.id_ketua = c.id WHERE 1 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
-        //$sql .= $this->state_sql();
+
         $sql .= $order_sql;
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -113,20 +110,15 @@ class Kelompok_model extends CI_Model
     {
         $data  = $_POST;
         $datax = [];
-        $outp  = $this->db->insert('kelompok', $data);
 
-        $sql   = 'SELECT * FROM kelompok WHERE 1 ORDER BY id DESC LIMIT 1';
-        $query = $this->db->query($sql);
-        $kel   = $query->row_array();
+        $outpa     = $this->db->insert('kelompok', $data);
+        $insert_id = $this->db->insert_id();
 
-        $a = "DELETE FROM kelompok_anggota WHERE id_kelompok = {$kel['id']};";
-        $b = mysql_query($a);
-
-        $datax['id_kelompok'] = $kel['id'];
+        $datax['id_kelompok'] = $insert_id;
         $datax['id_penduduk'] = $data['id_ketua'];
-        $outp                 = $this->db->insert('kelompok_anggota', $datax);
+        $outpb                = $this->db->insert('kelompok_anggota', $datax);
 
-        if ($outp) {
+        if ($outpa && $outpb) {
             $_SESSION['success'] = 1;
         } else {
             $_SESSION['success'] = -1;
@@ -156,14 +148,26 @@ class Kelompok_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-
         if ($data['id_ketua'] === '') {
             unset($data['id_ketua']);
         }
 
         $this->db->where('id', $id);
         $outp = $this->db->update('kelompok', $data);
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
 
+    public function update_a($id = 0, $id_a = 0)
+    {
+        $data = $_POST;
+
+        $this->db->where('id_kelompok', $id);
+        $this->db->where('id_penduduk', $id_a);
+        $outp = $this->db->update('kelompok_anggota', $data);
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -223,6 +227,14 @@ class Kelompok_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_anggota($id = 0, $id_a = 0)
+    {
+        $sql   = 'SELECT * FROM kelompok_anggota WHERE id_kelompok=? AND id_penduduk = ?';
+        $query = $this->db->query($sql, [$id, $id_a]);
+
+        return $query->row_array();
+    }
+
     public function list_master()
     {
         $sql   = 'SELECT * FROM kelompok_master';
@@ -233,11 +245,10 @@ class Kelompok_model extends CI_Model
 
     public function list_penduduk()
     {
-        $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1';
+        $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status_dasar = 1';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -250,15 +261,15 @@ class Kelompok_model extends CI_Model
 
     public function list_anggota($id = 0)
     {
-        $sql   = 'SELECT u.*,p.nik,p.nama FROM kelompok_anggota u LEFT JOIN tweb_penduduk p ON u.id_penduduk = p.id WHERE id_kelompok = ?';
+        $sql   = "SELECT u.*,p.nik,p.nama,p.sex,(SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = p.id) AS umur,a.dusun,a.rw,a.rt FROM kelompok_anggota u LEFT JOIN tweb_penduduk p ON u.id_penduduk = p.id LEFT JOIN tweb_wil_clusterdesa a ON p.id_cluster = a.id WHERE id_kelompok = ?";
         $query = $this->db->query($sql, $id);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
-            $data[$i]['no'] = $i + 1;
+            $data[$i]['no']     = $i + 1;
+            $data[$i]['alamat'] = 'Dusun ' . $data[$i]['dusun'] . ' RW' . $data[$i]['rw'] . ' RT' . $data[$i]['rt'];
             $i++;
         }
 

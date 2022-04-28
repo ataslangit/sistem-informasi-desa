@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Analisis_klasifikasi_model extends CI_Model
 {
     public function autocomplete()
@@ -62,8 +64,6 @@ class Analisis_klasifikasi_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.minval'; break;
 
@@ -80,10 +80,8 @@ class Analisis_klasifikasi_model extends CI_Model
             default:$order_sql = ' ORDER BY u.minval';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT u.* FROM analisis_klasifikasi u WHERE 1 ';
 
         $sql .= $this->search_sql();
@@ -94,7 +92,6 @@ class Analisis_klasifikasi_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -123,12 +120,10 @@ class Analisis_klasifikasi_model extends CI_Model
 
     public function update($id = 0)
     {
-        $data = $_POST;
-
+        $data              = $_POST;
         $data['id_master'] = $_SESSION['analisis_master'];
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_klasifikasi', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {

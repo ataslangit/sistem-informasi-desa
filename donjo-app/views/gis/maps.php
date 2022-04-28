@@ -14,8 +14,6 @@
 		<?php }?>
 		};
 		var map = new google.maps.Map(document.getElementById('map'), options);
-
-//WILAYAH DESA
 	<?php if ($layer_desa === 1) {?>
 	<?php $path = preg_split('/\\;/', $desa['path']);
         echo 'var path = [';
@@ -36,8 +34,6 @@ foreach ($path as $p) {
 			fillOpacity: 0.05
 		});
 	<?php }?>
-
-//WILAYAH ADMINISTRATIF - DUSUN RW RT
 	<?php if ($layer_wilayah === 1) {?>
 	<?php foreach ($wilayah as $wil) {?>
 		<?php $path = preg_split('/\\;/', $wil['path']);
@@ -65,8 +61,6 @@ foreach ($path as $p) {
 			fillOpacity: 0.22
 		});
 	<?php }}?>
-
-//AREA POLIGON
 	<?php if ($layer_area === 1) {?>
 		<?php foreach ($area as $area) {?>
 			<?php $path = preg_split('/\\;/', $area['path']);
@@ -79,46 +73,40 @@ foreach ($path as $p) {
 }echo'];'; ?>
 
 			var area_<?= $area['id']?> = new google.maps.Polygon({
-			  paths: polygon_<?= $area['id']?>,
-			  map: map,
-			  strokeColor: '#555555',
-			  strokeOpacity: 0.5,
-			  strokeWeight: 1,
-			  fillColor: '#<?= $area['color']?>',
-			  fillOpacity: 0.22,
-			  title:"<?= $area['nama']?>"
+			 paths: polygon_<?= $area['id']?>,
+			 map: map,
+			 strokeColor: '#555555',
+			 strokeOpacity: 0.5,
+			 strokeWeight: 1,
+			 fillColor: '#<?= $area['color']?>',
+			 fillOpacity: 0.22,
+			 title:"<?= $area['nama']?>"
 			});
-
 			google.maps.event.addListener(area_<?= $area['id']?>, 'click', showArrays_area_<?= $area['id']?>);
 			if(!infoWindow){
 				infoWindow = new google.maps.InfoWindow();
 			}
-
 			function showArrays_area_<?= $area['id']?>(event) {
 				var vertices = this.getPath();
 				var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading"><?= $area['nama']?></h1>'+
-        '<div id="bodyContent">'+
-        '<img src="<?= base_url()?>assets/files/gis/area/sedang_<?= $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
-        '<p><?= $area['desk']?></p>'+
-        '</div>'+
-        '</div>';
-				//for (var i =0; i < vertices.getLength(); i++) {
-					//var xy = vertices.getAt(i);
-					//contentString += '<br>' + 'Coordinate: ' + i + '<br>' + xy.lat() +',' + xy.lng();
-				//}
+ '<div id="siteNotice">'+
+ '</div>'+
+ '<h1 id="firstHeading" class="firstHeading"><?= $area['nama']?></h1>'+
+ '<div id="bodyContent">'+
+ '<img src="<?= base_url()?>assets/files/gis/area/sedang_<?= $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
+ '<p><?= $area['desk']?></p>'+
+ '</div>'+
+ '</div>';
+
+
+
+
 				infoWindow.setContent(contentString);
 				infoWindow.setPosition(event.latLng);
 				infoWindow.open(map);
 			}
-
-
 		<?php }?>
 	<?php }?>
-
-//GARIS POLILINE
 	<?php if ($layer_line === 1) {?>
 		<?php foreach ($garis as $garis) {?>
 			<?php $path = preg_split('/\\;/', $garis['path']);
@@ -131,44 +119,38 @@ foreach ($path as $p) {
 }echo'];'; ?>
 
 			var garis_<?= $garis['id']?> = new google.maps.Polyline({
-			  path: line_<?= $garis['id']?>,
-			  map: map,
-			  strokeColor: '#00bb00',
-			  strokeOpacity: 0.5,
-			  strokeWeight: 5
+			 path: line_<?= $garis['id']?>,
+			 map: map,
+			 strokeColor: '#00bb00',
+			 strokeOpacity: 0.5,
+			 strokeWeight: 5
 			});
-
 			google.maps.event.addListener(garis_<?= $garis['id']?>, 'click', showArrays_line_<?= $garis['id']?>);
 			if(!infoWindow){
 				infoWindow = new google.maps.InfoWindow();
 			}
-
 			function showArrays_line_<?= $garis['id']?>(event) {
 				var vertices = this.getPath();
 				var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading"><?= $garis['nama']?></h1>'+
-        '<div id="bodyContent">'+
-        '<img src="<?= base_url()?>assets/files/gis/garis/sedang_<?= $garis['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
-        '<p><?= $garis['desk']?></p>'+
-        '</div>'+
-        '</div>';
+ '<div id="siteNotice">'+
+ '</div>'+
+ '<h1 id="firstHeading" class="firstHeading"><?= $garis['nama']?></h1>'+
+ '<div id="bodyContent">'+
+ '<img src="<?= base_url()?>assets/files/gis/garis/sedang_<?= $garis['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
+ '<p><?= $garis['desk']?></p>'+
+ '</div>'+
+ '</div>';
 
-				//for (var i =0; i < vertices.getLength(); i++) {
-					//var xy = vertices.getAt(i);
-					//contentString += '<br>' + 'Coordinate: ' + i + '<br>' + xy.lat() +',' + xy.lng();
-				//}
+
+
+
+
 				infoWindow.setContent(contentString);
 				infoWindow.setPosition(event.latLng);
 				infoWindow.open(map);
 			}
-
-
 		<?php }?>
 	<?php }?>
-
-//PROPERTI DESA
 	<?php if ($layer_point === 1) {?>
 	var shadow = new google.maps.MarkerImage(
 		'<?= base_url()?>assets/images/gis/point/shadow.png',
@@ -176,7 +158,6 @@ foreach ($path as $p) {
 		null,
 		new google.maps.Point(16, 35)
 	);
-
 	<?php foreach ($lokasi as $data) {
     if ($data['lat'] !== '') {?>
 
@@ -206,15 +187,11 @@ foreach ($path as $p) {
 			infoWindow.setContent(content);
 			infoWindow.open(map, prop_<?= $data['id']?>);
 		});
-
 	<?php }
 }}?>
-
-//PENDUDUK
 	<?php if ($layer_penduduk === 1 || $layer_keluarga === 1) {?>
 	<?php $pendc = base_url() . 'assets/images/gis/point/pend.png'; ?>
 	var pend_icon = new google.maps.MarkerImage("<?= $pendc?>");
-
 	<?php foreach ($penduduk as $data) {
     if ($data['lat'] !== '') {?>
 		var marker_<?= $data['id']?> = new google.maps.Marker({
@@ -245,17 +222,13 @@ foreach ($path as $p) {
 	<?php }
 }}?>
 	};
-
 	})();
 </script>
-
-
 <style>
 #map{
 	width:100%;
 	height:94%;
 }
-
 .foto{
 	width:200px;
 	height:140px;
@@ -264,15 +237,13 @@ foreach ($path as $p) {
 	-webkit-border-radius:3px;
 	border:2px solid #555555;
 }
-
 .foto_pend{
  width:70px;height:70px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;
 }
 </style>
-
 <form id="mainform" name="mainform" action="" method="post">
 <div class="ui-layout-west" id="sidebar" style="width:200px;">
-    <div class="module">
+ <div class="module">
 		<table border="0" >
 		<h3>Legenda</h3>
 		<tr><td>
@@ -313,33 +284,32 @@ foreach ($path as $p) {
 		</table>
 
 
-    <script>
+ <script>
 function handle_pend(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_penduduk');
+ formAction('mainform','<?= site_url('gis')?>/layer_penduduk');
 }
 function handle_kel(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_keluarga');
+ formAction('mainform','<?= site_url('gis')?>/layer_keluarga');
 }
 function handle_desa(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_desa');
+ formAction('mainform','<?= site_url('gis')?>/layer_desa');
 }
 function handle_wil(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_wilayah');
+ formAction('mainform','<?= site_url('gis')?>/layer_wilayah');
 }
 function handle_area(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_area');
+ formAction('mainform','<?= site_url('gis')?>/layer_area');
 }
 function handle_line(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_line');
+ formAction('mainform','<?= site_url('gis')?>/layer_line');
 }
 function handle_point(cb) {
-  formAction('mainform','<?= site_url('gis')?>/layer_point');
+ formAction('mainform','<?= site_url('gis')?>/layer_point');
 }
 </script>
 
-     </div>
+ </div>
 </div>
-
 <div class="ui-layout-center" id="wrapper">
 <div class="table-panel top">
 	<div class="left">
@@ -350,20 +320,17 @@ function handle_point(cb) {
 	<option value="2" <?php if ($filter === 2) :?>selected<?php endif?>>Pasif</option>
 	<option value="3" <?php if ($filter === 3) :?>selected<?php endif?>>Pendatang</option>
 </select>
-
 <select name="sex" onchange="formAction('mainform','<?= site_url('gis/sex')?>')">
 	<option value="">J. Kelamin</option>
 	<option value="1" <?php if ($sex === 1) :?>selected<?php endif?>>Laki-laki</option>
 	<option value="2" <?php if ($sex === 2) :?>selected<?php endif?>>Perempuan</option>
 </select>
-
 <select name="dusun" onchange="formAction('mainform','<?= site_url('gis/dusun')?>')">
 	<option value="">Dusun</option>
 	<?php foreach ($list_dusun as $data) {?>
 	<option <?php if ($dusun === $data['dusun']) :?>selected<?php endif?> value="<?= $data['dusun']?>"><?= $data['dusun']?></option>
 	<?php }?>
 </select>
-
 <?php if ($dusun) {?>
 <select name="rw" onchange="formAction('mainform','<?= site_url('gis/rw')?>')">
 	<option value="">RW</option>
@@ -371,7 +338,6 @@ function handle_point(cb) {
 	<option <?php if ($rw === $data['rw']) :?>selected<?php endif?>><?= $data['rw']?></option>
 	<?php }?>
 </select>
-
 <?php if ($rw) {?>
 	<select name="rt" onchange="formAction('mainform','<?= site_url('gis/rt')?>')">
 		<option value="">RT</option>
@@ -381,19 +347,16 @@ function handle_point(cb) {
 	</select>
 	<?php }
 }?>
-
 <select name="agama" onchange="formAction('mainform','<?= site_url('gis/agama')?>')">
 	<option value="">Agama</option>
 	<?php foreach ($list_agama as $data) {?>
 	<option value="<?= $data['id']?>" <?php if ($agama === $data['id']) {?>selected<?php }?>><?= $data['nama']?></option>
 	<?php }?>
 </select>
-
 <input name="cari" id="cari" type="text" class="inputbox2 help tipped" size="20" value="<?= $cari?>" title="Search.."/>
-<button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('gis/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south"  title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
-<button href="<?= site_url('gis/ajax_adv_search')?>"  target="ajax-modalx" rel="window" header="Pencarian Spesifik"  class="uibutton tipsy south"  title="Pencarian Spesifik"><span class="ui-icon ui-icon-search">&nbsp;</span>Pencarian Spesifik</button>
-
-<a href="<?= site_url('gis/clear')?>"  class="uibutton tipsy south"  title="Clear Pencarian" style=""><span class="ui-icon ui-icon-search">&nbsp;</span>Clear</a>
+<button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('gis/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
+<button href="<?= site_url('gis/ajax_adv_search')?>" target="ajax-modalx" rel="window" header="Pencarian Spesifik" class="uibutton tipsy south" title="Pencarian Spesifik"><span class="ui-icon ui-icon-search">&nbsp;</span>Pencarian Spesifik</button>
+<a href="<?= site_url('gis/clear')?>" class="uibutton tipsy south" title="Clear Pencarian" style=""><span class="ui-icon ui-icon-search">&nbsp;</span>Clear</a>
 		</form>
 	</div>
 </div>

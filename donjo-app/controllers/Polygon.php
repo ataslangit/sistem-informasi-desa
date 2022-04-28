@@ -11,14 +11,7 @@ class Polygon extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_polygon_model');
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
-        /*		$this->load->library('ion_auth');
-                $this->load->library('session');
-                $this->load->library('form_validation');
-                $this->load->helper('url');
 
-                $this->config->item('ion_auth') ;*/
         $this->load->database();
     }
 
@@ -45,7 +38,6 @@ class Polygon extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -54,9 +46,8 @@ class Polygon extends CI_Controller
         $data['paging']  = $this->plan_polygon_model->paging($p, $o);
         $data['main']    = $this->plan_polygon_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->plan_polygon_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 5;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 5;
 
         $this->load->view('header-gis', $header);
 
@@ -70,8 +61,6 @@ class Polygon extends CI_Controller
         $data['p'] = $p;
         $data['o'] = $o;
 
-        //$data['link']        = $this->plan_polygon_model->list_link();
-
         if ($id) {
             $data['polygon']     = $this->plan_polygon_model->get_polygon($id);
             $data['form_action'] = site_url("polygon/update/{$id}/{$p}/{$o}");
@@ -79,7 +68,6 @@ class Polygon extends CI_Controller
             $data['polygon']     = null;
             $data['form_action'] = site_url('polygon/insert');
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
@@ -113,7 +101,6 @@ class Polygon extends CI_Controller
             $data['polygon']     = null;
             $data['form_action'] = site_url("polygon/insert_sub_polygon/{$polygon}");
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;

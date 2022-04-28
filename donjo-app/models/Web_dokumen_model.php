@@ -1,11 +1,13 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_dokumen_model extends CI_Model
 {
     public function autocomplete()
     {
-        $sql = 'SELECT satuan FROM dokumen
-					UNION SELECT nama FROM dokumen';
+        $sql = 'SELECT satuan FROM dokumen WHERE id_pend = 0
+					UNION SELECT nama FROM dokumen WHERE id_pend = 0';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
@@ -45,7 +47,7 @@ class Web_dokumen_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
-        $sql = 'SELECT COUNT(id) AS id FROM dokumen WHERE 1';
+        $sql = 'SELECT COUNT(id) AS id FROM dokumen WHERE id_pend = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
@@ -77,10 +79,9 @@ class Web_dokumen_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        $sql = 'SELECT * FROM dokumen WHERE 1 ';
+        $sql = 'SELECT * FROM dokumen WHERE id_pend = 0 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -88,7 +89,10 @@ class Web_dokumen_model extends CI_Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = null;
+        if ($query) {
+            $data = $query->result_array();
+        }
 
         $i = 0;
         $j = $offset;
@@ -112,37 +116,17 @@ class Web_dokumen_model extends CI_Model
     public function insert()
     {
         $lokasi_file = $_FILES['satuan']['tmp_name'];
-        $tipe_file   = $_FILES['satuan']['type'];
         $nama_file   = $_FILES['satuan']['name'];
         if (! empty($lokasi_file)) {
-            if ($tipe_file === 'application/x-download'
-                    || $tipe_file === 'application/pdf'
-                    || $tipe_file === 'application/zip'
-                    || $tipe_file === 'application/ppt'
-                    || $tipe_file === 'application/pptx'
-                    || $tipe_file === 'application/rar'
-                    || $tipe_file === 'application/excel'
-                    || $tipe_file === 'application/msword'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    || $tipe_file === 'text/rtf'
-                    || $tipe_file === 'application/powerpoint'
-                    || $tipe_file === 'application/vnd.ms-powerpoint'
-                    || $tipe_file === 'application/vnd.ms-excel'
-                    || $tipe_file === 'application/msexcel'
-                    || $tipe_file === 'application/x-zip'
-
-) {
-                UploadDocument(underscore($nama_file));
-                $data           = $_POST;
-                $data['satuan'] = underscore($nama_file);
-                $outp           = $this->db->insert('dokumen', $data);
-                if ($outp) {
-                    $_SESSION['success'] = 1;
-                }
-            } else {
-                $_SESSION['success'] = -1;
+            UploadDocument(underscore($nama_file));
+            $data           = $_POST;
+            $data['satuan'] = underscore($nama_file);
+            $outp           = $this->db->insert('dokumen', $data);
+            if ($outp) {
+                $_SESSION['success'] = 1;
             }
+        } else {
+            $_SESSION['success'] = -1;
         }
     }
 
@@ -150,34 +134,15 @@ class Web_dokumen_model extends CI_Model
     {
         $data        = $_POST;
         $lokasi_file = $_FILES['satuan']['tmp_name'];
-        $tipe_file   = $_FILES['satuan']['type'];
         $nama_file   = $_FILES['satuan']['name'];
         $old_file    = $data['old_file'];
         if (! empty($lokasi_file)) {
-            if ($tipe_file === 'application/x-download'
-                    || $tipe_file === 'application/pdf'
-                    || $tipe_file === 'application/zip'
-                    || $tipe_file === 'application/ppt'
-                    || $tipe_file === 'application/pptx'
-                    || $tipe_file === 'application/rar'
-                    || $tipe_file === 'application/excel'
-                    || $tipe_file === 'application/msword'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    || $tipe_file === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    || $tipe_file === 'text/rtf'
-                    || $tipe_file === 'application/powerpoint'
-                    || $tipe_file === 'application/vnd.ms-powerpoint'
-                    || $tipe_file === 'application/vnd.ms-excel'
-                    || $tipe_file === 'application/msexcel'
-                    || $tipe_file === 'application/x-zip') {
-                UploadDocument($nama_file, $old_file);
-                unset($data['old_file']);
-            } else {
-                $_SESSION['success'] = -1;
-                $nama_file           = $data['old_file'];
-            }
+            UploadDocument($nama_file, $old_file);
+            unset($data['old_file']);
+        } else {
+            $_SESSION['success'] = -1;
+            $nama_file           = $data['old_file'];
         }
-
         $data['satuan'] = underscore($nama_file);
         $this->db->where('id', $id);
         $outp = $this->db->update('dokumen', $data);

@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_kategori_model extends CI_Model
 {
     public function autocomplete()
@@ -72,7 +74,6 @@ class Web_kategori_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
         $sql        = 'SELECT k.*,k.kategori AS kategori FROM kategori k WHERE parrent = 0';
 
@@ -307,9 +308,6 @@ class Web_kategori_model extends CI_Model
 
     public function list_kategori_atas()
     {
-
-        //$sql   = "SELECT m.*,s.kategori as sub_kategori,s.link as s_link FROM kategori m LEFT JOIN kategori s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM kategori m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
@@ -343,9 +341,6 @@ class Web_kategori_model extends CI_Model
 
     public function list_kategori_kiri()
     {
-
-        //$sql   = "SELECT m.*,s.kategori as sub_kategori,s.link as s_link FROM kategori m LEFT JOIN kategori s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM kategori m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);

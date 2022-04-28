@@ -40,13 +40,11 @@ class Kelompok_master extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['state'])) {
             $data['state'] = $_SESSION['state'];
         } else {
             $data['state'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -55,7 +53,6 @@ class Kelompok_master extends CI_Controller
         $data['paging']  = $this->kelompok_master_model->paging($p, $o);
         $data['main']    = $this->kelompok_master_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->kelompok_master_model->autocomplete();
-        //$data['list_subjek'] = $this->kelompok_master_model->list_subjek();
 
         $header = $this->header_model->get_data();
 

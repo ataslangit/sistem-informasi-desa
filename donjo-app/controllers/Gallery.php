@@ -9,7 +9,7 @@ class Gallery extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3', '4'], true)) {
+        if (! in_array($grup, ['1', '2',  '3', '4'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -39,7 +39,6 @@ class Gallery extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -48,9 +47,8 @@ class Gallery extends CI_Controller
         $data['paging']  = $this->web_gallery_model->paging($p, $o);
         $data['main']    = $this->web_gallery_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->web_gallery_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 3;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 3;
 
         $this->load->view('header', $header);
         $this->load->view('web/nav', $nav);
@@ -154,14 +152,13 @@ class Gallery extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
         $data['per_page'] = $_SESSION['per_page'];
 
         $data['paging'] = $this->web_gallery_model->paging2($gal, $p);
-        //$data['main']    = $this->web_gallery_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
+
         $data['sub_gallery'] = $this->web_gallery_model->list_sub_gallery($gal, $data['paging']->offset, $data['paging']->per_page);
         $data['gallery']     = $gal;
         $data['sub']         = $this->web_gallery_model->get_gallery($gal);

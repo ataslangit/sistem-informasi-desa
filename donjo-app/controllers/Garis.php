@@ -11,14 +11,7 @@ class Garis extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_garis_model');
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
-        /*		$this->load->library('ion_auth');
-                $this->load->library('session');
-                $this->load->library('form_validation');
-                $this->load->helper('url');
 
-                $this->config->item('ion_auth') ;*/
         $this->load->database();
     }
 
@@ -45,19 +38,16 @@ class Garis extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['line'])) {
             $data['line'] = $_SESSION['line'];
         } else {
             $data['line'] = '';
         }
-
         if (isset($_SESSION['subline'])) {
             $data['subline'] = $_SESSION['subline'];
         } else {
             $data['subline'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -68,9 +58,8 @@ class Garis extends CI_Controller
         $data['keyword']      = $this->plan_garis_model->autocomplete();
         $data['list_line']    = $this->plan_garis_model->list_line();
         $data['list_subline'] = $this->plan_garis_model->list_subline();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 1;
+        $header               = $this->header_model->get_data();
+        $nav['act']           = 1;
 
         $this->load->view('header-gis', $header);
 
@@ -92,7 +81,6 @@ class Garis extends CI_Controller
             $data['garis']       = null;
             $data['form_action'] = site_url('garis/insert');
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 1;

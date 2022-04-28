@@ -1,4 +1,3 @@
-
 <div id="pageC">
 <!-- Start of Space Admin -->
 	<table class="inner">
@@ -80,85 +79,85 @@
 		</td>
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
-    <h3>Laporan</h3>
+ <h3>Laporan</h3>
 </div>
 <div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
-    <div class="ui-layout-north panel">
-        <div class="left">
-            <div class="uibutton-group">
-            </div>
-        </div>
-    </div>
-    <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-        <div class="table-panel top">
-            <div class="left">
-            </div>
-            <div class="right">
-            </div>
-        </div>
-        <table class="list">
+ <div class="ui-layout-north panel">
+ <div class="left">
+ <div class="uibutton-group">
+ </div>
+ </div>
+ </div>
+ <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
+ <div class="table-panel top">
+ <div class="left">
+ </div>
+ <div class="right">
+ </div>
+ </div>
+ <table class="list">
 		<thead>
-            <tr>
-                <th>No</th>
-				<th align="left" align="center">Nama</th>
-				<th align="left" align="center">Jumlah KK</th>
+ <tr>
+ <th>No</th>
+				<th>Nama</th>
+				<th>Jumlah KK</th>
 
 			</tr>
 		</thead>
 		<tbody>
-        <?php  foreach ($main as $data): ?>
+ <?php foreach ($main as $data): ?>
 		<tr>
-          <td align="center" width="2"><?= $data['no']?></td>
-          <td><?= $data['tabel']?></td>
-          <td>-</td>
-		  </tr>
-        <?php  endforeach; ?>
+ <td align="center" width="2"><?= $data['no']?></td>
+ <td><?= $data['tabel']?></td>
+ <td>-</td>
+		 </tr>
+ <?php endforeach; ?>
 		</tbody>
-        </table>
-    </div>
+ </table>
+ </div>
 	</form>
-    <div class="ui-layout-south panel bottom">
-        <div class="left">
+ <div class="ui-layout-south panel bottom">
+ <div class="left">
 		<div class="table-info">
-          <form id="paging" action="<?= site_url('sid_laporan_penduduk')?>" method="post">
-		  <label>Tampilkan</label>
-            <select name="per_page" onchange="$('#paging').submit()" >
-              <option value="20" <?php  selected($per_page, 20); ?> >20</option>
-              <option value="50" <?php  selected($per_page, 50); ?> >50</option>
-              <option value="100" <?php  selected($per_page, 100); ?> >100</option>
-            </select>
-            <label>Dari</label>
-            <label><strong><?= $paging->num_rows?></strong></label>
-            <label>Total Data</label>
-          </form>
-          </div>
-        </div>
-        <div class="right">
-            <div class="uibutton-group">
-            <?php  if ($paging->start_link): ?>
-				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->start_link}/{$o}")?>" class="uibutton"  >First</a>
-			<?php  endif; ?>
-			<?php  if ($paging->prev): ?>
-				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->prev}/{$o}")?>" class="uibutton"  >Prev</a>
-			<?php  endif; ?>
-            </div>
-            <div class="uibutton-group">
+ <form id="paging" action="<?= site_url('sid_laporan_penduduk')?>" method="post">
+		 <label>Tampilkan</label>
+ <select name="per_page" onchange="$('#paging').submit()" >
+ <option value="20" <?php selected($per_page, 20); ?> >20</option>
+ <option value="50" <?php selected($per_page, 50); ?> >50</option>
+ <option value="100" <?php selected($per_page, 100); ?> >100</option>
+ </select>
+ <label>Dari</label>
+ <label><strong><?= $paging->num_rows?></strong></label>
+ <label>Total Data</label>
+ </form>
+ </div>
+ </div>
+ <div class="right">
+ <div class="uibutton-group">
+ <?php if ($paging->start_link): ?>
+				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->start_link}/{$o}")?>" class="uibutton" >First</a>
+			<?php endif; ?>
+			<?php if ($paging->prev): ?>
+				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->prev}/{$o}")?>" class="uibutton" >Prev</a>
+			<?php endif; ?>
+ </div>
+ <div class="uibutton-group">
 
-				<?php  for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
-				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$i}/{$o}")?>" <?php  jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
-				<?php  endfor; ?>
-            </div>
-            <div class="uibutton-group">
-			<?php  if ($paging->next): ?>
+				<?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
+				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$i}/{$o}")?>" <?php jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
+				<?php endfor; ?>
+ </div>
+ <div class="uibutton-group">
+			<?php if ($paging->next): ?>
 				<a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->next}/{$o}")?>" class="uibutton">Next</a>
-			<?php  endif; ?>
-			<?php  if ($paging->end_link): ?>
-                <a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->end_link}/{$o}")?>" class="uibutton">Last</a>
-			<?php  endif; ?>
-            </div>
-        </div>
-    </div>
+			<?php endif; ?>
+			<?php if ($paging->end_link): ?>
+ <a href="<?= site_url("sid_laporan_penduduk/index/{$lap}/{$paging->end_link}/{$o}")?>" class="uibutton">Last</a>
+			<?php endif; ?>
+ </div>
+ </div>
+ </div>
 </div>
 </td></tr></table>
 </div>

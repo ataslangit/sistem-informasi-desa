@@ -40,11 +40,22 @@ class Database extends CI_Controller
     {
         $nav['act']           = 2;
         $data['form_action']  = site_url('database/import_dasar');
-        $data['form_action2'] = site_url('database/import_siak');
+        $data['form_action3'] = site_url('database/ppls_individu');
         $header               = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('nav', $nav);
         $this->load->view('import/imp', $data);
+        $this->load->view('footer');
+    }
+
+    public function siak()
+    {
+        $nav['act']          = 6;
+        $data['form_action'] = site_url('database/import_siak');
+        $header              = $this->header_model->get_data();
+        $this->load->view('header', $header);
+        $this->load->view('nav', $nav);
+        $this->load->view('import/siak', $data);
         $this->load->view('footer');
     }
 
@@ -53,8 +64,8 @@ class Database extends CI_Controller
         $nav['act']           = 4;
         $data['form_action3'] = site_url('database/ppls_individu');
         $data['form_action2'] = site_url('database/ppls_rumahtangga');
-        $data['form_action']  = site_url('database/ppls_kuisioner');
-        $header               = $this->header_model->get_data();
+        //$data['form_action'] = site_url("database/ppls_kuisioner");
+        $header = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('nav', $nav);
         $this->load->view('import/ppls', $data);
@@ -106,8 +117,6 @@ class Database extends CI_Controller
 
     public function migrate()
     {
-        //$this->wilayah_model->migrate();
-
         $this->dbforge->drop_table('tweb_dusun_x');
         $this->dbforge->drop_table('tweb_rw_x');
         $this->dbforge->drop_table('tweb_rt_x');
@@ -121,28 +130,24 @@ class Database extends CI_Controller
     {
         $this->import_model->import_excel();
         redirect('database/import/1');
-        //import_das();
     }
 
     public function ppls_kuisioner()
     {
         $this->import_model->ppls_kuisioner();
         redirect('database/import_ppls/1');
-        //import_das();
     }
 
     public function ppls_individu()
     {
-        $this->import_model->ppls_individu();
-        redirect('database/import_ppls');
-        //import_das();
+        $this->import_model->pbdt_individu();
+        //redirect('database/import_ppls');
     }
 
     public function ppls_rumahtangga()
     {
-        $this->import_model->ppls_rumahtangga();
+        $this->import_model->pbdt_rumahtangga();
         redirect('database/import_ppls/1');
-        //import_das();
     }
 
     public function import_siak()
@@ -164,9 +169,15 @@ class Database extends CI_Controller
         redirect('database/import');
     }
 
+    public function jos2()
+    {
+        $this->export_model->analisis2();
+        redirect('database/import');
+    }
+
     public function exec_backup()
     {
-        $this->export_model->backup();
+        $this->load->view('database/export');
         //	redirect('database/backup');
     }
 
@@ -186,5 +197,17 @@ class Database extends CI_Controller
     {
         $this->export_model->gawe_surat();
         //redirect('database/import');
+    }
+
+    public function export_excel()
+    {
+        $data['main'] = $this->export_model->export_excel();
+        $this->load->view('export/penduduk_excel', $data);
+    }
+
+    public function export_csv()
+    {
+        $data['main'] = $this->export_model->export_excel();
+        $this->load->view('export/penduduk_csv', $data);
     }
 }

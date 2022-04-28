@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_widget_model extends CI_Model
 {
     public function get_widget()

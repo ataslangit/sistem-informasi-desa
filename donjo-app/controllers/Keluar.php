@@ -11,7 +11,7 @@ class Keluar extends CI_Controller
         $this->load->model('surat_keluar_model');
         $this->load->model('surat_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3'], true)) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -28,31 +28,25 @@ class Keluar extends CI_Controller
     {
         $data['p'] = $p;
         $data['o'] = $o;
-
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
         } else {
             $data['cari'] = '';
         }
-
         if (isset($_SESSION['filter'])) {
             $data['filter'] = $_SESSION['filter'];
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
         $data['per_page'] = $_SESSION['per_page'];
-
-        $data['paging']  = $this->surat_keluar_model->paging($p, $o);
-        $data['main']    = $this->surat_keluar_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword'] = $this->surat_keluar_model->autocomplete();
-
-        $header = $this->header_model->get_data();
-
-        $nav['act'] = 2;
+        $data['paging']   = $this->surat_keluar_model->paging($p, $o);
+        $data['main']     = $this->surat_keluar_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
+        $data['keyword']  = $this->surat_keluar_model->autocomplete();
+        $header           = $this->header_model->get_data();
+        $nav['act']       = 2;
         $this->load->view('header', $header);
 
         $this->load->view('surat/nav', $nav);
@@ -74,7 +68,6 @@ class Keluar extends CI_Controller
     public function perorangan($nik = 0, $p = 1, $o = 0)
     {
         if (isset($_POST['nik'])) {
-            //$data['individu']=$this->surat_model->get_penduduk($_POST['nik']);
             $nik = $_POST['nik'];
         }
         if ($nik !== 0) {
@@ -82,18 +75,14 @@ class Keluar extends CI_Controller
         } else {
             $data['individu'] = null;
         }
-
         $data['p'] = $p;
         $data['o'] = $o;
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
-        $data['per_page'] = $_SESSION['per_page'];
-
-        $data['paging'] = $this->surat_keluar_model->paging_perorangan($nik, $p, $o);
-        $data['main']   = $this->surat_keluar_model->list_data_surat($nik, $o, $data['paging']->offset, $data['paging']->per_page);
-
+        $data['per_page']    = $_SESSION['per_page'];
+        $data['paging']      = $this->surat_keluar_model->paging_perorangan($nik, $p, $o);
+        $data['main']        = $this->surat_keluar_model->list_data_surat($nik, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['penduduk']    = $this->surat_model->list_penduduk();
         $data['form_action'] = site_url("sid_surat_keluar/perorangan/{$nik}");
         $data['nik']['no']   = $nik;

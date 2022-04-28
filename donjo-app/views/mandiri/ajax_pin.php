@@ -2,23 +2,22 @@
 <script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
 <script>
 $(function(){$('#'+'tes').hide();
-    var nik = {};
-    nik.results = [
+ var nik = {};
+ nik.results = [
 <?php foreach ($penduduk as $data) {?>
-	   {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . $data['nama']; ?>",info:""},
+	 {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . $data['nama']; ?>",info:""},
 <?php }?>
-    ];
+ ];
 nik.total = nik.results.length;
-
 $('#nik').flexbox(nik, {
 	resultTemplate: '<div><label>NIK/ Nama : </label>{name}</div>',
-	watermark: 'Ketik nama / nik di sini..',
-    width: 260,
-    noResultsText :'Tidak ada nama / nik yang sesuai..',
+	watermark: 'Ketik nama / NIK di sini..',
+ width: 260,
+ noResultsText :'Tidak ada nama / NIK yang sesuai..',
 	onSelect: function() {
 		//$('#'+'validasi').submit();
 		$('#'+'tes').show();
-    }
+ }
 });
 });
 </script>
@@ -30,10 +29,9 @@ $('#nik').flexbox(nik, {
 		<div id="nik" name="nik" class="required"></div>
 	</td>
 </tr>
-
 <tr>
 	<td colspan="2">
-		Jika PIN tidak di isi makan sistem akan menghasilkan PIN secara acak.
+		Jika PIN tidak diisi maka sistem akan menghasilkan PIN secara acak.
 	</td>
 </tr>
 <tr>
@@ -43,11 +41,10 @@ $('#nik').flexbox(nik, {
 	</td>
 </tr>
 </table>
-
 <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
-        <button class="uibutton confirm" type="submit" id="tes" >Simpan</button>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
+ <button class="uibutton confirm" type="submit" id="tes" >Simpan</button>
+ </div>
 </div>
 </form>

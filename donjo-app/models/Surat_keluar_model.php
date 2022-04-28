@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Surat_keluar_model extends CI_Model
 {
     public function autocomplete()
@@ -77,9 +79,9 @@ class Surat_keluar_model extends CI_Model
 
     public function paging_perorangan($nik = 0, $p = 1, $o = 0)
     {
-        $sql = 'SELECT count(id_format_surat) as id FROM log_surat u LEFT JOIN tweb_penduduk n ON u.id_pend = n.id LEFT JOIN tweb_surat_format k ON u.id_format_surat = k.id LEFT JOIN tweb_desa_pamong s ON u.id_pamong = s.pamong_id  WHERE 1 ';
+        $sql = 'SELECT count(id_format_surat) as id FROM log_surat u LEFT JOIN tweb_penduduk n ON u.id_pend = n.id LEFT JOIN tweb_surat_format k ON u.id_format_surat = k.id LEFT JOIN tweb_desa_pamong s ON u.id_pamong = s.pamong_id WHERE 1 ';
         $sql .= $this->filterku_sql($nik);
-        //$sql     .= $this->search_sql();
+
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -112,7 +114,6 @@ class Surat_keluar_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -127,8 +128,6 @@ class Surat_keluar_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.no_surat'; break;
 
@@ -137,10 +136,7 @@ class Surat_keluar_model extends CI_Model
             default:$order_sql = ' ORDER BY u.tanggal';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        //Main Query
 
         $sql = 'SELECT u.*,n.nama AS nama,w.nama AS nama_user, n.nik AS nik,k.nama AS format, k.url_surat as berkas,s.pamong_nama AS pamong
 			FROM log_surat u
@@ -158,7 +154,6 @@ class Surat_keluar_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -209,14 +204,13 @@ class Surat_keluar_model extends CI_Model
         $data['bulan']    = date('m');
         $data['tahun']    = date('Y');
         $data['no_surat'] = $z;
-        //print_r($data);
+
         $this->db->insert('log_surat', $data);
     }
 
     public function grafik()
     {
-        $sql = 'select round(((jml*100)/(select count(id) from log_surat)),2) as jumlah, nama from (SELECT COUNT(l.id) as jml, f.nama from log_surat l left join tweb_surat_format f on l.id_format_surat=f.id group by l.id_format_surat) as a';
-
+        $sql   = 'select round(((jml*100)/(select count(id) from log_surat)),2) as jumlah, nama from (SELECT COUNT(l.id) as jml, f.nama from log_surat l left join tweb_surat_format f on l.id_format_surat=f.id group by l.id_format_surat) as a';
         $query = $this->db->query($sql);
 
         return $query->result_array();
@@ -269,7 +263,6 @@ class Surat_keluar_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {

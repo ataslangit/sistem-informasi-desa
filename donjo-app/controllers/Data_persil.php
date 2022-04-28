@@ -1,26 +1,6 @@
 <?php
-/*
- * data_persil.php
- *
- * Copyright 2015 Isnu Suntoro <isnusun@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */ defined('BASEPATH') || exit('No direct script access allowed');
+
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class Data_persil extends CI_Controller
 {
@@ -86,16 +66,13 @@ class Data_persil extends CI_Controller
     {
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['persil_detail'] = $this->data_persil_model->get_persil($id);
         if ($id > 0) {
             $data['pemilik'] = $this->data_persil_model->get_penduduk($data['persil_detail']['nik']);
         } else {
             $data['pemilik'] = false;
         }
-
-        $data['persil_lokasi'] = $this->data_persil_model->list_dusunrwrt();
-
+        $data['persil_lokasi']     = $this->data_persil_model->list_dusunrwrt();
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
 
@@ -112,7 +89,6 @@ class Data_persil extends CI_Controller
 
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['penduduk']      = $this->data_persil_model->list_penduduk();
         $data['persil_detail'] = $this->data_persil_model->get_persil($id);
         if ($id > 0) {
@@ -120,7 +96,6 @@ class Data_persil extends CI_Controller
         } else {
             $data['pemilik'] = false;
         }
-
         if (isset($_POST['nik'])) {
             $data['pemilik'] = $this->data_persil_model->get_penduduk($_POST['nik']);
         }
@@ -142,7 +117,6 @@ class Data_persil extends CI_Controller
 
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['penduduk']      = $this->data_persil_model->list_penduduk();
         $data['persil_detail'] = $this->data_persil_model->get_persil($id);
 
@@ -158,10 +132,8 @@ class Data_persil extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
-
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
-
         $data['hasil']  = $this->data_persil_model->simpan_persil();
         $data['persil'] = $this->data_persil_model->list_persil(0, $page);
 
@@ -178,9 +150,7 @@ class Data_persil extends CI_Controller
         $this->load->view('header', $header);
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
-
-        $data['persil'] = $this->data_persil_model->list_persil('jenis', $apa, $page);
-
+        $data['persil']            = $this->data_persil_model->list_persil('jenis', $apa, $page);
         $this->load->view('data_persil/persil', $data);
         $this->load->view('footer');
     }
@@ -191,8 +161,7 @@ class Data_persil extends CI_Controller
         $this->load->view('header', $header);
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
-
-        $data['persil'] = $this->data_persil_model->list_persil('peruntukan', $apa, $page);
+        $data['persil']            = $this->data_persil_model->list_persil('peruntukan', $apa, $page);
 
         $this->load->view('data_persil/persil', $data);
         $this->load->view('footer');

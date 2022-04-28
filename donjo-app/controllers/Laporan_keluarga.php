@@ -6,8 +6,7 @@ class Laporan_keluarga extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
-        $this->load->model('user_model');
+        parent::__construct();        $this->load->model('user_model');
         $this->load->model('analisis_laporan_keluarga_model');
         $this->load->model('keluarga_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);

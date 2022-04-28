@@ -10,21 +10,11 @@
 
 <script type="text/javascript">
 $(function() {
-
 $("#feature > div").scrollable({interval: 2000}).autoscroll();
-
 $('#aside').prepend('<a class="print-preview">Cetak </a>');
 $('a.print-preview').printPreview();
-
-//$(document).bind('keydown', function(e) {
 var code = 80;
-//if (code == 80 && !$('#print-modal').length) {
 $.printPreview.loadPrintPreview();
-//return false;
-//}
-//});
 });
 </script>
-
 </head>
-

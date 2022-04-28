@@ -13,6 +13,21 @@
 			noResultsText :'Tidak ada no nik yang sesuai..',
 			onSelect: function(){$('#'+'main').submit();}  
 		});
+	
+	
+	$('#showData').click(function(){ 
+		$('tr.hide').show();
+		$('#showData').hide();
+		$('#hideData').show();		
+	});
+	
+	$('#hideData').click(function(){ 
+		$('tr.hide').hide();
+		$('#hideData').hide();
+		$('#showData').show();		
+	});
+	
+		$('#hideData').hide();
 	});
 </script>
 <style>
@@ -23,6 +38,9 @@ table.form.detail th{
 }
 table.form.detail td{
 	padding:5px;
+}
+tr .hide{
+	display:none;
 }
 </style>
 <div id="pageC">
@@ -70,35 +88,96 @@ table.form.detail td{
 								<th>Warganegara / Agama</th>
 								<td><?php echo $individu['warganegara']?> / <?php echo $individu['agama']?></td>
 							</tr>
+							<tr>
+								<th>Data Keluarga / KK </th>
+								<td>
+									<a class='uibutton special' id='showData'>Tampilkan</a>
+									<a class='uibutton' id='hideData'>Sembunyikan</a>
+								</td>
+							</tr>
+							
+							<tr class="hide">
+								<th colspan="1">Keluarga</th>
+								<td colspan="1">
+									<div style="margin-left:0px;">
+										<table class="list">
+											<thead>
+												<tr>
+													<th>No</th>
+													<th><input type="checkbox" class="checkall"/></th>
+													<th align="left" width='70'>NIK</th>
+													<th align="left" width='100'>Nama</th>
+													<th align="left" width='30' align="center">JK</th>
+													<th width="70" align="left" >Hubungan</th>
+													<th width="70" align="left" >Umur</th>
+													<th width="70" align="left" >Status Kawin</th>
+													<th width="100" align="left" >Pendidikan</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<?php 
+												if($anggota!=NULL){
+													$i=0;?>
+												<?php foreach($anggota AS $data){ $i++;?>
+												<tr>
+													<td align="center" width="2"><?php echo $i?></td>
+													<td align="center" width="5">
+														<input type="checkbox" name="id_cb[]" value="'<?php echo $data['nik']?>'" />
+													</td>
+													<td><?php echo $data['nik']?></td>
+													<td><?php echo unpenetration($data['nama'])?></td>
+													<td><?php echo $data['sex']?></td>
+													<td><?php echo $data['hubungan']?></td>
+													<td><?php echo $data['umur']?></td>
+													<td><?php echo $data['status_kawin']?></td>
+													<td><?php echo $data['pendidikan']?></td>
+												</tr> 
+												<?php }?>
+												<?php }?>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+								 
+							<tr>
+								<th>Dokumen Kelengkapan / Syarat</th>
+								<td>
+									<a header="Dokumen" target="ajax-modal" rel="dokumen" href="<?php echo site_url("penduduk/dokumen_list/$individu[id]")?>" class="uibutton special">Daftar Dokumen</a><a target="_blank" href="<?php echo site_url("penduduk/dokumen/$individu[id]")?>" class="uibutton confirm">Manajemen Dokumen</a> )* Atas Nama <?php echo $individu['nama']?> [<?php echo $individu['nik']?>]</td>
+							</tr>
 						<?php 
 						}
 						?>
 						<tr>
 							<th width="200">Nomor Surat</th>
-							<td ><input name="nomor" type="text" class="inputbox required" size="12"/></td>
+							<td ><input name="nomor" type="text" class="inputbox " size="12"/></td>
 						</tr>
 						<tr>
 							<th>Keperluan</th>
 							<td>
-								<textarea name="keperluan" class="required" style="resize:none;height:80px;width:300px;" size="500">
-								</textarea>
+								<textarea name="keperluan" class="" style="resize:none;height:80px;width:300px;" size="500"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th>Tujuan</th>
+							<td>
+								<textarea name="tujuan" class="" style="resize:none;height:80px;width:300px;" size="500"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<th>Keterangan</th>
 							<td>
-								<textarea name="keterangan" class="required" style="resize:none;height:80px;width:300px;" size="500">
-								</textarea>
+								<textarea name="keterangan" class="" style="resize:none;height:80px;width:300px;" size="500"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<th>Berlaku</th>
-							<td><input name="berlaku_dari" type="text" class="inputbox required datepicker" size="20"/> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker" size="20"/></td>
+							<?php $skrg = date("d-m-Y")?>
+							<td><input name="berlaku_dari" type="text" class="inputbox  datepicker" size="20" value="<?php echo $skrg;?>"/> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker" size="20"/></td>
 						</tr>
 						<tr>
-							<th>Staf Pemerintah Desa</th>
+							<th>Staf/ Jabatan Pemerintah Desa</th>
 							<td><select name="pamong"  class="inputbox required">
-								<option value="">Pilih Staf Pemerintah Desa</option>
 								<?php foreach($pamong AS $data){?>
 									<option value="<?php echo $data['pamong_nama']?>"><?php echo $data['pamong_nama']?>(<?php echo $data['jabatan']?>)</option>
 								<?php }?>
@@ -108,7 +187,6 @@ table.form.detail td{
 						<tr>
 							<th>Sebagai</th>
 							<td><select name="jabatan"  class="inputbox required">
-								<option value="">Pilih Jabatan</option>
 								<?php foreach($pamong AS $data){?>
 									<option ><?php echo $data['jabatan']?></option>
 								<?php }?>
@@ -120,7 +198,7 @@ table.form.detail td{
 			</div>
 				<div class="ui-layout-south panel bottom">
 					<div class="left">
-						<a href="<?php echo site_url()?>/surat" class="uibutton icon prev">Kembali</a>
+						<a href="<?php echo site_url()?>surat" class="uibutton icon prev">Kembali</a>
 					</div>
 					<div class="right">
 						<div class="uibutton-group">

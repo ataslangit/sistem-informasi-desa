@@ -10,16 +10,14 @@ class Laporan_rentan extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3'], true)) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
 
-        //Initialize Session ------------
         $_SESSION['success']  = 0;
         $_SESSION['per_page'] = 20;
         $_SESSION['cari']     = '';
-        //-------------------------------
 
         $this->load->model('header_model');
     }
@@ -41,9 +39,9 @@ class Laporan_rentan extends CI_Controller
 
         $data['list_dusun'] = $this->laporan_bulanan_model->list_dusun();
         $data['config']     = $this->laporan_bulanan_model->configku();
-        //$data['paging']  = $this->laporan_bulanan_model->paging($lap,$p,$o);
+
         $data['main'] = $this->laporan_bulanan_model->list_data();
-        //$data['keyword'] = $this->laporan_bulanan_model->autocomplete();
+
         $nav['act'] = 2;
         $header     = $this->header_model->get_data();
         $this->load->view('header', $header);

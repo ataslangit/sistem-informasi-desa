@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Plan_polygon_model extends CI_Model
 {
     public function autocomplete()
@@ -44,7 +46,7 @@ class Plan_polygon_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
-        $sql = 'SELECT COUNT(id) AS id FROM polygon  WHERE tipe = 0 ';
+        $sql = 'SELECT COUNT(id) AS id FROM polygon WHERE tipe = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
@@ -72,10 +74,9 @@ class Plan_polygon_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        $sql = 'SELECT * FROM polygon WHERE tipe = 0  ';
+        $sql = 'SELECT * FROM polygon WHERE tipe = 0 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -146,7 +147,6 @@ class Plan_polygon_model extends CI_Model
         unset($data['simbol']);
         $this->db->where('id', $id);
         $outp = $this->db->update('polygon', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -331,9 +331,6 @@ class Plan_polygon_model extends CI_Model
 
     public function list_polygon_atas()
     {
-
-        //$sql   = "SELECT m.*,s.nama as sub_polygon,s.simbol as s_simbol FROM polygon m LEFT JOIN polygon s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM polygon m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
@@ -367,9 +364,6 @@ class Plan_polygon_model extends CI_Model
 
     public function list_polygon_kiri()
     {
-
-        //$sql   = "SELECT m.*,s.nama as sub_polygon,s.simbol as s_simbol FROM polygon m LEFT JOIN polygon s ON m.id = s.parrent WHERE m.parrent = 1 AND m.enabled = 1 AND (s.enabled = 1 OR s.enabled IS NULL) AND m.tipe = 1";
-
         $sql = 'SELECT m.* FROM polygon m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);

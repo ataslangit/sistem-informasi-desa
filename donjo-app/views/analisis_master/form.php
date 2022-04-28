@@ -1,43 +1,20 @@
-<script type="text/javascript" src="<?= base_url()?>assets/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/tiny_mce/tinymce.min.js"></script>
 <script type="text/javascript">
-tinyMCE.init({
-        // General options
-		mode : "textareas",
-		theme : "advanced",
-		skin : "o2k7",
-        plugins : "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-
-        // Theme options
-        theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
-        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
-        theme_advanced_toolbar_location : "top",
-        theme_advanced_toolbar_align : "left",
-        theme_advanced_statusbar_location : "bottom",
-        theme_advanced_resizing : true,
-
-        // Skin options
-        skin : "o2k7",
-        skin_variant : "blue",
-
-        // Example content CSS (should be your site CSS)
-        content_css : "css/example.css",
-
-        // Drop lists for link/image/media/template dialogs
-        template_external_list_url : "js/template_list.js",
-        external_link_list_url : "js/link_list.js",
-        external_image_list_url : "js/image_list.js",
-        media_external_list_url : "js/media_list.js",
-
-        // Replace values for the template plugin
-        template_replace_values : {
-                username : "Some User",
-                staffid : "991234"
-        }
+tinymce.init({
+selector: 'textarea',
+height: 600,
+theme: 'modern',
+plugins: [
+'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+'searchreplace wordcount visualblocks visualchars code ',
+'insertdatetime media nonbreaking save table contextmenu directionality',
+'emoticons template paste textcolor colorpicker textpattern imagetools'
+],
+toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image,print preview media | forecolor backcolor emoticons',
+image_advtab: true
 });
 </script>
-
 <script>
 $(function(){
 if ($('input[name=subjek_tipe]:unchecked').next('label').text()=='Kelompok Masyarakat'){
@@ -64,9 +41,7 @@ display:none;
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
-
 </div>
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Form Master Analisis</h3>
@@ -79,7 +54,7 @@ display:none;
 <td><input name="nama" type="text" class="inputbox" size="80" value="<?= $analisis_master['nama']?>"/></td>
 </tr>
 <tr>
-<th width="100">Unit Analisis</th>
+<th width="100">Subjek/Unit Analisis</th>
 <td>
 <div class="uiradio">
 <?php $ch = 'checked'; ?>
@@ -94,20 +69,21 @@ display:none;
 }?>><label for="group1">Rumah Tangga</label>
 <input type="radio" id="group4" name="subjek_tipe" value="4"/<?php if ($analisis_master['subjek_tipe'] === '4') {
     echo $ch;
-}?>><label for="group4">Kelompok Masyarakat</label>
+}?>><label for="group4">Kelompok</label>
 </div>
 </td>
 </tr>
 <tr class="delik">
-<th>Master Kelompok</th><td>
-                <select name="id_kelompok">
-                    <option value="">-- Pilih Master Kelompok --</option>
-					<?php  foreach ($list_kelompok as $data) {?>
-					<option value="<?= $data['id']?>" <?php if ($analisis_master['id_kelompok'] === $data['id']) :?>selected<?php endif?>><?= $data['kelompok']?></option>
-					<?php  }?>
-                </select>
-</td></tr>
-				<tr>
+<th>Kategori Kelompok</th><td>
+	<select name="id_kelompok">
+		<option value="">-- Pilih Kategori Kelompok --</option>
+		<?php foreach ($list_kelompok as $data) {?>
+		<option value="<?= $data['id']?>" <?php if ($analisis_master['id_kelompok'] === $data['id']) :?>selected<?php endif?>><?= $data['kelompok']?></option>
+		<?php }?>
+	</select>
+</td>
+</tr>
+<tr>
 <th>Status Analisis</th>
 <td>
 <div class="uiradio">
@@ -121,18 +97,27 @@ display:none;
 </td>
 </tr>
 <tr>
-<th colspan="2">Rumus Penilaian Analisis</br>Sigma (Bobot (indikator) x Nilai (parameter)) / "Bilangan Pembagi"</th>
+<th colspan="2">Rumus Penilaian Analisis</br>Sigma [Bobot (indikator) x Nilai (ukuran)] / "Bilangan Pembagi"</th>
 </tr>
 <tr>
 <th>Bilangan Pembagi</th>
 <td><input name="pembagi" type="text" class="inputbox number" size="20" value="<?= $analisis_master['pembagi']?>"/> *) untuk tanda koma "," gunakan tanda titik "." sebagai substitusinya.</td>
 </tr>
+<th>Analisis Terhubung</th><td>
+	<select name="id_child">
+		<option value="">-- Pilih Analisis --</option>
+		<?php foreach ($list_analisis as $data) {?>
+		<option value="<?= $data['id']?>" <?php if ($analisis_master['id_child'] === $data['id']) :?>selected<?php endif?>><?= $data['nama']?></option>
+		<?php }?>
+	</select>
+	*) Kosongi jika tida ada analisis terhubung.
+</td>
 <tr>
 <th width="120" colspan="2">Deskripsi Analisis</th>
 </tr>
 <tr>
 <td colspan="2">
-<textarea  name="deskripsi" style="width: 800px; height: 500px;">
+<textarea name="deskripsi" style="width: 800px; height: 500px;">
 <?= $analisis_master['deskripsi']?>
 </textarea>
 </td>
@@ -146,7 +131,7 @@ display:none;
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

@@ -10,15 +10,13 @@ class Laporan extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2', '3'], true)) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
 
-        //Initialize Session ------------
         $_SESSION['success'] = 0;
         $_SESSION['cari']    = '';
-        //-------------------------------
 
         $this->load->model('header_model');
     }
@@ -37,7 +35,6 @@ class Laporan extends CI_Controller
     {
         $data['p'] = $p;
         $data['o'] = $o;
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -72,8 +69,6 @@ class Laporan extends CI_Controller
         $this->load->view('statistik/nav', $nav);
         $this->load->view('laporan/bulanan', $data);
         $this->load->view('footer');
-        //unset($_SESSION['bulan']);
-        //print_r(	$data['kelahiran'] );
     }
 
     public function cetak($lap = 0)

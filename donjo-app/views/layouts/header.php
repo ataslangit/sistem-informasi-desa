@@ -1,90 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Website Desa <?= unpenetration($desa['nama_desa']); ?></title>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    <!-- Bootstrap -->
-    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
-<!--
-	<link rel="stylesheet" href="<?= base_url()?>assets/bs/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?= base_url()?>assets/bs/css/style.css">
--->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<head>
+    <title><?php if (@$single_artikel) {
+    echo $single_artikel['judul'] . ' - ';
+} ?>Website Desa <?= unpenetration($desa['nama_desa']); ?></title>
+    <meta content="utf-8" http-equiv="encoding">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php
+    $gambar = null;
+    if (isset($single_artikel['gambar'])) {
+        $gambar = $single_artikel['gambar'];
+    } elseif (isset($single_artikel['gambar1'])) {
+        $gambar = $single_artikel['gambar1'];
+    } elseif (isset($single_artikel['gambar2'])) {
+        $gambar = $single_artikel['gambar2'];
+    } elseif (isset($single_artikel['gambar3'])) {
+        $gambar = $single_artikel['gambar4'];
+    }
+    ?>
+    <?php if ($gambar !== null) { ?>
+        <meta property="og:image" content="<?= base_url() . 'assets/files/artikel/kecil_' . $gambar; ?>">
+    <?php } ?>
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="180">
+    <meta property="og:url" content="<?= urlencode(current_url()); ?>">
+    <meta property="og:title" content="<?php if (@$single_artikel) {
+        echo $single_artikel['judul'] . ' - ';
+    } ?>Website Desa <?= unpenetration($desa['nama_desa']); ?>">
+    <meta property="og:site_name" content="<?= unpenetration($desa['nama_desa']); ?>" />
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" />
+    <link type='text/css' href="<?= base_url() ?>assets/front/css/first.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= base_url() ?>assets/css/ui-buttons.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= base_url() ?>assets/front/css/colorbox.css" rel='Stylesheet' />
+    <link href="<?= base_url('assets/css/font-awesome.min.css')?>" rel="stylesheet" type="text/css" />
+    <script src="<?= base_url() ?>assets/front/js/stscode.js"></script>
+    <script src="<?= base_url() ?>assets/front/js/jquery.js"></script>
+    <script src="<?= base_url() ?>assets/front/js/layout.js"></script>
+    <script src="<?= base_url() ?>assets/front/js/jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".group2").colorbox({
+                rel: 'group2',
+                transition: "fade"
+            });
+            $(".group3").colorbox({
+                rel: 'group3',
+                transition: "fade"
+            });
+        });
+    </script>
+</head>
 
-	<!-- Original -->
-		<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
-		<link type='text/css' href="<?= base_url()?>assets/front/css/first.css" rel='Stylesheet' />
-		<link type='text/css' href="<?= base_url()?>assets/css/font-awesome.min.css" rel='Stylesheet' />
-		<link type='text/css' href="<?= base_url()?>assets/css/ui-buttons.css" rel='Stylesheet' />
-		<link type='text/css' href="<?= base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
+<body>
+    <div id="maincontainer">
+        <div id="topsection">
+            <div class="innertube">
+                <div id="header">
+                    <div id="headercontent">
+                        <div id="menu_vert">
+                            <div id="menuwrapper">
+                                <?php $this->load->view('partials/menu.tpl.php'); ?>
+                            </div>
+                        </div>
+                        <div id="menu_vert2">
+                            <?php if (count($slide) > 0) {
+        $this->load->view('layouts/slide.php');
+    } ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="headleft">
+                    <div id="divlogo">
+                        <div id="divlogo-txt">
+                            <div class="intube">
+                                <div id="siteTitle">
+                                    <h1>Desa <?= unpenetration($desa['nama_desa']) ?></h1>
+                                    <h2>Kecamatan <?= unpenetration($desa['nama_kecamatan']) ?><br />
+                                        Kabupaten <?= unpenetration($desa['nama_kabupaten']) ?><br />
+                                        Provinsi <?= unpenetration($desa['nama_propinsi']) ?></h2>
+                                    <h3><?= unpenetration($desa['alamat_kantor']) ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divlogo-img">
+                        <div class="intube">
+                            <a href="<?= site_url('first'); ?>">
+                                <img src="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" alt="<?= $desa['nama_desa'] ?>" />
+                            </a>
+                        </div>
+                    </div>
+                    <br class="clearboth" />
+                </div>
 
-		<script src="<?= base_url()?>assets/front/js/stscode.js"></script>
-		<script src="<?= base_url()?>assets/front/js/jquery.js"></script>
-		<script src="<?= base_url()?>assets/front/js/layout.js"></script>
-		<script src="<?= base_url()?>assets/front/js/jquery.colorbox.js"></script>
-		<script>
-			$(document).ready(function(){
-				$(".group2").colorbox({rel:'group2', transition:"fade"});
-				$(".group3").colorbox({rel:'group3', transition:"fade"});
-			});
-		</script>
-	</head>
-		<div id="maincontainer">
-			<div id="topsection">
-				<div class="innertube">
-					<div id="header">
-						<div id="headercontent">
-							<div id="menu_vert">
-								<div id="menuwrapper">
-									<?php $this->load->view('partials/menu.tpl.php'); ?>
-								</div>
-							</div>
-							<div id="menu_vert2">
-								<?php if (count($slide) > 0) {
-    $this->load->view('layouts/slide.php');
-} ?>
-							</div>
-						</div>
-					</div>
-					<div id="headleft">
-						<div id="divlogo">
-							<div id="divlogo-txt">
-								<div class="intube">
-									<div id="siteTitle">
-										<h1><?= unpenetration($desa['nama_desa'])?></h1>
-										<h2>Kecamatan <?= unpenetration($desa['nama_kecamatan'])?><br />
-										Kab/Kota <?= unpenetration($desa['nama_kabupaten'])?></h2>
-										<h3><?= unpenetration($desa['alamat_kantor'])?></h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="divlogo-img">
-							<div class="intube">
-								<a href="<?= site_url('first'); ?>">
-								<img src="<?= base_url()?>assets/files/logo/<?= $desa['logo']?>" alt="<?= $desa['nama_desa']?>"/>
-								</a>
-							</div>
-						</div>
-						<br class="clearboth"/>
-					</div>
+                <?php if (count($teks_berjalan) > 0) {
+        $this->load->view('layouts/teks_berjalan.php');
+    } ?>
 
-					<?php if (count($teks_berjalan) > 0) {
-    $this->load->view('layouts/teks_berjalan.php');
-} ?>
+                <div id="mainmenu">
+                    <?php $this->load->view('partials/menu.left.php'); ?>
+                </div>
 
-					<div id="mainmenu">
-						<?php $this->load->view('partials/menu.left.php'); ?>
-					</div>
-
-				</div>
-			</div>
+            </div>
+        </div>

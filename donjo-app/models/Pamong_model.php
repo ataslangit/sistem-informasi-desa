@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Pamong_model extends CI_Model
 {
     public function list_data()
@@ -101,7 +103,6 @@ class Pamong_model extends CI_Model
 
         $sql  = 'UPDATE tweb_desa_pamong SET pamong_nama=?,pamong_nip=?,pamong_nik=?,jabatan=?,pamong_status=? WHERE pamong_id=?';
         $outp = $this->db->query($sql, [$nama, $nip, $nik, $jabatan, $status, $id]);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {

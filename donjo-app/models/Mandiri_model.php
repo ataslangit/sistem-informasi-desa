@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Mandiri_model extends CI_Model
 {
     public function autocomplete()
@@ -79,8 +81,6 @@ class Mandiri_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.last_login'; break;
 
@@ -89,10 +89,7 @@ class Mandiri_model extends CI_Model
             default:$order_sql = ' ORDER BY u.tanggal_buat';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        //Main Query
 
         $sql = 'SELECT u.*,n.nama AS nama, n.nik AS nik
 			FROM tweb_penduduk_mandiri u
@@ -107,7 +104,6 @@ class Mandiri_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -191,7 +187,6 @@ class Mandiri_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output AND nik NOT IN(SELECT nik FROM tweb_penduduk_mandiri)
         $i = 0;
 
         while ($i < count($data)) {

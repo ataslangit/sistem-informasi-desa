@@ -19,13 +19,12 @@
 			</tr>
 </table>
 <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
-        <button class="uibutton confirm" type="submit">Simpan</button>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
+ <button class="uibutton confirm" type="submit">Simpan</button>
+ </div>
 </div>
 </form>
-
 <script>
 	$(function(){
 		var nik = {};
@@ -41,9 +40,9 @@
 			watermark: <?php if ($point) {?>'<?= $point['simbol']?>'<?php } else {?>'Ketik nama simbol di sini..'<?php }?>,
 			width: 100,
 			noResultsText :'...'
-			//onSelect: function() {
+
 			//	$('#'+'main').submit();
-		//}
+
 		});
 	});
 </script>

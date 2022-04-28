@@ -19,14 +19,7 @@ class Gis extends CI_Controller
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
-        //		$this->load->library('ion_auth');
-        //		$this->load->library('session');
-        //		$this->load->library('form_validation');
-        //		$this->load->helper('url');
-//
-        //		$this->config->item('ion_auth') ;
+
         $this->load->database();
     }
 
@@ -51,7 +44,6 @@ class Gis extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['sex'])) {
             $data['sex'] = $_SESSION['sex'];
         } else {
@@ -134,7 +126,7 @@ class Gis extends CI_Controller
         $data['penduduk']        = $this->penduduk_model->list_data_map();
         $data['keyword']         = $this->penduduk_model->autocomplete();
         $header                  = $this->header_model->get_data();
-        //$header ['desa']= $this->header_model->get_data();
+
         $this->load->view('gis/header', $header);
         $this->load->view('gis/maps', $data);
         $this->load->view('footer');
@@ -303,7 +295,6 @@ class Gis extends CI_Controller
         $data['pendidikan']  = $this->penduduk_model->list_pendidikan();
         $data['pekerjaan']   = $this->penduduk_model->list_pekerjaan();
         $data['form_action'] = site_url('gis/adv_search_proses');
-
         $this->load->view('gis/ajax_adv_search_form', $data);
     }
 

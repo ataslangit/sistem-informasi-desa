@@ -18,14 +18,13 @@
 	<td>
 		<select name="ref_point">
 			<option value="">Kategori</option>
-			<?php  foreach ($list_point as $data) {?>
-			<option <?php  if ($lokasi['ref_point'] === $data['id']) :?>selected<?php  endif?> value="<?= $data['id']?>"><?= $data['nama']?></option>
-			<?php  }?>
+			<?php foreach ($list_point as $data) {?>
+			<option <?php if ($lokasi['ref_point'] === $data['id']) :?>selected<?php endif?> value="<?= $data['id']?>"><?= $data['nama']?></option>
+			<?php }?>
 		</select>
 	</td>
 </tr>
-
-<?php  if ($lokasi['foto'] !== '') {?>
+<?php if ($lokasi['foto'] !== '') {?>
 <tr>
 	<th>Foto</th>
 	<td>
@@ -34,7 +33,7 @@
 		</div>
 	</td>
 </tr>
-<?php  }?>
+<?php }?>
 <tr>
 	<th>Ganti Foto</th>
 	<td>
@@ -50,40 +49,29 @@
 <th>Status</th>
 	<td>
 		<div class="uiradio">
-			<input type="radio" id="sx1" name="enabled" value="1"/<?php  if ($lokasi['enabled'] === '1' || $lokasi['enabled'] === '') {
+			<input type="radio" id="sx1" name="enabled" value="1"/<?php if ($lokasi['enabled'] === '1' || $lokasi['enabled'] === '') {
     echo 'checked';
 }?>>
 			<label for="sx1">Aktif</label>
-			<input type="radio" id="sx2" name="enabled" value="2"/<?php  if ($lokasi['enabled'] === '2') {
+			<input type="radio" id="sx2" name="enabled" value="2"/<?php if ($lokasi['enabled'] === '2') {
     echo 'checked';
 }?>>
-			<label for="sx2">Non Aktif</label>
+			<label for="sx2">Tidak Aktif</label>
 		</div>
 	</td>
 </tr>
-
-<?php   /*
-<th>Tipe lokasi</th>
-    <td>
-        <div class="uiradio">
-            <input type="radio" id="sx1" name="tipe" value="1"/<?php  if($lokasi['tipe'] == '1' OR $lokasi['tipe'] == ''){echo 'checked';}?>>
-            <label for="sx1">lokasi Atas</label>
-            <input type="radio" id="sx2" name="tipe" value="2"/<?php  if($lokasi['tipe'] == '2'){echo 'checked';}?>>
-            <label for="sx2">lokasi Kiri</label>
-        </div>
-    </td>
-</tr>
-*/?>
+<?php
+?>
 </table>
 </div>
 
 <div class="ui-layout-south panel bottom">
 <div class="left">
-<a href="<?= site_url()?>plan" class="uibutton icon prev">Kembali</a>
+<a href="<?= site_url()?>/plan" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

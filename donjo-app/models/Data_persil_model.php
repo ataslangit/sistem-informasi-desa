@@ -1,26 +1,7 @@
 <?php
-/*
- * data_persil_model.php
- *
- * Copyright 2015 Isnu Suntoro <isnusun@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */
+
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Data_persil_model extends CI_Model
 {
     public function __construct()
@@ -82,24 +63,21 @@ class Data_persil_model extends CI_Model
 
         $strSQL .= $this->search_sql();
         $strSQL .= ') LIMIT ' . $offset . ',' . $limit;
-
         $query = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
             $data = $query->result_array();
         } else {
             $_SESSION['pesan'] = $strSQL;
         }
-        //Formating Output
+
         $i = 0;
-        //$j=$offset;
+
         while ($i < count($data)) {
-            //$data[$i]['no']=$j+1;
             if (! is_numeric($data[$i]['nik']) && $data[$i]['nik'] !== '') {
                 $data[$i]['namapemilik'] = $data[$i]['nik'];
                 $data[$i]['nik']         = '-';
             }
             $i++;
-            //$j++;
         }
 
         return $data;

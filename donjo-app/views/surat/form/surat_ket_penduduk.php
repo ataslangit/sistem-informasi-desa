@@ -16,11 +16,8 @@
 				$('#'+'main').submit();
 		}
 		});
-
 	});
 </script>
-
-
 <style>
 table.form.detail th{
 padding:5px;
@@ -49,7 +46,7 @@ padding:5px;
 </tr>
 <form id="validasi" action="" method="POST" target="_blank">
 <input type="hidden" name="nik" value="<?= $individu['id']?>" class="inputbox required" >
-<?php if ($individu) { //bagian info setelah terpilih?>
+<?php if ($individu) { ?>
 <tr>
 <th>Tempat Tanggal Lahir (Umur)</th>
 <td>
@@ -72,6 +69,12 @@ padding:5px;
 <th>Warganegara / Agama</th>
 <td>
 <?= $individu['warganegara']?> / <?= $individu['agama']?>
+</td>
+</tr>
+<tr>
+<th>Dokumen Kelengkapan / Syarat</th>
+<td>
+<a header="Dokumen" target="ajax-modal" rel="dokumen" href="<?= site_url("penduduk/dokumen_list/{$individu['id']}")?>" class="uibutton special">Daftar Dokumen</a><a target="_blank" href="<?= site_url("penduduk/dokumen/{$individu['id']}")?>" class="uibutton confirm">Manajemen Dokumen</a> )* Atas Nama <?= $individu['nama']?> [<?= $individu['nik']?>]
 </td>
 </tr>
 <?php }?>
@@ -108,7 +111,7 @@ padding:5px;
 <tr>
 <th>Sebagai</th>
 <td>
-<select name="jabatan"  class="inputbox required">
+<select name="jabatan" class="inputbox required">
 <option value="">Pilih Jabatan</option>
 <?php foreach ($pamong as $data) {?>
 <option ><?= $data['jabatan']?></option>
@@ -124,9 +127,9 @@ padding:5px;
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
-<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button><?php } ?>
+<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Unduh</button><?php } ?>
 </div>
 </div>
 </div></form>

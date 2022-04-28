@@ -6,7 +6,7 @@ if ($headline) {
 			<h3 class="box-title"><a href="' . site_url("first/artikel/{$headline['id']}") . '">' . $headline['judul'] . '</a></h3>
 			<div class="pull-right small">' . $headline['owner'] . ', ' . tgl_indo2($headline['tgl_upload']) . '</div>
 		</div>
-		<div class="box-body">';
+		<div class="box-body" style="text-align:justify;">';
     if ($headline['gambar'] !== '') {
         if (is_file('assets/files/artikel/sedang_' . $headline['gambar'])) {
             echo '
@@ -17,16 +17,14 @@ if ($headline) {
 				<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="' . base_url() . 'assets/images/404-image-not-found.jpg" width="300" height="180"/>';
         }
     }
-    echo $headline['isi'];
+    $head = explode('</p>', $headline['isi']);
+    echo $head[0] . '</p>';
 
     echo '
 		</div>
 	</div>';
 }
-
-// List Konten
 $title = (! empty($judul_kategori)) ? $judul_kategori : 'Artikel Terkini';
-
 if (is_array($title)) {
     foreach ($title as $item) {
         $title = $item;
@@ -39,7 +37,12 @@ echo '
 		</div>
 		<div class="box-body">
 ';
+function clean($string)
+{
+    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
 if ($artikel) {
     echo '
 	<div>
@@ -52,12 +55,14 @@ if ($artikel) {
         } else {
             $abstrak = $teks;
         }
+        $judul = str_replace(' ', '-', $data['judul']);
+        $judul = preg_replace('/[^A-Za-z0-9\-]/', '-', $judul);
         echo '
 				<li class="artikel">
-					<h3 class="judul"><a href="' . site_url("first/artikel/{$data['id']}") . '">' . $data['judul'] . '</a></h3>
+					<h3 class="judul"><a href="' . site_url("first/artikel/{$data['id']}-{$judul}") . '">' . $data['judul'] . '</a></h3>
 
-					<div class="teks">
-						<div class="kecil"><i class="fa fa-clock-o"></i> ' . tgl_indo2($data['tgl_upload']) . ' <i class="fa fa-user"></i>  ' . $data['owner'] . '</div>
+					<div class="teks" style="text-align:justify;">
+						<div class="kecil"><i class="fa fa-clock-o"></i> ' . tgl_indo2($data['tgl_upload']) . ' <i class="fa fa-user"></i> ' . $data['owner'] . '</div>
 						<div class="img">';
         if ($data['gambar'] !== '') {
             if (is_file('assets/files/artikel/kecil_' . $data['gambar'])) {
@@ -69,7 +74,6 @@ if ($artikel) {
         echo '
 						</div>
 						' . $abstrak . ' <a href="' . site_url('first/artikel/' . $data['id'] . '') . '">..selengkapnya</a>
-
 					</div>
 					<br class="clearboth gb"/>
 				</li>';
@@ -78,7 +82,6 @@ if ($artikel) {
 		</ul>
 	</div>
 	';
-// Pengaturan halaman
 } else {
     echo '
 	<div class="artikel" id="artikel-blank">
@@ -126,36 +129,35 @@ if ($artikel) {
 	</div>
 ';
 ?>
-
 <!--
 <div class="themes nobig2">
 <div class="bleft">
-            <label>Jumlah Total Artikel:</label>
+ <label>Jumlah Total Artikel:</label>
 			<label><strong><?= $paging->num_rows?></strong></label>
 </div>
-        <div class="bright">
-            <div class="uibutton-group">
-            <?php  if ($paging->start_link): ?>
-				<a href="<?= site_url("first/index/{$paging->start_link}")?>" class="uibutton"  >Awal</a>
-			<?php  endif; ?>
-			<?php  if ($paging->prev): ?>
-				<a href="<?= site_url("first/index/{$paging->prev}")?>" class="uibutton"  >Prev</a>
-			<?php  endif; ?>
-            </div>
-            <div class="uibutton-group">
+ <div class="bright">
+ <div class="uibutton-group">
+ <?php if ($paging->start_link): ?>
+				<a href="<?= site_url("first/index/{$paging->start_link}")?>" class="uibutton" >Awal</a>
+			<?php endif; ?>
+			<?php if ($paging->prev): ?>
+				<a href="<?= site_url("first/index/{$paging->prev}")?>" class="uibutton" >Prev</a>
+			<?php endif; ?>
+ </div>
+ <div class="uibutton-group">
 
-				<?php  for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
-				<a href="<?= site_url("first/index/{$i}")?>" <?php  jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
-				<?php  endfor; ?>
-            </div>
-            <div class="uibutton-group">
-			<?php  if ($paging->next): ?>
+				<?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
+				<a href="<?= site_url("first/index/{$i}")?>" <?php jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
+				<?php endfor; ?>
+ </div>
+ <div class="uibutton-group">
+			<?php if ($paging->next): ?>
 				<a href="<?= site_url("first/index/{$paging->next}")?>" class="uibutton">Next</a>
-			<?php  endif; ?>
-			<?php  if ($paging->end_link): ?>
-                <a href="<?= site_url("first/index/{$paging->end_link}")?>" class="uibutton">Akhir</a>
-			<?php  endif; ?>
-            </div>
-        </div>
+			<?php endif; ?>
+			<?php if ($paging->end_link): ?>
+ <a href="<?= site_url("first/index/{$paging->end_link}")?>" class="uibutton">Akhir</a>
+			<?php endif; ?>
+ </div>
+ </div>
 </div>
 -->

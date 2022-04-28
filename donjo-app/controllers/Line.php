@@ -11,14 +11,7 @@ class Line extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_line_model');
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
-        /*		$this->load->library('ion_auth');
-                $this->load->library('session');
-                $this->load->library('form_validation');
-                $this->load->helper('url');
 
-                $this->config->item('ion_auth') ;*/
         $this->load->database();
     }
 
@@ -45,7 +38,6 @@ class Line extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -54,9 +46,8 @@ class Line extends CI_Controller
         $data['paging']  = $this->plan_line_model->paging($p, $o);
         $data['main']    = $this->plan_line_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->plan_line_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 2;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 2;
 
         $this->load->view('header-gis', $header);
 
@@ -70,8 +61,6 @@ class Line extends CI_Controller
         $data['p'] = $p;
         $data['o'] = $o;
 
-        //$data['link']        = $this->plan_line_model->list_link();
-
         if ($id) {
             $data['line']        = $this->plan_line_model->get_line($id);
             $data['form_action'] = site_url("line/update/{$id}/{$p}/{$o}");
@@ -79,7 +68,6 @@ class Line extends CI_Controller
             $data['line']        = null;
             $data['form_action'] = site_url('line/insert');
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
@@ -106,11 +94,6 @@ class Line extends CI_Controller
 
     public function ajax_add_sub_line($line = 0, $id = 0)
     {
-
-        //$data['line'] = $line;
-
-        //$data['link']        = $this->plan_line_model->list_link();
-
         if ($id) {
             $data['line']        = $this->plan_line_model->get_line($id);
             $data['form_action'] = site_url("line/update_sub_line/{$line}/{$id}");
@@ -118,7 +101,6 @@ class Line extends CI_Controller
             $data['line']        = null;
             $data['form_action'] = site_url("line/insert_sub_line/{$line}");
         }
-
         $this->load->view('line/ajax_add_sub_line_form', $data);
     }
 

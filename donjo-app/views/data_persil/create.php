@@ -1,27 +1,4 @@
 <?php
-/*
- * persil.php
- *
- * Copyright 2015 Isnu Suntoro <isnusun@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */
-
 ?>
 <div id="pageC">
 <table class="inner">
@@ -47,10 +24,7 @@
 
             ?>
 
-<?= /*
- * List Penduduk
- *
- * */ '
+<?= '
 <script>
 	$(document).ready(function() {
 		var nik = {};
@@ -77,8 +51,6 @@
 	});
 </script>
 ";
-// Form Add/Edit
-
 if ($persil_detail > 0) {
     if (isset($persil_detail['id'])) {
         $nik   = $persil_detail['nik'];
@@ -194,7 +166,6 @@ echo '
 		<label>NOMOR SPPT PBB</label>
 		<input type="text" class="form-control" name="sppt" id="sppt" placeholder="Tuliskan Nomor SPPT PBB" value="' . $sppt . '"/>
 	</div>
-
 	<div class="form-group" style="margin-bottom:3em;">
 		<div class="uibutton-group">
 		<input type="hidden" name="id" value="' . $id . '"/>
@@ -202,7 +173,6 @@ echo '
 		<input type="reset" class="uibutton" name="tombolreset" id="tombolreset" value="Batal"/>
 		</div>
 	</div>
-
 ';
 echo '</form>
 </fieldset>';

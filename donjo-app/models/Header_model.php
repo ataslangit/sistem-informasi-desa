@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Header_model extends CI_Model
 {
     public function get_id_user($user = '')
@@ -37,6 +39,11 @@ class Header_model extends CI_Model
         $lap           = $query->row_array();
         $outp['lapor'] = $lap['jml'];
 
+        $sql           = 'SELECT * FROM setting_modul WHERE aktif =  1 AND level >= ?;';
+        $query         = $this->db->query($sql, $_SESSION['grup']);
+        $modul         = $query->result_array();
+        $outp['modul'] = $modul;
+
         return $outp;
     }
 
@@ -47,5 +54,31 @@ class Header_model extends CI_Model
         $outp['desa'] = $query->row_array();
 
         return $outp;
+    }
+
+    public function init_penduduk()
+    {
+        $i = 1;
+
+        $sql   = 'SELECT COUNT(id) AS jml FROM tweb_penduduk WHERE 1';
+        $query = $this->db->query($sql);
+        $data  = $query->row_array();
+        $i     = $i * $data['jml'];
+
+        $sql   = 'SELECT COUNT(id) AS jml FROM tweb_keluarga WHERE 1';
+        $query = $this->db->query($sql);
+        $data  = $query->row_array();
+        //$i = $i*$data['jml'];
+
+        $sql   = 'SELECT COUNT(id) AS jml FROM tweb_wil_clusterdesa WHERE 1';
+        $query = $this->db->query($sql);
+        $data  = $query->row_array();
+        //$i = $i*$data['jml'];
+
+        if ($i > 0) {
+            return 1;
+        }
+
+        return 0;
     }
 }

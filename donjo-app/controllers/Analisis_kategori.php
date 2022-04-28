@@ -14,11 +14,12 @@ class Analisis_kategori extends CI_Controller
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
+        $_SESSION['submenu']  = 'Data Kategori';
+        $_SESSION['asubmenu'] = 'analisis_kategori';
     }
 
-    public function clear($id = 0)
+    public function clear()
     {
-        $_SESSION['analisis_master'] = $id;
         unset($_SESSION['cari']);
         redirect('analisis_kategori');
     }
@@ -51,8 +52,7 @@ class Analisis_kategori extends CI_Controller
         $data['main']            = $this->analisis_kategori_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']         = $this->analisis_kategori_model->autocomplete();
         $data['analisis_master'] = $this->analisis_kategori_model->get_analisis_master();
-
-        $header = $this->header_model->get_data();
+        $header                  = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $this->load->view('analisis_master/nav');
@@ -72,9 +72,6 @@ class Analisis_kategori extends CI_Controller
             $data['analisis_kategori'] = null;
             $data['form_action']       = site_url('analisis_kategori/insert');
         }
-
-        //$header = $this->header_model->get_data();
-        //$data['analisis_master'] = $this->analisis_kategori_model->get_analisis_master();
 
         //$this->load->view('header', $header);
         //$this->load->view('analisis_master/nav');
