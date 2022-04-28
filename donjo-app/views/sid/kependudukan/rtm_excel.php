@@ -1,8 +1,8 @@
-<?php php
-header("Content-type: application/octet-stream");
-header("Content-Disposition: attachment; filename=Print.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+<?php
+header('Content-type: application/octet-stream');
+header('Content-Disposition: attachment; filename=Print.xls');
+header('Pragma: no-cache');
+header('Expires: 0');
 ?>
 
 <div id="body">
@@ -23,21 +23,21 @@ header("Expires: 0");
 			<th   width="100">Tanggal Terdaftar</th>
 		</tr>
 		</thead>
-		
+
 		<tbody>
-        <?php  foreach($main as $data): ?>
+        <?php  foreach ($main as $data): ?>
 		<tr>
-          <td><?php echo $data['no']?></td>
-          <td><?php echo $data['no_kk']?></td>
-		  <td><?php echo strtoupper($data['kepala_kk'])?></td>
-          <td><?php echo $data['jumlah_anggota']?></td>
-          <td><?php echo strtoupper(ununderscore($data['dusun']))?></td>
-		  <td><?php echo strtoupper($data['rw'])?></td>
-          <td><?php echo strtoupper($data['rt'])?></td>
-          <td><?php echo tgl_indo($data['tgl_daftar'])?></td>
+          <td><?= $data['no']?></td>
+          <td><?= $data['no_kk']?></td>
+		  <td><?= strtoupper($data['kepala_kk'])?></td>
+          <td><?= $data['jumlah_anggota']?></td>
+          <td><?= strtoupper(ununderscore($data['dusun']))?></td>
+		  <td><?= strtoupper($data['rw'])?></td>
+          <td><?= strtoupper($data['rt'])?></td>
+          <td><?= tgl_indo($data['tgl_daftar'])?></td>
 		</tr>
 		<?php  endforeach; ?>
 	</tbody>
-	
+
 </table>
 </div>

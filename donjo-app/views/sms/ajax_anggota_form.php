@@ -1,10 +1,10 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script>
-<form action="<?php echo $form_action?>" method="post" id="validasi">
+<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
+<form action="<?= $form_action?>" method="post" id="validasi">
     <div class="ui-layout-north panel">
     </div>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-        <div class="table-panel top">            
+        <div class="table-panel top">
         </div>
         <table class="list">
 		<thead>
@@ -12,22 +12,24 @@
 				<th width="10">No</th>
 				<th width="15"><input type="checkbox" class="checkall"/></th>
 				<th width="100">Nama </th>
-			    	<th width="25">Jenis Kelamin</th>	
-			    	<th width="25">Alamat</th>	
-			    	<th width="25">No HP</th>	
+			    	<th width="25">Jenis Kelamin</th>
+			    	<th width="25">Alamat</th>
+			    	<th width="25">No HP</th>
 		   	 </tr>
 		</thead>
 		<tbody>
-        		<?php  $no=1; foreach($main as $data): ?>
+        		<?php  $no = 1;
+
+foreach ($main as $data): ?>
 			<tr>
-		  		<td align="center" width="2"><?php echo $no?></td>
+		  		<td align="center" width="2"><?= $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 				</td>
-				 <td><?php echo unpenetration($data['nama'])?></td>
-				 <td><?php echo $data['sex']?></td>
-				 <td><?php echo $data['alamat_sekarang']?></td>
-				 <td align="center"><?php echo $data['no_hp']?></td>
+				 <td><?= unpenetration($data['nama'])?></td>
+				 <td><?= $data['sex']?></td>
+				 <td><?= $data['alamat_sekarang']?></td>
+				 <td align="center"><?= $data['no_hp']?></td>
 			</tr>
       			<?php  $no++; endforeach; ?>
 		</tbody>

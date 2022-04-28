@@ -1,7 +1,7 @@
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 
 <div class="content-header">
 
@@ -9,14 +9,14 @@
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Form Master Analisis</h3>
 </div>
-<form id="validasi" action="<?php echo $form_action?>" method="POST" enctype="multipart/form-data">
+<form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <table class="form">
 <tr>
 <th>Form Master Analisis</th>
 <td>
-<li>Data yang dibutuhkan untuk Import dengan memenuhi aturan data<a href="<?php echo base_url()?>assets/import/analisis.xls"> sebagai berikut</a><br>
-<li>Contoh urutan format dapat dilihat pada <a href="<?php echo base_url()?>assets/import/ppls2.xls">tautan berikut</a><br></td>
+<li>Data yang dibutuhkan untuk Import dengan memenuhi aturan data<a href="<?= base_url()?>assets/import/analisis.xls"> sebagai berikut</a><br>
+<li>Contoh urutan format dapat dilihat pada <a href="<?= base_url()?>assets/import/ppls2.xls">tautan berikut</a><br></td>
 </tr>
 <tr>
 <th>File Master Analisis</th>
@@ -24,10 +24,10 @@
 </tr>
 </table>
 </div>
-   
+
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
-<a href="<?php echo site_url()?>/analisis_master" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>/analisis_master" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">

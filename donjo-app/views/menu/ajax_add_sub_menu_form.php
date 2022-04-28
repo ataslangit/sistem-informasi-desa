@@ -2,8 +2,8 @@
 $(function(){
     var link = {};
     link.results = [
-		<?php foreach($link as $data){?>
-	   {id:'artikel/<?php echo $data['id']?>',name:'<?php echo $data['judul']?>',info:'Halaman Berisi <?php echo $data['judul']?>'},
+		<?php foreach ($link as $data) {?>
+	   {id:'artikel/<?= $data['id']?>',name:'<?= $data['judul']?>',info:'Halaman Berisi <?= $data['judul']?>'},
 		<?php }?>
 	   {id:'gallery',name:'Gallery',info:'Halaman Gallery'},
 		    ];
@@ -16,16 +16,16 @@ $('#link').flexbox(link, {
     noResultsText :'Tidak ada no link yang sesuai..',
 	    onSelect: function() {
 		$('#'+'main').submit();
-    }  
+    }
 });
 });
 </script>
-<form action="<?php echo $form_action?>" method="post" id="validasi">
+<form action="<?= $form_action?>" method="post" id="validasi">
 <table style="width:100%">
 <tr>
 <th align="left" width="120">Nama Sub Menu</th>
 <td>
-<input type="text" name="nama" class="inputbox2 required" size="20" value="<?php echo $submenu['nama']?>">
+<input type="text" name="nama" class="inputbox2 required" size="20" value="<?= $submenu['nama']?>">
 </td>
 </tr>
 <tr>

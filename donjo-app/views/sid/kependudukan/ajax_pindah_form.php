@@ -14,7 +14,7 @@ function DusSel(str){
 	     document.getElementById("rw").innerHTML=xmlhttp.responseText;
 	    }
 	  }
-	xmlhttp.open("GET","<?php echo site_url()?>/penduduk/ajax_penduduk_pindah_rw/"+str,true);
+	xmlhttp.open("GET","<?= site_url()?>/penduduk/ajax_penduduk_pindah_rw/"+str,true);
 	xmlhttp.send();
 }
 
@@ -32,11 +32,11 @@ function RWSel(dusun,str){
 	     document.getElementById("rt").innerHTML=xmlhttp.responseText;
 	    }
 	  }
-	xmlhttp.open("GET","<?php echo site_url()?>/penduduk/ajax_penduduk_pindah_rt/"+dusun+"/"+str,true);
+	xmlhttp.open("GET","<?= site_url()?>/penduduk/ajax_penduduk_pindah_rt/"+dusun+"/"+str,true);
 	xmlhttp.send();
 }
 </script>
-<form action="<?php echo $form_action?>" method="post" id="validasi">
+<form action="<?= $form_action?>" method="post" id="validasi">
 <input type="hidden" name="rt" value="">
 <table>
 
@@ -45,16 +45,16 @@ function RWSel(dusun,str){
 	<td>Dusun</td>
 	<td><select name="dusun1" onchange="DusSel(this.value)">
 	<option value="">Pilih Dusun&nbsp;</option>
-	<?php foreach($dusun as $data){?>
+	<?php foreach ($dusun as $data) {?>
 		<?php ///$data['dusun']=myUrlEncode($data['dusun']);?>
-		<option value="<?php echo ($data['dusun'])?>"><?php echo ununderscore(unpenetration($data['dusun']))?></option>
+		<option value="<?= $data['dusun']?>"><?= ununderscore(unpenetration($data['dusun']))?></option>
 	<?php }?></select>
 	</td>
 </tr>
 <tr id="rw"></tr>
-<tr id="rt"></tr>	
+<tr id="rt"></tr>
 
-	
+
 </table>
 
 <div class="buttonpane" style="text-align: right;">

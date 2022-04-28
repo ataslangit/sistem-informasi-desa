@@ -1,6 +1,7 @@
 ## SID 4.1.0
 ### Perubahan
 - Menggunakan composer dan public folder demi kemudahan dan keamanan
+- Format kode
 
 ### Penambahan
 - Menggunakan `.env` untuk pengaturan basic

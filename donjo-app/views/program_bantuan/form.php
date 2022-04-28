@@ -1,27 +1,27 @@
 <?php
 /*
  * program.php
- * 
+ *
  * Backend View untuk Program Bantuan
- * 
+ *
  * Copyright 2015 Isnu Suntoro <isnusun@gmail.com>
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
- * 
+ *
+ *
  */
 
 ?>
@@ -30,14 +30,14 @@
 	<tr style="vertical-align:top">
 		<td class="side-menu">
 		<?php
-		$this->load->view('program_bantuan/menu_kiri.php')
-		?>
+        $this->load->view('program_bantuan/menu_kiri.php')
+        ?>
 		</td>
 		<td class="contentpane">
 			<legend>Form Penulisan Program Bantuan</legend>
 			<div class="contentpane">
-				<?php echo validation_errors(); ?>
-				<?php echo form_open('program_bantuan/form') ?>
+				<?= validation_errors(); ?>
+				<?= form_open('program_bantuan/form') ?>
 					<div class="form-group">
 						<label>Sasaran Program</label>
 						<select class="form-control" name="cid" id="cid">
@@ -62,7 +62,7 @@
 						Mulai <input type="text" class="inputbox required" style="width:200px" name="sdate" id="sdate" placeholder="" value=""/>
 						s.d <input type="text" class="inputbox required" style="width:200px" name="edate" id="edate" placeholder="" value=""/>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="uibutton-group">
 						<input type="submit" class="uibutton confirm" name="tombol" id="tombol" value="Simpan"/>
@@ -97,7 +97,7 @@ $(document).ready(function () {
     $("#sdate").datepicker({
         onSelect: function (selected) {
             var dtMax = new Date(selected);
-            dtMax.setDate(dtMax.getDate() + daysToAdd); 
+            dtMax.setDate(dtMax.getDate() + daysToAdd);
             var dd = dtMax.getDate();
             var mm = dtMax.getMonth() + 1;
             var y = dtMax.getFullYear();
@@ -105,11 +105,11 @@ $(document).ready(function () {
             $("#edate").datepicker("option", "minDate", dtFormatted);
         }
     });
-    
+
     $("#edate").datepicker({
         onSelect: function (selected) {
             var dtMax = new Date(selected);
-            dtMax.setDate(dtMax.getDate() - daysToAdd); 
+            dtMax.setDate(dtMax.getDate() - daysToAdd);
             var dd = dtMax.getDate();
             var mm = dtMax.getMonth() + 1;
             var y = dtMax.getFullYear();
@@ -119,7 +119,7 @@ $(document).ready(function () {
     });
 });</script>
 
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
 <script type="text/javascript">
 tinyMCE.init({
         // General options

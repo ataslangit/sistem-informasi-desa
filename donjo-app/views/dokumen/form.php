@@ -1,28 +1,28 @@
 <div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-		<td style="background:#fff;padding:0px;"> 
+		<td style="background:#fff;padding:0px;">
 
 <div class="content-header">
     <h3>Form Manajemen Dokumen</h3>
 </div>
 <div id="contentpane">
-    <form id="validasi" action="<?php echo $form_action?>" method="POST" enctype="multipart/form-data">
+    <form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table class="form">
             <tr>
                 <th>Judul Dokumen</th>
-                <td><input name="nama" type="text" class="inputbox" size="100" value="<?php echo $dokumen['nama']?>"/></td>
+                <td><input name="nama" type="text" class="inputbox" size="100" value="<?= $dokumen['nama']?>"/></td>
             </tr>
-				<?php if($dokumen['satuan']){?>
+				<?php if ($dokumen['satuan']) {?>
             <tr>
                 <th class="top">Dokumen</th>
                 <td>
 				<div class="slidebox-avatar">
-					<img src="<?php echo base_url()?>assets/files/dokumen/<?php echo $dokumen['satuan']?>" alt=""/>
+					<img src="<?= base_url()?>assets/files/dokumen/<?= $dokumen['satuan']?>" alt=""/>
 				</div>
 				</td>
-				<input type="hidden" name="old_file" value="<?php echo $dokumen['satuan']?>">
+				<input type="hidden" name="old_file" value="<?= $dokumen['satuan']?>">
             </tr>
 				<?php }?>
             <tr>
@@ -31,10 +31,10 @@
             </tr>
         </table>
     </div>
-   
+
     <div class="ui-layout-south panel bottom">
-        <div class="left">     
-            <a href="<?php echo site_url()?>/dokumen" class="uibutton icon prev">Kembali</a>
+        <div class="left">
+            <a href="<?= site_url()?>/dokumen" class="uibutton icon prev">Kembali</a>
         </div>
         <div class="right">
             <div class="uibutton-group">

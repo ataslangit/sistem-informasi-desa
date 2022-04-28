@@ -1,5 +1,5 @@
 <script>
-$(function(){ 
+$(function(){
 	var skpd_select_width = (parseInt($('#skpd_select').width())/2)-100;
 	$('#skpd_select div').css('width',700);
 	$('#skpd_select input:checked').parent().css({'background':'#c9cdff','border':'1px solid #7a82eb'});
@@ -11,7 +11,7 @@ $(function(){
 		} else {
 			$(this).parent().css({'background':'#fafafa','border':'1px solid #ddd'});
 		}
-	});	
+	});
 	$('#skpd_select label').click(function(){
 		$(this).prev().trigger('click');
 	})
@@ -40,25 +40,31 @@ $(function(){
     <h3>Form Manajemen Responden</h3>
 </div>
 <div id="contentpane">
-    <form id="validasi" action="<?php echo $form_action?>" method="POST">
+    <form id="validasi" action="<?= $form_action?>" method="POST">
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <input type="hidden" name="rt" value="">
 <table>
-	<?php $last="";foreach($list_jawab AS $data){?>
-	<?php if($data['pertanyaan']!=$last){?></td></tr><tr><td>&nbsp;</td></tr><tr><td><label><?php echo $data['nomor']?>. <?php echo $data['pertanyaan']?></label></td></tr>
+	<?php $last = '';
+
+foreach ($list_jawab as $data) {?>
+	<?php if ($data['pertanyaan'] !== $last) {?></td></tr><tr><td>&nbsp;</td></tr><tr><td><label><?= $data['nomor']?>. <?= $data['pertanyaan']?></label></td></tr>
 	<tr><td id="skpd_select">
-	<div style="display:inline-block;"><input type="radio" class="required" name="cb[<?php echo $data['id']?>]" value="<?php echo $data['id']?>.<?php echo $data['id_jawaban']?>" <?php if($data['cek']){echo " checked";}?>><label><?php echo $data['huruf']?>. <?php echo $data['jawaban']?></label></div>
-	<?php }else{?>
-	<div style="display:inline-block;"><input type="radio" class="required" name="cb[<?php echo $data['id']?>]" value="<?php echo $data['id']?>.<?php echo $data['id_jawaban']?>"<?php if($data['cek']){echo " checked";}?>><label><?php echo $data['huruf']?>. <?php echo $data['jawaban']?></label></div>
+	<div style="display:inline-block;"><input type="radio" class="required" name="cb[<?= $data['id']?>]" value="<?= $data['id']?>.<?= $data['id_jawaban']?>" <?php if ($data['cek']) {
+    echo ' checked';
+}?>><label><?= $data['huruf']?>. <?= $data['jawaban']?></label></div>
+	<?php } else {?>
+	<div style="display:inline-block;"><input type="radio" class="required" name="cb[<?= $data['id']?>]" value="<?= $data['id']?>.<?= $data['id_jawaban']?>"<?php if ($data['cek']) {
+    echo ' checked';
+}?>><label><?= $data['huruf']?>. <?= $data['jawaban']?></label></div>
 	<?php }?>
-	<?php $last=$data['pertanyaan'];
-	}?>
+	<?php $last = $data['pertanyaan'];
+    }?>
 </table>
     </div>
-   
+
     <div class="ui-layout-south panel bottom">
-        <div class="left">     
-            <a href="<?php echo site_url()?>/admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
+        <div class="left">
+            <a href="<?= site_url()?>/admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
         </div>
         <div class="right">
             <div class="uibutton-group">

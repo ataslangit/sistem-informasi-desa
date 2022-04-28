@@ -2,8 +2,8 @@
 $(function(){
     var nik = {};
     nik.results = [
-		<?php foreach($penduduk as $data){?>
-	   {id:'<?php echo $data['id']?>',name:"<?php echo $data['nik']." - ".($data['nama'])?>",info:"<?php echo ($data['alamat'])?>"},
+		<?php foreach ($penduduk as $data) {?>
+	   {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 		<?php }?>
 		    ];
 nik.total = nik.results.length;
@@ -15,7 +15,7 @@ $('#id_kepala').flexbox(nik, {
     noResultsText :'Tidak ada no nik yang sesuai..',
 	    onSelect: function() {
 		$('#'+'main').submit();
-    }  
+    }
 });
 $("#nik_detail").show();
 });
@@ -23,23 +23,23 @@ $("#nik_detail").show();
 <div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-		<td style="background:#fff;padding:0px;"> 
+		<td style="background:#fff;padding:0px;">
 <div id="contentpane">
-    <form id="validasi" action="<?php echo $form_action?>" method="POST" enctype="multipart/form-data">
+    <form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
     <h3>Form Data RW</h3>
         <table class="form">
             <tr>
                 <th width="160">Nomor RW</th>
-                <td><input name="rw" type="text" class="inputbox required number" size="40" value="<?php echo $rw?>"/></td>
+                <td><input name="rw" type="text" class="inputbox required number" size="40" value="<?= $rw?>"/></td>
             </tr>
 			<tr>
-			<?php if($rw){?>
+			<?php if ($rw) {?>
 			<tr>
                 <th>Ketua RW Sebelumnya</th>
                 <td>
-                    <?php echo $individu['nama']?>
-					<br />NIK - <?php echo $individu['nik']?>
+                    <?= $individu['nama']?>
+					<br />NIK - <?= $individu['nik']?>
                 </td>
             </tr>
 			<?php }?>
@@ -50,10 +50,10 @@ $("#nik_detail").show();
             </tr>
         </table>
     </div>
-   
+
     <div class="ui-layout-south panel bottom">
-        <div class="left">     
-            <a href="<?php echo site_url("sid_core/sub_rw/$id_dusun")?>" class="uibutton icon prev">Kembali</a>
+        <div class="left">
+            <a href="<?= site_url("sid_core/sub_rw/{$id_dusun}")?>" class="uibutton icon prev">Kembali</a>
         </div>
         <div class="right">
             <div class="uibutton-group">
