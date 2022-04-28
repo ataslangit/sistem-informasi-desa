@@ -1,3 +1,13 @@
+## SID 4.1.0
+### Perubahan
+- Menggunakan composer dan public folder demi kemudahan dan keamanan
+
+### Penambahan
+- Menggunakan `.env` untuk pengaturan basic
+
+### Perbaikan
+- `base_url()` secara default adalah dynamic, sekarang dapat diatur berupa static lewat `.env`.
+
 ## SID 4.0.0
 ### Perubahan
 - Menggunakan CodeIgniter 3.1.13.
