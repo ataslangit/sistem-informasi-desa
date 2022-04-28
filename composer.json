@@ -1,0 +1,11 @@
+{
+    "require": {
+        "php": ">=7.3",
+        "codeigniter/framework": "~3.1",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require-dev": {
+        "mikey179/vfsstream": "1.1.*",
+        "phpunit/phpunit": "4.* || 5.*"
+    }
+}
