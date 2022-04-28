@@ -3,7 +3,6 @@ class Laporan_Keluarga extends CI_Controller{
 
 function __construct(){
 		parent::__construct();
-		session_start();
 		$this->load->model('user_model');
 		$this->load->model('analisis_laporan_keluarga_model');
 		$this->load->model('keluarga_model');

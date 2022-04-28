@@ -6,7 +6,6 @@ class Master_Penduduk extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
-		session_start();
 		$this->load->model('user_model');
 		$this->load->model('master_analisis_penduduk_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
