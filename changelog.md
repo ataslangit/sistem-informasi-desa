@@ -3,9 +3,11 @@
 - Menggunakan composer dan public folder demi kemudahan dan keamanan
 - Format kode
 - Hapus konstruktor kosong
+- Penyesuaian SID v3.10 dari CRI
 
 ### Penambahan
 - Menggunakan `.env` untuk pengaturan basic
+- Lisensi
 
 ### Perbaikan
 - `base_url()` secara default adalah dynamic, sekarang dapat diatur berupa static lewat `.env`.
