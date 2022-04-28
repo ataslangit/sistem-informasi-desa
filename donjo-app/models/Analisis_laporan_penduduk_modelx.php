@@ -2,11 +2,6 @@
 
 class Analisis_laporan_penduduk_modelx extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT dusun_nama FROM tweb_wil_dusun';

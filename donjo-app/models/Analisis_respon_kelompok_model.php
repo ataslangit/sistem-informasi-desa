@@ -2,11 +2,6 @@
 
 class Analisis_respon_kelompok_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql = 'SELECT nama FROM kelompok

@@ -2,11 +2,6 @@
 
 class Wilayah_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT dusun FROM tweb_wil_clusterdesa';

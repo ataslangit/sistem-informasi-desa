@@ -2,11 +2,6 @@
 
 class First_keluarga_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function list_raskin($tipex = 0)
     {
         $dus = '';

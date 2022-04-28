@@ -2,11 +2,6 @@
 
 class Analisis_laporan_rtm_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql = 'SELECT no_kk FROM tweb_rtm

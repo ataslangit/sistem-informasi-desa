@@ -2,11 +2,6 @@
 
 class First_menu_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function list_menu_atas()
     {
         $sql = 'SELECT m.* FROM menu m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1 order by id asc';

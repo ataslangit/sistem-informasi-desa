@@ -2,11 +2,6 @@
 
 class First_gallery_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function paging($p = 1)
     {
         $sql      = "SELECT COUNT(id) AS id FROM gambar_gallery WHERE enabled=1 AND tipe='0'";

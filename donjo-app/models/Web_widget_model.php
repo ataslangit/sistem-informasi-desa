@@ -2,11 +2,6 @@
 
 class Web_widget_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function get_widget()
     {
         $sql   = 'SELECT * FROM widget limit 1';

@@ -2,11 +2,6 @@
 
 class Web_komentar_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT tgl_upload, owner, email, komentar FROM komentar';

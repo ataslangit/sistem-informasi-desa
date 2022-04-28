@@ -2,11 +2,6 @@
 
 class analisis_import_Model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function import_excel()
     {
         $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
