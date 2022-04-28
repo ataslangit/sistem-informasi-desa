@@ -4,7 +4,6 @@ class Laporan_Rentan extends CI_Controller{
 
 function __construct(){
 		parent::__construct();
-		session_start();
 		$this->load->model('user_model');
 		$this->load->model('laporan_bulanan_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);

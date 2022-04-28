@@ -3,7 +3,6 @@ class Sid_Core extends CI_Controller{
 
 function __construct(){
 		parent::__construct();
-		session_start();
 		$this->load->model('user_model');
 		$this->load->model('wilayah_model');
 		$this->load->model('config_model');

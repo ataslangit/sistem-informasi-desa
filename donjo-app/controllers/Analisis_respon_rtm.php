@@ -4,7 +4,6 @@ class analisis_respon_rtm extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
-		session_start();
 		$this->load->model('analisis_respon_rtm_model');
 		$this->load->model('analisis_import_model');
 		$this->load->model('user_model');
