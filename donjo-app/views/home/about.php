@@ -1,5 +1,5 @@
 <div font-size="17px"><b>
-Anda sedang menggunakan aplikasi Sistem Informasi Desa (SID) versi 3.04<br />
+Anda sedang menggunakan aplikasi Sistem Informasi Desa (SID) versi <?= APP_VERSION ?><br />
 <br />
 <br />APAKAH SISTEM INFORMASI (SID)?</b> <br />
 <br />
