@@ -1,0 +1,10 @@
+# CI_ENVIRONMENT = production
+
+# app.baseURL = ''
+
+# database.default.hostname = localhost
+# database.default.database = ci4
+# database.default.username = root
+# database.default.password = root
+# database.default.DBDriver = MySQLi
+# database.default.DBPrefix =

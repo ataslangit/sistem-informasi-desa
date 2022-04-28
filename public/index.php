@@ -38,6 +38,21 @@
 
 /*
  *---------------------------------------------------------------
+ * COMPOSER AUTOLOAD
+ *---------------------------------------------------------------
+ */
+require_once __DIR__ . '/../vendor/autoload.php';
+
+/*
+ *---------------------------------------------------------------
+ * DOTENV
+ *---------------------------------------------------------------
+ */
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->safeLoad();
+
+/*
+ *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
  *
@@ -53,7 +68,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	define('ENVIRONMENT', isset($_SERVER['CI_ENVIRONMENT']) ? $_SERVER['CI_ENVIRONMENT'] : 'production');
 
 /*
  *---------------------------------------------------------------
