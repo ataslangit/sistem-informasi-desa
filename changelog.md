@@ -7,5 +7,8 @@
 - beberapa session yang tidak tersedia sebelumnya membuat error.
 - Query DB pada `side.right.php` menggunakan fungsi pemanggilan yang kadaluarsa.
 
+### Penambahan
+- Konstanta untuk informasi versi aplikasi.
+
 ## SID 3.04
 Rilis pertama, berdasarkan informasi dari sumber kode.
