@@ -1,13 +1,13 @@
-<form id="" action="<?php  echo $form_action?>" method="POST">
+<form id="" action="<?= $form_action?>" method="POST">
 <table style="width:100%">
 <tr>
 <th width="100">Nama line</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php  echo $line['nama']?>" size="40"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?= $line['nama']?>" size="40"/></td>
 </tr>
 <tr>
 	<th>Warna</th>
 	<td>
-		<input class="color inputbox" size="7" value="<?php  echo $line['color']?>" name="color">
+		<input class="color inputbox" size="7" value="<?= $line['color']?>" name="color">
 	</td>
 </tr>
 </table>
@@ -19,4 +19,4 @@
 </div>
 </form>
 
-<script type="text/javascript" src="<?php  echo base_url()?>assets/js/jscolor/jscolor.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/jscolor/jscolor.js"></script>

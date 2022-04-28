@@ -1,19 +1,19 @@
-<form action="<?php echo $form_action?>" method="post" id="validasi">
+<form action="<?= $form_action?>" method="post" id="validasi">
 
 <div class="content-header">
-    <h4>KK No.<?php echo $kepala_kk['no_kk']?> Keluarga : <?php echo $kepala_kk['nama']?></h4>
+    <h4>KK No.<?= $kepala_kk['no_kk']?> Keluarga : <?= $kepala_kk['nama']?></h4>
 </div>
 <table style="width:100%">
 <tr>
 <th width="100" align="left">NIK</th>
 <td>
-	<?php echo $main['nik']?>
+	<?= $main['nik']?>
 </td>
 </tr>
 <tr>
 <th align="left">Nama Penduduk</th>
 <td>
-	<?php echo $main['nama']?>
+	<?= $main['nama']?>
 </td>
 </tr>
 <tr>
@@ -26,9 +26,11 @@
 <th align="left">Hubungan</th>
 <td><select name="kk_level" class="required" width="50">
 <option value=""> ----- Pilih Hubungan ----- </option>
-<?php foreach($hubungan as $data){if($data['id']>0){?>
-	<option value="<?php echo $data['id']?>" <?php if($data['id']==$main['kk_level']){?>selected<?php }?>><?php echo $data['hubungan']?></option>
-<?php }}?></select>
+<?php foreach ($hubungan as $data) {
+    if ($data['id'] > 0) {?>
+	<option value="<?= $data['id']?>" <?php if ($data['id'] === $main['kk_level']) {?>selected<?php } ?>><?= $data['hubungan']?></option>
+<?php }
+}?></select>
 </td>
 	</tr>
 </table>

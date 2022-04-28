@@ -35,7 +35,7 @@ xmlhttp.open("GET","sid_penduduk/ajax_penduduk_pindah_rt/"+dusun+"/"+str,true);
 xmlhttp.send();
 }
 </script>
-<form method="post" action="<?php echo $form_action?>" >
+<form method="post" action="<?= $form_action?>" >
 <input type="hidden" name="rt" value="">
 <table>
 <tr>
@@ -43,18 +43,18 @@ xmlhttp.send();
 </tr>
 <tr>
 	<td>Umur</td><td><input class="inputbox2" name="umur_min" type="text" size="5" > - <input class="inputbox2" name="umur_max" type="text" size="5"></td>
-</tr> 
+</tr>
 <tr>
 	<td>Dusun</td>
 	<td><select name="dusun" onchange="DusSel(this.value)">
 	<option value="">Pilih Dusun&nbsp;</option>
-	<?php foreach($dusun as $data){?>
-		<option><?php echo $data['dusun']?></option>
+	<?php foreach ($dusun as $data) {?>
+		<option><?= $data['dusun']?></option>
 	<?php }?></select>
 	</td>
 </tr>
 <tr id="RW"></tr>
-<tr id="RT"></tr>	
+<tr id="RT"></tr>
 <tr><td>Jenis Kelamin</td>
 	 <td>
      <select name="sex" >
@@ -63,17 +63,17 @@ xmlhttp.send();
 	  <option value="2">PEREMPUAN</option>
 	  </select>
 	</td>
-</tr>	
+</tr>
 
 <tr><td>Pekerjaan</td>
     <td><select name="pekerjaan_id">
       <option value=""> -- </option>
-	  <?php foreach($pekerjaan AS $data){?>
-		<option value="<?php echo $data['id']?>"><?php echo $data['nama']?></option>
+	  <?php foreach ($pekerjaan as $data) {?>
+		<option value="<?= $data['id']?>"><?= $data['nama']?></option>
 	  <?php }?>
 	</select>
      </td>
-</tr>    
+</tr>
 
 <tr><td>Status Perkawinan</td><td>
     <select name="status">
@@ -83,18 +83,18 @@ xmlhttp.send();
 <tr><td>Agama</td><td>
     <select name="agama">
     <option value=""> -- </option>
-	<?php foreach($agama AS $data){?>
-		<option value="<?php echo $data['id']?>"><?php echo $data['nama']?></option>
+	<?php foreach ($agama as $data) {?>
+		<option value="<?= $data['id']?>"><?= $data['nama']?></option>
 	<?php }?>
     </select>
 	</td>
-</tr>  
+</tr>
 <tr><td>Pendidikan Terakhir</td>
     <td>
 	<select name="pendidikan_id">
       <option value=""> -- </option>
-		<?php foreach($pendidikan AS $data){?>
-			<option value="<?php echo $data['id']?>"><?php echo $data['nama']?></option>
+		<?php foreach ($pendidikan as $data) {?>
+			<option value="<?= $data['id']?>"><?= $data['nama']?></option>
 		<?php }?>
 	  </select>
   </td>

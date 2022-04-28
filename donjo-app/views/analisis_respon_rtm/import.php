@@ -6,7 +6,7 @@
 	width:430px;
 }
 </style>
-<form action="<?php echo $form_action?>" method="POST" id="validasi" enctype="multipart/form-data">
+<form action="<?= $form_action?>" method="POST" id="validasi" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 	<table width="100%">
 		<tr>

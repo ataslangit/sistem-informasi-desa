@@ -2,19 +2,19 @@
 $(function(){
 var nik = {};
 nik.results = [
-<?php foreach($penduduk as $data){?>
-{id:'<?php echo $data['id']?>',name:"<?php echo $data['nik']." - ".($data['nama'])?>",info:"<?php echo ($data['alamat'])?>"},
+<?php foreach ($penduduk as $data) {?>
+{id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 <?php }?>
 ];
 
 $('#nik').flexbox(nik, {
 resultTemplate: '<div><label>No nik : </label>{name}</div><div>{info}</div>',
-watermark: <?php if($individu){?>'<?php echo $individu['nik']?> - <?php echo spaceunpenetration($individu['nama'])?>'<?php }else{?>'Ketik no nik di sini..'<?php }?>,
+watermark: <?php if ($individu) {?>'<?= $individu['nik']?> - <?= spaceunpenetration($individu['nama'])?>'<?php } else {?>'Ketik no nik di sini..'<?php }?>,
 width: 260,
 noResultsText :'Tidak ada no nik yang sesuai..',
 onSelect: function() {
 $('#'+'main').submit();
-}  
+}
 });
 
 });
@@ -38,14 +38,14 @@ padding:5px;
 <legend>Surat Administrasi</legend>
 <div  id="sidecontent2" class="lmenu">
 <ul>
-<?php foreach($menu_surat AS $data){?>
-        <li <?php  if($data['url_surat']==$lap){?>class="selected"<?php  }?>><a href="<?php echo site_url()?>/surat/<?php echo $data['url_surat']?>"><?php echo unpenetration($data['nama'])?></a></li>
+<?php foreach ($menu_surat as $data) {?>
+        <li <?php if ($data['url_surat'] === $lap) {?>class="selected"<?php }?>><a href="<?= site_url()?>/surat/<?= $data['url_surat']?>"><?= unpenetration($data['nama'])?></a></li>
 <?php }?>
 </ul>
 </div>
 </fieldset>
 </td>
-<td style="background:#fff;padding:5px;"> 
+<td style="background:#fff;padding:5px;">
 <div class="content-header">
 
 </div>
@@ -54,7 +54,7 @@ padding:5px;
 <h3>Surat Persetujuan Mempelai</h3>
 </div>
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;" >
-<form id="validasi" action="<?php echo $form_action?>" method="POST" target="_blank">
+<form id="validasi" action="<?= $form_action?>" method="POST" target="_blank">
 <table class="form">
 
 <tr>
@@ -70,9 +70,9 @@ padding:5px;
 <select name="suami"  class="inputbox ">
 <option value="">Pilih Penduduk</option>
 
-<?php  foreach($laki AS $data){?>
-<option value="<?php echo $data['id']?>" ><font style="bold">  <?php echo $data['nama']?></font> -(<?php echo $data['nik']?>)</option>
-<?php  }?>
+<?php foreach ($laki as $data) {?>
+<option value="<?= $data['id']?>" ><font style="bold">  <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
+<?php }?>
 </select>
 *) Diisi jika suami berasal dari dalam desa</td>
 </tr>
@@ -88,7 +88,7 @@ padding:5px;
 </tr>
 <tr>
 	<th>Tempat Tanggal Lahir</th>
-	<td><input name="tempatlahir_suami" type="text" class="inputbox " size="30"/>  
+	<td><input name="tempatlahir_suami" type="text" class="inputbox " size="30"/>
 	<input name="tanggallahir_suami" type="text" class="inputbox  datepicker" size="20"/></td>
 </tr>
 <tr>
@@ -116,9 +116,9 @@ padding:5px;
 <select name="istri"  class="inputbox ">
 <option value="">Pilih Penduduk</option>
 
-<?php  foreach($perempuan AS $data){?>
-<option value="<?php echo $data['id']?>" ><font style="bold">  <?php echo $data['nama']?></font> -(<?php echo $data['nik']?>)</option>
-<?php  }?>
+<?php foreach ($perempuan as $data) {?>
+<option value="<?= $data['id']?>" ><font style="bold">  <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
+<?php }?>
 </select>
 *) Diisi jika istri berasal dari dalam desa</td>
 </tr>
@@ -134,7 +134,7 @@ padding:5px;
 </tr>
 <tr>
 	<th>Tempat Tanggal Lahir</th>
-	<td><input name="tempatlahir_istri" type="text" class="inputbox " size="30"/> 
+	<td><input name="tempatlahir_istri" type="text" class="inputbox " size="30"/>
 	<input name="tanggallahir_istri" type="text" class="inputbox  datepicker" size="20"/></td>
 </tr>
 <tr>
@@ -156,10 +156,10 @@ padding:5px;
 
 </table>
 </div>
-   
+
 <div class="ui-layout-south panel bottom">
-<div class="left">     
-<a href="<?php echo site_url()?>/sid_wilayah" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>/sid_wilayah" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">

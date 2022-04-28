@@ -2,21 +2,21 @@
 	$(function(){
 		var nik = {};
 		nik.results = [
-			<? foreach($penduduk as $data){?>
-				{id:'<?=$data['id']?>',name:"<?=$data['nik']." - ".($data['nama'])?>",info:"<?=($data['alamat'])?>"},
-			<? }?>
+			<?php foreach ($penduduk as $data) {?>
+				{id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= ($data['alamat'])?>"},
+			<?php }?>
 		];
-		
+
 		$('#nik').flexbox(nik, {
 			resultTemplate: '<div><label>No nik : </label>{name}</div><div>{info}</div>',
-			watermark: <? if($individu){?>'<?=$individu['nik']?> - <?=($individu['nama'])?>'<? }else{?>'Ketik no nik di sini..'<? }?>,
+			watermark: <?php if ($individu) {?>'<?= $individu['nik']?> - <?= ($individu['nama'])?>'<?php } else {?>'Ketik no nik di sini..'<?php }?>,
 			width: 260,
 			noResultsText :'Tidak ada no nik yang sesuai..',
 			onSelect: function() {
 				$('#'+'main').submit();
-		}  
+		}
 		});
-	
+
 	});
 </script>
 
@@ -40,14 +40,14 @@ padding:5px;
 <div id="sidecontent2"  class="lmenu">
 <ul>
 <?foreach($menu_surat AS $data){?>
-        <li <? if($data['url_surat']==$lap){?>class="selected"<? }?>><a href="<?=site_url()?>surat/<?=$data['url_surat']?>"><?=unpenetration($data['nama'])?></a></li>
+        <li <?php if ($data['url_surat'] === $lap) {?>class="selected"<?php }?>><a href="<?= site_url()?>surat/<?= $data['url_surat']?>"><?= unpenetration($data['nama'])?></a></li>
 <?}?>
 </ul>
 </div>
 </fieldset>
 </td>
 */?>
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 <div id="contentpane">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <h3>Surat Keterangan</h3>
@@ -60,30 +60,30 @@ padding:5px;
 </form>
 </tr>
 <form id="validasi" action="" method="POST" target="_blank">
-<input type="hidden" name="nik" value="<?=$individu['id']?>" class="inputbox required" >
+<input type="hidden" name="nik" value="<?= $individu['id']?>" class="inputbox required" >
 <?if($individu){ //bagian info setelah terpilih?>
 <tr>
 <th>Tempat Tanggal Lahir (Umur)</th>
 <td>
-<?=$individu['tempatlahir']?> <?=tgl_indo($individu['tanggallahir'])?> (<?=$individu['umur']?> Tahun)
+<?= $individu['tempatlahir']?> <?= tgl_indo($individu['tanggallahir'])?> (<?= $individu['umur']?> Tahun)
 </td>
 </tr>
 <tr>
 <th>Alamat</th>
 <td>
-<?=unpenetration($individu['alamat']); ?>
+<?= unpenetration($individu['alamat']); ?>
 </td>
 </tr>
 <tr>
 <th>Pendidikan</th>
 <td>
-<?=$individu['pendidikan']?>
+<?= $individu['pendidikan']?>
 </td>
 </tr>
 <tr>
 <th>Warganegara / Agama</th>
 <td>
-<?=$individu['warganegara']?> / <?=$individu['agama']?>
+<?= $individu['warganegara']?> / <?= $individu['agama']?>
 </td>
 </tr>
 <?}?>
@@ -117,7 +117,7 @@ padding:5px;
 <select name="pamong"  class="inputbox required">
 <option value="">Pilih Staf Pemerintah Desa</option>
 <?foreach($pamong AS $data){?>
-<option value="<?=$data['pamong_nama']?>"><?=$data['pamong_nama']?>(<?=$data['jabatan']?>)</option>
+<option value="<?= $data['pamong_nama']?>"><?= $data['pamong_nama']?>(<?= $data['jabatan']?>)</option>
 <?}?>
 </select>
 </td>
@@ -128,7 +128,7 @@ padding:5px;
 <select name="jabatan"  class="inputbox required">
 <option value="">Pilih Jabatan</option>
 <?foreach($pamong AS $data){?>
-<option ><?=$data['jabatan']?></option>
+<option ><?= $data['jabatan']?></option>
 <?}?>
 </select>
 </td>
@@ -136,14 +136,14 @@ padding:5px;
 </table>
 </div>
 <div class="ui-layout-south panel bottom">
-<div class="left">     
-<a href="<?=site_url()?>surat" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>surat" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">
 <button class="uibutton" type="reset">Clear</button>
-<button type="button" onclick="$('#'+'validasi').attr('action','<?=$form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
-<button type="button" onclick="$('#'+'validasi').attr('action','<?=$form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button>
+<button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
+<button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button>
 </div>
 </div>
 </div></form>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title><?php echo $id; ?></title>
+	<title><?= $id; ?></title>
 	<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=utf-8">
 	<meta name="ProgId" content="Arcapada.Notepad.HTML.Editor" />
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
@@ -12,7 +12,7 @@
 <body>
 <TABLE FRAME=VOID CELLSPACING=0 COLS=11 RULES=NONE BORDER=0>
 	<COLGROUP><COL WIDTH=29><COL WIDTH=24><COL WIDTH=79><COL WIDTH=77><COL WIDTH=77><COL WIDTH=77><COL WIDTH=79><COL WIDTH=77><COL WIDTH=77><COL WIDTH=77><COL WIDTH=29></COLGROUP>
-		<?php echo $content;?>
+		<?= $content; ?>
 	<TBODY>
 		<TR>
 			<TD STYLE="border-top: 1px solid #D3D3D3; border-left: 1px solid #D3D3D3" WIDTH=29 HEIGHT=17 ALIGN=LEFT><FONT SIZE=1><BR></FONT></TD>

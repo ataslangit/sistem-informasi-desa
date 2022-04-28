@@ -3,7 +3,7 @@
 <h2><a href="#">Grafik Statistik Penduduk</a></h2>
 </div>
 <div class='entry'>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/highcharts/highcharts.js"></script>
 <script type="text/javascript">
 			var chart;
 			$(document).ready(function() {
@@ -19,7 +19,13 @@
 						title: {
 							text: 'Statistik'
 						},
-                        categories: [<?php  $i=0;foreach($stat as $data){$i++;?><?php if($data['jumlah'] != "-"){echo $data['nama'].",";}?><?php }?>]
+                        categories: [<?php $i = 0;
+
+foreach ($stat as $data) {
+    $i++; ?><?php if ($data['jumlah'] !== '-') {
+        echo $data['nama'] . ',';
+    } ?><?php
+}?>]
 					},
 					yAxis: {
 						title: {
@@ -54,13 +60,15 @@
 					},
 				        series: [{
 						name: 'Populasi',
-						data: [<?php  foreach($stat as $data){?><?php if($data['jumlah'] != "-"){echo $data['jumlah'].",";}?><?php }?>]
+						data: [<?php foreach ($stat as $data) {?><?php if ($data['jumlah'] !== '-') {
+        echo $data['jumlah'] . ',';
+    }?><?php }?>]
 					}]
 				});
-				
-				
+
+
 			});
-				
+
 </script>
 <div id="chart" style="min-width: 550px; height: 550px; margin: 0 auto"></div>
 </div>

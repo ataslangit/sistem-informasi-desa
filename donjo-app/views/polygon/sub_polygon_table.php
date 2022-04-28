@@ -23,7 +23,7 @@
 
 </td>
 */?>
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub polygon</h3>
 </div>
@@ -32,8 +32,8 @@
 <div class="ui-layout-north panel">
 <div class="left">
 <div class="uibutton-group">
-<a href="<?php echo site_url("polygon/ajax_add_sub_polygon/$polygon")?>" class="uibutton tipsy south" title="Tambah Sub polygon"><span class="ui-icon ui-icon-plus">&nbsp;</span>Tambah polygon Baru</a>
-<button type="button" title="Delete Data" onclick="deleteAllBox('mainform','<?php echo site_url("polygon/delete_all/")?>')" class="uibutton tipsy south"><span class="ui-icon ui-icon-trash">&nbsp;</span>Delete Data
+<a href="<?= site_url("polygon/ajax_add_sub_polygon/{$polygon}")?>" class="uibutton tipsy south" title="Tambah Sub polygon"><span class="ui-icon ui-icon-plus">&nbsp;</span>Tambah polygon Baru</a>
+<button type="button" title="Delete Data" onclick="deleteAllBox('mainform','<?= site_url('polygon/delete_all/')?>')" class="uibutton tipsy south"><span class="ui-icon ui-icon-trash">&nbsp;</span>Delete Data
 </div>
 </div>
 </div>
@@ -57,18 +57,18 @@
 </tr>
 </thead>
 <tbody>
-<?php foreach($subpolygon as $data){?>
+<?php foreach ($subpolygon as $data) {?>
 <tr>
-<td align="center" width="2"><?php echo $data['no']?></td>
+<td align="center" width="2"><?= $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 </td>
 <td>
-<a href="<?php echo site_url("polygon/ajax_add_sub_polygon/$polygon/$data[id]")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?php echo site_url("polygon/delete_sub_polygon/$polygon/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url("polygon/polygon_lock_sub_polygon/$polygon/$data[id]")?>" class="ui-icons icon-lock tipsy south" title="Enable polygon"></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("polygon/polygon_unlock_sub_polygon/$polygon/$data[id]")?>" class="ui-icons icon-unlock tipsy south" title="Disable polygon"></a><?php endif;?>
+<a href="<?= site_url("polygon/ajax_add_sub_polygon/{$polygon}/{$data['id']}")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?= site_url("polygon/delete_sub_polygon/{$polygon}/{$data['id']}")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("polygon/polygon_lock_sub_polygon/{$polygon}/{$data['id']}")?>" class="ui-icons icon-lock tipsy south" title="Enable polygon"></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("polygon/polygon_unlock_sub_polygon/{$polygon}/{$data['id']}")?>" class="ui-icons icon-unlock tipsy south" title="Disable polygon"></a><?php endif; ?>
 </td>
-<td width="150"><?php echo $data['nama']?></td>
-<td width="50"><?php echo $data['aktif']?></td>
-<td ><div style="background-color:#<?php echo $data['color']?>">&nbsp;<div></td>
+<td width="150"><?= $data['nama']?></td>
+<td width="50"><?= $data['aktif']?></td>
+<td ><div style="background-color:#<?= $data['color']?>">&nbsp;<div></td>
 <td></td>
 <?php }?>
 </tbody>
@@ -76,8 +76,8 @@
 </div>
 </form>
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
-<a href="<?php echo site_url()?>/polygon/index/1" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>/polygon/index/1" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 </div>

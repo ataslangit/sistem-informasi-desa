@@ -1,15 +1,15 @@
-<?php php
-$q=$_GET["q"];
+<?php
+
+$q = $_GET['q'];
 
 $con = mysql_connect('localhost', 'root', '');
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
+if (! $con) {
+    exit('Could not connect: ' . mysql_error());
+}
 
-mysql_select_db("baru", $con);
+mysql_select_db('baru', $con);
 
-$sql="SELECT * FROM tweb_wil_clusterdesa WHERE dusun = '".$q."'";
+$sql = "SELECT * FROM tweb_wil_clusterdesa WHERE dusun = '" . $q . "'";
 
 $result = mysql_query($sql);
 
@@ -18,13 +18,11 @@ echo "<table border='1'>
 <th>Firstname</th>
 </tr>";
 
-while($row = mysql_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['id'] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
+while ($row = mysql_fetch_array($result)) {
+    echo '<tr>';
+    echo '<td>' . $row['id'] . '</td>';
+    echo '</tr>';
+}
+echo '</table>';
 
 mysql_close($con);
-?> 

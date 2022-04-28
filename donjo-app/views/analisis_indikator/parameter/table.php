@@ -1,6 +1,6 @@
 <script>
 	$(function() {
-		var keyword = <?php echo $keyword?> ;
+		var keyword = <?= $keyword?> ;
 		$( "#cari" ).autocomplete({
 			source: keyword
 		});
@@ -10,18 +10,18 @@
 <div id="pageC">
 	<table class="inner">
 <tr style="vertical-align:top">
-		<td style="background:#fff;padding:0px 10px;"> 
+		<td style="background:#fff;padding:0px 10px;">
 <div class="content-header">
 </div>
-<div id="contentpane">    
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
     <div class="ui-layout-north panel">
     <h3>Manajemen Parameter Analisis</h3>
-	<p> &nbsp; Pertanyaan : <?php echo $analisis_indikator['pertanyaan']?></p>
+	<p> &nbsp; Pertanyaan : <?= $analisis_indikator['pertanyaan']?></p>
         <div class="left">
             <div class="uibutton-group">
-               <?php if($analisis_master['lock']==1){?> <a href="<?php echo site_url("analisis_indikator/form_parameter/$analisis_indikator[id]")?>" class="uibutton tipsy south" title="Tambah Data" target="ajax-modal" rel="window" header="Form Data Parameter"><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Parameter Baru</a>
-                <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("analisis_indikator/p_delete_all_parameter]")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data<?php }?>
+               <?php if ($analisis_master['lock'] === 1) {?> <a href="<?= site_url("analisis_indikator/form_parameter/{$analisis_indikator['id']}")?>" class="uibutton tipsy south" title="Tambah Data" target="ajax-modal" rel="window" header="Form Data Parameter"><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Parameter Baru</a>
+                <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?= site_url('analisis_indikator/p_delete_all_parameter]')?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data<?php }?>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
 		<thead>
             <tr>
                 <th width="10">No</th>
-				<?php if($analisis_master['lock']==1){?>
+				<?php if ($analisis_master['lock'] === 1) {?>
                 <th width="10"><input type="checkbox" class="checkall"/></th>
                 <th width="80">Aksi</th>
 				<?php }?>
@@ -47,21 +47,21 @@
 			</tr>
 		</thead>
 		<tbody>
-        <?php  foreach($main as $data): ?>
+        <?php  foreach ($main as $data): ?>
 		<tr>
-          <td align="center" width="2"><?php echo $data['no']?></td>
-		  <?php if($analisis_master['lock']==1){?>
+          <td align="center" width="2"><?= $data['no']?></td>
+		  <?php if ($analisis_master['lock'] === 1) {?>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 			</td>
           <td><div class="uibutton-group">
-            <a href="<?php echo site_url("analisis_indikator/form_parameter/$analisis_indikator[id]/$data[id]")?>" class="uibutton tipsy south"  title="Ubah Data" target="ajax-modal" rel="window" header="Form Data Parameter"><span class="icon-edit icon-large"> Ubah </span></a><a href="<?php echo site_url("analisis_indikator/delete_parameter/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
+            <a href="<?= site_url("analisis_indikator/form_parameter/{$analisis_indikator['id']}/{$data['id']}")?>" class="uibutton tipsy south"  title="Ubah Data" target="ajax-modal" rel="window" header="Form Data Parameter"><span class="icon-edit icon-large"> Ubah </span></a><a href="<?= site_url("analisis_indikator/delete_parameter/{$data['id']}")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
 			</div>
           </td>
 		  <?php }?>
-          <td><?php echo $data['kode_jawaban']?></td>
-          <td><?php echo $data['jawaban']?></td>
-          <td><?php echo $data['nilai']?></td>
+          <td><?= $data['kode_jawaban']?></td>
+          <td><?= $data['jawaban']?></td>
+          <td><?= $data['nilai']?></td>
           <td></td>
 		  </tr>
         <?php  endforeach; ?>
@@ -70,8 +70,8 @@
     </div>
 	</form>
     <div class="ui-layout-south panel bottom">
-        <div class="left"> 
-<a href="<?php echo site_url()?>/analisis_indikator" class="uibutton icon prev">Kembali</a>
+        <div class="left">
+<a href="<?= site_url()?>/analisis_indikator" class="uibutton icon prev">Kembali</a>
         <div class="right">
         </div>
     </div>

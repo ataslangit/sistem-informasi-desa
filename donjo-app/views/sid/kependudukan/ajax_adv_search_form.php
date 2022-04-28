@@ -1,18 +1,18 @@
-<form method="post" action="<?php echo $form_action?>" >
+<form method="post" action="<?= $form_action?>" >
 <input type="hidden" name="rt" value="">
 <table>
 <tr>
-	<td>Umur</td><td><input class="inputbox2" name="umur_min" type="text" size="5" value="<?php echo $umur_min?>"> - <input class="inputbox2" name="umur_max" type="text" size="5" value="<?php echo $umur_max?>"></td>
-</tr> 
+	<td>Umur</td><td><input class="inputbox2" name="umur_min" type="text" size="5" value="<?= $umur_min?>"> - <input class="inputbox2" name="umur_max" type="text" size="5" value="<?= $umur_max?>"></td>
+</tr>
 <tr><td>Pekerjaan</td>
     <td><select name="pekerjaan_id">
       <option value=""> -- </option>
-	  <?php foreach($pekerjaan AS $data){?>
-		<option value="<?php echo $data['id']?>" <?php  selected($pekerjaan_id,$data['id']); ?> ><?php echo $data['nama']?></option>
+	  <?php foreach ($pekerjaan as $data) {?>
+		<option value="<?= $data['id']?>" <?php selected($pekerjaan_id, $data['id']); ?> ><?= $data['nama']?></option>
 	  <?php }?>
 	</select>
      </td>
-</tr>    
+</tr>
 
 <tr><td>Status Perkawinan</td><td>
     <select name="status">
@@ -22,18 +22,18 @@
 <tr><td>Agama</td><td>
     <select name="agama">
     <option value=""> -- </option>
-	<?php foreach($list_agama AS $data){?>
-		<option value="<?php echo $data['id']?>" <?php  selected($agama,$data['id']); ?> ><?php echo $data['nama']?></option>
+	<?php foreach ($list_agama as $data) {?>
+		<option value="<?= $data['id']?>" <?php selected($agama, $data['id']); ?> ><?= $data['nama']?></option>
 	<?php }?>
     </select>
 	</td>
-</tr>  
+</tr>
 <tr><td>Pendidikan Sedang</td>
     <td>
 	<select name="pendidikan_sedang_id">
       <option value=""> -- </option>
-		<?php foreach($pendidikan AS $data){?>
-			<option value="<?php echo $data['id']?>" <?php  selected($pendidikan_sedang_id,$data['id']); ?> ><?php echo $data['nama']?></option>
+		<?php foreach ($pendidikan as $data) {?>
+			<option value="<?= $data['id']?>" <?php selected($pendidikan_sedang_id, $data['id']); ?> ><?= $data['nama']?></option>
 		<?php }?>
 	  </select>
   </td>
@@ -42,8 +42,8 @@
     <td>
 	<select name="pendidikan_kk_id">
       <option value=""> -- </option>
-		<?php foreach($pendidikan_kk AS $data){?>
-			<option value="<?php echo $data['id']?>" <?php  selected($pendidikan_kk_id,$data['id']); ?> ><?php echo $data['nama']?></option>
+		<?php foreach ($pendidikan_kk as $data) {?>
+			<option value="<?= $data['id']?>" <?php selected($pendidikan_kk_id, $data['id']); ?> ><?= $data['nama']?></option>
 		<?php }?>
 	  </select>
   </td>

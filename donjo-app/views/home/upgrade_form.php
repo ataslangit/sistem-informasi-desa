@@ -1,14 +1,14 @@
-<div id="pageC"> 
+<div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 <div class="content-header">
-    
+
 </div>
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Upgrade</h3>
 </div>
-    <form action="<?php echo site_url("hom_desa/upgrader")?>" method="POST">
+    <form action="<?= site_url('hom_desa/upgrader')?>" method="POST">
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table class="form">
             <tr>
@@ -22,9 +22,9 @@
             </tr>
         </table>
     </div>
-    
+
     <div class="ui-layout-south panel bottom">
-        <div class="left">     
+        <div class="left">
         </div>
         <div class="right">
         </div>

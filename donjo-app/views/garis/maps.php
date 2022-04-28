@@ -1,16 +1,16 @@
-<script type="text/javascript" src="<?php  echo base_url()?>assets/js/polygon.min.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/polygon.min.js"></script>
 <script>
 	function PolygonCreator(map){
 		this.map=map;this.pen=new Pen(this.map);
 		var thisOjb=this;
 		var jalur = "";
 		this.event=google.maps.event.addListener(thisOjb.map,'click',function(event){thisOjb.pen.draw(event.latLng);jalur+=event.latLng;jalur+=";";});
-		
+
 		this.showData=function(){return this.pen.getData();}
-		
+
 		this.showColor=function(){return this.pen.getColor();}
 		this.showJalur=function(){return jalur;}
-		
+
 		this.destroy=function(){
 			this.pen.deleteMis();
 			if(null!=this.pen.polygon){
@@ -19,27 +19,32 @@
 		google.maps.event.removeListener(this.event);
 		}
 	}
-	
+
 	$(function(){
 
     var options = {
-		<?php  if($desa['lat']!=""){?>
-		  center: new google.maps.LatLng(<?php  echo $desa['lat']?>,<?php  echo $desa['lng']?>),
-		  zoom: <?php  echo $desa['zoom']?>,
-		  mapTypeId: google.maps.MapTypeId.<?php  echo strtoupper($desa['map_tipe'])?>
-		<?php  }else{?>
+		<?php if ($desa['lat'] !== '') {?>
+		  center: new google.maps.LatLng(<?= $desa['lat']?>,<?= $desa['lng']?>),
+		  zoom: <?= $desa['zoom']?>,
+		  mapTypeId: google.maps.MapTypeId.<?= strtoupper($desa['map_tipe'])?>
+		<?php } else {?>
 		  center: new google.maps.LatLng(-7.885619783139936,110.39893195996092),
 		  zoom: 14,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
-		<?php  }?>
+		<?php }?>
     };
     var map = new google.maps.Map(document.getElementById('map'), options);
 
 
-<?php  
-			$path = preg_split("/\;/", $garis['path']);
-			echo "var path = [";foreach($path AS $p){if($p!=""){echo"new google.maps.LatLng".$p.",";}}echo"];";?>
-			
+<?php $path = preg_split('/\\;/', $garis['path']);
+            echo 'var path = [';
+
+foreach ($path as $p) {
+    if ($p !== '') {
+        echo 'new google.maps.LatLng' . $p . ',';
+    }
+}echo '];'; ?>
+
     // Creating the polyline object
     var polyline = new google.maps.Polyline({
       path: path,
@@ -47,25 +52,25 @@
       strokeOpacity: 0.6,
       strokeWeight: 5
     });
-    
+
     // Adding the polyline to the map
     polyline.setMap(map);
-  
-			    	 
-<?php  /*
-			$path_desa = preg_split("/\;/", $desa['path']);
-			echo "var path_desa = [";foreach($path_desa AS $p){if($p!=""){echo"new google.maps.LatLng".$p.",";}}echo"];";?>
-			
-			var desa = new google.maps.Polygon({
-			  paths: path_desa,
-			  map: map,
-			  strokeColor: '#11ddff',
-			  strokeOpacity: 0.6,
-			  strokeWeight: 1,
-			  fillColor: '#11ddff',
-			  fillOpacity: 0.25
-			});
-			*/?>
+
+
+<?php /*
+            $path_desa = preg_split("/\;/", $desa['path']);
+            echo "var path_desa = [";foreach($path_desa AS $p){if($p!=""){echo"new google.maps.LatLng".$p.",";}}echo"];";?>
+
+            var desa = new google.maps.Polygon({
+              paths: path_desa,
+              map: map,
+              strokeColor: '#11ddff',
+              strokeOpacity: 0.6,
+              strokeWeight: 1,
+              fillColor: '#11ddff',
+              fillOpacity: 0.25
+            });
+            */ ?>
 			google.maps.event.addListener(polyline, 'mouseover', function(e) {
 			  polyline.setOptions({
 				fillColor: '#0000ff',
@@ -79,17 +84,17 @@
 				strokeColor: '#11ff00'
 			  });
 			});
-			
+
 		var creator = new PolygonCreator(map);
-		 $('#reset').click(function(){ 
+		 $('#reset').click(function(){
 		 		creator.destroy();
 		 		creator=null;
-		 		
+
 		 		creator=new PolygonCreator(map);
 				document.getElementById('dataPanel').value = creator.showData();
-		 });		 
-		 
-		$('#showData').click(function(){ 
+		 });
+
+		$('#showData').click(function(){
 		 		$('#dataPanel').empty();
 		 		if(null==creator.showJalur()){
 					this.form.submit();
@@ -98,9 +103,9 @@
 					this.form.submit();
 		 		}
 		 });
-		 
-	});	
-	
+
+	});
+
 </script>
 <style>
 #map {
@@ -110,8 +115,8 @@
 }
 </style>
 	<div id="map"></div>
-<form action="<?php  echo $form_action?>" method="post">
-	<input type="hidden" id="dataPanel" name="path"  value="<?php  echo $garis['path']?>">
+<form action="<?= $form_action?>" method="post">
+	<input type="hidden" id="dataPanel" name="path"  value="<?= $garis['path']?>">
 	<div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
 	<div class="uibutton-group">
 		<button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>

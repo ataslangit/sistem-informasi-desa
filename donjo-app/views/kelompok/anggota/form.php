@@ -2,8 +2,8 @@
 $(function(){
     var nik = {};
     nik.results = [
-		<?php foreach($list_penduduk as $data){?>
-	   {id:'<?php echo $data['id']?>',name:"<?php echo $data['nik']." - ".($data['nama'])?>",info:"<?php echo ($data['alamat'])?>"},
+		<?php foreach ($list_penduduk as $data) {?>
+	   {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 		<?php }?>
 		    ];
 nik.total = nik.results.length;
@@ -15,7 +15,7 @@ $('#id_penduduk').flexbox(nik, {
     noResultsText :'Tidak ada no nik yang sesuai..',
 	    onSelect: function() {
 		$('#'+'main').submit();
-    }  
+    }
 });
 $("#nik_detail").show();
 });
@@ -23,7 +23,7 @@ $("#nik_detail").show();
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 
 <div class="content-header">
 
@@ -31,7 +31,7 @@ $("#nik_detail").show();
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Form Input Anggota</h3>
 </div>
-<form id="validasi" action="<?php echo $form_action?>" method="POST" enctype="multipart/form-data">
+<form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <table class="form">
 			<tr>
@@ -42,10 +42,10 @@ $("#nik_detail").show();
             </tr>
 </table>
 </div>
-   
+
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
-<a href="<?php echo site_url()?>/kelompok" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>/kelompok" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">

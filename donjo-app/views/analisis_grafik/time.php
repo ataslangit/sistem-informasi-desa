@@ -1,11 +1,11 @@
-<div id="pageC"> 
+<div id="pageC">
 <!-- Start of Space Admin -->
 	<table class="inner">
 	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-<script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
+<td style="background:#fff;padding:0px;">
+<script src="<?= base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?= base_url()?>assets/js/highcharts/highcharts-more.js"></script>
+<script src="<?= base_url()?>assets/js/highcharts/exporting.js"></script>
 <script type="text/javascript">
 			var chart;
 			$(document).ready(function() {
@@ -21,7 +21,11 @@
 						title: {
 							text: '<?php //=$stat?>'
 						},
-                        categories: [<?php  $i=0;foreach($periode as $data){$i++;?><?php echo "'$data[nama]'";?>,<?php }?>]
+                        categories: [<?php  $i = 0;
+
+foreach ($periode as $data) {
+    $i++; ?><?= "'{$data['nama']}'"; ?>,<?php
+}?>]
 					},
 					yAxis: {
 						title: {
@@ -47,13 +51,15 @@
                 enableMouseTracking: false
             }
         },
-				    series: [<?php  foreach($main as $data){?>{
-					name: '<?php echo $data['nama']?>',
-					data: [<?php  foreach($data['jumlah'] as $dx){echo $dx['jml']+0?>,<?php }?>]
+				    series: [<?php  foreach ($main as $data) {?>{
+					name: '<?= $data['nama']?>',
+					data: [<?php  foreach ($data['jumlah'] as $dx) {
+        echo $dx['jml'] + 0?>,<?php
+    }?>]
 					},<?php }?>]
 				});
 			});
-				
+
 </script>
 <style>
 tr#total{
@@ -67,8 +73,8 @@ tr#total{
 <div id="contentpane">
     <div class="ui-layout-north panel top">
     </div>
-    <div class="ui-layout-center" id="chart" style="padding: 5px;">                
-        
+    <div class="ui-layout-center" id="chart" style="padding: 5px;">
+
     </div>
     <div class="ui-layout-south panel bottom" style="max-height: 150px;overflow:auto;">
         <table class="list">
@@ -76,21 +82,25 @@ tr#total{
             <tr>
                 <th>No</th>
 				<th align="left" align="center">Statistik</th>
-				<?php  $i=0;foreach($periode as $data){$i++;?><th align="left" align="center"><?php echo "$data[nama]";?></th><?php }?>
+				<?php  $i = 0;
+
+foreach ($periode as $data) {
+    $i++; ?><th align="left" align="center"><?= "{$data['nama']}"; ?></th><?php
+}?>
 			</tr>
 		</thead>
 		<tbody>
-        <?php  foreach($main as $data): ?>
+        <?php  foreach ($main as $data): ?>
 		<tr>
-          <td align="center" width="2"><?php echo $data['no']?></td>
-          <td><?php echo $data['nama']?></td>
-		  <?php  foreach($data['jumlah'] as $dx){?><td><?php echo $dx['jml'];?></td><?php }?>
+          <td align="center" width="2"><?= $data['no']?></td>
+          <td><?= $data['nama']?></td>
+		  <?php  foreach ($data['jumlah'] as $dx) {?><td><?= $dx['jml']; ?></td><?php }?>
 		  </tr>
         <?php  endforeach; ?>
 		</tbody>
         </table>
-<div class="left"> 
-<a href="<?php echo site_url()?>/analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
+<div class="left">
+<a href="<?= site_url()?>/analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
 </div>
     </div>
 </div>

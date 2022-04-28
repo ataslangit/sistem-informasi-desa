@@ -1,8 +1,8 @@
 <?php
-header("Content-type: application/octet-stream");
-header("Content-Disposition: attachment; filename=Statistik_penduduk.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+header('Content-type: application/octet-stream');
+header('Content-Disposition: attachment; filename=Statistik_penduduk.xls');
+header('Pragma: no-cache');
+header('Expires: 0');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,7 +10,7 @@ header("Expires: 0");
 <title>Laporan Data Statistik Kependudukan menurut</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="container">
@@ -22,7 +22,7 @@ header("Expires: 0");
     <tbody>
     <tr>
         <td style="padding: 5px 20px;">
-           
+
 		<br>
 		<table class="border thick data">
 		<thead>
@@ -35,27 +35,27 @@ header("Expires: 0");
 			</tr>
 		</thead>
 		<tbody>
-        <?php  foreach($main as $data): ?>
+        <?php  foreach ($main as $data): ?>
 		<tr>
-          <td class="thick" align="center" width="2"><?php echo $data['no']?></td>
-          <td class="thick"><?php echo $data['nama']?></td>
-          <td class="thick"><?php echo $data['jumlah']?></td>
-		  <td class="thick"><?php echo $data['laki']?></td>
-          <td class="thick"><?php echo $data['perempuan']?></td>
+          <td class="thick" align="center" width="2"><?= $data['no']?></td>
+          <td class="thick"><?= $data['nama']?></td>
+          <td class="thick"><?= $data['jumlah']?></td>
+		  <td class="thick"><?= $data['laki']?></td>
+          <td class="thick"><?= $data['perempuan']?></td>
 		  </tr>
         <?php  endforeach; ?>
 		</tbody>
         </table>
-		
-            
+
+
             <br>
-            
-                        
+
+
         </td>
     </tr>
-</tbody></table>        
+</tbody></table>
 </div>
-   <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
+   <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 </div>
 
 </body></html>

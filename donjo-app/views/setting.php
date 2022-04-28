@@ -6,17 +6,17 @@
 	width:430px;
 }
 </style>
-<form action="<?php echo site_url("user_setting/update/$main[id]")?>" method="POST" id="validasi" enctype="multipart/form-data">
+<form action="<?= site_url("user_setting/update/{$main['id']}")?>" method="POST" id="validasi" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 	<table>
-		<input name="nama" type="hidden" value="<?php echo $main['nama']?>" />
+		<input name="nama" type="hidden" value="<?= $main['nama']?>" />
 		<tr>
 			<th width="100" align="left">Username</th>
-			<td><input type="text" class="inputbox" size="30" value="<?php echo $main['username']?>" disabled="disabled"/></td>
+			<td><input type="text" class="inputbox" size="30" value="<?= $main['username']?>" disabled="disabled"/></td>
 		</tr>
 		<tr>
 			<th align="left">Nama</th>
-			<td><input name="nama" type="text" class="inputbox" size="30" value="<?php echo $main['nama']?>"/></td>
+			<td><input name="nama" type="text" class="inputbox" size="30" value="<?= $main['nama']?>"/></td>
 		</tr>
 		<tr>
 			<th align="left">Password Lama</th>
@@ -35,13 +35,13 @@
                 <td>
 				<div class="userbox-avatar">
 				<?if($main['foto']){?>
-					<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $main['foto']?>" alt=""/>
+					<img src="<?= base_url()?>assets/files/user_pict/kecil_<?= $main['foto']?>" alt=""/>
 				<?}else{?>
-					<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+					<img src="<?= base_url()?>assets/files/user_pict/kuser.png" alt=""/>
 				<?}?>
 				</div>
 				</td>
-				<input type="hidden" name="old_foto" value="<?php echo $main['foto']?>">
+				<input type="hidden" name="old_foto" value="<?= $main['foto']?>">
             </tr>
             <tr>
                 <th>Ganti Foto</th>

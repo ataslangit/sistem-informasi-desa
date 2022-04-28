@@ -2,8 +2,8 @@
 $(function(){
     var nik = {};
     nik.results = [
-		<?php foreach($penduduk as $data){?>
-	   {id:'<?php echo $data['id']?>',name:"<?php echo $data['nik']." - ".($data['nama'])?>",info:"<?php echo ($data['alamat'])?>"},
+		<?php foreach ($penduduk as $data) {?>
+	   {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 		<?php }?>
 		    ];
 nik.total = nik.results.length;
@@ -15,7 +15,7 @@ $('#id_kepala').flexbox(nik, {
     noResultsText :'Tidak ada no nik yang sesuai..',
 	    onSelect: function() {
 		$('#'+'main').submit();
-    }  
+    }
 });
 $("#nik_detail").show();
 });
@@ -37,29 +37,31 @@ table.form.detail td{
 		<fieldset>
 			<div class="lmenu">
 				<ul>
-				<li class="selected"><a href="<?php echo site_url('sms/setting')?>">Pengaturan Balas Otomatis</a></li>
+				<li class="selected"><a href="<?= site_url('sms/setting')?>">Pengaturan Balas Otomatis</a></li>
 				</ul>
 			</div>
 		</fieldset>
-		
+
 	</td>
-		<td style="background:#fff;padding:5px;"> 
+		<td style="background:#fff;padding:5px;">
 
 <div class="content-header">
     <h3>Pengaturan Balas Otomatis</h3>
 </div>
 <div id="contentpane">
-    <form id="validasi" action="<?php echo $form_action?>" method="POST" enctype="multipart/form-data">
+    <form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table class="form">
 		<tr>
-			<td width="100">Isi Pesan Autoreply</td><td><textarea name="autoreply_text" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='160'><?php  if($main){echo $main['autoreply_text'];} ?></textarea></td>
+			<td width="100">Isi Pesan Autoreply</td><td><textarea name="autoreply_text" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='160'><?php if ($main) {
+    echo $main['autoreply_text'];
+} ?></textarea></td>
 		</tr>
         </table>
     </div>
-   
+
     <div class="ui-layout-south panel bottom">
-        
+
         <div class="right">
             <div class="uibutton-group">
                 <button class="uibutton" type="reset">Clear</button>
