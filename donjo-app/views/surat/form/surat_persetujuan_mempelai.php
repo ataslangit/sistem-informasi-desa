@@ -6,7 +6,6 @@ nik.results = [
 {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 <?php }?>
 ];
-
 $('#nik').flexbox(nik, {
 resultTemplate: '<div><label>No nik : </label>{name}</div><div>{info}</div>',
 watermark: <?php if ($individu) {?>'<?= $individu['nik']?> - <?= spaceunpenetration($individu['nama'])?>'<?php } else {?>'Ketik no nik di sini..'<?php }?>,
@@ -16,10 +15,8 @@ onSelect: function() {
 $('#'+'main').submit();
 }
 });
-
 });
 </script>
-
 <style>
 table.form.detail th{
 padding:5px;
@@ -36,10 +33,10 @@ padding:5px;
 <td class="side-menu">
 <fieldset>
 <legend>Surat Administrasi</legend>
-<div  id="sidecontent2" class="lmenu">
+<div id="sidecontent2" class="lmenu">
 <ul>
 <?php foreach ($menu_surat as $data) {?>
-        <li <?php if ($data['url_surat'] === $lap) {?>class="selected"<?php }?>><a href="<?= site_url()?>/surat/<?= $data['url_surat']?>"><?= unpenetration($data['nama'])?></a></li>
+ <li <?php if ($data['url_surat'] === $lap) {?>class="selected"<?php }?>><a href="<?= site_url()?>/surat/<?= $data['url_surat']?>"><?= unpenetration($data['nama'])?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -47,7 +44,6 @@ padding:5px;
 </td>
 <td style="background:#fff;padding:5px;">
 <div class="content-header">
-
 </div>
 <div id="contentpane">
 <div class="ui-layout-north panel">
@@ -56,7 +52,6 @@ padding:5px;
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;" >
 <form id="validasi" action="<?= $form_action?>" method="POST" target="_blank">
 <table class="form">
-
 <tr>
 	<th>Nomor Surat</th>
 	<td><input name="nomor" type="text" class="inputbox required" size="30"/></td>
@@ -67,16 +62,14 @@ padding:5px;
 <tr>
 <th>Nama Suami</th>
 <td>
-<select name="suami"  class="inputbox ">
+<select name="suami" class="inputbox ">
 <option value="">Pilih Penduduk</option>
-
 <?php foreach ($laki as $data) {?>
-<option value="<?= $data['id']?>" ><font style="bold">  <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
+<option value="<?= $data['id']?>" ><font style="bold"> <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
 <?php }?>
 </select>
 *) Diisi jika suami berasal dari dalam desa</td>
 </tr>
-
 <th>DATA SUAMI (Berasal dari luar desa)		:</th>
 <tr>
 	<th>Nama Lengkap</th>
@@ -89,7 +82,7 @@ padding:5px;
 <tr>
 	<th>Tempat Tanggal Lahir</th>
 	<td><input name="tempatlahir_suami" type="text" class="inputbox " size="30"/>
-	<input name="tanggallahir_suami" type="text" class="inputbox  datepicker" size="20"/></td>
+	<input name="tanggallahir_suami" type="text" class="inputbox datepicker" size="20"/></td>
 </tr>
 <tr>
 	<th>Warganegara</th>
@@ -113,11 +106,10 @@ padding:5px;
 <tr>
 <th>Nama Istri</th>
 <td>
-<select name="istri"  class="inputbox ">
+<select name="istri" class="inputbox ">
 <option value="">Pilih Penduduk</option>
-
 <?php foreach ($perempuan as $data) {?>
-<option value="<?= $data['id']?>" ><font style="bold">  <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
+<option value="<?= $data['id']?>" ><font style="bold"> <?= $data['nama']?></font> -(<?= $data['nik']?>)</option>
 <?php }?>
 </select>
 *) Diisi jika istri berasal dari dalam desa</td>
@@ -135,7 +127,7 @@ padding:5px;
 <tr>
 	<th>Tempat Tanggal Lahir</th>
 	<td><input name="tempatlahir_istri" type="text" class="inputbox " size="30"/>
-	<input name="tanggallahir_istri" type="text" class="inputbox  datepicker" size="20"/></td>
+	<input name="tanggallahir_istri" type="text" class="inputbox datepicker" size="20"/></td>
 </tr>
 <tr>
 	<th>Warganegara</th>
@@ -153,7 +145,6 @@ padding:5px;
 	<th>Tempat Tinggal</th>
 	<td><input name="tempat_tinggal_istri" type="text" class="inputbox " size="40"/></td>
 </tr>
-
 </table>
 </div>
 
@@ -163,10 +154,9 @@ padding:5px;
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
 
 							<button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
-							<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button><?php } ?>
+							<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Unduh</button><?php } ?>
 </div>
 </div>
 </div> </form>

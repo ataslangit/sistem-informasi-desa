@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Analisis_indikator_model extends CI_Model
 {
     public function autocomplete()
@@ -95,8 +97,6 @@ class Analisis_indikator_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nomor'; break;
 
@@ -113,10 +113,8 @@ class Analisis_indikator_model extends CI_Model
             default:$order_sql = ' ORDER BY u.nomor';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT u.*,t.tipe AS tipe_indikator,k.kategori AS kategori FROM analisis_indikator u LEFT JOIN analisis_tipe_indikator t ON u.id_tipe = t.id LEFT JOIN analisis_kategori_indikator k ON u.id_kategori = k.id WHERE 1 ';
 
         $sql .= $this->search_sql();
@@ -130,7 +128,6 @@ class Analisis_indikator_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -171,7 +168,6 @@ class Analisis_indikator_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-
         if ($data['id_tipe'] !== 1) {
             $data['act_analisis'] = 2;
             $data['bobot']        = 0;
@@ -185,7 +181,6 @@ class Analisis_indikator_model extends CI_Model
         $data['id_master'] = $_SESSION['analisis_master'];
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_indikator', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -241,10 +236,8 @@ class Analisis_indikator_model extends CI_Model
     public function p_update($id = 0)
     {
         $data = $_POST;
-
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_parameter', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -290,7 +283,6 @@ class Analisis_indikator_model extends CI_Model
         $query = $this->db->query($sql, $id);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {

@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Wilayah_model extends CI_Model
 {
     public function autocomplete()
@@ -56,11 +58,11 @@ class Wilayah_model extends CI_Model
         $sql = "SELECT u.*,a.nama AS nama_kadus,a.nik AS nik_kadus,
 		(SELECT COUNT(rw.id) FROM tweb_wil_clusterdesa rw WHERE dusun = u.dusun AND rw <> '-' AND rt = '-') AS jumlah_rw,
 		(SELECT COUNT(v.id) FROM tweb_wil_clusterdesa v WHERE dusun = u.dusun AND v.rt <> '0' AND v.rt <> '-') AS jumlah_rt,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) and status_dasar=1) AS jumlah_warga,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.sex = 1 and status_dasar=1) AS jumlah_warga_l,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.sex = 2 and status_dasar=1) AS jumlah_warga_p,
-		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id  WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk
-		FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0'  ";
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.sex = 1 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_l,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.sex = 2 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = u.dusun) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk
+		FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0' ORDER BY u.rw";
 
         $sql .= $this->search_sql();
         $sql .= $paging_sql;
@@ -68,7 +70,6 @@ class Wilayah_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -106,14 +107,18 @@ class Wilayah_model extends CI_Model
     {
         if (empty($_POST['id_kepala'])) {
             unset($_POST['id_kepala']);
+        } else {
+            $data['id_kepala'] = $_POST['id_kepala'];
+            $temp              = $this->wilayah_model->cluster_by_id($id);
+            $this->db->where('dusun', $temp['dusun']);
+            $this->db->where('rw', '0');
+            $this->db->where('rt', '0');
+            $outp = $this->db->update('tweb_wil_clusterdesa', $data);
         }
-
-        $data          = $_POST;
+        unset($data);
         $data['dusun'] = $_POST['dusun'];
         $temp          = $this->wilayah_model->cluster_by_id($id);
         $this->db->where('dusun', $temp['dusun']);
-        $this->db->where('rw', '0');
-        $this->db->where('rt', '0');
         $outp = $this->db->update('tweb_wil_clusterdesa', $data);
 
         if ($outp) {
@@ -158,7 +163,6 @@ class Wilayah_model extends CI_Model
         }
     }
 
-    //Bagian RW
     public function list_data_rw($id = '')
     {
         $temp  = $this->cluster_by_id($id);
@@ -166,15 +170,14 @@ class Wilayah_model extends CI_Model
 
         $sql = "SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,
 		(SELECT COUNT(rt.id) FROM tweb_wil_clusterdesa rt WHERE dusun = u.dusun AND rw = u.rw AND rw <> '-' AND rt <> '-' AND rt <> '0' ) AS jumlah_rt,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.status_dasar=1) AS jumlah_warga,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 1 AND p.status_dasar=1) AS jumlah_warga_l,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 2 AND p.status_dasar=1) AS jumlah_warga_p,
-		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id  WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.kk_level = 1 AND p.status_dasar=1) AS jumlah_kk
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 1 AND p.status_dasar=1  and (status = 1 OR status = 2)) AS jumlah_warga_l,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 2 AND p.status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.kk_level = 1 AND p.status_dasar=1) AS jumlah_kk
 		FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw <> '0' AND u.dusun = '{$dusun}'";
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -230,7 +233,6 @@ class Wilayah_model extends CI_Model
 
         $sql  = "DELETE FROM tweb_wil_clusterdesa WHERE rw='{$rw}' and dusun='{$dusun}'";
         $outp = $this->db->query($sql, [$id]);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -258,20 +260,18 @@ class Wilayah_model extends CI_Model
         }
     }
 
-    //Bagian RT
     public function list_data_rt($dusun = '', $rw = '')
     {
         $sql = "SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.status_dasar=1) AS jumlah_warga,
-		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 1 AND p.status_dasar=1) AS jumlah_warga_l,(
-		SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 2 AND p.status_dasar=1) AS jumlah_warga_p,
-		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id  WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.kk_level = 1) AS jumlah_kk
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 1 AND p.status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_l,(
+		SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 2 AND p.status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.kk_level = 1) AS jumlah_kk
 		FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt <> '0' AND u.rw = '{$rw}' AND u.dusun = '{$dusun}' AND u.rt <> '-'";
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -383,7 +383,7 @@ class Wilayah_model extends CI_Model
 
         if (count($id_cb)) {
             foreach ($id_cb as $id) {
-                $sql  = 'DELETE FROM tweb_wil_clusterdesa WHERE  id = ?';
+                $sql  = 'DELETE FROM tweb_wil_clusterdesa WHERE id = ?';
                 $outp = $this->db->query($sql, $id);
             }
         } else {
@@ -403,7 +403,6 @@ class Wilayah_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -420,7 +419,6 @@ class Wilayah_model extends CI_Model
         $query = $this->db->query($sql, $id);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -481,8 +479,12 @@ class Wilayah_model extends CI_Model
 
     public function total()
     {
-        $sql = "SELECT (SELECT COUNT(rw.id) FROM tweb_wil_clusterdesa rw WHERE  rw <> '-' AND rt = '-') AS total_rw,
-		(SELECT COUNT(v.id) FROM tweb_wil_clusterdesa v WHERE v.rt <> '0' AND v.rt <> '-') AS total_rt, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa ) and status_dasar=1) AS total_warga, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 1 and status_dasar=1) AS total_warga_l, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 2 and status_dasar=1) AS total_warga_p, (SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.kk_level = 1 and status_dasar=1) AS total_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0' limit 1";
+        $sql = "SELECT (SELECT COUNT(rw.id) FROM tweb_wil_clusterdesa rw WHERE rw <> '-' AND rt = '-') AS total_rw,
+		(SELECT COUNT(v.id) FROM tweb_wil_clusterdesa v WHERE v.rt <> '0' AND v.rt <> '-') AS total_rt,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa ) and (status_dasar=1 OR status_dasar=4) and (status = 1 OR status = 2)) AS total_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 1 and (status_dasar=1 OR status_dasar = 4) and (status = 1 OR status = 2)) AS total_warga_l,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 2 and (status_dasar=1 OR status_dasar = 4) and (status = 1 OR status = 2)) AS total_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.kk_level = 1 and status_dasar=1 and (status = 1 OR status = 2)) AS total_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0' limit 1";
         $query = $this->db->query($sql);
 
         return $query->row_array();
@@ -491,7 +493,11 @@ class Wilayah_model extends CI_Model
     public function total_rw($dusun = '')
     {
         $sql = "select sum(jumlah_rt) as jmlrt,sum(jumlah_warga) as jmlwarga,sum(jumlah_warga_l) as jmlwargal,sum(jumlah_warga_p) as jmlwargap,sum(jumlah_kk) as jmlkk from
-		(SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,(SELECT COUNT(rt.id) FROM tweb_wil_clusterdesa rt WHERE dusun = u.dusun AND rw = u.rw AND rw <> '-' AND rt <> '-' AND rt <> '0' ) AS jumlah_rt,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw ) and status_dasar=1) AS jumlah_warga,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 1 and status_dasar=1) AS jumlah_warga_l,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 2 and status_dasar=1) AS jumlah_warga_p,(SELECT COUNT(p.id) FROM  tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id   WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw <> '0' AND u.dusun = '{$dusun}') as x  ";
+		(SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,(SELECT COUNT(rt.id) FROM tweb_wil_clusterdesa rt WHERE dusun = u.dusun AND rw = u.rw AND rw <> '-' AND rt <> '-' AND rt <> '0' ) AS jumlah_rt,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw ) and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 1 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_l,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.sex = 2 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = u.rw) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw <> '0' AND u.dusun = '{$dusun}') as x ";
         $query = $this->db->query($sql);
 
         return $query->row_array();
@@ -500,7 +506,10 @@ class Wilayah_model extends CI_Model
     public function total_rt($dusun = '', $rw = '')
     {
         $sql = "select sum(jumlah_warga) as jmlwarga,sum(jumlah_warga_l) as jmlwargal,sum(jumlah_warga_p) as jmlwargap,sum(jumlah_kk) as jmlkk from
-		(SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) and status_dasar=1) AS jumlah_warga,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 1 and status_dasar=1) AS jumlah_warga_l,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 2 and status_dasar=1) AS jumlah_warga_p, (SELECT COUNT(p.id) FROM  tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id   WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt <> '0' AND u.rt <> '-' AND u.rw = '{$rw}' AND u.dusun = '{$dusun}') as x  ";
+		(SELECT u.*,a.nama AS nama_ketua,a.nik AS nik_ketua,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga,
+		(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 1 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_l,(SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.sex = 2 and status_dasar=1 and (status = 1 OR status = 2)) AS jumlah_warga_p,
+		(SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa WHERE dusun = '{$dusun}' AND rw = '{$rw}' AND rt = u.rt) AND p.kk_level = 1 and status_dasar=1) AS jumlah_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt <> '0' AND u.rt <> '-' AND u.rw = '{$rw}' AND u.dusun = '{$dusun}') as x ";
         $query = $this->db->query($sql);
 
         return $query->row_array();

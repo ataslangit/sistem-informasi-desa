@@ -6,31 +6,13 @@ source: keyword
 });
 });
 </script>
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-
-<td class="side-menu">
-
-<legend>Kategori kategori</legend>
-<div class="lmenu">
-<ul>
-<a href="<?= site_url('menu/index/1')?>"><li <?php if ($tip === 1) {
-    echo "class='selected'";
-}?>>Menu Statis</li></a>
-<a href="<?= site_url('kategori/index')?>"><li <?php if ($tip === 2) {
-    echo "class='selected'";
-}?>>Kategori/ Menu  Dinamis</li></a>
-
-</ul>
-</div>
-</td>
 <td style="background:#fff;padding:0px;">
 <div class="content">
 	<h3>Pengelolaan Kategori</h3>
 	<?php
-    //echo var_dump($main);
     ?>
 </div>
 <div id="contentpane">
@@ -63,22 +45,20 @@ source: keyword
 <th>No</th>
 <th><input type="checkbox" class="checkall"/></th>
 <th width="160">Aksi</th>
-
- <?php  if ($o === 2): ?>
+ <?php if ($o === 2): ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/1")?>">kategori<span class="ui-icon ui-icon-triangle-1-n">
-<?php  elseif ($o === 1): ?>
+<?php elseif ($o === 1): ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/2")?>">kategori<span class="ui-icon ui-icon-triangle-1-s">
-<?php  else: ?>
+<?php else: ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/1")?>">kategori<span class="ui-icon ui-icon-triangle-2-n-s">
-<?php  endif; ?>&nbsp;</span></a></th>
-
-<?php  if ($o === 4): ?>
+<?php endif; ?>&nbsp;</span></a></th>
+<?php if ($o === 4): ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/3")?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-n">
-<?php  elseif ($o === 3): ?>
+<?php elseif ($o === 3): ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/4")?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-s">
-<?php  else: ?>
+<?php else: ?>
 <th align="left"><a href="<?= site_url("kategori/index/{$p}/3")?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-2-n-s">
-<?php  endif; ?>&nbsp;</span></a></th>
+<?php endif; ?>&nbsp;</span></a></th>
 <th>Link</th>
 </tr>
 </thead>
@@ -93,7 +73,7 @@ source: keyword
 <a href="<?= site_url("kategori/sub_kategori/{$data['id']}")?>" class="uibutton tipsy south" title="Rincian Sub kategori"><span class="icon-list icon-large"> Rincian</span></a>
 <a href="<?= site_url("kategori/form/{$data['id']}")?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"></span></a>
 <a href="<?= site_url("kategori/delete/{$data['id']}")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2'):?>
-<a href="<?= site_url('kategori/kategori_lock/' . $data['id'])?>"  title="Aktivasi kategori"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url('kategori/kategori_unlock/' . $data['id'])?>" class="uibutton tipsy south"  title="Non-aktifkan kategori"><span class="icon-unlock icon-large"></span></a>
+<a href="<?= site_url('kategori/kategori_lock/' . $data['id'])?>" title="Aktivasi kategori"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url('kategori/kategori_unlock/' . $data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan kategori"><span class="icon-unlock icon-large"></span></a>
 <a href="<?= site_url("kategori/ajax_add_sub_kategori/{$data['id']}")?>" class="uibutton tipsy south" target="ajax-modal" rel="window" header="Tambah Sub kategori <?= $data['kategori']?>" class="uibutton tipsy south" title="Tambah Sub kategori"><span class="icon-plus-sign-alt icon-large"></span></a>
 <?php endif?></div>
 </td>
@@ -115,9 +95,9 @@ source: keyword
 <form id="paging" action="<?= site_url('kategori')?>" method="post">
 <label>Tampilkan</label>
 <select name="per_page" onchange="$('#paging').submit()" >
-<option value="20" <?php  selected($per_page, 20); ?> >20</option>
-<option value="50" <?php  selected($per_page, 50); ?> >50</option>
-<option value="100" <?php  selected($per_page, 100); ?> >100</option>
+<option value="20" <?php selected($per_page, 20); ?> >20</option>
+<option value="50" <?php selected($per_page, 50); ?> >50</option>
+<option value="100" <?php selected($per_page, 100); ?> >100</option>
 </select>
 <label>Dari</label>
 <label><strong><?= $paging->num_rows?></strong></label>
@@ -127,26 +107,25 @@ source: keyword
 </div>
 <div class="right">
 <div class="uibutton-group">
-<?php  if ($paging->start_link): ?>
+<?php if ($paging->start_link): ?>
 <a href="<?= site_url("kategori/index/{$paging->start_link}/{$o}")?>" class="uibutton">Awal</a>
-<?php  endif; ?>
-<?php  if ($paging->prev): ?>
+<?php endif; ?>
+<?php if ($paging->prev): ?>
 <a href="<?= site_url("kategori/index/{$paging->prev}/{$o}")?>" class="uibutton">Prev</a>
-<?php  endif; ?>
+<?php endif; ?>
 </div>
 <div class="uibutton-group">
-
-<?php  for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
-<a href="<?= site_url("kategori/index/{$i}/{$o}")?>" <?php  jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
-<?php  endfor; ?>
+<?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
+<a href="<?= site_url("kategori/index/{$i}/{$o}")?>" <?php jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
+<?php endfor; ?>
 </div>
 <div class="uibutton-group">
-<?php  if ($paging->next): ?>
+<?php if ($paging->next): ?>
 <a href="<?= site_url("kategori/index/{$paging->next}/{$o}")?>" class="uibutton">Next</a>
-<?php  endif; ?>
-<?php  if ($paging->end_link): ?>
+<?php endif; ?>
+<?php if ($paging->end_link): ?>
 <a href="<?= site_url("kategori/index/{$paging->end_link}/{$o}")?>" class="uibutton">Akhir</a>
-<?php  endif; ?>
+<?php endif; ?>
 </div>
 </div>
 </div>

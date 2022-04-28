@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class First_keluarga_m extends CI_Model
 {
     public function list_raskin($tipex = 0)
@@ -11,11 +13,9 @@ class First_keluarga_m extends CI_Model
         if (isset($_SESSION['dusun'])) {
             $dus = " AND c.dusun = '{$_SESSION['dusun']}'";
         }
-
         if (isset($_SESSION['rw'])) {
             $rw = " AND c.rw = '{$_SESSION['rw']}'";
         }
-
         if (isset($_SESSION['rt'])) {
             $rt = " AND c.rt = '{$_SESSION['rt']}'";
         }

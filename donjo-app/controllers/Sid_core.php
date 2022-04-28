@@ -7,11 +7,17 @@ class Sid_core extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $_SESSION['filter'] = 77;
+
+        unset($_SESSION['log']);
+        $_SESSION['status_dasar'] = 1;
+        unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
+
         $this->load->model('user_model');
         $this->load->model('wilayah_model');
         $this->load->model('config_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2) {
+        if (! in_array($grup, ['1', '2'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -40,7 +46,6 @@ class Sid_core extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -50,9 +55,8 @@ class Sid_core extends CI_Controller
         $data['main']     = $this->wilayah_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']  = $this->wilayah_model->autocomplete();
         $data['total']    = $this->wilayah_model->total();
-
-        $nav['act'] = 0;
-        $header     = $this->header_model->get_data();
+        $nav['act']       = 0;
+        $header           = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/wilayah/wilayah', $data);
@@ -64,7 +68,6 @@ class Sid_core extends CI_Controller
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-
         $this->load->view('sid/wilayah/wilayah_print', $data);
     }
 
@@ -73,7 +76,6 @@ class Sid_core extends CI_Controller
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-
         $this->load->view('sid/wilayah/wilayah_excel', $data);
     }
 
@@ -148,9 +150,8 @@ class Sid_core extends CI_Controller
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-
-        $nav['act'] = 0;
-        $header     = $this->header_model->get_data();
+        $nav['act']       = 0;
+        $header           = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/wilayah/wilayah_rw', $data);
@@ -165,7 +166,6 @@ class Sid_core extends CI_Controller
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-
         $this->load->view('sid/wilayah/wilayah_rw_print', $data);
     }
 
@@ -177,7 +177,6 @@ class Sid_core extends CI_Controller
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-
         $this->load->view('sid/wilayah/wilayah_rw_excel', $data);
     }
 
@@ -248,9 +247,8 @@ class Sid_core extends CI_Controller
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-
-        $nav['act'] = 0;
-        $header     = $this->header_model->get_data();
+        $nav['act']    = 0;
+        $header        = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/wilayah/wilayah_rt', $data);
@@ -267,7 +265,6 @@ class Sid_core extends CI_Controller
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-
         $this->load->view('sid/wilayah/wilayah_rt_print', $data);
     }
 
@@ -281,7 +278,6 @@ class Sid_core extends CI_Controller
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-
         $this->load->view('sid/wilayah/wilayah_rt_excel', $data);
     }
 
@@ -290,9 +286,8 @@ class Sid_core extends CI_Controller
         $data['dusun'] = $dusun;
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
-
-        $nav['act'] = 0;
-        $header     = $this->header_model->get_data();
+        $nav['act']    = 0;
+        $header        = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/wilayah/list_dusun_rt', $data);
@@ -337,7 +332,6 @@ class Sid_core extends CI_Controller
     public function insert_rt($dusun = '', $rw = '')
     {
         $this->wilayah_model->insert_rt($dusun, $rw);
-
         redirect("sid_core/sub_rt/{$dusun}/{$rw}");
     }
 
@@ -373,7 +367,6 @@ class Sid_core extends CI_Controller
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
         $this->surat_keluar_model->log_surat($f, $id, $g, $u);
-
         $this->load->view('surat/print_surat_ket_pengantar', $data);
     }
 

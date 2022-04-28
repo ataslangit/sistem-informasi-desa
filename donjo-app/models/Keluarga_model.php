@@ -1,10 +1,12 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Keluarga_model extends CI_Model
 {
     public function autocomplete()
     {
-        $sql   = 'SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1  ';
+        $sql   = 'SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
@@ -16,8 +18,47 @@ class Keluarga_model extends CI_Model
             $i++;
         }
         $outp = strtolower(substr($outp, 1));
+        $outp = '[' . $outp . ']';
+
+        if (count($data) <= 1000) {
+            return $outp;
+        }
+
+        return null;
+    }
+
+    public function duplikasi()
+    {
+        $sql   = 'SELECT no_kk FROM tweb_keluarga WHERE 1 ';
+        $query = $this->db->query($sql);
+        $data  = $query->result_array();
+
+        $i    = 0;
+        $outp = '';
+
+        while ($i < count($data)) {
+            $outp .= ',"' . $data[$i]['no_kk'] . '"';
+            $i++;
+        }
+        $outp = strtolower(substr($outp, 1));
 
         return '[' . $outp . ']';
+    }
+
+    public function dp()
+    {
+        $sql   = 'SELECT no_kk FROM tweb_keluarga WHERE 1 ';
+        $query = $this->db->query($sql);
+
+        return $query->result_array();
+    }
+
+    public function dn()
+    {
+        $sql   = 'SELECT nik FROM tweb_penduduk WHERE 1 ';
+        $query = $this->db->query($sql);
+
+        return $query->result_array();
     }
 
     public function sex_sql()
@@ -66,7 +107,7 @@ class Keluarga_model extends CI_Model
             $cari       = $_SESSION['cari'];
             $kw         = penetration($this->db->escape_like_str($cari));
             $kw         = '%' . $kw . '%';
-            $search_sql = " AND t.nama LIKE '{$kw}'";
+            $search_sql = " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}' OR t.nik LIKE '{$kw}') ";
 
             return $search_sql;
         }
@@ -154,7 +195,7 @@ class Keluarga_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
-        $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1  ';
+        $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $sql .= $this->search_sql();
         $sql .= $this->dusun_sql();
         $sql .= $this->rw_sql();
@@ -175,8 +216,6 @@ class Keluarga_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.no_kk'; break;
 
@@ -193,10 +232,9 @@ class Keluarga_model extends CI_Model
             default:$order_sql = ' ORDER BY u.tgl_daftar DESC';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        $sql = 'SELECT u.*,t.nama AS kepala_kk,t.sex,(SELECT COUNT(id) FROM tweb_penduduk WHERE id_kk = u.id ) AS jumlah_anggota,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
+        $sql = 'SELECT u.*,t.nama AS kepala_kk,t.nik,t.sex,(SELECT COUNT(id) FROM tweb_penduduk WHERE id_kk = u.id ) AS jumlah_anggota,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
 
         $sql .= $this->search_sql();
 
@@ -210,7 +248,6 @@ class Keluarga_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -239,11 +276,9 @@ class Keluarga_model extends CI_Model
             $sql = "SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE kelas_sosial = {$_SESSION['kelas']} ";
             $sql .= $this->search_sql();
         } else {
-            $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1  ';
+            $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
             $sql .= $this->search_sql();
-            ////$sql     .= $this->dusun_sql();
-            ///$sql     .= $this->rw_sql();
-            //sql     .= $this->rt_sql();
+
             $sql .= $this->raskin_sql();
             $sql .= $this->kelas_sql();
             $sql .= $this->blt_sql();
@@ -267,8 +302,6 @@ class Keluarga_model extends CI_Model
 
     public function list_data_statistik($tipe = 21, $o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.no_kk'; break;
 
@@ -285,7 +318,6 @@ class Keluarga_model extends CI_Model
             default:$order_sql = ' ORDER BY u.tgl_daftar DESC';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         if ($tipe === 21) {
@@ -296,20 +328,18 @@ class Keluarga_model extends CI_Model
 
             $sql .= $this->search_sql();
             $sql .= $this->raskin_sql();
-            //$sql     .= $this->kelas_sql();
+
             $sql .= $this->blt_sql();
             $sql .= $this->bos_sql();
             $sql .= $this->pkh_sql();
             $sql .= $this->jampersal_sql();
             $sql .= $this->bedah_rumah_sql();
-            //$sql     .= $this->rt_sql();
-            //$sql .= $order_sql;
+
             $sql .= $paging_sql;
         }
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -329,7 +359,6 @@ class Keluarga_model extends CI_Model
     public function insert()
     {
         $data = $_POST;
-
         $temp = $data['nik_kepala'];
         $outp = $this->db->insert('tweb_keluarga', penetration($data));
 
@@ -354,11 +383,10 @@ class Keluarga_model extends CI_Model
             $x['id_detail'] = '5';
         }
 
-        $x['id_pend'] = $temp;
-        $x['bulan']   = $blnskrg;
-        $x['tahun']   = $thnskrg;
-        $outp         = $this->db->insert('log_penduduk', $x);
-
+        $x['id_pend']      = $temp;
+        $x['bulan']        = $blnskrg;
+        $x['tahun']        = $thnskrg;
+        $outp              = $this->db->insert('log_penduduk', $x);
         $log['id_pend']    = 1;
         $log['id_cluster'] = 1;
         $log['tanggal']    = date('m-d-y');
@@ -409,9 +437,8 @@ class Keluarga_model extends CI_Model
 
         $data2['nik_kepala'] = $temp2['id'];
         $data2['no_kk']      = $_POST['no_kk'];
-
-        $temp = $data2['nik_kepala'];
-        $outp = $this->db->insert('tweb_keluarga', $data2);
+        $temp                = $data2['nik_kepala'];
+        $outp                = $this->db->insert('tweb_keluarga', $data2);
 
         $sql   = 'SELECT id FROM tweb_keluarga WHERE nik_kepala=?';
         $query = $this->db->query($sql, $temp);
@@ -434,11 +461,10 @@ class Keluarga_model extends CI_Model
             $x['id_detail'] = '5';
         }
 
-        $x['id_pend'] = $temp;
-        $x['bulan']   = $blnskrg;
-        $x['tahun']   = $thnskrg;
-        $outp         = $this->db->insert('log_penduduk', $x);
-
+        $x['id_pend']      = $temp;
+        $x['bulan']        = $blnskrg;
+        $x['tahun']        = $thnskrg;
+        $outp              = $this->db->insert('log_penduduk', $x);
         $log['id_pend']    = 1;
         $log['id_cluster'] = 1;
         $log['tanggal']    = date('m-d-y');
@@ -498,7 +524,6 @@ class Keluarga_model extends CI_Model
         $data             = $_POST;
         $temp['id_kk']    = $id;
         $temp['kk_level'] = $data['kk_level'];
-
         $this->db->where('id', $data['nik']);
         $outp = $this->db->update('tweb_penduduk', $temp);
 
@@ -618,11 +643,10 @@ class Keluarga_model extends CI_Model
 
     public function list_penduduk_lepas()
     {
-        $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE (status = 1 OR status = 3) AND id_kk = 0';
+        $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE id_kk = 0';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -640,7 +664,6 @@ class Keluarga_model extends CI_Model
         $query = $this->db->query($sql, [$id]);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -759,16 +782,13 @@ class Keluarga_model extends CI_Model
         if (isset($_SESSION['dusun'])) {
             $dus = " AND c.dusun = '{$_SESSION['dusun']}'";
         }
-
         if (isset($_SESSION['rw'])) {
             $rw = " AND c.rw = '{$_SESSION['rw']}'";
         }
-
         if (isset($_SESSION['rt'])) {
             $rt = " AND c.rt = '{$_SESSION['rt']}'";
         }
-
-        $sql = "SELECT s.*,(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE  u.kelas_sosial = s.id {$dus} {$rw} {$rt}) as jumlah FROM ref_kelas_sosial s WHERE 1";
+        $sql = "SELECT s.*,(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE u.kelas_sosial = s.id {$dus} {$rw} {$rt}) as jumlah FROM ref_kelas_sosial s WHERE 1";
 
         $query = $this->db->query($sql);
 
@@ -784,19 +804,16 @@ class Keluarga_model extends CI_Model
         if (isset($_SESSION['dusun'])) {
             $dus = " AND c.dusun = '{$_SESSION['dusun']}'";
         }
-
         if (isset($_SESSION['rw'])) {
             $rw = " AND c.rw = '{$_SESSION['rw']}'";
         }
-
         if (isset($_SESSION['rt'])) {
             $rt = " AND c.rt = '{$_SESSION['rt']}'";
         }
-
         $sql = "SELECT s.*,
-		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE  u.kelas_sosial = s.id {$dus} {$rw} {$rt}) as jumlah,
-		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE  u.kelas_sosial = s.id {$dus} {$rw} {$rt} AND u.raskin = 1) as raskin,
-		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE  u.kelas_sosial = s.id {$dus} {$rw} {$rt} AND t.jamkesmas = 1) as jamkesmas FROM ref_kelas_sosial s WHERE 1";
+		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE u.kelas_sosial = s.id {$dus} {$rw} {$rt}) as jumlah,
+		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE u.kelas_sosial = s.id {$dus} {$rw} {$rt} AND u.raskin = 1) as raskin,
+		(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE u.kelas_sosial = s.id {$dus} {$rw} {$rt} AND t.jamkesmas = 1) as jamkesmas FROM ref_kelas_sosial s WHERE 1";
 
         $query = $this->db->query($sql);
 
@@ -832,7 +849,7 @@ class Keluarga_model extends CI_Model
     public function get_judul_statistik($tipe = 0, $nomor = 1)
     {
         switch ($tipe) {
-            case 21: $sql = "SELECT * FROM klasifikasi_analisis_keluarga WHERE id=? and jenis='1'  "; break;
+            case 21: $sql = "SELECT * FROM klasifikasi_analisis_keluarga WHERE id=? and jenis='1' "; break;
 
             case 22: $sql = 'SELECT * FROM ref_raskin WHERE id=?'; break;
 
@@ -995,7 +1012,6 @@ class Keluarga_model extends CI_Model
                 $k++;
                 $i++;
             }
-
             $buffer2 .= $buffer;
 
             $buffers = $awal . $buffer2 . $akhir;

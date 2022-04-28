@@ -32,23 +32,20 @@ $('tr.uptd').hide();
 });
 });
 </script>
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
-
 </div>
 <div id="contentpane">
-<div class="ui-layout-north panel"><h3>Form Manajemen User</h3>
+<div class="ui-layout-north panel"><h3>Form Manajemen Pengguna / User</h3>
 </div>
 <form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <table class="form">
 <tr>
-<th width="100">Group</th>
+<th width="100">Level</th>
 <td>
 <div class="uiradio">
 <?php $ch = 'checked'; ?>
@@ -83,13 +80,12 @@ $('tr.uptd').hide();
 </tr>
 <tr>
 <th>Nomor HP</th>
-<td><input name="phone" type="text" class="inputbox" size="20"  value="<?= $user['phone']?>"/></td>
+<td><input name="phone" type="text" class="inputbox" size="20" value="<?= $user['phone']?>"/></td>
 </tr>
 <tr>
-<th>Mail</th>
-<td><input name="email" type="text" class="inputbox" size="20"  value="<?= $user['email']?>"/></td>
+<th>e-mail</th>
+<td><input name="email" type="text" class="inputbox" size="20" value="<?= $user['email']?>"/></td>
 </tr>
-
 <tr>
 <th class="top">Foto</th>
 <td>
@@ -105,7 +101,7 @@ $('tr.uptd').hide();
 </tr>
 <tr>
 <th>Ganti Foto</th>
-<td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
+<td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
 </tr>
 </table>
 </div>
@@ -116,7 +112,7 @@ $('tr.uptd').hide();
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

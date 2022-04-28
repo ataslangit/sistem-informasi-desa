@@ -22,7 +22,6 @@
                     $i++;
                 }
             }
-
             echo '
 				</ul>
 				<br class="clearboth">

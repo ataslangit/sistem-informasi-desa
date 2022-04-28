@@ -9,7 +9,7 @@ class Menu extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -40,7 +40,6 @@ class Menu extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -49,9 +48,8 @@ class Menu extends CI_Controller
         $data['paging']  = $this->web_menu_model->paging($tip, $p, $o);
         $data['main']    = $this->web_menu_model->list_data($tip, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->web_menu_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 1;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 1;
 
         $this->load->view('header', $header);
         $this->load->view('web/nav', $nav);
@@ -73,7 +71,6 @@ class Menu extends CI_Controller
             $data['menu']        = null;
             $data['form_action'] = site_url("menu/insert/{$tip}");
         }
-
         $header      = $this->header_model->get_data();
         $data['tip'] = $tip;
 
@@ -112,7 +109,6 @@ class Menu extends CI_Controller
             $data['submenu']     = null;
             $data['form_action'] = site_url("menu/insert_sub_menu/{$tip}/{$menu}");
         }
-
         $this->load->view('menu/ajax_add_sub_menu_form', $data);
     }
 

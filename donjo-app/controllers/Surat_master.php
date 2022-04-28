@@ -11,7 +11,7 @@ class Surat_master extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
     }
@@ -106,7 +106,6 @@ class Surat_master extends CI_Controller
             $data['form_action']        = site_url("surat_master/p_insert/{$in}");
         }
 
-        //	$header = $this->header_model->get_data();
         $data['surat']        = $this->surat_master_model->get_surat();
         $data['surat_master'] = $this->surat_master_model->get_surat_master($in);
 
@@ -224,5 +223,17 @@ class Surat_master extends CI_Controller
     {
         $this->surat_master_model->p_delete_all();
         redirect("surat_master/atribut/{$in}");
+    }
+
+    public function lock($id = 0, $k = 0)
+    {
+        $this->surat_master_model->lock($id, $k);
+        redirect('surat_master');
+    }
+
+    public function favorit($id = 0, $k = 0)
+    {
+        $this->surat_master_model->favorit($id, $k);
+        redirect('surat_master');
     }
 }

@@ -3,12 +3,10 @@
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
 <h3>Form Data Penduduk</h3>
 </div>
 <div id="contentpane">
-
 <form id="mainform" name="mainform" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <table class="form">
@@ -22,7 +20,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>RW</th>
 <td><select name="rw" onchange="formAction('mainform','<?= site_url('penduduk/form')?>')" <?php if ($rw) {?>class="required"<?php }?>>
@@ -32,7 +29,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>RT</th>
 <td><select name="rt" onchange="formAction('mainform','<?= site_url('penduduk/form')?>')" <?php if ($rt) {?>class="required"<?php }?>>
@@ -44,7 +40,6 @@
 </tr>
 <?php }?>
 <?php if (! empty($rt_sel) || (! empty($penduduk))) {?>
-
 <tr>
 <th class="top">Foto</th>
 <td>
@@ -56,30 +51,24 @@
 <?php }?>
 </div>
 </td>
-
 <input type="hidden" name="old_foto" value="<?= $penduduk['foto']?>">
 </tr>
-
 <tr>
 <th>Ganti Foto</th>
 <td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
 </tr>
-
 <tr>
 <th width="100">Nama</th>
 <td><input name="nama" type="text" class="inputbox required" size="60" value="<?= strtoupper(unpenetration($penduduk['nama']))?>"/></td>
 </tr>
-
 <tr>
 <th>NIK</th>
 <td><input name="nik" type="text" class="inputbox required" size="30" value="<?= $penduduk['nik']?>"/></td>
 </tr>
-
 <tr>
 <th>Akta Kelahiran</th>
 <td><input name="akta_lahir" type="text" class="inputbox" size="30" value="<?= $penduduk['akta_lahir']?>"/></td>
 </tr>
-
 <tr>
 <th>Jenis Kelamin</th>
 <td>
@@ -95,17 +84,14 @@
 </div>
 </td>
 </tr>
-
 <tr>
 <th>Tempat Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox" size="65"  value="<?= strtoupper($penduduk['tempatlahir'])?>"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox" size="65" value="<?= strtoupper($penduduk['tempatlahir'])?>"/></td>
 </tr>
-
 <tr>
 <th>Tanggal Lahir</th>
-<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20"  value="<?= $penduduk['tanggallahir']?>"/></td>
+<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20" value="<?= $penduduk['tanggallahir']?>"/></td>
 </tr>
-
 <tr>
 <th>Agama</th>
 <td><select name="agama_id" class="required">
@@ -115,7 +101,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Pendidikan dalam KK</th>
 <td><select name="pendidikan_kk_id">
@@ -125,7 +110,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Pendidikan sedang ditempuh</th>
 <td><select name="pendidikan_sedang_id">
@@ -135,7 +119,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Pekerjaan</th>
 <td><select name="pekerjaan_id">
@@ -145,7 +128,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Status Kawin</th>
 <td><select name="status_kawin">
@@ -155,7 +137,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Hubungan dalam Keluarga</th>
 <td><select name="kk_level">
@@ -165,8 +146,6 @@
 <?php }?></select>
 </td>
 </tr>
-
-
 <tr>
 <th>Warganegara</th>
 <td><select name="warganegara_id">
@@ -176,39 +155,52 @@
 <?php }?></select>
 </td>
 </tr>
-
-
 <tr>
 <th>Dokumen Paspor</th>
-<td><input name="dokumen_pasport" type="text" class="inputbox" size="20"  value="<?= strtoupper($penduduk['dokumen_pasport'])?>"/></td>
+<td><input name="dokumen_pasport" type="text" class="inputbox" size="20" value="<?= $penduduk['dokumen_pasport']?>"/></td>
+</tr>
+<tr>
+<th>Dokumen KITAS</th>
+<td><input name="dokumen_kitas" type="text" class="inputbox" size="20" value="<?= $penduduk['dokumen_kitas']?>"/></td>
 </tr>
 
 <tr>
-<th>Dokumen KITAS</th>
-<td><input name="dokumen_kitas" type="text" class="inputbox" size="20"  value="<?= strtoupper($penduduk['dokumen_kitas'])?>"/></td>
+<th>Akta Perkawinan</th>
+<td><input name="akta_perkawinan" type="text" class="inputbox" size="20" value="<?= $penduduk['akta_perkawinan']?>"/></td>
 </tr>
+<tr>
+<th>Tanggal Perkawinan</th>
+<td><input name="tanggalperkawinan" type="text" class="inputbox datepicker" size="20" value="<?= $penduduk['tanggalperkawinan']?>"/></td>
+</tr>
+
+
+<tr>
+<th>Akta Perceraian</th>
+<td><input name="akta_perceraian" type="text" class="inputbox" size="20" value="<?= $penduduk['akta_perceraian']?>"/></td>
+</tr>
+<tr>
+<th>Tanggal Perceraian</th>
+<td><input name="tanggalperceraian" type="text" class="inputbox datepicker" size="20" value="<?= $penduduk['tanggalperceraian']?>"/></td>
+</tr>
+
+
 
 <tr>
 <th>NIK Ayah</th>
-<td><input name="ayah_nik" type="text" class="inputbox" size="30"  value="<?= $penduduk['ayah_nik']?>"/></td>
+<td><input name="ayah_nik" type="text" class="inputbox" size="30" value="<?= $penduduk['ayah_nik']?>"/></td>
 </tr>
-
 <tr>
 <th>NIK Ibu</th>
-<td><input name="ibu_nik" type="text" class="inputbox" size="30"  value="<?= $penduduk['ibu_nik']?>"/></td>
+<td><input name="ibu_nik" type="text" class="inputbox" size="30" value="<?= $penduduk['ibu_nik']?>"/></td>
 </tr>
-
 <tr>
 <th>Nama Ayah</th>
-<td><input name="nama_ayah" type="text" class="inputbox" size="60"  value="<?= strtoupper(unpenetration($penduduk['nama_ayah']))?>"/></td>
+<td><input name="nama_ayah" type="text" class="inputbox" size="60" value="<?= strtoupper(unpenetration($penduduk['nama_ayah']))?>"/></td>
 </tr>
-
 <tr>
 <th>Nama Ibu</th>
-<td><input name="nama_ibu" type="text" class="inputbox" size="60"  value="<?= strtoupper(unpenetration($penduduk['nama_ibu']))?>"/></td>
+<td><input name="nama_ibu" type="text" class="inputbox" size="60" value="<?= strtoupper(unpenetration($penduduk['nama_ibu']))?>"/></td>
 </tr>
-
-
 <tr>
 <th>Golongan Darah</th>
 <td><select name="golongan_darah_id" class="required">
@@ -218,7 +210,6 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
 <th>Status</th>
 <td>
@@ -236,17 +227,14 @@
 </div>
 </td>
 </tr>
-
 <tr>
 <th>Alamat Sebelumnya</th>
-<td><input name="alamat_sebelumnya" type="text" class="inputbox" size="60"  value="<?= strtoupper($penduduk['alamat_sebelumnya'])?>"/></td>
+<td><input name="alamat_sebelumnya" type="text" class="inputbox" size="60" value="<?= strtoupper($penduduk['alamat_sebelumnya'])?>"/></td>
 </tr>
-
 <tr>
 <th>Alamat Sekarang</th>
-<td><input name="alamat_sekarang" type="text" class="inputbox" size="60"  value="<?= strtoupper($penduduk['alamat_sekarang'])?>"/></td>
+<td><input name="alamat_sekarang" type="text" class="inputbox" size="60" value="<?= strtoupper($penduduk['alamat_sekarang'])?>"/></td>
 </tr>
-
 <tr>
 <th>Cacat</th>
 <td><select name="cacat_id">
@@ -256,63 +244,88 @@
 <?php }?></select>
 </td>
 </tr>
-
 <tr>
-<th>Status kehamilan</th>
+<th>Status Kehamilan/ Ibu Menyusui</th>
 <td>
 <div class="uiradio">
-
 <input type="radio" id="sh2" name="hamil" value="0"/<?php if ($penduduk['hamil'] === '0' || $penduduk['hamil'] === '') {
     echo 'checked';
-}?>>
-<label for="sh2">Tidak hamil</label>
+}?>><label for="sh2">Tidak Hamil</label>
 <input type="radio" id="sh1" name="hamil" value="1"/<?php if ($penduduk['hamil'] === '1') {
     echo 'checked';
-}?>>
-<label for="sh1">hamil</label>
+}?>><label for="sh1">Hamil Tua</label>
+<input type="radio" id="sh3" name="hamil" value="2"/<?php if ($penduduk['hamil'] === '2') {
+    echo 'checked';
+}?>><label for="sh3">Hamil Muda</label>
+<input type="radio" id="sh4" name="hamil" value="3"/<?php if ($penduduk['hamil'] === '3') {
+    echo 'checked';
+}?>><label for="sh4">Ibu Menyusui</label>
 </div>
 </td>
 </tr>
-
+<?php /*
 <tr>
-	<th>JAMKESMAS</th>
-	<td>
-	<div class="uiradio">
-	<input type="radio" id="jkm1" name="jamkesmas" value="1"/<?php if ($penduduk['jamkesmas'] === '1') {
-    echo 'checked';
-}?>>
-	<label for="jkm1">Ya</label>
-	<input type="radio" id="jkm3" name="jamkesmas" value="3"/<?php if ($penduduk['jamkesmas'] === '3') {
-    echo 'checked';
-}?>>
-	<label for="jkm3">Lainnya</label>
-	<input type="radio" id="jkm2" name="jamkesmas" value="2"/<?php if ($penduduk['jamkesmas'] === '2' || $penduduk['jamkesmas'] === '') {
-    echo 'checked';
-}?>>
-	<label for="jkm2">Tidak</label>
-	</div>
-	</td>
+    <th>JAMKESMAS</th>
+    <td>
+    <div class="uiradio">
+    <input type="radio" id="jkm1" name="jamkesmas" value="1"/<?php if($penduduk['jamkesmas'] == '1'){echo 'checked';}?>>
+    <label for="jkm1">Ya</label>
+    <input type="radio" id="jkm3" name="jamkesmas" value="3"/<?php if($penduduk['jamkesmas'] == '3'){echo 'checked';}?>>
+    <label for="jkm3">Lainnya</label>
+    <input type="radio" id="jkm2" name="jamkesmas" value="2"/<?php if($penduduk['jamkesmas'] == '2' OR $penduduk['jamkesmas'] == ''){echo 'checked';}?>>
+    <label for="jkm2">Tidak</label>
+    </div>
+    </td>
 </tr>
-
+*/ ?>
 <tr>
 <th>Lokasi Penduduk</th>
 <td>
 <a href="<?= site_url("penduduk/ajax_penduduk_maps/{$p}/{$o}/{$penduduk['id']}")?>" target="ajax-modalz" rel="window<?= $penduduk['id']?>" header="Lokasi <?= $penduduk['nama']?>" class="uibutton special" title="Lokasi <?= $penduduk['nama']?>">Edit Lokasi</a></td>
+</tr><tr>
+<td colspan="2">&nbsp;</td>
 </tr>
-
-
+<tr>
+<th colspan="2">DOKUMEN / KELENGKAPAN PENDUDUK</th>
+</tr>
+<tr>
+<th>Dokumen / Kelengkapan Penduduk</th>
+<td>
+<a href="<?= site_url("penduduk/dokumen/{$penduduk['id']}")?>" class="uibutton confirm">Manajemen Dokumen</a></td>
+</tr>
 <?php }?>
 </table>
+ <table class="list" width="80%">
+		<thead>
+ <tr>
+ <th width="2">No</th>
+ <th width="220">Nama Dokumen</th>
+				<th width="360">File</th>
+				<th width="200">Tanggal Upload</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+ <?php foreach ($list_dokumen as $data) {?>
+		<tr>
+			<td align="center" width="2"><?= $data['no']?></td>
+			 <td><?= $data['nama']?></td>
+			 <td><a href="<?= base_url()?>assets/files/dokumen/<?= urlencode($data['satuan'])?>" ><?= $data['satuan']?></a></td>
+			 <td><?= tgl_indo2($data['tgl_upload'])?></td>
+			<td></td>
+		</tr>
+ <?php }?>
+		</tbody>
+ </table>
 </div>
-
 <div class="ui-layout-south panel bottom">
 <div class="left">
 <a href="<?= site_url()?>/penduduk" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
 <button class="uibutton confirm" type="submit" >Simpan</button>
+</div>
 </div>
 </div>
 </div> </form>

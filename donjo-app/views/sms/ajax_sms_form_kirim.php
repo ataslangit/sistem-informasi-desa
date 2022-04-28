@@ -2,22 +2,21 @@
 <script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
 <script>
 $(function(){
-    var nik = {};
-    nik.results = [
+ var nik = {};
+ nik.results = [
 <?php foreach ($kontak as $data) {?>
-	   {id:'<?= $data['no_hp']?>',name:'<?= $data['nik'] . ' - ' . spaceunpenetration($data['nama']) . ' - ' . $data['no_hp'] ?>',info:'<?= $data['alamat']?>'},
+	 {id:'<?= $data['no_hp']?>',name:'<?= $data['nik'] . ' - ' . spaceunpenetration($data['nama']) . ' - ' . $data['no_hp'] ?>',info:'<?= $data['alamat']?>'},
 <?php }?>
-    ];
+ ];
 nik.total = nik.results.length;
-
 $('#DestinationNumber').flexbox(nik, {
 	resultTemplate: '<div><label>No nik : </label>{name}</div><div>{info}</div>',
 	watermark: 'Ketik nomor ponsel di sini..',
-    width: 230,
-    noResultsText :'Tidak ada nomor ponsel yang sesuai..',
-	    onSelect: function() {
+ width: 230,
+ noResultsText :'Tidak ada nomor ponsel yang sesuai..',
+	 onSelect: function() {
 $('#'+'main').submit();
-    }
+ }
 });
 });
 </script>
@@ -29,7 +28,6 @@ $('#'+'main').submit();
 		<div id="DestinationNumber" name="DestinationNumber"></div class="required">
 	</td>
 </tr>
-
 <tr>
 <th align="left">Pesan</th>
 	<td>
@@ -37,11 +35,10 @@ $('#'+'main').submit();
 	</td>
 </tr>
 </table>
-
 <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
-        <button class="uibutton confirm" type="submit">Kirim</button>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
+ <button class="uibutton confirm" type="submit">Kirim</button>
+ </div>
 </div>
 </form>

@@ -1,15 +1,11 @@
 <?php $this->load->view('print/headjs.php'); ?>
-
 <body>
 <div id="content" class="container_12 clearfix">
 <div id="content-main" class="grid_7">
-
 <link href="<?= base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
 <div>
 <table width="100%">
-
-<tr> <img src="<?= base_url()?>assets/files/logo/<?= $desa['logo']?>" alt=""  class="logo"></tr>
-
+<tr> <img src="<?= base_url()?>assets/files/logo/<?= $desa['logo']?>" alt="" class="logo"></tr>
 <div class="header">
 <h4 class="kop">PEMERINTAH KABUPATEN <?= strtoupper(unpenetration($desa['nama_kabupaten']))?> </h4>
 <h4 class="kop">KECAMATAN <?= strtoupper(unpenetration($desa['nama_kecamatan']))?> </h4>
@@ -17,23 +13,19 @@
 <h5 class="kop2"><?= unpenetration($desa['alamat_kantor'])?> </h5>
 <div style="text-align: center;">
 <hr /></div></div>
-
-
 <div align="center"><h4 class="kop">SURAT PERSETUJUAN MEMPELAI</h4></div>
 <div align="center"><h4 class="kop"><u>NO: <?= $input['nomor']?></u></h4></div>
 </table>
 <div class="clear"></div>
-
 <table width="100%">
 <tr></tr>
 <tr></tr>
 <tr></tr>
-<td class="indentasi">Yang bertanda tangan dibawah ini :  </td></tr>
+<td class="indentasi">Yang bertanda tangan dibawah ini : </td></tr>
 </table>
 <div id="isi3">
 <table width="100%">
 <tr></tr>
-
 <tr>
 <td>I. Calon Suami</td>
 </tr>
@@ -56,7 +48,6 @@
 	<tr><td>Agama</td><td>:</td><td><?= $input['agama_suami']?></td></tr>
 	<tr><td>Pekerjaan</td><td>:</td><td><?= $input['pekerjaan_suami']?></td></tr>
 	<tr><td>Tempat Tinggal</td><td>:</td><td><?= $input['tempat_tinggal_suami']?></td></tr>
-
 <?php }?>
 </table>
 <table width="100%">
@@ -83,12 +74,10 @@
 	<tr><td>Agama</td><td>:</td><td><?= $input['agama_istri']?></td></tr>
 	<tr><td>Pekerjaan</td><td>:</td><td><?= $input['pekerjaan_istri']?></td></tr>
 	<tr><td>Tempat Tinggal</td><td>:</td><td><?= $input['tempat_tinggal_istri']?></td></tr>
-
 <?php }?>
 </table>
 <table width="100%">
 <tr></tr>
-
 <tr>
 <td class="indentasi">Menyatakan dengan sesungguhnya bahwa atas dasar sukarela dengan kesadaran sendiri, tanpa paksaan dari siapapun untuk melangsungkan pernikahan.</td>
 <tr></tr>
@@ -103,7 +92,7 @@
 </table></div>
 <table width="100%">
 <tr></tr>
-<tr><td width="25%"></td><td width="30%"></td><td  align="center"><?= $desa['nama_desa']?>, <?= $tanggal_sekarang?></td></tr>
+<tr><td width="25%"></td><td width="30%"></td><td align="center"><?= $desa['nama_desa']?>, <?= $tanggal_sekarang?></td></tr>
 <tr></tr>
 <tr><td align="center">I. Calon Suami</td><td></td><td align="center">II. Calon Istri</td></tr>
 <tr></tr>
@@ -145,8 +134,7 @@
 } else {
     echo unpenetration($input['nama_istri']);
 }?> )</td></tr>
-
-</table>  </div></div>
+</table> </div></div>
 <div id="aside">
 </div>
 </div>

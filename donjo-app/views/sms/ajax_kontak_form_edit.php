@@ -11,11 +11,10 @@
 		<td><input name="no_hp" type="text" class="inputbox required" value="<?= $kontak['no_hp']?>" size="30" maxlength='15'/></td>
 	</tr>
 </table>
-
-<div class="buttonpane"  style="text-align: right; width:400px;position:absolute;bottom:0px;>
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
-        <button class="uibutton confirm" type="submit">Simpan</button>
-    </div>
+<div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
+ <button class="uibutton confirm" type="submit">Simpan</button>
+ </div>
 </div>
 </form>

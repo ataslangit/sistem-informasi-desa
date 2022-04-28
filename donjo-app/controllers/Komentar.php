@@ -9,7 +9,7 @@ class Komentar extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -39,7 +39,6 @@ class Komentar extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -48,9 +47,8 @@ class Komentar extends CI_Controller
         $data['paging']  = $this->web_komentar_model->paging($p, $o);
         $data['main']    = $this->web_komentar_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->web_komentar_model->autocomplete();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 2;
+        $header          = $this->header_model->get_data();
+        $nav['act']      = 2;
 
         $this->load->view('header', $header);
         $this->load->view('web/nav', $nav);

@@ -25,7 +25,7 @@
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

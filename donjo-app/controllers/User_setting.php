@@ -9,7 +9,7 @@ class User_setting extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== (1 || 2 || 3 || 4 || 5)) {
+        if (! in_array($grup, ['1', '2',  '3', '4'], true)) {
             redirect('login');
         }
         $this->load->model('header_model');

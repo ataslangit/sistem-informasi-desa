@@ -1,4 +1,8 @@
-<?php class Feed_model extends CI_Model
+<?php
+
+defined('BASEPATH') || exit('No direct script access allowed');
+
+class Feed_model extends CI_Model
 {
     public function __construct()
     {
@@ -22,8 +26,7 @@
                 $hasil[$i]['judul']    = $data[$i]['judul'];
                 $hasil[$i]['feed_url'] = site_url('feed/');
                 $hasil[$i]['url']      = site_url('first/artikel/' . $data[$i]['id'] . '/');
-
-                $str_isi = fixTag($data[$i]['isi']);
+                $str_isi               = fixTag($data[$i]['isi']);
                 if (strlen($str_isi) > 300) {
                     $hasil[$i]['isi'] = substr($str_isi, 0, strpos($str_isi, ' ', 260)) . '...';
                 } else {
@@ -41,6 +44,3 @@
         return $hasil;
     }
 }
-
-?>
-

@@ -7,7 +7,6 @@ class First extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         mandiri_timeout();
 
         $this->load->model('header_model');
@@ -20,6 +19,7 @@ class First extends CI_Controller
         $this->load->model('first_penduduk_m');
         $this->load->model('penduduk_model');
         $this->load->model('surat_model');
+        $this->load->model('surat_keluar_model');
     }
 
     public function auth()
@@ -111,14 +111,22 @@ class First extends CI_Controller
             $data['w_cos']       = $this->first_artikel_m->cos_widget();
             $data['data_config'] = $this->config_model->get_data();
 
-            $data['menu_surat2'] = $this->surat_model->list_surat2();
-            $data['m']           = $m;
+            $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
+            $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
+
+            //if($m == 2)
+            $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
+
+            //$data['menu_surat2'] = $this->surat_model->list_surat2();
+            $data['m'] = $m;
             $this->load->view('layouts/mandiri.php', $data);
         }
     }
 
-    public function artikel($id = 0, $p = 1)
+    public function artikel($id = '', $p = 1)
     {
+        $id           = explode('-', $id);
+        $id           = $id[0];
         $data['p']    = $p;
         $data['desa'] = $this->first_m->get_data();
 
@@ -225,32 +233,30 @@ class First extends CI_Controller
         $this->load->view('layouts/sub_gallery.tpl.php', $data);
     }
 
-    public function statistik($stat = 0, $tipe = 0)
+    public function statistik($stat = '', $tipe = 0)
     {
         switch ($stat) {
-            case 0:$data['heading'] = 'Pendidikan'; break;
+            case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan'; break;
 
-            case 1:$data['heading'] = 'Pekerjaan'; break;
+            case 'pekerjaan':$data['heading'] = 'Pekerjaan'; break;
 
-            case 2:$data['heading'] = 'Status Perkawinan'; break;
+            case 'status-perkawinan':$data['heading'] = 'Status Perkawinan'; break;
 
-            case 3:$data['heading'] = 'Agama'; break;
+            case 'agama':$data['heading'] = 'Agama'; break;
 
-            case 4:$data['heading'] = 'Jenis Kelamin'; break;
+            case 'jenis-kelamin':$data['heading'] = 'Jenis Kelamin'; break;
 
-            case 7:$data['heading'] = 'Golongan Darah'; break;
+            case 'golongan-darah':$data['heading'] = 'Golongan Darah'; break;
 
-            case 12:$data['heading'] = 'Kelompok Umur'; break;
+            case 'kelompok-umur':$data['heading'] = 'Kelompok Umur'; break;
 
-            case 13:$data['heading'] = 'Warga Negara'; break;
+            case 'warga-negara':$data['heading'] = 'Warga Negara'; break;
 
-            case 14:$data['heading'] = 'Status Perkawinan'; break;
+            case 'wilayah':redirect('first/wilayah'); break;
 
-            case 15:redirect('first/wilayah'); break;
+            case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh'; break;
 
-            case 17:$data['heading'] = 'Pendidikan Sedang Ditempuh'; break;
-
-            default:$data['heading'] = '';
+            default:$data['heading'] = ''; redirect('first'); break;
         }
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
@@ -269,6 +275,32 @@ class First extends CI_Controller
         $data['st']          = $stat;
 
         $this->load->view('layouts/stat.tpl.php', $data);
+    }
+
+    public function data_analisis($stat = '', $sb = 0, $per = 0)
+    {
+        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
+        $data['slide']         = $this->first_artikel_m->slide_show();
+        $data['desa']          = $this->first_m->get_data();
+        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
+
+        if ($stat === '') {
+            $data['list_indikator'] = $this->first_penduduk_m->list_indikator();
+            $data['list_jawab']     = null;
+            $data['indikator']      = null;
+        } else {
+            $data['list_indikator'] = '';
+            $data['list_jawab']     = $this->first_penduduk_m->list_jawab($stat, $sb, $per);
+            $data['indikator']      = $this->first_penduduk_m->get_indikator($stat);
+        }
+        $data['sosmed'] = $this->first_artikel_m->list_sosmed();
+        $data['arsip']  = $this->first_artikel_m->arsip_show();
+        $data['w_cos']  = $this->first_artikel_m->cos_widget();
+
+        $data['data_config'] = $this->config_model->get_data();
+
+        $this->load->view('layouts/analisis.tpl.php', $data);
     }
 
     public function wilayah()

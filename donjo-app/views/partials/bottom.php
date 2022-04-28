@@ -1,4 +1,3 @@
-
 <?php $i = 1;
 
 foreach ($slide as $data) {
@@ -12,7 +11,6 @@ foreach ($slide as $data) {
 			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?= base_url()?>assets/images/404-image-not-found.jpg" />
 		<?php }?>
 	<?php }?>
-
 	</div>
 </div>
 <?php }

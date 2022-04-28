@@ -11,7 +11,7 @@ class Rtm extends CI_Controller
         $this->load->model('rtm_model');
         $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2) {
+        if (! in_array($grup, ['1', '2'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -41,13 +41,11 @@ class Rtm extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
             $data['raskin'] = '';
         }
-
         if (isset($_SESSION['id_blt'])) {
             $data['id_blt'] = $_SESSION['id_blt'];
         } else {
@@ -71,13 +69,11 @@ class Rtm extends CI_Controller
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -109,9 +105,8 @@ class Rtm extends CI_Controller
         $data['main']       = $this->rtm_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']    = $this->rtm_model->autocomplete();
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $nav['act'] = 3;
-        $header     = $this->header_model->get_data();
+        $nav['act']         = 3;
+        $header             = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/rtm', $data);
@@ -130,11 +125,19 @@ class Rtm extends CI_Controller
         $this->load->view('sid/kependudukan/rtm_excel', $data);
     }
 
+    public function excel_pbdt($o = 0)
+    {
+        $this->load->model('config_model');
+        $data['config'] = $this->config_model->get_data();
+        $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
+        $this->load->view('sid/kependudukan/rtm_excel_pbdt', $data);
+    }
+
     public function edit_nokk($p = 1, $o = 0, $id = 0)
     {
         $data['kk']          = $this->rtm_model->get_rtm($id);
         $data['form_action'] = site_url("rtm/update_nokk/{$id}");
-        $this->load->view('sid/kependudukan/ajax_edit_nokk', $data);
+        $this->load->view('sid/kependudukan/ajax_edit_no_rtm', $data);
     }
 
     public function form_old($p = 1, $o = 0, $id = 0)
@@ -295,9 +298,8 @@ class Rtm extends CI_Controller
 
         $data['main']      = $this->rtm_model->list_anggota($id);
         $data['kepala_kk'] = $this->rtm_model->get_kepala_kk($id);
-
-        $nav['act'] = 3;
-        $header     = $this->header_model->get_data();
+        $nav['act']        = 3;
+        $header            = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/rtm_anggota', $data);
@@ -306,9 +308,8 @@ class Rtm extends CI_Controller
 
     public function ajax_add_anggota($p = 1, $o = 0, $id = 0)
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
-
+        $data['p']    = $p;
+        $data['o']    = $o;
         $data['main'] = $this->rtm_model->list_anggota($id);
         $kk           = $this->rtm_model->get_kepala_kk($id);
         if ($kk) {
@@ -325,9 +326,8 @@ class Rtm extends CI_Controller
 
     public function edit_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
-
+        $data['p']           = $p;
+        $data['o']           = $o;
         $data['hubungan']    = $this->rtm_model->list_hubungan();
         $data['main']        = $this->rtm_model->get_anggota($id);
         $data['form_action'] = site_url("rtm/update_anggota/{$p}/{$o}/{$id_kk}/{$id}");
@@ -336,10 +336,9 @@ class Rtm extends CI_Controller
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
     {
-        $data['p']     = $p;
-        $data['o']     = $o;
-        $data['id_kk'] = $id;
-
+        $data['p']        = $p;
+        $data['o']        = $o;
+        $data['id_kk']    = $id;
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
@@ -353,8 +352,7 @@ class Rtm extends CI_Controller
 
         $data['penduduk'] = $this->rtm_model->list_penduduk_lepas();
         $nav['act']       = 3;
-
-        $header = $this->header_model->get_data();
+        $header           = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $data['form_action'] = site_url('rtm/print');
@@ -365,15 +363,14 @@ class Rtm extends CI_Controller
 
     public function cetak_kk($id = 0)
     {
-        $data['id_kk'] = $id;
-
+        $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
         $data['desa']      = $this->rtm_model->get_desa();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
         $header            = $this->header_model->get_data();
-        $this->load->view('sid/kependudukan/cetak_kk', $data);
+        $this->load->view('sid/kependudukan/cetak_rtm', $data);
     }
 
     public function add_anggota($p = 1, $o = 0, $id = 0)

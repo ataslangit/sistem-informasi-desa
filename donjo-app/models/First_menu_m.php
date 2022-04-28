@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class First_menu_m extends CI_Model
 {
     public function list_menu_atas()
@@ -8,19 +10,11 @@ class First_menu_m extends CI_Model
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-        $url   = site_url() . '/first/';
+        $url   = site_url('first') . '/';
         $i     = 0;
 
         while ($i < count($data)) {
-            //$man = spliti("l]:",$data[$i]['link']);
-            //if($man[0]=="[manual ur"){
-            //	$data[$i]['link'] = $man[1];
-            //}
-
-            //if($data[$i]['link_tipe']!=1)
             $data[$i]['menu'] = "<li><a href='{$url}" . $data[$i]['link'] . "'>" . $data[$i]['nama'] . '</a>';
-            //else
-            //$data[$i]['menu'] = "<li><a href='".$data[$i]['link']."'>".$data[$i]['nama']."</a>";
 
             $sql2  = 'SELECT s.* FROM menu s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
@@ -31,11 +25,7 @@ class First_menu_m extends CI_Model
                 $j                = 0;
 
                 while ($j < count($data2)) {
-
-                    //if($data2[$j]['link_tipe']!=1)
                     $data[$i]['menu'] = $data[$i]['menu'] . "<li><a href='{$url}" . $data2[$j]['link'] . "'>" . $data2[$j]['nama'] . '</a></li>';
-                    //else
-                    //$data[$i]['menu'] = $data[$i]['menu']."<li><a href='".$data2[$j]['link']."'>".$data2[$j]['nama']."</a></li>";
 
                     $j++;
                 }
@@ -54,7 +44,7 @@ class First_menu_m extends CI_Model
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-        $url   = site_url() . '/first/kategori/';
+        $url   = site_url('first/kategori') . '/';
         $i     = 0;
 
         while ($i < count($data)) {

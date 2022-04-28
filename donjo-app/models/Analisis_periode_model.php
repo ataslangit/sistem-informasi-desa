@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Analisis_periode_model extends CI_Model
 {
     public function autocomplete()
@@ -73,8 +75,6 @@ class Analisis_periode_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.id'; break;
 
@@ -91,10 +91,8 @@ class Analisis_periode_model extends CI_Model
             default:$order_sql = ' ORDER BY u.id';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT u.*,s.nama AS status FROM analisis_periode u LEFT JOIN analisis_ref_state s ON u.id_state = s.id WHERE 1 ';
 
         $sql .= $this->search_sql();
@@ -106,7 +104,6 @@ class Analisis_periode_model extends CI_Model
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -128,7 +125,17 @@ class Analisis_periode_model extends CI_Model
 
     public function insert()
     {
-        $data              = $_POST;
+        $data = $_POST;
+        $dp   = $data['duplikasi'];
+        unset($data['duplikasi']);
+
+        if ($dp === 1) {
+            $sqld   = 'SELECT id FROM analisis_periode WHERE id_master=? ORDER BY id DESC LIMIT 1';
+            $queryd = $this->db->query($sqld, $_SESSION['analisis_master']);
+            $dpd    = $queryd->row_array();
+            $sblm   = $dpd['id'];
+        }
+
         $akt               = [];
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
@@ -137,6 +144,27 @@ class Analisis_periode_model extends CI_Model
             $this->db->update('analisis_periode', $akt);
         }
         $outp = $this->db->insert('analisis_periode', $data);
+
+        if ($dp === 1) {
+            $sqld   = 'SELECT id FROM analisis_periode WHERE id_master=? ORDER BY id DESC LIMIT 1';
+            $queryd = $this->db->query($sqld, $_SESSION['analisis_master']);
+            $dpd    = $queryd->row_array();
+            $skrg   = $dpd['id'];
+
+            $sql   = 'SELECT id_subjek,id_indikator,id_parameter FROM analisis_respon WHERE id_periode = ? ';
+            $query = $this->db->query($sql, $sblm);
+            $data  = $query->result_array();
+
+            $i = 0;
+
+            while ($i < count($data)) {
+                $data[$i]['id_periode'] = $skrg;
+                $i++;
+            }
+            $outp = $this->db->insert_batch('analisis_respon', $data);
+            $this->load->model('analisis_respon_model');
+            $this->analisis_respon_model->pre_update($skrg);
+        }
 
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -149,7 +177,7 @@ class Analisis_periode_model extends CI_Model
     {
         $data = $_POST;
         $akt  = [];
-        //$akt = $data['aktif'];
+
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
             $akt['aktif'] = 2;
@@ -159,7 +187,6 @@ class Analisis_periode_model extends CI_Model
         $data['id_master'] = $_SESSION['analisis_master'];
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_periode', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {

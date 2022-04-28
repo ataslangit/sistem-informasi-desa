@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_menu_model extends CI_Model
 {
     public function autocomplete()
@@ -27,7 +29,6 @@ class Web_menu_model extends CI_Model
             $kw         = $this->db->escape_like_str($cari);
             $kw         = '%' . $kw . '%';
             $search_sql = " AND (nama LIKE '{$kw}')";
-            //return $search_sql;
         }
     }
 
@@ -71,7 +72,6 @@ class Web_menu_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
         if ($tip === 1) {
             $sql = 'SELECT * FROM menu WHERE tipe =? ';
@@ -109,10 +109,7 @@ class Web_menu_model extends CI_Model
     public function insert($tip = 1)
     {
         $data = $_POST;
-        //$man = spliti("l]:",$data[$i]['link']);
-        //if($man[0]=="[manual ur"){
-        //	$data[$i]['link'] = $man[1];
-        //	}
+
         if ($data['manual_link'] !== '') {
             $data['link_tipe'] = 1;
             $data['link']      = $data['manual_link'];
@@ -131,15 +128,6 @@ class Web_menu_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-        /*if($data['manual_link']!=""){
-            $data['link'] = "[manual url]:".$data['manual_link'];
-            $man = spliti("l]:",$data['link']);
-            if($man[0]=="[manual ur"){
-                $data['link'] = $man[1];
-            }
-        }
-        UNSET($data['manual_link']);
-        */
 
         if ($data['manual_link'] !== '') {
             $data['link_tipe'] = 1;
@@ -147,7 +135,6 @@ class Web_menu_model extends CI_Model
         } else {
             $data['link_tipe'] = 0;
         }
-
         unset($data['manual_link']);
 
         if ($data['link'] === '') {
@@ -258,17 +245,6 @@ class Web_menu_model extends CI_Model
     {
         $data = $_POST;
 
-        /*$man = spliti("l]:",$data[$i]['link']);
-        if($man[0]=="[manual ur"){
-            $data[$i]['link'] = $man[1];
-        }
-
-        if($data['manual_link']!=""){
-            $data['link'] = "[manual url]:".$data['manual_link'];
-        }
-        UNSET($data['manual_link']);
-        */
-
         if ($data['manual_link'] !== '') {
             $data['link_tipe'] = 1;
             $data['link']      = $data['manual_link'];
@@ -288,20 +264,6 @@ class Web_menu_model extends CI_Model
     public function update_sub_menu($id = 0)
     {
         $data = $_POST;
-
-        /*$man = spliti("l]:",$data[$i]['link']);
-        if($man[0]=="[manual ur"){
-            $data[$i]['link'] = $man[1];
-        }
-        if($data['manual_link']!=""){
-            $data['link'] = "[manual url]:".$data['manual_link'];
-        }else{
-
-
-        }
-
-        UNSET($data['manual_link']);
-        */
 
         if ($data['manual_link'] !== '') {
             $data['link_tipe'] = 1;

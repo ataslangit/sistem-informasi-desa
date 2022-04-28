@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class First_artikel_m extends CI_Model
 {
     public function get_headline()
@@ -11,8 +13,6 @@ class First_artikel_m extends CI_Model
             $data = null;
         } else {
             $id = $data['id'];
-            //$panjang=str_split($data['isi'],800);
-            //$data['isi'] = "<label>".strip_tags($panjang[0])."...</label><a href='".site_url("first/artikel/$id")."'>Baca Selengkapnya</a>";
         }
 
         return $data;
@@ -36,17 +36,17 @@ class First_artikel_m extends CI_Model
 
     public function paging($p = 1)
     {
-        $sql = 'SELECT COUNT(a.id) AS id FROM artikel a
+        $sql = "SELECT COUNT(a.id) AS id FROM artikel a
 			LEFT JOIN kategori k ON a.id_kategori = k.id
-			WHERE ((a.enabled=1) AND (headline <> 1) AND (k.tipe = 1))
-			ORDER BY a.tgl_upload DESC';
+			WHERE ((a.enabled=1) AND (headline <> 1) AND (k.tipe = 1)) AND k.kategori <> 'teks_berjalan'
+			ORDER BY a.tgl_upload DESC";
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
         $cfg['page']     = $p;
-        $cfg['per_page'] = 8;
+        $cfg['per_page'] = 5;
         $cfg['num_rows'] = $jml_data;
         $this->paging->init($cfg);
 
@@ -75,14 +75,14 @@ class First_artikel_m extends CI_Model
     public function artikel_show($id, $offset, $limit)
     {
         if ($id > 0) {
-            $sql = 'SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
+            $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
 				LEFT JOIN user u ON a.id_user = u.id
-				LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1 AND a.id=' . $id;
+				LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1 AND k.kategori <> 'teks_berjalan' AND a.id=" . $id;
         } else {
-            $sql = 'SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
+            $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
 				LEFT JOIN user u ON a.id_user = u.id
-				LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1
-				ORDER BY a.tgl_upload DESC LIMIT ' . $offset . ', ' . $limit;
+				LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1 AND k.kategori <> 'teks_berjalan'
+				ORDER BY a.tgl_upload DESC LIMIT " . $offset . ', ' . $limit;
         }
 
         $query = $this->db->query($sql);
@@ -109,18 +109,14 @@ class First_artikel_m extends CI_Model
 
     public function arsip_show()
     {
-        $sql   = 'SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=?  ORDER BY a.tgl_upload DESC LIMIT 7 ';
+        $sql   = 'SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=? ORDER BY a.tgl_upload DESC LIMIT 7 ';
         $query = $this->db->query($sql, 1);
         $data  = $query->result_array();
 
         $i = 0;
 
         while ($i < count($data)) {
-
-            //$judul=str_split($data[$i]['nama'],15);
-            //$data[$i]['judul'] = "<h3>".$judul[6]."</h3>";
             $id = $data[$i]['id'];
-            //$data['link'] = site_url("first/artikel/$id");
 
             $pendek                = str_split($data[$i]['isi'], 100);
             $pendek2               = str_split($pendek[0], 90);
@@ -165,8 +161,7 @@ class First_artikel_m extends CI_Model
                 $nomer = $offset + $i + 1;
                 $id    = $data[$i]['id'];
                 $tgl   = date('d/m/Y', strtotime($data[$i]['tgl_upload']));
-                //$data[$i]['isi_short'] = $pendek2[0]."...";
-                //$panjang=str_split($data[$i]['isi'],150);
+
                 $data[$i]['no']  = $nomer;
                 $data[$i]['tgl'] = $tgl;
                 $data[$i]['isi'] = "<a href='" . site_url("first/artikel/{$id}") . "'>" . $data[$i]['judul'] . '</a>, <i class="fa fa-user"></i> ' . $data[$i]['owner'];
@@ -232,11 +227,7 @@ class First_artikel_m extends CI_Model
         $i = 0;
 
         while ($i < count($data)) {
-
-            //$judul=str_split($data[$i]['nama'],15);
-            //$data[$i]['judul'] = "<h3>".$judul[6]."</h3>";
             $id = $data[$i]['id_artikel'];
-            //$data['link'] = site_url("first/artikel/$id");
 
             $pendek                     = str_split($data[$i]['komentar'], 25);
             $pendek2                    = str_split($pendek[0], 90);

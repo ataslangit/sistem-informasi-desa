@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Plan_garis_model extends CI_Model
 {
     public function autocomplete()
@@ -95,7 +97,6 @@ class Plan_garis_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT l.*,p.nama AS kategori,m.nama AS jenis,p.simbol AS simbol FROM garis l LEFT JOIN line p ON l.ref_line = p.id LEFT JOIN line m ON p.parrent = m.id WHERE 1 ';
@@ -235,8 +236,6 @@ class Plan_garis_model extends CI_Model
             $temp  = $query->row_array();
 
             $kf = $temp['parrent'];
-            //$sql .= " AND id = $kf";
-            //$_SESSION['subline'] = $kf;
         }
 
         $query = $this->db->query($sql);

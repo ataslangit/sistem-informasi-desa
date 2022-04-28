@@ -1,21 +1,15 @@
 <?php $this->load->view('print/headjs.php'); ?>
-
-
-
 <body>
 <div id="container">
 <link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
 <!-- Print Body -->
 <div id="body">
-
 <div align="center">
 	<h3>KARTU KELUARGA</h3>
 	<h4>SALINAN</h4>
 	<h5>No. <?= $kepala_kk['no_kk']?> </h4>
 </div>
-
 <br>
-
 <table width="100%" cellpadding="3" cellspacing="4">
 	<tr>
 	<td width="100">Nama KK</td>
@@ -31,7 +25,7 @@
 	</tr>
 	<tr>
 	<td>RT / RW</td>
-	<td>: <?= $kepala_kk['rt']  ?> / <?= $kepala_kk['rw']  ?></td>
+	<td>: <?= $kepala_kk['rt'] ?> / <?= $kepala_kk['rw'] ?></td>
 	<td>Kode Pos</td>
 	<td>: <?= strtoupper($desa['kode_pos']) ?></td>
 	</tr>
@@ -42,9 +36,7 @@
 	<td>: <?= strtoupper($desa['nama_propinsi']) ?></td>
 	</tr>
 </table>
-
 <br>
-
 <table class="border thick ">
 	<thead>
 	<tr class="border thick">
@@ -60,8 +52,7 @@
 	</tr>
 	</thead>
 	<tbody>
-	<?php  foreach ($main as $data): ?>
-
+	<?php foreach ($main as $data): ?>
 	<tr class="data">
 		<td align="center" width="2"><?= $data['no']?></td>
 		<td><?= strtoupper($data['nama'])?></td>
@@ -73,13 +64,10 @@
 		<td><?= $data['pendidikan']?></td>
 		<td><?= $data['pekerjaan']?></td>
 	</tr>
-
-	<?php  endforeach; ?>
+	<?php endforeach; ?>
 	</tbody>
 </table>
-
 <br>
-
 <table class="border thick ">
 <thead>
 	<tr class="border thick">
@@ -95,10 +83,7 @@
 	</tr>
 </thead>
 <tbody>
-
-
-<?php  foreach ($main as $data): ?>
-
+<?php foreach ($main as $data): ?>
 <tr class="data">
 <td align="center" width="2"><?= $data['no']?></td>
 <td><?= $data['status_kawin']?></td>
@@ -110,12 +95,10 @@
 <td><?= strtoupper($data['nama_ibu'])?></td>
 <td align="center"><?= $data['golongan_darah']?></td>
 </tr>
-<?php  endforeach; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
-
 <br>
-
 <table width="100%" cellpadding="3" cellspacing="4">
 <tr>
 	<td width="25%"></td>
@@ -139,10 +122,8 @@
 	</tr>
 </table>
 </div>
-   <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
+ <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 </div>
-
-
 <div id="aside">
 </div>
 </div>

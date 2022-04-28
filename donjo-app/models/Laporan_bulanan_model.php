@@ -1,11 +1,12 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Laporan_bulanan_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-
         $sql   = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1) AS pend,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =1) AS lk,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =2) AS pr,(SELECT COUNT(id) FROM tweb_keluarga) AS kk';
         $query = $this->db->query($sql);
         $data  = $query->row_array();
@@ -100,42 +101,42 @@ class Laporan_bulanan_model extends CI_Model
     public function bulan($bulan)
     {
         switch ($bulan) {
-            case 1: $bulan = 'Januari';
+         case 1: $bulan = 'Januari';
             break;
 
-            case 2: $bulan = 'Februari';
+         case 2: $bulan = 'Februari';
             break;
 
-            case 3: $bulan = 'Maret';
+         case 3: $bulan = 'Maret';
             break;
 
-            case 4: $bulan = 'April';
+         case 4: $bulan = 'April';
             break;
 
-            case 5: $bulan = 'Mei';
+         case 5: $bulan = 'Mei';
             break;
 
-            case 6: $bulan = 'Juni';
+         case 6: $bulan = 'Juni';
             break;
 
-            case 7: $bulan = 'Juli';
+         case 7: $bulan = 'Juli';
             break;
 
-            case 8: $bulan = 'Agustus';
+         case 8: $bulan = 'Agustus';
             break;
 
-            case 9: $bulan = 'September';
+         case 9: $bulan = 'September';
             break;
 
-            case 10: $bulan = 'Oktober';
+         case 10: $bulan = 'Oktober';
             break;
 
-            case 11: $bulan = 'November';
+         case 11: $bulan = 'November';
             break;
 
-            case 12: $bulan = 'Desember';
+         case 12: $bulan = 'Desember';
             break;
-            }
+         }
 
         return $bulan;
     }
@@ -164,7 +165,6 @@ class Laporan_bulanan_model extends CI_Model
             default:$sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
         }
 
-        //$sql     .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -183,25 +183,30 @@ class Laporan_bulanan_model extends CI_Model
         $sql = "select c.id as id_cluster,c.rt,c.rw,c.dusun as dusunnya,
 (select count(id) from tweb_penduduk where sex='1' and id_cluster=c.id) as L,
 (select count(id) from tweb_penduduk where sex='2' and id_cluster=c.id) as P,
+
 (select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<1 and id_cluster=c.id ) as bayi,
-(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=1 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<=5  and id_cluster=c.id ) as balita,
-(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=6 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<=12  and id_cluster=c.id ) as sd,
-(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=13 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<=15  and id_cluster=c.id ) as smp,
-(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=16 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<=18  and id_cluster=c.id ) as sma,
+(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=1 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<6 and id_cluster=c.id ) as balita,
+(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=6 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<13 and id_cluster=c.id ) as sd,
+(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=13 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<16 and id_cluster=c.id ) as smp,
+(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=16 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<19 and id_cluster=c.id ) as sma,
+(select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>=19 and (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)<60 and id_cluster=c.id ) as dewasa,
 (select count(id) from tweb_penduduk where (DATE_FORMAT( FROM_DAYS( TO_DAYS(NOW()) - TO_DAYS( tanggallahir ) ) , '%Y' ) +0)>60 and id_cluster=c.id ) as lansia,
-(select count(id) from tweb_penduduk where cacat_id is not null and cacat_id <>'0'  and id_cluster=c.id) as cacat,
+
+(select count(id) from tweb_penduduk where sex = 1 AND cacat_id is not null and cacat_id <>'0' and id_cluster=c.id) as cacat,
+(select count(id) from tweb_penduduk where sex = 2 AND cacat_id is not null and cacat_id <>'0' and id_cluster=c.id) as cacat2,
 (select count(id) from tweb_penduduk where sakit_menahun_id is not null and sakit_menahun_id <>'0' and id_cluster=c.id and sex='1') as sakit_L,
 (select count(id) from tweb_penduduk where sakit_menahun_id is not null and sakit_menahun_id <>'0' and id_cluster=c.id and sex='2') as sakit_P,
-(select count(id) from tweb_penduduk where hamil='1' and id_cluster=c.id) as hamil
-from  tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from tweb_penduduk where id_cluster=c.id)>0  ";
+(select count(id) from tweb_penduduk where hamil='1' and id_cluster=c.id) as hamil1,
+(select count(id) from tweb_penduduk where hamil='2' and id_cluster=c.id) as hamil2,
+(select count(id) from tweb_penduduk where hamil='3' and id_cluster=c.id) as susu
+from tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from tweb_penduduk where id_cluster=c.id)>0 ";
 
         $sql .= $this->dusun_sql();
 
         $sql .= ' ORDER BY c.dusun,c.rw,c.rt ';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
-        //	$data = null;
-        //Formating Output
+
         $i = 0;
 
         while ($i < count($data)) {
@@ -284,11 +289,11 @@ from  tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) fro
     public function penduduk_akhirx()
     {
         $paging_sql = ' LIMIT 1';
-        $sql        = "SELECT (select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id  where warganegara_id='1' and sex='1' and id_detail in ('5','1','8')   and day(tanggal)>15  and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_L,
-(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id  where warganegara_id='1' and sex='2' and id_detail in ('5','1','8')   and day(tanggal)>15  and day(tanggal)<=30  and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
-(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id  where warganegara_id='2' and sex='1' and id_detail in ('5','1','8')   and day(tanggal)>15  and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
-(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id  where warganegara_id='2' and sex='2'  and id_detail in ('5','1','8')  and day(tanggal)>15  and day(tanggal)<=30  and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P, bulan, tahun
-FROM log_penduduk   ";
+        $sql        = "SELECT (select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id where warganegara_id='1' and sex='1' and id_detail in ('5','1','8') and day(tanggal)>15 and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_L,
+(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id where warganegara_id='1' and sex='2' and id_detail in ('5','1','8') and day(tanggal)>15 and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
+(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id where warganegara_id='2' and sex='1' and id_detail in ('5','1','8') and day(tanggal)>15 and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
+(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id where warganegara_id='2' and sex='2' and id_detail in ('5','1','8') and day(tanggal)>15 and day(tanggal)<=30 and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P, bulan, tahun
+FROM log_penduduk ";
         $sql .= $this->bulan_sql();
         $sql .= $this->tahun_sql();
         $sql .= $paging_sql;
@@ -299,10 +304,9 @@ FROM log_penduduk   ";
 
     public function kelahiran()
     {
-        $sql   = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE month(tanggallahir) = ? AND year(tanggallahir) =? AND sex = 1) AS WNI_L,(SELECT COUNT(id) FROM tweb_penduduk WHERE month(tanggallahir) = ? AND year(tanggallahir) =? AND sex = 1) AS WNI_P';
-        $query = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
-        $data  = $query->row_array();
-
+        $sql           = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE month(tanggallahir) = ? AND year(tanggallahir) =? AND sex = 1) AS WNI_L,(SELECT COUNT(id) FROM tweb_penduduk WHERE month(tanggallahir) = ? AND year(tanggallahir) =? AND sex = 1) AS WNI_P';
+        $query         = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
+        $data          = $query->row_array();
         $data['WNA_L'] = 0;
         $data['WNA_P'] = 0;
 
@@ -311,10 +315,9 @@ FROM log_penduduk   ";
 
     public function kematian()
     {
-        $sql   = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =2) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 2) AS WNI_P';
-        $query = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
-        $data  = $query->row_array();
-
+        $sql           = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =2) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 2) AS WNI_P';
+        $query         = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
+        $data          = $query->row_array();
         $data['WNA_L'] = 0;
         $data['WNA_P'] = 0;
 
@@ -323,10 +326,9 @@ FROM log_penduduk   ";
 
     public function pindah()
     {
-        $sql   = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =3) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 3) AS WNI_P';
-        $query = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
-        $data  = $query->row_array();
-
+        $sql           = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =3) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 3) AS WNI_P';
+        $query         = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
+        $data          = $query->row_array();
         $data['WNA_L'] = 0;
         $data['WNA_P'] = 0;
 
@@ -339,11 +341,11 @@ FROM log_penduduk   ";
         $thn = $_SESSION['tahunku'];
 
         $paging_sql = ' LIMIT 1';
-        $sql        = "SELECT (select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='1' and id_detail in ('8','5') and  month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_L,
-		(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='2' and id_detail in ('8','5')  and  month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
-		(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='1' and id_detail in ('8','5')  and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
-		(select count(s.id) from log_penduduk s  INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='2'  and id_detail in ('8','5')   and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P , bulan, tahun
-		FROM log_penduduk   ";
+        $sql        = "SELECT (select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='1' and id_detail in ('8','5') and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_L,
+		(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='2' and id_detail in ('8','5') and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
+		(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='1' and id_detail in ('8','5') and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
+		(select count(s.id) from log_penduduk s INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='2' and id_detail in ('8','5') and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P , bulan, tahun
+		FROM log_penduduk ";
         $sql .= $this->bulan_sql();
         $sql .= $this->tahun_sql();
         $sql .= $paging_sql;
@@ -367,11 +369,11 @@ FROM log_penduduk   ";
     {
         $paging_sql = ' LIMIT 1';
         $sql        = "SELECT (select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='1' and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_L,
-(select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='2'  and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
+(select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='1' and sex='2' and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNI_P,
 (select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on
-s.id_pend=p.id and warganegara_id='2' and sex='1'  and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
-(select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='2'   and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P , bulan, tahun
-FROM log_penduduk   ";
+s.id_pend=p.id and warganegara_id='2' and sex='1' and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_L,
+(select count(s.id) from log_penduduk s INNER join detail_log_penduduk t on s.id_detail=t.id INNER join tweb_penduduk p on s.id_pend=p.id and warganegara_id='2' and sex='2' and id_detail='3' and month(tanggal)=month(curdate()) and year(tanggal)=year(curdate()) ) as WNA_P , bulan, tahun
+FROM log_penduduk ";
         $sql .= $this->bulan_sql();
         $sql .= $this->tahun_sql();
         $sql .= $paging_sql;
@@ -382,10 +384,9 @@ FROM log_penduduk   ";
 
     public function hilang()
     {
-        $sql   = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =4) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 4) AS WNI_P';
-        $query = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
-        $data  = $query->row_array();
-
+        $sql           = 'SELECT (SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex =1 AND id_detail =4) AS WNI_L,(SELECT COUNT(u.id) FROM log_penduduk u LEFT JOIN tweb_penduduk p ON u.id_pend = p.id WHERE month(tgl_peristiwa) = ? AND year(tgl_peristiwa) =? AND sex = 2 AND id_detail = 4) AS WNI_P';
+        $query         = $this->db->query($sql, [$_SESSION['bulanku'], $_SESSION['tahunku'], $_SESSION['bulanku'], $_SESSION['tahunku']]);
+        $data          = $query->row_array();
         $data['WNA_L'] = 0;
         $data['WNA_P'] = 0;
 

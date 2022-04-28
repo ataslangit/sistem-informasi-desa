@@ -1,12 +1,76 @@
 <div id="scroller">
-	<script type="text/javascript">
-	sts_bs("jwscroller2e8e",[20080623,"images/","","blank.gif",3,1,1,1,"","left",3,1,962,0,0,0,0,0,0,0,1,27,0,"",-1,10],["none",1]);
-	sts_tbd([1],["double",2,"#0099CC #FFFFFF",5,"round_tl.gif","round_tr.gif","round_br.gif","round_bl.gif","transparent","round_t.gif","repeat","transparent","round_r.gif","repeat","transparent","round_b.gif","repeat","transparent","round_l.gif","repeat"]);
+<script type="text/javascript">
+jQuery.fn.liScroll = function(settings) {
+settings = jQuery.extend({
+travelocity: 0.03
+}, settings);
+return this.each(function(){
+$('ul#ticker01').show();
+var $strip = jQuery(this);
+$strip.addClass("newsticker")
+var stripWidth = 1;
+$strip.find("li").each(function(i){
+stripWidth += jQuery(this, i).outerWidth(true);
+});
+var $mask = $strip.wrap("<div class='mask'></div>");
+var $tickercontainer = $strip.parent().wrap("<div class='tickercontainer'></div>");
+var containerWidth = $strip.parent().parent().width();
+$strip.width(stripWidth);
+var totalTravel = stripWidth+containerWidth;
+var defTiming = totalTravel/settings.travelocity;
+function scrollnews(spazio, tempo){
+$strip.animate({left: '-='+ spazio}, tempo, "linear", function(){$strip.css("left", containerWidth); scrollnews(totalTravel, defTiming);});
+}
+scrollnews(totalTravel, defTiming);
+$strip.hover(function(){
+jQuery(this).stop();
+},
+function(){
+var offset = jQuery(this).offset();
+var residualSpace = offset.left + stripWidth;
+var residualTime = residualSpace/settings.travelocity;
+scrollnews(residualSpace, residualTime);
+});
+});
+};
+$(function(){$("ul#ticker01").liScroll();});
+</script>
+<style>
+.tickercontainer {
+width: 970px;
+height: 24px;
+margin-left: 5px;
+padding: 0;
+overflow: hidden;
+}
+.tickercontainer .mask {
+position: relative;
+left: 0px;
+top: 1px;
+width: 12555px;
+overflow: hidden;
+}
+ul.newsticker {
+position: relative;
+left: 900px;
+font: bold 10px Verdana;
+list-style-type: none;
+margin: 0;
+padding: 0;
+
+}
+ul.newsticker li {
+float: left;
+margin: 0;
+padding: 0 10px;
+color: #fefe77;
+}
+</style>
+<ul id="ticker01" style="display:none;">
 	<?php $tb = 0;
 
 foreach ($teks_berjalan as $data) {?>
-	sts_ai("i<?= $tb; ?>",[0,"<?= fixTag($data['isi']); ?>","","_self","",0,0,"center"],["transparent","bold 8pt Arial","#ffffff","none","bold 8pt Arial","#ffff00","none"]);
-	<?php $tb++; } ?>
-	sts_es();
-	</script>
+	<li> <?= fixTag($data['isi']); ?> </li><li> | </li>
+	<?php $tb++; } ?> </li>
+</ul>
 </div>

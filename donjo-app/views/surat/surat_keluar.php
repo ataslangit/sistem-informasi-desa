@@ -26,36 +26,30 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<?php  if ($o === 2): ?>
+							<?php if ($o === 2): ?>
 							<th align="left" width='100'>Nomor Surat</th>
-							<?php  elseif ($o === 1): ?>
+							<?php elseif ($o === 1): ?>
 							<th align="left" width='100'>Nomor Surat</th>
-							<?php  else: ?>
+							<?php else: ?>
 							<th align="left" width='100'>Nomor Surat</th>
-							<?php  endif; ?>
-
+							<?php endif; ?>
 							<th align="left">Jenis Surat</th>
-
-							 <?php  if ($o === 4): ?>
+							 <?php if ($o === 4): ?>
 							<th align="left">Nama Penduduk</th>
-							<?php  elseif ($o === 3): ?>
+							<?php elseif ($o === 3): ?>
 							<th align="left">Nama Penduduk</th>
-							<?php  else: ?>
+							<?php else: ?>
 							<th align="left">Nama Penduduk</th>
-							<?php  endif; ?>
-
+							<?php endif; ?>
 							<th align="left" width='160'>Nama Staf Pemerintah Desa</th>
-
-							<?php  if ($o === 6): ?>
+							<?php if ($o === 6): ?>
 							<th align="left" width='160'>Tanggal</th>
-							<?php  elseif ($o === 5): ?>
+							<?php elseif ($o === 5): ?>
 							<th align="left" width='160'>Tanggal</th>
-							<?php  else: ?>
+							<?php else: ?>
 							<th align="left" width='160'>Tanggal</th>
-							<?php  endif; ?>
-
+							<?php endif; ?>
 							<th align="left">User</th>
-
 						</tr>
 					</thead>
 					<tbody>
@@ -91,9 +85,9 @@
 					<form id="paging" action="<?= site_url('keluar')?>" method="post">
 						<label>Tampilkan</label>
 						<select name="per_page" onchange="$('#paging').submit()" >
-							<option value="20" <?php  selected($per_page, 20); ?> >20</option>
-							<option value="50" <?php  selected($per_page, 50); ?> >50</option>
-							<option value="100" <?php  selected($per_page, 100); ?> >100</option>
+							<option value="20" <?php selected($per_page, 20); ?> >20</option>
+							<option value="50" <?php selected($per_page, 50); ?> >50</option>
+							<option value="100" <?php selected($per_page, 100); ?> >100</option>
 						</select>
 						<label>Dari</label>
 						<label><strong><?= $paging->num_rows?></strong></label>
@@ -103,25 +97,25 @@
 				</div>
 				<div class="right">
 					<div class="uibutton-group">
-						<?php  if ($paging->start_link): ?>
-						<a href="<?= site_url("keluar/index/{$paging->start_link}/{$o}")?>" class="uibutton"  >First</a>
-						<?php  endif; ?>
-						<?php  if ($paging->prev): ?>
-						<a href="<?= site_url("keluar/index/{$paging->prev}/{$o}")?>" class="uibutton"  >Prev</a>
-						<?php  endif; ?>
+						<?php if ($paging->start_link): ?>
+						<a href="<?= site_url("keluar/index/{$paging->start_link}/{$o}")?>" class="uibutton" >First</a>
+						<?php endif; ?>
+						<?php if ($paging->prev): ?>
+						<a href="<?= site_url("keluar/index/{$paging->prev}/{$o}")?>" class="uibutton" >Prev</a>
+						<?php endif; ?>
 					</div>
 					<div class="uibutton-group">
-						<?php  for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
-						<a href="<?= site_url("keluar/index/{$i}/{$o}")?>" <?php  jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
-						<?php  endfor; ?>
+						<?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
+						<a href="<?= site_url("keluar/index/{$i}/{$o}")?>" <?php jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
+						<?php endfor; ?>
 							</div>
 							<div class="uibutton-group">
-						<?php  if ($paging->next): ?>
+						<?php if ($paging->next): ?>
 						<a href="<?= site_url("keluar/index/{$paging->next}/{$o}")?>" class="uibutton">Next</a>
-						<?php  endif; ?>
-						<?php  if ($paging->end_link): ?>
+						<?php endif; ?>
+						<?php if ($paging->end_link): ?>
 									<a href="<?= site_url("keluar/index/{$paging->end_link}/{$o}")?>" class="uibutton">Last</a>
-						<?php  endif; ?>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

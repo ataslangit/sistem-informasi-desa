@@ -12,7 +12,7 @@ class Analisis_grafik extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
     }
@@ -75,8 +75,7 @@ class Analisis_grafik extends CI_Controller
         $data['main']            = $this->analisis_grafik_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']         = $this->analisis_grafik_model->autocomplete();
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
-
-        $header = $this->header_model->get_data();
+        $header                  = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $this->load->view('analisis_master/nav');
@@ -106,8 +105,7 @@ class Analisis_grafik extends CI_Controller
         $data['keyword']         = $this->analisis_grafik_model->autocomplete();
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
         $data['periode']         = $this->analisis_grafik_model->list_periode();
-
-        $header = $this->header_model->get_data();
+        $header                  = $this->header_model->get_data();
 
         $this->load->view('header', $header);
         $this->load->view('analisis_master/nav');

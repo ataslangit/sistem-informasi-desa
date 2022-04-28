@@ -1,37 +1,36 @@
 <script>
 function DusSel(str){
 	if (str==""){
-	  document.getElementById("RW").innerHTML="";
-	  return;
-	  }
+	 document.getElementById("RW").innerHTML="";
+	 return;
+	 }
 	if (window.XMLHttpRequest){
 		xmlhttp=new XMLHttpRequest();
-	  }else{
+	 }else{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	  xmlhttp.onreadystatechange=function(){
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-	     document.getElementById("RW").innerHTML=xmlhttp.responseText;
-	    }
-	  }
+	 }
+	 xmlhttp.onreadystatechange=function(){
+	 if (xmlhttp.readyState==4 && xmlhttp.status==200){
+	 document.getElementById("RW").innerHTML=xmlhttp.responseText;
+	 }
+	 }
 	xmlhttp.open("GET","ajax_penduduk_rw/"+str,true);
 	xmlhttp.send();
 }
-
 function RWSel(dusun,str){
 	if (str==""){
-	  document.getElementById("RT").innerHTML="";
-	  return;
-	  }if (window.XMLHttpRequest){
+	 document.getElementById("RT").innerHTML="";
+	 return;
+	 }if (window.XMLHttpRequest){
 		xmlhttp=new XMLHttpRequest();
-	  }else{
+	 }else{
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	  xmlhttp.onreadystatechange=function(){
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-	     document.getElementById("RT").innerHTML=xmlhttp.responseText;
-	    }
-	  }
+	 }
+	 xmlhttp.onreadystatechange=function(){
+	 if (xmlhttp.readyState==4 && xmlhttp.status==200){
+	 document.getElementById("RT").innerHTML=xmlhttp.responseText;
+	 }
+	 }
 	xmlhttp.open("GET","ajax_penduduk_rt/"+dusun+"/"+str,true);
 	xmlhttp.send();
 }
@@ -39,7 +38,6 @@ function RWSel(dusun,str){
 <form action="<?= $form_action?>" method="post" id="validasi">
 <input type="hidden" name="rt" value="">
 <table>
-
 <tr>
 	<td>Umur</td><td><input class="inputbox2" name="umur_min1" type="text" size="5" > - <input class="inputbox2" name="umur_max1" type="text" size="5"></td>
 </tr>
@@ -56,76 +54,69 @@ function RWSel(dusun,str){
 <tr id="RT"></tr>
 <tr><td>Jenis Kelamin</td>
 	 <td>
-     <select name="sex1" >
-      <option value=""> -- </option>
-	  <option value="1">LAKI-LAKI</option>
-	  <option value="2">PEREMPUAN</option>
-	  </select>
+ <select name="sex1" >
+ <option value=""> -- </option>
+	 <option value="1">LAKI-LAKI</option>
+	 <option value="2">PEREMPUAN</option>
+	 </select>
 	</td>
 </tr>
-
 <tr><td>Pekerjaan</td>
-    <td><select name="pekerjaan1">
-      <option value=""> -- </option>
-	  <?php foreach ($pekerjaan as $data) {?>
+ <td><select name="pekerjaan1">
+ <option value=""> -- </option>
+	 <?php foreach ($pekerjaan as $data) {?>
 		<option value="<?= $data['id']?>"><?= $data['nama']?></option>
-	  <?php }?>
+	 <?php }?>
 	</select>
-     </td>
+ </td>
 </tr>
-
 <tr><td>Status Perkawinan</td><td>
-    <select name="status1">
-      <option value=""> -- </option><option value="1">BELUM KAWIN</option><option value="2">KAWIN</option><option value="3">CERAI HIDUP</option><option value="4">CERAI MATI</option><option value="5">TIDAK KAWIN</option>
+ <select name="status1">
+ <option value=""> -- </option><option value="1">BELUM KAWIN</option><option value="2">KAWIN</option><option value="3">CERAI HIDUP</option><option value="4">CERAI MATI</option><option value="5">TIDAK KAWIN</option>
 	</select> </td>
 </tr>
 <tr><td>Agama</td><td>
-    <select name="agama1">
-    <option value=""> -- </option>
+ <select name="agama1">
+ <option value=""> -- </option>
 	<?php foreach ($agama as $data) {?>
 		<option value="<?= $data['id']?>"><?= $data['nama']?></option>
 	<?php }?>
-    </select>
+ </select>
 	</td>
 </tr>
-
 <tr><td>Pendidikan Terakhir</td>
-    <td>
+ <td>
 	<select name="pendidikan1">
-      <option value=""> -- </option>
+ <option value=""> -- </option>
 		<?php foreach ($pendidikan as $data) {?>
 			<option value="<?= $data['id']?>"><?= $data['nama']?></option>
 		<?php }?>
-	  </select>
-  </td>
+	 </select>
+ </td>
 </tr>
-
 <tr><td>Status Penduduk</td>
-    <td><select name="status_penduduk1">
-      <option value=""> -- </option><option value="1">AKTIF</option><option value="2">TIDAK AKTIF</option>     </select>
-  </td>
+ <td><select name="status_penduduk1">
+ <option value=""> -- </option><option value="1">AKTIF</option><option value="2">TIDAK AKTIF</option> </select>
+ </td>
 </tr>
-
 <tr><td>Group Kontak</td>
-    <td>
+ <td>
 	<select name="grup1">
-      <option value=""> -- </option>
+ <option value=""> -- </option>
 		<?php foreach ($grup as $data) {?>
 			<option value="<?= $data['nama_grup']?>"><?= $data['nama_grup']?></option>
 		<?php }?>
-	  </select>
-  </td>
+	 </select>
+ </td>
 </tr>
-
 	<tr>
 		<td width="100">Isi Pesan</td><td><textarea name="TextDecoded1" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='160'></textarea></td>
 	</tr>
 </table>
-
 <div class="buttonpane" style="text-align: right;">
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
-        <button class="uibutton confirm" type="submit">Kirim</button>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
+ <button class="uibutton confirm" type="submit">Kirim</button>
+ </div>
 </div>
 </form>

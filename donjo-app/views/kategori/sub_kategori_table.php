@@ -1,10 +1,7 @@
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-
 <td class="side-menu">
-
 <fieldset>
 <legend>Kategori kategori</legend>
 <div class="lmenu">
@@ -15,14 +12,10 @@
 <li <?php if ($tip === 2) {
     echo "class='selected'";
 }?>><a href="<?= site_url('kategori/index')?>">Kategori/ Menu Dinamis</a></li>
-
-
 </ul>
 </div>
 </fieldset>
-
 </td>
-
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub kategori</h3>
@@ -50,7 +43,7 @@
 <th>No</th>
 <th><input type="checkbox" class="checkall"/></th>
 <th width="120">Aksi</th>
-<th align="center">kategori</th>
+<th align="center">Kategori</th>
 <th align="center">Enabled</th>
 <th>Link</th>
 </tr>
@@ -63,7 +56,7 @@
 <input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 </td>
 <td><div class="uibutton-group">
-<a href="<?= site_url("kategori/ajax_add_sub_kategori/{$kategori}/{$data['id']}")?>"  class="uibutton tipsy south" target="ajax-modal" rel="window" header="Edit kategori" title="Edit Data"><span class="icon-edit icon-large"> Edit </span></a><a href="<?= site_url("kategori/delete_sub_kategori/{$kategori}/{$data['id']}")?>"  class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("kategori/kategori_lock_sub_kategori/{$kategori}/{$data['id']}")?>"  class="uibutton tipsy south" title="Enable kategori"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("kategori/kategori_unlock_sub_kategori/{$kategori}/{$data['id']}")?>"  class="uibutton tipsy south" title="Disable kategori"><span class="icon-unlock icon-large"></span></a><?php endif; ?></div>
+<a href="<?= site_url("kategori/ajax_add_sub_kategori/{$kategori}/{$data['id']}")?>" class="uibutton tipsy south" target="ajax-modal" rel="window" header="Edit kategori" title="Edit Data"><span class="icon-edit icon-large"> Edit </span></a><a href="<?= site_url("kategori/delete_sub_kategori/{$kategori}/{$data['id']}")?>" class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("kategori/kategori_lock_sub_kategori/{$kategori}/{$data['id']}")?>" class="uibutton tipsy south" title="Enable kategori"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("kategori/kategori_unlock_sub_kategori/{$kategori}/{$data['id']}")?>" class="uibutton tipsy south" title="Disable kategori"><span class="icon-unlock icon-large"></span></a><?php endif; ?></div>
 </td>
 <td><?= $data['kategori']?></td>
 <td><?= $data['aktif']?></td>

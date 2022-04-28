@@ -14,12 +14,12 @@
 						title: {
 							text: 'Kelas Sosial'
 						},
-                        categories: [
+ categories: [
 						<?php $i = 0;
 
 foreach ($main as $data) {
     $i++; ?>
-						  <?= "'{$data['nama']}',"; ?>
+						 <?= "'{$data['nama']}',"; ?>
 						<?php
 }?>
 						]
@@ -38,7 +38,7 @@ foreach ($main as $data) {
 						y: 70,
 						floating: true,
 						shadow: true,
-                        enabled:false
+ enabled:false
 					},
 					tooltip: {
 						formatter: function() {
@@ -48,18 +48,18 @@ foreach ($main as $data) {
 					},
 					plotOptions: {
 						series: {
-                            colorByPoint: true
-                        },
-                        column: {
+ colorByPoint: true
+ },
+ column: {
 							pointPadding: 0.2,
 							borderWidth: 0
 						}
 					},
-				        series: [{
+				 series: [{
 						name: 'Populasi',
 						data: [
 						<?php foreach ($main as $data) {?>
-						  <?= $data['jumlah'] . ','; ?>
+						 <?= $data['jumlah'] . ','; ?>
 						<?php }?>]
 
 					}]
@@ -69,7 +69,6 @@ foreach ($main as $data) {
 			});
 
 </script>
-
 <?= '
 	<div class="box box-danger">
 		<div class="box-header with-border">
@@ -83,7 +82,6 @@ foreach ($main as $data) {
 			</div>
 		</div>
 	</div>
-
 	<div class="box box-danger">
 		<div class="box-header with-border">
 			<h3 class="box-title">Tabel Statistik Kependudukan berdasarkan Indeks Kemiskinan</h3>
@@ -117,4 +115,3 @@ foreach ($main as $data) {
 		</div>
 	</div>';
 ?>
-

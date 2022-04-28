@@ -11,11 +11,10 @@
 		<td><textarea name="TextDecoded" class=" required" style="resize: none; height:200px; width:280px;" size="1000" maxlength='160'><?= $sms['TextDecoded']?></textarea></td>
 	</tr>
 </table>
-
 <div class="buttonpane" style="text-align: right;">
-    <div class="uibutton-group">
-        <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
-        <button class="uibutton confirm" type="submit">Kirim</button>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Tutup</button>
+ <button class="uibutton confirm" type="submit">Kirim</button>
+ </div>
 </div>
 </form>

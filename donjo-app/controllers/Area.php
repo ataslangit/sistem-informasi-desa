@@ -11,14 +11,7 @@ class Area extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_area_model');
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
-        /*		$this->load->library('ion_auth');
-                $this->load->library('session');
-                $this->load->library('form_validation');
-                $this->load->helper('url');
 
-                $this->config->item('ion_auth') ;*/
         $this->load->database();
     }
 
@@ -45,19 +38,16 @@ class Area extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['polygon'])) {
             $data['polygon'] = $_SESSION['polygon'];
         } else {
             $data['polygon'] = '';
         }
-
         if (isset($_SESSION['subpolygon'])) {
             $data['subpolygon'] = $_SESSION['subpolygon'];
         } else {
             $data['subpolygon'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -68,9 +58,8 @@ class Area extends CI_Controller
         $data['keyword']         = $this->plan_area_model->autocomplete();
         $data['list_polygon']    = $this->plan_area_model->list_polygon();
         $data['list_subpolygon'] = $this->plan_area_model->list_subpolygon();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 4;
+        $header                  = $this->header_model->get_data();
+        $nav['act']              = 4;
 
         $this->load->view('header-gis', $header);
 
@@ -95,7 +84,6 @@ class Area extends CI_Controller
             $data['area']        = null;
             $data['form_action'] = site_url('area/insert');
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;

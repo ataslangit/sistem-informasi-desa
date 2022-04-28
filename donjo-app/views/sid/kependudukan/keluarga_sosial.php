@@ -1,9 +1,6 @@
-
 <!-- Start of Space Admin -->
 	<table class="inner">
 	<tr style="vertical-align:top">
-
-
 <td style="background:#fff;padding:0px;">
 <script type="text/javascript" src="<?= base_url()?>assets/js/highcharts/highcharts.js"></script>
 <script type="text/javascript">
@@ -21,12 +18,12 @@
 						title: {
 							text: 'Kelas Sosial'
 						},
-                        categories: [
-						<?php  $i = 0;
+ categories: [
+						<?php $i = 0;
 
 foreach ($main as $data) {
     $i++; ?>
-						  <?= "'{$data['nama']}',"; ?>
+						 <?= "'{$data['nama']}',"; ?>
 						<?php
 }?>
 						]
@@ -45,7 +42,7 @@ foreach ($main as $data) {
 						y: 70,
 						floating: true,
 						shadow: true,
-                        enabled:false
+ enabled:false
 					},
 					tooltip: {
 						formatter: function() {
@@ -55,18 +52,18 @@ foreach ($main as $data) {
 					},
 					plotOptions: {
 						series: {
-                            colorByPoint: true
-                        },
-                        column: {
+ colorByPoint: true
+ },
+ column: {
 							pointPadding: 0.2,
 							borderWidth: 0
 						}
 					},
-				        series: [{
+				 series: [{
 						name: 'Populasi',
 						data: [
-						<?php  foreach ($main as $data) {?>
-						  <?= $data['jumlah'] . ','; ?>
+						<?php foreach ($main as $data) {?>
+						 <?= $data['jumlah'] . ','; ?>
 						<?php }?>]
 
 					}]
@@ -77,70 +74,70 @@ foreach ($main as $data) {
 
 </script>
 <div class="content-header">
-    <h3>Data Keluarga</h3>
+ <h3>Data Keluarga</h3>
 </div>
 <div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
-    <div class="ui-layout-north panel">
-        <div class="left">
-            <div class="uibutton-group">
+ <div class="ui-layout-north panel">
+ <div class="left">
+ <div class="uibutton-group">
 				<select name="dusun" onchange="formAction('mainform','<?= site_url('keluarga/dusun/1')?>')">
-                    <option value="">Dusun</option>
+ <option value="">Dusun</option>
 					<?php foreach ($list_dusun as $data) {?>
-                    <option value="<?= $data['dusun']?>" <?php if ($dusun === $data['dusun']) :?>selected<?php endif?>><?= $data['dusun']?></option>
+ <option value="<?= $data['dusun']?>" <?php if ($dusun === $data['dusun']) :?>selected<?php endif?>><?= $data['dusun']?></option>
 					<?php }?>
-                </select>
+ </select>
 
 				<?php if ($dusun) {?>
-                <select name="rw" onchange="formAction('mainform','<?= site_url('keluarga/rw/1')?>')">
-                    <option value="">RW</option>
+ <select name="rw" onchange="formAction('mainform','<?= site_url('keluarga/rw/1')?>')">
+ <option value="">RW</option>
 					<?php foreach ($list_rw as $data) {?>
-                    <option value="<?= $data['rw']?>" <?php if ($rw === $data['rw']) :?>selected<?php endif?>><?= $data['rw']?></option>
+ <option value="<?= $data['rw']?>" <?php if ($rw === $data['rw']) :?>selected<?php endif?>><?= $data['rw']?></option>
 					<?php }?>
-                </select>
+ </select>
 				<?php }?>
 
 				<?php if ($rw) {?>
-                <select name="rt" onchange="formAction('mainform','<?= site_url('keluarga/rt/1')?>')">
-                    <option value="">RT</option>
+ <select name="rt" onchange="formAction('mainform','<?= site_url('keluarga/rt/1')?>')">
+ <option value="">RT</option>
 					<?php foreach ($list_rt as $data) {?>
-                    <option value="<?= $data['rt']?>" <?php if ($rt === $data['rt']) :?>selected<?php endif?>><?= $data['rt']?></option>
+ <option value="<?= $data['rt']?>" <?php if ($rt === $data['rt']) :?>selected<?php endif?>><?= $data['rt']?></option>
 					<?php }?>
-                </select>
+ </select>
 				<?php }?>
 
-            </div>
-        </div>
-        <div class="right">
-            <div class="uibutton-group">
+ </div>
+ </div>
+ <div class="right">
+ <div class="uibutton-group">
 <a href="<?= site_url()?>/keluarga/clear" class="uibutton icon prev">Kembali</a>
-            </div>
-        </div>
-    </div>
-    <div class="ui-layout-center" id="chart" style="padding: 5px;">
+ </div>
+ </div>
+ </div>
+ <div class="ui-layout-center" id="chart" style="padding: 5px;">
 
-    </div>
-    <div class="ui-layout-south panel bottom" style="max-height: 150px;overflow:auto;">
-        <table class="list">
+ </div>
+ <div class="ui-layout-south panel bottom" style="max-height: 150px;overflow:auto;">
+ <table class="list">
 		<thead>
-            <tr>
-                <th>No</th>
-				<th align="left" align="center">Statistik</th>
-				<th align="left" align="center">Populasi</th>
+ <tr>
+ <th>No</th>
+				<th>Statistik</th>
+				<th>Populasi</th>
 
 			</tr>
 		</thead>
 		<tbody>
-        <?php  foreach ($main as $data): ?>
+ <?php foreach ($main as $data): ?>
 		<tr>
-          <td align="center" width="2"><?= $data['id']?></td>
-          <td><?= $data['nama']?></td>
-          <td><?= $data['jumlah']?></td>
-		  </tr>
-        <?php  endforeach; ?>
+ <td align="center" width="2"><?= $data['id']?></td>
+ <td><?= $data['nama']?></td>
+ <td><?= $data['jumlah']?></td>
+		 </tr>
+ <?php endforeach; ?>
 		</tbody>
-        </table>
-    </div>
+ </table>
+ </div>
 	</form>
 </div>
 </td></tr></table>

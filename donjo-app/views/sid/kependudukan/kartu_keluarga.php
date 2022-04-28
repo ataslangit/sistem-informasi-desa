@@ -3,11 +3,10 @@ $(function(){
 var nik = {};
 nik.results = [
 <?php foreach ($penduduk as $data) {?>
-   {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
+ {id:'<?= $data['id']?>',name:"<?= $data['nik'] . ' - ' . ($data['nama'])?>",info:"<?= $data['alamat']?>"},
 <?php }?>
 ];
 nik.total = nik.results.length;
-
 $('#nik').flexbox(nik, {
 resultTemplate: '<div><label>No nik : </label>{name}</div><div>{info}</div>',
 watermark: 'Ketik nama / nik di sini..',
@@ -19,36 +18,24 @@ $('#'+'main').submit();
 });
 });
 </script>
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
 <h3>Form Manajemen KK : <?= $kepala_kk['nama']?></h3>
 </div>
 <div id="contentpane">
 <form id="mainform" name="mainform" action="<?= $form_action?>" method="post" enctype="multipart/form-data">
-   <div class="ui-layout-north panel">
-        <div class="left">
-            <div class="uibutton-group">
+ <div class="ui-layout-north panel">
+ <div class="left">
+ <div class="uibutton-group">
 <a href="<?= site_url("keluarga/anggota/{$p}/{$o}/{$id_kk}")?>" class="uibutton icon prev">Daftar Anggota</a>
 <a href="<?= site_url("keluarga/form_a/{$p}/{$o}/{$id_kk}")?>" class="uibutton icon next">Tambah Anggota</a>
-
-
 </div>
-        </div>
+ </div>
 </div>
-
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-
-
-
-
-
-
 <table width="100%" cellpadding="3" cellspacing="4">
 <div align="center">
 <h3> KARTU KELUARGA </h3>
@@ -57,13 +44,13 @@ $('#'+'main').submit();
 </div>
 <tr>
 <td width="100">Alamat</td>
-<td width="200">: <?= strtoupper(unpenetration(ununderscore($kepala_kk['dusun'])))  ?></td>
+<td width="200">: <?= strtoupper(unpenetration(ununderscore($kepala_kk['dusun']))) ?></td>
 <td width="120">Kabupaten</td>
 <td width="150">: <?= strtoupper(unpenetration($desa['nama_kabupaten'])) ?></td>
 </tr>
 <tr>
 <td>RT/RW</td>
-<td>: <?= unpenetration($kepala_kk['rt'])  ?> / <?= unpenetration($kepala_kk['rw'])  ?> </td>
+<td>: <?= unpenetration($kepala_kk['rt']) ?> / <?= unpenetration($kepala_kk['rw']) ?> </td>
 <td>Kode Pos</td>
 <td>: <?= $desa['kode_pos'] ?></td>
 </tr>
@@ -81,10 +68,7 @@ $('#'+'main').submit();
 </tr>
 </table>
 <p style="font-family:verdana,arial,sans-serif;font-size:10px;"></p>
-
-
-
-<table class="list"  style="width:100%">
+<table class="list" style="width:100%">
 <thead>
 <tr>
 <th>No</th>
@@ -99,10 +83,7 @@ $('#'+'main').submit();
 </tr>
 </thead>
 <tbody>
-
-
-<?php  foreach ($main as $data): ?>
-
+<?php foreach ($main as $data): ?>
 <tr>
 <td align="center" width="2"><?= $data['no']?></td>
 <td><?= strtoupper(unpenetration($data['nama']))?></td>
@@ -114,12 +95,10 @@ $('#'+'main').submit();
 <td><?= $data['pendidikan']?></td>
 <td><?= $data['pekerjaan']?></td>
 </tr>
-<?php  endforeach; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
-
-
-<table class="list"  style="width:100%">
+<table class="list" style="width:100%">
 <thead>
 <tr>
 <th>No</th>
@@ -131,13 +110,10 @@ $('#'+'main').submit();
 <th align="left" width='100'>Nama Ayah</th>
 <th align="left" width='100'>Nama Ibu</th>
 <th align="left" width='100'>Golongan darah</th>
-
 </tr>
 </thead>
-
-
 <tbody>
-<?php  foreach ($main as $data): ?>
+<?php foreach ($main as $data): ?>
 <tr>
 <td align="center" width="2"><?= $data['no']?></td>
 <td><?= $data['status_kawin']?></td>
@@ -149,14 +125,10 @@ $('#'+'main').submit();
 <td><?= strtoupper($data['nama_ibu'])?></td>
 <td><?= $data['golongan_darah']?></td>
 </tr>
-<?php  endforeach; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
-
-
-
 <table width="100%" cellpadding="3" cellspacing="4">
-
 <tr></tr>
 <tr></tr>
 <tr></tr>
@@ -164,14 +136,11 @@ $('#'+'main').submit();
 <tr></tr>
 <tr></tr>
 <tr></tr>
-
 <tr>
 <td width="100"></td>
 <td width="400"></td>
 <td align="center" width="150"><?= unpenetration($desa['nama_desa']) ?>, <?= tgl_indo(date('Y m d'))?></td>
 </tr>
-
-
 <tr></tr>
 <tr></tr>
 <tr></tr>
@@ -187,16 +156,12 @@ $('#'+'main').submit();
 <tr></tr>
 <tr></tr>
 <tr></tr>
-
 <tr></tr>
 <tr></tr>
 <tr></tr>
 <tr></tr>
 </table>
-
 <p style="font-family:verdana,arial,sans-serif;font-size:10px;"></p>
-
-
 </div>
 <div class="ui-layout-south panel bottom">
 <div class="left">
@@ -204,9 +169,8 @@ $('#'+'main').submit();
 </div>
 <div class="right">
 <div class="uibutton-group">
-
 <a href="<?= site_url("keluarga/cetak_kk/{$id_kk}")?>" target="_blank" class="uibutton special">Cetak</a>
-<a href="<?= site_url("keluarga/doc_kk/{$id_kk}")?>" target="_blank" class="uibutton confirm">Export</a>
+<a href="<?= site_url("keluarga/doc_kk/{$id_kk}")?>" target="_blank" class="uibutton confirm">Unduh</a>
 </div>
 </div>
 </div>

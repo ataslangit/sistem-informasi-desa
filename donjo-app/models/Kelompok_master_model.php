@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Kelompok_master_model extends CI_Model
 {
     public function autocomplete()
@@ -73,8 +75,6 @@ class Kelompok_master_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.kelompok'; break;
 
@@ -91,22 +91,18 @@ class Kelompok_master_model extends CI_Model
             default:$order_sql = ' ORDER BY u.kelompok';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
         $sql = 'SELECT u.* FROM kelompok_master u WHERE 1 ';
 
         $sql .= $this->search_sql();
-        //$sql .= $this->filter_sql();
-        //$sql .= $this->state_sql();
+
         $sql .= $order_sql;
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -134,10 +130,8 @@ class Kelompok_master_model extends CI_Model
     public function update($id = 0)
     {
         $data = $_POST;
-
         $this->db->where('id', $id);
         $outp = $this->db->update('kelompok_master', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {

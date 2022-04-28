@@ -1,4 +1,8 @@
-<?php class Program_bantuan_model extends CI_Model
+<?php
+
+defined('BASEPATH') || exit('No direct script access allowed');
+
+class Program_bantuan_model extends CI_Model
 {
     public function __construct()
     {
@@ -8,9 +12,9 @@
     public function list_program($sasaran = 0)
     {
         if ($sasaran > 0) {
-            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status  FROM program p WHERE p.sasaran=' . $sasaran;
+            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE p.sasaran=' . $sasaran;
         } else {
-            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status  FROM program p WHERE 1';
+            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE 1';
         }
         $query = $this->db->query($strSQL);
 
@@ -20,18 +24,18 @@
     public function get_program($slug)
     {
         if ($slug === false) {
-            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status  FROM program p WHERE 1';
+            $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE 1';
             $query  = $this->db->query($strSQL);
 
             return $query->result_array();
         }
-        $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status  FROM program p WHERE p.id=' . $slug;
+        $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE p.id=' . $slug;
         $query  = $this->db->query($strSQL);
         $hasil0 = $query->row_array();
 
         switch ($hasil0['sasaran']) {
                 case 1:
-                    // Data penduduk
+
                     $strSQL = 'SELECT p.id,p.peserta,o.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_penduduk o ON p.peserta=o.nik
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
@@ -83,7 +87,7 @@
                     break;
 
                 case 2:
-                    // Data KK
+
                     $strSQL = 'SELECT p.id as id,p.peserta as nama,o.nik_kepala,o.no_kk,q.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_keluarga o ON p.peserta=o.no_kk
 						LEFT JOIN tweb_penduduk q ON o.nik_kepala=q.id
@@ -135,7 +139,7 @@
                     break;
 
                 case 3:
-                    // Data RTM
+
                     $strSQL = 'SELECT p.id,p.peserta,o.nama,o.nik,r.no_kk,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_rtm r ON r.id = p.peserta
 						LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
@@ -159,7 +163,7 @@
                         $hasil1 = false;
                     }
 
-                    $strSQL = 'SELECT r.id, r.no_kk, o.nama,w.rt,w.rw,w.dusun  FROM tweb_rtm r
+                    $strSQL = 'SELECT r.id, r.no_kk, o.nama,w.rt,w.rw,w.dusun FROM tweb_rtm r
 						LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster
 						WHERE 1
@@ -188,7 +192,7 @@
                     break;
 
                 case 4:
-                    // Data Kelompok
+
                     $strSQL = 'SELECT p.id as id, p.peserta as peserta, k.nama as nama FROM program_peserta p
 						LEFT JOIN kelompok k ON k.id=p.peserta
 						WHERE p.program_id=' . $slug;
@@ -210,7 +214,6 @@
                     } else {
                         $hasil1 = false;
                     }
-
                     $strSQL = 'SELECT id,nama FROM kelompok WHERE 1';
                     $query  = $this->db->query($strSQL);
                     $data   = '';
@@ -243,11 +246,7 @@
     public function get_peserta_program($cat, $id)
     {
         $data_program = false;
-        /*
-         * fungsi untuk menampilkan keterlibatan $id dalam program intervensi yg telah dilakukan,
-         * $cat => $sasaran adalah tipe/kategori si $id.
-         *
-         * */
+
         $strSQL = "SELECT p.id as id, o.peserta as nik, p.nama as nama, p.sdate, p.edate, p.ndesc FROM program_peserta o
 			LEFT JOIN program p ON p.id = o.program_id
 			WHERE ((o.peserta='" . fixSQL($id) . "') AND (o.sasaran='" . fixSQL($cat) . "'))";
@@ -258,7 +257,7 @@
 
         switch ($cat) {
             case 1:
-                // Detail Penduduk
+
                 $strSQL = "SELECT o.nama,o.foto,o.nik,w.rt,w.rw,w.dusun FROM tweb_penduduk o
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE o.nik='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
@@ -275,7 +274,7 @@
                 break;
 
             case 2:
-                // KK
+
                 $strSQL = "SELECT o.nik_kepala,o.no_kk,p.nama,w.rt,w.rw,w.dusun FROM tweb_keluarga o
 					LEFT JOIN tweb_penduduk p ON o.nik_kepala=p.id
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster WHERE o.no_kk='" . fixSQL($id) . "'";
@@ -293,8 +292,8 @@
                 break;
 
             case 3:
-                // RTM
-                $strSQL = 'SELECT r.id, r.no_kk, o.nama, o.nik,w.rt,w.rw,w.dusun  FROM tweb_rtm r
+
+                $strSQL = 'SELECT r.id, r.no_kk, o.nama, o.nik,w.rt,w.rw,w.dusun FROM tweb_rtm r
 					LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster
 					WHERE 1
@@ -313,7 +312,7 @@
                 break;
 
             case 4:
-                // Kelompok
+
                 $strSQL = "SELECT k.id as id,k.nama as nama,p.nama as ketua,p.nik as nik,w.rt,w.rw,w.dusun FROM kelompok k
 				 LEFT JOIN tweb_penduduk p ON p.id=k.id_ketua
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
@@ -403,6 +402,3 @@
         }
     }
 }
-
-?>
-

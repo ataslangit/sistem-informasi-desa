@@ -1,6 +1,4 @@
-
 <!-- widget SocMed -->
-
 <div class="box box-default">
 	<div class="box-header">
 		<h3 class="box-title"><i class="fa fa-globe"></i> Info Media Sosial</h3>
@@ -12,19 +10,17 @@
 ?>
 	</div>
 </div>
-
 <!-- widget Google Map -->
 <?php
 if ($data_config['lat'] !== '0') {
     echo '
-
 	<div class="box box-default box-solid">
 		<div class="box-header">
 			<h3 class="box-title"><i class="fa fa-map-marker"></i> Lokasi ' . $desa['nama_desa'] . '</h3>
 		</div>
 		<div class="box-body">
 			<div id="map_canvas" style="height:200px;"></div>
-			<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>'; ?>
+			<script type="text/javascript" src="//maps.google.com/maps/api/js?key=' . $data_config['gapi_key'] . '&sensor=false"></script>'; ?>
 			<script type="text/javascript">
 				var map;
 				var marker;
@@ -68,7 +64,6 @@ if ($data_config['lat'] !== '0') {
 	';
 }
 ?>
-
 <div class="box box-success">
 	<div class="box-header">
 		<h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Statistik Pengunjung</h3>
@@ -78,7 +73,7 @@ if ($data_config['lat'] !== '0') {
     if (! isset($_SESSION['MemberOnline'])) {
         $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
         if ($cek->num_rows() === 0) {
-            $up                       = $this->db->query("INSERT  INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
+            $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
             $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
         } else {
             $res                      = mysql_fetch_array($cek);
@@ -107,7 +102,6 @@ if ($data_config['lat'] !== '0') {
     $rs      = $this->db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
     $visitor = $rs->row(0);
     $total   = $visitor->Total;
-
     function num_toimage($tot, $jumlah)
     {
         $pattern = '';
@@ -130,7 +124,6 @@ if ($data_config['lat'] !== '0') {
 
         return str_replace('_BASE_URL_', base_url(), $num);
     }
-
     ?>
 		<div id="container" align="center">
 			<table cellpadding="0" cellspacing="0" class="counter">
@@ -150,10 +143,7 @@ if ($data_config['lat'] !== '0') {
 		</div>
 	</div>
 </div>
-
-
 <!-- widget Arsip Artikel -->
-
 <div class="box box-primary box-solid">
 	<div class="box-header">
 		<h3 class="box-title"><a href="<?= site_url('first/arsip')?>"><i class="fa fa-archive"></i> Arsip Artikel</a></h3>
@@ -166,13 +156,11 @@ if ($data_config['lat'] !== '0') {
 		</ul>
 	</div>
 </div>
-
 <!--widget Manual-->
 <?php
-
 if ($w_cos) {
-    foreach ($w_cos as $data) {
-        echo '
+        foreach ($w_cos as $data) {
+            echo '
 		<div class="box box-primary box-solid">
 			<div class="box-header">
 				<h3 class="box-title">' . $data['judul'] . '</h3>
@@ -182,8 +170,6 @@ if ($w_cos) {
 			</div>
 		</div>
 		';
+        }
     }
-}
-
 ?>
-

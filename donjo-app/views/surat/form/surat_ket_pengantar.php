@@ -16,11 +16,8 @@
 				$('#'+'main').submit();
 		}
 		});
-
 	});
 </script>
-
-
 <style>
 table.form.detail th{
 	padding:5px;
@@ -31,12 +28,7 @@ table.form.detail td{
 	padding:5px;
 }
 </style>
-
 <div id="pageC">
-	<table class="inner">
-	<tr style="vertical-align:top">
-
-	<td style="background:#fff;">
 		<div id="contentpane">
 			<div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 				<h3>Formulir Layanan: Surat Keterangan</h3>
@@ -74,7 +66,13 @@ table.form.detail td{
 							</tr>
 							<tr>
 								<th>Warganegara / Agama</th>
-								<td><?= $individu['warganegara']?> / <?= $individu['agama']?></td>
+								<td><?= $individu['warganegara']?> / <?= $individu['agama']?>
+</td>
+</tr>
+							<tr>
+								<th>Dokumen Kelengkapan / Syarat</th>
+								<td>
+									<a header="Dokumen" target="ajax-modal" rel="dokumen" href="<?= site_url("penduduk/dokumen_list/{$individu['id']}")?>" class="uibutton special">Daftar Dokumen</a><a target="_blank" href="<?= site_url("penduduk/dokumen/{$individu['id']}")?>" class="uibutton confirm">Manajemen Dokumen</a> )* Atas Nama <?= $individu['nama']?> [<?= $individu['nik']?>]</td>
 							</tr>
 						<?php
 }
@@ -88,8 +86,12 @@ table.form.detail td{
 							<td><textarea name="keperluan" class=" required" style="resize: none; height:80px; width:300px;" size="500"></textarea></td>
 						</tr>
 						<tr>
+							<th>Tujuan</th>
+							<td><input name="tujuan" type="text" class="inputbox" size="60"/></td>
+						</tr>
+						<tr>
 							<th>Keterangan</th>
-							<td><input name="keterangan" type="text" class="inputbox" size="40"/></td>
+							<td><input name="keterangan" type="text" class="inputbox" size="60"/></td>
 						</tr>
 						<tr>
 							<th>Berlaku</th>
@@ -97,7 +99,7 @@ table.form.detail td{
 						</tr>
 						<tr>
 							<th>Staf Pemerintah Desa</th>
-							<td><select name="pamong"  class="inputbox required">
+							<td><select name="pamong" class="inputbox required">
 								<option value="">Pilih Staf Pemerintah Desa</option>
 								<?php foreach ($pamong as $data) {?>
 									<option value="<?= $data['pamong_nama']?>"><?= $data['pamong_nama']?>(<?= $data['jabatan']?>)</option>
@@ -106,7 +108,7 @@ table.form.detail td{
 						</tr>
 						<tr>
 							<th>Sebagai</th>
-							<td><select name="jabatan"  class="inputbox required">
+							<td><select name="jabatan" class="inputbox required">
 								<option value="">Pilih Jabatan</option>
 								<?php foreach ($pamong as $data) {?>
 									<option ><?= $data['jabatan']?></option>
@@ -114,22 +116,19 @@ table.form.detail td{
 								</select></td>
 						</tr>
 					</table>
+</div>
 				</div>
-			</div>
 				<div class="ui-layout-south panel bottom">
 					<div class="left">
 						<a href="<?= site_url()?>/surat" class="uibutton icon prev">Kembali</a>
 					</div>
 					<div class="right">
 						<div class="uibutton-group">
-							<button class="uibutton" type="reset">Clear</button>
+
 							<button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
-							<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button><?php } ?>
+							<?php if (file_exists("surat/{$url}/{$url}.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?= $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Unduh</button><?php } ?>
 						</div>
 					</div>
 				</div>
 			</form>
-			</td>
-		</tr>
-	</table>
 </div>

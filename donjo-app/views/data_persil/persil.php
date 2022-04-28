@@ -1,27 +1,4 @@
 <?php
-/*
- * persil.php
- *
- * Copyright 2015 Isnu Suntoro <isnusun@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */
-
 ?>
 <script>
 	$(function() {
@@ -47,7 +24,7 @@
 					<form id="mainform" name="mainform" action="" method="post">
 							<div class="left">
 								<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?= $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?= site_url('data_persil/search')?>');$('#'+'mainform').submit();}" />
-								<button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south"  title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+								<button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
 							</div>
 					</form>
 			<?php
@@ -58,11 +35,9 @@
             }
             ?>
 
-<?php // List Data
-
-if ($persil) {
-    if (count($persil) > 0) {
-        echo '
+<?php if ($persil) {
+                if (count($persil) > 0) {
+                    echo '
 			<div class="table-panel top">
 				<table class="list">
 					<thead><tr><th>#</th><th style="width:120px;"></th>
@@ -73,11 +48,11 @@ if ($persil) {
 					</tr></thead>
 					<tbody>
 		';
-        $nomer = 0;
+                    $nomer = 0;
 
-        foreach ($persil as $key => $item) {
-            $nomer++;
-            echo '<tr>
+                    foreach ($persil as $key => $item) {
+                        $nomer++;
+                        echo '<tr>
 			<td class="angka">' . $nomer . '</td>
 			<td><div class="uibutton-group">
 					<a class="uibutton tipsy south" href="' . site_url('data_persil/detail/' . $item['id']) . '" title="Detail"><span class="icon-list icon-large"></span> Detail</a>
@@ -90,21 +65,21 @@ if ($persil) {
 			<td>' . $item['luas'] . '</td>
 			<td><a href="#">' . $item['no_sppt_pbb'] . '</a></td>
 			</tr>';
-        }
-        echo '
+                    }
+                    echo '
 					</tbody>
 				</table>
 			</div>
 		';
-    }
-} else {
-    echo '
+                }
+            } else {
+                echo '
 	<div class="box box-warning">
 		<h3 class="box-header">Belum ada Data</h3>
 		<div class="box-body">Silakan ditambahkan data persil dengan menggunakan formulir dari menu <a href="' . site_url('data_persil/create') . '"><i class="icon-plus"></i> Tambah Data Persil Baru</a></div>
 	</div>
 	';
-}
+            }
 ?>
 				<div style="height:10em;"></div>
 				</div>

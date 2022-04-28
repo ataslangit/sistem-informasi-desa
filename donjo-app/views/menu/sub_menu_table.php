@@ -1,10 +1,7 @@
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-
 <td class="side-menu">
-
 <fieldset>
 <legend>Kategori Menu</legend>
 <div class="lmenu">
@@ -15,14 +12,10 @@
 <li <?php if ($tip === 2) {
     echo "class='selected'";
 }?>><a href="<?= site_url('menu/index/2')?>">Dinamis</a></li>
-
-
 </ul>
 </div>
 </fieldset>
-
 </td>
-
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub Menu</h3>
@@ -63,7 +56,7 @@
 <input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 </td>
 <td><div class="uibutton-group">
-<a href="<?= site_url("menu/ajax_add_sub_menu/{$tip}/{$menu}/{$data['id']}")?>"  class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Edit Menu" title="Edit Data"><span class="icon-edit icon-large"> Edit </span></a><a href="<?= site_url("menu/delete_sub_menu/{$tip}/{$menu}/{$data['id']}")?>"  class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("menu/menu_lock_sub_menu/{$tip}/{$menu}/{$data['id']}")?>"  class="uibutton tipsy south" title="Enable menu"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("menu/menu_unlock_sub_menu/{$tip}/{$menu}/{$data['id']}")?>"  class="uibutton tipsy south" title="Disable menu"><span class="icon-unlock icon-large"></span></a><?php endif; ?></div>
+<a href="<?= site_url("menu/ajax_add_sub_menu/{$tip}/{$menu}/{$data['id']}")?>" class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Edit Menu" title="Edit Data"><span class="icon-edit icon-large"> Edit </span></a><a href="<?= site_url("menu/delete_sub_menu/{$tip}/{$menu}/{$data['id']}")?>" class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("menu/menu_lock_sub_menu/{$tip}/{$menu}/{$data['id']}")?>" class="uibutton tipsy south" title="Enable menu"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("menu/menu_unlock_sub_menu/{$tip}/{$menu}/{$data['id']}")?>" class="uibutton tipsy south" title="Disable menu"><span class="icon-unlock icon-large"></span></a><?php endif; ?></div>
 </td>
 <td><?= $data['nama']?></td>
 <td><?= $data['aktif']?></td>

@@ -12,15 +12,11 @@ class Plan extends CI_Controller
         $this->load->model('header_model');
         $this->load->model('plan_lokasi_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
-        //$this->output->enable_profiler(1);
-        // Load library ion auth
+
         //$this->load->library('ion_auth');
-        //		$this->load->library('session');
-        //		$this->load->library('form_validation');
-        //		$this->load->helper('url');
 
         //$this->config->item('ion_auth') ;
         $this->load->database();
@@ -49,19 +45,16 @@ class Plan extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['point'])) {
             $data['point'] = $_SESSION['point'];
         } else {
             $data['point'] = '';
         }
-
         if (isset($_SESSION['subpoint'])) {
             $data['subpoint'] = $_SESSION['subpoint'];
         } else {
             $data['subpoint'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -98,7 +91,6 @@ class Plan extends CI_Controller
             $data['lokasi']      = null;
             $data['form_action'] = site_url('plan/insert');
         }
-
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;

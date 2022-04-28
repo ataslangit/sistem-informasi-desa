@@ -11,7 +11,7 @@ class Keluarga extends CI_Controller
         $this->load->model('keluarga_model');
         $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2) {
+        if (! in_array($grup, ['1', '2'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -41,19 +41,16 @@ class Keluarga extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['sex'])) {
             $data['sex'] = $_SESSION['sex'];
         } else {
             $data['sex'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
             $data['raskin'] = '';
         }
-
         if (isset($_SESSION['id_blt'])) {
             $data['id_blt'] = $_SESSION['id_blt'];
         } else {
@@ -77,13 +74,11 @@ class Keluarga extends CI_Controller
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -140,7 +135,6 @@ class Keluarga extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
@@ -152,13 +146,11 @@ class Keluarga extends CI_Controller
         } else {
             $data['id_blt'] = '';
         }
-
         if (isset($_SESSION['id_pkh'])) {
             $data['id_pkh'] = $_SESSION['id_pkh'];
         } else {
             $data['id_pkh'] = '';
         }
-
         if (isset($_SESSION['id_bos'])) {
             $data['id_bos'] = $_SESSION['id_bos'];
         } else {
@@ -170,13 +162,11 @@ class Keluarga extends CI_Controller
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -208,9 +198,8 @@ class Keluarga extends CI_Controller
         $data['main']       = $this->keluarga_model->list_raskin();
         $data['keyword']    = $this->keluarga_model->autocomplete();
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $nav['act'] = 1;
-        $header     = $this->header_model->get_data();
+        $nav['act']         = 1;
+        $header             = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/keluarga_sosial', $data);
@@ -233,43 +222,36 @@ class Keluarga extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
             $data['raskin'] = '';
         }
-
         if (isset($_SESSION['id_blt'])) {
             $data['id_blt'] = $_SESSION['id_blt'];
         } else {
             $data['id_blt'] = '';
         }
-
         if (isset($_SESSION['id_bos'])) {
             $data['id_bos'] = $_SESSION['id_bos'];
         } else {
             $data['id_bos'] = '';
         }
-
         if (isset($_SESSION['id_pkh'])) {
             $data['id_pkh'] = $_SESSION['id_pkh'];
         } else {
             $data['id_pkh'] = '';
         }
-
         if (isset($_SESSION['id_jampersal'])) {
             $data['id_jampersal'] = $_SESSION['id_jampersal'];
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -301,9 +283,8 @@ class Keluarga extends CI_Controller
         $data['main']       = $this->keluarga_model->list_raskin();
         $data['keyword']    = $this->keluarga_model->autocomplete();
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $nav['act'] = 1;
-        $header     = $this->header_model->get_data();
+        $nav['act']         = 1;
+        $header             = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/keluarga_raskin', $data);
@@ -326,43 +307,36 @@ class Keluarga extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
             $data['raskin'] = '';
         }
-
         if (isset($_SESSION['id_blt'])) {
             $data['id_blt'] = $_SESSION['id_blt'];
         } else {
             $data['id_blt'] = '';
         }
-
         if (isset($_SESSION['id_bos'])) {
             $data['id_bos'] = $_SESSION['id_bos'];
         } else {
             $data['id_bos'] = '';
         }
-
         if (isset($_SESSION['id_pkh'])) {
             $data['id_pkh'] = $_SESSION['id_pkh'];
         } else {
             $data['id_pkh'] = '';
         }
-
         if (isset($_SESSION['id_jampersal'])) {
             $data['id_jampersal'] = $_SESSION['id_jampersal'];
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -394,9 +368,8 @@ class Keluarga extends CI_Controller
         $data['main']       = $this->keluarga_model->list_raskin();
         $data['keyword']    = $this->keluarga_model->autocomplete();
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $nav['act'] = 1;
-        $header     = $this->header_model->get_data();
+        $nav['act']         = 1;
+        $header             = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/keluarga_jamkesmas', $data);
@@ -465,6 +438,7 @@ class Keluarga extends CI_Controller
 
         $nav['act'] = 1;
 
+        $data['list_no_kk']     = $this->keluarga_model->duplikasi();
         $data['dusun']          = $this->penduduk_model->list_dusun();
         $data['rw']             = $this->penduduk_model->list_rw($data['dus_sel']);
         $data['rt']             = $this->penduduk_model->list_rt($data['dus_sel'], $data['rw_sel']);
@@ -530,15 +504,9 @@ class Keluarga extends CI_Controller
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            unset($_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
         }
-        if ($s === 1) {
-            redirect('keluarga/sosial');
-        } elseif ($s === 2) {
-            redirect('keluarga/raskin_graph');
-        } else {
-            redirect('keluarga');
-        }
+        redirect('keluarga');
     }
 
     public function rw($s = 0)
@@ -638,14 +606,54 @@ class Keluarga extends CI_Controller
 
     public function insert_a()
     {
-        $this->keluarga_model->insert_a();
-        redirect('keluarga');
+        $data = $this->keluarga_model->dn();
+
+        $i    = 0;
+        $dp   = 0;
+        $link = site_url('keluarga');
+
+        while ($i < count($data)) {
+            if ($_POST['nik'] === $data[$i]['nik']) {
+                $dp = 1;
+                $nk = $data[$i]['nik'];
+            }
+
+            $i++;
+        }
+        if ($dp === 1) {
+            echo "<h3>TERJADI KESALAHAN</h3><br><h4>Data Tidak Tersimpan</h><br>
+			Sudah terdapat Penduduk dengan nomor NIK {$nk}, Silahkan periksa kembali dan ulangi proses memasukkan data.</br>
+			Klik disini untuk <a href='{$link}'> Kembali</a>";
+        } else {
+            $this->keluarga_model->insert_a();
+            redirect('keluarga');
+        }
     }
 
     public function insert_new()
     {
-        $this->keluarga_model->insert_new();
-        redirect('keluarga');
+        $data = $this->keluarga_model->dp();
+
+        $i    = 0;
+        $dp   = 0;
+        $link = site_url('keluarga/form/0/1');
+
+        while ($i < count($data)) {
+            if ($_POST['no_kk'] === $data[$i]['no_kk']) {
+                $dp = 1;
+                $nk = $data[$i]['no_kk'];
+            }
+
+            $i++;
+        }
+        if ($dp === 1) {
+            echo "<h3>TERJADI KESALAHAN</h3><br><h4>Data Tidak Tersimpan</h><br>
+			Sudah terdapat keluarga dengan nomor KK {$nk}, Silahkan periksa kembali dan ulangi proses memasukkan data.</br>
+			Klik disini untuk <a href='{$link}'> Kembali</a>";
+        } else {
+            $this->keluarga_model->insert_new();
+            redirect('keluarga');
+        }
     }
 
     public function update($id = '')
@@ -680,9 +688,8 @@ class Keluarga extends CI_Controller
 
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $data['kepala_kk'] = $this->keluarga_model->get_kepala_kk($id);
-
-        $nav['act'] = 1;
-        $header     = $this->header_model->get_data();
+        $nav['act']        = 1;
+        $header            = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/keluarga_anggota', $data);
@@ -691,9 +698,8 @@ class Keluarga extends CI_Controller
 
     public function ajax_add_anggota($p = 1, $o = 0, $id = 0)
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
-
+        $data['p']        = $p;
+        $data['o']        = $o;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
@@ -711,9 +717,8 @@ class Keluarga extends CI_Controller
 
     public function edit_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
-
+        $data['p']        = $p;
+        $data['o']        = $o;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->get_anggota($id);
 
@@ -731,10 +736,9 @@ class Keluarga extends CI_Controller
 
     public function kartu_keluarga($p = 1, $o = 0, $id = 0)
     {
-        $data['p']     = $p;
-        $data['o']     = $o;
-        $data['id_kk'] = $id;
-
+        $data['p']        = $p;
+        $data['o']        = $o;
+        $data['id_kk']    = $id;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
@@ -748,8 +752,7 @@ class Keluarga extends CI_Controller
 
         $data['penduduk'] = $this->keluarga_model->list_penduduk_lepas();
         $nav['act']       = 1;
-
-        $header = $this->header_model->get_data();
+        $header           = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $data['form_action'] = site_url('keluarga/print');
@@ -760,8 +763,7 @@ class Keluarga extends CI_Controller
 
     public function cetak_kk($id = 0)
     {
-        $data['id_kk'] = $id;
-
+        $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
         $data['desa']      = $this->keluarga_model->get_desa();
@@ -784,20 +786,13 @@ class Keluarga extends CI_Controller
 
     public function coba2($id = 0)
     {
-
-        //$data['desa']     = $this->keluarga_model->get_desa();
-
-        //$data['id_kk']    = $id;
-        //$data['main']     = $this->keluarga_model->list_anggota($id);
-        //$data['kepala_kk']= $this->keluarga_model->get_kepala_kk($id);
-
         $this->keluarga_model->coba2();
     }
 
     public function add_anggota($p = 1, $o = 0, $id = 0)
     {
         $this->keluarga_model->add_anggota($id);
-        redirect("keluarga/index/{$p}/{$o}");
+        redirect("keluarga/anggota/{$p}/{$o}/{$id}");
     }
 
     public function update_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
@@ -836,7 +831,7 @@ class Keluarga extends CI_Controller
     public function ajax_penduduk_pindah_rw($dusun = '')
     {
         $rw = $this->penduduk_model->list_rw($dusun);
-        //$this->load->view("sid/kependudukan/ajax_penduduk_pindah_form_rw", $data);
+
         echo "<td>RW</td>
 		<td><select name='rw' onchange=RWSel('" . $dusun . "',this.value)>
 		<option value=''>Pilih RW&nbsp;</option>";
@@ -851,7 +846,7 @@ class Keluarga extends CI_Controller
     public function ajax_penduduk_pindah_rt($dusun = '', $rw = '')
     {
         $rt = $this->penduduk_model->list_rt($dusun, $rw);
-        //$this->load->view("sid/kependudukan/ajax_penduduk_pindah_form_rt", $data);
+
         echo "<td>RT</td>
 		<td><select name='rt'>
 		<option value=''>Pilih RT&nbsp;</option>";
@@ -879,13 +874,11 @@ class Keluarga extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_SESSION['raskin'])) {
             $data['raskin'] = $_SESSION['raskin'];
         } else {
             $data['raskin'] = '';
         }
-
         if (isset($_SESSION['id_blt'])) {
             $data['id_blt'] = $_SESSION['id_blt'];
         } else {
@@ -909,13 +902,11 @@ class Keluarga extends CI_Controller
         } else {
             $data['id_jampersal'] = '';
         }
-
         if (isset($_SESSION['id_bedah_rumah'])) {
             $data['id_bedah_rumah'] = $_SESSION['id_bedah_rumah'];
         } else {
             $data['id_bedah_rumah'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -944,7 +935,7 @@ class Keluarga extends CI_Controller
         }
 
         switch ($tipe) {
-            //case 0: $_SESSION['raskin'] = 0;$_SESSION['kelas'] = 0; break;
+
             case 21: $_SESSION['kelas'] = $nomor; $pre = 'KELAS SOSIAL : '; break;
 
             case 22: $_SESSION['raskin'] = $nomor; $pre = 'RASKIN : '; break;
@@ -964,21 +955,18 @@ class Keluarga extends CI_Controller
         $data['main']       = $this->keluarga_model->list_data_statistik($tipe, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']    = $this->keluarga_model->autocomplete();
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $judul = $this->keluarga_model->get_judul_statistik($tipe, $nomor);
+        $judul              = $this->keluarga_model->get_judul_statistik($tipe, $nomor);
         if ($judul['nama']) {
             $_SESSION['judul_statistik'] = $pre . $judul['nama'];
         } else {
             unset($_SESSION['judul_statistik']);
         }
-
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('sid/nav', $nav);
         $this->load->view('sid/kependudukan/keluarga_statistik', $data);
         $this->load->view('footer');
-
         //redirect('keluarga');
     }
 

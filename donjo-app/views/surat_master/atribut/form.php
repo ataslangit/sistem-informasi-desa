@@ -2,9 +2,7 @@
 <table class="inner">
 <tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;">
-
 <div class="content-header">
-
 </div>
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Form Data Parameter</h3>
@@ -31,7 +29,7 @@
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

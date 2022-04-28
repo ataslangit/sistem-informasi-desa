@@ -1,4 +1,3 @@
-
 <div id="pageC">
 <!-- Start of Space Admin -->
 	<table class="inner">
@@ -18,27 +17,23 @@
 <td style="background:#fff;padding:0px;">
 <div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
-
-    <div class="ui-layout-north panel top">
-        <div class="left">
-            <div class="uibutton-group">
-
+ <div class="ui-layout-north panel top">
+ <div class="left">
+ <div class="uibutton-group">
 			<a href="<?= site_url('laporan_perubahan/cetak')?>" class="uibutton special tipsy south" title="Cetak" target="_blank"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</a>
-            </div>
-        </div>
-    </div>
-    <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-
+ </div>
+ </div>
+ </div>
+ <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <style type="text/css">
 table.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
 table.tftable th {font-size:12px;background-color:#8DABD4;border-width: 1px;padding: 3px;border-style: solid;border-color: #7195BA;text-align:left;}
 table.tftable tr {background-color:#ffffff;}
 table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
 </style>
-
-	   <table  width="100%">
+	 <table width="100%">
 				<tbody><tr>	<?php foreach ($config as $data) {?>
-					<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA  <?= strtoupper($data['nama_kabupaten'])?></h4></td>
+					<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA <?= strtoupper($data['nama_kabupaten'])?></h4></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -51,7 +46,6 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 					<td width="3%">:</td>
 					<td width="38.5%"><?= $data['nama_desa']?></h4></td>
 					<td></td>
-
 				</tr>
 				<tr>
 					<td>Kecamatan</td>
@@ -72,19 +66,17 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 					<td width="3%">:</td>
 					<td><?= $bln?> </td>
 					<td width="40%"></td>
-
 				</tr>
 
 		</tbody></table>
-
 	<table width="100%" id="tfhover" class="tftable" border="1">
 	<thead>
 		<tr>
 			<th rowspan="3" scope="col" ><div align="center">NO</div></th>
-			<th rowspan="3" scope="col"  ><div align="center">DUSUN</div></th>
-			<th colspan="3" rowspan="2" scope="col"  width="15%"><div align="center">PENDUDUK AKHIR BULAN LALU</div></th>
-			<th colspan="12" scope="col"  width="60%"><div align="center">PERUBAHAN PENDUDUK</div></th>
-			<th colspan="3" rowspan="2" scope="col"  width="15%"><div align="center">PENDUDUK AKHIR BULAN INI</div></th>
+			<th rowspan="3" scope="col" ><div align="center">DUSUN</div></th>
+			<th colspan="3" rowspan="2" scope="col" width="15%"><div align="center">PENDUDUK AKHIR BULAN LALU</div></th>
+			<th colspan="12" scope="col" width="60%"><div align="center">PERUBAHAN PENDUDUK</div></th>
+			<th colspan="3" rowspan="2" scope="col" width="15%"><div align="center">PENDUDUK AKHIR BULAN INI</div></th>
 		</tr>
 		<tr>
 			<th colspan="3" width="15%"><div align="center">KELAHIRAN</div></th>
@@ -136,7 +128,6 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 		</tr>
 	</thead>
 	<tbody>
-
 	<?php $no = 1;
 
     foreach ($main as $data) {?>
@@ -190,13 +181,11 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 		</tr>
 	</thead>
 	</table>
-
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
-    </div></div>
-    <div class="ui-layout-south panel bottom">
+ </div></div>
+ <div class="ui-layout-south panel bottom">
 <div class="left">
 <a href="<?= site_url()?>/sid_wilayah" class="uibutton icon prev">Kembali</a>
 </div>
@@ -205,7 +194,6 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 <button class="uibutton confirm" type="submit" >Cetak</button>
 </div>
 </div>
-
 	</form>
 </div>
 </td></tr></table>

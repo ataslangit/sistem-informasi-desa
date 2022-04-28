@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Surat_master_model extends CI_Model
 {
     public function autocomplete()
@@ -26,49 +28,9 @@ class Surat_master_model extends CI_Model
             $cari       = $_SESSION['cari'];
             $kw         = $this->db->escape_like_str($cari);
             $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            $search_sql = " AND nama LIKE '{$kw}'";
 
             return $search_sql;
-        }
-    }
-
-    public function filter_sql()
-    {
-        if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.act_analisis = {$kf}";
-
-            return $filter_sql;
-        }
-    }
-
-    public function master_sql()
-    {
-        if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
-
-            return $filter_sql;
-        }
-    }
-
-    public function tipe_sql()
-    {
-        if (isset($_SESSION['tipe'])) {
-            $kf         = $_SESSION['tipe'];
-            $filter_sql = " AND u.id_tipe = {$kf}";
-
-            return $filter_sql;
-        }
-    }
-
-    public function kategori_sql()
-    {
-        if (isset($_SESSION['kategori'])) {
-            $kf         = $_SESSION['kategori'];
-            $filter_sql = " AND u.id_kategori = {$kf}";
-
-            return $filter_sql;
         }
     }
 
@@ -76,10 +38,6 @@ class Surat_master_model extends CI_Model
     {
         $sql = 'SELECT COUNT(id) AS id FROM tweb_surat_format u WHERE 1';
         $sql .= $this->search_sql();
-        $sql .= $this->filter_sql();
-
-        $sql .= $this->tipe_sql();
-        $sql .= $this->kategori_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
@@ -95,8 +53,6 @@ class Surat_master_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
-        //Ordering SQL
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nomor'; break;
 
@@ -113,24 +69,17 @@ class Surat_master_model extends CI_Model
             default:$order_sql = ' ORDER BY u.id';
         }
 
-        //Paging SQL
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        //Main Query
-        $sql = 'SELECT u.* FROM tweb_surat_format u  WHERE 1 ';
+        $sql = 'SELECT u.* FROM tweb_surat_format u WHERE 1 ';
 
         $sql .= $this->search_sql();
-        $sql .= $this->filter_sql();
-
-        $sql .= $this->tipe_sql();
-        $sql .= $this->kategori_sql();
         $sql .= $order_sql;
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
         $j = $offset;
 
@@ -155,11 +104,10 @@ class Surat_master_model extends CI_Model
         $mypath = 'surat\\' . $data['url_surat'] . '\\';
         $path   = '' . str_replace('\\', '/', $mypath) . '/';
 
-        if (! file_exists($mypath)) {
-            mkdir($mypath, 0777, true);
+        if (! file_exists($path)) {
+            mkdir($path, 0777, true);
         }
 
-        //doc
         $raw      = 'surat\\raw\\';
         $raw_path = '' . str_replace('\\', '/', $raw);
         $file     = $raw_path . 'template.rtf';
@@ -173,7 +121,6 @@ class Surat_master_model extends CI_Model
         fwrite($handle, $buffer);
         fclose($handle);
 
-        //form
         $mypath    = 'donjo-app\\views\\surat\\form\\';
         $path_form = '' . str_replace('\\', '/', $mypath) . '/';
 
@@ -191,7 +138,6 @@ class Surat_master_model extends CI_Model
         fwrite($handle, $buffer);
         fclose($handle);
 
-        //cetak
         $mypath    = 'donjo-app\\views\\surat\\print\\';
         $path_form = '' . str_replace('\\', '/', $mypath) . '/';
 
@@ -222,7 +168,6 @@ class Surat_master_model extends CI_Model
         $data = $_POST;
         $this->db->where('id', $id);
         $outp = $this->db->update('tweb_surat_format', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -233,12 +178,13 @@ class Surat_master_model extends CI_Model
     public function upload($url = '')
     {
         $tipe_file = $_FILES['foto']['type'];
-        //echo $tipe_file;
-        if ($tipe_file !== 'application/rtf') {
+        $name      = $_FILES['foto']['name'];
+        $name      = substr($name, strlen($name) - 4, 4);
+
+        if ($name !== '.rtf') {
             $_SESSION['success'] = -1;
         } else {
-            $vdir_upload = "surat\\{$url}\\{$url}.rtf";
-            //$vdir_upload = "surat/$url/$url.rtf";
+            $vdir_upload = "surat/{$url}/{$url}.rtf";
             unlink($vdir_upload);
             move_uploaded_file($_FILES['foto']['tmp_name'], $vdir_upload);
             $_SESSION['success'] = 1;
@@ -283,7 +229,6 @@ class Surat_master_model extends CI_Model
         $query = $this->db->query($sql, $id);
         $data  = $query->result_array();
 
-        //Formating Output
         $i = 0;
 
         while ($i < count($data)) {
@@ -303,14 +248,6 @@ class Surat_master_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_analisis_master()
-    {
-        $sql   = 'SELECT * FROM analisis_master WHERE id=?';
-        $query = $this->db->query($sql, $_SESSION['analisis_master']);
-
-        return $query->row_array();
-    }
-
     public function get_tweb_surat_atribut($id = '')
     {
         $sql   = 'SELECT * FROM tweb_surat_atribut WHERE id=?';
@@ -319,20 +256,37 @@ class Surat_master_model extends CI_Model
         return $query->row_array();
     }
 
-    public function list_tipe()
+    public function favorit($id = 0, $k = 0)
     {
-        $sql   = 'SELECT * FROM analisis_tipe_indikator';
-        $query = $this->db->query($sql);
+        if ($k === 1) {
+            $sql = 'UPDATE tweb_surat_format SET favorit = 0 WHERE id=?';
+        } else {
+            $sql = 'UPDATE tweb_surat_format SET favorit = 1 WHERE id=?';
+        }
 
-        return $query->result_array();
+        $outp = $this->db->query($sql, $id);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
     }
 
-    public function list_kategori()
+    public function lock($id = 0, $k = 0)
     {
-        $sql = 'SELECT u.* FROM analisis_kategori_indikator u WHERE 1';
-        $sql .= $this->master_sql();
-        $query = $this->db->query($sql);
+        if ($k === 1) {
+            $sql = 'UPDATE tweb_surat_format SET kunci = 0 WHERE id=?';
+        } else {
+            $sql = 'UPDATE tweb_surat_format SET kunci = 1 WHERE id=?';
+        }
 
-        return $query->result_array();
+        $outp = $this->db->query($sql, $id);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
     }
 }

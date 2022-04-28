@@ -18,13 +18,6 @@
 <li <?php if ($act === 5) {?>class="selected"<?php }?>>
 <a href="<?= site_url('polygon/clear')?>">Tipe Polygon</a>
 </li>
-<?php /*
-<li <?php if($act==1){?>class="selected"<?php }?>>
-<a href="<?php echo site_url('plan_poligon')?>">Tipe Poligon</a>
-</li>
-<li <?php if($act==2){?>class="selected"<?php }?>>
-<a href="<?php echo site_url('plan_line')?>">Tipe Garis</a>
-</li>
-*/ ?>
+<?php ?>
 </ul>
 </div>

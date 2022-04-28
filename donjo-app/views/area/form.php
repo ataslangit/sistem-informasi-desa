@@ -24,13 +24,11 @@
 		</select>
 	</td>
 </tr>
-
 <?php if ($area['foto'] !== '') {?>
 <tr>
 	<th>Foto</th>
 	<td>
 		<img src="<?= base_url()?>assets/files/gis/area/sedang_<?= $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;" />
-
 	</td>
 </tr>
 <?php }?>
@@ -56,7 +54,7 @@
 			<input type="radio" id="sx2" name="enabled" value="2"/<?php if ($area['enabled'] === '2') {
     echo 'checked';
 }?>>
-			<label for="sx2">Non Aktif</label>
+			<label for="sx2">Tidak Aktif</label>
 		</div>
 	</td>
 </tr>
@@ -69,7 +67,7 @@
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

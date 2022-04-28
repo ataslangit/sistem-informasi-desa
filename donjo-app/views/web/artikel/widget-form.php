@@ -5,7 +5,7 @@
 <div id="contentpane">
 <form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data">
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-<h3>Form Widget <?php if ($kategori) {
+<h3>Form Pengaturan Customizable Widget <?php if ($kategori) {
     echo $kategori['kategori'];
 } else {
     echo 'Artikel Statis';
@@ -22,7 +22,7 @@
 <tr>
 <tr>
 <td colspan="2">
-<textarea  name="isi" style="width: 500px; height: 300px;">
+<textarea name="isi" style="width: 500px; height: 300px;">
 <?= $artikel['isi']?>
 </textarea>
 </td>
@@ -47,7 +47,7 @@
 <td><input type="file" name="dokumen" /> <span style="color: #aaa;"></span></td>
 </tr>
 <tr>
-<th>Nama Dokumen (Nantinya akan menjadi link unduh/download)</th>
+<th>Nama Dokumen (akan menjadi link unduh/download)</th>
 <td><input size="30" type="text" name="link_dokumen" value="<?= $artikel['link_dokumen']?>"/></td>
 </tr>
 <tr>
@@ -105,7 +105,7 @@
 </div>
 <div class="right">
 <div class="uibutton-group">
-<button class="uibutton" type="reset">Clear</button>
+
 <button class="uibutton confirm" type="submit" >Simpan</button>
 </div>
 </div>

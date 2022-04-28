@@ -12,9 +12,10 @@ class Analisis_master extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
+        unset($_SESSION['submenu'], $_SESSION['asubmenu']);
     }
 
     public function clear()
@@ -26,9 +27,11 @@ class Analisis_master extends CI_Controller
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['analisis_master']);
-        $data['p'] = $p;
-        $data['o'] = $o;
+        unset($_SESSION['analisis_master'], $_SESSION['analisis_nama']);
+
+        $data['p']  = $p;
+        $data['o']  = $o;
+        $nav['act'] = 1;
 
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
@@ -47,7 +50,6 @@ class Analisis_master extends CI_Controller
         } else {
             $data['state'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -57,19 +59,19 @@ class Analisis_master extends CI_Controller
         $data['main']        = $this->analisis_master_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']     = $this->analisis_master_model->autocomplete();
         $data['list_subjek'] = $this->analisis_master_model->list_subjek();
-
-        $header = $this->header_model->get_data();
+        $header              = $this->header_model->get_data();
 
         $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
+        $this->load->view('analisis_master/nav', $nav);
         $this->load->view('analisis_master/table', $data);
         $this->load->view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
+        $data['p']  = $p;
+        $data['o']  = $o;
+        $nav['act'] = 1;
 
         if ($id) {
             $data['analisis_master'] = $this->analisis_master_model->get_analisis_master($id);
@@ -80,20 +82,22 @@ class Analisis_master extends CI_Controller
         }
 
         $data['list_kelompok'] = $this->analisis_master_model->list_kelompok();
+        $data['list_analisis'] = $this->analisis_master_model->list_analisis_child();
         $header                = $this->header_model->get_data();
 
         $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
+        $this->load->view('analisis_master/nav', $nav);
         $this->load->view('analisis_master/form', $data);
         $this->load->view('footer');
     }
 
     public function panduan()
     {
-        $header = $this->header_model->get_data();
+        $nav['act'] = 1;
+        $header     = $this->header_model->get_data();
 
         $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
+        $this->load->view('analisis_master/nav', $nav);
         $this->load->view('analisis_master/panduan');
         $this->load->view('footer');
     }
@@ -102,19 +106,19 @@ class Analisis_master extends CI_Controller
     {
         $header = $this->header_model->get_data();
 
+        $nav['act']          = 1;
         $data['form_action'] = site_url('analisis_master/import');
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
         $this->load->view('analisis_master/import', $data);
-        $this->load->view('footer');
     }
 
-    public function menu($id = '')
+    public function menu($id = '', $p = 0)
     {
         $_SESSION['analisis_master'] = $id;
         $data['analisis_master']     = $this->analisis_master_model->get_analisis_master($id);
+        $_SESSION['analisis_nama']   = $data['analisis_master']['nama'];
         $da                          = $data['analisis_master'];
         $subjek                      = $da['subjek_tipe'];
+        $_SESSION['subjek_tipe']     = $subjek;
 
         switch ($subjek) {
                 case 1: $data['menu_respon'] = 'analisis_respon_penduduk'; $data['menu_laporan'] = 'analisis_laporan_penduduk'; break;
@@ -127,11 +131,20 @@ class Analisis_master extends CI_Controller
 
                 default:redirect('analisis_master');
             }
+        $data['menu_respon']  = 'analisis_respon';
+        $data['menu_laporan'] = 'analisis_laporan';
+        $header               = $this->header_model->get_data();
 
-        $header = $this->header_model->get_data();
+        //PATCH
+        //if($p==1){
+        $this->load->model('analisis_respon_model');
+        $this->analisis_respon_model->pre_update();
+        //}
+        //----
 
+        $nav['act'] = 1;
         $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
+        $this->load->view('analisis_master/nav', $nav);
         $this->load->view('analisis_master/menu', $data);
         $this->load->view('footer');
     }
@@ -178,7 +191,7 @@ class Analisis_master extends CI_Controller
     public function import()
     {
         $this->analisis_import_model->import_excel();
-        //redirect('analisis_master/import_analisis');
+        redirect('analisis_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')

@@ -1,6 +1,5 @@
 <div id="nav">
 <ul>
-
 <li <?php if ($act === 0) {?>class="selected"<?php }?>>
 <a href="<?= site_url('statistik')?>">Statistik Kependudukan</a>
 </li>

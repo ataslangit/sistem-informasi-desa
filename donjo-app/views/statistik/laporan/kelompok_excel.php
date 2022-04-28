@@ -4,21 +4,17 @@ header('Content-Disposition: attachment; filename=Laporan_rentan.xls');
 header('Pragma: no-cache');
 header('Expires: 0');
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <title>Cetak Laporan Kelompok Rentan</title>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="container">
-
 <!-- Print Body -->
 <div id="body">
-
-	   <table  width="100%"><?php foreach ($config as $data) {?>
+	 <table width="100%"><?php foreach ($config as $data) {?>
 				<tbody><tr>
 				<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA <?= $data['nama_kabupaten']?></h4></td>
 
@@ -37,7 +33,6 @@ header('Expires: 0');
 					<td width="3%">:</td>
 					<td width="38.5%"><?= $data['nama_desa']?></h4></td>
 					<td></td>
-
 				</tr>
 				<tr>
 					<td>Kecamatan</td>
@@ -66,7 +61,6 @@ header('Expires: 0');
 		</tbody></table>
 		<br>
 	<table class="border thick">
-
 <thead>
 <tr class="border thick">
 <th scope="col" width="4%"><div align="center">RW</div></th>
@@ -80,7 +74,7 @@ header('Expires: 0');
 <th width="100%" ><div align="center">L</div></th>
 <th width="100%" ><div align="center">P</div></th>
  </tr>
-  </table></div>
+ </table></div>
 <th colspan="6" scope="col"><div align="center">
 <table width="100%">
  <tr>
@@ -94,8 +88,8 @@ header('Expires: 0');
 <th><div align="center">SMA(16-18thn)</div></th>
 <th><div align="center">Lansia(>60)</div></th>
  </tr>
-  </table></div>
-  </th>
+ </table></div>
+ </th>
 <th colspan="2" scope="col"><div align="center">
 <table width="100%">
  <tr>
@@ -104,10 +98,9 @@ header('Expires: 0');
  <tr>
 <th width="100%" ><div align="center">Fisik</div></th>
 <th width="100%" ><div align="center">Mental</div></th>
-
  </tr>
-  </table></div>
-  </th>
+ </table></div>
+ </th>
 <th colspan="2" scope="col"><div align="center">
 <table width="100%">
  <tr>
@@ -117,8 +110,8 @@ header('Expires: 0');
 <th width="100%" ><div align="center">L</div></th>
 <th width="100%" ><div align="center">P</div></th>
  </tr>
-  </table></div>
-  </th>
+ </table></div>
+ </th>
 <th width="100%" ><div align="center">Hamil</div></th>
  </tr>
 </thead>
@@ -140,18 +133,14 @@ header('Expires: 0');
 <td><?= $data['sakit_P']?></td>
 <td><?= $data['hamil']?></td>
 </tr>
-  <?php }?>
-  </tbody>
+ <?php }?>
+ </tbody>
 </table>
-
-
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
-    </div>
+ </div>
 	</div>
-   <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
+ <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 </div>
-
 </body></html>

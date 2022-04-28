@@ -4,13 +4,11 @@
 <tr>
 	<td colspan="2" align="left">Anda tidak berhak menghapus data ini. Hubungi administrator!</td>
 </tr>
-
-
 </tbody>
 </table>
 <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
-    <div class="uibutton-group">
-        <button class="uibutton icon prev" type="button" onclick="$('#window').dialog('close');"> Batal</button>
-        <a href="<?= $form_action?>" class="uibutton special icon next"> Lanjut </a>
-    </div>
+ <div class="uibutton-group">
+ <button class="uibutton icon prev" type="button" onclick="$('#window').dialog('close');"> Batal</button>
+ <a href="<?= $form_action?>" class="uibutton special icon next"> Lanjut </a>
+ </div>
 </div>

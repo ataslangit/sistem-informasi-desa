@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class Web_gallery_model extends CI_Model
 {
     public function autocomplete()
@@ -77,10 +79,9 @@ class Web_gallery_model extends CI_Model
 
             default:$order_sql = ' ORDER BY id';
         }
-
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
-        $sql = 'SELECT * FROM gambar_gallery WHERE tipe = 0  ';
+        $sql = 'SELECT * FROM gambar_gallery WHERE tipe = 0 ';
 
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();

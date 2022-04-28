@@ -10,7 +10,7 @@ class Sms extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('sms_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if (! in_array($grup, ['1', '2',  '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -40,7 +40,6 @@ class Sms extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -49,9 +48,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging($p, $o);
         $data['main']    = $this->sms_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '0';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '0';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -64,9 +62,8 @@ class Sms extends CI_Controller
     {
         $data['main']        = $this->sms_model->get_autoreply();
         $data['form_action'] = site_url('sms/insert_autoreply');
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '1';
+        $header              = $this->header_model->get_data();
+        $menu['act']         = '1';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -99,9 +96,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_polling($p, $o);
         $data['main']    = $this->sms_model->list_data_polling($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '3';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '3';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -125,7 +121,6 @@ class Sms extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -134,9 +129,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_terkirim($p, $o);
         $data['main']    = $this->sms_model->list_data_terkirim($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '0';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '0';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -161,7 +155,6 @@ class Sms extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -170,9 +163,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_terkirim($p, $o);
         $data['main']    = $this->sms_model->list_data_terkirim($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '0';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '0';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -197,7 +189,6 @@ class Sms extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -206,9 +197,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_tertunda($p, $o);
         $data['main']    = $this->sms_model->list_data_tertunda($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '0';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '0';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -257,9 +247,8 @@ class Sms extends CI_Controller
         $data['sms']['DestinationNumber'] = $_POST['kontak'];
         $data['sms']['TextDecoded']       = $_POST['text'];
         $data['form_action']              = site_url("sms/insert/{$tipe}");
-
-        $data['tipe']['tipe'] = $tipe;
-        $data['grup']         = $this->sms_model->list_grup();
+        $data['tipe']['tipe']             = $tipe;
+        $data['grup']                     = $this->sms_model->list_grup();
         $this->load->view('sms/ajax_sms_form', $data);
     }
 
@@ -271,7 +260,6 @@ class Sms extends CI_Controller
         } else {
             $data['cari1'] = '';
         }
-
         if (isset($_SESSION['sex1'])) {
             $data['sex1'] = $_SESSION['sex1'];
         } else {
@@ -303,25 +291,21 @@ class Sms extends CI_Controller
         } else {
             $data['agama1'] = '';
         }
-
         if (isset($_SESSION['pekerjaan1'])) {
             $data['pekerjaan1'] = $_SESSION['pekerjaan1'];
         } else {
             $data['pekerjaan1'] = '';
         }
-
         if (isset($_SESSION['status1'])) {
             $data['status1'] = $_SESSION['status1'];
         } else {
             $data['status1'] = '';
         }
-
         if (isset($_SESSION['pendidikan1'])) {
             $data['pendidikan1'] = $_SESSION['pendidikan1'];
         } else {
             $data['pendidikan1'] = '';
         }
-
         if (isset($_SESSION['status_penduduk1'])) {
             $data['status_penduduk1'] = $_SESSION['status_penduduk1'];
         } else {
@@ -333,13 +317,11 @@ class Sms extends CI_Controller
         } else {
             $data['TextDecoded1'] = '';
         }
-
         if (isset($_SESSION['grup1'])) {
             $data['grup'] = $_SESSION['grup1'];
         } else {
             $data['grup1'] = '';
         }
-
         $data['insert'] = $this->sms_model->send_broadcast($data);
         redirect('sms/outbox');
     }
@@ -380,7 +362,6 @@ class Sms extends CI_Controller
     public function ajax_penduduk_rw($dusun = '')
     {
         $rw = $this->penduduk_model->list_rw($dusun);
-
         echo "<td>RW</td>
 		<td><select name='rw' onchange=RWSel('" . $dusun . "',this.value)>
 		<option value=''>Pilih RW&nbsp;</option>";
@@ -395,7 +376,6 @@ class Sms extends CI_Controller
     public function ajax_penduduk_rt($dusun = '', $rw = '')
     {
         $rt = $this->penduduk_model->list_rt($dusun, $rw);
-
         echo "<td>RT</td>
 		<td><select name='rt'>
 		<option value=''>Pilih RT&nbsp;</option>";
@@ -538,7 +518,6 @@ class Sms extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -547,9 +526,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_kontak($p, $o);
         $data['main']    = $this->sms_model->list_data_kontak($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '2';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '2';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -608,9 +586,8 @@ class Sms extends CI_Controller
         $data['paging']  = $this->sms_model->paging_grup($p, $o);
         $data['main']    = $this->sms_model->list_data_grup($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '2';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = '2';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -677,9 +654,8 @@ class Sms extends CI_Controller
         $data['main']              = $this->sms_model->list_data_anggota($id, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['grup']['nama_grup'] = $id;
         $data['keyword']           = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '2';
+        $header                    = $this->header_model->get_data();
+        $menu['act']               = '2';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);
@@ -715,11 +691,8 @@ class Sms extends CI_Controller
 
     public function form_polling($id = 0)
     {
-        /*if($id==0){
-            $data['main']    =null;
-        }else{*/
         $data['main'] = $this->sms_model->get_data_polling($id);
-        //}
+
         $data['form_action'] = site_url("sms/insert_polling/{$id}");
         $this->load->view('sms/ajax_polling_form', $data);
     }
@@ -756,9 +729,8 @@ class Sms extends CI_Controller
         $data['main']                  = $this->sms_model->list_data_pertanyaan($id, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['polling']['id_polling'] = $id;
         $data['keyword']               = $this->sms_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = '2';
+        $header                        = $this->header_model->get_data();
+        $menu['act']                   = '2';
 
         $this->load->view('header', $header);
         $this->load->view('sms/nav', $menu);

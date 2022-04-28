@@ -1,28 +1,8 @@
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<?php /*
-<td class="side-area">
-
-<fieldset>
-<legend>Kategori area</legend>
-<div class="larea">
-<ul>
-<li <?php if($tip==1)echo "class='selected'";?>><a href="<?php echo site_url("area/index/1")?>">Atas</a></li>
-<li <?php if($tip==2)echo "class='selected'";?>><a href="<?php echo site_url("area/index/2")?>">Atas Kiri</a></li>
-
-<?php /*
-<li ><a href="Samping">Samping</a></li>
-<li ><a href="Tengah">Tengah</a></li>
-<li ><a href="Bawah">Bawah</a></li>
-
-</ul>
-</div>
-</fieldset>
-
-</td>
-*/?>
+<?php
+?>
 <td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Sub area</h3>

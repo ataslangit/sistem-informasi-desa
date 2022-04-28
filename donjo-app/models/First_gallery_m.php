@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') || exit('No direct script access allowed');
+
 class First_gallery_m extends CI_Model
 {
     public function paging($p = 1)

@@ -71,9 +71,9 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 <div class="ui-layout-north" id="header">
 	<div id="sid-logo"><a href="<?= site_url()?>/first" target="_blank"><img src="<?= base_url()?>assets/files/logo/<?= $desa['logo']?>" alt=""/></a></div>
 	<div id="sid-judul">SID Sistem Informasi Desa</div>
-	<div id="sid-info"><?= unpenetration($desa['nama_desa'])?>, Kec. <?= unpenetration($desa['nama_kecamatan'])?>,  <?= unpenetration($desa['nama_kabupaten'])?></div>
+	<div id="sid-info"><?= unpenetration($desa['nama_desa'])?>, Kec. <?= unpenetration($desa['nama_kecamatan'])?>, <?= unpenetration($desa['nama_kabupaten'])?></div>
 	<div id="userbox" class="wrapper-dropdown-3" tabindex="1">
-  <div class="avatar">
+ <div class="avatar">
 		<?php if ($foto) {?>
 			<img src="<?= base_url()?>assets/files/user_pict/kecil_<?= $foto?>" alt=""/>
 		<?php } else {?>
@@ -104,5 +104,5 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 <li><a href="<?= site_url()?>/siteman"><i class="icon-off icon-large"></i>Log Out</a></li>
 </ul>
 
-    </div>
+ </div>
 </div>

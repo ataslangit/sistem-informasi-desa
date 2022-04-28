@@ -10,7 +10,7 @@ class Man_user extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (in_array($grup, ['1'], false)) {
             redirect('siteman');
         }
     }
@@ -38,7 +38,6 @@ class Man_user extends CI_Controller
         } else {
             $data['filter'] = '';
         }
-
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
@@ -47,9 +46,8 @@ class Man_user extends CI_Controller
         $data['paging']  = $this->user_model->paging($p, $o);
         $data['main']    = $this->user_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword'] = $this->user_model->autocomplete();
-
-        $header      = $this->header_model->get_data();
-        $menu['act'] = 'man_user';
+        $header          = $this->header_model->get_data();
+        $menu['act']     = 'man_user';
 
         $this->load->view('header', $header);
         $this->load->view('man_user/nav');

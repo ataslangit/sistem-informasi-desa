@@ -6,31 +6,11 @@ source: keyword
 });
 });
 </script>
-
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<?php  /*
-<td class="side-menu">
-
-<fieldset>
-<legend>Kategori lokasi</legend>
-<div class="lmenu">
-<ul>
-<li <?php  if($tip==1)echo "class='selected'";?>><a href="<?php  echo site_url("plan/index/1")?>">Atas</a></li>
-<li <?php  if($tip==2)echo "class='selected'";?>><a href="<?php  echo site_url("plan/index/2")?>">Atas Kiri</a></li>
-
-
-<li ><a href="Samping">Samping</a></li>
-<li ><a href="Tengah">Tengah</a></li>
-<li ><a href="Bawah">Bawah</a></li>
-
-</ul>
-</div>
-</fieldset>
-
-</td>
-*/?>
+<?php
+?>
 <td style="background:#fff;padding:0px;">
 <div class="content">
 	<h3>Manajemen Properti / Lokasi</h3>
@@ -52,22 +32,21 @@ source: keyword
 
 		<select name="filter" onchange="formAction('mainform','<?= site_url('plan/filter')?>')">
 			<option value="">Semua</option>
-			<option value="1" <?php  if ($filter === 1) :?>selected<?php  endif?>>Enabled</option>
-			<option value="2" <?php  if ($filter === 2) :?>selected<?php  endif?>>Disabled</option>
+			<option value="1" <?php if ($filter === 1) :?>selected<?php endif?>>Enabled</option>
+			<option value="2" <?php if ($filter === 2) :?>selected<?php endif?>>Disabled</option>
 		</select>
-
 		<select name="point" onchange="formAction('mainform','<?= site_url('point')?>')">
 			<option value="">Kategori</option>
-			<?php  foreach ($list_point as $data) {?>
-			<option value="<?= $data['id']?>" <?php  if ($point === $data['id']) :?>selected<?php  endif?>><?= $data['nama']?></option>
-			<?php  }?>
+			<?php foreach ($list_point as $data) {?>
+			<option value="<?= $data['id']?>" <?php if ($point === $data['id']) :?>selected<?php endif?>><?= $data['nama']?></option>
+			<?php }?>
 		</select>
 
 		<select name="subpoint" onchange="formAction('mainform','<?= site_url('plan/subpoint')?>')">
 			<option value="">Jenis</option>
-			<?php  foreach ($list_subpoint as $data) {?>
-			<option value="<?= $data['id']?>" <?php  if ($subpoint === $data['id']) :?>selected<?php  endif?>><?= $data['nama']?></option>
-			<?php  }?>
+			<?php foreach ($list_subpoint as $data) {?>
+			<option value="<?= $data['id']?>" <?php if ($subpoint === $data['id']) :?>selected<?php endif?>><?= $data['nama']?></option>
+			<?php }?>
 		</select>
 
 </div>
@@ -82,37 +61,35 @@ source: keyword
 <th>No</th>
 <th><input type="checkbox" class="checkall"/></th>
 <th width="50">Aksi</th>
-
- <?php   if ($o === 2): ?>
+ <?php if ($o === 2): ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/1")?>">Kategori<span class="ui-icon ui-icon-triangle-1-n">
-<?php   elseif ($o === 1): ?>
+<?php elseif ($o === 1): ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/2")?>">Kategori<span class="ui-icon ui-icon-triangle-1-s">
-<?php   else: ?>
+<?php else: ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/1")?>">Kategori<span class="ui-icon ui-icon-triangle-2-n-s">
-<?php   endif; ?>&nbsp;</span></a></th>
-
-<?php   if ($o === 4): ?>
+<?php endif; ?>&nbsp;</span></a></th>
+<?php if ($o === 4): ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/3")?>">Aktif<span class="ui-icon ui-icon-triangle-1-n">
-<?php   elseif ($o === 3): ?>
+<?php elseif ($o === 3): ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/4")?>">Aktif<span class="ui-icon ui-icon-triangle-1-s">
-<?php   else: ?>
+<?php else: ?>
 <th align="left"><a href="<?= site_url("plan/index/{$p}/3")?>">Aktif<span class="ui-icon ui-icon-triangle-2-n-s">
-<?php   endif; ?>&nbsp;</span></a></th>
+<?php endif; ?>&nbsp;</span></a></th>
 <th>Kategori</th>
 <th>Jenis</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
-<?php  foreach ($main as $data) {?>
+<?php foreach ($main as $data) {?>
 <tr>
 <td align="center" width="2"><?= $data['no']?></td>
 <td align="center" width="5">
 <input type="checkbox" name="id_cb[]" value="<?= $data['id']?>" />
 </td>
 <td>
-<a href="<?= site_url("plan/form/{$p}/{$o}/{$data['id']}")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?= site_url("plan/delete/{$p}/{$o}/{$data['id']}")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php  /*if($data['enabled'] == '2'):?><a href="<?php  echo site_url('lokasi_lock/'.$data['id'])?>" class="ui-icons icon-lock tipsy south" title="Enable lokasi"></a><?php  elseif($data['enabled'] == '1'): ?><a href="<?php  echo site_url('lokasi_unlock/'.$data['id'])?>" class="ui-icons icon-unlock tipsy south" title="Disable lokasi"></a>*/?><a href="<?= site_url("plan/ajax_lokasi_maps/{$p}/{$o}/{$data['id']}")?>" target="ajax-modalz" rel="window" header="Lokasi <?= $data['nama']?>" class="ui-icons icon-maps tipsy south" title="Lokasi <?= $data['nama']?>"></a>
-
+<a href="<?= site_url("plan/form/{$p}/{$o}/{$data['id']}")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?= site_url("plan/delete/{$p}/{$o}/{$data['id']}")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php
+?><a href="<?= site_url("plan/ajax_lokasi_maps/{$p}/{$o}/{$data['id']}")?>" target="ajax-modalz" rel="window" header="Lokasi <?= $data['nama']?>" class="ui-icons icon-maps tipsy south" title="Lokasi <?= $data['nama']?>"></a>
 </td>
 <td width="150"><?= $data['nama']?></td>
 <td width="50"><?= $data['aktif']?></td>
@@ -120,7 +97,7 @@ source: keyword
 <td width="150"><?= $data['jenis']?></td>
 <td></td>
 </tr>
-<?php  }?>
+<?php }?>
 </tbody>
 </table>
 </div>
@@ -131,9 +108,9 @@ source: keyword
 <form id="paging" action="<?= site_url('plan')?>" method="post">
 <label>Tampilkan</label>
 <select name="per_page" onchange="$('#paging').submit()" >
-<option value="20" <?php   selected($per_page, 20); ?> >20</option>
-<option value="50" <?php   selected($per_page, 50); ?> >50</option>
-<option value="100" <?php   selected($per_page, 100); ?> >100</option>
+<option value="20" <?php selected($per_page, 20); ?> >20</option>
+<option value="50" <?php selected($per_page, 50); ?> >50</option>
+<option value="100" <?php selected($per_page, 100); ?> >100</option>
 </select>
 <label>Dari</label>
 <label><strong><?= $paging->num_rows?></strong></label>
@@ -143,26 +120,25 @@ source: keyword
 </div>
 <div class="right">
 <div class="uibutton-group">
-<?php   if ($paging->start_link): ?>
+<?php if ($paging->start_link): ?>
 <a href="<?= site_url("plan/index/{$paging->start_link}/{$o}")?>" class="uibutton">First</a>
-<?php   endif; ?>
-<?php   if ($paging->prev): ?>
+<?php endif; ?>
+<?php if ($paging->prev): ?>
 <a href="<?= site_url("plan/index/{$paging->prev}/{$o}")?>" class="uibutton">Prev</a>
-<?php   endif; ?>
+<?php endif; ?>
 </div>
 <div class="uibutton-group">
-
-<?php   for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
-<a href="<?= site_url("plan/index/{$i}/{$o}")?>" <?php   jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
-<?php   endfor; ?>
+<?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++): ?>
+<a href="<?= site_url("plan/index/{$i}/{$o}")?>" <?php jecho($p, $i, "class='uibutton special'")?> class="uibutton"><?= $i?></a>
+<?php endfor; ?>
 </div>
 <div class="uibutton-group">
-<?php   if ($paging->next): ?>
+<?php if ($paging->next): ?>
 <a href="<?= site_url("plan/index/{$paging->next}/{$o}")?>" class="uibutton">Next</a>
-<?php   endif; ?>
-<?php   if ($paging->end_link): ?>
+<?php endif; ?>
+<?php if ($paging->end_link): ?>
 <a href="<?= site_url("plan/index/{$paging->end_link}/{$o}")?>" class="uibutton">Last</a>
-<?php   endif; ?>
+<?php endif; ?>
 </div>
 </div>
 </div>
