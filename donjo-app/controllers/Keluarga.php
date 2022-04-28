@@ -11,7 +11,7 @@ class Keluarga extends CI_Controller
         $this->load->model('keluarga_model');
         $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2) {
+        if (! in_array($grup, ['1', '2'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');

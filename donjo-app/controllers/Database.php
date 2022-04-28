@@ -11,7 +11,7 @@ class Database extends CI_Controller
         $this->load->dbforge();
         //$this->load->model('wilayah_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1) {
+        if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
