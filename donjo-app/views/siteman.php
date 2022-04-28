@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="loginform">
-		<a href="<?php echo site_url()?>first">
+		<a href="<?php echo site_url()?>/first">
 		<div id="facebook">
 			<div id="sid">SID</div>
 			<div id="connect">ver.</div>

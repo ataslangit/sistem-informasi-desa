@@ -14,7 +14,7 @@ function DusSel(str){
 	     document.getElementById("rw").innerHTML=xmlhttp.responseText;
 	    }
 	  }
-	xmlhttp.open("GET","<?php echo site_url()?>penduduk/ajax_penduduk_pindah_rw/"+str,true);
+	xmlhttp.open("GET","<?php echo site_url()?>/penduduk/ajax_penduduk_pindah_rw/"+str,true);
 	xmlhttp.send();
 }
 
@@ -32,7 +32,7 @@ function RWSel(dusun,str){
 	     document.getElementById("rt").innerHTML=xmlhttp.responseText;
 	    }
 	  }
-	xmlhttp.open("GET","<?php echo site_url()?>penduduk/ajax_penduduk_pindah_rt/"+dusun+"/"+str,true);
+	xmlhttp.open("GET","<?php echo site_url()?>/penduduk/ajax_penduduk_pindah_rt/"+dusun+"/"+str,true);
 	xmlhttp.send();
 }
 </script>

@@ -172,7 +172,7 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 	</div>
 	<div class="ui-layout-south panel bottom">
 <div class="left">     
-<a href="<?php echo site_url()?>sid_wilayah" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/sid_wilayah" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">

@@ -58,7 +58,7 @@ $(function(){
    
     <div class="ui-layout-south panel bottom">
         <div class="left">     
-            <a href="<?php echo site_url()?>admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
+            <a href="<?php echo site_url()?>/admin_manajemen_responden" class="uibutton icon prev">Kembali</a>
         </div>
         <div class="right">
             <div class="uibutton-group">

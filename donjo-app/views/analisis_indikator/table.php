@@ -14,7 +14,7 @@
 <div id="contentpane">    
 	<form id="mainform" name="mainform" action="" method="post">
     <div class="ui-layout-north panel">
-    <h3>Manajemen Indikator Analisis - <a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></a></h3>
+    <h3>Manajemen Indikator Analisis - <a href="<?php echo site_url()?>/analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><a href="<?php echo site_url()?>/analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></a></h3>
         <div class="left">
             <div class="uibutton-group">
                 <?php if($analisis_master['lock']==1){?><a href="<?php echo site_url('analisis_indikator/form')?>" class="uibutton tipsy south" title="Tambah Data" ><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Indikator Baru</a>
@@ -133,7 +133,7 @@
     <div class="ui-layout-south panel">
         <div class="left"> 
             <div class="uibutton-group">
-			<a href="<?php echo site_url()?>analisis_indikator/leave" class="uibutton icon prev">Kembali</a>
+			<a href="<?php echo site_url()?>/analisis_indikator/leave" class="uibutton icon prev">Kembali</a>
           <form id="paging" action="<?php echo site_url('analisis_indikator')?>" method="post">
             <select name="per_page" onchange="$('#paging').submit()" >
               <option value="20" <?php  selected($per_page,20); ?> >20</option>

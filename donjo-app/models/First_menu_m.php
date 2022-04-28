@@ -12,7 +12,7 @@ class First_Menu_M extends CI_Model{
 		
 		$query = $this->db->query($sql);
 		$data=$query->result_array();
-		$url = site_url()."first/";
+		$url = site_url()."/first/";
 		$i=0;
 		while($i<count($data)){
 			//$man = spliti("l]:",$data[$i]['link']);
@@ -56,7 +56,7 @@ class First_Menu_M extends CI_Model{
 		
 		$query = $this->db->query($sql);
 		$data=$query->result_array();
-		$url = site_url()."first/kategori/";
+		$url = site_url()."/first/kategori/";
 		$i=0;
 		
 		while($i<count($data)){

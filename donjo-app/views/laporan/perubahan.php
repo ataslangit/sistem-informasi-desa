@@ -7,8 +7,8 @@
 		<fieldset><legend>Laporan : </legend>
 			<div class="lmenu">
 				<ul>
-				<li ><a href="<?php echo site_url()?>laporan">Laporan Bulanan</a></li>
-				<li><a href="<?php echo site_url()?>laporan_rentan">Data Kelompok Rentan</a></li>
+				<li ><a href="<?php echo site_url()?>/laporan">Laporan Bulanan</a></li>
+				<li><a href="<?php echo site_url()?>/laporan_rentan">Data Kelompok Rentan</a></li>
 				
 				</ul>
 			</div>
@@ -197,7 +197,7 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
     </div></div>
     <div class="ui-layout-south panel bottom">
 <div class="left">     
-<a href="<?php echo site_url()?>sid_wilayah" class="uibutton icon prev">Kembali</a>
+<a href="<?php echo site_url()?>/sid_wilayah" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">
 <div class="uibutton-group">
