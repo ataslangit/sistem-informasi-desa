@@ -1,0 +1,2 @@
+home
+<?= $this->include('nav') ?>

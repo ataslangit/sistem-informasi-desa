@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * cek apakah sudah melakukan instalasi atau belum
+ *
+ * @return bool Bernilai true jika sudah melakukan instalasi
+ */
+function is_installed(): bool
+{
+    return (bool) (file_exists(APPPATH . 'installed'));
+}
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];
@@ -621,7 +631,7 @@ function mandiri_timer()
 }
 function mandiri_timeout()
 {
-    if (! isset($_SESSION['mandiri_timeout'])) {
+    if (!isset($_SESSION['mandiri_timeout'])) {
         $_SESSION['mandiri_timeout'] = time() - 1;
     }
 
@@ -658,7 +668,7 @@ function fixSQL($str, $encode_ent = false)
             $str = addslashes($str);
         }
     } else {
-        if (! get_magic_quotes_gpc()) {
+        if (!get_magic_quotes_gpc()) {
             $str = addslashes($str);
         }
     }

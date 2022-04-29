@@ -241,6 +241,9 @@ switch (ENVIRONMENT)
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
+    // The theme path
+    define('THEMEPATH', __DIR__ . '/themes/');
+
 	// Path to the system directory
 	define('BASEPATH', $system_path);
 
