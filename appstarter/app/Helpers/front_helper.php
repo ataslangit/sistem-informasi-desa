@@ -52,3 +52,37 @@ function makeUrl($date, $slug): string
 
     return date_format($date, 'Y/m/d') . '/' . $slug;
 }
+
+/**
+ * Membuat link ke pos
+ *
+ * @param array $post   Data array artikel (pos)
+ * @param bool  $anchor Atur true untuk menampilkan tag anchor
+ * @param array $attr   Atribut untuk ditampilkan pada tag anchor jika $anchor = true
+ */
+function permalink(array $post, string $judul = '', bool $anchor = false, array $attr = []): string
+{
+    $link = '?p=' . $post['id'];
+
+    if (isset($pos['slug'])) {
+        $link = makeUrl($pos['tgl_upload'], $pos['slug']);
+    }
+
+    if ($anchor) {
+        $judul = $judul ?: $post['judul'];
+        $attr = array_merge(['title' => $post['judul'], 'rel' => 'permalink'], $attr);
+        $link = anchor($link, esc($judul), $attr);
+    }
+
+    return $link;
+}
+
+/**
+ * Membuat snippet html untuk menampilkan pos.
+ * Dapat dibatasi jumlah karakter yang akan ditampilkan.
+ * Secara default, jumlah karakter yang akan ditampilkan adalah 300.
+ */
+function snippet(array $post, int $limit = 300): string
+{
+    return character_limiter(strip_tags($post['isi'], ['strong', 'b', 'i']), $limit);
+}
