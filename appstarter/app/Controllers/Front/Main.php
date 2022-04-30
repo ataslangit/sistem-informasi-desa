@@ -29,7 +29,7 @@ class Main extends BaseController
             $offset = 0;
         }
 
-        $artikel   = $artikelModel->where('enabled', '1')->findAll($limit, $offset);
+        $artikel   = $artikelModel->where('enabled', '1')->orderBy('tgl_upload', 'desc')->findAll($limit, $offset);
         $totalPage = $artikelModel->where('enabled', '1')->countAllResults(true);
         $pager     = \Config\Services::pager();
 
