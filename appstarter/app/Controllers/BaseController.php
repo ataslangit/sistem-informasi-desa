@@ -38,7 +38,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['text','front'];
+    protected $helpers = ['text', 'front'];
 
     /**
      * Constructor.
@@ -54,5 +54,12 @@ class BaseController extends Controller
 
         // see : https://forum.codeigniter.com/thread-76369.html
         $this->view = \Config\Services::renderer(FCPATH . 'themes/' . $this->theme, null, false);
+    }
+
+    public function show404()
+    {
+        $this->response->setStatusCode(404);
+
+        return $this->view->setData(['title' => 'Error 404! Data tidak ditemukan.'])->render('404');
     }
 }
