@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+## Selamat datang
 
-You can use the [editor on GitHub](https://github.com/girirupo/sistem-informasi-desa/edit/develop/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Anda sedang mencari Sistem Informasi Desa (SID)?
+Saat ini SID yang dikembangkan melalui repo [girirupo/sistem-informasi-desa](https://github.com/girirupo/sistem-informasi-desa/) masih dalam progress.
+SID ini dikembangkan dari benih SID v3.x CRI. Untuk tahap awal ini, masih belum diuji coba sepenuhnya karena keterbatasan tester. Jika Anda berminat untuk ikut mengembangkan, silakan langsung fork dan kirim *Pull Request*. Atau sekedar memberikan masukan, saran dan fitur juga dapat dilakukan lewat tab issue.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Pengembangan
+Pada tahap ini masih menggunakan format database yang sama dengan SID v3.x CRI, Jadi untuk saat ini proses instalasi awal akan terkendala pada databasenya.
+Namun untuk kedepannya akan dibuatkan migrasi (instalasi) yang dapat digunakan untuk pindah dari SID v3.x CRI ke sistem pengembangan tersebut.
 
-### Markdown
+**Intinya**,
+Proses pengembangan awal ini menggunakan CodeIgniter 4 dengan format database awal dari SID v3.x CRI, sehingga jika Anda pengguna SID v3.x CRI dapat upgrade ke sistem baru ini.
+Selanjutnya akan disesuaikan databasenya dengan proses instalasi / migrasi.
+Nantikan info rilis yang akan datang.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Dukungan atau Kontak
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/girirupo/sistem-informasi-desa/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Jika ada pertanyaan atau apapun, sementara ini silakan kirim melalui _issue_ atau _discucssion_.
