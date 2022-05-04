@@ -1,7 +1,7 @@
 ## Selamat datang
 
 Anda sedang mencari Sistem Informasi Desa (SID)?
-Saat ini SID yang dikembangkan melalui repo [girirupo/sistem-informasi-desa](https://github.com/girirupo/sistem-informasi-desa/) masih dalam progress.
+Saat ini SID yang dikembangkan melalui repo [ataslangit/sistem-informasi-desa](https://github.com/ataslangit/sistem-informasi-desa/) masih dalam progress.
 SID ini dikembangkan dari benih SID v3.x CRI. Untuk tahap awal ini, masih belum diuji coba sepenuhnya karena keterbatasan tester. Jika Anda berminat untuk ikut mengembangkan, silakan langsung fork dan kirim *Pull Request*. Atau sekedar memberikan masukan, saran dan fitur juga dapat dilakukan lewat tab issue.
 
 ### Pengembangan
