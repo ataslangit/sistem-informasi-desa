@@ -16,12 +16,12 @@
     <link rel="shortcut icon" href="https://sukoharjosid.slemankab.go.id/assets/files/logo/logo160.png" />
 
 
-    <link type='text/css' href="<?= assets('assets/first.css') ?>" rel='Stylesheet' />
-    <link type='text/css' href="<?= assets('assets/default.css') ?>" rel='Stylesheet' />
+    <link type='text/css' href="<?= assets('assets/front/css/first.css') ?>" rel='Stylesheet' />
+    <link type='text/css' href="<?= assets('assets/front/css/default.css') ?>" rel='Stylesheet' />
 
-    <link type='text/css' href="//cdnsidesimanis.slemankab.go.id//assets/css/ui-buttons.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= assets('assets/ui-buttons.css') ?>" rel='Stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link type='text/css' href="//cdnsidesimanis.slemankab.go.id//assets/front/css/colorbox.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= assets('assets/front/css/colorbox.css') ?>" rel='Stylesheet' />
     <script src="//cdnsidesimanis.slemankab.go.id//assets/front/js/stscode.js"></script>
     <script src="//cdnsidesimanis.slemankab.go.id//assets/js/jquery-1.5.2.min.js"></script>
     <script src="//cdnsidesimanis.slemankab.go.id//assets/js/jquery-ui-1.8.16.custom.min.js"></script>
