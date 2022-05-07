@@ -20,22 +20,34 @@
         </a>
         <div id="mainlogin">
             <h1>Masukkan Username dan Password</h1>
-            <form action="<?= site_url('siteman/auth') ?>" method="post">
-                <input name="username" type="text" placeholder="username" value="" required />
-                <input name="password" type="password" placeholder="password" value="" required />
-                <button type="submit" id="but">LOGIN</button>
-                <?php if (session('siteman') === -1) { ?>
-                    <div id="note">
-                        Login Gagal. Username atau Password yang Anda masukkan salah!
-                    </div>
-                <?php } elseif (session('siteman') === -2) { ?>
-                    <div id="note">
-                        Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
-                    </div>
-                <?php }
-                // unset(session('siteman'));
-                ?>
-            </form>
+            <?= form_open('siteman/check') ?>
+
+            <?= form_input('username', set_value('username'), ['placeholder' => 'Username', 'required' => '']) ?>
+            <?= form_password('password', '', ['placeholder' => 'Password', 'required' => '']) ?>
+
+            <?= form_button([
+                'type'    => 'submit',
+                'id'      => 'but',
+                'content' => 'Masuk',
+            ]) ?>
+
+            <?php
+            if ($validation->hasError('username') || $validation->hasError('password')) {
+                echo '<div id="note">';
+                echo 'Login Gagal. Username atau Password yang Anda masukkan salah!';
+                echo '</div>';
+            }
+            ?>
+
+            <?php if (session('siteman') === -2) { ?>
+                <div id="note">
+                    Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
+                </div>
+            <?php }
+            // unset(session('siteman'));
+            ?>
+
+            <?= form_close() ?>
         </div>
     </div>
 </body>

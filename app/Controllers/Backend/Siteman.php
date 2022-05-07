@@ -13,10 +13,37 @@ class Siteman extends BaseController
      */
     public function index()
     {
+        // validation
+        $validation = \Config\Services::validation();
+
         $data = [
-            'title' => 'Masuk',
+            'title'      => 'Masuk',
+            'validation' => $validation,
         ];
 
         return view('backend/siteman', $data);
+    }
+
+    /**
+     * Proses login
+     */
+    public function auth()
+    {
+        // validation
+        $validation = \Config\Services::validation();
+
+        $validation->setRules([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if (! $validation->withRequest($this->request)->run()) {
+            return $this->index();
+        }
+
+        // var_dump($this->request->getPost());
+
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
     }
 }
