@@ -10,8 +10,10 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+const resourcesAssets = 'src/';
+const dest = 'public/assets/';
 
- mix.sass('src/scss/login.scss', 'public/assets/css', {
+mix.sass(resourcesAssets + 'scss/login.scss', dest + 'css', {
     sassOptions: {
         outputStyle: 'compressed',
     },
@@ -19,6 +21,7 @@ const mix = require('laravel-mix');
 });
 
 mix.options({
+    processCssUrls: false,
     terser: {
         extractComments: false,
     }
