@@ -3,6 +3,7 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
+use App\Models\User_model;
 
 class Siteman extends BaseController
 {
@@ -41,9 +42,15 @@ class Siteman extends BaseController
             return $this->index();
         }
 
-        // var_dump($this->request->getPost());
+        // lolos validasi
+        $userModel = new User_model();
+        $username  = $this->request->getPost('username');
+        $password  = $this->request->getPost('password');
 
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
+        $logged = $userModel->logged($username, $password);
+
+        if ($logged) {
+            // login berhasil
+        }
     }
 }

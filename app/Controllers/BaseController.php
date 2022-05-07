@@ -41,6 +41,7 @@ class BaseController extends Controller
     protected $helpers = [
         'form',
         'front',
+        'site',
         'text',
     ];
 

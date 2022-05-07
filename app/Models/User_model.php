@@ -6,33 +6,53 @@ use CodeIgniter\Model;
 
 class User_model extends Model
 {
-    public function siteman()
+    protected $table            = 'user';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'username', 'password', 'id_grup', 'email', 'last_login', 'active',
+        'nama', 'company', 'phone', 'foto', 'session',
+    ];
+
+    /**
+     * Cek user & beri hak akses berupa session
+     */
+    public function logged(string $username, string $password)
     {
-        $username = $this->input->post('username');
-        $password = hash_password($this->input->post('password'));
+        // cek username, apakah ada di database?
+        $user = $this->where('username', $username)->first();
 
-        $sql   = 'SELECT id,password,id_grup,session FROM user WHERE username=?';
-        $query = $this->db->query($sql, [$username]);
-        $row   = $query->row();
-        if ($row) {
-            if ($password === $row->password) {
-                $this->reset_timer();
-                $data['session'] = hash_password(time() . $password);
-                $this->db->where('id', $row->id);
-                $this->db->update('user', $data);
-
-                $_SESSION['siteman'] = 1;
-                $_SESSION['sesi']    = $data['session'];
-                //$_SESSION['sesi'] = $row->session;
-                $_SESSION['user']     = $row->id;
-                $_SESSION['grup']     = $row->id_grup;
-                $_SESSION['per_page'] = 10;
-            } else {
-                $_SESSION['siteman'] = -1;
-            }
-        } else {
-            $_SESSION['siteman'] = -1;
+        // jika user tidak ketemu
+        if ($user === null) {
+            return false;
         }
+
+        // ambil password dari database
+        // jika password masih berformat md5()
+        // akan diupdate menggunakan password_hash()
+        if (strlen($user['password']) === 32) {
+            $password = hash_password($password);
+
+            if ($user['password'] !== $password) {
+                return false;
+            }
+        }
+
+        // buat session login
+        $session = [
+            'id'       => $user['id'],
+            'username' => $user['username'],
+            'logged'   => true,
+        ];
+
+        // simpan session
+        session()->set($session);
+
+        return true;
     }
 
     public function sesi_grup($sesi = '')
@@ -218,7 +238,7 @@ class User_model extends Model
         return $data;
     }
 
-    public function insert()
+    public function insert_backup()
     {
         $data             = $_POST;
         $data['password'] = hash_password($data['password']);
@@ -248,7 +268,7 @@ class User_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update_backup($id = 0)
     {
         $data = $_POST;
         unset($data['old_foto'], $data['foto']);
@@ -283,7 +303,7 @@ class User_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete_backup($id = '')
     {
         $sql  = 'DELETE FROM user WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
