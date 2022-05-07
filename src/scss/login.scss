@@ -153,26 +153,6 @@ h1 {
     transition: 0.5s ease;
 }
 
-#facebook2 {
-    clear: both;
-    text-align: left;
-    float: left;
-    background: #ecea47;
-    padding: 5px 2px 5px 18px;
-    width: 200px;
-    height: 55px;
-    border-radius: 3px;
-    cursor: pointer;
-    box-shadow: 1px 1px 5px 2px #b1b67f;
-    margin-top: 10px;
-    margin-right: 10px;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-}
-
 #kab2 {
     font-size: 11px;
     color: #333;
@@ -186,16 +166,6 @@ h1 {
     width: 180px;
     height: 180px;
     box-shadow: 0px 0px 0px 0px #6f7158;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    transition: 0.5s ease;
-}
-
-#facebook2:hover {
-    background: #efefef;
-    box-shadow: 0px 0px 0px 0px #b1b67f;
     -webkit-transition: 0.5s ease;
     -moz-transition: 0.5s ease;
     -o-transition: 0.5s ease;
@@ -266,16 +236,6 @@ a:hover {
     padding-right: 7px;
 }
 
-#connect {
-    font-weight: bold;
-    color: #fff;
-    font-size: 13px;
-    text-align: right;
-    text-shadow: 0px 0px 2px #777;
-    margin-top: -7px;
-    padding-right: 7px;
-}
-
 #desa {
     font-weight: bold;
     font-size: 14px;
@@ -306,21 +266,4 @@ a:hover {
 #logo {
     margin-top: -63px;
     margin-left: -28px;
-}
-
-#or {
-    position: absolute;
-    left: -25px;
-    top: 15px;
-    background: #333333;
-    text-shadow: 0 2px 0px #121212;
-    color: #ff5f32;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border-radius: 50%;
-    box-shadow: 1px 1px 3px 2px #363738;
-    font-weight: bold;
-    line-height: 38px;
-    font-size: 13px;
 }
