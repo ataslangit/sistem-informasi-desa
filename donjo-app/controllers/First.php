@@ -22,6 +22,32 @@ class First extends CI_Controller
         $this->load->model('surat_keluar_model');
     }
 
+    public function index($p = 1)
+    {
+        $data['p']             = $p;
+        $data['desa']          = $this->first_m->get_data();
+        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
+        $data['headline']      = $this->first_artikel_m->get_headline();
+        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
+
+        $data['paging']  = $this->first_artikel_m->paging($p);
+        $data['artikel'] = $this->first_artikel_m->artikel_show(0, $data['paging']->offset, $data['paging']->per_page);
+
+        $data['arsip']  = $this->first_artikel_m->arsip_show();
+        $data['komen']  = $this->first_artikel_m->komentar_show();
+        $data['agenda'] = $this->first_artikel_m->agenda_show();
+        $data['slide']  = $this->first_artikel_m->slide_show();
+
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
+
+        $this->load->view('layouts/main.tpl', $data);
+    }
+
     public function auth()
     {
         if ($_SESSION['mandiri_wait'] !== 1) {
@@ -49,32 +75,6 @@ class First extends CI_Controller
     {
         $this->first_m->ganti();
         redirect('first');
-    }
-
-    public function index($p = 1)
-    {
-        $data['p']             = $p;
-        $data['desa']          = $this->first_m->get_data();
-        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
-        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
-        $data['headline']      = $this->first_artikel_m->get_headline();
-        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-
-        $data['paging']  = $this->first_artikel_m->paging($p);
-        $data['artikel'] = $this->first_artikel_m->artikel_show(0, $data['paging']->offset, $data['paging']->per_page);
-
-        $data['arsip']  = $this->first_artikel_m->arsip_show();
-        $data['komen']  = $this->first_artikel_m->komentar_show();
-        $data['agenda'] = $this->first_artikel_m->agenda_show();
-        $data['slide']  = $this->first_artikel_m->slide_show();
-
-        $data['stat']        = $this->first_penduduk_m->list_data(4);
-        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
-        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
-        $data['w_cos']       = $this->first_artikel_m->cos_widget();
-        $data['data_config'] = $this->config_model->get_data();
-
-        $this->load->view('layouts/main.tpl.php', $data);
     }
 
     public function cetak_biodata($id = '')

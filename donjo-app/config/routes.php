@@ -50,6 +50,9 @@ defined('BASEPATH') || exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller']   = 'main';
+$route['default_controller']   = 'welcome';
 $route['404_override']         = '';
 $route['translate_uri_dashes'] = false;
+
+$route['(\d{4})/(\d{2})/(\d{2})/(.+)'] = 'welcome/detail/$1-$2-$3/$4';
+$route['kategori/(.+)']                = 'welcome/kategori/$1';

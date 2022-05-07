@@ -1,0 +1,4 @@
+<div id="footer">
+    <p>Website desa ini berbasis <a target="_blank" href="https://sukoharjosid.slemankab.go.id//siteman">Aplikasi Sistem Informasi Desa (SID) Berdaya</a> yang diprakarsai dan dikembangkan oleh <a target="_blank" href="http://www.combine.or.id">Combine Resource Institution</a> sejak 2009 dengan merujuk pada <a target="_blank" href="http://sid.combine.or.id/"> Lisensi SID Berdaya.</a> Isi website ini berada di bawah ketentuan yang diatur dalam Undang-Undang Republik Indonesia Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik dan <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License</a></p>
+    <div id="logo"><img src="//cdnsidesimanis.slemankab.go.id//assets/images/sid-berdaya.png"></div>
+</div>
