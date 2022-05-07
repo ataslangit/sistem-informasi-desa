@@ -36,6 +36,12 @@ $routes->get('/', 'Front\Main::index');
 $routes->get('/(\d{4})/(\d{2})/(\d{2})/(:any)', 'Front\Main::detail/$1-$2-$3/$4');
 $routes->get('/kategori/(:any)', 'Front\Main::kategori/$1');
 
+// route for siteman
+$routes->group('/siteman', static function ($routes) {
+    $routes->get('/', 'Backend\Siteman::index');
+    $routes->post('check', 'Backend\Siteman::auth');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

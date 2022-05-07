@@ -86,3 +86,4 @@ if (! empty($_SERVER['HTTP_HOST'])) {
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http://') . $host . dirname($_SERVER['SCRIPT_NAME']);
 
 defined('BASE_URL') || define('BASE_URL', $base_url);
+defined('APP_VERSION') || define('APP_VERSION', '4.0.0');
