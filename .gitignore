@@ -126,3 +126,9 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
+#-------------------------
+# NPM
+#-------------------------
+/node_modules/
+package-lock.json
