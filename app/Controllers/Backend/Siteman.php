@@ -51,6 +51,7 @@ class Siteman extends BaseController
 
         if ($logged) {
             // login berhasil
+            return redirect()->to('/siteman')->with('message', 'Selamat datang kembali.');
         }
     }
 }
