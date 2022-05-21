@@ -21,7 +21,7 @@ class User_model extends Model
     /**
      * Cek user & beri hak akses berupa session
      */
-    public function logged(string $username, string $password)
+    public function logged(string $username, string $password): bool
     {
         // cek username, apakah ada di database?
         $user = $this->where('username', $username)->first();
