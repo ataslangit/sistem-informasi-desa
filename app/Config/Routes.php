@@ -42,6 +42,10 @@ $routes->group('/siteman', static function ($routes) {
     $routes->post('check', 'Backend\Siteman::auth');
 });
 
+$routes->group('/admin', static function ($routes) {
+    $routes->get('dashboard', 'Backend\Dashboard::index');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

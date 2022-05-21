@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Backend;
 
-class Hom_desa extends BaseController
+use App\Controllers\BaseController;
+
+class Dashboard extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('user_model');
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2'], true)) {
-            redirect('siteman');
-        }
-        $this->load->model('header_model');
-        $this->load->model('config_model');
-    }
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $this->load->model('user_model');
+    //     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+    //     if (! in_array($grup, ['1', '2'], true)) {
+    //         redirect('siteman');
+    //     }
+    //     $this->load->model('header_model');
+    //     $this->load->model('config_model');
+    // }
 
     public function index()
     {
