@@ -1,55 +1,88 @@
-<!DOCTYPE html>
-<html lang="id">
+<?= $this->extend('main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <title><?= esc($title) ?></title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>" media="screen" type="text/css" />
-</head>
+<?= $this->section('css') ?>
 
-<body>
-    <div id="loginform">
-        <a href="<?= site_url('/') ?>">
-            <div id="facebook">
-                <div id="sid">SID</div>
-                <div id="logo"><img src="<?= base_url('assets/images/SID-e1351656852451.png') ?>"></div>
-                <div id="desa">Desa <?= esc($desa['nama_desa'] ?? 'nama desa') ?></div>
-                <div id="kec">Kecamatan <?= esc($desa['nama_kecamatan'] ?? 'nama kecamatan') ?></div>
-                <div id="kab">Kabupaten <?= esc($desa['nama_kabupaten'] ?? 'nama kabupaten') ?></div>
-            </div>
-        </a>
-        <div id="mainlogin">
-            <h1>Masukkan Username dan Password</h1>
+<style>
+    html,
+    body,
+    body .text-center {
+        height: 100%;
+    }
+
+    body .text-center {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+    <div class="text-center">
+        <main class="form-signin w-100 m-auto">
             <?= form_open('siteman/check') ?>
+            <h1 class="h3 mb-3 fw-normal">Sistem Informasi Desa</h1>
 
-            <?= form_input('username', set_value('username'), ['placeholder' => 'Username', 'required' => '']) ?>
-            <?= form_password('password', '', ['placeholder' => 'Password', 'required' => '']) ?>
+            <div class="form-floating">
+                <?= form_input([
+                    'class'       => 'form-control',
+                    'id'          => 'username',
+                    'name'        => 'username',
+                    'placeholder' => 'nama pengguna',
+                    'required'    => '',
+                    'value'       => set_value('username'),
+                ]) ?>
+
+                <?= form_label('Nama Pengguna', 'username') ?>
+            </div>
+
+            <div class="form-floating">
+                <?= form_password([
+                    'class'       => 'form-control',
+                    'id'          => 'password',
+                    'name'        => 'password',
+                    'placeholder' => 'kata sandi',
+                    'required'    => '',
+                ]) ?>
+
+                <?= form_label('Kata Sandi', 'password') ?>
+            </div>
 
             <?= form_button([
-                'type'    => 'submit',
-                'id'      => 'but',
+                'class'   => 'w-100 btn btn-lg btn-primary',
                 'content' => 'Masuk',
+                'type'    => 'submit',
             ]) ?>
 
-            <?php
-            if ($validation->hasError('username') || $validation->hasError('password')) {
-                echo '<div id="note">';
-                echo 'Login Gagal. Username atau Password yang Anda masukkan salah!';
-                echo '</div>';
-            }
-            ?>
-
-            <?php if (session('siteman') === -2) { ?>
-                <div id="note">
-                    Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
-                </div>
-            <?php }
-            // unset(session('siteman'));
-            ?>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
 
             <?= form_close() ?>
-        </div>
-    </div>
-</body>
 
-</html>
+        </main>
+    </div>
+
+<?= $this->endSection() ?>
