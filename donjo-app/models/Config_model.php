@@ -33,7 +33,6 @@ class Config_model extends CI_Model
         $query = $this->db->query($sql, $db);
         $data  = $query->result_array();
         if (count($data) !== 77) {
-            $myhome   = $_SERVER['MYSQL_HOME'];
             $filename = 'sid.install';
             $templine = '';
             $lines    = file($filename);
@@ -125,7 +124,6 @@ class Config_model extends CI_Model
         $data  = $query->result_array();
 
         foreach ($data as $dat) {
-            $string = $dat['url_surat'];
             $mypath = 'surat\\' . $dat['url_surat'] . '\\';
             $path   = '' . str_replace('\\', '/', $mypath) . '/';
 
