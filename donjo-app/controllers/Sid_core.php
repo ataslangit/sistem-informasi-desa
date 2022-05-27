@@ -8,7 +8,7 @@ class Sid_core extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
+
         $_SESSION['filter'] = 77;
 
         unset($_SESSION['log']);

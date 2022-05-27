@@ -8,7 +8,7 @@ class Feed extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
+
         $this->load->model('header_model');
         $this->load->model('feed_model');
         $this->load->model('config_model');

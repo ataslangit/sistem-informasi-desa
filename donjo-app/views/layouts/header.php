@@ -14,12 +14,15 @@
 		}elseif(isset($single_artikel['gambar3'])){
 			$gambar = $single_artikel['gambar4'];
 		}
+        else {
+            $gambar = "logo.jpg";
+        }
 		?>
 		<meta property="og:image" content="<?php echo base_url()."assets/files/artikel/kecil_".$gambar; ?>"  >
 		<meta property="og:image:width" content="300">
 		<meta property="og:image:height" content="180">
 		<meta property="og:url" content="<?php echo urlencode(current_url()); ?>">
-		<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>"> 
+		<meta property="og:title" content="<?php echo $single_artikel['judul'] ?? ''; ?>">
 		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>"/>
 		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
@@ -77,14 +80,14 @@
 						</div>
 						<br class="clearboth"/>
 					</div>
-					
+
 					<?php if(count($teks_berjalan)>0){
 						$this->load->view('layouts/teks_berjalan.php');
 					} ?>
-						
+
 					<div id="mainmenu">
 						<?php $this->load->view('partials/menu.left.php');?>
 					</div>
-					
+
 				</div>
 			</div>

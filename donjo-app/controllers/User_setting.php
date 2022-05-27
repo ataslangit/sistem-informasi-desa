@@ -8,7 +8,7 @@ class User_setting extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
+
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== (1 || 2 || 3 || 4 || 5)) {

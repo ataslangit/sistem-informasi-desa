@@ -8,7 +8,7 @@ class Analisis_respon extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
+
         unset($_SESSION['delik']);
         $this->load->model('analisis_respon_model');
         $this->load->model('user_model');

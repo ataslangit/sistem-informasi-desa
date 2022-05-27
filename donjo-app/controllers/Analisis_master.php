@@ -8,7 +8,7 @@ class Analisis_master extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
+
         $this->load->model('analisis_master_model');
         $this->load->model('analisis_import_model');
         $this->load->model('user_model');
