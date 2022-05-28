@@ -11,7 +11,7 @@ class User_setting extends CI_Controller
 
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== (1 || 2 || 3 || 4 || 5)) {
+        if ($grup !== ('1' || '2' || '3' || '4' || '5')) {
             redirect('login');
         }
         $this->load->model('header_model');

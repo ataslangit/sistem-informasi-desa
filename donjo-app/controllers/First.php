@@ -10,7 +10,6 @@ class First extends CI_Controller
     {
         parent::__construct();
 
-
         mandiri_timeout();
 
         $this->load->model('header_model');

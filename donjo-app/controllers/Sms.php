@@ -12,7 +12,7 @@ class Sms extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('sms_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
         $this->load->model('header_model');
@@ -58,7 +58,6 @@ class Sms extends CI_Controller
         $this->load->view('sms/manajemen_sms_table', $data);
         $this->load->view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
-
     }
 
     public function setting($p = 1, $o = 0)
@@ -140,7 +139,6 @@ class Sms extends CI_Controller
         $this->load->view('sms/create_sms', $data);
         $this->load->view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
-
     }
 
     public function sentitem($p = 1, $o = 0)
@@ -175,7 +173,6 @@ class Sms extends CI_Controller
         $this->load->view('sms/berita_terkirim', $data);
         $this->load->view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
-
     }
 
     public function pending($p = 1, $o = 0)
@@ -210,7 +207,6 @@ class Sms extends CI_Controller
         $this->load->view('sms/pesan_tertunda', $data);
         $this->load->view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
-
     }
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)

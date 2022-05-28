@@ -9,7 +9,6 @@ class Statistik extends CI_Controller
     {
         parent::__construct();
 
-
         $_SESSION['filter'] = 77;
         unset($_SESSION['log']);
         $_SESSION['status_dasar'] = 1;
@@ -18,7 +17,7 @@ class Statistik extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('laporan_penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
         $this->load->model('header_model');
