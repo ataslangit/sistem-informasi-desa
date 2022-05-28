@@ -53,11 +53,11 @@ $route['404_override']         = '';
 $route['translate_uri_dashes'] = false;
 
 // route admin
-$route['hom_desa']        = 'Admin/hom_desa/index'; // redirect ke dashboard
-$route['admin/dashboard'] = 'Admin/hom_desa/dashboard';
+$route['hom_desa']        = 'Admin/dashboard/index'; // redirect ke dashboard
+$route['admin/dashboard'] = 'Admin/dashboard/dashboard';
 
-$route['admin/about']     = 'Admin/hom_desa/about';
+$route['admin/about']     = 'Admin/dashboard/about';
 
-$route['admin/pengaturan_desa/update/(:any)']     = 'Admin/hom_desa/update/$1';
-$route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/hom_desa/ajax_kantor_maps';
-$route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/hom_desa/ajax_wilayah_maps';
+$route['admin/pengaturan_desa/update/(:any)']     = 'Admin/dashboard/update/$1';
+$route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/dashboard/ajax_kantor_maps';
+$route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/dashboard/ajax_wilayah_maps';
