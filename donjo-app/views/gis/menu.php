@@ -1,6 +1,6 @@
 <div class="module-panel">
 <div class="contentm" style="overflow: hidden;">
-<a class="cpanel" href="<?php echo site_url()?>hom_desa">
+<a class="cpanel" href="<?php echo site_url('admin/dashboard')?>">
 <img src="<?php echo base_url()?>assets/images/cpanel/go-home-5.png" alt=""/>
 <span>SID Home</span>
 </a>
@@ -15,7 +15,7 @@
 <a class="cpanel" href="analisis_penduduk">
 <img src="<?php echo base_url()?>assets/images/cpanel/qtiplot.png" alt=""/>
 <span>Analisis</span>
-</a> 
+</a>
 <a class="cpanelx" href="<?php echo site_url()?>sid_gis/clear">
 <img src="<?php echo base_url()?>assets/images/cpanel/gis.png" alt=""/>
 <span>SID GIS</span>

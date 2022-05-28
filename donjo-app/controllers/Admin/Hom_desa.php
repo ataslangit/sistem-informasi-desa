@@ -15,12 +15,28 @@ class Hom_desa extends CI_Controller
         $this->load->model('config_model');
     }
 
+    /**
+     * Redirect ke halaman dashboard
+     *
+     * @return void
+     */
     public function index()
+    {
+        return redirect('admin/dashboard', 'refresh', 301);
+    }
+
+    /**
+     * Halaman dashboard admin
+     *
+     * @return void
+     */
+    public function dashboard()
     {
         $_SESSION['delik'] = 0;
         $nav['act']        = 0;
         $header            = $this->header_model->get_data();
         $data['main']      = $this->config_model->get_data();
+
         $this->load->view('header', $header);
         $this->load->view('home/nav', $nav);
         $this->load->view('home/konfigurasi_form', $data);
@@ -40,45 +56,46 @@ class Hom_desa extends CI_Controller
     public function insert()
     {
         $this->config_model->insert();
-        redirect('hom_desa');
+        redirect('admin/dashboard');
     }
 
     public function update($id = '')
     {
         $this->config_model->update($id);
-        redirect('hom_desa');
+
+        redirect('admin/dashboard');
     }
 
     public function ajax_kantor_maps()
     {
         $data['desa']        = $this->config_model->get_data();
-        $data['form_action'] = site_url('hom_desa/update_kantor_maps/');
+        $data['form_action'] = site_url('admin/pengaturan_desa/ajax_kantor_maps');
         $this->load->view('home/ajax_kantor_desa_maps', $data);
     }
 
     public function ajax_wilayah_maps()
     {
         $data['desa']        = $this->config_model->get_data();
-        $data['form_action'] = site_url('hom_desa/update_wilayah_maps/');
+        $data['form_action'] = site_url('admin/pengaturan_desa/ajax_wilayah_maps');
         $this->load->view('home/ajax_wilayah_desa_maps', $data);
     }
 
     public function update_kantor_maps()
     {
         $this->config_model->update_kantor();
-        redirect('hom_desa');
+        redirect('admin/dashboard');
     }
 
     public function update_wilayah_maps()
     {
         $this->config_model->update_wilayah();
-        redirect('hom_desa');
+        redirect('admin/dashboard');
     }
 
     public function kosong_pend()
     {
         $this->config_model->kosong_pend();
-        redirect('hom_desa');
+        redirect('admin/dashboard');
     }
 
     public function undelik()
