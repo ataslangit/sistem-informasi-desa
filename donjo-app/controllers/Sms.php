@@ -9,7 +9,7 @@ class Sms extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('sms_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+        if (! in_array($grup, ['1', '2', '3'], true)) {
             redirect('siteman');
         }
         $this->load->model('header_model');
