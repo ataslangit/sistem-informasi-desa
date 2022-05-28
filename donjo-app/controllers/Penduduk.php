@@ -11,7 +11,7 @@ class Penduduk extends CI_Controller
 
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2) {
+        if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
         }
 
@@ -512,7 +512,6 @@ class Penduduk extends CI_Controller
         while ($i++ < count($col)) {
             if ($adv_search[$col[$i]] === '') {
                 unset($adv_search[$col[$i]], $_SESSION[$col[$i]]);
-
             } else {
                 $_SESSION[$col[$i]] = $adv_search[$col[$i]];
             }
