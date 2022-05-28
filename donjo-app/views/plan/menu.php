@@ -1,7 +1,7 @@
 <div class="module-panel">
 <div class="contentm" style="overflow: hidden;">
 <?php if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>
-<a class="cpanel" href="<?php echo site_url()?>hom_desa/about">
+<a class="cpanel" href="<?php echo site_url('admin/about')?>">
 <img src="<?php echo base_url()?>assets/images/cpanel/go-home-5.png" alt=""/>
 <span>SID Home</span>
 </a>
