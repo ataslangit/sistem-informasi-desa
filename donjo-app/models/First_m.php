@@ -2,11 +2,6 @@
 
 class First_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function get_data()
     {
         $sql   = 'SELECT * FROM config WHERE 1';
