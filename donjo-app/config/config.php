@@ -29,7 +29,9 @@ if (! empty($_SERVER['HTTP_HOST'])) {
     $host = $_SERVER['HTTP_HOST'];
 }
 
-$config['base_url'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http://') . $host . dirname($_SERVER['SCRIPT_NAME']);
+$baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http://') . $host . '/';
+
+$config['base_url'] = $baseUrl;
 
 /*
 |--------------------------------------------------------------------------
