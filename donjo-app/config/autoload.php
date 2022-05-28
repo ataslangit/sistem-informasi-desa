@@ -1,7 +1,5 @@
 <?php
 
-defined('BASEPATH') || exit('No direct script access allowed');
-
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -40,7 +38,7 @@ defined('BASEPATH') || exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = [APPPATH.'third_party'];
+$autoload['packages'] = [APPPATH . 'third_party'];
 
 /*
 | -------------------------------------------------------------------
@@ -59,7 +57,7 @@ $autoload['packages'] = [APPPATH.'third_party'];
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = ['session','database'];
+$autoload['libraries'] = ['session', 'database'];
 
 /*
 | -------------------------------------------------------------------
@@ -90,7 +88,7 @@ $autoload['drivers'] = [];
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = ['url','donjolib','date','pict'];
+$autoload['helper'] = ['url', 'donjolib', 'date', 'pict'];
 
 /*
 | -------------------------------------------------------------------
