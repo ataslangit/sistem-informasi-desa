@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
 	<style>
 	body{
-	 background: url(<?php echo base_url()?>assets/files/bg.jpg) no-repeat center center fixed; 
+	 background: url(<?php echo base_url()?>assets/files/bg.jpg) no-repeat center center fixed;
 	 -webkit-background-size: cover;
 	 -moz-background-size: cover;
 	 -o-background-size: cover;
@@ -29,7 +29,7 @@
 		padding:0px;
 	}
 	#full{
-		background: #ddddff repeat-x; 
+		background: #ddddff repeat-x;
 		text-align:center;
 		margin:150px 0px 0px 0px;
 		padding:10px;
@@ -41,7 +41,7 @@
 	</head>
 <body>
 <div id="full">
-<h1>Instalasi Database SID 3.10</h1>
+<h1>Instalasi Database SID <?= APP_VERSION ?></h1>
 <hr>
 <div style="width:400px;margin:0px auto;">
 <h4>Klik “Lanjut” untuk memulai proses instalasi database SID. Proses instalasi memerlukan waktu singkat. Setelah selesai, Anda akan mendapatkan “username” dan “password”. Catat/simpan “username” dan “password” sebelum meneruskan ke langkah selanjutnya.</h4><br>
