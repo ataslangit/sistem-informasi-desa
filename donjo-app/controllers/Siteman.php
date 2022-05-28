@@ -35,7 +35,6 @@ class Siteman extends CI_Controller
 
     public function auth()
     {
-        $this->config_model->do_reg();
         $this->user_model->siteman();
         redirect('main');
     }
