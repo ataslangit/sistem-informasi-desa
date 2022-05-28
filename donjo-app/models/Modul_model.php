@@ -2,11 +2,6 @@
 
 class Modul_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function list_data()
     {
         $sql = 'SELECT u.* FROM setting_modul u WHERE hidden = 0';

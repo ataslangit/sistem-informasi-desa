@@ -2,11 +2,6 @@
 
 class First_artikel_m extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function get_headline()
     {
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE headline = 1 ORDER BY tgl_upload DESC LIMIT 1 ';
