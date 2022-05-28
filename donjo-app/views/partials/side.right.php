@@ -1,6 +1,6 @@
 <!-- widget Agenda-->
 <?php
-if ($_SESSION['mandiri'] !== 1) {
+if (!isset($_SESSION['mandiri'])) {
     if ($_SESSION['mandiri_wait'] === 1) {
         ?>
         <div class="box box-primary box-solid">
@@ -28,7 +28,8 @@ if ($_SESSION['mandiri'] !== 1) {
                     <input name="nik" type="text" placeholder="NIK" value="" required>
                     <input name="pin" type="password" placeholder="PIN" value="" required>
                     <button type="submit" id="but">Masuk</button>
-                    <?php if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
+                    <?php
+                    /* if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
                         <div id="note">
                             Kesempatan mencoba <?= $_SESSION['mandiri_try'] - 1; ?> kali lagi.
                         </div>
@@ -37,7 +38,9 @@ if ($_SESSION['mandiri'] !== 1) {
                         <div id="note">
                             Login Gagal. Username atau Password yang Anda masukkan salah!
                         </div>
-                    <?php } ?>
+                    <?php }
+                    */
+                    ?>
                 </form>
             </div>
         </div>
