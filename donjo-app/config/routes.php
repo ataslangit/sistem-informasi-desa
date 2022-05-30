@@ -65,3 +65,9 @@ $route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/dashboard/ajax_wilaya
 // management user
 $route['man_user']                                    = 'Admin/man_user/redirect';
 $route['man_user/clear']                              = 'Admin/man_user/clear';
+$route['admin/manage/user']                           = 'Admin/man_user/index';
+$route['admin/manage/user/index/(:num)/(:num)']       = 'Admin/man_user/index/$1/$2';
+$route['admin/manage/user/search']                    = 'Admin/man_user/search';
+$route['admin/manage/user/form']                      = 'Admin/man_user/form';
+$route['admin/manage/user/form/(:num)/(:num)/(:num)'] = 'Admin/man_user/form/$1/$2/$3';
+$route['admin/manage/user/delete_all/(:num)/(:num)']  = 'Admin/man_user/delete_all/$1/$2';
