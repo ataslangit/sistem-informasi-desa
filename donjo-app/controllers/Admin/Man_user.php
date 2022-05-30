@@ -14,11 +14,20 @@ class Man_user extends CI_Controller
         }
     }
 
+    /**
+     * Kirim ke halaman baru dibawah 'admin/'
+     */
+    public function redirect()
+    {
+        return redirect('admin/manage/user');
+    }
+
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
         redirect('man_user');
+        return redirect('admin/manage/user');
     }
 
     public function index($p = 1, $o = 0)

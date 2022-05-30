@@ -63,4 +63,5 @@ $route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/dashboard/ajax_kantor
 $route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/dashboard/ajax_wilayah_maps';
 
 // management user
-$route['man_user'] = 'Admin/man_user/index';
+$route['man_user']                                    = 'Admin/man_user/redirect';
+$route['man_user/clear']                              = 'Admin/man_user/clear';
