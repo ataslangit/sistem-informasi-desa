@@ -26,7 +26,6 @@ class Man_user extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('man_user');
         return redirect('admin/manage/user');
     }
 
