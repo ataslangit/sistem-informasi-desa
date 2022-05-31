@@ -118,7 +118,7 @@
 		</div>
 	</div>
 ';
-                        echo '</form>
+                        echo '<?= form_close() ?>
 </fieldset>';
                         ?>
                         <div style="height:10em;"></div>

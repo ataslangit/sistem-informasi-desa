@@ -6,7 +6,7 @@
                 </div>
                 <div id="contentpane">
                     <div class="ui-layout-north panel top">
-                        <form id="mainform" name="mainform" action="" method="post">
+                        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                             <h4><?= $analisis_statistik_pertanyaan['pertanyaan'] ?></h4>
                             <h4><?= $analisis_statistik_jawaban['jawaban'] ?></h4>
 
@@ -39,7 +39,7 @@
                                     </select>
                                 <?php } ?>
                             </div>
-                        </form>
+                        <?= form_close() ?>
                     </div>
 
                     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">

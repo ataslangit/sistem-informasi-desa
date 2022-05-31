@@ -58,11 +58,11 @@
                             <tr>
                                 <th>NIK / Nama</th>
                                 <td>
-                                    <form action="" id="main" name="main" method="POST">
+                                    <?= form_open('', ['id' => 'main', 'name' => 'main']) ?>
                                         <div id="nik" name="nik"></div>
-                                    </form>
+                                    <?= form_close() ?>
                             </tr>
-                            <form id="validasi" action="<?= $form_action ?>" method="POST" target="_blank">
+                            <?= form_open($form_action, ['id' => 'validasi', 'target' => '_blank']) ?>
                                 <input type="hidden" name="nik" value="<?= $individu['id'] ?>">
                                 <?php if ($individu) { ?>
                                     <tr>
@@ -127,11 +127,11 @@
                             </tbody>
                         </table>
                     </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <form id="paging" action="<?= site_url("keluar/perorangan/{$nik['no']}") ?>" method="post">
+                                <?= form_open('keluar/perorangan/' . $nik['no'], ['id' => 'paging']) ?>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
                                         <option value="20" <?php selected($per_page, 20); ?>>20</option>
@@ -141,7 +141,7 @@
                                     <label>Dari</label>
                                     <label><strong><?= $paging->num_rows ?></strong></label>
                                     <label>Total Data</label>
-                                </form>
+                                <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">

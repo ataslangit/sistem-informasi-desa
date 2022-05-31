@@ -108,7 +108,7 @@
     }
 </style>
 <div id="map"></div>
-<form action="<?= $form_action ?>" method="post">
+<?= form_open($form_action) ?>
     <input type="hidden" id="dataPanel" name="path" value="<?= $garis['path'] ?>">
     <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
         <div class="uibutton-group">
@@ -116,4 +116,4 @@
             <input class="uibutton confirm" id="showData" value="Simpan" type="button" />
         </div>
     </div>
-</form>
+<?= form_close() ?>

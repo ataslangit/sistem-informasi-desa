@@ -1,4 +1,4 @@
-<form id="" action="<?= $form_action ?>" method="POST">
+<?= form_open($form_action) ?>
     <table style="width:100%">
         <tr>
             <th width="100">Nama line</th>
@@ -17,5 +17,5 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>
 <script type="text/javascript" src="<?= base_url() ?>assets/js/jscolor/jscolor.js"></script>

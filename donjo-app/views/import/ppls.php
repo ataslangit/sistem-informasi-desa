@@ -12,24 +12,9 @@
                     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                         <div class="left">
                             <!--impor data xls-->
-                            <table class="form"><?php /*
+                            <table class="form">
                                 <tr>
-                            <form action="<?php echo $form_action2?>" method="post" enctype="multipart/form-data">
-                                    <td width="150">
-                                        Rumah Tangga .xls:
-                                    </td>
-                                    <td width="250">
-                                        <input name="userfile" type="file" />
-                                    <td>
-                                        <input type="submit" class="uibutton special" value="Import" />
-                                    </td>
-                                    <td>
-                                        &nbsp;
-                                    </td>
-                            </form>
-                                </tr> */ ?>
-                                <tr>
-                                    <form action="<?= $form_action3 ?>" method="post" enctype="multipart/form-data">
+                                    <?= form_open_multipart($form_action3) ?>
                                         <td width="150">
                                             PBDT Individu .xls:
                                         </td>
@@ -41,7 +26,7 @@
                                         <td>
                                             &nbsp;
                                         </td>
-                                    </form>
+                                    <?= form_close() ?>
                                 </tr>
                                 <?php if (isset($_SESSION['gagal'])) { ?>
                                     <tr>

@@ -39,7 +39,7 @@
 		</div>
 	</div>
 ';
-                        echo '</form>';
+                        echo '<?= form_close() ?>';
                         ?>
                         <?php if ($persil_jenis) {
                             if (count($persil_jenis) > 0) {

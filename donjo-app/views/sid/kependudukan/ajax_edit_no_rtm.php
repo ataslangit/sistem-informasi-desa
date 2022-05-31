@@ -1,4 +1,4 @@
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table style="width:100%">
         <tr>
             <th align="left">Nomor Rumah Tangga</th>
@@ -14,4 +14,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

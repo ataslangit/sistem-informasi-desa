@@ -87,11 +87,10 @@
 	<legend>Formulir Penambahan/Pembaruan Data Peruntukan Persil</legend>
 		<fieldset>
 			<legend>Pemilik Persil</legend>
-			<div>
-				<form action="" id="main" name="main" method="POST">
+			<div>'. form_open('', ['id' => 'main', 'name' => 'main']) .'
 				<label>Cari Nama Penduduk dari Database Desa</label>
 				<div id="nik" name="nik" class="form-control"></div>
-				</form>
+				<?= form_close() ?>
 			</div>
 		</fieldset>
 ';
@@ -172,7 +171,7 @@
 		</div>
 	</div>
 ';
-                        echo '</form>
+                        echo '<?= form_close() ?>
 </fieldset>';
                         ?>
                         <div style="height:10em;"></div>

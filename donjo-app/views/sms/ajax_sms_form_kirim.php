@@ -23,7 +23,7 @@
         });
     });
 </script>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table>
         <tr>
             <th align="left">No HP Tujuan</th>
@@ -44,4 +44,4 @@
             <button class="uibutton confirm" type="submit">Kirim</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

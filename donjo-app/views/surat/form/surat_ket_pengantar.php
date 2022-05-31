@@ -39,7 +39,7 @@
         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
             <h3>Formulir Layanan: Surat Keterangan</h3>
             <div id="form-cari-pemohon">
-                <form action="" id="main" name="main" method="POST" class="formular">
+                <?= form_open('', ['id' => 'main', 'name' => 'main', 'class' => 'formular']) ?>
                     <table class="form">
                         <tr>
                             <td width="40%">NIK / Nama</td>
@@ -48,10 +48,10 @@
                             </td>
                         </tr>
                     </table>
-                </form>
+                <?= form_close() ?>
             </div>
             <div id="form-melengkapi-data-permohonan">
-                <form id="validasi" action="" method="POST" target="_blank">
+                <?= form_open('', ['id' => 'validasi', 'target' => '_blank']) ?>
                     <input type="hidden" name="nik" value="<?= $individu['id'] ?>" class="inputbox required">
                     <table class="form">
                         <?php if ($individu) {
@@ -137,5 +137,5 @@
                 </div>
             </div>
         </div>
-        </form>
+        <?= form_close() ?>
     </div>

@@ -29,7 +29,7 @@
                         ?>
                     </div>
                     <div>
-                        <form id="mainform" action="<?= $form_action; ?>" method="post" enctype="multipart/form-data">
+                        <?= form_open_multipart($form_action, ['id' => 'mainform']) ?>
                             <table>
                                 <tr>
                                     <td>Berkas DK :</td>
@@ -46,7 +46,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
+                        <?= form_close() ?>
                     </div>
                 </div>
                 <!--impor data siak-->

@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>

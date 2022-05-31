@@ -1,4 +1,4 @@
-<? if ($single_artikel['id']) { ?>
+<?php if ($single_artikel['id']) { ?>
     <div class="themes bigfull">
         <div class='title'>
             <h2><a href="#"><?= $single_artikel['judul'] ?></a></h2>
@@ -38,12 +38,12 @@
                 <?php } ?>
             <?php } ?>
             <?php if (isset($single_artikel['dokumen'])) {
-                if ($single_artikel['dokumen'] !== '') { ?>
+    if ($single_artikel['dokumen'] !== '') { ?>
                     <?php if (is_file('assets/files/dokumen/' . $single_artikel['dokumen'])) { ?>
                         <a href="<?= base_url(); ?>assets/files/dokumen/<?= $single_artikel['dokumen'] ?>"><?= $single_artikel['link_dokumen'] ?></a>
                     <?php } ?>
             <?php }
-            } ?>
+} ?>
         </div>
         <div class="art-spacer" style="display:block;clear:both;">
             Ditulis oleh: <b><?= $single_artikel['owner'] ?><br></b>
@@ -73,8 +73,8 @@
         </br>
         <div style="clear:both;">
             <h3>Komentar Artikel Terkait</h3>
-            <? foreach ($komentar as $data) { ?>
-                <? if ($data['enabled'] == 1) { ?>
+            <?php foreach ($komentar as $data) { ?>
+                <?php if ($data['enabled'] === 1) { ?>
                     <div class="kom-box">
                         <span class="post-title">
                             <b><?= $data['owner'] ?><br></b>
@@ -83,14 +83,14 @@
                             </p>
                         </span>
                     </div>
-                <? } ?>
-            <? } ?>
+                <?php } ?>
+            <?php } ?>
         </div>
         <div class="themes comments">
             <h3>Post Komentar :</h3>
             <br />
             <table width=100%>
-                <form name='form' action="<?= site_url("first/add_comment/{$single_artikel['id']}") ?>" method=POST onSubmit=\"return validasi(this)\">
+                <?= form_open_multipart('first/add_comment/' . $single_artikel['id'], ['name' => 'form', 'onSubmit' => 'return validasi(this)']) ?>
                     <tr class="komentar">
                         <td>Nama</td>
                         <td> <input type=text name="owner" size=20 maxlength=30></td>
@@ -107,9 +107,9 @@
                         <td>&nbsp;</td>
                         <td><input type="submit" value="Kirim"></td>
                     </tr>
-                </form>
+                <?= form_close() ?>
             </table><br />
         </div>
         <input type="button" value="Kembali" onclick="self.history.back()">
     </div>
-<? } ?>
+<?php } ?>

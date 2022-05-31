@@ -37,7 +37,7 @@
         xmlhttp.send();
     }
 </script>
-<form method="post" action="<?= $form_action ?>" id="mainform" name="mainform">
+<?= form_open($form_action, ['id' => 'mainform', 'name' => 'mainform']) ?>
     <input type="hidden" name="rt" value="">
     <table class="form">
         <tr>
@@ -59,4 +59,4 @@
             <button class="uibutton confirm" type="submit">Pindah</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

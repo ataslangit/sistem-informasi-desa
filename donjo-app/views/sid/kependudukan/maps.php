@@ -52,7 +52,7 @@
         border: 1px solid #000;
     }
 </style>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <div id="map"></div>
     <input type="hidden" name="lat" id="lat" />
     <input type="hidden" name="lng" id="lng" />
@@ -63,4 +63,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

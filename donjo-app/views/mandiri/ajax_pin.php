@@ -25,7 +25,7 @@
         });
     });
 </script>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table class="data">
         <tr>
             <th align="left">NIK / Nama Penduduk</th>
@@ -51,4 +51,4 @@
             <button class="uibutton confirm" type="submit" id="tes">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

@@ -11,7 +11,7 @@
     <div class="content-header">
     </div>
     <div id="contentpane">
-        <form id="mainform" name="mainform" action="" method="post">
+        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
                 <h3>Manajemen Periode Analisis - <a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></h3>
                 <div class="left">
@@ -86,11 +86,11 @@
                     </tbody>
                 </table>
             </div>
-        </form>
+        <?= form_close() ?>
         <div class="ui-layout-south panel bottom">
             <div class="left">
                 <div class="table-info">
-                    <form id="paging" action="<?= site_url('analisis_periode') ?>" method="post">
+                    <?= form_open('analisis_periode', ['id' => 'paging']) ?>
                         <a href="<?= site_url() ?>analisis_periode/leave" class="uibutton icon prev">Kembali</a>
                         <label></label>
                         <select name="per_page" onchange="$('#paging').submit()">
@@ -101,7 +101,7 @@
                         <label>Dari</label>
                         <label><?= $paging->num_rows ?></label>
                         <label>Total Data</label>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="right">

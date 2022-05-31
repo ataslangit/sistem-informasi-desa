@@ -10,7 +10,7 @@
     <div class="content-header">
     </div>
     <div id="contentpane">
-        <form id="mainform" name="mainform" action="" method="post">
+        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
                 <h3>Modul kelompok</h3>
                 <div class="left">
@@ -66,12 +66,11 @@
                     </tbody>
                 </table>
             </div>
-        </form>
+        <?= form_close() ?>
         <div class="ui-layout-south panel bottom">
             <div class="left">
                 <div class="table-info">
-                    <form id="paging" action="<?= site_url('kelompok_master') ?>" method="post">
-
+                    <?= form_open('kelompok_master', ['id' => 'paging']) ?>
                         <a href="<?= site_url('kelompok/clear') ?>" class="uibutton icon prev"> Kembali </a> <label>Tampilkan</label>
                         <select name="per_page" onchange="$('#paging').submit()">
                             <option value="20" <?php selected($per_page, 20); ?>>20</option>
@@ -81,7 +80,7 @@
                         <label>Dari</label>
                         <label><strong><?= $paging->num_rows ?></strong></label>
                         <label>Total Data</label>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="right">

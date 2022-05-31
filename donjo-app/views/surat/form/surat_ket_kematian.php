@@ -61,11 +61,11 @@
                             <tr>
                                 <th>NIK / Nama yang Meninggal</th>
                                 <td>
-                                    <form action="" id="main" name="main" method="POST">
+                                    <?= form_open('', ['id' => 'main', 'name' => 'main']) ?>
                                         <div id="nik" name="nik"></div>
-                                    </form>
+                                    <?= form_close() ?>
                             </tr>
-                            <form id="validasi" action="<?= $form_action ?>" method="POST" target="_blank">
+                            <?= form_open($form_action, ['id' => 'validasi', 'target' => '_blank']) ?>
                                 <input type="hidden" name="nik" value="<?= $individu['id'] ?>" class="inputbox required">
                                 <?php if ($individu) { ?>
                                     <tr>
@@ -181,7 +181,7 @@
         </div>
     </div>
 </div>
-</form>
+<?= form_close() ?>
 </div>
 </td>
 </tr>

@@ -1,6 +1,6 @@
 <div id="pageC">
     <div id="contentpane">
-        <form id="mainform" name="mainform" action="" method="post">
+        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
                 <h3>Dokumen / Kelengkpan Penduduk - <?= $penduduk['nama'] ?> [<?= $penduduk['nik'] ?>]</h3>
                 <div class="left">
@@ -55,6 +55,6 @@
                     </div>
                 </div>
             </div>
-        </form>
+        <?= form_close() ?>
     </div>
 </div>

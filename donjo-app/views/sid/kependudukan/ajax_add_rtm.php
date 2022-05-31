@@ -19,7 +19,7 @@
         });
     });
 </script>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table class="list">
         <tr>F
             <td align="left">NIK Kepala Rumah Tangga</td>
@@ -45,6 +45,6 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>
 <tr>
     <?php ?>

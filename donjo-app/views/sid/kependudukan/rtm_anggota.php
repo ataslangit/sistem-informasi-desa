@@ -5,7 +5,7 @@
                 <div id="contentpane">
                     <div class="content-header">
                     </div>
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <h3>Daftar Anggota Rumah Tangga : <?= $kepala_kk['nama'] ?> - <?= $kepala_kk['no_kk'] ?></h3>
                             <div class="left">
@@ -68,7 +68,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <a href="<?= site_url("rtm/index/{$p}/{$o}") ?>" class="uibutton icon prev">Kembali</a>

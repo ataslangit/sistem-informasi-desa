@@ -24,7 +24,7 @@ if (!isset($_SESSION['mandiri'])) {
             </div>
             <div class="box-body">
                 <h4>Masukkan NIK dan PIN!</h4>
-                <form action="<?= site_url('first/auth') ?>" method="post">
+                <?= form_open('first/auth') ?>
                     <input name="nik" type="text" placeholder="NIK" value="" required>
                     <input name="pin" type="password" placeholder="PIN" value="" required>
                     <button type="submit" id="but">Masuk</button>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['mandiri'])) {
                     <?php }
                     */
                     ?>
-                </form>
+                <?= form_close() ?>
             </div>
         </div>
     <?php }
@@ -101,11 +101,11 @@ if (!isset($_SESSION['mandiri'])) {
             </div>
             <div class="box-body">
                 <h4>Masukkan PIN Baru</h4>
-                <form action="<?= site_url('first/ganti') ?>" method="post">
+                <?= form_open('first/ganti') ?>
                     <input name="pin1" type="password" placeholder="PIN" value="">
                     <input name="pin2" type="password" placeholder="Ulangi PIN" value="">
                     <button type="submit" id="but">Ganti</button>
-                </form>
+                <?= form_close() ?>
                 <div id="note">
                     Silakan login kembali setelah PIN baru disimpan.
                 </div>

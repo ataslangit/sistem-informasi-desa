@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<?= base_url() ?>assets/js/donjoscript/donjoscript2.js"></script>
 <?php $sekarang = date('d-m-Y');
 ?>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table style="width:100%" class="">
         <tr>
             <th align="left">Peristiwa Penting</th>
@@ -43,4 +43,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

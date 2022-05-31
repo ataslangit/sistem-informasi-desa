@@ -70,7 +70,7 @@
                                     <input type="reset" class="uibutton" name="tombolreset" id="tombolreset" value="Batal" />
                                 </div>
                             </div>
-                            </form>
+                            <?= form_close() ?>
                         </div>
                     </div>
                 </div>

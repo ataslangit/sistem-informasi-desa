@@ -21,7 +21,7 @@
                     <h3>Manajemen Sub Menu</h3>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -68,7 +68,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <a href="<?= site_url() ?>menu/index/<?= $tip ?>" class="uibutton icon prev">Kembali</a>

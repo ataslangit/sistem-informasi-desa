@@ -13,7 +13,7 @@
                 <div class="content-header">
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <h3>Manajemen Gallery Album <?= $sub['nama'] ?></h3>
                             <div class="left">
@@ -97,11 +97,11 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <form id="paging" action="<?= site_url('gallery') ?>" method="post">
+                                <?= form_open('gallery', ['id' => 'paging']) ?>
                                     <a href="<?= site_url('gallery/clear') ?>" class="uibutton">Kembali</a>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
@@ -112,7 +112,7 @@
                                     <label>Dari</label>
                                     <label><strong><?= $paging->num_rows ?></strong></label>
                                     <label>Total Data</label>
-                                </form>
+                                <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">

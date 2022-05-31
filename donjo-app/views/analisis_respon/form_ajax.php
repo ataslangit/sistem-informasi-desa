@@ -63,7 +63,7 @@
         font-weight: bold;
     }
 </style>
-<form id="child" action="<?= $form_action ?>" method="POST">
+<?= form_open($form_action, ['id' => 'child']) ?>
     <table width="100%">
         <?php foreach ($list_jawab as $data) { ?>
             <tr>
@@ -138,4 +138,4 @@
                     </td>
                 </tr>
     </table>
-</form>
+<?= form_close() ?>

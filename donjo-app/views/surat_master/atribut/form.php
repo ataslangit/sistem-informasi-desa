@@ -9,7 +9,7 @@
                         <h3>Form Data Parameter</h3>
                         <p> &nbsp; Pertanyaan : <?= $analisis_indikator['pertanyaan'] ?></p>
                     </div>
-                    <form id="validasi" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
+                    <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <table class="form">
                                 <tr>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>

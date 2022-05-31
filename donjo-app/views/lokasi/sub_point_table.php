@@ -9,7 +9,7 @@
                     <div style="padding:1em;margin:1em 0;border:solid 1px #c00;background:#fee;color:#c00;">Modul ini masih dalam tahap pengembangan. Ide-ide dan usulan mari kita kumpulkan untuk memperkaya khazanah SID</div>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -55,7 +55,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <a href="<?= site_url() ?>plan/index/1" class="uibutton icon prev">Kembali</a>

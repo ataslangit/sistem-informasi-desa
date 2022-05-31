@@ -1,4 +1,4 @@
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <div class="content-header">
         <h4>KK No.<?= $kepala_kk['no_kk'] ?> Keluarga : <?= $kepala_kk['nama'] ?></h4>
     </div>
@@ -40,4 +40,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

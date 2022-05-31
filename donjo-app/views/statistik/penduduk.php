@@ -78,7 +78,7 @@
                     <h3>Statistik</h3>
                 </div>
                 <div id="contentpane" style="overflow:auto;">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel top">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -170,7 +170,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                     </div>
                 </div>

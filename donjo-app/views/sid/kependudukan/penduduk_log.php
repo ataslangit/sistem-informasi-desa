@@ -14,7 +14,7 @@
                     <h3>Manajemen Penduduk</h3>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <input type="hidden" name="rt" value="">
                         <div class="ui-layout-north panel">
                             <div class="left">
@@ -170,11 +170,11 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <form id="paging" action="<?= site_url('penduduk_log') ?>" method="post">
+                                <?= form_open('penduduk_log', ['id' => 'paging']) ?>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
                                         <option value="50" <?php selected($per_page, 50); ?>>50</option>
@@ -184,7 +184,7 @@
                                     <label>Dari</label>
                                     <label><strong><?= $paging->num_rows ?></strong></label>
                                     <label>Total Data</label>
-                                </form>
+                                <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">

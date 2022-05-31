@@ -9,7 +9,7 @@
                     <div class="ui-layout-north panel">
                         <h3>Pengaturan</h3>
                     </div>
-                    <form action="<?= site_url("admin/pengaturan_desa/update/{$main['id']}") ?>" method="POST" enctype="multipart/form-data">
+                    <?= form_open_multipart('admin/pengaturan_desa/update/' . $main['id']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <table class="form">
                                 <tr>
@@ -104,7 +104,7 @@
         </div>
     </div>
 </div>
-</form>
+<?= form_close() ?>
 </div>
 </td>
 </tr>

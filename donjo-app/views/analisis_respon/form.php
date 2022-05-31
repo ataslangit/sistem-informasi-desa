@@ -69,7 +69,7 @@
     <div id="contentpane">
         <div class="ui-layout-north panel">
         </div>
-        <form id="validasi" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
+        <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
             <div class="ui-layout-center" id="maincontent">
                 <table class="head">
                     <tr>
@@ -259,7 +259,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        <?= form_close() ?>
 
         <?php if (@$_SESSION['sukses'] === 1) : ?>
             <script>

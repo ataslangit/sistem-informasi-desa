@@ -45,7 +45,7 @@
         font-weight: normal;
     }
 </style>
-<form method="post" action="<?= $form_action ?>">
+<?= form_open($form_action) ?>
     <input type="hidden" name="rt" value="">
     <table width="100%">
         <?php $last = '';
@@ -83,4 +83,4 @@
             <button class="uibutton confirm" type="submit">Lanjut</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

@@ -8,7 +8,7 @@
 </script>
 <div id="pageC">
     <div id="contentpane">
-        <form id="mainform" name="mainform" action="" method="post">
+        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
                 <div class="left">
                     <h3>Pengaturan Modul</h3>
@@ -69,7 +69,7 @@
                 </table>
 
             </div>
-        </form>
+        <?= form_close() ?>
         <div class="ui-layout-south panel bottom">
             <div class="left">
             </div>
