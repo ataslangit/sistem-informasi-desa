@@ -37,8 +37,7 @@
         xmlhttp.send();
     }
 </script>
-<?= form_open($form_action, ['id' => 'validasi']) ?>
-    <input type="hidden" name="rt" value="">
+<?= form_open($form_action, ['id' => 'validasi'], ['rt' => '']) ?>
     <table>
         <tr>
             <td>Umur</td>

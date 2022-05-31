@@ -6,10 +6,9 @@
         width: 430px;
     }
 </style>
-<?= form_open_multipart('user_setting/update/' . $main['id'], ['id' => 'validasi']) ?>
+<?= form_open_multipart('user_setting/update/' . $main['id'], ['id' => 'validasi'], ['nama' => $main['nama']], ['old_foto' => $main['foto']]) ?>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table>
-            <input name="nama" type="hidden" value="<?= $main['nama'] ?>" />
             <tr>
                 <th width="100" align="left">Username</th>
                 <td><input type="text" class="inputbox" size="30" value="<?= $main['username'] ?>" disabled="disabled" /></td>
@@ -41,7 +40,6 @@
                         <?php } ?>
                     </div>
                 </td>
-                <input type="hidden" name="old_foto" value="<?= $main['foto'] ?>">
             </tr>
             <tr>
                 <th>Ganti Foto</th>

@@ -45,8 +45,7 @@
         font-weight: normal;
     }
 </style>
-<?= form_open($form_action) ?>
-    <input type="hidden" name="rt" value="">
+<?= form_open($form_action, [], ['rt' => '']) ?>
     <table width="100%">
         <?php $last = '';
 
