@@ -37,8 +37,7 @@
         xmlhttp.send();
     }
 </script>
-<?= form_open($form_action, ['id' => 'mainform', 'name' => 'mainform']) ?>
-    <input type="hidden" name="rt" value="">
+<?= form_open($form_action, ['id' => 'mainform', 'name' => 'mainform'], ['rt' => '']) ?>
     <table class="form">
         <tr>
             <td width="60">Dusun</td>

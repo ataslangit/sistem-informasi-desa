@@ -56,9 +56,8 @@
     <h3>Form Manajemen Responden</h3>
 </div>
 <div id="contentpane">
-    <?= form_open($form_action, ['id' => 'validasi']) ?>
+    <?= form_open($form_action, ['id' => 'validasi'], ['rt' => '']) ?>
         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-            <input type="hidden" name="rt" value="">
             <table>
                 <?php $last = '';
 

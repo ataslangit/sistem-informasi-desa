@@ -51,9 +51,9 @@
                                     <?= form_open('', ['id' => 'main', 'name' => 'main']) ?>
                                         <div id="nik" name="nik"></div>
                                     <?= form_close() ?>
+                                </td>
                             </tr>
-                            <?= form_open($form_action, ['id' => 'validasi', 'target' => '_blank']) ?>
-                                <input type="hidden" name="nik" value="<?= $individu['id'] ?>">
+                            <?= form_open($form_action, ['id' => 'validasi', 'target' => '_blank'], ['nik' => $individu['id']]) ?>
                                 <?php if ($individu) { ?>
                                     <tr>
                                         <th>Tempat Tanggal Lahir (Umur)</th>
