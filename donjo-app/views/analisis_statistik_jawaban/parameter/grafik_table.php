@@ -5,7 +5,7 @@
 
         <h4><?= $analisis_statistik_jawaban['pertanyaan'] ?></h4>
         <div class="top">
-            <form id="mainform" name="mainform" action="" method="post">
+            <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                 <div class="left">
                     <select name="dusun" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/dusun3/{$analisis_statistik_jawaban['id']}") ?>')">
                         <option value="">Dusun</option>
@@ -32,7 +32,7 @@
                         </select>
                     <?php } ?>
                 </div>
-            </form>
+            <?= form_close() ?>
         </div>
         <table class="list">
             <thead>

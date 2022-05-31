@@ -77,7 +77,7 @@
                     }
                 </style>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['name' => 'mainform', 'id' => 'mainform']) ?>
                         <div class="ui-layout-north panel top">
                             <div class="left">
                                 <select name="dusun" onchange="formAction('mainform','<?= site_url('analisis_grafik/dusun') ?>')">
@@ -107,7 +107,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-center" id="chart" style="padding: 5px;">
 
                     </div>

@@ -6,7 +6,7 @@
         width: 430px;
     }
 </style>
-<form action="<?= $form_action ?>" method="POST" id="validasi" enctype="multipart/form-data">
+<?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
     <table class="form">
         <tr>
             <td width="90">Nama / Jenis Dokumen</td>
@@ -29,4 +29,4 @@
             </div>
         </div>
     </div>
-</form>
+<?= form_close() ?>

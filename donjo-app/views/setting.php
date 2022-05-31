@@ -6,7 +6,7 @@
         width: 430px;
     }
 </style>
-<form action="<?= site_url("user_setting/update/{$main['id']}") ?>" method="POST" id="validasi" enctype="multipart/form-data">
+<?= form_open_multipart('user_setting/update/' . $main['id'], ['id' => 'validasi']) ?>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table>
             <input name="nama" type="hidden" value="<?= $main['nama'] ?>" />
@@ -34,11 +34,11 @@
                 <th align="left" class="top">Foto</th>
                 <td>
                     <div class="userbox-avatar">
-                        <? if ($main['foto']) { ?>
+                        <?php if ($main['foto']) { ?>
                             <img src="<?= base_url() ?>assets/files/user_pict/kecil_<?= $main['foto'] ?>" alt="" />
-                        <? } else { ?>
+                        <?php } else { ?>
                             <img src="<?= base_url() ?>assets/files/user_pict/kuser.png" alt="" />
-                        <? } ?>
+                        <?php } ?>
                     </div>
                 </td>
                 <input type="hidden" name="old_foto" value="<?= $main['foto'] ?>">
@@ -56,4 +56,4 @@
             </div>
         </div>
     </div>
-</form>
+<?= form_close() ?>

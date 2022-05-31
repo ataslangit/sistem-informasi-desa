@@ -56,7 +56,7 @@
     <h3>Form Manajemen Responden</h3>
 </div>
 <div id="contentpane">
-    <form id="validasi" action="<?= $form_action ?>" method="POST">
+    <?= form_open($form_action, ['id' => 'validasi']) ?>
         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
             <input type="hidden" name="rt" value="">
             <table>
@@ -97,5 +97,5 @@
                 </div>
             </div>
         </div>
-    </form>
+    <?= form_close() ?>
 </div>

@@ -9,7 +9,7 @@
 <div id="pageC">
     <?php $this->load->view('analisis_master/left', $data); ?>
     <div id="contentpane">
-        <form id="mainform" name="mainform" action="" method="post">
+        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
                 <div class="left">
                     <h3>Analisis Statistik Jawaban - <a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></a></h3>
@@ -169,18 +169,18 @@
                     </tbody>
                 </table>
             </div>
-        </form>
+        <?= form_close() ?>
         <div class="ui-layout-south panel bottom">
             <div class="left">
                 <div class="table-info">
-                    <form id="paging" action="<?= site_url('analisis_statistik_jawaban') ?>" method="post">
+                    <?= form_open('analisis_statistik_jawaban', ['id' => 'paging']) ?>
                         <select name="per_page" onchange="$('#paging').submit()">
                             <option value="20" <?php selected($per_page, 20); ?>>20</option>
                             <option value="50" <?php selected($per_page, 50); ?>>50</option>
                             <option value="100" <?php selected($per_page, 100); ?>>100</option>
                         </select>
                         <label>Dari <?= $paging->num_rows ?> Total Data</label>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="right">

@@ -3,7 +3,7 @@
         <tr style="vertical-align:top">
             <td style="background:#fff;padding:0px;">
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel top">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -294,7 +294,7 @@
             <button class="uibutton confirm" type="submit">Cetak</button>
         </div>
     </div>
-    </form>
+    <?= form_close() ?>
 </div>
 </td>
 </tr>

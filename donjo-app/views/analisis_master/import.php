@@ -1,4 +1,4 @@
-<form id="validasi" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
+<?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
     <table class="form">
         <tr>
             <td colspan='2'>
@@ -18,4 +18,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

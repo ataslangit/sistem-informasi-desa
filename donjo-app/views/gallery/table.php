@@ -24,7 +24,7 @@
                     <h3>Manajemen Gallery</h3>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -112,11 +112,11 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <form id="paging" action="<?= site_url('gallery') ?>" method="post">
+                                <?= form_open('gallery', ['id' => 'paging']) ?>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
                                         <option value="20" <?php selected($per_page, 20); ?>>20</option>
@@ -126,7 +126,7 @@
                                     <label>Dari</label>
                                     <label><strong><?= $paging->num_rows ?></strong></label>
                                     <label>Total Data</label>
-                                </form>
+                                <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">

@@ -102,7 +102,7 @@
     }
 </style>
 <div id="map"></div>
-<form action="<?= $form_action ?>" method="post">
+<?= form_open($form_action) ?>
     <input type="hidden" name="lat" id="lat" value="<?= $dusun['lat'] ?>" />
     <input type="hidden" name="lng" id="lng" value="<?= $dusun['lng'] ?>" />
     <input type="hidden" name="zoom" id="zoom" value="<?= $dusun['zoom'] ?>" />
@@ -114,4 +114,4 @@
             <input class="uibutton confirm" id="showData" value="Simpan" type="button" />
         </div>
     </div>
-</form>
+<?= form_close() ?>

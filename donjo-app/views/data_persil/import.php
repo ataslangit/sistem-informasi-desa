@@ -6,7 +6,7 @@
         width: 430px;
     }
 </style>
-<form action="<?= $form_action ?>" method="POST" id="validasi" enctype="multipart/form-data">
+<?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
         <table width="100%">
             <tr>
@@ -31,4 +31,4 @@
             </div>
         </div>
     </div>
-</form>
+<?= form_close() ?>

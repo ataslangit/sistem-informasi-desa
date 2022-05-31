@@ -36,11 +36,11 @@
 							<div>
 								<fieldset>
 									<legend>Formulir Penambahan Peserta</legend>
-									<div>
-										<form action="" id="main" name="main" method="POST">
+									<div>' .
+                                    form_open('', ['id' => 'main', 'name' => 'main']) . '
 										<label>Cari Nama Peserta dari Database Desa</label>
 										<div id="nik" name="nik"></div>
-										</form>
+										<?= form_close() ?>
 									</div>
 								</fieldset>
 							</div>

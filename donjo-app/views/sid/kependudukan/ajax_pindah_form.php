@@ -37,7 +37,7 @@
         xmlhttp.send();
     }
 </script>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <input type="hidden" name="rt" value="">
     <table>
         <tr>
@@ -60,4 +60,4 @@
             <button class="uibutton confirm" type="submit">Pindah</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

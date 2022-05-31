@@ -26,7 +26,7 @@
         <tr style="vertical-align:top">
             <td style="background:#fff;padding:0px;">
                 <div id="contentpane">
-                    <form id="validasi" action="<?= $form_action ?>" method="POST">
+                    <?= form_open($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <h3>Form Data RT</h3>
                             <table class="form">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>

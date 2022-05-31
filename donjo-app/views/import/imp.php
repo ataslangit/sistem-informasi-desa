@@ -9,7 +9,7 @@
                 <!--impor data xls-->
 
                 <h4>Import Data Penduduk dan Keluarga (Basis NIK dan Nomor KK)</h4>
-                <form action="<?= $form_action ?>" method="post" enctype="multipart/form-data" id="excell">
+                <?= form_open_multipart($form_action, ['id' => 'excell']) ?>
                     <table class="form">
                         <tr>
                             <td width="500" colspan="3">
@@ -80,11 +80,11 @@
                             </tr>
                         <?php } ?>
                     </table>
-                </form>
+                <?= form_close() ?>
                 <!--impor data xls-->
                 <br>
                 <h4>Import Pengelompokan Data Rumah Tangga</h4>
-                <form action="<?= $form_action3 ?>" method="post" enctype="multipart/form-data" id="kelompok">
+                <?= form_open_multipart($form_action3, ['id' => 'kelompok']) ?>
                     <table class="form">
                         <tr>
                             <td width="500" colspan="3">
@@ -119,7 +119,7 @@
                             </td>
                         </tr>
                     </table>
-                </form>
+                <?= form_close() ?>
 
             </div>
         </div>

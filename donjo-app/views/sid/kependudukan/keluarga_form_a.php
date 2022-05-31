@@ -17,7 +17,7 @@
                     <h3>Form Manajemen KK</h3>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">
+                    <?= form_open_multipart($form_action, ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <table class="form">
                                 <input name="id_kk" type="hidden" value="<?= $id_kk ?>">
@@ -200,7 +200,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>

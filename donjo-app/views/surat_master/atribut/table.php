@@ -13,7 +13,7 @@
                 <div class="content-header">
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <h3>Manajemen Parameter Analisis</h3>
                             <p> &nbsp; Pertanyaan : <?= $analisis_indikator['pertanyaan'] ?></p>
@@ -66,7 +66,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <a href="<?= site_url() ?>analisis_indikator" class="uibutton icon prev">Kembali</a>

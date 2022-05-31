@@ -254,7 +254,7 @@
         -webkit-border-radius: 3px;
     }
 </style>
-<form id="mainform" name="mainform" action="" method="post">
+<?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
     <div class="ui-layout-west" id="sidebar" style="width:200px;">
         <div class="module">
             <table border="0">
@@ -390,7 +390,7 @@
                 <button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('gis/search') ?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
                 <button href="<?= site_url('gis/ajax_adv_search') ?>" target="ajax-modalx" rel="window" header="Pencarian Spesifik" class="uibutton tipsy south" title="Pencarian Spesifik"><span class="ui-icon ui-icon-search">&nbsp;</span>Pencarian Spesifik</button>
                 <a href="<?= site_url('gis/clear') ?>" class="uibutton tipsy south" title="Clear Pencarian" style=""><span class="ui-icon ui-icon-search">&nbsp;</span>Clear</a>
-</form>
+<?= form_close() ?>
 </div>
 </div>
 <div id="map"></div>

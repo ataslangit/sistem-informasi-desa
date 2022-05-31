@@ -20,7 +20,7 @@
         });
     });
 </script>
-<form action="<?= $form_action ?>" method="post" id="validasi">
+<?= form_open($form_action, ['id' => 'validasi']) ?>
     <table class="list">
         <tr>
             <th align="left">Nomor KK RTM</th>
@@ -41,4 +41,4 @@
             <button class="uibutton confirm" type="submit">Simpan</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

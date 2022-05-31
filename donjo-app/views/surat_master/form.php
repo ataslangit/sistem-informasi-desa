@@ -5,7 +5,7 @@
         <div class="ui-layout-north panel">
             <h3>Form Layanan Administrasi Surat</a></h3>
         </div>
-        <form id="validasi" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
+        <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
             <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                 <table class="form">
                     <tr>
@@ -30,6 +30,6 @@
                     </div>
                 </div>
             </div>
-        </form>
+        <?= form_close() ?>
     </div>
 </div>

@@ -19,12 +19,12 @@
                 <div id="contentpane">
                     <div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
 
-                        <form id="mainform" name="mainform" action="" method="post">
+                        <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                             <div class="left">
                                 <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?= $cari ?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?= site_url('data_persil/search') ?>');$('#'+'mainform').submit();}" />
                                 <button type="button" onclick="$('#'+'mainform').attr('action','<?= site_url('data_persil/search') ?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
                             </div>
-                        </form>
+                        <?= form_close() ?>
                         <?php
                         if ($_SESSION['success'] === 1) {
                             echo '<div>' . $_SESSION['pesan'] . '</div>';

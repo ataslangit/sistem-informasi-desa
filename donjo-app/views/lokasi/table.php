@@ -17,7 +17,7 @@
                     <div style="padding:1em;margin:1em 0;border:solid 1px #c00;background:#fee;color:#c00;">Modul ini masih dalam tahap pengembangan. Ide-ide dan usulan mari kita kumpulkan untuk memperkaya khazanah SID</div>
                 </div>
                 <div id="contentpane">
-                    <form id="mainform" name="mainform" action="" method="post">
+                    <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
                         <div class="ui-layout-north panel">
                             <div class="left">
                                 <div class="uibutton-group">
@@ -101,11 +101,11 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <form id="paging" action="<?= site_url('plan') ?>" method="post">
+                                <?= form_open('plan', ['id' => 'paging']) ?>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
                                         <option value="20" <?php selected($per_page, 20); ?>>20</option>
@@ -115,7 +115,7 @@
                                     <label>Dari</label>
                                     <label><strong><?= $paging->num_rows ?></strong></label>
                                     <label>Total Data</label>
-                                </form>
+                                <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">

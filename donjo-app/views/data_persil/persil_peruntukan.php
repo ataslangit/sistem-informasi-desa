@@ -41,7 +41,7 @@
 		</div>
 	</div>
 ';
-                        echo '</form>
+                        echo '<?= form_close() ?>
 </fieldset>';
                         ?>
                         <?php if ($persil_peruntukan) {

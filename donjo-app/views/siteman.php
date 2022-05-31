@@ -22,7 +22,7 @@
         <div id="mainlogin">
             <div id="or"><?= APP_VERSION ?></div>
             <h1>Masukkan Username dan Password</h1>
-            <form action="<?= site_url('siteman/auth') ?>" method="post">
+            <?= form_open('siteman/auth') ?>
                 <input name="username" type="text" placeholder="username" value="" required>
                 <input name="password" type="password" placeholder="password" value="" required>
                 <button type="submit" id="but">LOGIN</button>
@@ -36,7 +36,7 @@
                     </div>
                 <?php }
                 unset($_SESSION['siteman']); ?>
-            </form>
+            <?= form_close() ?>
         </div>
         <div id="facebook2">
             <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?= base_url() ?>assets/images/logo-combine.png"></a></div>

@@ -26,13 +26,12 @@
         </div>
         <div class="ui-layout-center" id="maincontent" style="padding: 10px;">
             <div>
-                <h3>Menu Cepat Pencarian / Cetak Layanan Surat<h3>
-                        <form action="<?= site_url() ?>surat/search" id="main" name="main" method="POST">
-                            <div id="nik" name="nik"></div>
-                        </form>
-
-                        <hr>
-                        <br>
+                <h3>Menu Cepat Pencarian / Cetak Layanan Surat</h3>
+                <?= form_open('surat/search', ['id' => 'main', 'name' => 'main']) ?>
+                    <div id="nik" name="nik"></div>
+                <?= form_close() ?>
+                <hr>
+                <br>
             </div>
             <div>
                 <h3>Layanan Surat Administrasi Kependudukan</h3>

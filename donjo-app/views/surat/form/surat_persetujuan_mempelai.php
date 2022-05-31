@@ -56,7 +56,7 @@
                         <h3>Surat Persetujuan Mempelai</h3>
                     </div>
                     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-                        <form id="validasi" action="<?= $form_action ?>" method="POST" target="_blank">
+                        <?= form_open($form_action, ['id' => 'validasi', 'target' => '_blank']) ?>
                             <table class="form">
                                 <tr>
                                     <th>Nomor Surat</th>
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>

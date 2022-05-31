@@ -37,7 +37,7 @@
         xmlhttp.send();
     }
 </script>
-<form method="post" action="<?= $form_action ?>">
+<?= form_open($form_action) ?>
     <input type="hidden" name="rt" value="">
     <table>
         <tr>
@@ -131,4 +131,4 @@
             <button class="uibutton confirm" type="submit">Search</button>
         </div>
     </div>
-</form>
+<?= form_close() ?>

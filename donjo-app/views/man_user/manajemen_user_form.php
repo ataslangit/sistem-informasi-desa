@@ -42,7 +42,7 @@
                     <div class="ui-layout-north panel">
                         <h3>Form Manajemen Pengguna / User</h3>
                     </div>
-                    <form id="validasi" action="<?php echo $form_action ?>" method="POST" enctype="multipart/form-data">
+                    <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <table class="form">
                                 <tr>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </td>
         </tr>
