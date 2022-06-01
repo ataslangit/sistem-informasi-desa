@@ -18,8 +18,6 @@ class Gis extends CI_Controller
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
-
-        $this->load->database();
     }
 
     public function clear()

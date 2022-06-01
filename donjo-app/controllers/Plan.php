@@ -18,7 +18,6 @@ class Plan extends CI_Controller
         //$this->load->library('ion_auth');
 
         //$this->config->item('ion_auth') ;
-        $this->load->database();
     }
 
     public function clear()
