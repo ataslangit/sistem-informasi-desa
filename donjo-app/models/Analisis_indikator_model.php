@@ -2,22 +2,18 @@
 
 class Analisis_indikator_model extends CI_Model
 {
-    public function autocomplete()
+    protected $table = 'analisis_indikator';
+
+    public function autocomplete(): string
     {
-        $sql   = 'SELECT pertanyaan FROM analisis_indikator';
-        $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $sql  = $this->db->select('pertanyaan')->get($this->table);
+        $data = [];
 
-        $i    = 0;
-        $outp = '';
-
-        while ($i < count($data)) {
-            $outp .= ",'" . $data[$i]['pertanyaan'] . "'";
-            $i++;
+        foreach ($sql->result_array() as $row) {
+            $data[] = strtolower(trim($row['pertanyaan']));
         }
-        $outp = strtolower(substr($outp, 1));
 
-        return '[' . $outp . ']';
+        return json_encode($data);
     }
 
     public function search_sql()
