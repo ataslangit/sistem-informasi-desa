@@ -10,7 +10,6 @@ class Point extends CI_Controller
 
         $this->load->model('header_model');
         $this->load->model('plan_point_model');
-        $this->load->database();
     }
 
     public function clear()
