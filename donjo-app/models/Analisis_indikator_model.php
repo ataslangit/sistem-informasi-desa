@@ -2,22 +2,18 @@
 
 class Analisis_indikator_model extends CI_Model
 {
-    public function autocomplete()
+    protected $table = 'analisis_indikator';
+
+    public function autocomplete(): string
     {
-        $sql   = 'SELECT pertanyaan FROM analisis_indikator';
-        $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $sql  = $this->db->select('pertanyaan')->get($this->table);
+        $data = [];
 
-        $i    = 0;
-        $outp = '';
-
-        while ($i < count($data)) {
-            $outp .= ",'" . $data[$i]['pertanyaan'] . "'";
-            $i++;
+        foreach ($sql->result_array() as $row) {
+            $data[] = strtolower(trim($row['pertanyaan']));
         }
-        $outp = strtolower(substr($outp, 1));
 
-        return '[' . $outp . ']';
+        return json_encode($data);
     }
 
     public function search_sql()
@@ -72,7 +68,7 @@ class Analisis_indikator_model extends CI_Model
         }
     }
 
-    public function paging($p = 1, $o = 0)
+    public function paging($p = 1)
     {
         $sql = 'SELECT COUNT(id) AS id FROM analisis_indikator u WHERE 1';
         $sql .= $this->search_sql();
@@ -86,14 +82,14 @@ class Analisis_indikator_model extends CI_Model
 
         $this->load->library('paging');
         $cfg['page']     = $p;
-        $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['per_page'] = $_SESSION['per_page'] ?? 20;
+        $cfg['num_rows'] = (int) $jml_data;
         $this->paging->init($cfg);
 
         return $this->paging;
     }
 
-    public function list_data($o = 0, $offset = 0, $limit = 500)
+    public function list_data(int $o = 0, int $offset = 0, int $limit = 500)
     {
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nomor'; break;
