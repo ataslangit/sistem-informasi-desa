@@ -68,7 +68,7 @@ class Analisis_indikator_model extends CI_Model
         }
     }
 
-    public function paging($p = 1, $o = 0)
+    public function paging($p = 1)
     {
         $sql = 'SELECT COUNT(id) AS id FROM analisis_indikator u WHERE 1';
         $sql .= $this->search_sql();
@@ -82,14 +82,14 @@ class Analisis_indikator_model extends CI_Model
 
         $this->load->library('paging');
         $cfg['page']     = $p;
-        $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['per_page'] = $_SESSION['per_page'] ?? 20;
+        $cfg['num_rows'] = (int) $jml_data;
         $this->paging->init($cfg);
 
         return $this->paging;
     }
 
-    public function list_data($o = 0, $offset = 0, $limit = 500)
+    public function list_data(int $o = 0, int $offset = 0, int $limit = 500)
     {
         switch ($o) {
             case 1: $order_sql = ' ORDER BY u.nomor'; break;
