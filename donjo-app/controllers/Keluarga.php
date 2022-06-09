@@ -6,14 +6,10 @@ class Keluarga extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-        $this->load->model('keluarga_model');
-        $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2'], true)) {
             redirect('siteman');
         }
-        $this->load->model('header_model');
     }
 
     public function clear()

@@ -6,9 +6,6 @@ class Analisis_laporan extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('analisis_laporan_model');
-        $this->load->model('user_model');
-        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
@@ -101,7 +98,6 @@ class Analisis_laporan extends CI_Controller
         $data['subjek']          = $this->analisis_laporan_model->get_subjek($id);
         $data['total']           = $this->analisis_laporan_model->get_total($id);
 
-        $this->load->model('analisis_respon_model');
         $data['list_bukti']   = $this->analisis_respon_model->list_bukti($id);
         $data['list_anggota'] = $this->analisis_respon_model->list_anggota($id);
         $data['list_jawab']   = $this->analisis_laporan_model->list_indikator($id);

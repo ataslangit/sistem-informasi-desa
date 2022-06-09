@@ -2,16 +2,6 @@
 
 class Line extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('user_model');
-
-        $this->load->model('header_model');
-        $this->load->model('plan_line_model');
-    }
-
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);

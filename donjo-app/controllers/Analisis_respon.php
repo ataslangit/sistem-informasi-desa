@@ -7,9 +7,7 @@ class Analisis_respon extends CI_Controller
         parent::__construct();
 
         unset($_SESSION['delik']);
-        $this->load->model('analisis_respon_model');
-        $this->load->model('user_model');
-        $this->load->model('header_model');
+
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');

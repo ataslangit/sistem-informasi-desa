@@ -2,21 +2,11 @@
 
 class Main extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('header_model');
-        $this->load->model('user_model');
-        $this->load->model('config_model');
-    }
-
     public function index()
     {
         $out = $this->config_model->install();
         if ($out === 1) {
             if (isset($_SESSION['siteman'])) {
-                $this->load->model('user_model');
                 if (isset($_SESSION['sesi'])) {
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
