@@ -5,12 +5,12 @@ class Export_model extends CI_Model
     public function export_dasar()
     {
         $return     = '';
-        $result     = mysql_query('SELECT * FROM tweb_penduduk WHERE 1');
-        $num_fields = mysql_num_fields($result);
+        $result     = $this->db->query('SELECT * FROM tweb_penduduk WHERE 1');
+        $num_fields = $result->num_fields();
         $return .= "<penduduk>\r\n";
 
         for ($i = 0; $i < $num_fields; $i++) {
-            while ($row = mysql_fetch_row($result)) {
+            while ($row = $result->row()) {
                 for ($j = 0; $j < $num_fields; $j++) {
                     if (isset($row[$j])) {
                         $return .= $row[$j];
@@ -26,12 +26,12 @@ class Export_model extends CI_Model
         }
         $return .= "</penduduk>\r\n";
 
-        $result     = mysql_query('SELECT * FROM tweb_keluarga WHERE 1');
-        $num_fields = mysql_num_fields($result);
+        $result     = $this->db->query('SELECT * FROM tweb_keluarga WHERE 1');
+        $num_fields = $result->num_fields();
         $return .= "<keluarga>\r\n";
 
         for ($i = 0; $i < $num_fields; $i++) {
-            while ($row = mysql_fetch_row($result)) {
+            while ($row = $result->row()) {
                 for ($j = 0; $j < $num_fields; $j++) {
                     if (isset($row[$j])) {
                         $return .= $row[$j];
@@ -47,12 +47,12 @@ class Export_model extends CI_Model
         }
         $return .= "</keluarga>\r\n";
 
-        $result     = mysql_query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
-        $num_fields = mysql_num_fields($result);
+        $result     = $this->db->query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
+        $num_fields = $result->num_fields();
         $return .= "<cluster>\r\n";
 
         for ($i = 0; $i < $num_fields; $i++) {
-            while ($row = mysql_fetch_row($result)) {
+            while ($row = $result->row()) {
                 for ($j = 0; $j < $num_fields; $j++) {
                     if (isset($row[$j])) {
                         $return .= $row[$j];
@@ -68,8 +68,8 @@ class Export_model extends CI_Model
         }
         $return .= '</cluster>';
 
-        $result     = mysql_query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
-        $num_fields = mysql_num_fields($result);
+        $result     = $this->db->query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
+        $num_fields = $result->num_fields();
         header('Content-type: application/octet-stream');
         header('Content-Disposition: attachment; filename=data_dasar(' . date('d-m-Y') . ').sid');
         echo $return;
@@ -78,12 +78,12 @@ class Export_model extends CI_Model
     public function export_akp()
     {
         $return     = '';
-        $result     = mysql_query('SELECT * FROM analisis_keluarga WHERE 1');
-        $num_fields = mysql_num_fields($result);
+        $result     = $this->db->query('SELECT * FROM analisis_keluarga WHERE 1');
+        $num_fields = $result->num_fields();
         $return .= "<akpkeluarga>\r\n";
 
         for ($i = 0; $i < $num_fields; $i++) {
-            while ($row = mysql_fetch_row($result)) {
+            while ($row = $result->row()) {
                 for ($j = 0; $j < $num_fields; $j++) {
                     if (isset($row[$j])) {
                         $return .= $row[$j];
