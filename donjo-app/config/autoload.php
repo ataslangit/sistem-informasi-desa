@@ -137,7 +137,6 @@ $autoload['model'] = [
     'analisis_indikator_model',
     'analisis_kategori_model',
     'analisis_klasifikasi_model',
-    'analisis_laporan_keluarga_model',
     'analisis_laporan_model',
     'analisis_master_model',
     'analisis_periode_model',
