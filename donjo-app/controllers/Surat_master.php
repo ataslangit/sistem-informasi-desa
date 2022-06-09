@@ -218,7 +218,7 @@ class Surat_master extends CI_Controller
     public function p_delete_all()
     {
         $this->surat_master_model->p_delete_all();
-        redirect("surat_master/atribut/{$in}");
+        redirect('surat_master/atribut/');
     }
 
     public function lock($id = 0, $k = 0)

@@ -126,12 +126,12 @@ class Komentar extends CI_Controller
     public function komentar_lock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 1);
-        redirect("komentar/index/{$p}/{$o}");
+        redirect('komentar/index/');
     }
 
     public function komentar_unlock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 2);
-        redirect("komentar/index/{$p}/{$o}");
+        redirect('komentar/index/');
     }
 }

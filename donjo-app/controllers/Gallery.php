@@ -123,13 +123,13 @@ class Gallery extends CI_Controller
     public function gallery_lock($id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 1);
-        redirect("gallery/index/{$p}/{$o}");
+        redirect('gallery/index/');
     }
 
     public function gallery_unlock($id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 2);
-        redirect("gallery/index/{$p}/{$o}");
+        redirect('gallery/index/');
     }
 
     public function sub_gallery($gal = 0, $p = 1)

@@ -126,7 +126,7 @@ class Kategori extends CI_Controller
 
     public function insert()
     {
-        $this->web_kategori_model->insert($tip);
+        $this->web_kategori_model->insert();
         redirect('kategori/index');
     }
 
@@ -151,13 +151,13 @@ class Kategori extends CI_Controller
     public function kategori_lock($id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 1);
-        redirect("kategori/index/{$p}/{$o}");
+        redirect('kategori/index/');
     }
 
     public function kategori_unlock($id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 2);
-        redirect("kategori/index/{$p}/{$o}");
+        redirect('kategori/index/');
     }
 
     public function insert_sub_kategori($kategori = '')

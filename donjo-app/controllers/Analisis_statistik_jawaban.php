@@ -447,6 +447,6 @@ class Analisis_statistik_jawaban extends CI_Controller
     public function p_delete_all()
     {
         $this->analisis_statistik_jawaban_model->p_delete_all();
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+        redirect('analisis_statistik_jawaban/parameter/');
     }
 }

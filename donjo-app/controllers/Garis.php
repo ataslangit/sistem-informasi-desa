@@ -171,12 +171,12 @@ class Garis extends CI_Controller
     public function garis_lock($id = '')
     {
         $this->plan_garis_model->garis_lock($id, 1);
-        redirect("garis/index/{$p}/{$o}");
+        redirect('garis/index/');
     }
 
     public function garis_unlock($id = '')
     {
         $this->plan_garis_model->garis_lock($id, 2);
-        redirect("garis/index/{$p}/{$o}");
+        redirect('garis/index/');
     }
 }

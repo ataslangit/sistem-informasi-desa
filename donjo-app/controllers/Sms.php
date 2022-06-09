@@ -488,13 +488,13 @@ class Sms extends CI_Controller
     public function sms_lock($id = '')
     {
         $this->sms_model->sms_lock($id, 0);
-        redirect("sms/index/{$p}/{$o}");
+        redirect('sms/index/');
     }
 
     public function sms_unlock($id = '')
     {
         $this->sms_model->sms_lock($id, 1);
-        redirect("sms/index/{$p}/{$o}");
+        redirect('sms/index/');
     }
 
     public function kontak($p = 1, $o = 0)
