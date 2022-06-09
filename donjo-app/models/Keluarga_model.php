@@ -713,11 +713,12 @@ class Keluarga_model extends CI_Model
         $lokasi_file = $_FILES['foto']['tmp_name'];
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
+        $old_foto    = '';
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
             } else {
-                UploadFoto($nama_file);
+                UploadFoto($nama_file, $old_foto);
                 $data['foto'] = $nama_file;
             }
         } else {
