@@ -386,12 +386,6 @@ function UploadLogo($fupload_name, $old_foto, $tipe_file)
     }
     move_uploaded_file($_FILES['logo']['tmp_name'], $vfile_upload);
 }
-function UploadLogox($fupload_name)
-{
-    $vdir_upload  = 'assets/images/background/';
-    $vfile_upload = $vdir_upload . $fupload_name;
-    move_uploaded_file($_FILES['logo']['tmp_name'], $vfile_upload);
-}
 function UploadSimbol($fupload_name)
 {
     $vdir_upload  = 'assets/images/gis/point/';
