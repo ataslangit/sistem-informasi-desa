@@ -6,10 +6,6 @@ class Analisis_master extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('analisis_master_model');
-        $this->load->model('analisis_import_model');
-        $this->load->model('user_model');
-        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
@@ -136,7 +132,7 @@ class Analisis_master extends CI_Controller
 
         //PATCH
         //if($p==1){
-        $this->load->model('analisis_respon_model');
+
         $this->analisis_respon_model->pre_update();
         //}
         //----

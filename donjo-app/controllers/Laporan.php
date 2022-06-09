@@ -6,18 +6,13 @@ class Laporan extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-        $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
             redirect('siteman');
         }
-        $this->load->model('header_model');
 
         $_SESSION['success'] = 0;
         $_SESSION['cari']    = '';
-
-        $this->load->model('header_model');
     }
 
     public function clear()

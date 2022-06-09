@@ -6,16 +6,12 @@ class Database extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
         $this->load->dbforge();
-        //$this->load->model('wilayah_model');
+
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }
-        $this->load->model('header_model');
-        $this->load->model('import_model');
-        $this->load->model('export_model');
     }
 
     public function clear()

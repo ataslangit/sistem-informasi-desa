@@ -160,7 +160,7 @@ class Analisis_periode_model extends CI_Model
                 $i++;
             }
             $outp = $this->db->insert_batch('analisis_respon', $data);
-            $this->load->model('analisis_respon_model');
+
             $this->analisis_respon_model->pre_update($skrg);
         }
 

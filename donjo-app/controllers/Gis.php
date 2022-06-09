@@ -6,14 +6,6 @@ class Gis extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-
-        $this->load->model('penduduk_model');
-        $this->load->model('plan_lokasi_model');
-        $this->load->model('plan_area_model');
-        $this->load->model('plan_garis_model');
-        $this->load->model('header_model');
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
