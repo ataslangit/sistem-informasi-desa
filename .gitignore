@@ -3,3 +3,5 @@
 /composer.lock
 
 install.sid
+public/assets/files/logo/*
+!public/assets/files/logo/index.html
