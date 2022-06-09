@@ -348,10 +348,6 @@ class Sid_core extends CI_Controller
 
     public function delete_all_rt()
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
-        $rw       = $temp['rw'];
         $this->wilayah_model->delete_all_rt();
         redirect('sid_core');
     }
