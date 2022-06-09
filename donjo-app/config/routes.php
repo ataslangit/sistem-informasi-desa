@@ -56,7 +56,7 @@ $route['translate_uri_dashes'] = false;
 $route['hom_desa']        = 'Admin/dashboard/index'; // redirect ke dashboard
 $route['admin/dashboard'] = 'Admin/dashboard/dashboard';
 
-$route['admin/about']     = 'Admin/dashboard/about';
+$route['admin/about'] = 'Admin/dashboard/about';
 
 $route['admin/pengaturan_desa/update/(:any)']     = 'Admin/dashboard/update/$1';
 $route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/dashboard/ajax_kantor_maps';
