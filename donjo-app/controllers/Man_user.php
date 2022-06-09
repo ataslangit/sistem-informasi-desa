@@ -123,12 +123,12 @@ class Man_user extends CI_Controller
     public function user_lock($id = '')
     {
         $this->user_model->user_lock($id, 0);
-        redirect("man_user/index/{$p}/{$o}");
+        redirect('man_user/index/');
     }
 
     public function user_unlock($id = '')
     {
         $this->user_model->user_lock($id, 1);
-        redirect("man_user/index/{$p}/{$o}");
+        redirect('man_user/index/');
     }
 }

@@ -140,13 +140,13 @@ class Line extends CI_Controller
     public function line_lock($id = '')
     {
         $this->plan_line_model->line_lock($id, 1);
-        redirect("line/index/{$p}/{$o}");
+        redirect('line/index/');
     }
 
     public function line_unlock($id = '')
     {
         $this->plan_line_model->line_lock($id, 2);
-        redirect("line/index/{$p}/{$o}");
+        redirect('line/index/');
     }
 
     public function insert_sub_line($line = '')

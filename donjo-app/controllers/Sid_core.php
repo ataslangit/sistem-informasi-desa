@@ -348,10 +348,6 @@ class Sid_core extends CI_Controller
 
     public function delete_all_rt()
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
-        $rw       = $temp['rw'];
         $this->wilayah_model->delete_all_rt();
         redirect('sid_core');
     }
@@ -361,7 +357,6 @@ class Sid_core extends CI_Controller
         $data['input']            = $_POST;
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
-        $this->surat_keluar_model->log_surat($f, $id, $g, $u);
         $this->load->view('surat/print_surat_ket_pengantar', $data);
     }
 

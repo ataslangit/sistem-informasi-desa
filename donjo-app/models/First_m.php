@@ -57,8 +57,6 @@ class First_m extends CI_Model
         if ($hash_pin === $row->pin) {
             $sql = 'UPDATE tweb_penduduk_mandiri SET last_login=NOW() WHERE nik=?';
             $this->db->query($sql, $nik);
-
-            return $token;
         }
     }
 

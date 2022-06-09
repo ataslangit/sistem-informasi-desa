@@ -126,12 +126,12 @@ class Lapor extends CI_Controller
     public function komentar_lock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 1);
-        redirect("lapor/index/{$p}/{$o}");
+        redirect('lapor/index/');
     }
 
     public function komentar_unlock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 2);
-        redirect("lapor/index/{$p}/{$o}");
+        redirect('lapor/index/');
     }
 }

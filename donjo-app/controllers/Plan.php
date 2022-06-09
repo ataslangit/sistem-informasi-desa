@@ -188,12 +188,12 @@ class Plan extends CI_Controller
     public function lokasi_lock($id = '')
     {
         $this->plan_lokasi_model->lokasi_lock($id, 1);
-        redirect("plan/index/{$p}/{$o}");
+        redirect('plan/index/');
     }
 
     public function lokasi_unlock($id = '')
     {
         $this->plan_lokasi_model->lokasi_lock($id, 2);
-        redirect("plan/index/{$p}/{$o}");
+        redirect('plan/index/');
     }
 }

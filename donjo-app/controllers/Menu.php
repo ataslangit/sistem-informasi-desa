@@ -157,13 +157,13 @@ class Menu extends CI_Controller
     public function menu_lock($tip = 1, $id = '')
     {
         $this->web_menu_model->menu_lock($id, 1);
-        redirect("menu/index/{$tip}/{$p}/{$o}");
+        redirect("menu/index/{$tip}");
     }
 
     public function menu_unlock($tip = 1, $id = '')
     {
         $this->web_menu_model->menu_lock($id, 2);
-        redirect("menu/index/{$tip}/{$p}/{$o}");
+        redirect("menu/index/{$tip}/");
     }
 
     public function insert_sub_menu($tip = 1, $menu = '')

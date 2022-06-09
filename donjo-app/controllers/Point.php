@@ -142,13 +142,13 @@ class Point extends CI_Controller
     public function point_lock($id = '')
     {
         $this->plan_point_model->point_lock($id, 1);
-        redirect("point/index/{$p}/{$o}");
+        redirect('point/index/');
     }
 
     public function point_unlock($id = '')
     {
         $this->plan_point_model->point_lock($id, 2);
-        redirect("point/index/{$p}/{$o}");
+        redirect('point/index/');
     }
 
     public function insert_sub_point($point = '')

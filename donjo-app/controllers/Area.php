@@ -174,12 +174,12 @@ class Area extends CI_Controller
     public function area_lock($id = '')
     {
         $this->plan_area_model->area_lock($id, 1);
-        redirect("area/index/{$p}/{$o}");
+        redirect('area/index/');
     }
 
     public function area_unlock($id = '')
     {
         $this->plan_area_model->area_lock($id, 2);
-        redirect("area/index/{$p}/{$o}");
+        redirect('area/index/');
     }
 }

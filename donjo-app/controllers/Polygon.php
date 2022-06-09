@@ -146,13 +146,13 @@ class Polygon extends CI_Controller
     public function polygon_lock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 1);
-        redirect("polygon/index/{$p}/{$o}");
+        redirect('polygon/index/');
     }
 
     public function polygon_unlock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 2);
-        redirect("polygon/index/{$p}/{$o}");
+        redirect('polygon/index/');
     }
 
     public function insert_sub_polygon($polygon = '')

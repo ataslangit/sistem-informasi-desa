@@ -123,12 +123,12 @@ class Dokumen extends CI_Controller
     public function dokumen_lock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 1);
-        redirect("dokumen/index/{$p}/{$o}");
+        redirect('dokumen/index/');
     }
 
     public function dokumen_unlock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 2);
-        redirect("dokumen/index/{$p}/{$o}");
+        redirect('dokumen/index/');
     }
 }
