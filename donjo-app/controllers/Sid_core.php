@@ -357,7 +357,6 @@ class Sid_core extends CI_Controller
         $data['input']            = $_POST;
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
-        $this->surat_keluar_model->log_surat($f, $id, $g, $u);
         $this->load->view('surat/print_surat_ket_pengantar', $data);
     }
 
