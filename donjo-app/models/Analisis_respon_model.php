@@ -1073,8 +1073,6 @@ class Analisis_respon_model extends CI_Model
     {
         $_SESSION['subjek_tipe']     = 1;
         $_SESSION['analisis_master'] = 2;
-        ini_set('max_execution_time', 1600);
-        ini_set('memory_limit', '2048M');
 
         $per = $this->get_aktif_periode();
 
@@ -1210,8 +1208,6 @@ class Analisis_respon_model extends CI_Model
     {
         $_SESSION['analisis_master'] = 1;
         $_SESSION['subjek_tipe']     = 3;
-        ini_set('max_execution_time', 1600);
-        ini_set('memory_limit', '2048M');
 
         $per = $this->get_aktif_periode();
 

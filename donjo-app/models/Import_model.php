@@ -5,8 +5,6 @@ class Import_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        ini_set('memory_limit', '512M');
-        set_time_limit(3600);
         $this->load->helper('excel');
     }
 
