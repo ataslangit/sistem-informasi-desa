@@ -8,7 +8,7 @@
     <div class="ui-layout-center" id="maincontent">
         <hr>
         <p>Backup seluruh database SID (.sql) yang bisa diimport melalui perangkat PhpMyAdmin</p>
-        <a class="uibutton special" href="<?= site_url('database') ?>/exec_backup" target="confirm" message="Sistem akan melakukan proses backup database SID setelah Anda menekan tombol YA. Simpan file (.sql) tersebut di tempat yang aman." header="Backup Database SID">Backup Database</a>
+        <a class="uibutton special" href="<?= site_url('admin/database/exec_backup') ?>" target="confirm" message="Sistem akan melakukan proses backup database SID setelah Anda menekan tombol YA. Simpan file (.sql) tersebut di tempat yang aman." header="Backup Database SID">Backup Database</a>
         <hr>
         <?= form_open('', ['target' => '_blank']) ?>
             <p>
