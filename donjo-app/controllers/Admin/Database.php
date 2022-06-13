@@ -34,8 +34,8 @@ class Database extends CI_Controller
     public function import()
     {
         $nav['act']           = 2;
-        $data['form_action']  = site_url('database/import_dasar');
-        $data['form_action3'] = site_url('database/ppls_individu');
+        $data['form_action']  = site_url('admin/database/import_dasar');
+        $data['form_action3'] = site_url('admin/database/ppls_individu');
         $header               = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('nav', $nav);
@@ -46,7 +46,7 @@ class Database extends CI_Controller
     public function siak()
     {
         $nav['act']          = 6;
-        $data['form_action'] = site_url('database/import_siak');
+        $data['form_action'] = site_url('admin/database/import_siak');
         $header              = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('nav', $nav);
@@ -57,8 +57,8 @@ class Database extends CI_Controller
     public function import_ppls()
     {
         $nav['act']           = 4;
-        $data['form_action3'] = site_url('database/ppls_individu');
-        $data['form_action2'] = site_url('database/ppls_rumahtangga');
+        $data['form_action3'] = site_url('admin/database/ppls_individu');
+        $data['form_action2'] = site_url('admin/database/ppls_rumahtangga');
         //$data['form_action'] = site_url("database/ppls_kuisioner");
         $header = $this->header_model->get_data();
         $this->load->view('header', $header);
@@ -70,7 +70,7 @@ class Database extends CI_Controller
     public function backup()
     {
         $nav['act']          = 3;
-        $data['form_action'] = site_url('database/restore');
+        $data['form_action'] = site_url('admin/database/restore');
         $header              = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('nav', $nav);
@@ -91,8 +91,8 @@ class Database extends CI_Controller
     public function import2()
     {
         $nav['act']           = 2;
-        $data['form_action']  = site_url('database/import_dasar');
-        $data['form_action2'] = site_url('database/import_akp');
+        $data['form_action']  = site_url('admin/database/import_dasar');
+        $data['form_action2'] = site_url('admin/database/import_akp');
         $header               = $this->header_model->get_data();
         $this->load->view('header', $header);
         $this->load->view('export/nav', $nav);
@@ -124,50 +124,50 @@ class Database extends CI_Controller
     public function import_dasar()
     {
         $this->import_model->import_excel();
-        redirect('database/import/1');
+        redirect('admin/database/import/1');
     }
 
     public function ppls_kuisioner()
     {
         $this->import_model->ppls_kuisioner();
-        redirect('database/import_ppls/1');
+        redirect('admin/database/import_ppls/1');
     }
 
     public function ppls_individu()
     {
         $this->import_model->pbdt_individu();
-        //redirect('database/import_ppls');
+        // redirect('admin/database/import_ppls');
     }
 
     public function ppls_rumahtangga()
     {
         $this->import_model->pbdt_rumahtangga();
-        redirect('database/import_ppls/1');
+        redirect('admin/database/import_ppls/1');
     }
 
     public function import_siak()
     {
         $data['siak']     = $this->import_model->import_siak();
         $_SESSION['SIAK'] = $data['siak'];
-        redirect('database/import/3');
+        redirect('admin/database/import/3');
     }
 
     public function import_akp()
     {
         $this->import_model->import_akp();
-        redirect('database/import');
+        redirect('admin/database/import');
     }
 
     public function jos()
     {
         $this->export_model->analisis();
-        redirect('database/import');
+        redirect('admin/database/import');
     }
 
     public function jos2()
     {
         $this->export_model->analisis2();
-        redirect('database/import');
+        redirect('admin/database/import');
     }
 
     public function exec_backup()
@@ -185,13 +185,13 @@ class Database extends CI_Controller
     public function ces()
     {
         $this->export_model->lombok();
-        redirect('database/import');
+        redirect('admin/database/import');
     }
 
     public function surat()
     {
         $this->export_model->gawe_surat();
-        //redirect('database/import');
+        // redirect('admin/database/import');
     }
 
     public function export_excel()
