@@ -956,7 +956,6 @@ class Keluarga_model extends CI_Model
 
     public function coba2()
     {
-        ini_set('memory_limit', '2048M');
         $mypath       = 'surat\\undangan\\';
         $mypath_arsip = 'surat\\arsip\\';
 
