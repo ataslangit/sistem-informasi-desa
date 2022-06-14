@@ -1,6 +1,7 @@
 {
     "name": "ataslangit/sistem-informasi-desa",
     "require": {
-        "codeigniter/framework": "^3.1"
+        "codeigniter/framework": "^3.1",
+        "friendsofphp/php-cs-fixer": "^3"
     }
 }
