@@ -1,9 +1,13 @@
 <?php
 
-use PhpCsFixer\Config;
-use PhpCsFixer\Finder;
+$finder = PhpCsFixer\Finder::create()
+    // ->notPath('src/Symfony/Component/Translation/Tests/fixtures/resources.php')
+    ->in(__DIR__);
 
-$rules = [
+$config = new PhpCsFixer\Config();
+$config->setRiskyAllowed(true);
+
+return $config->setRules([
     'align_multiline_comment'                  => ['comment_type' => 'phpdocs_only'],
     'array_indentation'                        => true,
     'array_push'                               => true,
@@ -534,20 +538,4 @@ $rules = [
         'less_and_greater'     => false,
         'always_move_variable' => false,
     ],
-];
-
-$project_path = getcwd();
-$finder = Finder::create()
-    ->in([
-        $project_path
-    ])
-    ->name('*.php')
-    // ->notName('*.blade.php')
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
-
-return Config::create()
-    ->setFinder($finder)
-    ->setRules($rules)
-    ->setRiskyAllowed(true)
-    ->setUsingCache(true);
+])->setFinder($finder);
