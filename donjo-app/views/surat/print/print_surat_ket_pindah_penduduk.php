@@ -112,7 +112,7 @@
                                 </tr>
                             <tbody><?php $i = 0; ?>
                                 <?php foreach ($pengikut as $data1) {
-                                    $i++; ?>
+                            $i++; ?>
                                     <tr>
                                         <td align="center" width="2"><?= $i ?></td>
                                         <td><?= $data1['nik'] ?></td>
@@ -122,7 +122,7 @@
                                         <td><?= $data1['status_kawin'] ?></td>
                                     </tr>
                                 <?php
-                                } ?>
+                        } ?>
                             </tbody>
                         </table>
                     <?php } ?>

@@ -53,10 +53,10 @@ header('Expires: 0');
                             <td><?= $data['alamat'] ?></td>
                             <td><?= $data['umur'] ?></td>
                             <td><?php if ($data['sex'] === 1) {
-                                    echo 'Laki-laki';
-                                } else {
-                                    echo 'Perempuan';
-                                } ?></td>
+    echo 'Laki-laki';
+} else {
+    echo 'Perempuan';
+} ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

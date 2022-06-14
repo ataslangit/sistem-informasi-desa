@@ -59,15 +59,15 @@
                     <td id="opsi">
                         <div style="display:inline-block;">
                             <input type="checkbox" name="id_cb[]" value="<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-                                                                                                        echo ' checked';
-                                                                                                    } ?>>
+            echo ' checked';
+        } ?>>
                             <label><?= $data['kode_jawaban'] . '. ' . $data['jawaban'] ?></label>
                         </div>
                     <?php } else { ?>
                         <div style="display:inline-block;">
                             <input type="checkbox" name="id_cb[]" value="<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-                                                                                                        echo ' checked';
-                                                                                                    } ?>>
+            echo ' checked';
+        } ?>>
                             <label><?= $data['kode_jawaban'] . '. ' . $data['jawaban'] ?></label>
                         </div>
                 <?php

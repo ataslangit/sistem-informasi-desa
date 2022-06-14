@@ -81,7 +81,7 @@
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="table-info">
-                                <?= form_open("sms/anggota/" . $data['nama_grup'], ['id' => 'paging']) ?>
+                                <?= form_open('sms/anggota/' . $data['nama_grup'], ['id' => 'paging']) ?>
                                     <label>Tampilkan</label>
                                     <select name="per_page" onchange="$('#paging').submit()">
                                         <option value="20" <?php selected($per_page, 20); ?>>20</option>

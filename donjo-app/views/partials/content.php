@@ -24,7 +24,7 @@ if ($headline) {
 		</div>
 	</div>';
 }
-$title = (!empty($judul_kategori)) ? $judul_kategori : 'Artikel Terkini';
+$title = (! empty($judul_kategori)) ? $judul_kategori : 'Artikel Terkini';
 if (is_array($title)) {
     foreach ($title as $item) {
         $title = $item;

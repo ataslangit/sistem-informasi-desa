@@ -5,15 +5,15 @@
     </div>
     <div class="box-body">
         <?php foreach ($sosmed as $data) {
-            echo '<a href="' . $data['link'] . '" target="_blank"><img src="' . base_url() . 'assets/front/' . $data['gambar'] . '" alt="' . $data['nama'] . '" style="width:50px;height:50px;"/></a>';
-        }
+    echo '<a href="' . $data['link'] . '" target="_blank"><img src="' . base_url() . 'assets/front/' . $data['gambar'] . '" alt="' . $data['nama'] . '" style="width:50px;height:50px;"/></a>';
+}
         ?>
     </div>
 </div>
 <!-- widget Google Map -->
 <?php
 if ($data_config['lat'] !== '0') {
-    echo '
+            echo '
 	<div class="box box-default box-solid">
 		<div class="box-header">
 			<h3 class="box-title"><i class="fa fa-map-marker"></i> Lokasi ' . $desa['nama_desa'] . '</h3>
@@ -61,7 +61,7 @@ if ($data_config['lat'] !== '0') {
 		</div>
 	</div>
 	';
-}
+        }
 ?>
 <div class="box box-success">
     <div class="box-header">
@@ -69,7 +69,7 @@ if ($data_config['lat'] !== '0') {
     </div>
     <div class="box-body">
         <?php $ip = $_SERVER['REMOTE_ADDR'] . '{}';
-        if (!isset($_SESSION['MemberOnline'])) {
+        if (! isset($_SESSION['MemberOnline'])) {
             $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
             if ($cek->num_rows() === 0) {
                 $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
@@ -158,8 +158,8 @@ if ($data_config['lat'] !== '0') {
 <!--widget Manual-->
 <?php
 if ($w_cos) {
-    foreach ($w_cos as $data) {
-        echo '
+            foreach ($w_cos as $data) {
+                echo '
 		<div class="box box-primary box-solid">
 			<div class="box-header">
 				<h3 class="box-title">' . $data['judul'] . '</h3>
@@ -169,6 +169,6 @@ if ($w_cos) {
 			</div>
 		</div>
 		';
-    }
-}
+            }
+        }
 ?>

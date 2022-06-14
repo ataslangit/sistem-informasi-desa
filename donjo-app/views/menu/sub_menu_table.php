@@ -7,11 +7,11 @@
                     <div class="lmenu">
                         <ul>
                             <li <?php if ($tip === 1) {
-                                    echo "class='selected'";
-                                } ?>><a href="<?= site_url('menu/index/1') ?>">Statis</a></li>
+    echo "class='selected'";
+} ?>><a href="<?= site_url('menu/index/1') ?>">Statis</a></li>
                             <li <?php if ($tip === 2) {
-                                    echo "class='selected'";
-                                } ?>><a href="<?= site_url('menu/index/2') ?>">Dinamis</a></li>
+    echo "class='selected'";
+} ?>><a href="<?= site_url('menu/index/2') ?>">Dinamis</a></li>
                         </ul>
                     </div>
                 </fieldset>

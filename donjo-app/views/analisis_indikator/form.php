@@ -37,17 +37,17 @@
                             <div class="uiradio">
                                 <?php $ch = 'checked'; ?>
                                 <input type="radio" id="group3" name="id_tipe" value="1" /<?php if ($analisis_indikator['id_tipe'] === '1' || $analisis_indikator['id_tipe'] === '') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="group3">Pilihan (Multiple Choice)</label>
+    echo $ch;
+} ?>><label for="group3">Pilihan (Multiple Choice)</label>
                                 <input type="radio" id="group2" name="id_tipe" value="2" /<?php if ($analisis_indikator['id_tipe'] === '2') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="group2">Pilihan (Checkboxes)</label>
+    echo $ch;
+} ?>><label for="group2">Pilihan (Checkboxes)</label>
                                 <input type="radio" id="group1" name="id_tipe" value="3" /<?php if ($analisis_indikator['id_tipe'] === '3') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="group1">Isian Jumlah (Kuantitatif)</label>
+    echo $ch;
+} ?>><label for="group1">Isian Jumlah (Kuantitatif)</label>
                                 <input type="radio" id="group4" name="id_tipe" value="4" /<?php if ($analisis_indikator['id_tipe'] === '4') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="group4">Isian Teks (Kualitatif) </label>
+    echo $ch;
+} ?>><label for="group4">Isian Teks (Kualitatif) </label>
                             </div>
                         </td>
                     </tr>
@@ -63,10 +63,10 @@
                         <th>Bobot</th>
                         <td>
                             <input name="bobot" type="text" class="inputbox number" size="10" value="<?php if ($analisis_indikator['bobot'] === '') {
-                                                                                                            echo '1';
-                                                                                                        } else {
-                                                                                                            echo $analisis_indikator['bobot'];
-                                                                                                        } ?>" />
+    echo '1';
+} else {
+    echo $analisis_indikator['bobot'];
+} ?>" />
                         </td>
                     </tr>
                     <tr class="delik">
@@ -75,11 +75,11 @@
                             <div class="uiradio">
                                 <?php $ch = 'checked'; ?>
                                 <input type="radio" id="gp2" name="act_analisis" value="1" /<?php if ($analisis_indikator['act_analisis'] === '1') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="gp2">Ya</label>
+    echo $ch;
+} ?>><label for="gp2">Ya</label>
                                 <input type="radio" id="gp1" name="act_analisis" value="2" /<?php if ($analisis_indikator['act_analisis'] === '2' || $analisis_indikator['act_analisis'] === '') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="gp1">Tidak</label>
+    echo $ch;
+} ?>><label for="gp1">Tidak</label>
                             </div>
                         </td>
                     </tr>
@@ -91,8 +91,8 @@
                                 <?php $ch = 'checked'; ?>
                                 <?php foreach ($list_kategori as $data) { ?>
                                     <input type="radio" id="g<?= $data['id'] ?>" name="id_kategori" value="<?= $data['id'] ?>" <?php if ($analisis_indikator['id_kategori'] === $data['id']) {
-                                                                                                                                    echo $ch;
-                                                                                                                                } ?>><label for="g<?= $data['id'] ?>"><?= $data['kategori'] ?></label>
+    echo $ch;
+} ?>><label for="g<?= $data['id'] ?>"><?= $data['kategori'] ?></label>
                                 <?php } ?>
                             </div>
                         </td>
@@ -103,11 +103,11 @@
                             <div class="uiradio">
                                 <?php $ch = 'checked'; ?>
                                 <input type="radio" id="agp2" name="is_publik" value="1" /<?php if ($analisis_indikator['is_publik'] === '1') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="agp2">Ya</label>
+    echo $ch;
+} ?>><label for="agp2">Ya</label>
                                 <input type="radio" id="agp1" name="is_publik" value="0" /<?php if ($analisis_indikator['is_publik'] === '0' || $analisis_indikator['is_publik'] === '') {
-                                                                                                echo $ch;
-                                                                                            } ?>><label for="agp1">Tidak</label>
+    echo $ch;
+} ?>><label for="agp1">Tidak</label>
                             </div>
                             *) Tampilkan data indikator di halaman depan website desa (Menu Data Desa -> Data Analisis).
                         </td>

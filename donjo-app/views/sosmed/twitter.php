@@ -32,8 +32,8 @@
                                 <tr>
                                     <td width="150">Link Akun Twitter</td>
                                     <td><textarea name="link" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='160'><?php if ($main) {
-                                                                                                                                                                echo $main['link'];
-                                                                                                                                                            } ?></textarea></td>
+    echo $main['link'];
+} ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <th>Aktif</th>
@@ -41,11 +41,11 @@
                                         <div class="uiradio">
                                             <?php $ch = 'checked'; ?>
                                             <input type="radio" id="g1" name="enabled" value="1" /<?php if ($main['enabled'] === '1') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="g1">Ya</label>
+    echo $ch;
+} ?>><label for="g1">Ya</label>
                                             <input type="radio" id="g2" name="enabled" value="2" /<?php if ($main['enabled'] === '2') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="g2">Tidak</label>
+    echo $ch;
+} ?>><label for="g2">Tidak</label>
                                         </div>
                                     </td>
                                 </tr>

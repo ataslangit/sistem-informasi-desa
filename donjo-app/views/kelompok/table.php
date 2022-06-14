@@ -16,10 +16,10 @@
                         <ul>
                             <?php
                             foreach ($list_master as $data) {
-                            ?>
+                                ?>
                                 <li <?php if ($filter === $data['id']) {
-                                        echo "class='selected'";
-                                    } ?>>
+                                    echo "class='selected'";
+                                } ?>>
                                     <a href="<?= site_url("kelompok/to_master/{$data['id']}") ?>">
                                         <?= $data['kelompok']; ?>
                                     </a>

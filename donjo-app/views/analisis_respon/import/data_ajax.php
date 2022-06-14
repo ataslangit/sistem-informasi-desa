@@ -22,7 +22,7 @@
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
     <?php /*
     Lanjut :
-        <a href="<?php echo site_url()?>analisis_respon/import/1" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
+        <a href="<?= site_url()?>analisis_respon/import/1" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
         */ ?>
     <a href="<?= site_url() ?>analisis_respon/import" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>
 </div>

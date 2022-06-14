@@ -96,7 +96,7 @@ if ($single_artikel['id']) {
 			<div class="box box-default">
 				<div class="box-header"><h3 class="box-title">Formulir Penulisan Komentar</h3></div>
 				<div class="box-body">
-                    ' . form_open('first/add_comment/' . $single_artikel['id'], ['onSubmit' => 'return validasi(this)'] ). '
+                    ' . form_open('first/add_comment/' . $single_artikel['id'], ['onSubmit' => 'return validasi(this)']) . '
 					<table width=100%>
 						<tr class="komentar"><td>Nama</td><td> <input type=text name="owner" size=20 maxlength=30></td></tr>
 						<tr class="komentar"><td>Alamat e-mail</td><td> <input type=text name="email" size=20 maxlength=30></td></tr>

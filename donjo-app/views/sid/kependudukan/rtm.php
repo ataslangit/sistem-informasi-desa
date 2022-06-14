@@ -28,7 +28,7 @@
 
                                     <a href="<?= site_url("rtm/excel/{$o}") ?>" target="_blank" class="uibutton tipsy south" title="Unduh"><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
                                     <?php /*
-            <a href="<?php echo site_url("rtm/excel_pbdt/$o")?>" target="_blank" class="uibutton special tipsy south" title="Unduh" ><span class="icon-file-text icon-large">&nbsp;</span>Excel PBDT</a>
+            <a href="<?= site_url("rtm/excel_pbdt/$o")?>" target="_blank" class="uibutton special tipsy south" title="Unduh" ><span class="icon-file-text icon-large">&nbsp;</span>Excel PBDT</a>
             */ ?>
                                     &nbsp;
                                     <select name="dusun" onchange="formAction('mainform','<?= site_url('rtm/dusun') ?>')">

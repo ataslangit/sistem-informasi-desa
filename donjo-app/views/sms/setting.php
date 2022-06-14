@@ -57,8 +57,8 @@
                             <tr>
                                 <td width="100">Isi Pesan Autoreply</td>
                                 <td><textarea name="autoreply_text" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='160'><?php if ($main) {
-                                                                                                                                                                        echo $main['autoreply_text'];
-                                                                                                                                                                    } ?></textarea></td>
+    echo $main['autoreply_text'];
+} ?></textarea></td>
                             </tr>
                         </table>
                     </div>

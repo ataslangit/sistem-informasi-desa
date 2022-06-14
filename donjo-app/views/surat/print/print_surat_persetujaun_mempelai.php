@@ -255,16 +255,16 @@
                     <tr></tr>
                     <tr>
                         <td align="center">( <?php if ($suami) {
-                                                    echo unpenetration($suami['nama']);
-                                                } else {
-                                                    echo unpenetration($input['nama_suami']);
-                                                } ?> )</td>
+    echo unpenetration($suami['nama']);
+} else {
+    echo unpenetration($input['nama_suami']);
+} ?> )</td>
                         <td></td>
                         <td align="center">( <?php if ($istri) {
-                                                    echo unpenetration($istri['nama']);
-                                                } else {
-                                                    echo unpenetration($input['nama_istri']);
-                                                } ?> )</td>
+    echo unpenetration($istri['nama']);
+} else {
+    echo unpenetration($input['nama_istri']);
+} ?> )</td>
                     </tr>
                 </table>
             </div>

@@ -61,7 +61,7 @@
     }
 </style>
 <div id="pageC">
-    <?php if (!isset($_SESSION['fullscreen'])) { ?>
+    <?php if (! isset($_SESSION['fullscreen'])) { ?>
         <?php $this->load->view('analisis_master/left', $data); ?>
     <?php } ?>
     <div class="content-header">
@@ -121,8 +121,8 @@
                                 <td><?= $ang['nama'] ?></td>
                                 <td><?= tgl_indo($ang['tanggallahir']) ?></td>
                                 <td><?php if ($ang['sex'] === 1) {
-                                        echo 'LAKI-LAKI';
-                                    } ?><?php if ($ang['sex'] === 2) {
+                                echo 'LAKI-LAKI';
+                            } ?><?php if ($ang['sex'] === 2) {
                                 echo 'PEREMPUAN';
                             } ?></td>
                                 <td>&nbsp;</td>
@@ -133,7 +133,7 @@
                 <?php } ?>
                 <table width="100%" class="form data">
                     <?php $new = 1;
-                    $last = 0;
+                    $last      = 0;
 
                     foreach ($list_jawab as $data) {
                         $data['no'] = ''; ?>
@@ -173,8 +173,8 @@
                                         <option value="">--- Pilih Jawaban ---</option>
                                         <?php foreach ($data['parameter_respon'] as $data2) { ?>
                                             <option value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                                                                                                                echo ' selected';
-                                                                                                            } ?>><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></option>
+                            echo ' selected';
+                        } ?>><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></option>
                                         <?php } ?>
                                     </select>
                                 <?php } elseif ($data['id_tipe'] === 2) { ?>
@@ -183,8 +183,8 @@
                                 <td id="op_item">
                                     <div>
                                         <input type="checkbox" name="cb[<?= $data2['id_parameter'] ?>_<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                                                                                                                                                                                    echo ' checked';
-                                                                                                                                                                                } ?>>
+                            echo ' checked';
+                        } ?>>
                                         <label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
                                     </div>
                                 <?php } ?>

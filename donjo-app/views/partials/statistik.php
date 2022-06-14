@@ -151,7 +151,7 @@ $i    = 0;
 $l    = 0;
 $p    = 0;
 $hide = '';
-$h = 0;
+$h    = 0;
 $jm   = count($stat);
 
 foreach ($stat as $data) {

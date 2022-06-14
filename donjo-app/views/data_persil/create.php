@@ -87,7 +87,7 @@
 	<legend>Formulir Penambahan/Pembaruan Data Peruntukan Persil</legend>
 		<fieldset>
 			<legend>Pemilik Persil</legend>
-			<div>'. form_open('', ['id' => 'main', 'name' => 'main']) .'
+			<div>' . form_open('', ['id' => 'main', 'name' => 'main']) . '
 				<label>Cari Nama Penduduk dari Database Desa</label>
 				<div id="nik" name="nik" class="form-control"></div>
 				<?= form_close() ?>

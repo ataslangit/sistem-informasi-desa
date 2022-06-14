@@ -3,8 +3,8 @@
 
 <head>
     <title><?php if (@$single_artikel) {
-                echo $single_artikel['judul'] . ' - ';
-            } ?>Website Desa <?= unpenetration($desa['nama_desa']); ?></title>
+    echo $single_artikel['judul'] . ' - ';
+} ?>Website Desa <?= unpenetration($desa['nama_desa']); ?></title>
     <meta content="utf-8" http-equiv="encoding">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <?php
@@ -61,8 +61,8 @@
                         </div>
                         <div id="menu_vert2">
                             <?php if (count($slide) > 0) {
-                                $this->load->view('layouts/slide.php');
-                            } ?>
+        $this->load->view('layouts/slide.php');
+    } ?>
                         </div>
                     </div>
                 </div>
@@ -91,8 +91,8 @@
                 </div>
 
                 <?php if (count($teks_berjalan) > 0) {
-                    $this->load->view('layouts/teks_berjalan.php');
-                } ?>
+        $this->load->view('layouts/teks_berjalan.php');
+    } ?>
 
                 <div id="mainmenu">
                     <?php $this->load->view('partials/menu.left.php'); ?>

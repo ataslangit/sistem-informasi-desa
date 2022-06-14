@@ -87,7 +87,7 @@
                                         <td>Periode</td>
                                         <td width="3%">:</td>
                                         <?php $bln = date('m');
-                                        $thn = date('Y'); ?>
+                                        $thn       = date('Y'); ?>
                                         <td><?= $bln . '/' . $thn ?> </td>
                                         <td width="40%"></td>
                                     </tr>
@@ -182,20 +182,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $bayi  = 0;
-                                    $balita  = 0;
-                                    $sd      = 0;
-                                    $smp     = 0;
-                                    $sma     = 0;
-                                    $dewasa  = 0;
-                                    $lansia  = 0;
-                                    $cacat   = 0;
-                                    $cacat2  = 0;
-                                    $sakit_L = 0;
-                                    $sakit_P = 0;
-                                    $hamil1  = 0;
-                                    $hamil2  = 0;
-                                    $susu    = 0;
+                                    <?php $bayi = 0;
+                                    $balita     = 0;
+                                    $sd         = 0;
+                                    $smp        = 0;
+                                    $sma        = 0;
+                                    $dewasa     = 0;
+                                    $lansia     = 0;
+                                    $cacat      = 0;
+                                    $cacat2     = 0;
+                                    $sakit_L    = 0;
+                                    $sakit_P    = 0;
+                                    $hamil1     = 0;
+                                    $hamil2     = 0;
+                                    $susu       = 0;
                                     ?>
                                     <?php foreach ($main as $data) {
                                         $id_cluster = $data['id_cluster']; ?>
@@ -216,20 +216,20 @@
                                         <td align="right"><a href="<?= site_url("penduduk/lap_statistik/{$id_cluster}/12") ?>"><?= $data['susu'] ?></a></td>
                                         <td align="right"><a href="<?= site_url("penduduk/lap_statistik/{$id_cluster}/9") ?>"><?= $data['cacat'] ?></a></td>
                                         <td align="right"><a href="<?= site_url("penduduk/lap_statistik/{$id_cluster}/9") ?>"><?= $data['cacat2'] ?></a></td>
-                                        <?php $bayi  = $bayi + $data['bayi'];
-                                        $balita  = $balita + $data['balita'];
-                                        $sd      = $sd + $data['sd'];
-                                        $smp     = $smp + $data['smp'];
-                                        $sma     = $sma + $data['sma'];
-                                        $dewasa  = $dewasa + $data['dewasa'];
-                                        $lansia  = $lansia + $data['lansia'];
-                                        $cacat   = $cacat + $data['cacat'];
-                                        $cacat2  = $cacat2 + $data['cacat2'];
-                                        $sakit_L = $sakit_L + $data['sakit_L'];
-                                        $sakit_P = $sakit_P + $data['sakit_P'];
-                                        $hamil1  = $hamil1 + $data['hamil1'];
-                                        $hamil2  = $hamil2 + $data['hamil2'];
-                                        $susu    = $susu + $data['susu']; ?>
+                                        <?php $bayi = $bayi + $data['bayi'];
+                                        $balita     = $balita + $data['balita'];
+                                        $sd         = $sd + $data['sd'];
+                                        $smp        = $smp + $data['smp'];
+                                        $sma        = $sma + $data['sma'];
+                                        $dewasa     = $dewasa + $data['dewasa'];
+                                        $lansia     = $lansia + $data['lansia'];
+                                        $cacat      = $cacat + $data['cacat'];
+                                        $cacat2     = $cacat2 + $data['cacat2'];
+                                        $sakit_L    = $sakit_L + $data['sakit_L'];
+                                        $sakit_P    = $sakit_P + $data['sakit_P'];
+                                        $hamil1     = $hamil1 + $data['hamil1'];
+                                        $hamil2     = $hamil2 + $data['hamil2'];
+                                        $susu       = $susu + $data['susu']; ?>
         </tr>
     <?php
                                     } ?>

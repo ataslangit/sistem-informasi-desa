@@ -32,7 +32,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
         $rows_num      = $mysqli->affected_rows;
         $res           = $mysqli->query('SHOW CREATE TABLE ' . $table);
         $TableMLine    = $res->fetch_row();
-        $content       = (!isset($content) ? '' : $content) . "\n\n" . $TableMLine[1] . ";\n\n";
+        $content       = (! isset($content) ? '' : $content) . "\n\n" . $TableMLine[1] . ";\n\n";
 
         for ($i = 0, $st_counter = 0; $i < $fields_amount; $i++, $st_counter = 0) {
             while ($row = $result->fetch_row()) { //when started (and every after 100 command cycle):

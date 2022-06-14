@@ -59,10 +59,10 @@
                             <td><?= $ang['nama'] ?></td>
                             <td><?= tgl_indo($ang['tanggallahir']) ?></td>
                             <td><?php if ($ang['sex'] === 1) {
-                                    echo 'LAKI-LAKI';
-                                } ?><?php if ($ang['sex'] === 2) {
-                            echo 'PEREMPUAN';
-                        } ?></td>
+                        echo 'LAKI-LAKI';
+                    } ?><?php if ($ang['sex'] === 2) {
+                        echo 'PEREMPUAN';
+                    } ?></td>
                             <td>&nbsp;</td>
                         </tr>
                     <?php $i++;
@@ -81,11 +81,11 @@
                     <th></th>
                 </tr>
                 <?php foreach ($list_jawab as $data) {
-                    if ($data['cek'] >= 1) {
-                        $bg = "class='bg'";
-                    } else {
-                        $bg = '';
-                    } ?>
+                        if ($data['cek'] >= 1) {
+                            $bg = "class='bg'";
+                        } else {
+                            $bg = '';
+                        } ?>
                     <tr <?= $bg ?>>
                         <td><?= $data['no'] ?></td>
                         <td><?= $data['pertanyaan'] ?></td>
@@ -96,7 +96,7 @@
                         <td></td>
                     </tr>
                 <?php
-                } ?>
+                    } ?>
                 <tr class="total">
                     <td colspan='5'>TOTAL</td>
                     <td><?= $total ?></td>

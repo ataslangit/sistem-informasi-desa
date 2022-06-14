@@ -23,9 +23,9 @@
 
                                         foreach ($stat as $data) {
                                             $i++; ?><?php if ($data['jumlah'] !== '-') {
-                                                        echo $data['nama'] . ',';
-                                                    } ?><?php
-                                            } ?>]
+                                                echo $data['nama'] . ',';
+                                            } ?><?php
+                                        } ?>]
                     },
                     yAxis: {
                         title: {
@@ -61,8 +61,8 @@
                     series: [{
                         name: 'Populasi',
                         data: [<?php foreach ($stat as $data) { ?><?php if ($data['jumlah'] !== '-') {
-                                                                        echo $data['jumlah'] . ',';
-                                                                    } ?><?php } ?>]
+                                            echo $data['jumlah'] . ',';
+                                        } ?><?php } ?>]
                     }]
                 });
 
