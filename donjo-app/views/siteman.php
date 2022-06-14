@@ -25,9 +25,9 @@
             <?= form_open('siteman/auth') ?>
                 <input name="username" type="text" placeholder="username" value="" required>
                 <?= form_password([
-                    'name' => 'password',
+                    'name'        => 'password',
                     'placeholder' => 'password',
-                    'required' => true,
+                    'required'    => true,
                 ]) ?>
                 <button type="submit" id="but">LOGIN</button>
                 <?php if ($_SESSION['siteman'] === -1) { ?>

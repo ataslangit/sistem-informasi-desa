@@ -22,8 +22,8 @@
                 <td>
                     <?= form_password([
                         'class' => 'inputbox',
-                        'name' => 'pass_lama',
-                        'size' => '20',
+                        'name'  => 'pass_lama',
+                        'size'  => '20',
                     ]) ?>
                 </td>
             </tr>
@@ -32,8 +32,8 @@
                 <td>
                     <?= form_password([
                         'class' => 'inputbox',
-                        'name' => 'pass_baru',
-                        'size' => '20',
+                        'name'  => 'pass_baru',
+                        'size'  => '20',
                     ]) ?>
                 </td>
             </tr>
@@ -42,8 +42,8 @@
                 <td>
                     <?= form_password([
                         'class' => 'inputbox',
-                        'name' => 'pass_baru1',
-                        'size' => '20',
+                        'name'  => 'pass_baru1',
+                        'size'  => '20',
                     ]) ?>
                 </td>
             </tr>
