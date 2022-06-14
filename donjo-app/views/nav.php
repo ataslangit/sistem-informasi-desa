@@ -5,10 +5,10 @@
         </li>
         <?php /*
     <li <?php if($act==4){?>class="selected"<?php }?>>
-        <a href="<?php echo site_url('admin/database/import_ppls')?>">Import Grup Rumah Tangga</a>
+        <a href="<?= site_url('admin/database/import_ppls')?>">Import Grup Rumah Tangga</a>
     </li>
     <li <?php if($act==6){?>class="selected"<?php }?>>
-        <a href="<?php echo site_url('admin/database/siak')?>">Import SIAK</a>
+        <a href="<?= site_url('admin/database/siak')?>">Import SIAK</a>
     </li>
     */ ?>
         <li <?php if ($act === 1) { ?>class="selected" <?php } ?>>

@@ -7,13 +7,13 @@
         <legend>Statistik Keluarga</legend>
             <div id="" class="lmenu">
                 <ul>
-                <a href="<?php echo site_url()?>statistik/index/22"><li <?php if($lap==22){?>class="selected"<?php }?>>
+                <a href="<?= site_url()?>statistik/index/22"><li <?php if($lap==22){?>class="selected"<?php }?>>
                     Raskin</li></a>
-                <a href="<?php echo site_url()?>statistik/index/23"><li <?php if($lap==23){?>class="selected"<?php }?>>
+                <a href="<?= site_url()?>statistik/index/23"><li <?php if($lap==23){?>class="selected"<?php }?>>
                     BLSM</li></a>
-                <a href="<?php echo site_url()?>statistik/index/25"><li <?php if($lap==25){?>class="selected"<?php }?>>
+                <a href="<?= site_url()?>statistik/index/25"><li <?php if($lap==25){?>class="selected"<?php }?>>
                     PKH</li></a>
-                <a href="<?php echo site_url()?>statistik/index/27"><li <?php if($lap==27){?>class="selected"<?php }?>>
+                <a href="<?= site_url()?>statistik/index/27"><li <?php if($lap==27){?>class="selected"<?php }?>>
                     Bedah Rumah</li></a>
                 </ul>
             </div>
