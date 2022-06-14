@@ -7,7 +7,6 @@ class Analisis_grafik extends CI_Controller
         parent::__construct();
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-
         if (! in_array($grup, ['1'], true)) {
             redirect('siteman');
         }

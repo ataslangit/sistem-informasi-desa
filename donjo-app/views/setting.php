@@ -19,15 +19,33 @@
             </tr>
             <tr>
                 <th align="left">Password Lama</th>
-                <td><input name="pass_lama" type="password" class="inputbox" size="20" /></td>
+                <td>
+                    <?= form_password([
+                        'class' => 'inputbox',
+                        'name'  => 'pass_lama',
+                        'size'  => '20',
+                    ]) ?>
+                </td>
             </tr>
             <tr>
                 <th align="left">Password Baru</th>
-                <td><input name="pass_baru" type="password" class="inputbox" size="20" /></td>
+                <td>
+                    <?= form_password([
+                        'class' => 'inputbox',
+                        'name'  => 'pass_baru',
+                        'size'  => '20',
+                    ]) ?>
+                </td>
             </tr>
             <tr>
                 <th align="left">Password Baru [Ulangi]</th>
-                <td><input name="pass_baru1" type="password" class="inputbox" size="20" /></td>
+                <td>
+                    <?= form_password([
+                        'class' => 'inputbox',
+                        'name'  => 'pass_baru1',
+                        'size'  => '20',
+                    ]) ?>
+                </td>
             </tr>
             <tr>
                 <th align="left" class="top">Foto</th>

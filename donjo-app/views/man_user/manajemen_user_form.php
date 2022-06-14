@@ -73,7 +73,16 @@
                                 </tr>
                                 <tr>
                                     <th>Password</th>
-                                    <td><input name="password" type="password" class="inputbox" size="20" <?php if ($user) { ?>value="radiisi" <?php } ?> /></td>
+                                    <td>
+                                        <?= form_password([
+                                            'name'        => 'password',
+                                            'placeholder' => 'password',
+                                            'required'    => true,
+                                            'class'       => 'inputbox',
+                                            'size'        => '20',
+                                            'value'       => ($user ? 'radiisi' : ''),
+                                        ]) ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Nama</th>

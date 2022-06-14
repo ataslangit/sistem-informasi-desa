@@ -26,7 +26,11 @@ if (! isset($_SESSION['mandiri'])) {
                 <h4>Masukkan NIK dan PIN!</h4>
                 <?= form_open('first/auth') ?>
                     <input name="nik" type="text" placeholder="NIK" value="" required>
-                    <input name="pin" type="password" placeholder="PIN" value="" required>
+                    <?= form_password([
+                        'name'        => 'pin',
+                        'placeholder' => 'PIN',
+                        'required'    => true,
+                    ]) ?>
                     <button type="submit" id="but">Masuk</button>
                     <?php
                     /* if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
@@ -102,8 +106,14 @@ if (! isset($_SESSION['mandiri'])) {
             <div class="box-body">
                 <h4>Masukkan PIN Baru</h4>
                 <?= form_open('first/ganti') ?>
-                    <input name="pin1" type="password" placeholder="PIN" value="">
-                    <input name="pin2" type="password" placeholder="Ulangi PIN" value="">
+                    <?= form_password([
+                        'name'        => 'pin1',
+                        'placeholder' => 'PIN',
+                    ]) ?>
+                    <?= form_password([
+                        'name'        => 'pin2',
+                        'placeholder' => 'Ulangi PIN',
+                    ]) ?>
                     <button type="submit" id="but">Ganti</button>
                 <?= form_close() ?>
                 <div id="note">
