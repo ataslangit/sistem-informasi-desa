@@ -94,7 +94,15 @@
                             </tr>
                             <tr>
                                 <th>Password</th>
-                                <td><input name="password" type="password" class="inputbox" size="20" value="<?= $user['password'] ?>" /></td>
+                                <td>
+                                    <?= form_password([
+                                        'name'        => 'password',
+                                        'placeholder' => 'password',
+                                        'class'       => 'inputbox',
+                                        'size'        => '20',
+                                        'value'       => $user['password'],
+                                    ]) ?>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Nama</th>

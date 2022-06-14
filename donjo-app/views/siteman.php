@@ -24,7 +24,11 @@
             <h1>Masukkan Username dan Password</h1>
             <?= form_open('siteman/auth') ?>
                 <input name="username" type="text" placeholder="username" value="" required>
-                <input name="password" type="password" placeholder="password" value="" required>
+                <?= form_password([
+                    'name' => 'password',
+                    'placeholder' => 'password',
+                    'required' => true,
+                ]) ?>
                 <button type="submit" id="but">LOGIN</button>
                 <?php if ($_SESSION['siteman'] === -1) { ?>
                     <div id="note">
