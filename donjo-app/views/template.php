@@ -57,10 +57,10 @@ $nama_user = $data['header']['nama'];
                         <span class="d-block"><?= $nama_user ?></span>
                     </span>
                     <?php if ($foto_user !== '') {
-                        $img = base_url('assets/files/user_pict/kecil_' . $foto_user);
-                    } else {
-                        $img = base_url('assets/files/user_pict/kuser.png');
-                    } ?>
+    $img = base_url('assets/files/user_pict/kecil_' . $foto_user);
+} else {
+    $img = base_url('assets/files/user_pict/kuser.png');
+} ?>
                     <img src="<?= $img ?>" alt="<?= $nama_user ?>" width="32" height="32" class="rounded-circle border border-primary" />
                 </a>
                 <div class="flex-shrink-0 dropdown">
@@ -89,7 +89,7 @@ $nama_user = $data['header']['nama'];
 
                             <li class="nav-item">
                                 <a href="<?= site_url($mod['url']) ?>" class="nav-link" aria-current="page">
-                                    <i class="<?= (isset($mod['icon']) && !empty($mod['icon']) ? $mod['icon'] : 'fa-regular fa-note-sticky') ?> me-2"></i>
+                                    <i class="<?= (isset($mod['icon']) && ! empty($mod['icon']) ? $mod['icon'] : 'fa-regular fa-note-sticky') ?> me-2"></i>
                                     <span><?= $mod['modul'] ?></span>
                                 </a>
                             </li>
