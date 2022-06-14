@@ -23,9 +23,9 @@
 
                                     <?php if ($grup == 1) { ?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("penduduk/delete_all/$p/$o") ?>')" class="uibutton chrome"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data</button><?php } ?>
 
-                                    <a href="<?php echo site_url("penduduk/cetak/$o") ?>" class="uibutton" title="Cetak Data" target="_blank"><span class="icon-print icon-large">&nbsp;</span>Cetak</a>
+                                    <a href="<?php echo site_url("penduduk/cetak/". $o) ?>" class="uibutton" title="Cetak Data" target="_blank"><span class="icon-print icon-large">&nbsp;</span>Cetak</a>
 
-                                    <a href="<?php echo site_url("penduduk/excel/$o") ?>" class="uibutton tipsy south" title="Unduh" target="_blank"><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
+                                    <a href="<?php echo site_url("penduduk/excel/" . $o) ?>" class="uibutton tipsy south" title="Unduh" target="_blank"><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
 
                                 </div>
                             </div>

@@ -63,7 +63,7 @@ $route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/dashboard/ajax_kantor
 $route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/dashboard/ajax_wilayah_maps';
 
 // halaman database
-$route['database'] = 'Admin/database/index'; // lempar ke halaman database
-$route['admin/database'] = 'Admin/database/index';
-$route['admin/database/import'] = 'Admin/database/import';
+$route['database']                   = 'Admin/database/index'; // lempar ke halaman database
+$route['admin/database']             = 'Admin/database/index';
+$route['admin/database/import']      = 'Admin/database/import';
 $route['admin/database/exec_backup'] = 'Admin/database/exec_backup';

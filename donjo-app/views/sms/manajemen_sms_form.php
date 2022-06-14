@@ -76,15 +76,15 @@
                                         <?php $ch = 'checked'; ?>
                                         <?php if ($user['id_grup'] !== '1') { ?>
                                             <input type="radio" id="group3" name="group" value="3" /<?php if ($user['id_grup'] === '3' || $user['id_grup'] === '') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="group3">Redaksi</label>
+    echo $ch;
+} ?>><label for="group3">Redaksi</label>
                                             <input type="radio" id="group2" name="group" value="2" /<?php if ($user['id_grup'] === '2') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="group2">Operator</label>
+    echo $ch;
+} ?>><label for="group2">Operator</label>
                                         <?php } ?>
                                         <input type="radio" id="group1" name="group" value="1" /<?php if ($user['id_grup'] === '1') {
-                                                                                                    echo $ch;
-                                                                                                } ?>><label for="group1">Administrator</label>
+    echo $ch;
+} ?>><label for="group1">Administrator</label>
                                     </div>
                                 </td>
                             </tr>

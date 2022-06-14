@@ -10,7 +10,7 @@
                 <legend>Form Penulisan Program Bantuan</legend>
                 <div class="contentpane">
                     <?php if (validation_errors()) {
-                        echo '
+                    echo '
 					<div class="error" style="border:solid 2px #c00;color:#c00;margin:1em 0;">
 						<div style="background:#c00;color:#fff;padding:1em;font-weight:bolder;">
 						Ada Kesalahan
@@ -20,7 +20,7 @@
 						</div>
 					</div>
 					';
-                    }
+                }
 
                     if ($_SESSION['success'] === 1) {
                         echo 'Simpan Berhasil';

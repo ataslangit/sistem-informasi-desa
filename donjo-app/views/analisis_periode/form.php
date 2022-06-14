@@ -21,11 +21,11 @@
                                         <div class="uiradio">
                                             <?php $ch = 'checked'; ?>
                                             <input type="radio" id="a1" name="aktif" value="1" /<?php if ($analisis_periode['aktif'] === '1' || $analisis_periode['aktif'] === '') {
-                                                                                                    echo $ch;
-                                                                                                } ?>><label for="a1">Aktif</label>
+    echo $ch;
+} ?>><label for="a1">Aktif</label>
                                             <input type="radio" id="a2" name="aktif" value="2" /<?php if ($analisis_periode['aktif'] === '2') {
-                                                                                                    echo $ch;
-                                                                                                } ?>><label for="a2">Tidak Aktif</label>
+    echo $ch;
+} ?>><label for="a2">Tidak Aktif</label>
                                         </div>
                                     </td>
                                 </tr>
@@ -35,14 +35,14 @@
                                         <div class="uiradio">
                                             <?php $ch = 'checked'; ?>
                                             <input type="radio" id="g1" name="id_state" value="1" /<?php if ($analisis_periode['id_state'] === '1' || $analisis_periode['id_state'] === '') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="g1">Belum Pendataan / Input</label>
+    echo $ch;
+} ?>><label for="g1">Belum Pendataan / Input</label>
                                             <input type="radio" id="g2" name="id_state" value="2" /<?php if ($analisis_periode['id_state'] === '2') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="g2">Sedang Pendataan / Input</label>
+    echo $ch;
+} ?>><label for="g2">Sedang Pendataan / Input</label>
                                             <input type="radio" id="g3" name="id_state" value="3" /<?php if ($analisis_periode['id_state'] === '3') {
-                                                                                                        echo $ch;
-                                                                                                    } ?>><label for="g3">Selesai Pelaksanaan</label>
+    echo $ch;
+} ?>><label for="g3">Selesai Pelaksanaan</label>
                                         </div>
                                     </td>
                                 </tr>

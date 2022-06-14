@@ -10,7 +10,7 @@
                 $w               = (140 / $img_w) * $img_h;
                 $w               = 90;
                 if ($i === 0) {
-    ?>
+                    ?>
                     sts_ai("i<?= $i ?>", [1, "", "", "_self", "kecil_<?= $data['gambar'] ?>", 146, <?= $w ?>, "center"], ["ItBgC", "OtF", "OtFC", "OtFD", "OvF", "OvFC", "OvFD"], "i0", "i0");
                 <?php
                 } else { ?>

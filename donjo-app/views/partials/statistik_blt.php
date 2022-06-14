@@ -171,7 +171,7 @@ echo '
                     </thead>
                     <tbody>
                         <?php $i = 0;
-                        $j = 0;
+                        $j       = 0;
 
                         foreach ($main as $data) : ?>
                             <tr>

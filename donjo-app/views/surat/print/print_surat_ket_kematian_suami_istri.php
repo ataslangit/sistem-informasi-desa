@@ -109,10 +109,10 @@
                     <table width="100%">
                         <tr></tr>
                         <td>adalah <?php if ($pribadi['sex'] === 1) {
-                                        echo 'istri';
-                                    } else {
-                                        echo 'suami';
-                                    } ?> orang yang telah meninggal tersebut di atas.</td>
+    echo 'istri';
+} else {
+    echo 'suami';
+} ?> orang yang telah meninggal tersebut di atas.</td>
                         <tr>
                             <td class="indentasi">Demikianlah, surat keterangan ini dibua dengan mengingat sumpah jabatan dan untuk dipergunakan seperlunya.</td>
                         </tr>

@@ -77,7 +77,7 @@
                                 <input type="hidden" name="nik" value="<?= $individu['id'] ?>" class="inputbox required">
                                 <table class="form">
                                     <?php if ($individu) {
-                                    ?>
+    ?>
                                         <tr>
                                             <th width="200">Tempat Tanggal Lahir (Umur)</th>
                                             <td>
@@ -124,9 +124,9 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php if ($anggota !== null) {
-                                                                $i = 0; ?>
+        $i = 0; ?>
                                                                 <?php foreach ($anggota as $data) {
-                                                                    $i++; ?>
+            $i++; ?>
                                                                     <tr>
                                                                         <td align="center" width="2"><?= $i ?></td>
                                                                         <td align="center" width="5">
@@ -141,9 +141,9 @@
                                                                         <td><?= $data['pendidikan'] ?></td>
                                                                     </tr>
                                                                 <?php
-                                                                } ?>
+        } ?>
                                                             <?php
-                                                            } ?>
+    } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -157,7 +157,7 @@
                                             </td>
                                         </tr>
                                     <?php
-                                    }
+}
                                     ?>
                                     <tr>
                                         <th width="200">Nomor Surat</th>

@@ -73,8 +73,8 @@
                                     text: '<?= $stat ?>'
                                 },
                                 categories: [
-                                    <?php $all  = count($main);
-                                    $i = 0;
+                                    <?php $all = count($main);
+                                    $i         = 0;
 
                                     foreach ($main as $data) {
                                         $i++;

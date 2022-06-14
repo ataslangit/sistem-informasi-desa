@@ -7,3 +7,4 @@ public/assets/files/logo/*
 !public/assets/files/logo/index.html
 
 /.vscode/
+.php-cs-fixer.cache

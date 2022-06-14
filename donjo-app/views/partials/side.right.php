@@ -1,8 +1,8 @@
 <!-- widget Agenda-->
 <?php
-if (!isset($_SESSION['mandiri'])) {
+if (! isset($_SESSION['mandiri'])) {
     if ($_SESSION['mandiri_wait'] === 1) {
-?>
+        ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
                 <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
@@ -93,7 +93,7 @@ if (!isset($_SESSION['mandiri'])) {
     </div>
     <?php
     if ($_SESSION['lg'] === 1) {
-    ?>
+        ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
                 <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
@@ -134,7 +134,7 @@ if (!isset($_SESSION['mandiri'])) {
 ?>
 <?php
 if ($agenda) {
-?>
+    ?>
     <div class="box box-primary box-solid">
         <div class="box-header">
             <h3 class="box-title"><a href="<?= site_url(); ?>first/kategori/4"><i class="fa fa-calendar"></i> Agenda</a></h3>
@@ -213,7 +213,7 @@ if ($agenda) {
     <div class="box-body">
         <?php
         $ip = $_SERVER['REMOTE_ADDR'] . '{}';
-        if (!isset($_SESSION['MemberOnline'])) {
+        if (! isset($_SESSION['MemberOnline'])) {
             $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
             if ($cek->num_rows() === 0) {
                 $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
@@ -302,8 +302,8 @@ if ($agenda) {
 <!--widget Manual-->
 <?php
 if ($w_cos) {
-    foreach ($w_cos as $data) {
-        echo '
+            foreach ($w_cos as $data) {
+                echo '
 		<div class="box box-primary box-solid">
 			<div class="box-header">
 				<h3 class="box-title">' . $data['judul'] . '</h3>
@@ -313,8 +313,8 @@ if ($w_cos) {
 			</div>
 		</div>
 		';
-    }
-}
+            }
+        }
 ?>
 <!-- widget Google Map -->
 <?php

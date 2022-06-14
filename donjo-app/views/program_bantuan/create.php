@@ -13,7 +13,7 @@
                 <div id="contentpane">
                     <div class="ui-layout-center" id="maincontent" style="width:96%">
                         <?php if (validation_errors()) {
-                            echo '
+                    echo '
 					<div class="error" style="border:solid 2px #c00;color:#c00;margin:1em 0;">
 						<div style="background:#c00;color:#fff;padding:1em;font-weight:bolder;">
 						Ada Kesalahan
@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					';
-                        }
+                }
                         $cid = @$_REQUEST['cid'];
                         ?>
                         <?= form_open('program_bantuan/create') . "\n"; ?>

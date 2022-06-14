@@ -35,7 +35,7 @@
                     <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <table class="form">
-                                <?php if (!@$pend) { ?>
+                                <?php if (! @$pend) { ?>
                                     <tr>
                                         <th width=100>NIK / Nama Penduduk</th>
                                         <td>

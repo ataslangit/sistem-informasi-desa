@@ -8,7 +8,7 @@
                 zoom: <?= $desa['zoom'] ?>,
                 mapTypeId: google.maps.MapTypeId.<?= strtoupper($desa['map_tipe']) ?>
                 <?php } else {
-                if ($desa['lat'] !== '') { ?>
+    if ($desa['lat'] !== '') { ?>
                     center: new google.maps.LatLng(<?= $desa['lat'] ?>, <?= $desa['lng'] ?>),
                     zoom: <?= $desa['zoom'] ?>,
                     mapTypeId: google.maps.MapTypeId.<?= strtoupper($desa['map_tipe']) ?>
@@ -17,7 +17,7 @@
                     zoom: 14,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
             <?php }
-            } ?>
+} ?>
 
         };
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
