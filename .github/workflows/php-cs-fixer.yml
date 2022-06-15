@@ -19,6 +19,10 @@ jobs:
 
       - name: Run PHP-CS-Fixer Lint
         run: ./vendor/bin/php-cs-fixer fix
+        
+      - name: Check unstage
+        id: git-diff-check
+        run: git diff --name-only
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
