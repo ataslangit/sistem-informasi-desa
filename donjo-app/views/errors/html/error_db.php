@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 ?><!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>Database Error</title>
