@@ -19,7 +19,7 @@ module.exports = {
     devtool:
         process.env.NODE_ENV === "production" ? "source-map" : "inline-source-map",
     output: {
-        path: Path.join(opts.rootDir, "dist"),
+        path: Path.join(opts.rootDir, "public"),
         pathinfo: opts.devBuild,
         filename: "js/[name].js",
         chunkFilename: 'js/[name].js',
@@ -51,15 +51,15 @@ module.exports = {
             ]
         }),
         // Copy dist folder to static
-        new FileManagerPlugin({
-            events: {
-                onEnd: {
-                    copy: [
-                        { source: "./dist/", destination: "./static" }
-                    ]
-                }
-            }
-        }),
+        // new FileManagerPlugin({
+        //     events: {
+        //         onEnd: {
+        //             copy: [
+        //                 { source: "./dist/", destination: "./static" }
+        //             ]
+        //         }
+        //     }
+        // }),
     ],
     module: {
         rules: [
@@ -114,12 +114,12 @@ module.exports = {
             request$: "xhr"
         }
     },
-    devServer: {
-        static: {
-            directory: Path.join(__dirname, "static")
-        },
-        compress: true,
-        port: 8080,
-        open: true
-    }
+    // devServer: {
+    //     static: {
+    //         directory: Path.join(__dirname, "static")
+    //     },
+    //     compress: true,
+    //     port: 8080,
+    //     open: true
+    // }
 };
