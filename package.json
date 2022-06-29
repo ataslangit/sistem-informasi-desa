@@ -33,7 +33,7 @@
         "hard-source-webpack-plugin": "0.13.1",
         "mini-css-extract-plugin": "2.5.3",
         "postcss-loader": "6.2.1",
-        "sass": "1.49.7",
+        "sass": "1.53.0",
         "sass-loader": "12.4.0",
         "terser-webpack-plugin": "5.3.1",
         "url-loader": "4.1.1",
