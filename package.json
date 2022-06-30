@@ -10,7 +10,7 @@
         "@popperjs/core": "2.11.2",
         "bootstrap": "5.1.3",
         "chart.js": "2.9.4",
-        "feather-icons": "4.28.0",
+        "feather-icons": "4.29.0",
         "flatpickr": "4.6.13",
         "jsvectormap": "1.3.3",
         "simplebar": "5.3.8"
