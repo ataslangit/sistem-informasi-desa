@@ -9,7 +9,7 @@
         "@babel/polyfill": "7.12.1",
         "@popperjs/core": "2.11.5",
         "bootstrap": "5.1.3",
-        "chart.js": "2.9.4",
+        "chart.js": "3.8.0",
         "feather-icons": "4.29.0",
         "flatpickr": "4.6.13",
         "jsvectormap": "1.4.5",
