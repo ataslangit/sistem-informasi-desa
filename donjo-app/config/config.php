@@ -29,7 +29,7 @@ if (! empty($_SERVER['HTTP_HOST'])) {
 
 $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http://') . $host . '/';
 
-$config['base_url'] = $baseUrl;
+$config['base_url'] = $_ENV['app.baseURL'] ?? $baseUrl;
 
 /*
 |--------------------------------------------------------------------------

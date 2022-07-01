@@ -1,0 +1,9 @@
+# CI_ENVIRONMENT = development
+
+# app.baseURL = ''
+
+# database.default.hostname = localhost
+# database.default.database = db_sid
+# database.default.username = root
+# database.default.password = root
+# database.default.DBPrefix =
