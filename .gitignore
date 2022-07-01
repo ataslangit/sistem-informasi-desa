@@ -11,3 +11,5 @@ public/assets/files/logo/*
 
 /node_modules/
 /package-lock.json
+
+.env
