@@ -3,8 +3,8 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     build: {
-        outDir: 'public',
-        assetsDir: 'berkas',
+        outDir: 'public/assets',
+        assetsDir: '',
     },
     plugins: [
         laravel([
