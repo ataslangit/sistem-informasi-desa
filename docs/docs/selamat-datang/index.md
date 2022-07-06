@@ -12,7 +12,7 @@ Kini kami mencoba untuk meneruskan pengembangan SID tersebut agar dapat terus di
 agar Desa semakin unggul.
 
 Dalam pengembangan, kami menggunakan GitHub sebagai wadah, dan siapa saja dapat berkontribusi
-tanpa dipungut biaya apapun. Anda dapat mengunjungi [atas-langit/sistem-informasi-desa](https://github.com/atas-langit/sistem-informasi-desa)
+tanpa dipungut biaya apapun. Anda dapat mengunjungi [ataslangit/sistem-informasi-desa](https://github.com/ataslangit/sistem-informasi-desa)
 untuk melihat setiap perubahan atau berkontribusi secara langsung.
 
 ## Informasi
