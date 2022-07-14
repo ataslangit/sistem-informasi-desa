@@ -5,11 +5,11 @@
                 echo " class='first'";
             } ?>>
                 <?php
-                            if ($item->url !== '') {
-                                echo "<a href='" . $item->url . "' target='_blank'>" . $item->title . '</a>';
-                            } else {
-                                echo anchor($item->controller . '/' . $item->view, $item->title);
-                            }
+                                        if ($item->url !== '') {
+                                            echo "<a href='" . $item->url . "' target='_blank'>" . $item->title . '</a>';
+                                        } else {
+                                            echo anchor($item->controller . '/' . $item->view, $item->title);
+                                        }
         ?> <?php endif; ?>
         <?php endforeach; ?>
         </li>

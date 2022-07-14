@@ -96,8 +96,8 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
     </div>
     <?php
-        if ($_SESSION['lg'] === 1) {
-            ?>
+            if ($_SESSION['lg'] === 1) {
+                ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
                 <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
@@ -122,7 +122,7 @@ if (! isset($_SESSION['mandiri'])) {
             </div>
         </div>
     <?php
-        } elseif ($_SESSION['lg'] === 1) { ?>
+            } elseif ($_SESSION['lg'] === 1) { ?>
 
 
         <div class="box box-primary box-solid">
@@ -138,8 +138,8 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
 
 <?php
-            unset($_SESSION['lg']);
-        }
+                unset($_SESSION['lg']);
+            }
     }
 ?>
 <?php
