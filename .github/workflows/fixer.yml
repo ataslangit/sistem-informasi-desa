@@ -42,4 +42,4 @@ jobs:
           # This part is also where you can pass other options, for example:
           prettier_plugins: '@prettier/plugin-php'
           working_directory: '${{ github.workspace }}/donjo-app/views'
-        #   prettier_options: --write **/*.{html,php}
+          prettier_options: --write **/*.{html,php}
