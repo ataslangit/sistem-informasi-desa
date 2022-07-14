@@ -8,17 +8,17 @@
     <meta content="utf-8" http-equiv="encoding">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <?php
-        if (isset($single_artikel['gambar'])) {
-            $gambar = $single_artikel['gambar'];
-        } elseif (isset($single_artikel['gambar1'])) {
-            $gambar = $single_artikel['gambar1'];
-        } elseif (isset($single_artikel['gambar2'])) {
-            $gambar = $single_artikel['gambar2'];
-        } elseif (isset($single_artikel['gambar3'])) {
-            $gambar = $single_artikel['gambar4'];
-        } else {
-            $gambar = 'logo.jpg';
-        }
+                if (isset($single_artikel['gambar'])) {
+                    $gambar = $single_artikel['gambar'];
+                } elseif (isset($single_artikel['gambar1'])) {
+                    $gambar = $single_artikel['gambar1'];
+                } elseif (isset($single_artikel['gambar2'])) {
+                    $gambar = $single_artikel['gambar2'];
+                } elseif (isset($single_artikel['gambar3'])) {
+                    $gambar = $single_artikel['gambar4'];
+                } else {
+                    $gambar = 'logo.jpg';
+                }
     ?>
     <meta property="og:image" content="<?= base_url() . 'assets/files/artikel/kecil_' . $gambar; ?>">
     <meta property="og:image:width" content="300">
