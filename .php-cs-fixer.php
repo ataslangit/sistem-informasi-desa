@@ -1,7 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    // ->notPath('src/Symfony/Component/Translation/Tests/fixtures/resources.php')
+    ->notPath('donjo-app/views')
     ->in(__DIR__);
 
 $config = new PhpCsFixer\Config();
