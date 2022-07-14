@@ -20,21 +20,21 @@
                             $_SESSION['success'] === 0;
                         }
 
-                        ?>
+                ?>
 
                         <?= '
 <script>
 	$(document).ready(function() {
 		var nik = {};
 		nik.results = [';
-                        if ($penduduk) {
-                            foreach ($penduduk as $item) {
-                                if ($item['id'] !== '') {
-                                    echo '{id: ' . $item['id'] . ', name:"' . $item['nama'] . '",info:"' . $item['info'] . "\"},\n";
-                                }
-                            }
+                if ($penduduk) {
+                    foreach ($penduduk as $item) {
+                        if ($item['id'] !== '') {
+                            echo '{id: ' . $item['id'] . ', name:"' . $item['nama'] . '",info:"' . $item['info'] . "\"},\n";
                         }
-                        echo "
+                    }
+                }
+                echo "
 		];
 
 		$('#nik').flexbox(nik, {
@@ -49,40 +49,40 @@
 	});
 </script>
 ";
-                        if ($persil_detail > 0) {
-                            if (isset($persil_detail['id'])) {
-                                $nik   = $persil_detail['nik'];
-                                $nama  = $persil_detail['nopersil'];
-                                $cid   = $persil_detail['persil_jenis_id'];
-                                $sid   = $persil_detail['persil_peruntukan_id'];
-                                $pid   = $persil_detail['id_clusterdesa'];
-                                $kelas = $persil_detail['kelas'];
-                                $luas  = $persil_detail['luas'];
-                                $sppt  = $persil_detail['no_sppt_pbb'];
-                                $id    = $persil_detail['id'];
-                            } else {
-                                $nama  = '';
-                                $cid   = 0;
-                                $sid   = 0;
-                                $pid   = 0;
-                                $kelas = '';
-                                $luas  = 0;
-                                $sppt  = '';
-                                $cid   = 0;
-                                $id    = 0;
-                            }
-                        } else {
-                            $nama  = '';
-                            $cid   = 0;
-                            $sid   = 0;
-                            $pid   = 0;
-                            $kelas = '';
-                            $luas  = 0;
-                            $sppt  = '';
-                            $cid   = 0;
-                            $id    = 0;
-                        }
-                        echo '
+                if ($persil_detail > 0) {
+                    if (isset($persil_detail['id'])) {
+                        $nik   = $persil_detail['nik'];
+                        $nama  = $persil_detail['nopersil'];
+                        $cid   = $persil_detail['persil_jenis_id'];
+                        $sid   = $persil_detail['persil_peruntukan_id'];
+                        $pid   = $persil_detail['id_clusterdesa'];
+                        $kelas = $persil_detail['kelas'];
+                        $luas  = $persil_detail['luas'];
+                        $sppt  = $persil_detail['no_sppt_pbb'];
+                        $id    = $persil_detail['id'];
+                    } else {
+                        $nama  = '';
+                        $cid   = 0;
+                        $sid   = 0;
+                        $pid   = 0;
+                        $kelas = '';
+                        $luas  = 0;
+                        $sppt  = '';
+                        $cid   = 0;
+                        $id    = 0;
+                    }
+                } else {
+                    $nama  = '';
+                    $cid   = 0;
+                    $sid   = 0;
+                    $pid   = 0;
+                    $kelas = '';
+                    $luas  = 0;
+                    $sppt  = '';
+                    $cid   = 0;
+                    $id    = 0;
+                }
+                echo '
 	<fieldset>
 	<legend>Formulir Penambahan/Pembaruan Data Peruntukan Persil</legend>
 		<fieldset>
@@ -94,9 +94,9 @@
 			</div>
 		</fieldset>
 ';
-                        echo form_open('data_persil/simpan_persil') . "\n";
-                        if ($pemilik) {
-                            echo '
+                echo form_open('data_persil/simpan_persil') . "\n";
+                if ($pemilik) {
+                    echo '
 	<div class="form-group">
 		<fieldset>
 			<legend>Data Pemilik</legend>
@@ -112,8 +112,8 @@
 		</fieldset>
 	</div>
 	';
-                        }
-                        echo '
+                }
+                echo '
 	<div class="form-group">
 		<label>NOMOR PERSIL</label>
 		<input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan Nomor Persil" value="' . $nama . '"/>
@@ -122,11 +122,11 @@
 		<label>KETERANGAN SURAT</label>
 		<select class="form-control" id="cid" name="cid">';
 
-                        foreach ($persil_jenis as $key => $item) {
-                            $strC = ($key === $cid) ? 'selected="selected"' : '';
-                            echo '<option value="' . $key . '" ' . $strC . '>' . $item[0] . '</option>';
-                        }
-                        echo '
+                foreach ($persil_jenis as $key => $item) {
+                    $strC = ($key === $cid) ? 'selected="selected"' : '';
+                    echo '<option value="' . $key . '" ' . $strC . '>' . $item[0] . '</option>';
+                }
+                echo '
 		</select>
 	</div>
 	<div class="form-group">
@@ -141,22 +141,22 @@
 		<label>PERUNTUKAN</label>
 		<select class="form-control" id="sid" name="sid">';
 
-                        foreach ($persil_peruntukan as $key => $item) {
-                            $strC = ($key === $sid) ? 'selected="selected"' : '';
-                            echo '<option value="' . $key . '" ' . $strC . '>' . $item[0] . '</option>';
-                        }
-                        echo '
+                foreach ($persil_peruntukan as $key => $item) {
+                    $strC = ($key === $sid) ? 'selected="selected"' : '';
+                    echo '<option value="' . $key . '" ' . $strC . '>' . $item[0] . '</option>';
+                }
+                echo '
 		</select>
 	</div>
 	<div class="form-group">
 		<label>LOKASI TANAH</label>
 		<select class="form-control" id="pid" name="pid">';
 
-                        foreach ($persil_lokasi as $key => $item) {
-                            $strC = ($key === $pid) ? 'selected="selected"' : '';
-                            echo '<option value="' . $item['id'] . '" ' . $strC . '>' . strtoupper($item['dusun']) . ' - RW ' . $item['rw'] . ' / RT ' . $item['rt'] . '</option>';
-                        }
-                        echo '
+                foreach ($persil_lokasi as $key => $item) {
+                    $strC = ($key === $pid) ? 'selected="selected"' : '';
+                    echo '<option value="' . $item['id'] . '" ' . $strC . '>' . strtoupper($item['dusun']) . ' - RW ' . $item['rw'] . ' / RT ' . $item['rt'] . '</option>';
+                }
+                echo '
 		</select>
 	</div>
 	<div class="form-group">
@@ -171,9 +171,9 @@
 		</div>
 	</div>
 ';
-                        echo '<?= form_close() ?>
+                echo '<?= form_close() ?>
 </fieldset>';
-                        ?>
+                ?>
                         <div style="height:10em;"></div>
                     </div>
                 </div>

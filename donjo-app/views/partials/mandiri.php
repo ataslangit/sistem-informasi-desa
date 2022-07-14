@@ -168,7 +168,7 @@
         <tbody>
             <?php $no = 1;
 
-            foreach ($list_kelompok as $kel) { ?>
+    foreach ($list_kelompok as $kel) { ?>
                 <tr>
                     <td align="center" width="2"><?= $no; ?></td>
                     <td><?= $kel['nama'] ?></td>
@@ -176,7 +176,7 @@
                     <td></td>
                 </tr>
             <?php $no++;
-            } ?>
+    } ?>
         </tbody>
     </table>
 

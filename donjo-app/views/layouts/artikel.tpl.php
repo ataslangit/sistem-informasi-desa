@@ -3,7 +3,7 @@
             <div id="contentcolumn">
                 <div class="innertube">
                     <?php $this->load->view('partials/artikel.php');
-                    ?>
+?>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
 
         <div id="footer">
             <?php $this->load->view('partials/copywright.tpl.php');
-            ?>
+?>
         </div>
     </div>
 </body>

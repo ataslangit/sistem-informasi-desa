@@ -104,8 +104,8 @@
                         </tr>
                         <?php $i = 1;
 
-                        foreach ($list_anggota as $ang) {
-                            $idc = $ang['id']; ?>
+                    foreach ($list_anggota as $ang) {
+                        $idc = $ang['id']; ?>
                             <tr>
                                 <td><?= $i ?></td>
 
@@ -121,28 +121,28 @@
                                 <td><?= $ang['nama'] ?></td>
                                 <td><?= tgl_indo($ang['tanggallahir']) ?></td>
                                 <td><?php if ($ang['sex'] === 1) {
-                                echo 'LAKI-LAKI';
-                            } ?><?php if ($ang['sex'] === 2) {
-                                echo 'PEREMPUAN';
-                            } ?></td>
+                                    echo 'LAKI-LAKI';
+                                } ?><?php if ($ang['sex'] === 2) {
+                                    echo 'PEREMPUAN';
+                                } ?></td>
                                 <td>&nbsp;</td>
                             </tr>
                         <?php $i++;
-                        } ?>
+                    } ?>
                     </table>
                 <?php } ?>
                 <table width="100%" class="form data">
                     <?php $new = 1;
-                    $last      = 0;
+    $last                      = 0;
 
-                    foreach ($list_jawab as $data) {
-                        $data['no'] = ''; ?>
+    foreach ($list_jawab as $data) {
+        $data['no'] = ''; ?>
                         <?php
 
-                        if ($data['id_kategori'] !== $last || $last === 0) {
-                            $new = 1;
-                        }
-                        if ($new === 1) { ?>
+        if ($data['id_kategori'] !== $last || $last === 0) {
+            $new = 1;
+        }
+        if ($new === 1) { ?>
                             <tr>
                                 <td colspan="2">
                                     <hr>
@@ -159,9 +159,9 @@
                                 </td>
                             </tr>
                         <?php
-                            $new  = 0;
-                            $last = $data['id_kategori'];
-                        } ?>
+            $new  = 0;
+            $last = $data['id_kategori'];
+        } ?>
                         <tr>
                             <td width="30%"><label class='tanya'><?= $data['nomor'] ?> ) <?= $data['pertanyaan'] ?></label></td>
                             <?php if ($data['id_tipe'] === 1) { ?>
@@ -173,8 +173,8 @@
                                         <option value="">--- Pilih Jawaban ---</option>
                                         <?php foreach ($data['parameter_respon'] as $data2) { ?>
                                             <option value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                            echo ' selected';
-                        } ?>><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></option>
+                                                echo ' selected';
+                                            } ?>><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></option>
                                         <?php } ?>
                                     </select>
                                 <?php } elseif ($data['id_tipe'] === 2) { ?>
@@ -183,8 +183,8 @@
                                 <td id="op_item">
                                     <div>
                                         <input type="checkbox" name="cb[<?= $data2['id_parameter'] ?>_<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                            echo ' checked';
-                        } ?>>
+                                            echo ' checked';
+                                        } ?>>
                                         <label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
                                     </div>
                                 <?php } ?>
@@ -214,7 +214,7 @@
                             <?php } ?>
                         </tr>
                     <?php
-                    } ?>
+    } ?>
                     <tr>
                         <td>
                             <hr>

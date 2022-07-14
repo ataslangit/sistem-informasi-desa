@@ -123,9 +123,9 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php if ($anggota !== null) {
-    $i = 0; ?>
+                                                        $i = 0; ?>
                                                         <?php foreach ($anggota as $data) {
-        $i++; ?>
+                                                            $i++; ?>
                                                             <tr>
                                                                 <td align="center" width="2"><?= $i ?></td>
                                                                 <td align="center" width="5">
@@ -139,9 +139,9 @@
                                                                 <td><?= $data['pendidikan'] ?></td>
                                                             </tr>
                                                         <?php
-    } ?>
+                                                        } ?>
                                                     <?php
-} ?>
+                                                    } ?>
                                                 </tbody>
                                             </table>
                                         </div>

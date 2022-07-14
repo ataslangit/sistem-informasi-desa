@@ -80,10 +80,10 @@ header('Expires: 0');
                             <td><?= $data['nama_ayah'] ?></td>
                             <td><?= $data['nama_ibu'] ?></td>
                             <td><?php if ($data['status'] === 1) {
-    echo 'Tetap';
-} else {
-    echo 'Pendatang';
-} ?></td>
+                                echo 'Tetap';
+                            } else {
+                                echo 'Pendatang';
+                            } ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

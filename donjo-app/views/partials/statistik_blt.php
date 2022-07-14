@@ -17,11 +17,11 @@
                 categories: [
                     <?php $i = 0;
 
-                    foreach ($main as $data) {
-                        $i++; ?>
+foreach ($main as $data) {
+    $i++; ?>
                         <?= "'{$data['nama']}',"; ?>
                     <?php
-                    } ?>
+} ?>
                 ]
             },
             yAxis: {
@@ -171,9 +171,9 @@ echo '
                     </thead>
                     <tbody>
                         <?php $i = 0;
-                        $j       = 0;
+$j                               = 0;
 
-                        foreach ($main as $data) : ?>
+foreach ($main as $data) : ?>
                             <tr>
                                 <td align="center" width="2"><?= $data['id'] ?></td>
                                 <td><?= $data['nama'] ?></td>

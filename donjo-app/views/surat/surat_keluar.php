@@ -57,16 +57,16 @@
                                 foreach ($main as $data) :
                                     $berkas  = $data['berkas'] . '_' . $data['nik'] . '_' . date('Y-m-d') . '.rtf';
                                     $theFile = str_replace('\\', '/', FCPATH . 'surat\\arsip\\') . $berkas;
-                                ?>
+                                    ?>
                                     <tr>
                                         <td align="center" width="2"><?= $data['no'] ?></td>
                                         <?php
-                                        if (is_file($theFile)) {
-                                            echo '<td><a target="_blank" href="' . base_url('surat/arsip/' . $berkas . '') . '">' . $data['no_surat'] . ' <span class="icon-download icon-large"></span></a></td>';
-                                        } else {
-                                            echo '<td>' . $data['no_surat'] . '</td>';
-                                        }
-                                        ?>
+                                            if (is_file($theFile)) {
+                                                echo '<td><a target="_blank" href="' . base_url('surat/arsip/' . $berkas . '') . '">' . $data['no_surat'] . ' <span class="icon-download icon-large"></span></a></td>';
+                                            } else {
+                                                echo '<td>' . $data['no_surat'] . '</td>';
+                                            }
+                                    ?>
                                         <td><?= $data['format'] ?></td>
                                         <td><?= unpenetration($data['nama']) ?></td>
                                         <td><?= $data['pamong'] ?></td>
@@ -75,7 +75,7 @@
                                     </tr>
                                 <?php
                                 endforeach;
-                                ?>
+                        ?>
                             </tbody>
                         </table>
                     </div>

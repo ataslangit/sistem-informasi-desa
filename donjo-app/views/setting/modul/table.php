@@ -61,7 +61,7 @@
                                     } else {
                                         echo 'Tidak Aktif';
                                     }
-                                    ?></td>
+                            ?></td>
                                 <td>&nbsp;</td>
                             </tr>
                         <?php } ?>

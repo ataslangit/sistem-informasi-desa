@@ -39,14 +39,14 @@
         var map = new google.maps.Map(document.getElementById('map'), options);
 
         <?php $path = preg_split('/\\;/', $desa['path']);
-        echo 'var path = [';
+echo 'var path = [';
 
-        foreach ($path as $p) {
-            if ($p !== '') {
-                echo 'new google.maps.LatLng' . $p . ',';
-            }
-        }
-        echo '];'; ?>
+foreach ($path as $p) {
+    if ($p !== '') {
+        echo 'new google.maps.LatLng' . $p . ',';
+    }
+}
+echo '];'; ?>
 
         var desa = new google.maps.Polygon({
             paths: path,

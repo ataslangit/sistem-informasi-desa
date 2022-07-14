@@ -7,13 +7,13 @@
                 <?php
                 $this->load->view('program_bantuan/menu_kiri.php')
 
-                ?>
+?>
             </td>
             <td class="contentpane">
                 <legend>Profil Penerima Manfaat Program</legend>
                 <?php
-                $profil = $program[1];
-                echo '
+$profil = $program[1];
+echo '
 			<div style="margin-bottom:2em;">
 				<table class="form">
 					<tr><td>Nama</td><td><strong>' . strtoupper($profil['nama']) . '</strong></td></tr>
@@ -22,8 +22,8 @@
 			</div>
 			';
 
-                $programkerja = $program[0];
-                ?>
+$programkerja = $program[0];
+?>
                 <legend>Program yang pernah diikuti</legend>
                 <div class="table-panel top">
                     <table class="list">
@@ -38,11 +38,11 @@
                         <tbody>
 
                             <?php
-                            $nomer = 0;
+            $nomer = 0;
 
-                            foreach ($programkerja as $item) :
-                                $nomer++;
-                            ?>
+foreach ($programkerja as $item) :
+    $nomer++;
+    ?>
                                 <tr>
                                     <td class="angka" style="width:40px;"><?= $nomer; ?></td>
                                     <td><?= fTampilTgl($item['sdate'], $item['edate']); ?></td>
@@ -57,7 +57,7 @@
             <td style="width:250px;" class="contentpane">
                 <?php
                 $this->load->view('program_bantuan/panduan.php');
-                ?>
+?>
             </td>
         </tr>
     </table>

@@ -10,7 +10,7 @@
     <table class="inner">
         <tr style="vertical-align:top">
             <?php
-            ?>
+        ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content">
                     <h3>Manajemen Kategori polygon</h3>

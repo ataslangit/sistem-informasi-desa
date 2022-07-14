@@ -260,7 +260,7 @@
                                 <tbody>
                                     <?php $no = 1;
 
-                                    foreach ($main as $data) { ?>
+                            foreach ($main as $data) { ?>
                                         <tr>
                                             <td>
                                                 <div align="center"><?= $no ?>
@@ -322,7 +322,7 @@
                                             </td>
                                         </tr>
                                     <?php $no++;
-                                    } ?>
+                            } ?>
                                 </tbody>
                                 <thead>
                                     <tr><?php foreach ($total as $data) { ?>

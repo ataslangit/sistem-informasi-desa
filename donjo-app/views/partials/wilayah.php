@@ -4,8 +4,8 @@
 			<h3 class="box-title">Tabel Data Kependudukan berdasar ' . $heading . '</h3>
 		</div>
 		<div class="box-body">';
-            if (count($main) > 0) {
-                echo '
+if (count($main) > 0) {
+    echo '
 			<table class="table table-striped">
 				<thead><tr>
 					<th>No</th>
@@ -20,8 +20,8 @@
 				<tbody>
 					';
 
-                foreach ($main as $data) {
-                    echo '<tr>
+    foreach ($main as $data) {
+        echo '<tr>
 							<td>' . $data['no'] . '</td>
 							<td>' . strtoupper(unpenetration(ununderscore($data['dusun']))) . '</td>
 							<td>' . strtoupper(unpenetration($data['nama_kadus'])) . '</td>
@@ -31,8 +31,8 @@
 							<td class="angka">' . $data['jumlah_warga_l'] . '</td>
 							<td class="angka">' . $data['jumlah_warga_p'] . '</td>
 						</tr>';
-                }
-                echo '
+    }
+    echo '
 					</tbody>
 					<tfooter>
 						<tr>
@@ -45,10 +45,10 @@
 						</tr>
 					</tfooter>
 				</table>';
-            } else {
-                echo '<div class="">Belum ada data</div>';
-            }
+} else {
+    echo '<div class="">Belum ada data</div>';
+}
 
-        echo '
+echo '
 		</div>
 	</div>';

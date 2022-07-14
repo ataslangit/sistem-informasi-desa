@@ -41,22 +41,22 @@
 <div class="lmenu">
     <ul>
         <li <?php if ($cat === 1003) {
-                                echo "class='selected'";
-                            } ?>>
+            echo "class='selected'";
+        } ?>>
             <a href="<?= site_url('web/index/1003') ?>">
                 Customizable Widget
             </a>
         </li>
         <li <?php if ($cat === 999) {
-                                echo "class='selected'";
-                            } ?>>
+            echo "class='selected'";
+        } ?>>
             <a href="<?= site_url('web/index/999') ?>">
                 Halaman Statis
             </a>
         </li>
         <li <?php if ($cat === 1000) {
-                                echo "class='selected'";
-                            } ?>>
+            echo "class='selected'";
+        } ?>>
             <a href="<?= site_url('web/index/1000') ?>">
                 Agenda
             </a>
@@ -67,7 +67,7 @@
 <td style="background:#fff;padding:0px;">
     <div class="content-header">
         <?php
-        ?>
+                            ?>
     </div>
     <div id="contentpane">
         <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
@@ -75,10 +75,10 @@
                 <div class="left">
                     <div class="uibutton-group">
                         <a href="<?= site_url("web/form/{$cat}") ?>" class="uibutton tipsy south" title="Tambah Data"><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah <?php if ($kategori) {
-            echo $kategori['kategori'];
-        } else {
-            echo 'Artikel Statis';
-        } ?> Baru</a>
+                            echo $kategori['kategori'];
+                        } else {
+                            echo 'Artikel Statis';
+                        } ?> Baru</a>
                         <?php if ($_SESSION['grup'] < 4) { ?>
                             <button type="button" title="Hapus Artikel" onclick="deleteAllBox('mainform','<?= site_url("web/delete_all/{$p}/{$o}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus
                             <?php } ?>

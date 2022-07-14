@@ -6,14 +6,14 @@
             <td class="side-menu">
                 <?php
                 $this->load->view('program_bantuan/menu_kiri.php')
-                ?>
+?>
             </td>
             <td class="contentpane">
                 <legend>Form Penulisan Program Bantuan</legend>
                 <div id="contentpane">
                     <div class="ui-layout-center" id="maincontent" style="width:96%">
                         <?php if (validation_errors()) {
-                    echo '
+                            echo '
 					<div class="error" style="border:solid 2px #c00;color:#c00;margin:1em 0;">
 						<div style="background:#c00;color:#fff;padding:1em;font-weight:bolder;">
 						Ada Kesalahan
@@ -23,24 +23,24 @@
 						</div>
 					</div>
 					';
-                }
-                        $cid = @$_REQUEST['cid'];
-                        ?>
+                        }
+        $cid = @$_REQUEST['cid'];
+?>
                         <?= form_open('program_bantuan/create') . "\n"; ?>
                         <div class="form-group">
                             <label>Sasaran Program</label>
                             <select class="form-control" name="cid" id="cid">
                                 <option value="">Pilih Sasaran Program <?= $cid; ?></option>
                                 <?php
-                                $strC = ($cid === 1) ? 'selected="selected"' : '';
-                                echo '<option value="1" ' . $strC . '>Penduduk Perorangan</option>';
-                                $strC = ($cid === 2) ? 'selected="selected"' : '';
-                                echo '<option value="2" ' . $strC . '>Keluarga - KK</option>';
-                                $strC = ($cid === 3) ? 'selected="selected"' : '';
-                                echo '<option value="3" ' . $strC . '>Rumah Tangga</option>';
-                                $strC = ($cid === 4) ? 'selected="selected"' : '';
-                                echo '<option value="4" ' . $strC . '>Kelompok / Organisasi</option>';
-                                ?>
+        $strC = ($cid === 1) ? 'selected="selected"' : '';
+echo '<option value="1" ' . $strC . '>Penduduk Perorangan</option>';
+$strC = ($cid === 2) ? 'selected="selected"' : '';
+echo '<option value="2" ' . $strC . '>Keluarga - KK</option>';
+$strC = ($cid === 3) ? 'selected="selected"' : '';
+echo '<option value="3" ' . $strC . '>Rumah Tangga</option>';
+$strC = ($cid === 4) ? 'selected="selected"' : '';
+echo '<option value="4" ' . $strC . '>Kelompok / Organisasi</option>';
+?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -71,7 +71,7 @@
             <td style="width:250px;" class="contentpane">
                 <?php
                 $this->load->view('program_bantuan/panduan.php')
-                ?>
+?>
             </td>
         </tr>
     </table>

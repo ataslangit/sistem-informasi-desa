@@ -8,10 +8,10 @@
                 <select name="id_pend">
                     <option value=""> -- </option>
                     <?php foreach ($nama as $data) {
-    ?>
+                        ?>
                         <option value="<?= $data['id'] ?>"><?= unpenetration($data['nama']) ?></option>
                     <?php
-} ?>
+                    } ?>
                 </select>
             </td>
         </tr>

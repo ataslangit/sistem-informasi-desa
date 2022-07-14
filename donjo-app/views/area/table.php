@@ -11,7 +11,7 @@
     <table class="inner">
         <tr style="vertical-align:top">
             <?php
-            ?>
+        ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content">
                     <h3>Manajemen Properti / area</h3>
@@ -90,7 +90,7 @@
                                             </td>
                                             <td>
                                                 <a href="<?= site_url("area/form/{$p}/{$o}/{$data['id']}") ?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?= site_url("area/delete/{$p}/{$o}/{$data['id']}") ?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php
-                                                                                                                                                                                                                                                                                                                                                                                ?><a href="<?= site_url("area/ajax_area_maps/{$p}/{$o}/{$data['id']}") ?>" target="ajax-modalz" rel="window" header="area <?= $data['nama'] ?>" class="ui-icons icon-maps tipsy south" title="area <?= $data['nama'] ?>"></a>
+                                        ?><a href="<?= site_url("area/ajax_area_maps/{$p}/{$o}/{$data['id']}") ?>" target="ajax-modalz" rel="window" header="area <?= $data['nama'] ?>" class="ui-icons icon-maps tipsy south" title="area <?= $data['nama'] ?>"></a>
                                             </td>
                                             <td width="150"><?= $data['nama'] ?></td>
                                             <td width="50"><?= $data['aktif'] ?></td>

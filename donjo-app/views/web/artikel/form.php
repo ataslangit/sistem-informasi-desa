@@ -23,10 +23,10 @@
                     <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                             <h3>Form Artikel <?php if ($kategori) {
-    echo $kategori['kategori'];
-} else {
-    echo 'Artikel Statis';
-} ?></h3>
+                                echo $kategori['kategori'];
+                            } else {
+                                echo 'Artikel Statis';
+                            } ?></h3>
                             <table class="form">
                                 <tr>
                                     <th width="120">Judul Artikel</th>

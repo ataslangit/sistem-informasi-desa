@@ -146,24 +146,24 @@
                                             <td><?php
                                                 $status = $data['status_dasar_log'];
 
-                                                switch ($status) {
-                                                    case 1:
-                                                        echo 'Hidup';
-                                                        break;
+                                        switch ($status) {
+                                            case 1:
+                                                echo 'Hidup';
+                                                break;
 
-                                                    case 3:
-                                                        echo 'Pindah';
-                                                        break;
+                                            case 3:
+                                                echo 'Pindah';
+                                                break;
 
-                                                    case 2:
-                                                        echo 'Mati';
-                                                        break;
+                                            case 2:
+                                                echo 'Mati';
+                                                break;
 
-                                                    case 4:
-                                                        echo 'Hilang';
-                                                        break;
-                                                }
-                                                ?></td>
+                                            case 4:
+                                                echo 'Hilang';
+                                                break;
+                                        }
+                                        ?></td>
                                             <td><?= $data['tgl_peristiwa'] ?></td>
                                         </tr>
                                     <?php endforeach; ?>

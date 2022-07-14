@@ -52,18 +52,18 @@
                                             <?php $ch = 'checked'; ?>
                                             <?php if ($user['id_grup'] !== '1') { ?>
                                                 <input type="radio" id="group4" name="id_grup" value="4" /<?php if ($user['id_grup'] === '4' || $user['id_grup'] === '') {
-    echo $ch;
-} ?>><label for="group4">Kontributor</label>
+                                                    echo $ch;
+                                                } ?>><label for="group4">Kontributor</label>
                                                 <input type="radio" id="group3" name="id_grup" value="3" /<?php if ($user['id_grup'] === '3') {
-    echo $ch;
-} ?>><label for="group3">Redaksi</label>
+                                                    echo $ch;
+                                                } ?>><label for="group3">Redaksi</label>
                                                 <input type="radio" id="group2" name="id_grup" value="2" /<?php if ($user['id_grup'] === '2') {
-    echo $ch;
-} ?>><label for="group2">Operator</label>
+                                                    echo $ch;
+                                                } ?>><label for="group2">Operator</label>
                                             <?php } ?>
                                             <input type="radio" id="group1" name="id_grup" value="1" /<?php if ($user['id_grup'] === '1') {
-    echo $ch;
-} ?>><label for="group1">Administrator</label>
+                                                echo $ch;
+                                            } ?>><label for="group1">Administrator</label>
                                         </div>
                                     </td>
                                 </tr>

@@ -55,7 +55,7 @@
                     <input type="hidden" name="nik" value="<?= $individu['id'] ?>" class="inputbox required">
                     <table class="form">
                         <?php if ($individu) {
-    ?>
+                            ?>
                             <tr>
                                 <th width="40%">Tempat Tanggal Lahir (Umur)</th>
                                 <td width="60%">
@@ -82,8 +82,8 @@
                                 </td>
                             </tr>
                         <?php
-}
-                        ?>
+                        }
+            ?>
                         <tr>
                             <th width="40%">Nomor Surat</th>
                             <td width="60%"><input name="nomor" type="text" class="inputbox required" size="12" /></td>

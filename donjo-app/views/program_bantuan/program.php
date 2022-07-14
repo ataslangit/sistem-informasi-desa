@@ -6,27 +6,27 @@
             <td class="side-menu">
                 <?php
                 $this->load->view('program_bantuan/menu_kiri.php')
-                ?>
+?>
             </td>
             <td class="contentpane">
                 <div id="contentpane">
                     <div class="ui-layout-center" id="maincontent">
                         <?php
-                        if ($tampil === 0) {
-                            echo '<legend>Daftar Program Bantuan</legend>';
-                        } else {
-                            echo '<legend>Daftar Program Bantuan dengan Sasaran ' . $sasaran[$tampil] . '</legend>';
-                        }
+        if ($tampil === 0) {
+            echo '<legend>Daftar Program Bantuan</legend>';
+        } else {
+            echo '<legend>Daftar Program Bantuan dengan Sasaran ' . $sasaran[$tampil] . '</legend>';
+        }
 
-                        if ($_SESSION['success'] === 1) {
-                            echo '
+        if ($_SESSION['success'] === 1) {
+            echo '
 						<div>
 						' . $_SESSION['pesan'] . '
 						</div>';
-                            $_SESSION['success'] === 0;
-                        }
+            $_SESSION['success'] === 0;
+        }
 
-                        ?>
+?>
 
                         <div class="table-panel top">
                             <table class="list">
@@ -41,11 +41,11 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $nomer = 0;
+            $nomer = 0;
 
-                                    foreach ($program as $item) :
-                                        $nomer++;
-                                    ?>
+foreach ($program as $item) :
+    $nomer++;
+    ?>
                                         <tr>
                                             <td class="angka" style="width:40px;"><?= $nomer; ?></td>
                                             <td style="width:120px;">
@@ -69,7 +69,7 @@
             <td style="width:250px;" class="contentpane">
                 <?php
                 $this->load->view('program_bantuan/panduan.php');
-                ?>
+?>
             </td>
         </tr>
     </table>

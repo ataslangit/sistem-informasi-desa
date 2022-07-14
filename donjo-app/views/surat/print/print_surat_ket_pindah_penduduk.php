@@ -86,12 +86,12 @@
                             <td> <?= tgl_indo(tgl_indo_in($input['awal'])) ?></td>
                         </tr>
                         <?php $i = 0;
-                        if ($pengikut) {
-                            foreach ($pengikut as $data1) {
-                                $i++;
-                            }
-                        }
-                        ?>
+if ($pengikut) {
+    foreach ($pengikut as $data1) {
+        $i++;
+    }
+}
+?>
                         <tr>
                             <td>Jumlah Pengikut </td>
                             <td>:</td>
@@ -112,7 +112,7 @@
                                 </tr>
                             <tbody><?php $i = 0; ?>
                                 <?php foreach ($pengikut as $data1) {
-                            $i++; ?>
+                                    $i++; ?>
                                     <tr>
                                         <td align="center" width="2"><?= $i ?></td>
                                         <td><?= $data1['nik'] ?></td>
@@ -122,7 +122,7 @@
                                         <td><?= $data1['status_kawin'] ?></td>
                                     </tr>
                                 <?php
-                        } ?>
+                                } ?>
                             </tbody>
                         </table>
                     <?php } ?>

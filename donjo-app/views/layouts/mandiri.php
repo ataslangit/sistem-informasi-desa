@@ -3,13 +3,13 @@
             <div id="contentcolumn">
                 <div class="innertube">
                     <?php if ($m === 1) {
-    $this->load->view('partials/mandiri.php');
-} elseif ($m === 2) {
-    $this->load->view('partials/layanan.php');
-} else {
-    $this->load->view('partials/lapor.php');
-}
-                    ?>
+                        $this->load->view('partials/mandiri.php');
+                    } elseif ($m === 2) {
+                        $this->load->view('partials/layanan.php');
+                    } else {
+                        $this->load->view('partials/lapor.php');
+                    }
+?>
                 </div>
             </div>
         </div>

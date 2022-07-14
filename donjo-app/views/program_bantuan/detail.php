@@ -6,7 +6,7 @@
             <td class="side-menu">
                 <?php
                 $this->load->view('program_bantuan/menu_kiri.php')
-                ?>
+?>
             </td>
             <td class="contentpane">
                 <div id="contentpane">
@@ -14,13 +14,13 @@
                         <legend>Detail Program</legend>
                         <div>
                             <?php
-                            if ($_SESSION['success'] === 1) {
-                                echo '
+            if ($_SESSION['success'] === 1) {
+                echo '
 							Data Pembaruan telah tersimpan
 							';
-                            }
-                            $detail = $program[0];
-                            echo '
+            }
+            $detail = $program[0];
+echo '
 						<div>
 							<table class="form">
 								<tr><td>Nama Program</td><td><strong>' . strtoupper($program[0]['nama']) . '</strong></td></tr>
@@ -31,13 +31,13 @@
 						</div>
 						';
 
-                            if ($program[0]['status'] === 0) {
-                                echo '
+if ($program[0]['status'] === 0) {
+    echo '
 							<div>
 								<fieldset>
 									<legend>Formulir Penambahan Peserta</legend>
 									<div>' .
-                                    form_open('', ['id' => 'main', 'name' => 'main']) . '
+        form_open('', ['id' => 'main', 'name' => 'main']) . '
 										<label>Cari Nama Peserta dari Database Desa</label>
 										<div id="nik" name="nik"></div>
 										<?= form_close() ?>
@@ -45,18 +45,18 @@
 								</fieldset>
 							</div>
 							';
-                                echo '
+    echo '
 							<script>
 								$(document).ready(function() {
 									var nik = {};
 									nik.results = [';
 
-                                foreach ($program[2] as $item) {
-                                    if ($item['id'] !== '') {
-                                        echo '{id: ' . $item['id'] . ', name:"' . $item['nama'] . '",info:"' . $item['info'] . "\"},\n";
-                                    }
-                                }
-                                echo "
+    foreach ($program[2] as $item) {
+        if ($item['id'] !== '') {
+            echo '{id: ' . $item['id'] . ', name:"' . $item['nama'] . '",info:"' . $item['info'] . "\"},\n";
+        }
+    }
+    echo "
 									];
 
 									$('#nik').flexbox(nik, {
@@ -71,9 +71,9 @@
 								});
 							</script>
 							";
-                            }
-                            $peserta = $program[1];
-                            ?>
+}
+$peserta = $program[1];
+?>
                             <legend>Daftar Peserta Program</legend>
                             <table class="list">
                                 <thead>
@@ -85,18 +85,18 @@
                                 </thead>
                                 <tbody>
                                     <?php $nomer = 0;
-                                    if (is_array($peserta)) {
-                                        foreach ($peserta as $key => $item) {
-                                            $nomer++; ?>
+if (is_array($peserta)) {
+    foreach ($peserta as $key => $item) {
+        $nomer++; ?>
                                             <tr>
                                                 <td><?= $nomer; ?></td>
                                                 <td><a href="<?= site_url('program_bantuan/peserta/' . $program[0]['sasaran'] . '/' . $item['nik'] . '/') ?>"><?= $item['nama'] ?></a></td>
                                                 <td><?= $item['info']; ?></td>
                                             </tr>
                                     <?php
-                                        }
-                                    }
-                                    ?>
+    }
+}
+?>
                                 </tbody>
                             </table>
                             <div style="padding:1em 0;">

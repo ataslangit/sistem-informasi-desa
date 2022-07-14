@@ -44,14 +44,14 @@
         };
         var map = new google.maps.Map(document.getElementById('map'), options);
         <?php $path = preg_split('/\\;/', $garis['path']);
-        echo 'var path = [';
+echo 'var path = [';
 
-        foreach ($path as $p) {
-            if ($p !== '') {
-                echo 'new google.maps.LatLng' . $p . ',';
-            }
-        }
-        echo '];'; ?>
+foreach ($path as $p) {
+    if ($p !== '') {
+        echo 'new google.maps.LatLng' . $p . ',';
+    }
+}
+echo '];'; ?>
 
 
         var polyline = new google.maps.Polyline({

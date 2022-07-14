@@ -27,13 +27,13 @@
                     categories: [
                         <?php $i = 0;
 
-                        foreach ($list_jawab as $data) {
-                            $i++; ?>
+foreach ($list_jawab as $data) {
+    $i++; ?>
                             <?php if ($data['nilai'] !== '-') {
                                 echo "'{$data['jawaban']}',";
                             } ?>
                         <?php
-                        } ?>
+} ?>
                     ]
                 },
                 yAxis: {

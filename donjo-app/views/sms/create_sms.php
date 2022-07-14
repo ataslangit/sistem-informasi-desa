@@ -66,10 +66,10 @@
                             <tbody>
                                 <?php $no = 1;
 
-                                foreach ($main as $data) : ?>
+        foreach ($main as $data) : ?>
                                     <tr>
                                         <td align="center" width="2"><?= $no;
-                                                                        $no++; ?></td>
+            $no++; ?></td>
 
                                         <td><?= unpenetration($data['nama']) ?></td>
                                         <td><?= $data['DestinationNumber'] ?></td>

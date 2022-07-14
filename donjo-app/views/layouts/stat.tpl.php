@@ -16,7 +16,7 @@
                     } else {
                         $this->load->view('partials/statistik.php');
                     }
-                    ?>
+?>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
 
         <div id="footer">
             <?php $this->load->view('partials/copywright.tpl.php');
-            ?>
+?>
         </div>
     </div>
 </body>

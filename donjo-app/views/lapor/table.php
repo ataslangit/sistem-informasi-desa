@@ -70,8 +70,8 @@
                                 <tbody>
                                     <?php foreach ($main as $data) { ?>
                                         <tr <?php if ($data['enabled'] !== 1) {
-    echo "style='background-color:#ffeeaa;'";
-} ?>>
+                                            echo "style='background-color:#ffeeaa;'";
+                                        } ?>>
                                             <td align="center" width="2"><?= $data['no'] ?></td>
                                             <td align="center" width="5">
                                                 <input type="checkbox" name="id_cb[]" value="<?= $data['id'] ?>" />

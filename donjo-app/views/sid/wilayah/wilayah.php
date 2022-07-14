@@ -53,14 +53,14 @@
                                     <?php
                                     $total = [];
 
-                                    $total['total_rw']      = 0;
-                                    $total['total_rt']      = 0;
-                                    $total['total_kk']      = 0;
-                                    $total['total_warga']   = 0;
-                                    $total['total_warga_l'] = 0;
-                                    $total['total_warga_p'] = 0;
+        $total['total_rw']      = 0;
+        $total['total_rt']      = 0;
+        $total['total_kk']      = 0;
+        $total['total_warga']   = 0;
+        $total['total_warga_l'] = 0;
+        $total['total_warga_p'] = 0;
 
-                                    foreach ($main as $data) : ?>
+        foreach ($main as $data) : ?>
                                         <tr>
                                             <td align="center" width="2"><?= $data['no'] ?></td>
                                             <td align="center" width="5">
@@ -86,14 +86,14 @@
                                             <td></td>
                                         </tr>
                                     <?php
-                                        $total['total_rw'] += $data['jumlah_rw'];
-                                        $total['total_rt'] += $data['jumlah_rt'];
-                                        $total['total_kk'] += $data['jumlah_kk'];
-                                        $total['total_warga'] += $data['jumlah_warga'];
-                                        $total['total_warga_l'] += $data['jumlah_warga_l'];
-                                        $total['total_warga_p'] += $data['jumlah_warga_p'];
+            $total['total_rw'] += $data['jumlah_rw'];
+            $total['total_rt'] += $data['jumlah_rt'];
+            $total['total_kk'] += $data['jumlah_kk'];
+            $total['total_warga'] += $data['jumlah_warga'];
+            $total['total_warga_l'] += $data['jumlah_warga_l'];
+            $total['total_warga_p'] += $data['jumlah_warga_p'];
 
-                                    endforeach; ?>
+        endforeach; ?>
                                 </tbody>
 
                                 <tr style="background-color:#BDD498;font-weight:bold;">

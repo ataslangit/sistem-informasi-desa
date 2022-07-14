@@ -23,8 +23,8 @@
 	<fieldset>
 	<legend>Formulir Penambahan/Pembaruan Data Peruntukan Persil</legend>
 ';
-                        echo form_open('data_persil/persil_peruntukan') . "\n";
-                        echo '
+                echo form_open('data_persil/persil_peruntukan') . "\n";
+                echo '
 	<div class="form-group">
 		<label>Nama Peruntukan Persil</label>
 		<input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan Peruntukan Persil" value="' . $nama . '"/>
@@ -41,9 +41,9 @@
 		</div>
 	</div>
 ';
-                        echo '<?= form_close() ?>
+                echo '<?= form_close() ?>
 </fieldset>';
-                        ?>
+                ?>
                         <?php if ($persil_peruntukan) {
                             if (count($persil_peruntukan) > 0) {
                                 echo '
@@ -83,7 +83,7 @@
 	</div>
 	';
                         }
-                        ?>
+                ?>
                         <div style="height:10em;"></div>
                     </div>
                 </div>

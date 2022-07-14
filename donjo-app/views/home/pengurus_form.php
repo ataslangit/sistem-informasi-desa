@@ -32,12 +32,12 @@
                                     <td>
                                         <div class="uiradio">
                                             <input type="radio" id="group1" name="pamong_status" value="1" /<?php if ($pamong['pamong_status'] === '1' || $pamong['pamong_status'] === '') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="group1">Aktif</label>
                                             <input type="radio" id="group2" name="pamong_status" value="2" /<?php if ($pamong['pamong_status'] === '2') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="group2">Tidak Aktif</label>
                                         </div>
                                     </td>

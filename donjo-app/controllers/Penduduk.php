@@ -659,32 +659,32 @@ class Penduduk extends CI_Controller
 
         if ($nomor !== 0) {
             switch ($tipe) {
-            case 0: $_SESSION['pendidikan_kk_id'] = $nomor; $pre = 'PENDIDIKAN DALAM KK : '; break;
+                case 0: $_SESSION['pendidikan_kk_id'] = $nomor; $pre = 'PENDIDIKAN DALAM KK : '; break;
 
-            case 1: $_SESSION['pekerjaan_id'] = $nomor; $pre = 'PEKERJAAN : '; break;
+                case 1: $_SESSION['pekerjaan_id'] = $nomor; $pre = 'PEKERJAAN : '; break;
 
-            case 2: $_SESSION['status'] = $nomor; $pre = 'STATUS PERKAWINAN : '; break;
+                case 2: $_SESSION['status'] = $nomor; $pre = 'STATUS PERKAWINAN : '; break;
 
-            case 3: $_SESSION['agama'] = $nomor; $pre = 'AGAMA : '; break;
+                case 3: $_SESSION['agama'] = $nomor; $pre = 'AGAMA : '; break;
 
-            case 4: $_SESSION['sex'] = $nomor; $pre = 'JENIS KELAMIN : '; break;
+                case 4: $_SESSION['sex'] = $nomor; $pre = 'JENIS KELAMIN : '; break;
 
-            case 5: $_SESSION['warganegara'] = $nomor; $pre = 'WARGANEGARA : '; break;
+                case 5: $_SESSION['warganegara'] = $nomor; $pre = 'WARGANEGARA : '; break;
 
-            case 6: $_SESSION['status_penduduk'] = $nomor; $pre = 'STATUS PENDUDUK : '; break;
+                case 6: $_SESSION['status_penduduk'] = $nomor; $pre = 'STATUS PENDUDUK : '; break;
 
-            case 7: $_SESSION['golongan_darah'] = $nomor; $pre = 'GOLONGAN DARAH : '; break;
+                case 7: $_SESSION['golongan_darah'] = $nomor; $pre = 'GOLONGAN DARAH : '; break;
 
-            case 9: $_SESSION['cacat'] = $nomor; $pre = 'CACAT : '; break;
+                case 9: $_SESSION['cacat'] = $nomor; $pre = 'CACAT : '; break;
 
-            case 10: $_SESSION['menahun'] = $nomor; $pre = 'SAKIT MENAHUN : '; break;
+                case 10: $_SESSION['menahun'] = $nomor; $pre = 'SAKIT MENAHUN : '; break;
 
-            case 11: $_SESSION['jamkesmas'] = $nomor; $pre = 'JAMKESMAS : '; break;
+                case 11: $_SESSION['jamkesmas'] = $nomor; $pre = 'JAMKESMAS : '; break;
 
-            case 13: $_SESSION['umurx'] = $nomor; $pre = 'UMUR '; break;
+                case 13: $_SESSION['umurx'] = $nomor; $pre = 'UMUR '; break;
 
-            case 14: $_SESSION['pendidikan_sedang_id'] = $nomor; $pre = 'PENDIDIKAN SEDANG DITEMPUH : '; break;
-        }
+                case 14: $_SESSION['pendidikan_sedang_id'] = $nomor; $pre = 'PENDIDIKAN SEDANG DITEMPUH : '; break;
+            }
             $judul = $this->penduduk_model->get_judul_statistik($tipe, $nomor);
             if ($judul['nama']) {
                 $_SESSION['judul_statistik']       = 'TABEL DATA KEPENDUDUKAN MENURUT ' . $pre . $judul['nama'];

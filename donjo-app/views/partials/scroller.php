@@ -73,7 +73,7 @@
             <div class="slide">
                 <?php $j = 1;
 
-                foreach ($slide as $data) { ?>
+foreach ($slide as $data) { ?>
                     <div class="slider-content-img">
                         <a href="<?= site_url("first/artikel/{$data['id']}") ?>">
                             <?php if ($data['gambar'] !== '') { ?>

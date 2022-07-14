@@ -81,8 +81,8 @@
                         <?php foreach ($data['parameter_respon'] as $data2) { ?>
                             <div>
                                 <input type="radio" name="rb[<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-    echo ' checked';
-} ?>><label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
+                                    echo ' checked';
+                                } ?>><label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
                             </div>
                         <?php } ?>
 
@@ -93,8 +93,8 @@
                     <td id="cd_item">
                         <div>
                             <input type="checkbox" name="cb[<?= $data2['id_parameter'] ?>]" value="<?= $data2['id_parameter'] ?>.<?= $data['id'] ?>" <?php if ($data2['cek']) {
-    echo ' checked';
-} ?>>
+                                echo ' checked';
+                            } ?>>
                             <label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
                         </div>
                     <?php } ?>

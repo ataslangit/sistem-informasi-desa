@@ -22,7 +22,7 @@
                             $id    = 0;
                         }
                         echo form_open('data_persil/persil_jenis') . "\n";
-                        echo '
+                echo '
 	<div class="form-group">
 		<label>Nama Jenis Persil</label>
 		<input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan Jenis Persil" value="' . $nama . '"/>
@@ -39,8 +39,8 @@
 		</div>
 	</div>
 ';
-                        echo '<?= form_close() ?>';
-                        ?>
+                echo '<?= form_close() ?>';
+                ?>
                         <?php if ($persil_jenis) {
                             if (count($persil_jenis) > 0) {
                                 echo '
@@ -80,7 +80,7 @@
 	</div>
 	';
                         }
-                        ?>
+                ?>
                         <div style="height:10em;"></div>
                     </div>
                 </div>

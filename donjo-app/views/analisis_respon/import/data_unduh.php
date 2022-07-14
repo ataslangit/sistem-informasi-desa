@@ -67,59 +67,59 @@ header('Expires: 0');
             <?php
             $tot = count($indikator);
 
-            foreach ($indikator as $pt) {
-                if ($pt['par']) {
-                    $w = '';
-                } else {
-                    $w = "width='80'";
-                }
+foreach ($indikator as $pt) {
+    if ($pt['par']) {
+        $w = '';
+    } else {
+        $w = "width='80'";
+    }
 
-                if ($pt['id_tipe'] === 1) {
-                    echo "<td {$w}>";
-                    echo $pt['no'] . '<br>' . $pt['pertanyaan'];
+    if ($pt['id_tipe'] === 1) {
+        echo "<td {$w}>";
+        echo $pt['no'] . '<br>' . $pt['pertanyaan'];
 
-                    if ($pt['par']) {
-                        foreach ($pt['par'] as $jb) {
-                            echo '<br>' . $jb['kode_jawaban'] . ' ' . $jb['jawaban'];
-                        }
-                    }
-
-                    echo '</td>';
-                } elseif ($pt['id_tipe'] === 2) {
-                    echo "<td {$w} style='background-color:#aaaafe;'>";
-                    echo $pt['no'] . '<br>' . $pt['pertanyaan'];
-
-                    if ($pt['par']) {
-                        foreach ($pt['par'] as $jb) {
-                            echo '<br>' . $jb['kode_jawaban'] . ' ' . $jb['jawaban'];
-                        }
-                    }
-
-                    echo '</td>';
-                } elseif ($pt['id_tipe'] === 3) {
-                    echo "<td style='background-color:#00fe00;'>";
-                    echo $pt['no'] . '<br>' . $pt['pertanyaan'];
-                    echo '</td>';
-                } else {
-                    echo "<td style='background-color:#feaaaa;'>";
-                    echo $pt['no'] . '<br>' . $pt['pertanyaan'];
-                    echo '</td>';
-                }
+        if ($pt['par']) {
+            foreach ($pt['par'] as $jb) {
+                echo '<br>' . $jb['kode_jawaban'] . ' ' . $jb['jawaban'];
             }
-            ?>
+        }
+
+        echo '</td>';
+    } elseif ($pt['id_tipe'] === 2) {
+        echo "<td {$w} style='background-color:#aaaafe;'>";
+        echo $pt['no'] . '<br>' . $pt['pertanyaan'];
+
+        if ($pt['par']) {
+            foreach ($pt['par'] as $jb) {
+                echo '<br>' . $jb['kode_jawaban'] . ' ' . $jb['jawaban'];
+            }
+        }
+
+        echo '</td>';
+    } elseif ($pt['id_tipe'] === 3) {
+        echo "<td style='background-color:#00fe00;'>";
+        echo $pt['no'] . '<br>' . $pt['pertanyaan'];
+        echo '</td>';
+    } else {
+        echo "<td style='background-color:#feaaaa;'>";
+        echo $pt['no'] . '<br>' . $pt['pertanyaan'];
+        echo '</td>';
+    }
+}
+?>
         </tr>
         <tr>
             <th colspan='7' style="background-color:#fefe00"></th>
             <th style="background-color:#fefe00"><?= $key ?></th>
             <?php
-            $tot = count($indikator);
+$tot = count($indikator);
 
-            foreach ($indikator as $pt) {
-                echo "<td style='background-color:#fefe00'>";
-                echo $pt['nomor'];
-                echo '</td>';
-            }
-            ?>
+foreach ($indikator as $pt) {
+    echo "<td style='background-color:#fefe00'>";
+    echo $pt['nomor'];
+    echo '</td>';
+}
+?>
         </tr>
         <?php foreach ($main as $data) : ?>
             <tr>
@@ -132,86 +132,86 @@ header('Expires: 0');
                 <td><?= $data['rt'] ?></td>
                 <td style="background-color:#fefe00"><?= $data['id'] ?></td>
                 <?php
-                if ($data['par'] === null) {
-                    for ($j = 0; $j < $tot; $j++) {
-                        echo '<td></td>';
+    if ($data['par'] === null) {
+        for ($j = 0; $j < $tot; $j++) {
+            echo '<td></td>';
+        }
+    } else {
+        foreach ($indikator as $pt) {
+            //cumawarna
+            $bx    = '';
+            $false = 0;
+
+            foreach ($data['par'] as $jawab) {
+                $isi = '';
+                if ($pt['id'] === $jawab['id_indikator'] && $false === 0) {
+                    if ($pt['id_tipe'] === 1) {
+                        $isi = $jawab['kode_jawaban'];
+                    } elseif ($pt['id_tipe'] === 2) {
+                        $isi .= $jawab['kode_jawaban'];
+                    } else {
+                        $isi = $jawab['jawaban'];
                     }
-                } else {
-                    foreach ($indikator as $pt) {
-                        //cumawarna
-                        $bx    = '';
-                        $false = 0;
 
-                        foreach ($data['par'] as $jawab) {
-                            $isi = '';
-                            if ($pt['id'] === $jawab['id_indikator'] && $false === 0) {
-                                if ($pt['id_tipe'] === 1) {
-                                    $isi = $jawab['kode_jawaban'];
-                                } elseif ($pt['id_tipe'] === 2) {
-                                    $isi .= $jawab['kode_jawaban'];
-                                } else {
-                                    $isi = $jawab['jawaban'];
-                                }
+                    //kosong dia
+                    if ($isi === '') {
+                        $bx = "style='background-color:#bbffbb;'";
+                    }
 
-                                //kosong dia
-                                if ($isi === '') {
-                                    $bx = "style='background-color:#bbffbb;'";
-                                }
+                    //koreksi
+                    if ($jawab['korek'] === -1) {
+                        $bx = "style='background-color:#ff9999;'";
+                    }
 
-                                //koreksi
-                                if ($jawab['korek'] === -1) {
-                                    $bx = "style='background-color:#ff9999;'";
-                                }
-
-                                if ($pt['id_tipe'] !== 2) {
-                                    $false = 1;
-                                }
-                            }
-                        }
-
-                        echo "<td {$bx}>";
-
-                        $false = 0;
-                        $isi   = '';
-
-                        foreach ($data['par'] as $jawab) {
-                            if ($pt['id'] === $jawab['id_indikator'] && $false === 0) {
-                                if ($pt['id_tipe'] === 1) {
-                                    $isi = $jawab['kode_jawaban'];
-                                } elseif ($pt['id_tipe'] === 2) {
-                                    $isi .= $jawab['kode_jawaban'] . ',';
-                                } else {
-                                    $isi = $jawab['jawaban'];
-                                }
-
-                                //kosong dia
-                                if ($isi === '') {
-                                    $bx = "style='background-color:#bbffbb;'";
-                                }
-
-                                //koreksi
-                                if ($jawab['korek'] === -1) {
-                                    $isi = 'xxx';
-                                    $bx  = "style='background-color:#ff9999;'";
-                                }
-
-                                if ($pt['id_tipe'] !== 2) {
-                                    $false = 1;
-                                }
-                            }
-                        }
-
-                        //DEL last koma
-                        if ($pt['id_tipe'] === 2) {
-                            $jml = strlen($isi);
-                            $isi = substr($isi, 0, $jml - 1);
-                        }
-
-                        echo $isi;
-                        echo "</td {$bx}>";
+                    if ($pt['id_tipe'] !== 2) {
+                        $false = 1;
                     }
                 }
-                ?>
+            }
+
+            echo "<td {$bx}>";
+
+            $false = 0;
+            $isi   = '';
+
+            foreach ($data['par'] as $jawab) {
+                if ($pt['id'] === $jawab['id_indikator'] && $false === 0) {
+                    if ($pt['id_tipe'] === 1) {
+                        $isi = $jawab['kode_jawaban'];
+                    } elseif ($pt['id_tipe'] === 2) {
+                        $isi .= $jawab['kode_jawaban'] . ',';
+                    } else {
+                        $isi = $jawab['jawaban'];
+                    }
+
+                    //kosong dia
+                    if ($isi === '') {
+                        $bx = "style='background-color:#bbffbb;'";
+                    }
+
+                    //koreksi
+                    if ($jawab['korek'] === -1) {
+                        $isi = 'xxx';
+                        $bx  = "style='background-color:#ff9999;'";
+                    }
+
+                    if ($pt['id_tipe'] !== 2) {
+                        $false = 1;
+                    }
+                }
+            }
+
+            //DEL last koma
+            if ($pt['id_tipe'] === 2) {
+                $jml = strlen($isi);
+                $isi = substr($isi, 0, $jml - 1);
+            }
+
+            echo $isi;
+            echo "</td {$bx}>";
+        }
+        }
+            ?>
             </tr>
         <?php endforeach; ?>
     </table>
