@@ -24,4 +24,3 @@ jobs:
         with:
           commit_message: Apply PHP-CS-Fixer changes
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          
