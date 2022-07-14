@@ -3,8 +3,16 @@ name: Style PHP-CS-Fixer
 on:
   push:
     branches: [ develop ]
+    paths:
+      - 'donjo-app/controllers/**'
+      - 'donjo-app/helpers/**'
+      - 'donjo-app/models/**'
   pull_request:
     branches: [ develop ]
+    paths:
+      - 'donjo-app/controllers/**'
+      - 'donjo-app/helpers/**'
+      - 'donjo-app/models/**'
 
 jobs:
   lint:
