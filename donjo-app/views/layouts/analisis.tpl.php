@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                         <?php }
-                        } ?>
+                            } ?>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
 
         <div id="footer">
             <?php $this->load->view('partials/copywright.tpl.php');
-            ?>
+?>
         </div>
     </div>
 </body>

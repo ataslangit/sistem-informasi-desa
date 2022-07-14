@@ -129,21 +129,21 @@
                                     <td>Status Kehamilan</td>
                                     <td>:</td>
                                     <td><?php if ($penduduk['hamil'] === 1) {
-    echo 'Hamil Tua';
-} elseif ($penduduk['hamil'] === 2) {
-    echo 'Hamil Muda';
-} else {
-    echo 'Tidak Hamil';
-} ?></td>
+                                        echo 'Hamil Tua';
+                                    } elseif ($penduduk['hamil'] === 2) {
+                                        echo 'Hamil Muda';
+                                    } else {
+                                        echo 'Tidak Hamil';
+                                    } ?></td>
                                 </tr>
                                 <tr>
                                     <td>Ibu Menyusui</td>
                                     <td>:</td>
                                     <td><?php if ($penduduk['hamil'] === 3) {
-    echo 'Ya';
-} else {
-    echo 'Tidak';
-} ?></td>
+                                        echo 'Ya';
+                                    } else {
+                                        echo 'Tidak';
+                                    } ?></td>
                                 </tr>
                             <?php } ?>
                             <tr>
@@ -200,7 +200,7 @@
                             <tbody>
                                 <?php $no = 1;
 
-                                foreach ($list_kelompok as $kel) { ?>
+                            foreach ($list_kelompok as $kel) { ?>
                                     <tr>
                                         <td align="center" width="2"><?= $no; ?></td>
                                         <td><?= $kel['nama'] ?></td>
@@ -208,7 +208,7 @@
                                         <td></td>
                                     </tr>
                                 <?php $no++;
-                                } ?>
+                            } ?>
                             </tbody>
                         </table>
 

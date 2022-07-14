@@ -19,20 +19,20 @@ class First_keluarga_m extends CI_Model
         }
 
         switch ($tipex) {
-        case 1:
-            $sql = 'SELECT s.*,
+            case 1:
+                $sql = 'SELECT s.*,
 			(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk c ON u.nik_kepala=c.id WHERE u.kelas_sosial = s.id) as jumlah FROM klasifikasi_analisis_keluarga s WHERE 1';
-            break;
+                break;
 
-        case 2:
-            $sql = 'SELECT s.*,s.id as jumlah,
+            case 2:
+                $sql = 'SELECT s.*,s.id as jumlah,
 			(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk c ON u.nik_kepala=c.id WHERE u.kelas_sosial = s.id) as raskin FROM ref_raskin s WHERE 1';
-            break;
+                break;
 
-        case 3:
-            $sql = 'SELECT s.*,s.id as jumlah,
+            case 3:
+                $sql = 'SELECT s.*,s.id as jumlah,
 			(SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk c ON u.nik_kepala=c.id WHERE u.kelas_sosial = s.id) as jamkesmas FROM ref_jamkesmas s WHERE 1';
-            break;
+                break;
         }
 
         $query = $this->db->query($sql);

@@ -17,11 +17,11 @@
                 categories: [
                     <?php $i = 0;
 
-                    foreach ($main as $data) {
-                        $i++; ?>
+foreach ($main as $data) {
+    $i++; ?>
                         <?= "'{$data['nama']}',"; ?>
                     <?php
-                    } ?>
+} ?>
                 ]
             },
             yAxis: {

@@ -38,12 +38,12 @@
                 <?php } ?>
             <?php } ?>
             <?php if (isset($single_artikel['dokumen'])) {
-    if ($single_artikel['dokumen'] !== '') { ?>
+                if ($single_artikel['dokumen'] !== '') { ?>
                     <?php if (is_file('assets/files/dokumen/' . $single_artikel['dokumen'])) { ?>
                         <a href="<?= base_url(); ?>assets/files/dokumen/<?= $single_artikel['dokumen'] ?>"><?= $single_artikel['link_dokumen'] ?></a>
                     <?php } ?>
             <?php }
-} ?>
+                } ?>
         </div>
         <div class="art-spacer" style="display:block;clear:both;">
             Ditulis oleh: <b><?= $single_artikel['owner'] ?><br></b>

@@ -77,12 +77,12 @@
                                         <td>
                                             <div class="uiradio">
                                                 <input type="radio" id="sx1" name="sex" value="1" <?php if ($penduduk['id_sex'] === '1' || $penduduk['id_sex'] === '') {
-    echo 'checked';
-} ?>>
+                                                    echo 'checked';
+                                                } ?>>
                                                 <label for="sx1">Laki-laki</label>
                                                 <input type="radio" id="sx2" name="sex" value="2" <?php if ($penduduk['id_sex'] === '2') {
-    echo 'checked';
-} ?>>
+                                                    echo 'checked';
+                                                } ?>>
                                                 <label for="sx2">Perempuan</label>
                                             </div>
                                         </td>
@@ -227,14 +227,14 @@
                                             <div class="uiradio">
                                                 <?php $ch = 'checked'; ?>
                                                 <input type="radio" id="group2" name="status" value="1" <?php if ($penduduk['status'] === 'TETAP' || $penduduk['status'] === '') {
-    echo $ch;
-} ?>><label for="group2">Tetap</label>
+                                                    echo $ch;
+                                                } ?>><label for="group2">Tetap</label>
                                                 <input type="radio" id="group3" name="status" value="2" <?php if ($penduduk['status'] === 'TIDAK AKTIF') {
-    echo $ch;
-} ?>><label for="group3">Tidak Aktif</label>
+                                                    echo $ch;
+                                                } ?>><label for="group3">Tidak Aktif</label>
                                                 <input type="radio" id="group1" name="status" value="3" <?php if ($penduduk['status'] === 'PENDATANG') {
-    echo $ch;
-} ?>><label for="group1">Pendatang</label>
+                                                    echo $ch;
+                                                } ?>><label for="group1">Pendatang</label>
                                             </div>
                                         </td>
                                     </tr>
@@ -261,17 +261,17 @@
                                         <td>
                                             <div class="uiradio">
                                                 <input type="radio" id="sh2" name="hamil" value="0" /<?php if ($penduduk['hamil'] === '0' || $penduduk['hamil'] === '') {
-    echo 'checked';
-} ?>><label for="sh2">Tidak Hamil</label>
+                                                    echo 'checked';
+                                                } ?>><label for="sh2">Tidak Hamil</label>
                                                 <input type="radio" id="sh1" name="hamil" value="1" /<?php if ($penduduk['hamil'] === '1') {
-    echo 'checked';
-} ?>><label for="sh1">Hamil Tua</label>
+                                                    echo 'checked';
+                                                } ?>><label for="sh1">Hamil Tua</label>
                                                 <input type="radio" id="sh3" name="hamil" value="2" /<?php if ($penduduk['hamil'] === '2') {
-    echo 'checked';
-} ?>><label for="sh3">Hamil Muda</label>
+                                                    echo 'checked';
+                                                } ?>><label for="sh3">Hamil Muda</label>
                                                 <input type="radio" id="sh4" name="hamil" value="3" /<?php if ($penduduk['hamil'] === '3') {
-    echo 'checked';
-} ?>><label for="sh4">Ibu Menyusui</label>
+                                                    echo 'checked';
+                                                } ?>><label for="sh4">Ibu Menyusui</label>
                                             </div>
                                         </td>
                                     </tr>

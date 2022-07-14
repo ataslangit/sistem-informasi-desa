@@ -23,9 +23,9 @@
                                 },
                                 categories: [<?php $i = 0;
 
-                                                foreach ($periode as $data) {
-                                                    $i++; ?><?= "'{$data['nama']}'"; ?>, <?php
-                                                } ?>]
+                foreach ($periode as $data) {
+                    $i++; ?><?= "'{$data['nama']}'"; ?>, <?php
+                } ?>]
                             },
                             yAxis: {
                                 title: {
@@ -54,8 +54,8 @@
                             series: [<?php foreach ($main as $data) { ?> {
                                     name: '<?= $data['nama'] ?>',
                                     data: [<?php foreach ($data['jumlah'] as $dx) {
-                                                    echo $dx['jml'] + 0 ?>, <?php
-                                                } ?>]
+                                        echo $dx['jml'] + 0 ?>, <?php
+                                    } ?>]
                                 }, <?php } ?>]
                         });
                     });
@@ -82,9 +82,9 @@
                                     <th>Statistik</th>
                                     <?php $i = 0;
 
-                                    foreach ($periode as $data) {
-                                        $i++; ?><th><?= "{$data['nama']}"; ?></th><?php
-                                    } ?>
+                foreach ($periode as $data) {
+                    $i++; ?><th><?= "{$data['nama']}"; ?></th><?php
+                } ?>
                                 </tr>
                             </thead>
                             <tbody>

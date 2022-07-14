@@ -13,7 +13,7 @@
                                     <a href="<?= site_url("rtm/ajax_add_anggota/{$p}/{$o}/{$kk}") ?>" class="uibutton tipsy south" title="Tambah Data" target="ajax-modalx" rel="window"><span class="icon-plus icon-large">&nbsp;</span>Tambah Anggota</a>
                                     <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?= site_url("rtm/delete_all_anggota/{$p}/{$o}/{$kk}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data</button>
                                     <?php
-                                    ?>
+                    ?>
                                 </div>
                             </div>
                         </div>

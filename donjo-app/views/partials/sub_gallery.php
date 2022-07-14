@@ -4,11 +4,11 @@
 			<div class="box-header"><h3 class="box-title">Arsip Galeri ' . $desa['nama_desa'] . '</h3></div>
 			<div class="box-body">
 				<ul class="thumbnail">';
-            $i = 1;
+$i = 1;
 
-            foreach ($gallery as $data) {
-                if (is_file('assets/files/galeri/sedang_' . $data['gambar'])) {
-                    echo '
+foreach ($gallery as $data) {
+    if (is_file('assets/files/galeri/sedang_' . $data['gambar'])) {
+        echo '
 					<li>
 						<div class="entry">
 						<a class="group2" href="' . base_url() . 'assets/files/galeri/sedang_' . $data['gambar'] . '" title="' . $data['nama'] . '">
@@ -16,13 +16,13 @@
 						</div>
 						<div class="title">' . $data['nama'] . '</div>
 					</li>';
-                    if (fmod($i, 2) === 0) {
-                        echo '<br class="clearboth">';
-                    }
-                    $i++;
-                }
-            }
-            echo '
+        if (fmod($i, 2) === 0) {
+            echo '<br class="clearboth">';
+        }
+        $i++;
+    }
+}
+echo '
 				</ul>
 				<br class="clearboth">
 			</div>

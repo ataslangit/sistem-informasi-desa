@@ -129,7 +129,7 @@ header('Expires: 0');
                                 foreach ($data['anggota'] as $ang) {
                                     echo $ang['nama'] . ',';
                                 }
-                                ?>
+            ?>
                 </td>
                 <td colspan="2"><?= $data['jumlah_anggota'] ?></td>
                 <td colspan="3"><?= strtoupper(ununderscore($data['dusun'])) ?> RT <?= strtoupper($data['rt']) ?> RW <?= strtoupper($data['rw']) ?></td>

@@ -12,13 +12,13 @@
                         categories: [
                             <?php $i = 0;
 
-                            foreach ($stat as $data) {
-                                $i++; ?>
+    foreach ($stat as $data) {
+        $i++; ?>
                                 <?php if ($data['jumlah'] !== '-' && $data['nama'] !== 'TOTAL') {
                                     echo "'{$i}',";
                                 } ?>
                             <?php
-                            } ?>
+    } ?>
                         ]
                     },
                     plotOptions: {

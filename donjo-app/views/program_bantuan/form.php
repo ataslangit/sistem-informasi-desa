@@ -6,7 +6,7 @@
             <td class="side-menu">
                 <?php
                 $this->load->view('program_bantuan/menu_kiri.php')
-                ?>
+?>
             </td>
             <td class="contentpane">
                 <legend>Form Penulisan Program Bantuan</legend>

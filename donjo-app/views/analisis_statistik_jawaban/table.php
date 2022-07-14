@@ -125,7 +125,7 @@
                         <?php
                         $total = 0;
 
-                        foreach ($main as $data) : ?>
+        foreach ($main as $data) : ?>
                             <tr>
                                 <td align="center" width="2"><?= $data['no'] ?></td>
                                 <td><?= $data['pertanyaan'] ?></a></td>
@@ -152,11 +152,11 @@
                                 <td><?= $data['act_analisis'] ?></td>
                             </tr>
                         <?php
-                            if ($data['jumlah'] !== '-') {
-                                $total += $data['jumlah'];
-                            }
+            if ($data['jumlah'] !== '-') {
+                $total += $data['jumlah'];
+            }
 
-                        endforeach; ?>
+        endforeach; ?>
 
                         <?php if ($total !== 0) { ?>
                             <tr>

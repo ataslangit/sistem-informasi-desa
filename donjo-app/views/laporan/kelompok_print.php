@@ -53,7 +53,7 @@
                         <td>Periode</td>
                         <td width="3%">:</td>
                         <?php $bln = date('m');
-                        $thn       = date('Y'); ?>
+    $thn                           = date('Y'); ?>
                         <td><?= $bln . '/' . $thn ?> </td>
                         <td width="40%"></td>
                     </tr>
@@ -137,20 +137,20 @@
                 </thead>
                 <tbody>
                     <?php $bayi = 0;
-                    $balita     = 0;
-                    $sd         = 0;
-                    $smp        = 0;
-                    $sma        = 0;
-                    $dewasa     = 0;
-                    $lansia     = 0;
-                    $cacat      = 0;
-                    $cacat2     = 0;
-                    $sakit_L    = 0;
-                    $sakit_P    = 0;
-                    $hamil1     = 0;
-                    $hamil2     = 0;
-                    $susu       = 0;
-                    ?>
+    $balita                     = 0;
+    $sd                         = 0;
+    $smp                        = 0;
+    $sma                        = 0;
+    $dewasa                     = 0;
+    $lansia                     = 0;
+    $cacat                      = 0;
+    $cacat2                     = 0;
+    $sakit_L                    = 0;
+    $sakit_P                    = 0;
+    $hamil1                     = 0;
+    $hamil2                     = 0;
+    $susu                       = 0;
+    ?>
                     <?php foreach ($main as $data) { ?>
                         <td align="right"><?= $data['dusunnya'] ?></td>
                         <td align="right"><?= $data['rw'] ?></td>

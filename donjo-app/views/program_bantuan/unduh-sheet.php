@@ -37,15 +37,15 @@ header('Expires: 0');
                     <?php
                     $i = 1;
 
-                    foreach ($peserta[1] as $key => $item) {
-                        echo '<tr><td>' . $i . "</td>
+foreach ($peserta[1] as $key => $item) {
+    echo '<tr><td>' . $i . "</td>
 					<td>'" . $item['nik'] . '</td>
 					<td>' . $item['nama'] . '</td>
 					<td>' . $item['info'] . '</td>
 				</tr>';
-                        $i++;
-                    }
-                    ?>
+    $i++;
+}
+?>
                 </tbody>
             </table>
         </div>

@@ -61,7 +61,7 @@
             <table>
                 <?php $last = '';
 
-                foreach ($list_jawab as $data) { ?>
+    foreach ($list_jawab as $data) { ?>
                     <?php if ($data['pertanyaan'] !== $last) { ?></td>
                         </tr>
                         <tr>
@@ -73,15 +73,15 @@
                         <tr>
                             <td id="skpd_select">
                                 <div style="display:inline-block;"><input type="radio" class="required" name="cb[<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-                    echo ' checked';
-                } ?>><label><?= $data['huruf'] ?>. <?= $data['jawaban'] ?></label></div>
+                                    echo ' checked';
+                                } ?>><label><?= $data['huruf'] ?>. <?= $data['jawaban'] ?></label></div>
                             <?php } else { ?>
                                 <div style="display:inline-block;"><input type="radio" class="required" name="cb[<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-                    echo ' checked';
-                } ?>><label><?= $data['huruf'] ?>. <?= $data['jawaban'] ?></label></div>
+                                    echo ' checked';
+                                } ?>><label><?= $data['huruf'] ?>. <?= $data['jawaban'] ?></label></div>
                             <?php } ?>
                         <?php $last = $data['pertanyaan'];
-                    } ?>
+    } ?>
             </table>
         </div>
 

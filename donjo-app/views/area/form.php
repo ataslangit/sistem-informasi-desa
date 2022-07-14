@@ -48,12 +48,12 @@
                                     <td>
                                         <div class="uiradio">
                                             <input type="radio" id="sx1" name="enabled" value="1" /<?php if ($area['enabled'] === '1' || $area['enabled'] === '') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx1">Aktif</label>
                                             <input type="radio" id="sx2" name="enabled" value="2" /<?php if ($area['enabled'] === '2') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx2">Tidak Aktif</label>
                                         </div>
                                     </td>

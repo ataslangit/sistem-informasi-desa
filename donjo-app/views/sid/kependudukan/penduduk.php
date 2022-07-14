@@ -92,9 +92,9 @@
                     </div>
                     <div class="ui-layout-center" id="maincontent" style="padding: 0px;">
                         <?php if (isset($_SESSION['judul_statistik'])) {
-    echo '<h3>' . $_SESSION['judul_statistik'] . '</h3>';
-    unset($_SESSION['judul_statistik']);
-} ?>
+                            echo '<h3>' . $_SESSION['judul_statistik'] . '</h3>';
+                            unset($_SESSION['judul_statistik']);
+                        } ?>
                         <h4 align="center">
                             <?= $info; ?>
                         </h4>

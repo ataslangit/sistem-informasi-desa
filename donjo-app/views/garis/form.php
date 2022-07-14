@@ -46,18 +46,18 @@
                                     <td>
                                         <div class="uiradio">
                                             <input type="radio" id="sx1" name="enabled" value="1" /<?php if ($garis['enabled'] === '1' || $garis['enabled'] === '') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx1">Aktif</label>
                                             <input type="radio" id="sx2" name="enabled" value="2" /<?php if ($garis['enabled'] === '2') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx2">Tidak Aktif</label>
                                         </div>
                                     </td>
                                 </tr>
                                 <?php
-                                ?>
+                    ?>
                             </table>
                         </div>
 

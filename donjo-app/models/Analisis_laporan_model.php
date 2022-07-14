@@ -366,7 +366,7 @@ class Analisis_laporan_model extends CI_Model
             case 4: $order_sql = ' ORDER BY u.id DESC'; break;
 
             default:
-        }
+            }
         $asign_sql = ' AND i.asign = 1';
         $order_sql = ' ORDER BY u.nomor,i.kode_jawaban ASC';
 

@@ -33,24 +33,24 @@ if (! isset($_SESSION['mandiri'])) {
                     ]) ?>
                     <button type="submit" id="but">Masuk</button>
                     <?php
-                    /* if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
-                        <div id="note">
-                            Kesempatan mencoba <?= $_SESSION['mandiri_try'] - 1; ?> kali lagi.
-                        </div>
-                    <?php } ?>
-                    <?php if ($_SESSION['mandiri'] === -1) { ?>
-                        <div id="note">
-                            Login Gagal. Username atau Password yang Anda masukkan salah!
-                        </div>
-                    <?php }
-                    */
-                    ?>
+        /* if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
+            <div id="note">
+                Kesempatan mencoba <?= $_SESSION['mandiri_try'] - 1; ?> kali lagi.
+            </div>
+        <?php } ?>
+        <?php if ($_SESSION['mandiri'] === -1) { ?>
+            <div id="note">
+                Login Gagal. Username atau Password yang Anda masukkan salah!
+            </div>
+        <?php }
+        */
+        ?>
                 <?= form_close() ?>
             </div>
         </div>
     <?php }
-} else {
-    ?>
+    } else {
+        ?>
     <div class="box box-primary box-solid">
         <div class="box-header">
             <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3>
@@ -96,8 +96,8 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
     </div>
     <?php
-    if ($_SESSION['lg'] === 1) {
-        ?>
+        if ($_SESSION['lg'] === 1) {
+            ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
                 <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
@@ -122,7 +122,7 @@ if (! isset($_SESSION['mandiri'])) {
             </div>
         </div>
     <?php
-    } elseif ($_SESSION['lg'] === 1) { ?>
+        } elseif ($_SESSION['lg'] === 1) { ?>
 
 
         <div class="box box-primary box-solid">
@@ -138,9 +138,9 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
 
 <?php
-        unset($_SESSION['lg']);
+            unset($_SESSION['lg']);
+        }
     }
-}
 ?>
 <?php
 if ($agenda) {
@@ -213,7 +213,7 @@ if ($agenda) {
         foreach ($sosmed as $data) {
             echo '<a href="' . $data['link'] . '" target="_blank"><img src="' . base_url() . 'assets/front/' . $data['gambar'] . '" alt="' . $data['nama'] . '" style="width:50px;height:50px;"/></a>';
         }
-        ?>
+?>
     </div>
 </div>
 <div class="box box-success">
@@ -222,62 +222,62 @@ if ($agenda) {
     </div>
     <div class="box-body">
         <?php
-        $ip = $_SERVER['REMOTE_ADDR'] . '{}';
-        if (! isset($_SESSION['MemberOnline'])) {
-            $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
-            if ($cek->num_rows() === 0) {
-                $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
-                $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
-            } else {
-                $res                      = $cek->row(0);
-                $ipaddr                   = $res->ipAddress;
-                $up                       = $this->db->query("UPDATE sys_traffic SET Jumlah=Jumlah + 1,ipAddress='" . $ip . "' WHERE Tanggal='" . date('Y-m-d') . "'");
-                $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
-            }
-        }
-        $rs = $this->db->query('SELECT Jumlah AS Visitor FROM sys_traffic WHERE Tanggal="' . date('Y-m-d') . '" LIMIT 1');
-        if ($rs->num_rows() > 0) {
-            $visitor = $rs->row(0);
-            $today   = $visitor->Visitor;
-        } else {
-            $today = 0;
-        }
-        $strSQL = 'SELECT Jumlah AS Visitor FROM sys_traffic WHERE
+$ip = $_SERVER['REMOTE_ADDR'] . '{}';
+if (! isset($_SESSION['MemberOnline'])) {
+    $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
+    if ($cek->num_rows() === 0) {
+        $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
+        $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
+    } else {
+        $res                      = $cek->row(0);
+        $ipaddr                   = $res->ipAddress;
+        $up                       = $this->db->query("UPDATE sys_traffic SET Jumlah=Jumlah + 1,ipAddress='" . $ip . "' WHERE Tanggal='" . date('Y-m-d') . "'");
+        $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
+    }
+}
+$rs = $this->db->query('SELECT Jumlah AS Visitor FROM sys_traffic WHERE Tanggal="' . date('Y-m-d') . '" LIMIT 1');
+if ($rs->num_rows() > 0) {
+    $visitor = $rs->row(0);
+    $today   = $visitor->Visitor;
+} else {
+    $today = 0;
+}
+$strSQL = 'SELECT Jumlah AS Visitor FROM sys_traffic WHERE
 	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1)
 	LIMIT 1';
-        $rs = $this->db->query($strSQL);
-        if ($rs->num_rows() > 0) {
-            $visitor   = $rs->row(0);
-            $yesterday = $visitor->Visitor;
-        } else {
-            $yesterday = 0;
-        }
-        $rs      = $this->db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
-        $visitor = $rs->row(0);
-        $total   = $visitor->Total;
-        function num_toimage($tot, $jumlah)
-        {
-            $pattern = '';
+$rs = $this->db->query($strSQL);
+if ($rs->num_rows() > 0) {
+    $visitor   = $rs->row(0);
+    $yesterday = $visitor->Visitor;
+} else {
+    $yesterday = 0;
+}
+$rs      = $this->db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
+$visitor = $rs->row(0);
+$total   = $visitor->Total;
+function num_toimage($tot, $jumlah)
+{
+    $pattern = '';
 
-            for ($j = 0; $j < $jumlah; $j++) {
-                $pattern .= '0';
-            }
-            $len      = strlen($tot);
-            $length   = strlen($pattern) - $len;
-            $start    = substr($pattern, 0, $length) . substr($tot, 0, $len - 1);
-            $last     = substr($tot, $len - 1, 1);
-            $last_rpc = '<img src="_BASE_URL_/assets/images/counter/animasi/' . $last . '.gif" align="absmiddle" />';
-            $inc      = str_replace($last, $last_rpc, $last);
+    for ($j = 0; $j < $jumlah; $j++) {
+        $pattern .= '0';
+    }
+    $len      = strlen($tot);
+    $length   = strlen($pattern) - $len;
+    $start    = substr($pattern, 0, $length) . substr($tot, 0, $len - 1);
+    $last     = substr($tot, $len - 1, 1);
+    $last_rpc = '<img src="_BASE_URL_/assets/images/counter/animasi/' . $last . '.gif" align="absmiddle" />';
+    $inc      = str_replace($last, $last_rpc, $last);
 
-            for ($i = 0; $i <= 9; $i++) {
-                $rpc   = '<img src="_BASE_URL_/assets/images/counter/' . $i . '.gif" align="absmiddle"/>';
-                $start = str_replace($i, $rpc, $start);
-            }
-            $num = $start . $inc;
+    for ($i = 0; $i <= 9; $i++) {
+        $rpc   = '<img src="_BASE_URL_/assets/images/counter/' . $i . '.gif" align="absmiddle"/>';
+        $start = str_replace($i, $rpc, $start);
+    }
+    $num = $start . $inc;
 
-            return str_replace('_BASE_URL_', base_url(), $num);
-        }
-        ?>
+    return str_replace('_BASE_URL_', base_url(), $num);
+}
+?>
         <div id="container" align="center">
             <table cellpadding="0" cellspacing="0" class="counter">
                 <tr>
@@ -312,8 +312,8 @@ if ($agenda) {
 <!--widget Manual-->
 <?php
 if ($w_cos) {
-            foreach ($w_cos as $data) {
-                echo '
+    foreach ($w_cos as $data) {
+        echo '
 		<div class="box box-primary box-solid">
 			<div class="box-header">
 				<h3 class="box-title">' . $data['judul'] . '</h3>
@@ -323,8 +323,8 @@ if ($w_cos) {
 			</div>
 		</div>
 		';
-            }
-        }
+    }
+}
 ?>
 <!-- widget Google Map -->
 <?php

@@ -988,59 +988,59 @@ class Penduduk_model extends CI_Model
                 case 1: $table = 'tweb_penduduk_hubungan'; if (isset($_SESSION['hubungan'])) {
                     $head      = 'STATUS HUBUNGAN DALAM KELUARGA';
                     $kf        = $_SESSION['hubungan'];
-                } break;
+                    } break;
 
                 case 2: $table = 'tweb_penduduk_agama'; if (isset($_SESSION['agama'])) {
                     $head      = 'AGAMA';
                     $kf        = $_SESSION['agama'];
-                } break;
+                    } break;
 
                 case 3: $table = 'tweb_penduduk_pendidikan_kk'; if (isset($_SESSION['pendidikan_kk_id'])) {
                     $head      = 'PENDIDIKAN DALAM KK';
                     $kf        = $_SESSION['pendidikan_kk_id'];
-                } break;
+                    } break;
 
                 case 4: $table = 'tweb_penduduk_pendidikan'; if (isset($_SESSION['pendidikan_sedang_id'])) {
                     $head      = 'PENDIDIKAN SEDANG DITEMPUH';
                     $kf        = $_SESSION['pendidikan_sedang_id'];
-                } break;
+                    } break;
 
                 case 5: $table = 'tweb_penduduk_pekerjaan'; if (isset($_SESSION['pekerjaan_id'])) {
                     $head      = 'PEKERJAAN';
                     $kf        = $_SESSION['pekerjaan_id'];
-                } break;
+                    } break;
 
                 case 6: $table = 'tweb_penduduk_kawin'; if (isset($_SESSION['status'])) {
                     $head      = 'STATUS PERKAWINAN';
                     $kf        = $_SESSION['status'];
-                } break;
+                    } break;
 
                 case 7: $table = 'tweb_penduduk_warganegara'; if (isset($_SESSION['warganegara'])) {
                     $head      = 'KEWARGANEGARAAN';
                     $kf        = $_SESSION['warganegara'];
-                } break;
+                    } break;
 
                 case 8: $table = 'tweb_golongan_darah'; if (isset($_SESSION['golongan_darah'])) {
                     $head      = 'GOLONGAN DARAH';
                     $kf        = $_SESSION['golongan_darah'];
-                } break;
+                    } break;
 
                 case 9: $table = 'tweb_penduduk_sex'; if (isset($_SESSION['sex'])) {
                     $head      = 'JENIS KELAMIN';
                     $kf        = $_SESSION['sex'];
-                } break;
+                    } break;
 
                 case 10: $table = 'tweb_penduduk_status'; if (isset($_SESSION['filter'])) {
                     $head       = 'STATUS PENDUDUK';
                     $kf         = $_SESSION['filter'];
-                } break;
+                    } break;
 
                 case 11: /*$table = 'tweb_status_dasar'; 			if(isset($_SESSION['status_dasar'])){$head = "STATUS DASAR";$kf = $_SESSION['status_dasar'];}*/ break;
 
                 case 12: $table = 'tweb_cacat'; if (isset($_SESSION['cacat'])) {
                     $head       = 'DIFABLE';
                     $kf         = $_SESSION['cacat'];
-                } break;
+                    } break;
 
                 default: $table = '';
             }

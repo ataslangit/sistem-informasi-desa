@@ -52,13 +52,13 @@
                         <br>
                         <div>
                             <?php foreach ($menu_surat2 as $data) {
-    if ($data['favorit'] !== 1) { ?>
+                                if ($data['favorit'] !== 1) { ?>
                                     <a class="csurat" href="<?= site_url() ?>surat/form/<?= $data['url_surat'] ?>">
                                         <img src="<?= base_url() ?>assets/images/cpanel/edit-select-all-2.png" />
                                         <span><?= strtoupper($data['nama']) ?></span>
                                     </a>
                             <?php }
-} ?>
+                                } ?>
                         </div>
                     </div>
                 </div>

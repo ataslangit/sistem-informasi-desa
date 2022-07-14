@@ -249,7 +249,7 @@
                                             </td>
                                         </tr>
                                 <?php }
-                                } ?>
+                                    } ?>
                             </table>
                         </div>
                         <div class="ui-layout-south panel bottom">

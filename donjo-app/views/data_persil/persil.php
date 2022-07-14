@@ -12,7 +12,7 @@
             <td class="side-menu">
                 <?php
                 $this->load->view('data_persil/menu_kiri.php')
-                ?>
+        ?>
             </td>
             <td class="contentpane">
                 <legend>Daftar Data Persil <?= $desa['nama_desa']; ?></legend>
@@ -26,12 +26,12 @@
                             </div>
                         <?= form_close() ?>
                         <?php
-                        if ($_SESSION['success'] === 1) {
-                            echo '<div>' . $_SESSION['pesan'] . '</div>';
-                            $_SESSION['success'] = 0;
-                            $_SESSION['pesan']   = '';
-                        }
-                        ?>
+                if ($_SESSION['success'] === 1) {
+                    echo '<div>' . $_SESSION['pesan'] . '</div>';
+                    $_SESSION['success'] = 0;
+                    $_SESSION['pesan']   = '';
+                }
+        ?>
 
                         <?php if ($persil) {
                             if (count($persil) > 0) {
@@ -78,7 +78,7 @@
 	</div>
 	';
                         }
-                        ?>
+        ?>
                         <div style="height:10em;"></div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
             <td style="width:250px;" class="contentpane">
                 <?php
                 $this->load->view('data_persil/panduan.php');
-                ?>
+        ?>
             </td>
         </tr>
     </table>

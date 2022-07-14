@@ -24,11 +24,11 @@
                         <td>
                             <div class="uiradio">
                                 <input type="radio" id="g1" name="aktif" value="1" <?php if ($modul['aktif'] === '1' || $modul['aktif'] === '') {
-    echo 'checked';
-} ?>><label for="g1">Aktif</label>
+                                    echo 'checked';
+                                } ?>><label for="g1">Aktif</label>
                                 <input type="radio" id="g2" name="aktif" value="2" <?php if ($modul['aktif'] === '2') {
-    echo 'checked';
-} ?>><label for="g2">Tidak Aktif</label>
+                                    echo 'checked';
+                                } ?>><label for="g2">Tidak Aktif</label>
                             </div>
                         </td>
                     </tr>

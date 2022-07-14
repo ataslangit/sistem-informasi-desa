@@ -19,9 +19,9 @@ class Main extends CI_Controller
 
                         default: if (isset($_SESSION['siteman'])) {
                             redirect('siteman');
-                        } else {
-                            redirect('first');
-                        }
+                            } else {
+                                redirect('first');
+                            }
                     }
                 }
             } else {

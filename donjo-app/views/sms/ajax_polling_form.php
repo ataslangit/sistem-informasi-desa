@@ -5,17 +5,17 @@
         <tr>
             <th>Nama Polling</th>
             <td><input name="nama_polling" type="text" class="inputbox required" size="30" maxlength='20' value="<?php if ($main) {
-    foreach ($main as $data) : echo $data['nama_polling'];
-    endforeach;
-} ?>" />
+                foreach ($main as $data) : echo $data['nama_polling'];
+                endforeach;
+            } ?>" />
             </td>
         </tr>
         <tr>
             <th>Keterangan</th>
             <td><textarea name="ket_polling" class=" required" style="resize: none; height:100px; width:250px;" size="300" maxlength='200'><?php if ($main) {
-    foreach ($main as $data) : echo $data['ket_polling'];
-    endforeach;
-} ?></textarea>
+                foreach ($main as $data) : echo $data['ket_polling'];
+                endforeach;
+            } ?></textarea>
             </td>
         </tr>
     </table>

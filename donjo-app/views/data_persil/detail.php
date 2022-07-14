@@ -20,11 +20,11 @@
                             $_SESSION['success'] === 0;
                         }
 
-                        ?>
+                ?>
 
                         <?php
-                        if ($pemilik) {
-                            echo '
+                if ($pemilik) {
+                    echo '
 	<div class="form-group">
 		<fieldset>
 			<legend>Data Pemilik</legend>
@@ -39,8 +39,8 @@
 		</fieldset>
 	</div>
 	';
-                        } else {
-                            echo '
+                } else {
+                    echo '
 	<div class="form-group">
 		<fieldset>
 			<legend>Data Pemilik</legend>
@@ -53,8 +53,8 @@
 		</fieldset>
 	</div>
 	';
-                        }
-                        echo '
+                }
+                echo '
 	<div class="form-group">
 		<fieldset>
 			<legend>Detail Persil</legend>
@@ -78,7 +78,7 @@
 			</dl>
 		</fieldset>
 	</div>';
-                        ?>
+                ?>
                         <div style="height:10em;"></div>
                     </div>
                 </div>

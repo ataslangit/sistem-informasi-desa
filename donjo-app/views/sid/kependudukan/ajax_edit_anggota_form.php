@@ -26,10 +26,10 @@
             <td><select name="kk_level" class="required" width="50">
                     <option value=""> ----- Pilih Hubungan ----- </option>
                     <?php foreach ($hubungan as $data) {
-    if ($data['id'] > 0) { ?>
+                        if ($data['id'] > 0) { ?>
                             <option value="<?= $data['id'] ?>" <?php if ($data['id'] === $main['kk_level']) { ?>selected<?php } ?>><?= $data['hubungan'] ?></option>
                     <?php }
-} ?>
+                        } ?>
                 </select>
             </td>
         </tr>

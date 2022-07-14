@@ -74,16 +74,16 @@
                                 },
                                 categories: [
                                     <?php $all = count($main);
-                                    $i         = 0;
+                        $i                     = 0;
 
-                                    foreach ($main as $data) {
-                                        $i++;
-                                        //if($all <= 12){
-                                        //	if($data['jumlah'] != 0)
-                                        echo "'" . $data['nama'] . "',";
-                                        //}else echo "'".$i."',";
-                                    }
-                                    ?>
+                        foreach ($main as $data) {
+                            $i++;
+                            //if($all <= 12){
+                            //	if($data['jumlah'] != 0)
+                            echo "'" . $data['nama'] . "',";
+                            //}else echo "'".$i."',";
+                        }
+                        ?>
                                 ]
                                 <?php if ($all > 30) { ?>,
                                     labels: {
@@ -126,19 +126,19 @@
                                 name: 'Populasi',
                                 data: [
                                     <?php
-                                    foreach ($main as $data) {
-                                        if ($data['nama'] !== 'TOTAL') {
-                                            if ($all <= 12) {
-                                                if ($data['jumlah'] !== 0) {
-                                                    echo $data['jumlah'] . ',';
-                                                }
-                                            } else {
-                                                if ($data['jumlah'] !== 0) {
-                                                    echo "['" . $data['nama'] . "'," . $data['jumlah'] . '],';
-                                                }
-                                            }
-                                        }
-                                    } ?>
+                        foreach ($main as $data) {
+                            if ($data['nama'] !== 'TOTAL') {
+                                if ($all <= 12) {
+                                    if ($data['jumlah'] !== 0) {
+                                        echo $data['jumlah'] . ',';
+                                    }
+                                } else {
+                                    if ($data['jumlah'] !== 0) {
+                                        echo "['" . $data['nama'] . "'," . $data['jumlah'] . '],';
+                                    }
+                                }
+                            }
+                        } ?>
                                 ]
                             }]
                         });

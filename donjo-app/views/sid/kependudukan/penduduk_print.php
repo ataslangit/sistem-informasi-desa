@@ -23,9 +23,9 @@
         <div id="body">
             <div class="header" align="center"><label align="left"><?= get_identitas() ?></label>
                 <?php if (isset($_SESSION['judul_statistik_cetak'])) {
-    echo '<h3>' . $_SESSION['judul_statistik_cetak'] . '</h3>';
-    unset($_SESSION['judul_statistik']);
-} else { ?>
+                    echo '<h3>' . $_SESSION['judul_statistik_cetak'] . '</h3>';
+                    unset($_SESSION['judul_statistik']);
+                } else { ?>
                     <h3> DATA PENDUDUK </h3>
                 <?php } ?>
                 <?= $info ?>
@@ -78,10 +78,10 @@
                             <td><?= $data['nama_ayah'] ?></td>
                             <td><?= $data['nama_ibu'] ?></td>
                             <td><?php if ($data['status'] === 1) {
-    echo 'Tetap';
-} else {
-    echo 'Pendatang';
-} ?></td>
+                                echo 'Tetap';
+                            } else {
+                                echo 'Pendatang';
+                            } ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

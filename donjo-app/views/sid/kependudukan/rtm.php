@@ -20,7 +20,7 @@
                                     <a href="<?= site_url('rtm/form_old') ?>" target="ajax-modalx" rel="window" header="Tambah Data Rumah Tangga Per Penduduk" class="uibutton tipsy south" title="Tambah data dari penduduk"><span class="icon-plus icon-large">&nbsp;</span>Tambah Rumah Tangga</a>
 
                                     <?php
-                                    ?>
+        ?>
 
                                     <?php if ($grup === 1) { ?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?= site_url("rtm/delete_all/{$p}/{$o}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data</button><?php } ?>
 

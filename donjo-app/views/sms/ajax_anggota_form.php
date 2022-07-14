@@ -20,7 +20,7 @@
             <tbody>
                 <?php $no = 1;
 
-                foreach ($main as $data) : ?>
+foreach ($main as $data) : ?>
                     <tr>
                         <td align="center" width="2"><?= $no ?></td>
                         <td align="center" width="5">
@@ -32,7 +32,7 @@
                         <td align="center"><?= $data['no_hp'] ?></td>
                     </tr>
                 <?php $no++;
-                endforeach; ?>
+endforeach; ?>
             </tbody>
         </table>
     </div>

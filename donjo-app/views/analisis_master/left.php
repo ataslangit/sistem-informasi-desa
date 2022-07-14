@@ -14,23 +14,23 @@
                 ?>
                 <ul>
                     <li <?php if ($_SESSION['submenu'] === 'Data Kategori') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_kategori/clear') . '/' . $analisis_master['id']; ?>">KATEGORI/VARIABEL</a>
                     </li>
                     <li <?php if ($_SESSION['submenu'] === 'Data Indikator') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_indikator/clear') . '/' . $analisis_master['id']; ?>">INDIKATOR & PERTANYAAN</a>
                     </li>
                     <li <?php if ($_SESSION['submenu'] === 'Data Klasifikasi') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_klasifikasi/clear') . '/' . $analisis_master['id']; ?>">KLASIFIKASI ANALISIS</a>
                     </li>
                     <li <?php if ($_SESSION['submenu'] === 'Data Periode') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_periode/clear') . '/' . $analisis_master['id']; ?>">PERIODE SENSUS/SURVEI</a>
                     </li>
                 </ul>
@@ -38,8 +38,8 @@
                 <h4>INPUT DATA ANALISIS</h4>
                 <ul>
                     <li <?php if ($_SESSION['submenu'] === 'Input Data') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_respon/clear') . '/' . $analisis_master['id']; ?>">INPUT DATA SENSUS/SURVEI</a>
                     </li>
                 </ul>
@@ -47,13 +47,13 @@
                 <h4>LAPORAN ANALISIS</h4>
                 <ul>
                     <li <?php if ($_SESSION['submenu'] === 'Laporan Analisis') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_laporan/clear') . '/' . $analisis_master['id']; ?>">LAPORAN HASIL KLASIFIKASI</a>
                     </li>
                     <li <?php if ($_SESSION['submenu'] === 'Statistik Jawaban') {
-                    echo "class='selected'";
-                } ?>>
+                        echo "class='selected'";
+                    } ?>>
                         <a href="<?= site_url('analisis_statistik_jawaban/clear') . '/' . $analisis_master['id']; ?>">LAPORAN PER INDIKATOR</a>
                     </li>
                 </ul>

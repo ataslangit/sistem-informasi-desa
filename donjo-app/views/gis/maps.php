@@ -63,7 +63,7 @@
                         fillOpacity: 0.22
                     });
             <?php }
-            } ?>
+                } ?>
             <?php if ($layer_area === 1) { ?>
                 <?php foreach ($area as $area) { ?>
                     <?php $path = preg_split('/\\;/', $area['path']);
@@ -166,7 +166,7 @@
                     new google.maps.Point(16, 35)
                 );
                 <?php foreach ($lokasi as $data) {
-                        if ($data['lat'] !== '') { ?>
+                    if ($data['lat'] !== '') { ?>
 
                         <?php $simbol = base_url() . 'assets/images/gis/point/' . $data['simbol']; ?>
                         var cusicon_<?= $data['id'] ?> = new google.maps.MarkerImage("<?= $simbol ?>");
@@ -199,7 +199,7 @@
                 <?php $pendc = base_url() . 'assets/images/gis/point/pend.png'; ?>
                 var pend_icon = new google.maps.MarkerImage("<?= $pendc ?>");
                 <?php foreach ($penduduk as $data) {
-                if ($data['lat'] !== '') { ?>
+                    if ($data['lat'] !== '') { ?>
                         var marker_<?= $data['id'] ?> = new google.maps.Marker({
                             position: new google.maps.LatLng(<?= $data['lat'] ?>, <?= $data['lng'] ?>),
                             map: map,
@@ -226,7 +226,7 @@
                             infoWindow.open(map, marker_<?= $data['id'] ?>);
                         });
             <?php }
-            }
+                    }
             } ?>
         };
     })();
@@ -262,50 +262,50 @@
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_penduduk" value="1" onchange="handle_pend(this);" <?php if ($layer_penduduk === 1) {
-                echo 'checked';
-            } ?>> Penduduk
+                            echo 'checked';
+                        } ?>> Penduduk
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_keluarga" value="1" onchange="handle_kel(this);" <?php if ($layer_keluarga === 1) {
-                echo 'checked';
-            } ?>> Keluarga
+                            echo 'checked';
+                        } ?>> Keluarga
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_desa" value="1" onchange="handle_desa(this);" <?php if ($layer_desa === 1) {
-                echo 'checked';
-            } ?>> Desa
+                            echo 'checked';
+                        } ?>> Desa
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_wilayah" value="1" onchange="handle_wil(this);" <?php if ($layer_wilayah === 1) {
-                echo 'checked';
-            } ?>> Wilayah Administratif
+                            echo 'checked';
+                        } ?>> Wilayah Administratif
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_area" value="1" onchange="handle_area(this);" <?php if ($layer_area === 1) {
-                echo 'checked';
-            } ?>> Area
+                            echo 'checked';
+                        } ?>> Area
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_line" value="1" onchange="handle_line(this);" <?php if ($layer_line === 1) {
-                echo 'checked';
-            } ?>> Line
+                            echo 'checked';
+                        } ?>> Line
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="layer_point" value="1" onchange="handle_point(this);" <?php if ($layer_point === 1) {
-                echo 'checked';
-            } ?>> Point
+                            echo 'checked';
+                        } ?>> Point
                     </td>
                 </tr>
             </table>
@@ -379,7 +379,7 @@
                             <?php } ?>
                         </select>
                 <?php }
-                } ?>
+                    } ?>
                 <select name="agama" onchange="formAction('mainform','<?= site_url('gis/agama') ?>')">
                     <option value="">Agama</option>
                     <?php foreach ($list_agama as $data) { ?>

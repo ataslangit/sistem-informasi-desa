@@ -13,7 +13,7 @@
                 <div class="content">
                     <h3>Pengelolaan Kategori</h3>
                     <?php
-                    ?>
+        ?>
                 </div>
                 <div id="contentpane">
                     <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>

@@ -82,7 +82,7 @@
                             <td>a. Jika pria, terangkan jejaka, duda atau beristri dan berapa istrinya</td>
                             <td>:</td>
                             <td><?= $input['jaka'];
-                                ?></td>
+?></td>
                         </tr>
                         <tr>
                             <td>b. Jika wanita, terangkan gadis atau janda</td>

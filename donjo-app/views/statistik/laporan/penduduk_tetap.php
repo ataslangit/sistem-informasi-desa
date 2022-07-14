@@ -106,10 +106,10 @@
                                             <td><?= strtoupper($data['kawin']) ?></td>
 
                                             <td><?php if ($data['status'] === 1) {
-    echo 'Tetap';
-} else {
-    echo 'Pendatang';
-} ?></td>
+                                                echo 'Tetap';
+                                            } else {
+                                                echo 'Pendatang';
+                                            } ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

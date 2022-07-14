@@ -31,12 +31,12 @@
                                     <td>
                                         <div class="uiradio">
                                             <input type="radio" id="sx1" name="enabled" value="1" /<?php if ($komentar['enabled'] === '1' || $komentar['enabled'] === '') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx1">enable</label>
                                             <input type="radio" id="sx2" name="enabled" value="2" /<?php if ($komentar['enabled'] === '0') {
-    echo 'checked';
-} ?>>
+                                                echo 'checked';
+                                            } ?>>
                                             <label for="sx2">disable</label>
                                         </div>
                                     </td>

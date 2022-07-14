@@ -49,7 +49,7 @@
     <table width="100%">
         <?php $last = '';
 
-        foreach ($main as $data) { ?>
+foreach ($main as $data) { ?>
             <?php if ($data['pertanyaan'] !== $last) { ?></td>
                 </tr>
                 <tr>
@@ -59,22 +59,22 @@
                     <td id="opsi">
                         <div style="display:inline-block;">
                             <input type="checkbox" name="id_cb[]" value="<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-            echo ' checked';
-        } ?>>
+                                echo ' checked';
+                            } ?>>
                             <label><?= $data['kode_jawaban'] . '. ' . $data['jawaban'] ?></label>
                         </div>
                     <?php } else { ?>
                         <div style="display:inline-block;">
                             <input type="checkbox" name="id_cb[]" value="<?= $data['id_jawaban'] ?>" <?php if ($data['cek']) {
-            echo ' checked';
-        } ?>>
+                                echo ' checked';
+                            } ?>>
                             <label><?= $data['kode_jawaban'] . '. ' . $data['jawaban'] ?></label>
                         </div>
                 <?php
-                }
-                $last = $data['pertanyaan'];
-            }
-                ?>
+                    }
+        $last = $data['pertanyaan'];
+}
+?>
     </table>
     <div class="buttonpane" style="text-align: right; width:600px;bottom:0px;">
         <div class="uibutton-group">
