@@ -3,12 +3,8 @@ name: Run Prettier
 on:
   push:
     branches: [ develop ]
-    paths:
-      - 'donjo-app/views/**'
   pull_request:
     branches: [ develop ]
-    paths:
-      - 'donjo-app/views/**'
 
 jobs:
   prettier:
@@ -26,4 +22,5 @@ jobs:
         with:
           # This part is also where you can pass other options, for example:
           prettier_plugins: '@prettier/plugin-php'
+          working_directory: 'donjo-app/views'
           prettier_options: --write **/*.{html,php}
