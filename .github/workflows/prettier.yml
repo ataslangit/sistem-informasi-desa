@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Run Prettier
 
 on:
   push:
@@ -21,5 +21,5 @@ jobs:
         uses: creyD/prettier_action@v4.2
         with:
           # This part is also where you can pass other options, for example:
-          working_directory: donjo-app/views
+          working_directory: donjo-app/views/
           prettier_options: --write **/*.{js,md}
