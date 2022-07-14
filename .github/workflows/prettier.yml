@@ -3,8 +3,12 @@ name: Run Prettier
 on:
   push:
     branches: [ develop ]
+    paths:
+      - 'donjo-app/views/**'
   pull_request:
     branches: [ develop ]
+    paths:
+      - 'donjo-app/views/**'
 
 jobs:
   prettier:
@@ -21,5 +25,4 @@ jobs:
         uses: creyD/prettier_action@v4.2
         with:
           # This part is also where you can pass other options, for example:
-          working_directory: ./donjo-app/views/
           prettier_options: --write **/*.{js,md}
