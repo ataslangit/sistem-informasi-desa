@@ -1,8 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->notPath('donjo-app/views')
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->exclude('donjo-app/views');
 
 $config = new PhpCsFixer\Config();
 $config->setRiskyAllowed(true);
