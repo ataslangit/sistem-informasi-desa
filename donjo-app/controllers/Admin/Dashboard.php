@@ -30,14 +30,11 @@ class Dashboard extends CI_Controller
     public function dashboard()
     {
         $_SESSION['delik'] = 0;
-        $nav['act']        = 0;
-        $header            = $this->header_model->get_data();
-        $data['main']      = $this->config_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/konfigurasi_form', $data);
-        $this->load->view('footer');
+        $data['header'] = $this->header_model->get_data();
+        $data['main']   = $this->config_model->get_data();
+
+        return view('home/konfigurasi_form', $data);
     }
 
     public function about()

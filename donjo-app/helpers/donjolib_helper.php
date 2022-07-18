@@ -1,5 +1,26 @@
 <?php
 
+/**
+ * load view template
+ *
+ * @param string $view
+ * @param array  $data
+ * @param mixed  $data_include
+ *
+ * @return object|string
+ */
+function view($view, $data_include = [])
+{
+    $CI = &get_instance();
+
+    $content = [
+        'view' => $view,
+        'data' => $data_include,
+    ];
+
+    return $CI->load->view('template', $content);
+}
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];
