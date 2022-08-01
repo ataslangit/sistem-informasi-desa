@@ -13,6 +13,8 @@ on:
 jobs:
   prettier:
     runs-on: ubuntu-latest
+    env:
+        working-directory: ./donjo-app/views
 
     steps:
       - name: Checkout
@@ -26,5 +28,5 @@ jobs:
         with:
           # This part is also where you can pass other options, for example:
           prettier_plugins: '@prettier/plugin-php'
-          working_directory: '${{ github.workspace }}/donjo-app/views'
+          working_directory: ${{ env.working-directory }}
           prettier_options: --write **/*.{html,php}
