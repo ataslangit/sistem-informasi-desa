@@ -1,4 +1,4 @@
-name: Style PHP-CS-Fixer
+name: Style Code
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  lint:
+  php-cs-fixer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

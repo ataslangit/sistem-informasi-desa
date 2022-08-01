@@ -223,27 +223,39 @@ class First extends CI_Controller
     public function statistik($stat = '', $tipe = 0)
     {
         switch ($stat) {
-            case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan'; break;
+            case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan';
+                break;
 
-            case 'pekerjaan':$data['heading'] = 'Pekerjaan'; break;
+            case 'pekerjaan':$data['heading'] = 'Pekerjaan';
+                break;
 
-            case 'status-perkawinan':$data['heading'] = 'Status Perkawinan'; break;
+            case 'status-perkawinan':$data['heading'] = 'Status Perkawinan';
+                break;
 
-            case 'agama':$data['heading'] = 'Agama'; break;
+            case 'agama':$data['heading'] = 'Agama';
+                break;
 
-            case 'jenis-kelamin':$data['heading'] = 'Jenis Kelamin'; break;
+            case 'jenis-kelamin':$data['heading'] = 'Jenis Kelamin';
+                break;
 
-            case 'golongan-darah':$data['heading'] = 'Golongan Darah'; break;
+            case 'golongan-darah':$data['heading'] = 'Golongan Darah';
+                break;
 
-            case 'kelompok-umur':$data['heading'] = 'Kelompok Umur'; break;
+            case 'kelompok-umur':$data['heading'] = 'Kelompok Umur';
+                break;
 
-            case 'warga-negara':$data['heading'] = 'Warga Negara'; break;
+            case 'warga-negara':$data['heading'] = 'Warga Negara';
+                break;
 
-            case 'wilayah':redirect('first/wilayah'); break;
+            case 'wilayah':redirect('first/wilayah');
+                break;
 
-            case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            default:$data['heading'] = ''; redirect('first'); break;
+            default:$data['heading'] = '';
+                redirect('first');
+                break;
         }
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();

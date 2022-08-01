@@ -1,0 +1,32 @@
+name: Style Code
+
+on:
+  push:
+    branches: [ develop ]
+    paths:
+      - 'donjo-app/views/**'
+  pull_request:
+    branches: [ develop ]
+    paths:
+      - 'donjo-app/views/**'
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    env:
+        working-directory: ./../../donjo-app/views
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.2
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_plugins: '@prettier/plugin-php'
+          working_directory: ${{ env.working-directory }}
+          prettier_options: --write **/*.{html,php}

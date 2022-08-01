@@ -64,17 +64,23 @@ class Kelompok_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.nama'; break;
+            case 1: $order_sql = ' ORDER BY u.nama';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.nama DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.nama DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.nama'; break;
+            case 3: $order_sql = ' ORDER BY u.nama';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.nama DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.nama DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.nama'; break;
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.nama';
         }
