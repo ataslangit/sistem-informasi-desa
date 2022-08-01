@@ -74,17 +74,23 @@ class Kelompok_master_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.kelompok'; break;
+            case 1: $order_sql = ' ORDER BY u.kelompok';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.kelompok DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.kelompok DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.kelompok'; break;
+            case 3: $order_sql = ' ORDER BY u.kelompok';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.kelompok DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.kelompok DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.kelompok'; break;
+            case 5: $order_sql = ' ORDER BY g.kelompok';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.kelompok DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.kelompok DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.kelompok';
         }

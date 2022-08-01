@@ -175,13 +175,17 @@ class Kelompok extends CI_Controller
         $master               = $da['master_tipe'];
 
         switch ($master) {
-            case 1: $data['menu_respon'] = 'kelompok_respon_penduduk'; break;
+            case 1: $data['menu_respon'] = 'kelompok_respon_penduduk';
+                break;
 
-            case 2: $data['menu_respon'] = 'kelompok_respon_keluarga'; break;
+            case 2: $data['menu_respon'] = 'kelompok_respon_keluarga';
+                break;
 
-            case 3: $data['menu_respon'] = 'kelompok_respon_rtm'; break;
+            case 3: $data['menu_respon'] = 'kelompok_respon_rtm';
+                break;
 
-            case 4: $data['menu_respon'] = 'kelompok_respon_kelompok'; break;
+            case 4: $data['menu_respon'] = 'kelompok_respon_kelompok';
+                break;
 
             default:redirect('kelompok');
         }
