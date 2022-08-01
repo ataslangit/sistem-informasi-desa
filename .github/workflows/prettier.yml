@@ -27,6 +27,6 @@ jobs:
         with:
           # This part is also where you can pass other options, for example:
           prettier_plugins: '@prettier/plugin-php'
-          working_directory: 'donjo-app/views'
           working-status: 'donjo-app/views'
+          working_directory: 'donjo-app/views'
           prettier_options: --write **/*.{html,php}
