@@ -20,13 +20,11 @@ jobs:
         with:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
-      - run: echo "${{ github.workspace }}"
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
           # This part is also where you can pass other options, for example:
           prettier_plugins: '@prettier/plugin-php'
-          working-status: 'donjo-app/views'
-          working_directory: 'donjo-app/views'
+          working_directory: '${{ github.workspace }}/donjo-app/views'
           prettier_options: --write **/*.{html,php}
