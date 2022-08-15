@@ -28,7 +28,6 @@ class Analisis_respon_model extends CI_Model
                 break;
 
             default: return null;
-
         }
         $sql .= $this->dusun_sql();
         $sql .= $this->rw_sql();
@@ -148,7 +147,6 @@ class Analisis_respon_model extends CI_Model
                 break;
 
             default: return null;
-
         }
         //$sql = "SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1";
         if ($id_kelompok !== 0) {
@@ -213,7 +211,6 @@ class Analisis_respon_model extends CI_Model
                 break;
 
             default: return null;
-
         }
         //$sql = "SELECT u.*,p.nama,c.dusun,c.rw,c.rt,(SELECT id FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ";
         if ($id_kelompok !== 0) {
@@ -641,7 +638,6 @@ class Analisis_respon_model extends CI_Model
                 break;
 
             default: return null;
-
         }
         //$sql = "SELECT u.*,p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id WHERE u.id=?";
         $query = $this->db->query($sql, $id);
@@ -750,7 +746,6 @@ class Analisis_respon_model extends CI_Model
 
             default: return null;
                 break;
-
         }
         if ($id_kelompok !== 0) {
             $sql .= $this->kelompok_sql($id_kelompok);

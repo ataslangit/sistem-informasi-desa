@@ -136,7 +136,6 @@ class Analisis_laporan_model extends CI_Model
                 break;
 
             default: return null;
-
         }
 
         if (isset($_SESSION['jawab'])) {
@@ -218,7 +217,6 @@ class Analisis_laporan_model extends CI_Model
                 break;
 
             default: return null;
-
         }
 
         if (isset($_SESSION['jawab'])) {
@@ -361,7 +359,6 @@ class Analisis_laporan_model extends CI_Model
                 break;
 
             default: return null;
-
         }
         $query = $this->db->query($sql, $id);
 

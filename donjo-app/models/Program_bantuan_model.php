@@ -28,7 +28,6 @@ class Program_bantuan_model extends CI_Model
 
         switch ($hasil0['sasaran']) {
             case 1:
-
                 $strSQL = 'SELECT p.id,p.peserta,o.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_penduduk o ON p.peserta=o.nik
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
@@ -80,7 +79,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 2:
-
                 $strSQL = 'SELECT p.id as id,p.peserta as nama,o.nik_kepala,o.no_kk,q.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_keluarga o ON p.peserta=o.no_kk
 						LEFT JOIN tweb_penduduk q ON o.nik_kepala=q.id
@@ -132,7 +130,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 3:
-
                 $strSQL = 'SELECT p.id,p.peserta,o.nama,o.nik,r.no_kk,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_rtm r ON r.id = p.peserta
 						LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
@@ -185,7 +182,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 4:
-
                 $strSQL = 'SELECT p.id as id, p.peserta as peserta, k.nama as nama FROM program_peserta p
 						LEFT JOIN kelompok k ON k.id=p.peserta
 						WHERE p.program_id=' . $slug;
@@ -230,7 +226,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             default:
-
             }
 
         return [$hasil0, $hasil1, $hasil2];
@@ -250,7 +245,6 @@ class Program_bantuan_model extends CI_Model
 
         switch ($cat) {
             case 1:
-
                 $strSQL = "SELECT o.nama,o.foto,o.nik,w.rt,w.rw,w.dusun FROM tweb_penduduk o
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE o.nik='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
@@ -267,7 +261,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 2:
-
                 $strSQL = "SELECT o.nik_kepala,o.no_kk,p.nama,w.rt,w.rw,w.dusun FROM tweb_keluarga o
 					LEFT JOIN tweb_penduduk p ON o.nik_kepala=p.id
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster WHERE o.no_kk='" . fixSQL($id) . "'";
@@ -285,7 +278,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 3:
-
                 $strSQL = 'SELECT r.id, r.no_kk, o.nama, o.nik,w.rt,w.rw,w.dusun FROM tweb_rtm r
 					LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster
@@ -305,7 +297,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             case 4:
-
                 $strSQL = "SELECT k.id as id,k.nama as nama,p.nama as ketua,p.nik as nik,w.rt,w.rw,w.dusun FROM kelompok k
 				 LEFT JOIN tweb_penduduk p ON p.id=k.id_ketua
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
@@ -323,7 +314,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             default:
-
             }
         if (! $data_program === false) {
             return [$data_program, $data_profil];

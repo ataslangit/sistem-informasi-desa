@@ -135,7 +135,6 @@ class Analisis_statistik_jawaban_model extends CI_Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-
         //$_subjek = $this->get_subjek();
 
         $subjek = $_SESSION['subjek_tipe'];

@@ -930,7 +930,6 @@ class Keluarga extends CI_Controller
         }
 
         switch ($tipe) {
-
             case 21: $_SESSION['kelas'] = $nomor;
                 $pre                    = 'KELAS SOSIAL : ';
                 break;
