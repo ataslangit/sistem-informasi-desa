@@ -63,13 +63,17 @@ class Web_statis_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY tgl_upload DESC'; break;
+            case 1: $order_sql = ' ORDER BY tgl_upload DESC';
+                break;
 
-            case 2: $order_sql = ' ORDER BY owner'; break;
+            case 2: $order_sql = ' ORDER BY owner';
+                break;
 
-            case 3: $order_sql = ' ORDER BY email'; break;
+            case 3: $order_sql = ' ORDER BY email';
+                break;
 
-            case 4: $order_sql = ' ORDER BY komentar'; break;
+            case 4: $order_sql = ' ORDER BY komentar';
+                break;
 
             default:$order_sql = ' ORDER BY tgl_upload DESC';
         }

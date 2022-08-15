@@ -931,19 +931,33 @@ class Keluarga extends CI_Controller
 
         switch ($tipe) {
 
-            case 21: $_SESSION['kelas'] = $nomor; $pre = 'KELAS SOSIAL : '; break;
+            case 21: $_SESSION['kelas'] = $nomor;
+                $pre                    = 'KELAS SOSIAL : ';
+                break;
 
-            case 22: $_SESSION['raskin'] = $nomor; $pre = 'RASKIN : '; break;
+            case 22: $_SESSION['raskin'] = $nomor;
+                $pre                     = 'RASKIN : ';
+                break;
 
-            case 23: $_SESSION['id_blt'] = $nomor; $pre = 'BLT : '; break;
+            case 23: $_SESSION['id_blt'] = $nomor;
+                $pre                     = 'BLT : ';
+                break;
 
-            case 24: $_SESSION['id_bos'] = $nomor; $pre = 'BOS : '; break;
+            case 24: $_SESSION['id_bos'] = $nomor;
+                $pre                     = 'BOS : ';
+                break;
 
-            case 25: $_SESSION['id_pkh'] = $nomor; $pre = 'PKH : '; break;
+            case 25: $_SESSION['id_pkh'] = $nomor;
+                $pre                     = 'PKH : ';
+                break;
 
-            case 26: $_SESSION['id_jampersal'] = $nomor; $pre = 'JAMPERSAL : '; break;
+            case 26: $_SESSION['id_jampersal'] = $nomor;
+                $pre                           = 'JAMPERSAL : ';
+                break;
 
-            case 27: $_SESSION['id_bedah_rumah'] = $nomor; $pre = 'BEDAH RUMAH : '; break;
+            case 27: $_SESSION['id_bedah_rumah'] = $nomor;
+                $pre                             = 'BEDAH RUMAH : ';
+                break;
         }
         $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
         $data['paging']     = $this->keluarga_model->paging_statistik($p, $o);

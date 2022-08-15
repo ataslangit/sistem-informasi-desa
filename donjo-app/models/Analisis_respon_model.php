@@ -15,13 +15,17 @@ class Analisis_respon_model extends CI_Model
         $subjek = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
-            case 1: $sql = 'SELECT nik AS no_kk FROM tweb_penduduk UNION SELECT u.nama FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE status_dasar=1 '; break;
+            case 1: $sql = 'SELECT nik AS no_kk FROM tweb_penduduk UNION SELECT u.nama FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE status_dasar=1 ';
+                break;
 
-            case 2: $sql = 'SELECT no_kk FROM tweb_keluarga UNION SELECT p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 2: $sql = 'SELECT no_kk FROM tweb_keluarga UNION SELECT p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 3: $sql = 'SELECT no_kk FROM tweb_rtm UNION SELECT p.nama FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 3: $sql = 'SELECT no_kk FROM tweb_rtm UNION SELECT p.nama FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 4: $sql = 'SELECT u.nama AS no_kk FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 4: $sql = 'SELECT u.nama AS no_kk FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
             default: return null;
 
@@ -55,13 +59,17 @@ class Analisis_respon_model extends CI_Model
             $subjek     = $_SESSION['subjek_tipe'];
 
             switch ($subjek) {
-                case 1: $search_sql = " AND (u.nik LIKE '{$kw}' OR u.nama LIKE '{$kw}')"; break;
+                case 1: $search_sql = " AND (u.nik LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
+                    break;
 
-                case 2: $search_sql = " AND (u.no_kk LIKE '{$kw}' OR p.nama LIKE '{$kw}')"; break;
+                case 2: $search_sql = " AND (u.no_kk LIKE '{$kw}' OR p.nama LIKE '{$kw}')";
+                    break;
 
-                case 3: $search_sql = " AND ((u.no_kk LIKE '{$kw}' OR p.nama LIKE '{$kw}') OR ((SELECT COUNT(id) FROM tweb_penduduk WHERE nik LIKE '{$kw}' AND id_rtm = u.id) > 1) OR ((SELECT COUNT(id) FROM tweb_penduduk WHERE nama LIKE '{$kw}' AND id_rtm = u.id) > 1))"; break;
+                case 3: $search_sql = " AND ((u.no_kk LIKE '{$kw}' OR p.nama LIKE '{$kw}') OR ((SELECT COUNT(id) FROM tweb_penduduk WHERE nik LIKE '{$kw}' AND id_rtm = u.id) > 1) OR ((SELECT COUNT(id) FROM tweb_penduduk WHERE nama LIKE '{$kw}' AND id_rtm = u.id) > 1))";
+                    break;
 
-                case 4: $search_sql = " AND (u.nama LIKE '{$kw}' OR p.nama LIKE '{$kw}')"; break;
+                case 4: $search_sql = " AND (u.nama LIKE '{$kw}' OR p.nama LIKE '{$kw}')";
+                    break;
 
                 default: return null;
             }
@@ -127,13 +135,17 @@ class Analisis_respon_model extends CI_Model
         $subjek      = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
-            case 1: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE status_dasar=1 '; break;
+            case 1: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE status_dasar=1 ';
+                break;
 
-            case 2: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 2: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 3: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 3: $sql = 'SELECT COUNT(u.id) AS id FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 4: $sql = 'SELECT COUNT(u.id) AS id FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 4: $sql = 'SELECT COUNT(u.id) AS id FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
             default: return null;
 
@@ -168,13 +180,17 @@ class Analisis_respon_model extends CI_Model
         $id_kelompok = $master['id_kelompok'];
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.id'; break;
+            case 1: $order_sql = ' ORDER BY u.id';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.id DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.id DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.id'; break;
+            case 3: $order_sql = ' ORDER BY u.id';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.id DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.id DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.id';
         }
@@ -184,13 +200,17 @@ class Analisis_respon_model extends CI_Model
         $subjek = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
-            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.status_dasar = 1 '; break;
+            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.status_dasar = 1 ';
+                break;
 
-            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 '; break;
+            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt,(SELECT id_subjek FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ';
+                break;
 
             default: return null;
 
@@ -608,13 +628,17 @@ class Analisis_respon_model extends CI_Model
         $subjek = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
-            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.id = ? '; break;
+            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.id = ? ';
+                break;
 
-            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? '; break;
+            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? ';
+                break;
 
-            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? '; break;
+            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? ';
+                break;
 
-            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? '; break;
+            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE u.id = ? ';
+                break;
 
             default: return null;
 
@@ -630,9 +654,11 @@ class Analisis_respon_model extends CI_Model
         $subjek = $_SESSION['subjek_tipe'];
         if ($subjek === 2 || $subjek === 3) {
             switch ($subjek) {
-                case 2: $sql = 'SELECT u.* FROM tweb_penduduk u WHERE u.id_kk = ? ORDER BY kk_level'; break;
+                case 2: $sql = 'SELECT u.* FROM tweb_penduduk u WHERE u.id_kk = ? ORDER BY kk_level';
+                    break;
 
-                case 3: $sql = 'SELECT u.* FROM tweb_penduduk u WHERE u.id_rtm = ? ORDER BY rtm_level'; break;
+                case 3: $sql = 'SELECT u.* FROM tweb_penduduk u WHERE u.id_rtm = ? ORDER BY rtm_level';
+                    break;
 
                 default: return null;
             }
@@ -688,13 +714,17 @@ class Analisis_respon_model extends CI_Model
         $id_kelompok = $master['id_kelompok'];
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.id'; break;
+            case 1: $order_sql = ' ORDER BY u.id';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.id DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.id DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.id'; break;
+            case 3: $order_sql = ' ORDER BY u.id';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.id DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.id DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.id';
         }
@@ -706,15 +736,20 @@ class Analisis_respon_model extends CI_Model
         $subjek = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
-            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE 1 '; break;
+            case 1: $sql = 'SELECT u.id,u.nik AS nid,u.nama,u.sex,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE 1 ';
+                break;
 
-            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 '; break;
+            case 2: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ';
+                break;
 
-            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1'; break;
+            case 3: $sql = 'SELECT u.id,u.no_kk AS nid,p.nama,p.sex,c.dusun,c.rw,c.rt FROM tweb_rtm u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1';
+                break;
 
-            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 '; break;
+            case 4: $sql = 'SELECT u.id,u.kode AS nid,u.nama,p.sex,c.dusun,c.rw,c.rt FROM kelompok u LEFT JOIN tweb_penduduk p ON u.id_ketua = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ';
+                break;
 
-            default: return null; break;
+            default: return null;
+                break;
 
         }
         if ($id_kelompok !== 0) {

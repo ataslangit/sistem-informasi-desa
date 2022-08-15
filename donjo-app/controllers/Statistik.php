@@ -26,47 +26,68 @@ class Statistik extends CI_Controller
         $data['o']    = $o;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 0: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Cacat';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 13: $data['stat'] = 'Umur (Detail)'; break;
+            case 13: $data['stat'] = 'Umur (Detail)';
+                break;
 
-            case 15: $data['stat'] = 'Umur'; break;
+            case 15: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
@@ -92,47 +113,68 @@ class Statistik extends CI_Controller
         $data['lap']  = $lap;
 
         switch ($lap) {
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status Kependudukan'; break;
+            case 6: $data['stat'] = 'Status Kependudukan';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Difabilitas (Cacat)'; break;
+            case 9: $data['stat'] = 'Difabilitas (Cacat)';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 0: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 0: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 13: $data['stat'] = 'Umur (Detail)'; break;
+            case 13: $data['stat'] = 'Umur (Detail)';
+                break;
 
-            case 15: $data['stat'] = 'Umur'; break;
+            case 15: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
@@ -151,49 +193,71 @@ class Statistik extends CI_Controller
         $data['lap']  = $lap;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh'; break;
+            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh';
+                break;
 
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Cacat';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 12: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 12: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 13: $data['stat'] = 'Umur (Detail)'; break;
+            case 13: $data['stat'] = 'Umur (Detail)';
+                break;
 
-            case 15: $data['stat'] = 'Umur'; break;
+            case 15: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
@@ -211,47 +275,68 @@ class Statistik extends CI_Controller
         $data['lap'] = $lap;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh'; break;
+            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh';
+                break;
 
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Cacat';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 12: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 12: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 13: $data['stat'] = 'Umur'; break;
+            case 13: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
@@ -266,47 +351,68 @@ class Statistik extends CI_Controller
         $data['lap'] = $lap;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh'; break;
+            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh';
+                break;
 
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Cacat';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 12: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 12: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 13: $data['stat'] = 'Umur'; break;
+            case 13: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
@@ -321,47 +427,68 @@ class Statistik extends CI_Controller
         $data['lap'] = $lap;
 
         switch ($lap) {
-            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh'; break;
+            case 0: $data['stat'] = 'Pendidikan Telah Ditempuh';
+                break;
 
-            case 1: $data['stat'] = 'Pekerjaan'; break;
+            case 1: $data['stat'] = 'Pekerjaan';
+                break;
 
-            case 2: $data['stat'] = 'Status Perkawinan'; break;
+            case 2: $data['stat'] = 'Status Perkawinan';
+                break;
 
-            case 3: $data['stat'] = 'Agama'; break;
+            case 3: $data['stat'] = 'Agama';
+                break;
 
-            case 4: $data['stat'] = 'Jenis Kelamin'; break;
+            case 4: $data['stat'] = 'Jenis Kelamin';
+                break;
 
-            case 5: $data['stat'] = 'Warga Negara'; break;
+            case 5: $data['stat'] = 'Warga Negara';
+                break;
 
-            case 6: $data['stat'] = 'Status'; break;
+            case 6: $data['stat'] = 'Status';
+                break;
 
-            case 7: $data['stat'] = 'Golongan Darah'; break;
+            case 7: $data['stat'] = 'Golongan Darah';
+                break;
 
-            case 9: $data['stat'] = 'Cacat'; break;
+            case 9: $data['stat'] = 'Cacat';
+                break;
 
-            case 10: $data['stat'] = 'Sakit Menahun'; break;
+            case 10: $data['stat'] = 'Sakit Menahun';
+                break;
 
-            case 11: $data['stat'] = 'Jamkesmas'; break;
+            case 11: $data['stat'] = 'Jamkesmas';
+                break;
 
-            case 12: $data['stat'] = 'Pendidikan dalam KK'; break;
+            case 12: $data['stat'] = 'Pendidikan dalam KK';
+                break;
 
-            case 13: $data['stat'] = 'Umur'; break;
+            case 13: $data['stat'] = 'Umur';
+                break;
 
-            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 14: $data['stat'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            case 21: $data['stat'] = 'Klasifikasi Sosial'; break;
+            case 21: $data['stat'] = 'Klasifikasi Sosial';
+                break;
 
-            case 22: $data['stat'] = 'Penerima Raskin'; break;
+            case 22: $data['stat'] = 'Penerima Raskin';
+                break;
 
-            case 23: $data['stat'] = 'Penerima BLT'; break;
+            case 23: $data['stat'] = 'Penerima BLT';
+                break;
 
-            case 24: $data['stat'] = 'Penerima BOS'; break;
+            case 24: $data['stat'] = 'Penerima BOS';
+                break;
 
-            case 25: $data['stat'] = 'Penerima PKH'; break;
+            case 25: $data['stat'] = 'Penerima PKH';
+                break;
 
-            case 26: $data['stat'] = 'Penerima Jampersal'; break;
+            case 26: $data['stat'] = 'Penerima Jampersal';
+                break;
 
-            case 27: $data['stat'] = 'Penerima Bedah Rumah'; break;
+            case 27: $data['stat'] = 'Penerima Bedah Rumah';
+                break;
 
             default:$data['stat'] = 'Pendidikan';
         }
