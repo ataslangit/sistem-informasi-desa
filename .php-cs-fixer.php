@@ -12,7 +12,17 @@ $finder = Finder::create()
     ->exclude('docs')
     ->exclude('donjo-app/views');
 
-$overrides = [];
+$overrides = [
+    'no_extra_blank_lines' => ['tokens' => [
+        'case',
+        'curly_brace_block',
+        'default',
+        'extra',
+        'square_brace_block',
+        'switch',
+        'use',
+    ]],
+];
 
 $options = [
     'finder'       => $finder,
