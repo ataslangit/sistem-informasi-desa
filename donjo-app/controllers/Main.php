@@ -12,16 +12,18 @@ class Main extends CI_Controller
 
                     switch ($grup) {
                         case '1':
-                        case '2': redirect('admin/dashboard'); break;
+                        case '2': redirect('admin/dashboard');
+                            break;
 
                         case '3':
-                        case '4': redirect('web'); break;
+                        case '4': redirect('web');
+                            break;
 
                         default: if (isset($_SESSION['siteman'])) {
                             redirect('siteman');
-                            } else {
-                                redirect('first');
-                            }
+                        } else {
+                            redirect('first');
+                        }
                     }
                 }
             } else {

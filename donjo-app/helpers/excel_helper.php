@@ -881,7 +881,6 @@ class Spreadsheet_Excel_Reader
 
     public function _format_value($format, $num, $f)
     {
-
         // http://code.google.com/p/php-excel-reader/issues/detail?id=7
         if ((! $f && $format === '%s') || ($f === 49) || ($format === 'GENERAL')) {
             return ['string' => $num, 'formatColor' => null];
@@ -1431,12 +1430,10 @@ class Spreadsheet_Excel_Reader
                     $row    = ord($data[$spos]) | ord($data[$spos + 1]) << 8;
                     $column = ord($data[$spos + 2]) | ord($data[$spos + 3]) << 8;
                     if ((ord($data[$spos + 6]) === 0) && (ord($data[$spos + 12]) === 255) && (ord($data[$spos + 13]) === 255)) {
-
                         // http://code.google.com/p/php-excel-reader/issues/detail?id=4
                         $previousRow = $row;
                         $previousCol = $column;
                     } elseif ((ord($data[$spos + 6]) === 1) && (ord($data[$spos + 12]) === 255) && (ord($data[$spos + 13]) === 255)) {
-
                         // http://code.google.com/p/php-excel-reader/issues/detail?id=4
                         if (ord($this->data[$spos + 8]) === 1) {
                             $this->addcell($row, $column, 'TRUE');
@@ -1535,7 +1532,6 @@ class Spreadsheet_Excel_Reader
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_HYPER:
-
                     $row               = ord($this->data[$spos]) | ord($this->data[$spos + 1]) << 8;
                     $row2              = ord($this->data[$spos + 2]) | ord($this->data[$spos + 3]) << 8;
                     $column            = ord($this->data[$spos + 4]) | ord($this->data[$spos + 5]) << 8;
@@ -1705,7 +1701,6 @@ class Spreadsheet_Excel_Reader
         if (($rknum & 0x02) !== 0) {
             $value = $rknum >> 2;
         } else {
-
             // http://research.microsoft.com/~hollasch/cgindex/coding/ieeefloat.html
 
             $sign     = ($rknum & 0x80000000) >> 31;

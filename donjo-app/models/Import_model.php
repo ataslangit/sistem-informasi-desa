@@ -202,7 +202,6 @@ class Import_model extends CI_Model
 
     public function import_excel()
     {
-
         //if($_FILES['userfile']['type'] == "application/vnd.ms-excel"){
         $gagal  = 0;
         $baris2 = '';
@@ -589,7 +588,6 @@ class Import_model extends CI_Model
         $gg = 0;
 
         for ($i = 2; $i <= $baris; $i++) {
-
             //ID RuTa
             $id_rtm = $data->val($i, 2, $sheet);
 
