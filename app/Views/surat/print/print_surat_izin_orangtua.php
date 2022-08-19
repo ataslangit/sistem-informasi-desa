@@ -1,4 +1,4 @@
-<?php $this->load->view('print/headjs.php'); ?>
+<?php echo view('print/headjs.php'); ?>
 
 <body>
     <div id="content" class="container_12 clearfix">

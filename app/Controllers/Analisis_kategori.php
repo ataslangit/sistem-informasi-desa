@@ -52,10 +52,10 @@ class Analisis_kategori extends BaseController
         $data['analisis_master'] = $this->analisis_kategori_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_kategori/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_kategori/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -71,10 +71,10 @@ class Analisis_kategori extends BaseController
             $data['form_action']       = site_url('analisis_kategori/insert');
         }
 
-        //$this->load->view('header', $header);
-        //$this->load->view('analisis_master/nav');
-        $this->load->view('analisis_kategori/ajax_form', $data);
-        //$this->load->view('footer');
+        //echo view('header', $header);
+        //echo view('analisis_master/nav');
+        echo view('analisis_kategori/ajax_form', $data);
+        //echo view('footer');
     }
 
     public function search()

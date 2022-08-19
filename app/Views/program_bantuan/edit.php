@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-                $this->load->view('program_bantuan/menu_kiri.php')
+                echo view('program_bantuan/menu_kiri.php')
 ?>
             </td>
             <td class="contentpane">
@@ -77,7 +77,7 @@ echo '<option value="4" ' . $strC . '>Kelompok / Organisasi</option>';
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-                $this->load->view('program_bantuan/panduan.php')
+                echo view('program_bantuan/panduan.php')
 ?>
             </td>
         </tr>

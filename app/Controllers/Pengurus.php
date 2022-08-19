@@ -39,11 +39,11 @@ class Pengurus extends BaseController
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/pengurus', $data);
-        $this->load->view('footer');
+        echo view('home/nav', $nav);
+        echo view('home/pengurus', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -58,12 +58,12 @@ class Pengurus extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/pengurus_form', $data);
-        $this->load->view('footer');
+        echo view('home/nav', $nav);
+        echo view('home/pengurus_form', $data);
+        echo view('footer');
     }
 
     public function filter()

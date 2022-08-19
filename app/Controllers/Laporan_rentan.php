@@ -40,24 +40,24 @@ class Laporan_rentan extends BaseController
 
         $nav['act'] = 2;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('statistik/nav', $nav);
-        $this->load->view('laporan/kelompok', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('laporan/kelompok', $data);
+        echo view('footer');
     }
 
     public function cetak()
     {
         $data['config'] = $this->laporan_bulanan_model->configku();
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        $this->load->view('laporan/kelompok_print', $data);
+        echo view('laporan/kelompok_print', $data);
     }
 
     public function excel()
     {
         $data['config'] = $this->laporan_bulanan_model->configku();
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        $this->load->view('laporan/kelompok_excel', $data);
+        echo view('laporan/kelompok_excel', $data);
     }
 
     public function dusun()

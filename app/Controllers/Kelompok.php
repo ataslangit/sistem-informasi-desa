@@ -54,12 +54,12 @@ class Kelompok extends BaseController
         $data['list_master'] = $this->kelompok_model->list_master();
         $header              = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/table', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/table', $data);
+        echo view('footer');
     }
 
     public function anggota($id = 0)
@@ -69,12 +69,12 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $header           = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/anggota/table', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/anggota/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -94,12 +94,12 @@ class Kelompok extends BaseController
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/form', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/form', $data);
+        echo view('footer');
     }
 
     public function form_anggota($id = 0, $id_a = 0)
@@ -117,22 +117,22 @@ class Kelompok extends BaseController
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/anggota/form', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/anggota/form', $data);
+        echo view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('kelompok/nav2');
-        $this->load->view('kelompok/panduan');
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('kelompok/nav2');
+        echo view('kelompok/panduan');
+        echo view('footer');
     }
 
     public function cetak()
@@ -140,7 +140,7 @@ class Kelompok extends BaseController
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        $this->load->view('kelompok/cetak', $data);
+        echo view('kelompok/cetak', $data);
     }
 
     public function excel()
@@ -148,7 +148,7 @@ class Kelompok extends BaseController
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        $this->load->view('kelompok/excel', $data);
+        echo view('kelompok/excel', $data);
     }
 
     public function cetak_a($id = 0)
@@ -157,7 +157,7 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        $this->load->view('kelompok/anggota/cetak', $data);
+        echo view('kelompok/anggota/cetak', $data);
     }
 
     public function excel_a($id = 0)
@@ -166,7 +166,7 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        $this->load->view('kelompok/anggota/excel', $data);
+        echo view('kelompok/anggota/excel', $data);
     }
 
     public function menu($id = '')
@@ -194,10 +194,10 @@ class Kelompok extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('kelompok/nav');
-        $this->load->view('kelompok/menu', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('kelompok/nav');
+        echo view('kelompok/menu', $data);
+        echo view('footer');
     }
 
     public function search()

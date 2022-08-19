@@ -39,11 +39,11 @@ class Modul extends BaseController
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('setting/nav', $nav);
-        $this->load->view('setting/modul/table', $data);
-        $this->load->view('footer');
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/table', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -58,12 +58,12 @@ class Modul extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        $this->load->view('setting/nav', $nav);
-        $this->load->view('setting/modul/form', $data);
-        $this->load->view('footer');
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/form', $data);
+        echo view('footer');
     }
 
     public function filter()

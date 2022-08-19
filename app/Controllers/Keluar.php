@@ -44,11 +44,11 @@ class Keluar extends BaseController
         $data['keyword']  = $this->surat_keluar_model->autocomplete();
         $header           = $this->header_model->get_data();
         $nav['act']       = 2;
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -85,11 +85,11 @@ class Keluar extends BaseController
         $data['nik']['no']   = $nik;
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar_perorangan', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar_perorangan', $data);
+        echo view('footer');
     }
 
     public function graph()
@@ -98,11 +98,11 @@ class Keluar extends BaseController
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
         $data['stat']        = $this->surat_keluar_model->grafik();
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar_graph', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar_graph', $data);
+        echo view('footer');
     }
 
     public function filter()

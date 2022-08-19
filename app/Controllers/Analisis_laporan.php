@@ -85,10 +85,10 @@ class Analisis_laporan extends BaseController
         $data['analisis_periode'] = $this->analisis_laporan_model->get_periode();
         $header                   = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_laporan/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_laporan/table', $data);
+        echo view('footer');
     }
 
     public function kuisioner($p = 1, $o = 0, $id = '')
@@ -106,22 +106,22 @@ class Analisis_laporan extends BaseController
         $data['form_action']  = site_url("analisis_laporan/update_kuisioner/{$p}/{$o}/{$id}");
 
         $header = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_laporan/form', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_laporan/form', $data);
+        echo view('footer');
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->analisis_laporan_model->list_data($o, 0, 10000);
-        $this->load->view('analisis_laporan/table_print', $data);
+        echo view('analisis_laporan/table_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->analisis_laporan_model->list_data($o, 0, 10000);
-        $this->load->view('analisis_laporan/table_excel', $data);
+        echo view('analisis_laporan/table_excel', $data);
     }
 
     public function multi_jawab()
@@ -129,7 +129,7 @@ class Analisis_laporan extends BaseController
         //echo phpinfo();
         $data['form_action'] = site_url('analisis_laporan/multi_exec');
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
-        $this->load->view('analisis_laporan/ajax_multi', $data);
+        echo view('analisis_laporan/ajax_multi', $data);
     }
 
     public function multi_exec()
@@ -148,7 +148,7 @@ class Analisis_laporan extends BaseController
         }
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
         $data['form_action'] = site_url('analisis_laporan/multi_jawab_proses');
-        $this->load->view('analisis_laporan/ajax_multi', $data);
+        echo view('analisis_laporan/ajax_multi', $data);
     }
 
     public function multi_jawab_proses()

@@ -65,10 +65,10 @@ class Plan extends BaseController
         $header     = $this->header_model->get_data();
         $nav['act'] = 3;
 
-        $this->load->view('header-gis', $header);
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('lokasi/table', $data);
-        $this->load->view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('lokasi/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -90,11 +90,11 @@ class Plan extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        $this->load->view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('lokasi/form', $data);
-        $this->load->view('footer');
+        echo view('plan/nav', $nav);
+        echo view('lokasi/form', $data);
+        echo view('footer');
     }
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
@@ -109,7 +109,7 @@ class Plan extends BaseController
 
         $data['desa']        = $this->plan_lokasi_model->get_desa();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
-        $this->load->view('lokasi/maps', $data);
+        echo view('lokasi/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')

@@ -7,7 +7,7 @@
     });
 </script>
 <div id="pageC">
-    <?php $this->load->view('analisis_master/left', $data); ?>
+    <?php echo view('analisis_master/left', $data); ?>
     <div id="contentpane">
         <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">

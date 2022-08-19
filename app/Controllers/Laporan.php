@@ -61,10 +61,10 @@ class Laporan extends BaseController
         $data['lap']            = $lap;
         $nav['act']             = 3;
         $header                 = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('statistik/nav', $nav);
-        $this->load->view('laporan/bulanan', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('laporan/bulanan', $data);
+        echo view('footer');
     }
 
     public function cetak($lap = 0)
@@ -81,7 +81,7 @@ class Laporan extends BaseController
         $data['pindah']         = $this->laporan_bulanan_model->pindah();
         $data['hilang']         = $this->laporan_bulanan_model->hilang();
         $data['lap']            = $lap;
-        $this->load->view('laporan/bulanan_print', $data);
+        echo view('laporan/bulanan_print', $data);
     }
 
     public function excel($lap = 0)
@@ -98,7 +98,7 @@ class Laporan extends BaseController
         $data['pindah']         = $this->laporan_bulanan_model->pindah();
         $data['hilang']         = $this->laporan_bulanan_model->hilang();
         $data['lap']            = $lap;
-        $this->load->view('statistik/laporan/bulanan_excel', $data);
+        echo view('statistik/laporan/bulanan_excel', $data);
     }
 
     public function bulan()

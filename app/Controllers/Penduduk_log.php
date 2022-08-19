@@ -107,10 +107,10 @@ class Penduduk_log extends BaseController
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;
 
-        $this->load->view('header', $header);
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('sid/kependudukan/penduduk_log', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/penduduk_log', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -194,7 +194,7 @@ class Penduduk_log extends BaseController
     {
         $data['nik']         = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url("penduduk_log/update_status_dasar/{$p}/{$o}/{$id}");
-        $this->load->view('sid/kependudukan/ajax_edit_status_dasar', $data);
+        echo view('sid/kependudukan/ajax_edit_status_dasar', $data);
     }
 
     public function update_status_dasar($p = 1, $o = 0, $id = '')
@@ -206,7 +206,7 @@ class Penduduk_log extends BaseController
     public function cetak($o = 0)
     {
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-        $this->load->view('sid/kependudukan/penduduk_print', $data);
+        echo view('sid/kependudukan/penduduk_print', $data);
     }
 
     public function delete_all($p = 1, $o = 0)

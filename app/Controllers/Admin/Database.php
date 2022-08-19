@@ -27,10 +27,10 @@ class Database extends BaseController
     {
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('nav', $nav);
-        $this->load->view('export/exp');
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('export/exp');
+        echo view('footer');
     }
 
     public function import()
@@ -39,10 +39,10 @@ class Database extends BaseController
         $data['form_action']  = site_url('admin/database/import_dasar');
         $data['form_action3'] = site_url('admin/database/ppls_individu');
         $header               = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('nav', $nav);
-        $this->load->view('import/imp', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/imp', $data);
+        echo view('footer');
     }
 
     public function siak()
@@ -50,10 +50,10 @@ class Database extends BaseController
         $nav['act']          = 6;
         $data['form_action'] = site_url('admin/database/import_siak');
         $header              = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('nav', $nav);
-        $this->load->view('import/siak', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/siak', $data);
+        echo view('footer');
     }
 
     public function import_ppls()
@@ -63,10 +63,10 @@ class Database extends BaseController
         $data['form_action2'] = site_url('admin/database/ppls_rumahtangga');
         //$data['form_action'] = site_url("database/ppls_kuisioner");
         $header = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('nav', $nav);
-        $this->load->view('import/ppls', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/ppls', $data);
+        echo view('footer');
     }
 
     public function backup()
@@ -74,10 +74,10 @@ class Database extends BaseController
         $nav['act']          = 3;
         $data['form_action'] = site_url('admin/database/restore');
         $header              = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('nav', $nav);
-        $this->load->view('database/backup', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('database/backup', $data);
+        echo view('footer');
     }
 
     public function export_dasar()
@@ -96,20 +96,20 @@ class Database extends BaseController
         $data['form_action']  = site_url('admin/database/import_dasar');
         $data['form_action2'] = site_url('admin/database/import_akp');
         $header               = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('export/nav', $nav);
-        $this->load->view('export/imp', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('export/nav', $nav);
+        echo view('export/imp', $data);
+        echo view('footer');
     }
 
     public function pre_migrate()
     {
         $nav['act'] = 3;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('export/nav', $nav);
-        $this->load->view('export/mig');
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('export/nav', $nav);
+        echo view('export/mig');
+        echo view('footer');
     }
 
     public function migrate()
@@ -174,7 +174,7 @@ class Database extends BaseController
 
     public function exec_backup()
     {
-        $this->load->view('database/export');
+        echo view('database/export');
         //	redirect('database/backup');
     }
 
@@ -199,12 +199,12 @@ class Database extends BaseController
     public function export_excel()
     {
         $data['main'] = $this->export_model->export_excel();
-        $this->load->view('export/penduduk_excel', $data);
+        echo view('export/penduduk_excel', $data);
     }
 
     public function export_csv()
     {
         $data['main'] = $this->export_model->export_excel();
-        $this->load->view('export/penduduk_csv', $data);
+        echo view('export/penduduk_csv', $data);
     }
 }

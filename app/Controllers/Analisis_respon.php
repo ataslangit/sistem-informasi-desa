@@ -87,10 +87,10 @@ class Analisis_respon extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_respon/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_respon/table', $data);
+        echo view('footer');
     }
 
     public function kuisioner($p = 1, $o = 0, $id = '', $fs = 0)
@@ -120,15 +120,15 @@ class Analisis_respon extends BaseController
 
         $header = $this->header_model->get_data();
         if (isset($_SESSION['fullscreen'])) {
-            $this->load->view('header-min', $header);
+            echo view('header-min', $header);
         } else {
-            $this->load->view('header', $header);
-            $this->load->view('analisis_master/nav');
+            echo view('header', $header);
+            echo view('analisis_master/nav');
         }
 
-        $this->load->view('analisis_respon/form', $data);
+        echo view('analisis_respon/form', $data);
 
-        $this->load->view('footer');
+        echo view('footer');
     }
 
     public function update_kuisioner($p = 1, $o = 0, $id = '')
@@ -146,7 +146,7 @@ class Analisis_respon extends BaseController
         $data['list_jawab']  = $this->analisis_respon_model->list_indikator_child($idc);
         $data['form_action'] = site_url("analisis_respon/update_kuisioner_child/{$p}/{$o}/{$id}/{$idc}");
 
-        $this->load->view('analisis_respon/form_ajax', $data);
+        echo view('analisis_respon/form_ajax', $data);
     }
 
     public function update_kuisioner_child($p = 1, $o = 0, $id = '', $idc = '')
@@ -158,18 +158,18 @@ class Analisis_respon extends BaseController
 
     public function aturan_ajax()
     {
-        $this->load->view('analisis_respon/import/aturan_ajax');
+        echo view('analisis_respon/import/aturan_ajax');
     }
 
     public function aturan_unduh()
     {
         $data['main'] = $this->analisis_respon_model->aturan_unduh();
-        $this->load->view('analisis_respon/import/aturan_unduh', $data);
+        echo view('analisis_respon/import/aturan_unduh', $data);
     }
 
     public function data_ajax()
     {
-        $this->load->view('analisis_respon/import/data_ajax');
+        echo view('analisis_respon/import/data_ajax');
     }
 
     public function data_unduh($p = 0, $o = 0)
@@ -177,13 +177,13 @@ class Analisis_respon extends BaseController
         $data['main']      = $this->analisis_respon_model->data_unduh($p, $o);
         $data['periode']   = $this->analisis_respon_model->get_aktif_periode();
         $data['indikator'] = $this->analisis_respon_model->indikator_unduh($p, $o);
-        $this->load->view('analisis_respon/import/data_unduh', $data);
+        echo view('analisis_respon/import/data_unduh', $data);
     }
 
     public function import($op = 0)
     {
         $data['form_action'] = site_url("analisis_respon/import_proses/{$op}");
-        $this->load->view('analisis_respon/import/import', $data);
+        echo view('analisis_respon/import/import', $data);
     }
 
     public function satu_jiwa($op = 0)

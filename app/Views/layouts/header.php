@@ -56,12 +56,12 @@
                     <div id="headercontent">
                         <div id="menu_vert">
                             <div id="menuwrapper">
-                                <?php $this->load->view('partials/menu.tpl.php'); ?>
+                                <?php echo view('partials/menu.tpl.php'); ?>
                             </div>
                         </div>
                         <div id="menu_vert2">
                             <?php if (count($slide) > 0) {
-                                $this->load->view('layouts/slide.php');
+                                echo view('layouts/slide.php');
                             } ?>
                         </div>
                     </div>
@@ -91,11 +91,11 @@
                 </div>
 
                 <?php if (count($teks_berjalan) > 0) {
-                    $this->load->view('layouts/teks_berjalan.php');
+                    echo view('layouts/teks_berjalan.php');
                 } ?>
 
                 <div id="mainmenu">
-                    <?php $this->load->view('partials/menu.left.php'); ?>
+                    <?php echo view('partials/menu.left.php'); ?>
                 </div>
 
             </div>

@@ -54,12 +54,12 @@ class Kelompok_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok_master/table', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -77,12 +77,12 @@ class Kelompok_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok_master/form', $data);
-        $this->load->view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/form', $data);
+        echo view('footer');
     }
 
     public function search()

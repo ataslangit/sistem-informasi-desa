@@ -36,20 +36,20 @@ class Dashboard extends BaseController
         $header            = $this->header_model->get_data();
         $data['main']      = $this->config_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/konfigurasi_form', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('home/nav', $nav);
+        echo view('home/konfigurasi_form', $data);
+        echo view('footer');
     }
 
     public function about()
     {
         $nav['act'] = 2;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('home/nav', $nav);
-        $this->load->view('home/desa');
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('home/nav', $nav);
+        echo view('home/desa');
+        echo view('footer');
     }
 
     public function insert()
@@ -69,14 +69,14 @@ class Dashboard extends BaseController
     {
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url('admin/pengaturan_desa/ajax_kantor_maps');
-        $this->load->view('home/ajax_kantor_desa_maps', $data);
+        echo view('home/ajax_kantor_desa_maps', $data);
     }
 
     public function ajax_wilayah_maps()
     {
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url('admin/pengaturan_desa/ajax_wilayah_maps');
-        $this->load->view('home/ajax_wilayah_desa_maps', $data);
+        echo view('home/ajax_wilayah_desa_maps', $data);
     }
 
     public function update_kantor_maps()

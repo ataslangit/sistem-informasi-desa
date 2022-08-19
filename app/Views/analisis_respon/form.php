@@ -62,7 +62,7 @@
 </style>
 <div id="pageC">
     <?php if (! isset($_SESSION['fullscreen'])) { ?>
-        <?php $this->load->view('analisis_master/left', $data); ?>
+        <?php echo view('analisis_master/left', $data); ?>
     <?php } ?>
     <div class="content-header">
     </div>

@@ -50,11 +50,11 @@ class Garis extends BaseController
         $header               = $this->header_model->get_data();
         $nav['act']           = 1;
 
-        $this->load->view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('garis/table', $data);
-        $this->load->view('footer');
+        echo view('plan/nav', $nav);
+        echo view('garis/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -73,11 +73,11 @@ class Garis extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 1;
-        $this->load->view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('garis/form', $data);
-        $this->load->view('footer');
+        echo view('plan/nav', $nav);
+        echo view('garis/form', $data);
+        echo view('footer');
     }
 
     public function ajax_garis_maps($p = 1, $o = 0, $id = '')
@@ -92,7 +92,7 @@ class Garis extends BaseController
 
         $data['desa']        = $this->plan_garis_model->get_desa();
         $data['form_action'] = site_url("garis/update_maps/{$p}/{$o}/{$id}");
-        $this->load->view('garis/maps', $data);
+        echo view('garis/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')

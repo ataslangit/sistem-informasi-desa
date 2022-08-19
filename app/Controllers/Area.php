@@ -50,11 +50,11 @@ class Area extends BaseController
         $header                  = $this->header_model->get_data();
         $nav['act']              = 4;
 
-        $this->load->view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('area/table', $data);
-        $this->load->view('footer');
+        echo view('plan/nav', $nav);
+        echo view('area/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -76,11 +76,11 @@ class Area extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;
-        $this->load->view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('area/form', $data);
-        $this->load->view('footer');
+        echo view('plan/nav', $nav);
+        echo view('area/form', $data);
+        echo view('footer');
     }
 
     public function ajax_area_maps($p = 1, $o = 0, $id = '')
@@ -95,7 +95,7 @@ class Area extends BaseController
 
         $data['desa']        = $this->plan_area_model->get_desa();
         $data['form_action'] = site_url("area/update_maps/{$p}/{$o}/{$id}");
-        $this->load->view('area/maps', $data);
+        echo view('area/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')

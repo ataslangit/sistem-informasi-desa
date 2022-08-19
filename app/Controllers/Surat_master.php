@@ -44,11 +44,11 @@ class Surat_master extends BaseController
         $data['keyword'] = $this->surat_master_model->autocomplete();
         $header          = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/table', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -66,17 +66,17 @@ class Surat_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/form', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/form', $data);
+        echo view('footer');
     }
 
     public function form_upload($p = 1, $o = 0, $url = '')
     {
         $data['form_action'] = site_url("surat_master/upload/{$p}/{$o}/{$url}");
-        $this->load->view('surat_master/ajax-upload', $data);
+        echo view('surat_master/ajax-upload', $data);
     }
 
     public function atribut($id = '')
@@ -87,11 +87,11 @@ class Surat_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/atribut/table', $data);
-        $this->load->view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/atribut/table', $data);
+        echo view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -107,10 +107,10 @@ class Surat_master extends BaseController
         $data['surat']        = $this->surat_master_model->get_surat();
         $data['surat_master'] = $this->surat_master_model->get_surat_master($in);
 
-        //	$this->load->view('header', $header);
-        //	$this->load->view('surat/nav');
-        $this->load->view('surat_master/atribut/ajax_form', $data);
-        //	$this->load->view('footer');
+        //	echo view('header', $header);
+        //	echo view('surat/nav');
+        echo view('surat_master/atribut/ajax_form', $data);
+        //	echo view('footer');
     }
 
     public function menu($id = '')
@@ -119,10 +119,10 @@ class Surat_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('surat/nav');
-        $this->load->view('surat_master/menu', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('surat/nav');
+        echo view('surat_master/menu', $data);
+        echo view('footer');
     }
 
     public function search()

@@ -96,10 +96,10 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('statistik/nav', $nav);
-        $this->load->view('statistik/penduduk', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk', $data);
+        echo view('footer');
     }
 
     public function clear()
@@ -183,10 +183,10 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('statistik/nav', $nav);
-        $this->load->view('statistik/penduduk_graph', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk_graph', $data);
+        echo view('footer');
     }
 
     public function pie($lap = 0)
@@ -266,10 +266,10 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        $this->load->view('header', $header);
-        $this->load->view('statistik/nav', $nav);
-        $this->load->view('statistik/penduduk_pie', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk_pie', $data);
+        echo view('footer');
     }
 
     public function cetak($lap = 0)
@@ -345,7 +345,7 @@ class Statistik extends BaseController
 
         $data['config'] = $this->laporan_penduduk_model->get_config();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
-        $this->load->view('statistik/penduduk_print', $data);
+        echo view('statistik/penduduk_print', $data);
     }
 
     public function excel($lap = 0)
@@ -421,7 +421,7 @@ class Statistik extends BaseController
 
         $data['config'] = $this->laporan_penduduk_model->get_config();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
-        $this->load->view('statistik/penduduk_excel', $data);
+        echo view('statistik/penduduk_excel', $data);
     }
 
     public function warga($lap = '', $data = '')
@@ -510,11 +510,11 @@ class Statistik extends BaseController
         $header       = $this->header_model->get_data();
         $menu['act']  = '2';
 
-        $this->load->view('header', $header);
-        //$this->load->view('statistik/menu');
-        $this->load->view('statistik/nav', $menu);
-        $this->load->view('statistik/rentang_umur', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        //echo view('statistik/menu');
+        echo view('statistik/nav', $menu);
+        echo view('statistik/rentang_umur', $data);
+        echo view('footer');
     }
 
     public function form_rentang($id = 0)
@@ -528,7 +528,7 @@ class Statistik extends BaseController
             $data['form_action'] = site_url("statistik/rentang_update/{$id}");
             $data['rentang']     = $this->laporan_penduduk_model->get_rentang($id);
         }
-        $this->load->view('statistik/ajax_rentang_form', $data);
+        echo view('statistik/ajax_rentang_form', $data);
     }
 
     public function rentang_insert()

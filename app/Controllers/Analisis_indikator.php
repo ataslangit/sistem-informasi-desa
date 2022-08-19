@@ -70,10 +70,10 @@ class Analisis_indikator extends BaseController
         $data['list_kategori']   = $this->analisis_indikator_model->list_kategori();
         $header                  = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_indikator/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -93,10 +93,10 @@ class Analisis_indikator extends BaseController
         $header                  = $this->header_model->get_data();
         $data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_indikator/form', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/form', $data);
+        echo view('footer');
     }
 
     public function parameter($id = '')
@@ -112,10 +112,10 @@ class Analisis_indikator extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_indikator/parameter/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/parameter/table', $data);
+        echo view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -131,10 +131,10 @@ class Analisis_indikator extends BaseController
         $data['analisis_master']    = $this->analisis_indikator_model->get_analisis_master();
         $data['analisis_indikator'] = $this->analisis_indikator_model->get_analisis_indikator($in);
 
-        //	$this->load->view('header', $header);
-        //	$this->load->view('analisis_master/nav');
-        $this->load->view('analisis_indikator/parameter/ajax_form', $data);
-        //	$this->load->view('footer');
+        //	echo view('header', $header);
+        //	echo view('analisis_master/nav');
+        echo view('analisis_indikator/parameter/ajax_form', $data);
+        //	echo view('footer');
     }
 
     public function menu($id = '')
@@ -143,10 +143,10 @@ class Analisis_indikator extends BaseController
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_indikator/menu', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/menu', $data);
+        echo view('footer');
     }
 
     public function search()

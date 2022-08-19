@@ -45,18 +45,18 @@ class Mandiri extends BaseController
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 1;
-        $this->load->view('header', $header);
+        echo view('header', $header);
 
-        $this->load->view('lapor/nav', $nav);
-        $this->load->view('mandiri/mandiri', $data);
-        $this->load->view('footer');
+        echo view('lapor/nav', $nav);
+        echo view('mandiri/mandiri', $data);
+        echo view('footer');
     }
 
     public function ajax_pin($p = 1, $o = 0, $id = 0)
     {
         $data['penduduk']    = $this->mandiri_model->list_penduduk();
         $data['form_action'] = site_url("mandiri/insert/{$id}");
-        $this->load->view('mandiri/ajax_pin', $data);
+        echo view('mandiri/ajax_pin', $data);
     }
 
     public function search()

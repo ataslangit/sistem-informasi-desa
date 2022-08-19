@@ -48,10 +48,10 @@ class Komentar extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('komentar/table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('komentar/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -72,11 +72,11 @@ class Komentar extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        $this->load->view('header', $header);
-        $this->load->view('web/spacer');
-        $this->load->view('web/nav', $nav);
-        $this->load->view('komentar/form', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('web/spacer');
+        echo view('web/nav', $nav);
+        echo view('komentar/form', $data);
+        echo view('footer');
     }
 
     public function search()

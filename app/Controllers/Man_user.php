@@ -48,10 +48,10 @@ class Man_user extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = 'man_user';
 
-        $this->load->view('header', $header);
-        $this->load->view('man_user/nav');
-        $this->load->view('man_user/manajemen_user_table', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -70,10 +70,10 @@ class Man_user extends BaseController
         $data['grup'] = $this->user_model->list_grup();
         $header       = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('man_user/nav');
-        $this->load->view('man_user/manajemen_user_form', $data);
-        $this->load->view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_form', $data);
+        echo view('footer');
     }
 
     public function search()
