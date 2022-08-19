@@ -1,16 +1,24 @@
 {
     "name": "codeigniter4/appstarter",
-    "type": "project",
     "description": "CodeIgniter4 starter app",
-    "homepage": "https://codeigniter.com",
     "license": "MIT",
+    "type": "project",
+    "homepage": "https://codeigniter.com",
+    "support": {
+        "forum": "http://forum.codeigniter.com/",
+        "source": "https://github.com/codeigniter4/CodeIgniter4",
+        "slack": "https://codeigniterchat.slack.com"
+    },
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0"
     },
     "require-dev": {
+        "codeigniter/coding-standard": "^1.1",
         "fakerphp/faker": "^1.9",
+        "friendsofphp/php-cs-fixer": "^3",
         "mikey179/vfsstream": "^1.6",
+        "nexusphp/cs-config": "^3.3",
         "phpunit/phpunit": "^9.1"
     },
     "suggest": {
@@ -28,10 +36,5 @@
     },
     "scripts": {
         "test": "phpunit"
-    },
-    "support": {
-        "forum": "http://forum.codeigniter.com/",
-        "source": "https://github.com/codeigniter4/CodeIgniter4",
-        "slack": "https://codeigniterchat.slack.com"
     }
 }
