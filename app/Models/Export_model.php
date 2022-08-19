@@ -1,6 +1,10 @@
 <?php
 
-class Export_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Export_model extends Model
 {
     public function export_dasar()
     {

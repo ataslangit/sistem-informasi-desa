@@ -1,5 +1,5 @@
 <?php
-?><?php class Plan_area_model extends CI_Model
+?><?php class Plan_area_model extends Model
 {
     public function autocomplete()
     {

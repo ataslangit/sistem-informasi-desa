@@ -1,6 +1,10 @@
 <?php
 
-class First_keluarga_m extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class First_keluarga_m extends Model
 {
     public function list_raskin($tipex = 0)
     {

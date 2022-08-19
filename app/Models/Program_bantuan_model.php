@@ -1,6 +1,10 @@
 <?php
 
-class Program_bantuan_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Program_bantuan_model extends Model
 {
     public function list_program($sasaran = 0)
     {
@@ -226,7 +230,7 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             default:
-            }
+        }
 
         return [$hasil0, $hasil1, $hasil2];
     }
@@ -314,7 +318,7 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             default:
-            }
+        }
         if (! $data_program === false) {
             return [$data_program, $data_profil];
         }

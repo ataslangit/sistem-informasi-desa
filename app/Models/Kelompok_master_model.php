@@ -1,6 +1,10 @@
 <?php
 
-class Kelompok_master_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Kelompok_master_model extends Model
 {
     public function autocomplete()
     {

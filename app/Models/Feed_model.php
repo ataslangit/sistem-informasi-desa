@@ -1,6 +1,10 @@
 <?php
 
-class Feed_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Feed_model extends Model
 {
     public function list_feeds()
     {

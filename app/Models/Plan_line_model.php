@@ -1,6 +1,10 @@
 <?php
 
-class Plan_line_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Plan_line_model extends Model
 {
     public function autocomplete()
     {

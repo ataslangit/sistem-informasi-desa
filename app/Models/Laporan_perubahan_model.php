@@ -1,6 +1,10 @@
 <?php
 
-class Laporan_perubahan_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Laporan_perubahan_model extends Model
 {
     public function bulan($bulan)
     {

@@ -1,6 +1,10 @@
 <?php
 
-class Import_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Import_model extends Model
 {
     public function __construct()
     {

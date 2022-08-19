@@ -1,6 +1,10 @@
 <?php
 
-class Web_kategori_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Web_kategori_model extends Model
 {
     public function autocomplete()
     {

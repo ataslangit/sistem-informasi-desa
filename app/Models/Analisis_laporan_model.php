@@ -1,6 +1,10 @@
 <?php
 
-class Analisis_laporan_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Analisis_laporan_model extends Model
 {
     public function autocomplete()
     {
@@ -389,7 +393,7 @@ class Analisis_laporan_model extends CI_Model
                 break;
 
             default:
-            }
+        }
         $asign_sql = ' AND i.asign = 1';
         $order_sql = ' ORDER BY u.nomor,i.kode_jawaban ASC';
 

@@ -1,6 +1,10 @@
 <?php
 
-class Analisis_indikator_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Analisis_indikator_model extends Model
 {
     protected $table = 'analisis_indikator';
 

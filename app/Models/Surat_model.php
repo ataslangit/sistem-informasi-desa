@@ -1,6 +1,10 @@
 <?php
 
-class Surat_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Surat_model extends Model
 {
     public function list_surat()
     {

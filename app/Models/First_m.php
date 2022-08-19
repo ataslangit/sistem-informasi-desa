@@ -1,6 +1,10 @@
 <?php
 
-class First_m extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class First_m extends Model
 {
     public function get_data()
     {
