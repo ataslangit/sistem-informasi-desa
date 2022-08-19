@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Main');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -35,7 +35,23 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Main::index');
+
+// route admin
+$routes->get('hom_desa', 'Admin/dashboard/index'); // redirect ke dashboard
+$routes->get('admin/dashboard', 'Admin/dashboard/dashboard');
+
+$routes->get('admin/about', 'Admin/dashboard/about');
+
+$routes->get('admin/pengaturan_desa/update/(:any)', 'Admin/dashboard/update/$1');
+$routes->get('admin/pengaturan_desa/ajax_kantor_maps', 'Admin/dashboard/ajax_kantor_maps');
+$routes->get('admin/pengaturan_desa/ajax_wilayah_maps', 'Admin/dashboard/ajax_wilayah_maps');
+
+// halaman database
+$routes->get('database', 'Admin/database/index'); // lempar ke halaman database
+$routes->get('admin/database', 'Admin/database/index');
+$routes->get('admin/database/import', 'Admin/database/import');
+$routes->get('admin/database/exec_backup', 'Admin/database/exec_backup');
 
 /*
  * --------------------------------------------------------------------

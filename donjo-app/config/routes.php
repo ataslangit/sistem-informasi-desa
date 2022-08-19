@@ -52,18 +52,4 @@ $route['default_controller']   = 'main';
 $route['404_override']         = '';
 $route['translate_uri_dashes'] = false;
 
-// route admin
-$route['hom_desa']        = 'Admin/dashboard/index'; // redirect ke dashboard
-$route['admin/dashboard'] = 'Admin/dashboard/dashboard';
 
-$route['admin/about'] = 'Admin/dashboard/about';
-
-$route['admin/pengaturan_desa/update/(:any)']     = 'Admin/dashboard/update/$1';
-$route['admin/pengaturan_desa/ajax_kantor_maps']  = 'Admin/dashboard/ajax_kantor_maps';
-$route['admin/pengaturan_desa/ajax_wilayah_maps'] = 'Admin/dashboard/ajax_wilayah_maps';
-
-// halaman database
-$route['database']                   = 'Admin/database/index'; // lempar ke halaman database
-$route['admin/database']             = 'Admin/database/index';
-$route['admin/database/import']      = 'Admin/database/import';
-$route['admin/database/exec_backup'] = 'Admin/database/exec_backup';
