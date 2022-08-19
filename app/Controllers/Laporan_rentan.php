@@ -1,6 +1,8 @@
 <?php
 
-class Laporan_rentan extends CI_Controller
+namespace App\Controllers;
+
+class Laporan_rentan extends BaseController
 {
     public function __construct()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class Surat_master extends CI_Controller
+namespace App\Controllers;
+
+class Surat_master extends BaseController
 {
     public function __construct()
     {

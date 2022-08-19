@@ -1,6 +1,8 @@
 <?php
 
-class Keluar extends CI_Controller
+namespace App\Controllers;
+
+class Keluar extends BaseController
 {
     public function __construct()
     {

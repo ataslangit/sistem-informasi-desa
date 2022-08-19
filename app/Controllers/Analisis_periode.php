@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_periode extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_periode extends BaseController
 {
     public function __construct()
     {

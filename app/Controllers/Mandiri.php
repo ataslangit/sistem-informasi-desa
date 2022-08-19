@@ -1,6 +1,8 @@
 <?php
 
-class Mandiri extends CI_Controller
+namespace App\Controllers;
+
+class Mandiri extends BaseController
 {
     public function __construct()
     {

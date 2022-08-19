@@ -1,6 +1,8 @@
 <?php
 
-class User_setting extends CI_Controller
+namespace App\Controllers;
+
+class User_setting extends BaseController
 {
     public function __construct()
     {

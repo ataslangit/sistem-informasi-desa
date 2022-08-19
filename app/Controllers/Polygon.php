@@ -1,6 +1,8 @@
 <?php
 
-class Polygon extends CI_Controller
+namespace App\Controllers;
+
+class Polygon extends BaseController
 {
     public function clear()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class Modul extends CI_Controller
+namespace App\Controllers;
+
+class Modul extends BaseController
 {
     public function __construct()
     {

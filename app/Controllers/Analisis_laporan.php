@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_laporan extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_laporan extends BaseController
 {
     public function __construct()
     {

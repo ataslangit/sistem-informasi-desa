@@ -1,6 +1,8 @@
 <?php
 
-class Sosmed extends CI_Controller
+namespace App\Controllers;
+
+class Sosmed extends BaseController
 {
     public function __construct()
     {

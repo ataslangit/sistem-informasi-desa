@@ -1,6 +1,8 @@
 <?php
 
-class Pengurus extends CI_Controller
+namespace App\Controllers;
+
+class Pengurus extends BaseController
 {
     public function __construct()
     {

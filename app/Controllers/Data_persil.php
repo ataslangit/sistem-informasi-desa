@@ -1,6 +1,8 @@
 <?php
 
-class Data_persil extends CI_Controller
+namespace App\Controllers;
+
+class Data_persil extends BaseController
 {
     public function __construct()
     {

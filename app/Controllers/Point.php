@@ -1,6 +1,8 @@
 <?php
 
-class Point extends CI_Controller
+namespace App\Controllers;
+
+class Point extends BaseController
 {
     public function clear()
     {

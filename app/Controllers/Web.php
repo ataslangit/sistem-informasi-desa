@@ -1,6 +1,8 @@
 <?php
 
-class Web extends CI_Controller
+namespace App\Controllers;
+
+class Web extends BaseController
 {
     public function __construct()
     {

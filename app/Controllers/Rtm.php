@@ -1,6 +1,8 @@
 <?php
 
-class Rtm extends CI_Controller
+namespace App\Controllers;
+
+class Rtm extends BaseController
 {
     public function __construct()
     {

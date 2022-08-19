@@ -1,6 +1,8 @@
 <?php
 
-class Dokumen extends CI_Controller
+namespace App\Controllers;
+
+class Dokumen extends BaseController
 {
     public function __construct()
     {

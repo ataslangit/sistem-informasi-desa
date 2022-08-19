@@ -1,6 +1,8 @@
 <?php
 
-class Line extends CI_Controller
+namespace App\Controllers;
+
+class Line extends BaseController
 {
     public function clear()
     {

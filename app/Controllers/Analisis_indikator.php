@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_indikator extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_indikator extends BaseController
 {
     public function __construct()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_kategori extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_kategori extends BaseController
 {
     public function __construct()
     {

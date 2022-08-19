@@ -1,6 +1,8 @@
 <?php
 
-class Statistik extends CI_Controller
+namespace App\Controllers;
+
+class Statistik extends BaseController
 {
     public function __construct()
     {

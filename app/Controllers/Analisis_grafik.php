@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_grafik extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_grafik extends BaseController
 {
     public function __construct()
     {

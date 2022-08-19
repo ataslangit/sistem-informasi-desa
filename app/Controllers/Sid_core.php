@@ -1,6 +1,8 @@
 <?php
 
-class Sid_core extends CI_Controller
+namespace App\Controllers;
+
+class Sid_core extends BaseController
 {
     public function __construct()
     {

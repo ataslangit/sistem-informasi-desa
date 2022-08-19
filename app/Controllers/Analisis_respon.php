@@ -1,6 +1,8 @@
 <?php
 
-class Analisis_respon extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_respon extends BaseController
 {
     public function __construct()
     {

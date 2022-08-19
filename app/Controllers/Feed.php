@@ -1,6 +1,8 @@
 <?php
 
-class Feed extends CI_Controller
+namespace App\Controllers;
+
+class Feed extends BaseController
 {
     public function index()
     {

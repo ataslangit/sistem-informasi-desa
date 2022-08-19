@@ -1,6 +1,8 @@
 <?php
 
-class Widget extends CI_Controller
+namespace App\Controllers;
+
+class Widget extends BaseController
 {
     public function __construct()
     {

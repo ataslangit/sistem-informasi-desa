@@ -1,6 +1,8 @@
 <?php
 
-class Sms extends CI_Controller
+namespace App\Controllers;
+
+class Sms extends BaseController
 {
     public function __construct()
     {

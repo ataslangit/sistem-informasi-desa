@@ -1,6 +1,8 @@
 <?php
 
-class Komentar extends CI_Controller
+namespace App\Controllers;
+
+class Komentar extends BaseController
 {
     public function __construct()
     {

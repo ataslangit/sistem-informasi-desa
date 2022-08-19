@@ -1,6 +1,8 @@
 <?php
 
-class Gis extends CI_Controller
+namespace App\Controllers;
+
+class Gis extends BaseController
 {
     public function __construct()
     {

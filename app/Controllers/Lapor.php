@@ -1,6 +1,8 @@
 <?php
 
-class Lapor extends CI_Controller
+namespace App\Controllers;
+
+class Lapor extends BaseController
 {
     public function __construct()
     {

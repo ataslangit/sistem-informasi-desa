@@ -1,6 +1,8 @@
 <?php
 
-class Menu extends CI_Controller
+namespace App\Controllers;
+
+class Menu extends BaseController
 {
     public function __construct()
     {

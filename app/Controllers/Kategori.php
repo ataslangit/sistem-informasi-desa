@@ -1,6 +1,8 @@
 <?php
 
-class Kategori extends CI_Controller
+namespace App\Controllers;
+
+class Kategori extends BaseController
 {
     public function __construct()
     {

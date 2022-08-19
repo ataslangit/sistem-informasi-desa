@@ -1,6 +1,8 @@
 <?php
 
-class Dashboard extends CI_Controller
+namespace App\Controllers;
+
+class Dashboard extends BaseController
 {
     public function __construct()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class Database extends CI_Controller
+namespace App\Controllers;
+
+class Database extends BaseController
 {
     public function __construct()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class Garis extends CI_Controller
+namespace App\Controllers;
+
+class Garis extends BaseController
 {
     public function clear()
     {

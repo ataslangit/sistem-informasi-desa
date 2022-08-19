@@ -1,6 +1,8 @@
 <?php
 
-class Area extends CI_Controller
+namespace App\Controllers;
+
+class Area extends BaseController
 {
     public function clear()
     {

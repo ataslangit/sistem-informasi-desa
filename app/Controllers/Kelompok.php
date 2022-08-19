@@ -1,6 +1,8 @@
 <?php
 
-class Kelompok extends CI_Controller
+namespace App\Controllers;
+
+class Kelompok extends BaseController
 {
     public function __construct()
     {

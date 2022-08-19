@@ -1,6 +1,8 @@
 <?php
 
-class Siteman extends CI_Controller
+namespace App\Controllers;
+
+class Siteman extends BaseController
 {
     public function index()
     {
