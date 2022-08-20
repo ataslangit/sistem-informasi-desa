@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class GanalisisParameter extends Migration
+class AnalisisParameter extends Migration
 {
     public function up()
     {
