@@ -10,11 +10,11 @@ if ($headline) {
     if ($headline['gambar'] !== '') {
         if (is_file('assets/files/artikel/sedang_' . $headline['gambar'])) {
             echo '
-				<a class="group2" href="' . base_url() . 'assets/files/artikel/sedang_' . $headline['gambar'] . '" title="">
-				<img width="600" src="' . base_url() . 'assets/files/artikel/sedang_' . $headline['gambar'] . '" /></a>';
+				<a class="group2" href="' . base_url() . '/assets/files/artikel/sedang_' . $headline['gambar'] . '" title="">
+				<img width="600" src="' . base_url() . '/assets/files/artikel/sedang_' . $headline['gambar'] . '" /></a>';
         } else {
             echo '
-				<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="' . base_url() . 'assets/images/404-image-not-found.jpg" width="300" height="180"/>';
+				<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="' . base_url() . '/assets/images/404-image-not-found.jpg" width="300" height="180"/>';
         }
     }
     $head = explode('</p>', $headline['isi']);
@@ -66,9 +66,9 @@ if ($artikel) {
 						<div class="img">';
         if ($data['gambar'] !== '') {
             if (is_file('assets/files/artikel/kecil_' . $data['gambar'])) {
-                echo '<img src="' . base_url() . 'assets/files/artikel/kecil_' . $data['gambar'] . '" alt="' . $data['judul'] . '"/>';
+                echo '<img src="' . base_url() . '/assets/files/artikel/kecil_' . $data['gambar'] . '" alt="' . $data['judul'] . '"/>';
             } else {
-                echo '<img src="' . base_url() . 'assets/images/404-image-not-found.jpg" alt="' . $data['judul'] . '" />';
+                echo '<img src="' . base_url() . '/assets/images/404-image-not-found.jpg" alt="' . $data['judul'] . '" />';
             }
         }
         echo '

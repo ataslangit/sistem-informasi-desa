@@ -20,7 +20,7 @@
                     $gambar = 'logo.jpg';
                 }
     ?>
-    <meta property="og:image" content="<?= base_url() . 'assets/files/artikel/kecil_' . $gambar; ?>">
+    <meta property="og:image" content="<?= base_url() . '/assets/files/artikel/kecil_' . $gambar; ?>">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="180">
     <meta property="og:url" content="<?= urlencode(current_url()); ?>">

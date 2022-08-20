@@ -213,7 +213,7 @@ if ($agenda) {
     <div class="box-body">
         <?php
         foreach ($sosmed as $data) {
-            echo '<a href="' . $data['link'] . '" target="_blank"><img src="' . base_url() . 'assets/front/' . $data['gambar'] . '" alt="' . $data['nama'] . '" style="width:50px;height:50px;"/></a>';
+            echo '<a href="' . $data['link'] . '" target="_blank"><img src="' . base_url() . '/assets/front/' . $data['gambar'] . '" alt="' . $data['nama'] . '" style="width:50px;height:50px;"/></a>';
         }
 ?>
     </div>

@@ -168,7 +168,7 @@
                 <?php foreach ($lokasi as $data) {
                     if ($data['lat'] !== '') { ?>
 
-                        <?php $simbol = base_url() . 'assets/images/gis/point/' . $data['simbol']; ?>
+                        <?php $simbol = base_url() . '/assets/images/gis/point/' . $data['simbol']; ?>
                         var cusicon_<?= $data['id'] ?> = new google.maps.MarkerImage("<?= $simbol ?>");
 
                         var prop_<?= $data['id'] ?> = new google.maps.Marker({
@@ -196,7 +196,7 @@
                     }
             } ?>
             <?php if ($layer_penduduk === 1 || $layer_keluarga === 1) { ?>
-                <?php $pendc = base_url() . 'assets/images/gis/point/pend.png'; ?>
+                <?php $pendc = base_url() . '/assets/images/gis/point/pend.png'; ?>
                 var pend_icon = new google.maps.MarkerImage("<?= $pendc ?>");
                 <?php foreach ($penduduk as $data) {
                     if ($data['lat'] !== '') { ?>
