@@ -1,9 +1,9 @@
 <h3><?= $indikator ?></h3><br>
 
 <div class="middin-center" style="padding: 5px;">
-    <script src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
-    <script src="<?= base_url() ?>assets/js/highcharts/highcharts-more.js"></script>
-    <script src="<?= base_url() ?>assets/js/highcharts/exporting.js"></script>
+    <script src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
+    <script src="<?= base_url() ?>/assets/js/highcharts/highcharts-more.js"></script>
+    <script src="<?= base_url() ?>/assets/js/highcharts/exporting.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             hiRes();
@@ -100,7 +100,7 @@ foreach ($list_jawab as $data) {
             </tbody>
         </table>
         <div>
-            <a href="<?= site_url() ?>first/data_analisis" class="uibutton icon prev">Kembali</a>
+            <a href="<?= site_url() ?>/first/data_analisis" class="uibutton icon prev">Kembali</a>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ class Kelompok_master extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Kelompok_master extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
 
-        redirect('kelompok_master');
+        return redirect()->to('kelompok_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -87,58 +87,65 @@ class Kelompok_master extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function state()
     {
-        $filter = $this->input->post('state');
+        $filter = $this->request->getPost('state');
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
             unset($_SESSION['state']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function insert()
     {
         $this->kelompok_master_model->insert();
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_master_model->update($id);
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_master_model->delete($id);
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->kelompok_master_model->delete_all();
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 }

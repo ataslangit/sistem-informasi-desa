@@ -106,7 +106,7 @@
                                             <th class="top">Foto</th>
                                             <td>
                                                 <div class="userbox-avatar">
-                                                    <img src="<?= base_url() ?>assets/files/user_pict/kuser.png" alt="" />
+                                                    <img src="<?= base_url() ?>/assets/files/user_pict/kuser.png" alt="" />
                                                 </div>
                                             </td>
                                         </tr>
@@ -254,7 +254,7 @@
                         </div>
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>keluarga" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/keluarga" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

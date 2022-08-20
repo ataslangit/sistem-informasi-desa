@@ -10,7 +10,7 @@ class Modul extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Modul extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('modul');
+        return redirect()->to('modul');
     }
 
     public function index()
@@ -68,47 +68,53 @@ class Modul extends BaseController
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function insert()
     {
         $this->modul_model->insert();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function update($id = '')
     {
         $this->modul_model->update($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete($id = '')
     {
         $this->modul_model->delete($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete_all()
     {
         $this->modul_model->delete_all();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 }

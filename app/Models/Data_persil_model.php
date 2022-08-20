@@ -11,7 +11,7 @@ class Data_persil_model extends Model
         $sql = 'SELECT nik FROM data_persil
 					UNION SELECT p.nama AS nik FROM data_persil u LEFT JOIN tweb_penduduk p ON u.nik = p.nik';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -62,7 +62,7 @@ class Data_persil_model extends Model
         $strSQL .= ') LIMIT ' . $offset . ',' . $limit;
         $query = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
-            $data = $query->result_array();
+            $data = $query->getResultArray();
         } else {
             $_SESSION['pesan'] = $strSQL;
         }
@@ -92,7 +92,7 @@ class Data_persil_model extends Model
 			 WHERE p.id=' . $id;
         $query = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
-            $data = $query->row_array();
+            $data = $query->getRowArray();
         }
 
         if (! is_numeric($data['nik'])) {
@@ -163,7 +163,7 @@ class Data_persil_model extends Model
         $strSQL = 'SELECT `id`,`rt`,`rw`,`dusun` FROM `tweb_wil_clusterdesa` WHERE (`rt`>0) ORDER BY `dusun`';
         $query  = $this->db->query($strSQL);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_penduduk($id)
@@ -175,7 +175,7 @@ class Data_persil_model extends Model
         $query = $this->db->query($strSQL);
         $data  = '';
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_penduduk()
@@ -186,7 +186,7 @@ class Data_persil_model extends Model
 			WHERE 1 ORDER BY nama';
         $query = $this->db->query($strSQL);
         $data  = '';
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         if ($query->num_rows() > 0) {
             $i = 0;
             $j = 0;
@@ -232,7 +232,7 @@ class Data_persil_model extends Model
         $query  = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
             $data      = [];
-            $data[$id] = $query->row_array();
+            $data[$id] = $query->getRowArray();
         }
 
         return $data;
@@ -240,22 +240,22 @@ class Data_persil_model extends Model
 
     public function update_persil_peruntukan()
     {
-        if ($this->input->post('id') === 0) {
-            $strSQL = "INSERT INTO `data_persil_peruntukan`(`nama`,`ndesc`) VALUES('" . fixSQL($this->input->post('nama')) . "','" . fixSQL($this->input->post('ndesc')) . "')";
+        if ($this->request->getPost('id') === 0) {
+            $strSQL = "INSERT INTO `data_persil_peruntukan`(`nama`,`ndesc`) VALUES('" . fixSQL($this->request->getPost('nama')) . "','" . fixSQL($this->request->getPost('ndesc')) . "')";
         } else {
             $strSQL = "UPDATE `data_persil_peruntukan` SET
-			`nama`='" . fixSQL($this->input->post('nama')) . "',
-			`ndesc`='" . fixSQL($this->input->post('ndesc')) . "'
-			 WHERE id=" . $this->input->post('id');
+			`nama`='" . fixSQL($this->request->getPost('nama')) . "',
+			`ndesc`='" . fixSQL($this->request->getPost('ndesc')) . "'
+			 WHERE id=" . $this->request->getPost('id');
         }
 
         $data['db'] = $strSQL;
         $hasil      = $this->db->query($strSQL);
         if ($hasil) {
             $data['transaksi']   = true;
-            $data['pesan']       = 'Data Peruntukan Persil ' . fixSQL($this->input->post('nama')) . ' telah disimpan/diperbarui';
+            $data['pesan']       = 'Data Peruntukan Persil ' . fixSQL($this->request->getPost('nama')) . ' telah disimpan/diperbarui';
             $_SESSION['success'] = 1;
-            $_SESSION['pesan']   = 'Data Peruntukan Persil ' . fixSQL($this->input->post('nama')) . ' telah disimpan/diperbarui';
+            $_SESSION['pesan']   = 'Data Peruntukan Persil ' . fixSQL($this->request->getPost('nama')) . ' telah disimpan/diperbarui';
         } else {
             $data['transaksi'] = false;
             $data['pesan']     = 'ERROR ' . $strSQL;
@@ -299,7 +299,7 @@ class Data_persil_model extends Model
         $query  = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
             $data      = [];
-            $data[$id] = $query->row_array();
+            $data[$id] = $query->getRowArray();
         }
 
         return $data;
@@ -307,22 +307,22 @@ class Data_persil_model extends Model
 
     public function update_persil_jenis()
     {
-        if ($this->input->post('id') === 0) {
-            $strSQL = "INSERT INTO `data_persil_jenis`(`nama`,`ndesc`) VALUES('" . fixSQL($this->input->post('nama')) . "','" . fixSQL($this->input->post('ndesc')) . "')";
+        if ($this->request->getPost('id') === 0) {
+            $strSQL = "INSERT INTO `data_persil_jenis`(`nama`,`ndesc`) VALUES('" . fixSQL($this->request->getPost('nama')) . "','" . fixSQL($this->request->getPost('ndesc')) . "')";
         } else {
             $strSQL = "UPDATE `data_persil_jenis` SET
-			`nama`='" . fixSQL($this->input->post('nama')) . "',
-			`ndesc`='" . fixSQL($this->input->post('ndesc')) . "'
-			 WHERE id=" . $this->input->post('id');
+			`nama`='" . fixSQL($this->request->getPost('nama')) . "',
+			`ndesc`='" . fixSQL($this->request->getPost('ndesc')) . "'
+			 WHERE id=" . $this->request->getPost('id');
         }
 
         $data['db'] = $strSQL;
         $hasil      = $this->db->query($strSQL);
         if ($hasil) {
             $data['transaksi']   = true;
-            $data['pesan']       = 'Data Jenis Persil ' . fixSQL($this->input->post('nama')) . ' telah disimpan/diperbarui';
+            $data['pesan']       = 'Data Jenis Persil ' . fixSQL($this->request->getPost('nama')) . ' telah disimpan/diperbarui';
             $_SESSION['success'] = 1;
-            $_SESSION['pesan']   = 'Data Jenis Persil ' . fixSQL($this->input->post('nama')) . ' telah disimpan/diperbarui';
+            $_SESSION['pesan']   = 'Data Jenis Persil ' . fixSQL($this->request->getPost('nama')) . ' telah disimpan/diperbarui';
         } else {
             $data['transaksi'] = false;
             $data['pesan']     = 'ERROR ' . $strSQL;

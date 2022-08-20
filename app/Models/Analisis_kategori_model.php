@@ -10,7 +10,7 @@ class Analisis_kategori_model extends Model
     {
         $sql   = 'SELECT kategori FROM analisis_kategori_indikator';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -52,7 +52,7 @@ class Analisis_kategori_model extends Model
         $sql .= $this->search_sql();
         $sql .= $this->master_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -98,7 +98,7 @@ class Analisis_kategori_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -176,7 +176,7 @@ class Analisis_kategori_model extends Model
         $sql   = 'SELECT * FROM analisis_kategori_indikator WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_analisis_master()
@@ -184,6 +184,6 @@ class Analisis_kategori_model extends Model
         $sql   = 'SELECT * FROM analisis_master WHERE id=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 }

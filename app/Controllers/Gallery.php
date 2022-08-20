@@ -10,7 +10,7 @@ class Gallery extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3', '4'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Gallery extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('gallery');
+        return redirect()->to('gallery');
     }
 
     public function index($p = 1, $o = 0)
@@ -78,60 +78,68 @@ class Gallery extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function insert()
     {
         $this->web_gallery_model->insert();
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->web_gallery_model->update($id);
-        redirect("gallery/index/{$p}/{$o}");
+
+        return redirect()->to("gallery/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->web_gallery_model->delete($id);
-        redirect("gallery/index/{$p}/{$o}");
+
+        return redirect()->to("gallery/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_gallery_model->delete_all();
-        redirect("gallery/index/{$p}/{$o}");
+
+        return redirect()->to("gallery/index/{$p}/{$o}");
     }
 
     public function gallery_lock($id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 1);
-        redirect('gallery/index/');
+
+        return redirect()->to('gallery/index/');
     }
 
     public function gallery_unlock($id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 2);
-        redirect('gallery/index/');
+
+        return redirect()->to('gallery/index/');
     }
 
     public function sub_gallery($gal = 0, $p = 1)
@@ -192,36 +200,42 @@ class Gallery extends BaseController
     public function insert_sub_gallery($gallery = '')
     {
         $this->web_gallery_model->insert_sub_gallery($gallery);
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 
     public function update_sub_gallery($gallery = '', $id = '')
     {
         $this->web_gallery_model->update_sub_gallery($id);
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 
     public function delete_sub_gallery($gallery = '', $id = '')
     {
         $this->web_gallery_model->delete($id);
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 
     public function delete_all_sub_gallery($gallery = '')
     {
         $this->web_gallery_model->delete_all_sub_gallery();
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 
     public function gallery_lock_sub_gallery($gallery = '', $id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 1);
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 
     public function gallery_unlock_sub_gallery($gallery = '', $id = '')
     {
         $this->web_gallery_model->gallery_lock($id, 2);
-        redirect("gallery/sub_gallery/{$gallery}");
+
+        return redirect()->to("gallery/sub_gallery/{$gallery}");
     }
 }

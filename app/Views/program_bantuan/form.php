@@ -94,7 +94,7 @@
             });
         });
     </script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/tiny_mce/tiny_mce_src.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/tiny_mce/tiny_mce_src.js"></script>
     <script type="text/javascript">
         tinyMCE.init({
 

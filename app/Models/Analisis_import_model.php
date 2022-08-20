@@ -40,7 +40,7 @@ class Analisis_import_model extends Model
         for ($i = 2; $i <= $baris; $i++) {
             $sql   = 'SELECT * FROM analisis_kategori_indikator WHERE kategori=? AND id_master=?';
             $query = $this->db->query($sql, [$data->val($i, 3, $sheet), $id_master]);
-            $cek   = $query->row_array();
+            $cek   = $query->getRowArray();
 
             if (! $cek) {
                 $kategori['id_master'] = $id_master;
@@ -56,7 +56,7 @@ class Analisis_import_model extends Model
 
             $sql      = 'SELECT * FROM analisis_kategori_indikator WHERE kategori=? AND id_master=?';
             $query    = $this->db->query($sql, [$data->val($i, 3, $sheet), $id_master]);
-            $kategori = $query->row_array();
+            $kategori = $query->getRowArray();
 
             $indikator['id_kategori']  = $kategori['id'];
             $indikator['id_tipe']      = $data->val($i, 4, $sheet);
@@ -78,7 +78,7 @@ class Analisis_import_model extends Model
 
             $sql       = 'SELECT id FROM analisis_indikator WHERE nomor=? AND id_master=?';
             $query     = $this->db->query($sql, [$data->val($i, 1, $sheet), $id_master]);
-            $indikator = $query->row_array();
+            $indikator = $query->getRowArray();
 
             $parameter['id_indikator'] = $indikator['id'];
             $parameter['nilai']        = $data->val($i, 4, $sheet);

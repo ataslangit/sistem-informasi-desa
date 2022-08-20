@@ -10,7 +10,7 @@ class Dokumen extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3', '4'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Dokumen extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('dokumen');
+        return redirect()->to('dokumen');
     }
 
     public function index($p = 1, $o = 0)
@@ -78,59 +78,67 @@ class Dokumen extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function insert()
     {
         $this->web_dokumen_model->insert();
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->web_dokumen_model->update($id);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->web_dokumen_model->delete($id);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_dokumen_model->delete_all();
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function dokumen_lock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 1);
-        redirect('dokumen/index/');
+
+        return redirect()->to('dokumen/index/');
     }
 
     public function dokumen_unlock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 2);
-        redirect('dokumen/index/');
+
+        return redirect()->to('dokumen/index/');
     }
 }

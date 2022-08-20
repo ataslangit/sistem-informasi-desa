@@ -52,9 +52,9 @@
                 <td>
                     <div class="userbox-avatar">
                         <?php if ($main['foto']) { ?>
-                            <img src="<?= base_url() ?>assets/files/user_pict/kecil_<?= $main['foto'] ?>" alt="" />
+                            <img src="<?= base_url() ?>/assets/files/user_pict/kecil_<?= $main['foto'] ?>" alt="" />
                         <?php } else { ?>
-                            <img src="<?= base_url() ?>assets/files/user_pict/kuser.png" alt="" />
+                            <img src="<?= base_url() ?>/assets/files/user_pict/kuser.png" alt="" />
                         <?php } ?>
                     </div>
                 </td>

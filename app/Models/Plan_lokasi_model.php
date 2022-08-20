@@ -10,7 +10,7 @@ class Plan_lokasi_model extends Model
     {
         $sql   = 'SELECT nama FROM lokasi';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -74,7 +74,7 @@ class Plan_lokasi_model extends Model
         $sql .= $this->point_sql();
         $sql .= $this->subpoint_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -115,7 +115,7 @@ class Plan_lokasi_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -227,7 +227,7 @@ class Plan_lokasi_model extends Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         return $data;
     }
@@ -239,13 +239,13 @@ class Plan_lokasi_model extends Model
         if (isset($_SESSION['point'])) {
             $sqlx  = 'SELECT * FROM point WHERE id = ?';
             $query = $this->db->query($sqlx, $_SESSION['point']);
-            $temp  = $query->row_array();
+            $temp  = $query->getRowArray();
 
             $kf = $temp['parrent'];
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         return $data;
     }
@@ -267,7 +267,7 @@ class Plan_lokasi_model extends Model
         $sql   = 'SELECT * FROM lokasi WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update_position($id = 0)
@@ -288,7 +288,7 @@ class Plan_lokasi_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND rw = '0' ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_desa()
@@ -296,6 +296,6 @@ class Plan_lokasi_model extends Model
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 }

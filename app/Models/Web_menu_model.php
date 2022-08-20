@@ -10,7 +10,7 @@ class Web_menu_model extends Model
     {
         $sql   = 'SELECT nama FROM menu';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -49,7 +49,7 @@ class Web_menu_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM menu WHERE tipe = ?';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql, $tip);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -91,7 +91,7 @@ class Web_menu_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql, $tip);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -193,7 +193,7 @@ class Web_menu_model extends Model
         $sql = 'SELECT * FROM menu WHERE parrent = ? AND tipe = 3 ';
 
         $query = $this->db->query($sql, $menu);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -217,7 +217,7 @@ class Web_menu_model extends Model
         $sql = "SELECT a.id,a.judul FROM artikel a WHERE a.id_kategori ='999'";
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -234,7 +234,7 @@ class Web_menu_model extends Model
         $sql = 'SELECT k.id,k.kategori AS nama FROM kategori k WHERE 1';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -339,7 +339,7 @@ class Web_menu_model extends Model
         $sql   = 'SELECT * FROM menu WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function menu_show()
@@ -347,6 +347,6 @@ class Web_menu_model extends Model
         $sql   = 'SELECT * FROM menu WHERE enabled=?';
         $query = $this->db->query($sql, 1);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

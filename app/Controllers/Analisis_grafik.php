@@ -10,7 +10,7 @@ class Analisis_grafik extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,14 +18,16 @@ class Analisis_grafik extends BaseController
     {
         $_SESSION['analisis_master'] = $id;
         unset($_SESSION['cari']);
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -114,46 +116,50 @@ class Analisis_grafik extends BaseController
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function rw()
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 }

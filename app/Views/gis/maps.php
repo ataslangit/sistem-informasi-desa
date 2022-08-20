@@ -98,7 +98,7 @@
                             '</div>' +
                             '<h1 id="firstHeading" class="firstHeading"><?= $area['nama'] ?></h1>' +
                             '<div id="bodyContent">' +
-                            '<img src="<?= base_url() ?>assets/files/gis/area/sedang_<?= $area['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>' +
+                            '<img src="<?= base_url() ?>/assets/files/gis/area/sedang_<?= $area['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>' +
                             '<p><?= $area['desk'] ?></p>' +
                             '</div>' +
                             '</div>';
@@ -143,7 +143,7 @@
                             '</div>' +
                             '<h1 id="firstHeading" class="firstHeading"><?= $garis['nama'] ?></h1>' +
                             '<div id="bodyContent">' +
-                            '<img src="<?= base_url() ?>assets/files/gis/garis/sedang_<?= $garis['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>' +
+                            '<img src="<?= base_url() ?>/assets/files/gis/garis/sedang_<?= $garis['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>' +
                             '<p><?= $garis['desk'] ?></p>' +
                             '</div>' +
                             '</div>';
@@ -160,7 +160,7 @@
             <?php } ?>
             <?php if ($layer_point === 1) { ?>
                 var shadow = new google.maps.MarkerImage(
-                    '<?= base_url() ?>assets/images/gis/point/shadow.png',
+                    '<?= base_url() ?>/assets/images/gis/point/shadow.png',
                     null,
                     null,
                     new google.maps.Point(16, 35)
@@ -185,7 +185,7 @@
                             }
 
                             var content = '<table border=0 style="width:400px"><tr>' +
-                                <?php if ($data['foto'] !== '') { ?> '<td><img src="<?= base_url() ?>assets/files/gis/lokasi/sedang_<?= $data['foto'] ?>" class="foto"/></td>' +
+                                <?php if ($data['foto'] !== '') { ?> '<td><img src="<?= base_url() ?>/assets/files/gis/lokasi/sedang_<?= $data['foto'] ?>" class="foto"/></td>' +
                                 <?php } ?> '<td style="padding-left:3px"><font size="2.5" style="font-weight:bold;"><?= $data['nama'] ?></font>' +
                                 '<p><?= $data['desk'] ?></p>' +
                                 '</tr><tr><td></td></tr></table>';
@@ -211,9 +211,9 @@
                                 infoWindow = new google.maps.InfoWindow();
                             }
                             <?php if ($data['foto'] !== '') { ?>
-                                var poto = '<td><img src="<?= base_url() ?>assets/files/user_pict/kecil_<?= $data['foto'] ?>" class="foto_pend"/></td>';
+                                var poto = '<td><img src="<?= base_url() ?>/assets/files/user_pict/kecil_<?= $data['foto'] ?>" class="foto_pend"/></td>';
                             <?php } else { ?>
-                                var poto = '<td><img src="<?= base_url() ?>assets/files/user_pict/kuser.png" class="foto_pend"/></td>';
+                                var poto = '<td><img src="<?= base_url() ?>/assets/files/user_pict/kuser.png" class="foto_pend"/></td>';
                             <?php } ?>
 
                             var content = '<table border=0><tr>' + poto +

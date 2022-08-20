@@ -6,7 +6,7 @@
         });
     });
 </script>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/chosen/chosen.jquery.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/chosen/chosen.jquery.js"></script>
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">

@@ -86,7 +86,7 @@
                                             <td><?= $data['nama'] ?></td>
                                             <td><?= $data['aktif'] ?></td>
                                             <td><?= tgl_indo2($data['tgl_upload']) ?></td>
-                                            <td><a href="<?= base_url() ?>assets/files/dokumen/<?= underscore($data['satuan']) ?>"><?= $data['satuan'] ?></a></td>
+                                            <td><a href="<?= base_url() ?>/assets/files/dokumen/<?= underscore($data['satuan']) ?>"><?= $data['satuan'] ?></a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

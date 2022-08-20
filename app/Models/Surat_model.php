@@ -10,7 +10,7 @@ class Surat_model extends Model
     {
         $sql   = 'SELECT * FROM tweb_surat_format WHERE kunci = 0';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -27,7 +27,7 @@ class Surat_model extends Model
         $sql   = 'SELECT * FROM tweb_surat_format WHERE kunci = 0';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_surat_fav()
@@ -35,14 +35,14 @@ class Surat_model extends Model
         $sql   = 'SELECT * FROM tweb_surat_format WHERE kunci = 0 AND favorit = 1';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_penduduk()
     {
         $sql   = 'SELECT u.id,nik,nama,w.dusun,w.rw,w.rt FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa w ON u.id_cluster = w.id WHERE u.status = 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -58,7 +58,7 @@ class Surat_model extends Model
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1 AND sex=2';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -74,7 +74,7 @@ class Surat_model extends Model
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1 AND sex=1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -90,7 +90,7 @@ class Surat_model extends Model
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1 AND id NOT IN(?)';
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -121,7 +121,7 @@ class Surat_model extends Model
 		left join `tweb_penduduk_warganegara` `f` on((`u`.`warganegara_id` = `f`.`id`)))
 		WHERE u.id = ?";
         $query = $this->db->query($sql, $id);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         $data['alamat'] = '';
 
@@ -145,7 +145,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,(SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) AS umur,x.nama AS pendidikan,h.nama AS hubungan FROM tweb_penduduk u LEFT JOIN tweb_penduduk_pendidikan_kk x ON u.pendidikan_kk_id = x.id LEFT JOIN tweb_penduduk_hubungan h ON u.kk_level = h.id WHERE u.id_kk = ? AND u.nik <> ?";
         $query = $this->db->query($sql, [$id, $nik]);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function pengikut()
@@ -160,7 +160,7 @@ class Surat_model extends Model
 
             $sql   = "select `u`.`id` AS `id`,`u`.`nama` AS `nama`,`x`.`nama` AS `sex`,`u`.`tempatlahir` AS `tempatlahir`,`u`.`tanggallahir` AS `tanggallahir`,(select (date_format(from_days((to_days(now()) - to_days(`tweb_penduduk`.`tanggallahir`))),'%Y') + 0) AS `(date_format(from_days((to_days(now()) - to_days(``tweb_penduduk``.``tanggallahir``))),'%Y') + 0)` from `tweb_penduduk` where (`tweb_penduduk`.`id` = `u`.`id`)) AS `umur`,`w`.`nama` AS `status_kawin`,`f`.`nama` AS `warganegara`,`a`.`nama` AS `agama`,`d`.`nama` AS `pendidikan`,`j`.`nama` AS `pekerjaan`,`u`.`nik` AS `nik`,`c`.`rt` AS `rt`,`c`.`rw` AS `rw`,`c`.`dusun` AS `dusun`,`k`.`no_kk` AS `no_kk`,(select `tweb_penduduk`.`nama` AS `nama` from `tweb_penduduk` where (`tweb_penduduk`.`id` = `k`.`nik_kepala`)) AS `kepala_kk`,hb.nama AS hubungan from ((((((((`tweb_penduduk` `u` left join `tweb_penduduk_sex` `x` on((`u`.`sex` = `x`.`id`))) left join `tweb_penduduk_kawin` `w` on((`u`.`status_kawin` = `w`.`id`))) left join `tweb_penduduk_agama` `a` on((`u`.`agama_id` = `a`.`id`))) left join `tweb_penduduk_pendidikan_kk` `d` on((`u`.`pendidikan_kk_id` = `d`.`id`))) left join `tweb_penduduk_pekerjaan` `j` on((`u`.`pekerjaan_id` = `j`.`id`))) left join `tweb_wil_clusterdesa` `c` on((`u`.`id_cluster` = `c`.`id`))) left join `tweb_keluarga` `k` on((`u`.`id_kk` = `k`.`id`))) left join `tweb_penduduk_warganegara` `f` on((`u`.`warganegara_id` = `f`.`id`)) LEFT JOIN tweb_penduduk_hubungan hb ON u.kk_level = hb.id ) WHERE u.nik IN({$outp})";
             $query = $this->db->query($sql);
-            $data  = $query->result_array();
+            $data  = $query->getResultArray();
         }
 
         return $data;
@@ -171,7 +171,7 @@ class Surat_model extends Model
         $sql   = 'SELECT u.* FROM tweb_desa_pamong u WHERE pamong_status=1 ';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_data_surat($id = 0)
@@ -179,7 +179,7 @@ class Surat_model extends Model
         $sql   = "select `u`.*,g.nama AS gol_darah,`x`.`nama` AS `sex`,(select (date_format(from_days((to_days(now()) - to_days(`tweb_penduduk`.`tanggallahir`))),'%Y') + 0) AS `(date_format(from_days((to_days(now()) - to_days(``tweb_penduduk``.``tanggallahir``))),'%Y') + 0)` from `tweb_penduduk` where (`tweb_penduduk`.`id` = `u`.`id`)) AS `umur`,`w`.`nama` AS `status_kawin`,`f`.`nama` AS `warganegara`,`a`.`nama` AS `agama`,`d`.`nama` AS `pendidikan`,`j`.`nama` AS `pekerjaan`,`c`.`rt` AS `rt`,`c`.`rw` AS `rw`,`c`.`dusun` AS `dusun`,`k`.`no_kk` AS `no_kk`,(select `tweb_penduduk`.`nama` AS `nama` from `tweb_penduduk` where (`tweb_penduduk`.`id` = `k`.`nik_kepala`)) AS `kepala_kk` from ((((((((`tweb_penduduk` `u` left join `tweb_penduduk_sex` `x` on((`u`.`sex` = `x`.`id`))) left join `tweb_penduduk_kawin` `w` on((`u`.`status_kawin` = `w`.`id`))) left join `tweb_penduduk_agama` `a` on((`u`.`agama_id` = `a`.`id`))) left join `tweb_penduduk_pendidikan_kk` `d` on((`u`.`pendidikan_kk_id` = `d`.`id`))) left join `tweb_penduduk_pekerjaan` `j` on((`u`.`pekerjaan_id` = `j`.`id`))) left join `tweb_wil_clusterdesa` `c` on((`u`.`id_cluster` = `c`.`id`))) left join `tweb_keluarga` `k` on((`u`.`id_kk` = `k`.`id`))) left join `tweb_penduduk_warganegara` `f` on((`u`.`warganegara_id` = `f`.`id`))) left join tweb_golongan_darah g on u.golongan_darah_id=g.id WHERE u.id = ?";
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_desa()
@@ -187,7 +187,7 @@ class Surat_model extends Model
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_pamong($id = 0)
@@ -195,7 +195,7 @@ class Surat_model extends Model
         $sql   = 'SELECT u.* FROM tweb_desa_pamong u WHERE pamong_id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_pribadi($id = 0)
@@ -203,7 +203,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,h.nama as hubungan, p.nama as kepala_kk,g.nama as gol_darah,d.nama as pend,r.nama as pek,m.nama as men, w.nama as wn, n.nama as agama,c.rw,c.rt,c.dusun,(DATE_FORMAT( FROM_DAYS( TO_DAYS( NOW( ) ) - TO_DAYS( u.tanggallahir ) ) , '%Y' ) +0) as umur, sex.nama as sex FROM tweb_penduduk u left join tweb_penduduk_hubungan h on u.kk_level=h.id left join tweb_keluarga k on u.id_kk=k.id left join tweb_penduduk p on k.nik_kepala=p.id left join tweb_golongan_darah g on u.golongan_darah_id=g.id left join tweb_penduduk_pendidikan_kk d on u.pendidikan_kk_id=d.id left join tweb_penduduk_pekerjaan r on u.pekerjaan_id=r.id left join tweb_cacat m on u.cacat_id=m.id left join tweb_wil_clusterdesa c on u.id_cluster=c.id left join tweb_penduduk_warganegara w on u.warganegara_id=w.id left join tweb_penduduk_agama n on u.agama_id=n.id LEFT JOIN tweb_penduduk_sex sex ON u.sex=sex.id WHERE u.id=?";
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_kk($id = 0)
@@ -211,7 +211,7 @@ class Surat_model extends Model
         $sql   = 'SELECT b.nik_kepala, b.no_kk,b.id AS id_kk, c.nama as kepala_kk, d.* FROM tweb_penduduk a LEFT JOIN tweb_keluarga b ON a.id_kk=b.id LEFT JOIN tweb_penduduk c ON b.nik_kepala=c.id LEFT JOIN tweb_wil_clusterdesa d ON c.id_cluster=d.id WHERE a.id=? ';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_penduduk_ortu($id = 0)
@@ -219,7 +219,7 @@ class Surat_model extends Model
         $sql   = 'SELECT u.* FROM tweb_penduduk u WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_istri($id = 0)
@@ -227,7 +227,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,h.nama as hubungan, p.nama as kepala_kk,g.nama as gol_darah,d.nama as pend,r.nama as pek,m.nama as men, w.nama as wn,c.rw,c.rt,c.dusun, n.nama as agama FROM tweb_penduduk u left join tweb_penduduk_hubungan h on u.kk_level=h.id left join tweb_keluarga k on u.id_kk=k.id left join tweb_penduduk p on k.nik_kepala=p.id left join tweb_golongan_darah g on u.golongan_darah_id=g.id left join tweb_penduduk_pendidikan d on u.pendidikan_id=d.id left join tweb_penduduk_pekerjaan r on u.pekerjaan_id=r.id left join tweb_cacat m on u.cacat_id=m.id left join tweb_penduduk_warganegara w on u.warganegara_id=w.id left join tweb_wil_clusterdesa c on u.id_cluster=c.id left join tweb_penduduk_agama n on u.agama_id=n.id WHERE u.id=(SELECT id FROM tweb_penduduk WHERE id_kk=(SELECT id_kk FROM tweb_penduduk WHERE id={$id} AND kk_level=1) AND kk_level=3 limit 1)";
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_suami($id = 0)
@@ -235,7 +235,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,h.nama as hubungan, p.nama as kepala_kk,g.nama as gol_darah,d.nama as pend,r.nama as pek,m.nama as men, w.nama as wn, n.nama as agama,c.rw,c.rt,c.dusun,(DATE_FORMAT( FROM_DAYS( TO_DAYS( NOW( ) ) - TO_DAYS( u.tanggallahir ) ) , '%Y' ) +0) as umur FROM tweb_penduduk u left join tweb_penduduk_hubungan h on u.kk_level=h.id left join tweb_keluarga k on u.id_kk=k.id left join tweb_penduduk p on k.nik_kepala=p.id left join tweb_golongan_darah g on u.golongan_darah_id=g.id left join tweb_penduduk_pendidikan d on u.pendidikan_id=d.id left join tweb_penduduk_pekerjaan r on u.pekerjaan_id=r.id left join tweb_cacat m on u.cacat_id=m.id left join tweb_wil_clusterdesa c on u.id_cluster=c.id left join tweb_penduduk_warganegara w on u.warganegara_id=w.id left join tweb_penduduk_agama n on u.agama_id=n.id WHERE u.id=(SELECT id FROM tweb_penduduk WHERE id_kk=(SELECT id_kk FROM tweb_penduduk WHERE id={$id} AND kk_level=3) AND kk_level=1 limit 1 )";
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_ayah($id = 0)
@@ -243,7 +243,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,h.nama as hubungan, p.nama as kepala_kk,g.nama as gol_darah,d.nama as pend,r.nama as pek,m.nama as men, w.nama as wn,c.rw,c.rt,c.dusun, n.nama as agama FROM tweb_penduduk u left join tweb_penduduk_hubungan h on u.kk_level=h.id left join tweb_keluarga k on u.id_kk=k.id left join tweb_penduduk p on k.nik_kepala=p.id left join tweb_golongan_darah g on u.golongan_darah_id=g.id left join tweb_penduduk_pendidikan d on u.pendidikan_id=d.id left join tweb_penduduk_pekerjaan r on u.pekerjaan_id=r.id left join tweb_cacat m on u.cacat_id=m.id left join tweb_penduduk_warganegara w on u.warganegara_id=w.id left join tweb_wil_clusterdesa c on u.id_cluster=c.id left join tweb_penduduk_agama n on u.agama_id=n.id WHERE u.nik=(SELECT ayah_nik from tweb_penduduk where id='{$id}') or (u.id_kk=(SELECT id_kk FROM tweb_penduduk where id={$id}) AND u.kk_level=1) limit 1";
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_data_ibu($id = 0)
@@ -251,7 +251,7 @@ class Surat_model extends Model
         $sql   = "SELECT u.*,h.nama as hubungan, p.nama as kepala_kk,g.nama as gol_darah,d.nama as pend,r.nama as pek,m.nama as men, w.nama as wn,c.rw,c.rt,c.dusun, n.nama as agama FROM tweb_penduduk u left join tweb_penduduk_hubungan h on u.kk_level=h.id left join tweb_keluarga k on u.id_kk=k.id left join tweb_penduduk p on k.nik_kepala=p.id left join tweb_golongan_darah g on u.golongan_darah_id=g.id left join tweb_penduduk_pendidikan d on u.pendidikan_id=d.id left join tweb_penduduk_pekerjaan r on u.pekerjaan_id=r.id left join tweb_cacat m on u.cacat_id=m.id left join tweb_penduduk_warganegara w on u.warganegara_id=w.id left join tweb_wil_clusterdesa c on u.id_cluster=c.id left join tweb_penduduk_agama n on u.agama_id=n.id WHERE u.nik=(SELECT ibu_nik from tweb_penduduk where id={$id}) or (u.id_kk=(SELECT id_kk FROM tweb_penduduk where id={$id}) AND u.kk_level=3) limit 1";
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_dusun($dusun = '')
@@ -259,7 +259,7 @@ class Surat_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE dusun = ? AND rt = '0' AND rw = '0'";
         $query = $this->db->query($sql, $dusun);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_rw($dusun = '', $rw = '')
@@ -267,7 +267,7 @@ class Surat_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE dusun = ? AND rw = ? AND rt = '0'";
         $query = $this->db->query($sql, [$dusun, $rw]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_rt($dusun = '', $rw = '', $rt = '')
@@ -275,7 +275,7 @@ class Surat_model extends Model
         $sql   = 'SELECT * FROM tweb_wil_clusterdesa WHERE dusun = ? AND rw = ? AND rt = ?';
         $query = $this->db->query($sql, [$dusun, $rw, $rt]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_surat($url = '')
@@ -283,7 +283,7 @@ class Surat_model extends Model
         $sql   = 'SELECT * FROM tweb_surat_format WHERE url_surat = ?';
         $query = $this->db->query($sql, $url);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function coba($url = '')

@@ -58,7 +58,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>kategori/index/<?= $tip ?>" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/kategori/index/<?= $tip ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

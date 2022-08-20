@@ -6,74 +6,6 @@ use CodeIgniter\Model;
 
 class Config_model extends Model
 {
-    public function install()
-    {
-        $CI = get_instance();
-        $CI->load->database();
-        $db = $CI->db->database;
-
-        $sql   = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA=? AND TABLE_NAME <> 'impor'";
-        $query = $this->db->query($sql, $db);
-        $data  = $query->result_array();
-        if (count($data) !== 77) {
-            return 0;
-        }
-
-        return 1;
-    }
-
-    public function initial()
-    {
-        $CI = get_instance();
-        $CI->load->database();
-        $db = $CI->db->database;
-
-        $sql   = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA=? AND TABLE_NAME <> 'impor'";
-        $query = $this->db->query($sql, $db);
-        $data  = $query->result_array();
-        if (count($data) !== 77) {
-            $filename = 'sid.install';
-            $templine = '';
-            $lines    = file($filename);
-
-            foreach ($lines as $line) {
-                if (substr($line, 0, 2) === '--' || $line === '') {
-                    continue;
-                }
-                $templine .= $line;
-                if (substr(trim($line), -1, 1) === ';') {
-                    $this->db->query($templine);
-                    $templine = '';
-                }
-            }
-            $passwd      = generator();
-            $out['pass'] = $passwd;
-            $idsid       = hash_password($passwd);
-
-            $skrg   = date('Y-m-d H:i:s');
-            $macid  = $this->sysinfo();
-            $ids    = "user:admin\r\npass:" . $passwd . "\r\nidr:" . $idsid . "\r\nids:" . $macid;
-            $handle = fopen('../install.sid', 'w+b');
-            fwrite($handle, $ids);
-            fclose($handle);
-
-            $reg['regid'] = $idsid;
-            $reg['macid'] = $macid;
-            $this->db->where('id', '1');
-            $this->db->update('config', $reg);
-
-            $sql = "INSERT INTO user VALUES (1,'admin','{$idsid}',1,'admin@localhost','{$skrg}',1,'Administrator','ADMIN','0123456789','','{$idsid}');";
-            $this->db->query($sql);
-
-            $this->initsurat();
-            $this->gawe_surat();
-
-            return $out;
-        }
-
-        return null;
-    }
-
     public function gawe_surat()
     {
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';
@@ -82,7 +14,7 @@ class Config_model extends Model
         //if(!$query){
         $sql   = 'SELECT * FROM tweb_surat_format WHERE 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         foreach ($data as $dat) {
             $mypath = 'surat\\' . $dat['url_surat'] . '\\';
@@ -130,10 +62,10 @@ class Config_model extends Model
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
-    public function insert()
+    public function insert1()
     {
         $outp = $this->db->insert('config', $_POST);
         if ($outp) {
@@ -143,7 +75,7 @@ class Config_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update1($id = 0)
     {
         $data        = $_POST;
         $lokasi_file = $_FILES['logo']['tmp_name'];
@@ -370,7 +302,7 @@ class Config_model extends Model
 
         $b = "SELECT id FROM tweb_wil_clusterdesa WHERE rt <> '-' AND rt <> 0 AND rw <> 0 AND rw <> '-'";
         //$query 	= $this->db->query($sql);
-        //$data	= $query->result_array();
+        //$data	= $query->getResultArray();
     }
 
     public function opt()
@@ -383,7 +315,7 @@ class Config_model extends Model
     {
         $sql   = 'SELECT * FROM analisis_parameter WHERE asign = 1 ORDER BY id_indikator';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $m = 0;
@@ -394,7 +326,7 @@ class Config_model extends Model
 
             $sql1   = 'SELECT max(kode_jawaban) AS nil FROM analisis_parameter WHERE id_indikator = ?';
             $query1 = $this->db->query($sql1, $data[$i]['id_indikator']);
-            $m      = $query1->row_array();
+            $m      = $query1->getRowArray();
             $n      = ($m['nil'] + 1) - $data[$i]['kode_jawaban'];
 
             $up['nilai'] = $n;

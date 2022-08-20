@@ -3,8 +3,8 @@
         <tr>
             <td colspan='2'>
                 <ul>
-                    <li>Data yang dibutuhkan untuk Import dengan memenuhi aturan data sebagai berikut <a href="<?= base_url() ?>assets/import/analisis.xls" class="uibutton special">Aturan Data</a></li>
-                    <li>Contoh urutan format dapat dilihat pada tautan berikut <a href="<?= base_url() ?>assets/import/ppls2.xls" class="uibutton special">Contoh</a></li>
+                    <li>Data yang dibutuhkan untuk Import dengan memenuhi aturan data sebagai berikut <a href="<?= base_url() ?>/assets/import/analisis.xls" class="uibutton special">Aturan Data</a></li>
+                    <li>Contoh urutan format dapat dilihat pada tautan berikut <a href="<?= base_url() ?>/assets/import/ppls2.xls" class="uibutton special">Contoh</a></li>
                 </ul>
             </td>
         </tr>

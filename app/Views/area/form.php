@@ -28,7 +28,7 @@
                                     <tr>
                                         <th>Foto</th>
                                         <td>
-                                            <img src="<?= base_url() ?>assets/files/gis/area/sedang_<?= $area['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;" />
+                                            <img src="<?= base_url() ?>/assets/files/gis/area/sedang_<?= $area['foto'] ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;" />
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -63,7 +63,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>area" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/area" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

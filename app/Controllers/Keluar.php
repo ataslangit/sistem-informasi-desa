@@ -10,7 +10,7 @@ class Keluar extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Keluar extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('keluar');
+        return redirect()->to('keluar');
     }
 
     public function index($p = 1, $o = 0)
@@ -53,13 +53,14 @@ class Keluar extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('keluar');
+
+        return redirect()->to('keluar');
     }
 
     public function perorangan($nik = 0, $p = 1, $o = 0)
@@ -107,23 +108,25 @@ class Keluar extends BaseController
 
     public function filter()
     {
-        $filter = $this->input->post('nik');
+        $filter = $this->request->getPost('nik');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 
     public function nik()
     {
-        $nik = $this->input->post('nik');
+        $nik = $this->request->getPost('nik');
         if ($nik !== 0) {
             $_SESSION['nik'] = $_POST['nik'];
         } else {
             unset($_SESSION['nik']);
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 }

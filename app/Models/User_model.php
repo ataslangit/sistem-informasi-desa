@@ -8,12 +8,14 @@ class User_model extends Model
 {
     public function siteman()
     {
-        $username = $this->input->post('username');
-        $password = hash_password($this->input->post('password'));
+        $request = \Config\Services::request();
+
+        $username = $request->getPost('username');
+        $password = hash_password($request->getPost('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE username=?';
         $query = $this->db->query($sql, [$username]);
-        $row   = $query->row();
+        $row   = $query->getRow();
         if ($row) {
             if ($password === $row->password) {
                 $this->reset_timer();
@@ -39,7 +41,7 @@ class User_model extends Model
     {
         $sql   = "SELECT id_grup FROM user WHERE session=? AND session <> ''";
         $query = $this->db->query($sql, [$sesi]);
-        $row   = $query->row_array();
+        $row   = $query->getRowArray();
         if ($this->cek_login()) {
             if (isset($row['id_grup'])) {
                 return $row['id_grup'];
@@ -74,12 +76,12 @@ class User_model extends Model
 
     public function login()
     {
-        $username = $this->input->post('username');
-        $password = hash_password($this->input->post('password'));
+        $username = $this->request->getPost('username');
+        $password = hash_password($this->request->getPost('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE id_grup=1 LIMIT 1';
         $query = $this->db->query($sql);
-        $row   = $query->row();
+        $row   = $query->getRow();
 
         if ($password !== $row->password) {
             $_SESSION['siteman']  = 1;
@@ -102,23 +104,23 @@ class User_model extends Model
 
         $sql   = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1) AS pend,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =1) AS lk,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =2) AS pr,(SELECT COUNT(id) FROM tweb_keluarga) AS kk';
         $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         $bln = date('m');
         $thn = date('Y');
 
         $sql   = "SELECT * FROM log_bulanan WHERE month(tgl) = {$bln} AND year(tgl) = {$thn}";
         $query = $this->db->query($sql);
-        $ada   = $query->result_array();
+        $ada   = $query->getResultArray();
 
         if (! $ada) {
-            $this->db->insert('log_bulanan', $data);
+            $this->db->table('log_bulanan')->insert($data);
         } else {
             $sql = "UPDATE log_bulanan SET pend={$data['pend']}, lk = {$data['lk']},pr={$data['pr']},kk = {$data['kk']} WHERE month(tgl) = {$bln} AND year(tgl) = {$thn}";
             $this->db->query($sql);
         }
 
-        unset($_SESSION['user'], $_SESSION['sesi'], $_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['user', 'sesi', 'cari', 'filter']);
     }
 
     public function autocomplete()
@@ -126,7 +128,7 @@ class User_model extends Model
         $sql = 'SELECT username FROM user
 					UNION SELECT nama FROM user';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $outp  = '';
 
@@ -166,7 +168,7 @@ class User_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM user u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -211,7 +213,7 @@ class User_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $j     = $offset;
 
@@ -224,7 +226,7 @@ class User_model extends Model
         return $data;
     }
 
-    public function insert()
+    public function insert1()
     {
         $data             = $_POST;
         $data['password'] = hash_password($data['password']);
@@ -233,7 +235,7 @@ class User_model extends Model
         $lokasi_file = $_FILES['foto']['tmp_name'];
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
-        $old_foto    = $this->input->post('old_foto');
+        $old_foto    = $this->request->getPost('old_foto');
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 $_SESSION['success'] = -1;
@@ -254,7 +256,7 @@ class User_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update1($id = 0)
     {
         $data = $_POST;
         unset($data['old_foto'], $data['foto']);
@@ -262,7 +264,7 @@ class User_model extends Model
         $lokasi_file = $_FILES['foto']['tmp_name'];
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
-        $old_foto    = $this->input->post('old_foto');
+        $old_foto    = $this->request->getPost('old_foto');
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 $_SESSION['success'] = -1;
@@ -289,7 +291,7 @@ class User_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete1($id = '')
     {
         $sql  = 'DELETE FROM user WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
@@ -337,7 +339,7 @@ class User_model extends Model
     {
         $sql   = 'SELECT * FROM user WHERE id=?';
         $query = $this->db->query($sql, $id);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         $data['password'] = 'radiisi';
 
@@ -349,15 +351,15 @@ class User_model extends Model
         $sql   = 'SELECT id,nama,username FROM user WHERE username=?';
         $query = $this->db->query($sql, $user);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update_setting($id = 0)
     {
-        $password   = hash_password($this->input->post('pass_lama'));
-        $pass_baru  = $this->input->post('pass_baru');
-        $pass_baru1 = $this->input->post('pass_baru1');
-        $nama       = $this->input->post('nama');
+        $password   = hash_password($this->request->getPost('pass_lama'));
+        $pass_baru  = $this->request->getPost('pass_baru');
+        $pass_baru1 = $this->request->getPost('pass_baru1');
+        $nama       = $this->request->getPost('nama');
 
         $data = $_POST;
         unset($data['old_foto'], $data['foto']);
@@ -365,7 +367,7 @@ class User_model extends Model
         $lokasi_file = $_FILES['foto']['tmp_name'];
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
-        $old_foto    = $this->input->post('old_foto');
+        $old_foto    = $this->request->getPost('old_foto');
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 $_SESSION['success'] = -1;
@@ -379,7 +381,7 @@ class User_model extends Model
 
         $sql   = 'SELECT password,id_grup,session FROM user WHERE id=?';
         $query = $this->db->query($sql, [$id]);
-        $row   = $query->row();
+        $row   = $query->getRow();
 
         if ($password === $row->password) {
             if ($pass_baru !== '') {
@@ -406,7 +408,7 @@ class User_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function sid_online()
@@ -423,7 +425,7 @@ class User_model extends Model
     {
         $sql    = 'SELECT * FROM config WHERE 1';
         $query  = $this->db->query($sql);
-        $desa   = $query->row_array();
+        $desa   = $query->getRowArray();
         $nl     = "\r\n";
         $string = '';
 
@@ -437,7 +439,7 @@ class User_model extends Model
 
         $sql     = 'SELECT DISTINCT(dusun) FROM tweb_wil_clusterdesa';
         $query   = $this->db->query($sql);
-        $wilayah = $query->result_array();
+        $wilayah = $query->getResultArray();
 
         $string .= '<wilayah>' . $nl;
 
@@ -449,7 +451,7 @@ class User_model extends Model
 
         $sql      = 'SELECT * FROM data_surat';
         $query    = $this->db->query($sql);
-        $penduduk = $query->result_array();
+        $penduduk = $query->getResultArray();
 
         $string .= '<penduduk>' . $nl;
 

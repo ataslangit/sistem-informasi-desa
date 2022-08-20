@@ -37,7 +37,7 @@
                                         <th class="top">Gambar</th>
                                         <td>
                                             <div class="gallerybox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar'] ?>" alt="" width="200" />
+                                                <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar'] ?>" alt="" width="200" />
                                             </div>
                                         </td>
                                     </tr>
@@ -59,7 +59,7 @@
                                     <td>
                                         <?php if ($artikel['gambar1']) { ?>
                                             <div class="gallerybox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar1'] ?>" alt="" width="200" />
+                                                <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar1'] ?>" alt="" width="200" />
                                             </div>
                                     </td>
                                 </tr>
@@ -73,7 +73,7 @@
                                 <td>
                                     <?php if ($artikel['gambar2']) { ?>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar2'] ?>" alt="" width="200" />
+                                            <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar2'] ?>" alt="" width="200" />
                                         </div>
                                 </td>
                             </tr>
@@ -87,7 +87,7 @@
                             <td>
                                 <?php if ($artikel['gambar3']) { ?>
                                     <div class="gallerybox-avatar">
-                                        <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar3'] ?>" alt="" width="200" />
+                                        <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar3'] ?>" alt="" width="200" />
                                     </div>
                             </td>
                         </tr>
@@ -101,7 +101,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>web/index/<?= $cat ?>" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/web/index/<?= $cat ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

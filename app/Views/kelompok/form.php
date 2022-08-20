@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?= base_url() ?>assets/tiny_mce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/tiny_mce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/tiny_mce/tinymce.min.js"></script>
 <script>
     $(function() {
         var nik = {};
@@ -72,7 +72,7 @@
 </div>
 <div class="ui-layout-south panel bottom">
     <div class="left">
-        <a href="<?= site_url() ?>kelompok" class="uibutton icon prev">Kembali</a>
+        <a href="<?= site_url() ?>/kelompok" class="uibutton icon prev">Kembali</a>
     </div>
     <div class="right">
         <div class="uibutton-group">

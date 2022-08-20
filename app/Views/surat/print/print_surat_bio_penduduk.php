@@ -3,10 +3,10 @@
 <body>
     <div id="content" class="container_12 clearfix">
         <div id="content-main" class="grid_7">
-            <link href="<?= base_url() ?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+            <link href="<?= base_url() ?>/assets/css/surat.css" rel="stylesheet" type="text/css" />
             <div>
                 <table width="100%">
-                    <tr> <img src="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" alt="" class="logo"></tr>
+                    <tr> <img src="<?= base_url() ?>/assets/files/logo/<?= $desa['logo'] ?>" alt="" class="logo"></tr>
                     <div class="header">
                         <h4 class="kop">PEMERINTAH KABUPATEN <?= strtoupper(unpenetration($desa['nama_kabupaten'])) ?> </h4>
                         <h4 class="kop">KECAMATAN <?= strtoupper(unpenetration($desa['nama_kecamatan'])) ?> </h4>

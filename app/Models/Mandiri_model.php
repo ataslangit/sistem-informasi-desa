@@ -10,7 +10,7 @@ class Mandiri_model extends Model
     {
         $sql   = 'SELECT nik FROM tweb_penduduk_mandiri';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -69,7 +69,7 @@ class Mandiri_model extends Model
 			WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -106,7 +106,7 @@ class Mandiri_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -133,7 +133,7 @@ class Mandiri_model extends Model
     public function insert()
     {
         if ($_POST['nik'] === '') {
-            redirect('mandiri');
+            return redirect()->to('mandiri');
         }
 
         $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
@@ -189,7 +189,7 @@ class Mandiri_model extends Model
     {
         $sql   = "SELECT nik AS id,nik,nama FROM tweb_penduduk WHERE status = 1 AND nik<>'' ";
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -203,10 +203,10 @@ class Mandiri_model extends Model
 
     public function update_setting($id = 0)
     {
-        $password   = md5($this->input->post('pass_lama'));
-        $pass_baru  = $this->input->post('pass_baru');
-        $pass_baru1 = $this->input->post('pass_baru1');
-        $nama       = $this->input->post('nama');
+        $password   = md5($this->request->getPost('pass_lama'));
+        $pass_baru  = $this->request->getPost('pass_baru');
+        $pass_baru1 = $this->request->getPost('pass_baru1');
+        $nama       = $this->request->getPost('nama');
 
         $sql   = 'SELECT password,id_grup,session FROM user WHERE id=?';
         $query = $this->db->query($sql, [$id]);
@@ -232,6 +232,6 @@ class Mandiri_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

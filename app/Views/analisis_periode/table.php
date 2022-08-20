@@ -13,7 +13,7 @@
     <div id="contentpane">
         <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
-                <h3>Manajemen Periode Analisis - <a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></h3>
+                <h3>Manajemen Periode Analisis - <a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></h3>
                 <div class="left">
                     <div class="uibutton-group">
                         <a href="<?= site_url('analisis_periode/form') ?>" class="uibutton tipsy south" title="Tambah Data"><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Periode Baru</a>
@@ -91,7 +91,7 @@
             <div class="left">
                 <div class="table-info">
                     <?= form_open('analisis_periode', ['id' => 'paging']) ?>
-                        <a href="<?= site_url() ?>analisis_periode/leave" class="uibutton icon prev">Kembali</a>
+                        <a href="<?= site_url() ?>/analisis_periode/leave" class="uibutton icon prev">Kembali</a>
                         <label></label>
                         <select name="per_page" onchange="$('#paging').submit()">
                             <option value="20" <?php selected($per_page, 20); ?>>20</option>

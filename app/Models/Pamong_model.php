@@ -13,7 +13,7 @@ class Pamong_model extends Model
         $sql .= $this->filter_sql();
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -31,7 +31,7 @@ class Pamong_model extends Model
 					UNION SELECT pamong_nip FROM tweb_desa_pamong
 					UNION SELECT pamong_nik FROM tweb_desa_pamong';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -72,16 +72,16 @@ class Pamong_model extends Model
         $sql   = 'SELECT * FROM tweb_desa_pamong WHERE pamong_id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function insert()
     {
-        $nip     = penetration($this->input->post('pamong_nip'));
-        $nama    = penetration($this->input->post('pamong_nama'));
-        $nik     = penetration($this->input->post('pamong_nik'));
-        $jabatan = penetration($this->input->post('jabatan'));
-        $status  = penetration($this->input->post('pamong_status'));
+        $nip     = penetration($this->request->getPost('pamong_nip'));
+        $nama    = penetration($this->request->getPost('pamong_nama'));
+        $nik     = penetration($this->request->getPost('pamong_nik'));
+        $jabatan = penetration($this->request->getPost('jabatan'));
+        $status  = penetration($this->request->getPost('pamong_status'));
 
         $sql = 'INSERT INTO tweb_desa_pamong (pamong_nama,pamong_nip,pamong_nik,jabatan,pamong_status,pamong_tgl_terdaftar)
 				VALUES (?,?,?,?,?,NOW())';
@@ -97,11 +97,11 @@ class Pamong_model extends Model
 
     public function update($id = 0)
     {
-        $nip     = $this->input->post('pamong_nip');
-        $nama    = penetration($this->input->post('pamong_nama'));
-        $nik     = $this->input->post('pamong_nik');
-        $jabatan = penetration($this->input->post('jabatan'));
-        $status  = $this->input->post('pamong_status');
+        $nip     = $this->request->getPost('pamong_nip');
+        $nama    = penetration($this->request->getPost('pamong_nama'));
+        $nik     = $this->request->getPost('pamong_nik');
+        $jabatan = penetration($this->request->getPost('jabatan'));
+        $status  = $this->request->getPost('pamong_status');
 
         $sql  = 'UPDATE tweb_desa_pamong SET pamong_nama=?,pamong_nip=?,pamong_nik=?,jabatan=?,pamong_status=? WHERE pamong_id=?';
         $outp = $this->db->query($sql, [$nama, $nip, $nik, $jabatan, $status, $id]);

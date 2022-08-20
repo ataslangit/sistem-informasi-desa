@@ -18,4 +18,4 @@
         </div>
     </div>
 <?= form_close() ?>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/jscolor/jscolor.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/jscolor/jscolor.js"></script>

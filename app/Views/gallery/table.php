@@ -6,7 +6,7 @@
         });
     });
 </script>
-<script src="<?= base_url() ?>assets/front/js/jquery.colorbox.js"></script>
+<script src="<?= base_url() ?>/assets/front/js/jquery.colorbox.js"></script>
 <script>
     $(document).ready(function() {
         $(".color2").colorbox({
@@ -15,7 +15,7 @@
         });
     });
 </script>
-<link type='text/css' href="<?= base_url() ?>assets/front/css/colorbox.css" rel='Stylesheet' />
+<link type='text/css' href="<?= base_url() ?>/assets/front/css/colorbox.css" rel='Stylesheet' />
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
@@ -103,7 +103,7 @@
 
                                             </td>
                                             <td>
-                                                <label class="tipsy west" title="<img width=200 height=134 src=<?= base_url() ?>assets/files/galeri/kecil_<?= $data['gambar'] ?>>"><?= $data['nama'] ?></label>
+                                                <label class="tipsy west" title="<img width=200 height=134 src=<?= base_url() ?>/assets/files/galeri/kecil_<?= $data['gambar'] ?>>"><?= $data['nama'] ?></label>
                                             </td>
                                             <td><?= $data['aktif'] ?></td>
                                             <td><?= tgl_indo2($data['tgl_upload']) ?></td>

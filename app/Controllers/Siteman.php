@@ -26,12 +26,14 @@ class Siteman extends BaseController
     public function auth()
     {
         $this->user_model->siteman();
-        redirect('main');
+
+        return redirect()->to('main');
     }
 
     public function login()
     {
         $this->user_model->logout();
-        redirect('siteman');
+
+        return redirect()->to('siteman');
     }
 }

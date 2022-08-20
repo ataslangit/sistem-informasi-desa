@@ -10,7 +10,7 @@ class Web extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3', '4'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Web extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('web');
+        return redirect()->to('web');
     }
 
     public function pager($cat = 1)
@@ -26,7 +26,8 @@ class Web extends BaseController
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function index($cat = 1, $p = 1, $o = 0)
@@ -99,66 +100,75 @@ class Web extends BaseController
 
     public function search($cat = 1)
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function filter($cat = 1)
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function insert($cat = 1)
     {
         $this->web_artikel_model->insert($cat);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function update($cat = 0, $id = '', $p = 1, $o = 0)
     {
         $this->web_artikel_model->update($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function delete($cat = 1, $p = 1, $o = 0, $id = '')
     {
         $this->web_artikel_model->delete($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function hapus($cat = 1, $p = 1, $o = 0)
     {
         $this->web_artikel_model->hapus($cat);
-        redirect("web/index/1/{$p}/{$o}");
+
+        return redirect()->to("web/index/1/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_artikel_model->delete_all();
-        redirect("web/index/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$p}/{$o}");
     }
 
     public function artikel_lock($cat = 1, $id = 0)
     {
         $this->web_artikel_model->artikel_lock($id, 1);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function artikel_unlock($cat = 1, $id = 0)
     {
         $this->web_artikel_model->artikel_lock($id, 2);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function ajax_add_kategori($cat = 1, $p = 1, $o = 0)
@@ -170,18 +180,21 @@ class Web extends BaseController
     public function insert_kategori($cat = 1, $p = 1, $o = 0)
     {
         $this->web_artikel_model->insert_kategori();
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function headline($cat = 1, $p = 1, $o = 0, $id = 0)
     {
         $this->web_artikel_model->headline($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function slide($cat = 1, $p = 1, $o = 0, $id = 0)
     {
         $this->web_artikel_model->slide($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 }

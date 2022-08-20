@@ -10,7 +10,7 @@ class Gis extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -19,7 +19,8 @@ class Gis extends BaseController
         unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['fisik'], $_SESSION['mental'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk'], $_SESSION['layer_penduduk'], $_SESSION['layer_keluarga'], $_SESSION['layer_desa'], $_SESSION['layer_wilayah'], $_SESSION['layer_area'], $_SESSION['layer_line'], $_SESSION['layer_point']);
 
         $_SESSION['layer_keluarga'] === 0;
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function index()
@@ -125,158 +126,172 @@ class Gis extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_penduduk()
     {
-        $layer_penduduk = $this->input->post('layer_penduduk');
+        $layer_penduduk = $this->request->getPost('layer_penduduk');
         if ($layer_penduduk === '') {
             $_SESSION['layer_penduduk'] = 0;
         } else {
             $_SESSION['layer_penduduk'] = 1;
             $_SESSION['layer_keluarga'] = 0;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_wilayah()
     {
-        $layer_wilayah = $this->input->post('layer_wilayah');
+        $layer_wilayah = $this->request->getPost('layer_wilayah');
         if ($layer_wilayah === '') {
             $_SESSION['layer_wilayah'] = 0;
         } else {
             $_SESSION['layer_wilayah'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_area()
     {
-        $layer_area = $this->input->post('layer_area');
+        $layer_area = $this->request->getPost('layer_area');
         if ($layer_area === '') {
             $_SESSION['layer_area'] = 0;
         } else {
             $_SESSION['layer_area'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_line()
     {
-        $layer_line = $this->input->post('layer_line');
+        $layer_line = $this->request->getPost('layer_line');
         if ($layer_line === '') {
             $_SESSION['layer_line'] = 0;
         } else {
             $_SESSION['layer_line'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_point()
     {
-        $layer_point = $this->input->post('layer_point');
+        $layer_point = $this->request->getPost('layer_point');
         if ($layer_point === '') {
             $_SESSION['layer_point'] = 0;
         } else {
             $_SESSION['layer_point'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_keluarga()
     {
-        $layer_keluarga = $this->input->post('layer_keluarga');
+        $layer_keluarga = $this->request->getPost('layer_keluarga');
         if ($layer_keluarga === '') {
             $_SESSION['layer_keluarga'] = 0;
         } else {
             $_SESSION['layer_keluarga'] = 1;
             $_SESSION['layer_penduduk'] = 0;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_desa()
     {
-        $layer_desa = $this->input->post('layer_desa');
+        $layer_desa = $this->request->getPost('layer_desa');
         if ($layer_desa === '') {
             $_SESSION['layer_desa'] = 0;
         } else {
             $_SESSION['layer_desa'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function sex()
     {
-        $sex = $this->input->post('sex');
+        $sex = $this->request->getPost('sex');
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
             unset($_SESSION['sex']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function dusun()
     {
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function rw()
     {
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function agama()
     {
-        $agama = $this->input->post('agama');
+        $agama = $this->request->getPost('agama');
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
             unset($_SESSION['agama']);
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function ajax_adv_search()
@@ -308,6 +323,6 @@ class Gis extends BaseController
             }
         }
 
-        redirect('gis');
+        return redirect()->to('gis');
     }
 }

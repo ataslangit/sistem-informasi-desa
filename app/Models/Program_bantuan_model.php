@@ -15,7 +15,7 @@ class Program_bantuan_model extends Model
         }
         $query = $this->db->query($strSQL);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_program($slug)
@@ -24,11 +24,11 @@ class Program_bantuan_model extends Model
             $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE 1';
             $query  = $this->db->query($strSQL);
 
-            return $query->result_array();
+            return $query->getResultArray();
         }
         $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE p.id=' . $slug;
         $query  = $this->db->query($strSQL);
-        $hasil0 = $query->row_array();
+        $hasil0 = $query->getRowArray();
 
         switch ($hasil0['sasaran']) {
             case 1:
@@ -38,7 +38,7 @@ class Program_bantuan_model extends Model
                 $query  = $this->db->query($strSQL);
                 $filter = [];
                 if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -59,7 +59,7 @@ class Program_bantuan_model extends Model
 						WHERE 1 ORDER BY nama';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
+                $data  = $query->getResultArray();
                 if ($query->num_rows() > 0) {
                     $i = 0;
                     $j = 0;
@@ -91,7 +91,7 @@ class Program_bantuan_model extends Model
                 $query  = $this->db->query($strSQL);
                 $filter = [];
                 if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -112,7 +112,7 @@ class Program_bantuan_model extends Model
 					WHERE 1';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
+                $data  = $query->getResultArray();
                 if ($query->num_rows() > 0) {
                     $i = 0;
                     $j = 0;
@@ -141,7 +141,7 @@ class Program_bantuan_model extends Model
                 $query  = $this->db->query($strSQL);
                 $filter = [];
                 if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -164,7 +164,7 @@ class Program_bantuan_model extends Model
 						';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
+                $data  = $query->getResultArray();
                 if ($query->num_rows() > 0) {
                     $i = 0;
                     $j = 0;
@@ -192,7 +192,7 @@ class Program_bantuan_model extends Model
                 $query  = $this->db->query($strSQL);
                 $filter = [];
                 if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -210,7 +210,7 @@ class Program_bantuan_model extends Model
                 $strSQL = 'SELECT id,nama FROM kelompok WHERE 1';
                 $query  = $this->db->query($strSQL);
                 $data   = '';
-                $data   = $query->result_array();
+                $data   = $query->getResultArray();
                 if ($query->num_rows() > 0) {
                     $i = 0;
 
@@ -244,7 +244,7 @@ class Program_bantuan_model extends Model
 			WHERE ((o.peserta='" . fixSQL($id) . "') AND (o.sasaran='" . fixSQL($cat) . "'))";
         $query = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
-            $data_program = $query->result_array();
+            $data_program = $query->getResultArray();
         }
 
         switch ($cat) {
@@ -253,7 +253,7 @@ class Program_bantuan_model extends Model
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE o.nik='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => $row['nama'] . ' - ' . $row['nik'],
@@ -270,7 +270,7 @@ class Program_bantuan_model extends Model
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster WHERE o.no_kk='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => 'Kepala KK : ' . $row['nama'] . ', NO KK: ' . $row['no_kk'],
@@ -289,7 +289,7 @@ class Program_bantuan_model extends Model
 					';
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => 'Kepala RTM : ' . $row['nama'] . ', NIK: ' . $row['nik'],
@@ -307,7 +307,7 @@ class Program_bantuan_model extends Model
 				 WHERE k.id='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => $row['nama'],
@@ -329,12 +329,12 @@ class Program_bantuan_model extends Model
     public function set_program()
     {
         $data = [
-            'sasaran' => $this->input->post('cid'),
-            'nama'    => fixSQL($this->input->post('nama')),
-            'ndesc'   => fixSQL($this->input->post('ndesc')),
-            'userid'  => $this->input->post('userid'),
-            'sdate'   => date('Y-m-d', strtotime($this->input->post('sdate'))),
-            'edate'   => date('Y-m-d', strtotime($this->input->post('edate'))),
+            'sasaran' => $this->request->getPost('cid'),
+            'nama'    => fixSQL($this->request->getPost('nama')),
+            'ndesc'   => fixSQL($this->request->getPost('ndesc')),
+            'userid'  => $this->request->getPost('userid'),
+            'sdate'   => date('Y-m-d', strtotime($this->request->getPost('sdate'))),
+            'edate'   => date('Y-m-d', strtotime($this->request->getPost('edate'))),
         ];
 
         return $this->db->insert('program', $data);
@@ -345,7 +345,7 @@ class Program_bantuan_model extends Model
         $strSQL = 'SELECT sasaran FROM program WHERE id=' . $id;
         $hasil  = $this->db->query($strSQL);
         if ($hasil->num_rows() > 0) {
-            $row = $hasil->row_array();
+            $row = $hasil->getRowArray();
         }
         $strSQL = "SELECT id FROM `program_peserta` WHERE program_id='" . fixSQL($id) . "' AND peserta='" . fixSQL($nik) . "'";
         $hasil  = $this->db->query($strSQL);
@@ -360,12 +360,12 @@ class Program_bantuan_model extends Model
 
     public function update_program($id)
     {
-        $strSQL = "UPDATE `program` SET `sasaran`='" . $this->input->post('cid') . "',
-		`nama`='" . fixSQL($this->input->post('nama')) . "',
-		`ndesc`='" . fixSQL($this->input->post('ndesc')) . "',
-		`sdate`='" . date('Y-m-d', strtotime($this->input->post('sdate'))) . "',
-		`edate`='" . date('Y-m-d', strtotime($this->input->post('edate'))) . "',
-		`status`='" . $this->input->post('status') . "'
+        $strSQL = "UPDATE `program` SET `sasaran`='" . $this->request->getPost('cid') . "',
+		`nama`='" . fixSQL($this->request->getPost('nama')) . "',
+		`ndesc`='" . fixSQL($this->request->getPost('ndesc')) . "',
+		`sdate`='" . date('Y-m-d', strtotime($this->request->getPost('sdate'))) . "',
+		`edate`='" . date('Y-m-d', strtotime($this->request->getPost('edate'))) . "',
+		`status`='" . $this->request->getPost('status') . "'
 		 WHERE id=" . $id;
 
         $hasil = $this->db->query($strSQL);

@@ -16,7 +16,7 @@ class Sid_core extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -24,7 +24,7 @@ class Sid_core extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('sid_core');
+        return redirect()->to('sid_core');
     }
 
     public function index($p = 1, $o = 0)
@@ -106,37 +106,42 @@ class Sid_core extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function insert($dusun = '')
     {
         $this->wilayah_model->insert();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function update($id = '')
     {
         $this->wilayah_model->update($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete($id = '')
     {
         $this->wilayah_model->delete($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete_all()
     {
         $this->wilayah_model->delete_all();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function sub_rw($id_dusun = '')
@@ -213,25 +218,29 @@ class Sid_core extends BaseController
     public function insert_rw($dusun = '')
     {
         $this->wilayah_model->insert_rw($dusun);
-        redirect("sid_core/sub_rw/{$dusun}");
+
+        return redirect()->to("sid_core/sub_rw/{$dusun}");
     }
 
     public function update_rw($dusun = '', $rw = '')
     {
         $this->wilayah_model->update_rw($dusun, $rw);
-        redirect("sid_core/sub_rw/{$dusun}");
+
+        return redirect()->to("sid_core/sub_rw/{$dusun}");
     }
 
     public function delete_rw($id_dusun = '', $id = '')
     {
         $this->wilayah_model->delete_rw($id);
-        redirect("sid_core/sub_rw/{$id_dusun}");
+
+        return redirect()->to("sid_core/sub_rw/{$id_dusun}");
     }
 
     public function delete_all_rw($dusun = '')
     {
         $this->wilayah_model->delete_all_rw();
-        redirect("sid_core/sub_rw/{$dusun}");
+
+        return redirect()->to("sid_core/sub_rw/{$dusun}");
     }
 
     public function sub_rt($id_dusun = '', $rw = '')
@@ -329,13 +338,15 @@ class Sid_core extends BaseController
     public function insert_rt($dusun = '', $rw = '')
     {
         $this->wilayah_model->insert_rt($dusun, $rw);
-        redirect("sid_core/sub_rt/{$dusun}/{$rw}");
+
+        return redirect()->to("sid_core/sub_rt/{$dusun}/{$rw}");
     }
 
     public function update_rt($dusun = '', $rw = '', $id_cluster = 0)
     {
         $this->wilayah_model->update_rt($id_cluster);
-        redirect("sid_core/sub_rt/{$dusun}/{$rw}");
+
+        return redirect()->to("sid_core/sub_rt/{$dusun}/{$rw}");
     }
 
     public function delete_rt($id_cluster = '')
@@ -351,7 +362,8 @@ class Sid_core extends BaseController
     public function delete_all_rt()
     {
         $this->wilayah_model->delete_all_rt();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function cetakx()
@@ -374,7 +386,8 @@ class Sid_core extends BaseController
     public function update_dusun_map($id = 0)
     {
         $this->wilayah_model->update_dusun_map($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function ajax_rw_maps($dus = 0, $id = 0)
@@ -389,7 +402,8 @@ class Sid_core extends BaseController
     public function update_rw_map($dus = 0, $id = 0)
     {
         $this->wilayah_model->update_rw_map($dus, $id);
-        redirect("sid_core/sub_rw/{$dus}");
+
+        return redirect()->to("sid_core/sub_rw/{$dus}");
     }
 
     public function ajax_rt_maps($dus = 0, $rw = 0, $id = 0)
@@ -404,7 +418,8 @@ class Sid_core extends BaseController
     public function update_rt_map($dus = 0, $rw = 0, $id = 0)
     {
         $this->wilayah_model->update_rt_map($dus, $rw, $id);
-        redirect("sid_core/sub_rt/{$dus}/{$rw}");
+
+        return redirect()->to("sid_core/sub_rt/{$dus}/{$rw}");
     }
 
     public function warga($id = '')
@@ -415,7 +430,8 @@ class Sid_core extends BaseController
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_kk($id = '')
@@ -425,7 +441,8 @@ class Sid_core extends BaseController
         $dusun                = $temp['dusun'];
         $_SESSION['per_page'] = 50;
         $_SESSION['dusun']    = $dusun;
-        redirect('keluarga/index/1/0');
+
+        return redirect()->to('keluarga/index/1/0');
     }
 
     public function warga_l($id = '')
@@ -437,7 +454,8 @@ class Sid_core extends BaseController
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 1;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_p($id = '')
@@ -449,7 +467,8 @@ class Sid_core extends BaseController
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 2;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function migrate()
@@ -464,7 +483,7 @@ class Sid_core extends BaseController
         $this->dbforge->drop_table('tweb_penduduk_x');
         $this->dbforge->drop_table('tweb_penduduk_x_pindah');
 
-        redirect('penduduk/clear');
+        return redirect()->to('penduduk/clear');
     }
 
     public function pre_migrate()

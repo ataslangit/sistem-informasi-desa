@@ -10,7 +10,7 @@ class User_setting extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3', '4', '5'], true)) {
-            redirect('login');
+            return redirect()->to('login');
         }
     }
 
@@ -30,6 +30,7 @@ class User_setting extends BaseController
     public function update($id = '')
     {
         $this->user_model->update_setting($id);
-        redirect('main');
+
+        return redirect()->to('main');
     }
 }

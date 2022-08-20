@@ -10,7 +10,7 @@ class Analisis_klasifikasi extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Klasifikasi';
         $_SESSION['asubmenu'] = 'analisis_klasifikasi';
@@ -19,14 +19,16 @@ class Analisis_klasifikasi extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -77,36 +79,41 @@ class Analisis_klasifikasi extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function insert()
     {
         $this->analisis_klasifikasi_model->insert();
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_klasifikasi_model->update($id);
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_klasifikasi_model->delete($id);
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_klasifikasi_model->delete_all();
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 }

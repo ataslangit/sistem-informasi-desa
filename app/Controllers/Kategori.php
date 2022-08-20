@@ -10,7 +10,7 @@ class Kategori extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Kategori extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('kategori');
+        return redirect()->to('kategori');
     }
 
     public function index($p = 1, $o = 0)
@@ -106,95 +106,109 @@ class Kategori extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kategori');
+
+        return redirect()->to('kategori');
     }
 
     public function insert()
     {
         $this->web_kategori_model->insert();
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function update($id = '')
     {
         $this->web_kategori_model->update($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete($id = '')
     {
         $this->web_kategori_model->delete($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_kategori_model->delete_all();
-        redirect("kategori/index/{$p}/{$o}");
+
+        return redirect()->to("kategori/index/{$p}/{$o}");
     }
 
     public function kategori_lock($id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 1);
-        redirect('kategori/index/');
+
+        return redirect()->to('kategori/index/');
     }
 
     public function kategori_unlock($id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 2);
-        redirect('kategori/index/');
+
+        return redirect()->to('kategori/index/');
     }
 
     public function insert_sub_kategori($kategori = '')
     {
         $this->web_kategori_model->insert_sub_kategori($kategori);
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 
     public function update_sub_kategori($kategori = '', $id = '')
     {
         $this->web_kategori_model->update_sub_kategori($id);
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 
     public function delete_sub_kategori($kategori = '', $id = 0)
     {
         $this->web_kategori_model->delete($id);
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 
     public function delete_all_sub_kategori($kategori = '')
     {
         $this->web_kategori_model->delete_all();
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 
     public function kategori_lock_sub_kategori($kategori = '', $id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 1);
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 
     public function kategori_unlock_sub_kategori($kategori = '', $id = '')
     {
         $this->web_kategori_model->kategori_lock($id, 2);
-        redirect("kategori/sub_kategori/{$kategori}");
+
+        return redirect()->to("kategori/sub_kategori/{$kategori}");
     }
 }

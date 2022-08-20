@@ -29,7 +29,7 @@
                                         <th>Foto</th>
                                         <td>
                                             <div class="userbox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/gis/lokasi/kecil_<?= $lokasi['foto'] ?>" />
+                                                <img src="<?= base_url() ?>/assets/files/gis/lokasi/kecil_<?= $lokasi['foto'] ?>" />
                                             </div>
                                         </td>
                                     </tr>
@@ -67,7 +67,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>plan" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/plan" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

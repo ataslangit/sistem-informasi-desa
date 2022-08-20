@@ -10,7 +10,7 @@ class Laporan extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
 
         $_SESSION['success'] = 0;
@@ -24,7 +24,8 @@ class Laporan extends BaseController
         $_SESSION['bulanku']  = date('n');
         $_SESSION['tahunku']  = date('Y');
         $_SESSION['per_page'] = 200;
-        redirect('laporan');
+
+        return redirect()->to('laporan');
     }
 
     public function index($lap = 0, $p = 1, $o = 0)
@@ -103,19 +104,20 @@ class Laporan extends BaseController
 
     public function bulan()
     {
-        $bulanku = $this->input->post('bulan');
+        $bulanku = $this->request->getPost('bulan');
         if ($bulanku !== '') {
             $_SESSION['bulanku'] = $bulanku;
         } else {
             unset($_SESSION['bulanku']);
         }
 
-        $tahunku = $this->input->post('tahun');
+        $tahunku = $this->request->getPost('tahun');
         if ($tahunku !== '') {
             $_SESSION['tahunku'] = $tahunku;
         } else {
             unset($_SESSION['tahunku']);
         }
-        redirect('laporan');
+
+        return redirect()->to('laporan');
     }
 }

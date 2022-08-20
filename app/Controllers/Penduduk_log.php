@@ -10,7 +10,7 @@ class Penduduk_log extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -20,7 +20,8 @@ class Penduduk_log extends BaseController
 
         $_SESSION['per_page'] = 200;
         $_SESSION['log']      = 1;
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function index($p = 1, $o = 0)
@@ -115,79 +116,86 @@ class Penduduk_log extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function sex()
     {
-        $sex = $this->input->post('sex');
+        $sex = $this->request->getPost('sex');
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
             unset($_SESSION['sex']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function agama()
     {
-        $agama = $this->input->post('agama');
+        $agama = $this->request->getPost('agama');
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
             unset($_SESSION['agama']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function dusun()
     {
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rw()
     {
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function edit_status_dasar($p = 1, $o = 0, $id = 0)
@@ -200,7 +208,8 @@ class Penduduk_log extends BaseController
     public function update_status_dasar($p = 1, $o = 0, $id = '')
     {
         $this->penduduk_model->update_status_dasar($id);
-        redirect("penduduk_log/index/{$p}/{$o}");
+
+        return redirect()->to("penduduk_log/index/{$p}/{$o}");
     }
 
     public function cetak($o = 0)
@@ -212,6 +221,7 @@ class Penduduk_log extends BaseController
     public function delete_all($p = 1, $o = 0)
     {
         $this->penduduk_model->delete_all();
-        redirect("penduduk_log/index/{$p}/{$o}");
+
+        return redirect()->to("penduduk_log/index/{$p}/{$o}");
     }
 }

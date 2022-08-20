@@ -40,8 +40,8 @@
                         <div class="teks">
                             <p>Jenis-jenis surat dapat diubah, ditambah, atau dikurangi dengan menggunakan fungsi pengaturan di Menu Master Surat.<br /></p>
                             <?php foreach ($surat_favorit as $data) { ?>
-                                <a class="csurat" href="<?= site_url() ?>surat/form/<?= $data['url_surat'] ?>">
-                                    <img src="<?= base_url() ?>assets/images/cpanel/edit-select-all-1.png" />
+                                <a class="csurat" href="<?= site_url() ?>/surat/form/<?= $data['url_surat'] ?>">
+                                    <img src="<?= base_url() ?>/assets/images/cpanel/edit-select-all-1.png" />
                                     <span><?= strtoupper($data['nama']) ?></span>
                                 </a>
                             <?php } ?>
@@ -53,8 +53,8 @@
                         <div>
                             <?php foreach ($menu_surat2 as $data) {
                                 if ($data['favorit'] !== 1) { ?>
-                                    <a class="csurat" href="<?= site_url() ?>surat/form/<?= $data['url_surat'] ?>">
-                                        <img src="<?= base_url() ?>assets/images/cpanel/edit-select-all-2.png" />
+                                    <a class="csurat" href="<?= site_url() ?>/surat/form/<?= $data['url_surat'] ?>">
+                                        <img src="<?= base_url() ?>/assets/images/cpanel/edit-select-all-2.png" />
                                         <span><?= strtoupper($data['nama']) ?></span>
                                     </a>
                             <?php }

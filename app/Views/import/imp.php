@@ -29,8 +29,8 @@
                                     <li>Pastikan tipe spreadsheet berekstensi .xls format Excel 2003</ul>
                                     <li>Data yang dibutuhkan untuk import dengan memenuhi aturan data.
                                 </ol>
-                                UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url() ?>assets/import/ATURANDATA.xls">Aturan Data</a>
-                                <a class="uibutton confirm" href="<?= base_url() ?>assets/import/ContohFormat.xls">Contoh Format</a><br>
+                                UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url() ?>/assets/import/ATURANDATA.xls">Aturan Data</a>
+                                <a class="uibutton confirm" href="<?= base_url() ?>/assets/import/ContohFormat.xls">Contoh Format</a><br>
                                 </p>
                             </td>
                             <td>
@@ -44,7 +44,7 @@
                             <td width="250">
                                 <input name="userfile" type="file" />
                             <td>
-                                <a href="#" onclick="document.getElementById('excell').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url() ?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Penduduk</a>
+                                <a href="#" onclick="document.getElementById('excell').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url() ?>/assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Penduduk</a>
                             </td>
                             <td>
                                 &nbsp;
@@ -97,8 +97,8 @@
                                     <li>Pastikan tipe spreadsheet berekstensi .xls format Excel 2003</ul>
                                     <li>Data yang dibutuhkan untuk import dengan memenuhi aturan data.
                                 </ol>
-                                UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url() ?>assets/import/ATURANGRUP.xls">Aturan Data</a>
-                                <a class="uibutton confirm" href="<?= base_url() ?>assets/import/ContohGrup.xls">Contoh Format</a><br>
+                                UNDUH LAMPIRAN : <a class="uibutton confirm" href="<?= base_url() ?>/assets/import/ATURANGRUP.xls">Aturan Data</a>
+                                <a class="uibutton confirm" href="<?= base_url() ?>/assets/import/ContohGrup.xls">Contoh Format</a><br>
                                 </p>
                             </td>
                             <td>
@@ -112,7 +112,7 @@
                             <td width="250">
                                 <input name="userfile" type="file" />
                             <td>
-                                <a href="#" onclick="document.getElementById('kelompok').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan juga jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url() ?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Pengelompokan Rumah Tangga</a>
+                                <a href="#" onclick="document.getElementById('kelompok').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan juga jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?= base_url() ?>/assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Pengelompokan Rumah Tangga</a>
                             </td>
                             <td>
                                 &nbsp;

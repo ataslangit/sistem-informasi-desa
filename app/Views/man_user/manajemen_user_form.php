@@ -101,9 +101,9 @@
                                     <td>
                                         <div class="userbox-avatar">
                                             <?php if ($user['foto']) { ?>
-                                                <img src="<?= base_url() ?>assets/files/user_pict/kecil_<?= $user['foto'] ?>" alt="" />
+                                                <img src="<?= base_url() ?>/assets/files/user_pict/kecil_<?= $user['foto'] ?>" alt="" />
                                             <?php } else { ?>
-                                                <img src="<?= base_url() ?>assets/files/user_pict/kuser.png" alt="" />
+                                                <img src="<?= base_url() ?>/assets/files/user_pict/kuser.png" alt="" />
                                             <?php } ?>
                                         </div>
                                     </td>
@@ -118,7 +118,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>man_user" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/man_user" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

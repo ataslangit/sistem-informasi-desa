@@ -29,7 +29,7 @@
                                         <th>Foto</th>
                                         <td>
                                             <div class="userbox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/gis/garis/kecil_<?= $garis['foto'] ?>" />
+                                                <img src="<?= base_url() ?>/assets/files/gis/garis/kecil_<?= $garis['foto'] ?>" />
                                             </div>
                                         </td>
                                     </tr>
@@ -63,7 +63,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>garis" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/garis" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

@@ -10,7 +10,7 @@ class Analisis_laporan extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Laporan Analisis';
         $_SESSION['asubmenu'] = 'analisis_laporan';
@@ -21,14 +21,16 @@ class Analisis_laporan extends BaseController
         unset($_SESSION['cari'], $_SESSION['klasifikasi'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['jawab']);
 
         $_SESSION['per_page'] = 50;
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -136,7 +138,7 @@ class Analisis_laporan extends BaseController
     {
         $idcb = $_POST['id_cb'];
         print_r($idcb);
-        //redirect('analisis_laporan');
+        //return redirect()->to('analisis_laporan');
     }
 
     public function ajax_multi_jawab()
@@ -168,64 +170,70 @@ class Analisis_laporan extends BaseController
             $jmkf             = $this->analisis_laporan_model->group_parameter();
             $_SESSION['jmkf'] = count($jmkf);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function dusun()
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rw()
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function klasifikasi()
     {
-        $klasifikasi = $this->input->post('klasifikasi');
+        $klasifikasi = $this->request->getPost('klasifikasi');
         if ($klasifikasi !== '') {
             $_SESSION['klasifikasi'] = $klasifikasi;
         } else {
             unset($_SESSION['klasifikasi']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 }

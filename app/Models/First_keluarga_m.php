@@ -42,7 +42,7 @@ class First_keluarga_m extends Model
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $hasil = $sql;
-            $hasil = $query->result_array();
+            $hasil = $query->getResultArray();
         } else {
             $hasil = false;
         }

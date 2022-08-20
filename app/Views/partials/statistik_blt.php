@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
 <script type="text/javascript">
     var chart;
     $(document).ready(function() {
@@ -153,7 +153,7 @@ echo '
         <h2><a href="#">Grafik Statistik Penduduk</a></h2>
     </div>
     <div class='entry'>
-        <link href="<?= base_url() ?>assets/front/general.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url() ?>/assets/front/general.css" rel="stylesheet" type="text/css" />
         <div id="container" style="min-width: 550px; height: 500px; margin: 0 auto"></div>
         <div id="contentpane">
             <div class="ui-layout-north panel top">

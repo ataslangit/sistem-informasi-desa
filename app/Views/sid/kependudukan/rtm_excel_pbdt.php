@@ -25,7 +25,7 @@ header('Expires: 0');
         horizontal-align: left;
     }
 </style>
-<link href="<?= base_url() ?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?= base_url() ?>/assets/css/report.css" rel="stylesheet" type="text/css">
 <div id="body">
     <div class="header" align="center">
         <label>PEMERINTAH DAERAH KABUPATEN GUNUNGKIDUL</label><br>

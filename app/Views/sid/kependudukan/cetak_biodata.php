@@ -3,14 +3,14 @@
 <body>
     <div id="content" class="container_12 clearfix">
         <div id="content-main" class="grid_7">
-            <link href="<?= base_url() ?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+            <link href="<?= base_url() ?>/assets/css/surat.css" rel="stylesheet" type="text/css" />
             <div>
                 <table width="100%">
                     <div>
 
                         <div align="center">
                             <td rowspan="18" align="center"><?php if ($penduduk['foto']) { ?>
-                                    <img src="<?= base_url() ?>assets/files/user_pict/kecil_<?= $penduduk['foto'] ?>" alt="" />
+                                    <img src="<?= base_url() ?>/assets/files/user_pict/kecil_<?= $penduduk['foto'] ?>" alt="" />
                                 <?php } ?>
                             </td>
                         </div>

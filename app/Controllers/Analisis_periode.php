@@ -10,7 +10,7 @@ class Analisis_periode extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Periode';
         $_SESSION['asubmenu'] = 'analisis_periode';
@@ -20,14 +20,15 @@ class Analisis_periode extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['state']);
 
-        redirect('analisis_periode');
+        return redirect()->to('analisis_periode');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -89,48 +90,54 @@ class Analisis_periode extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function state()
     {
-        $filter = $this->input->post('state');
+        $filter = $this->request->getPost('state');
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
             unset($_SESSION['state']);
         }
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function insert()
     {
         $this->analisis_periode_model->insert();
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_periode_model->update($id);
-        redirect("analisis_periode/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_periode/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_periode_model->delete($id);
-        redirect("analisis_periode/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_periode/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_periode_model->delete_all();
-        redirect("analisis_periode/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_periode/index/{$p}/{$o}");
     }
 
     public function list_state()
@@ -138,6 +145,6 @@ class Analisis_periode extends BaseController
         $sql   = 'SELECT * FROM analisis_ref_state';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

@@ -2,7 +2,7 @@
 
 <body>
     <div id="container">
-        <link href="<?= base_url() ?>assets/css/report.css" rel="stylesheet" type="text/css">
+        <link href="<?= base_url() ?>/assets/css/report.css" rel="stylesheet" type="text/css">
         <!-- Print Body -->
         <div id="body">
             <div align="center">

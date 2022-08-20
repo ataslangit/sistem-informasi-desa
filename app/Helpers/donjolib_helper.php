@@ -395,11 +395,6 @@ function getBulan($bln)
     }
 }
 
-function timer()
-{
-    $time                = 2000;
-    $_SESSION['timeout'] = time() + $time;
-}
 function generator($length = 7)
 {
     return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);
@@ -438,7 +433,7 @@ function get_identitas()
     $ci->load->database();
     $sql = 'SELECT * FROM config';
     $q   = $ci->db->query($sql);
-    $hsl = $q->row_array();
+    $hsl = $q->getRowArray();
     //$string = "Desa : ".$hsl['nama_desa']." Kec : ".$hsl['nama_kecamatan']." Kab : ".$hsl['nama_kabupaten'];
     $string = "<h2 class='kop'>PEMERINTAH KABUPATEN " . strtoupper($hsl['nama_kabupaten']) . '<br>KECAMATAN ' . strtoupper($hsl['nama_kecamatan']) . '<br>DESA ' . strtoupper($hsl['nama_desa']) . '</h2><hr>';
 

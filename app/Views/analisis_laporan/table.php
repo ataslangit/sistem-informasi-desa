@@ -57,7 +57,7 @@ switch ($subjek) {
                     <tr>
                         <td width="150">Nama Analisis</td>
                         <td> : </td>
-                        <td><a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></td>
+                        <td><a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></td>
                     </tr>
                     <tr>
                         <td>Subjek Analisis</td>
@@ -183,7 +183,7 @@ switch ($subjek) {
             <div class="left">
                 <div class="table-info">
                     <?= form_open('analisis_laporan', ['id' => 'paging']) ?>
-                        <a href="<?= site_url() ?>analisis_laporan/leave" class="uibutton icon prev">Kembali</a>
+                        <a href="<?= site_url() ?>/analisis_laporan/leave" class="uibutton icon prev">Kembali</a>
                         <label></label>
                         <select name="per_page" onchange="$('#paging').submit()">
                             <option value="20" <?php selected($per_page, 20); ?>>20</option>

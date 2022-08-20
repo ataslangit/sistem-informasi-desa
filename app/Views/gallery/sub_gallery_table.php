@@ -89,7 +89,7 @@
                                                     <?php } ?>
                                                 </div>
                                             </td>
-                                            <td><label class="tipsy west" title="<img width=200 height=134 src=<?= base_url() ?>assets/files/galeri/kecil_<?= $data['gambar'] ?>>"><?= $data['nama'] ?></label></td>
+                                            <td><label class="tipsy west" title="<img width=200 height=134 src=<?= base_url() ?>/assets/files/galeri/kecil_<?= $data['gambar'] ?>>"><?= $data['nama'] ?></label></td>
                                             <td><?= $data['aktif'] ?></td>
                                             <td><?= tgl_indo2($data['tgl_upload']) ?></td>
                                         </tr>

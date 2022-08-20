@@ -1,7 +1,9 @@
 <!-- widget Agenda-->
 <?php
-if (! isset($_SESSION['mandiri'])) {
-    if ($_SESSION['mandiri_wait'] === 1) {
+$db = \Config\Database::connect();
+
+if (! session('mandiri')) {
+    if (session('mandiri_wait') === 1) {
         ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
@@ -9,7 +11,7 @@ if (! isset($_SESSION['mandiri'])) {
                 Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
             </div>
             <div class="box-body">
-                <h4>Gagal 3 kali. Sila coba kembali dalam <?= waktu_ind((time() - $_SESSION['mandiri_timeout']) * (-1)); ?> detik lagi</h4>
+                <h4>Gagal 3 kali. Sila coba kembali dalam <?= waktu_ind((time() - session('mandiri_timeout')) * (-1)); ?> detik lagi</h4>
                 <div id="note">
                     Login Gagal. Username atau Password yang Anda masukkan salah!
                 </div>
@@ -33,12 +35,12 @@ if (! isset($_SESSION['mandiri'])) {
                     ]) ?>
                     <button type="submit" id="but">Masuk</button>
                     <?php
-        /* if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
+        /* if (session('mandiri_try') && session('mandiri') === -1) { ?>
             <div id="note">
-                Kesempatan mencoba <?= $_SESSION['mandiri_try'] - 1; ?> kali lagi.
+                Kesempatan mencoba <?= session('mandiri_try') - 1; ?> kali lagi.
             </div>
         <?php } ?>
-        <?php if ($_SESSION['mandiri'] === -1) { ?>
+        <?php if (session('mandiri') === -1) { ?>
             <div id="note">
                 Login Gagal. Username atau Password yang Anda masukkan salah!
             </div>
@@ -61,12 +63,12 @@ if (! isset($_SESSION['mandiri'])) {
                     <tr>
                         <td>
                             Nama </td>
-                        <td>: <?= $_SESSION['nama']; ?></td>
+                        <td>: <?= session('nama'); ?></td>
                     </tr>
                     <tr>
                         <td>
                             NIK </td>
-                        <td>: <?= $_SESSION['nik']; ?></td>
+                        <td>: <?= session('nik'); ?></td>
                     </tr>
                     <tr style="border-bottom:1px solid #111;">
                         <td>
@@ -96,7 +98,7 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
     </div>
     <?php
-                if ($_SESSION['lg'] === 1) {
+                if (session('lg') === 1) {
                     ?>
         <div class="box box-primary box-solid">
             <div class="box-header">
@@ -122,7 +124,7 @@ if (! isset($_SESSION['mandiri'])) {
             </div>
         </div>
     <?php
-                } elseif ($_SESSION['lg'] === 1) { ?>
+                } elseif (session('lg') === 1) { ?>
 
 
         <div class="box box-primary box-solid">
@@ -138,7 +140,7 @@ if (! isset($_SESSION['mandiri'])) {
         </div>
 
 <?php
-                    unset($_SESSION['lg']);
+                    // unset(session('lg'));
                 }
     }
 ?>
@@ -172,9 +174,9 @@ if ($agenda) {
                 <?php foreach ($w_gal as $data) { ?>
 
                     <?php if (is_file('assets/files/galeri/sedang_' . $data['gambar'])) { ?>
-                        <a class="group3" href="<?= base_url() ?>assets/files/galeri/sedang_<?= $data['gambar'] ?>">
+                        <a class="group3" href="<?= base_url() ?>/assets/files/galeri/sedang_<?= $data['gambar'] ?>">
 
-                            <img src="<?= base_url() ?>assets/files/galeri/kecil_<?= $data['gambar'] ?>" width="130" alt="<?= $data['nama'] ?>">
+                            <img src="<?= base_url() ?>/assets/files/galeri/kecil_<?= $data['gambar'] ?>" width="130" alt="<?= $data['nama'] ?>">
 
                         </a>
                     <?php } ?>
@@ -223,21 +225,21 @@ if ($agenda) {
     <div class="box-body">
         <?php
 $ip = $_SERVER['REMOTE_ADDR'] . '{}';
-if (! isset($_SESSION['MemberOnline'])) {
-    $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
-    if ($cek->num_rows() === 0) {
-        $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
-        $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
+if (! session('MemberOnline')) {
+    $cek = $db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
+    if ($cek->getNumRows() === 0) {
+        $up                       = $db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
+        // session()->set('MemberOnline') = date('Y-m-d H:i:s');
     } else {
-        $res                      = $cek->row(0);
+        $res                      = $cek->getRow(0);
         $ipaddr                   = $res->ipAddress;
-        $up                       = $this->db->query("UPDATE sys_traffic SET Jumlah=Jumlah + 1,ipAddress='" . $ip . "' WHERE Tanggal='" . date('Y-m-d') . "'");
-        $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
+        $up                       = $db->query("UPDATE sys_traffic SET Jumlah=Jumlah + 1,ipAddress='" . $ip . "' WHERE Tanggal='" . date('Y-m-d') . "'");
+        // session()->set('MemberOnline') = date('Y-m-d H:i:s');
     }
 }
-$rs = $this->db->query('SELECT Jumlah AS Visitor FROM sys_traffic WHERE Tanggal="' . date('Y-m-d') . '" LIMIT 1');
-if ($rs->num_rows() > 0) {
-    $visitor = $rs->row(0);
+$rs = $db->query('SELECT Jumlah AS Visitor FROM sys_traffic WHERE Tanggal="' . date('Y-m-d') . '" LIMIT 1');
+if ($rs->getNumRows() > 0) {
+    $visitor = $rs->getRow(0);
     $today   = $visitor->Visitor;
 } else {
     $today = 0;
@@ -245,15 +247,15 @@ if ($rs->num_rows() > 0) {
 $strSQL = 'SELECT Jumlah AS Visitor FROM sys_traffic WHERE
 	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1)
 	LIMIT 1';
-$rs = $this->db->query($strSQL);
-if ($rs->num_rows() > 0) {
-    $visitor   = $rs->row(0);
+$rs = $db->query($strSQL);
+if ($rs->getNumRows() > 0) {
+    $visitor   = $rs->getRow(0);
     $yesterday = $visitor->Visitor;
 } else {
     $yesterday = 0;
 }
-$rs      = $this->db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
-$visitor = $rs->row(0);
+$rs      = $db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
+$visitor = $rs->getRow(0);
 $total   = $visitor->Total;
 function num_toimage($tot, $jumlah)
 {

@@ -13,7 +13,7 @@ class Modul_model extends Model
         $sql .= $this->filter_sql();
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -30,7 +30,7 @@ class Modul_model extends Model
         $sql = 'SELECT modul FROM setting_modul WHERE hidden = 0
 					UNION SELECT url FROM setting_modul WHERE  hidden = 0';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -71,7 +71,7 @@ class Modul_model extends Model
         $sql   = 'SELECT * FROM setting_modul WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update($id = 0)

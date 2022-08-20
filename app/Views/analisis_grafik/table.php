@@ -3,9 +3,9 @@
     <table class="inner">
         <tr style="vertical-align:top">
             <td style="background:#fff;padding:0px;">
-                <script src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
-                <script src="<?= base_url() ?>assets/js/highcharts/highcharts-more.js"></script>
-                <script src="<?= base_url() ?>assets/js/highcharts/exporting.js"></script>
+                <script src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
+                <script src="<?= base_url() ?>/assets/js/highcharts/highcharts-more.js"></script>
+                <script src="<?= base_url() ?>/assets/js/highcharts/exporting.js"></script>
                 <script type="text/javascript">
                     var chart;
                     $(document).ready(function() {
@@ -131,7 +131,7 @@
                             </tbody>
                         </table>
                         <div class="left">
-                            <a href="<?= site_url() ?>analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
+                            <a href="<?= site_url('analisis_grafik/leave') ?>" class="uibutton icon prev">Kembali</a>
                         </div>
                     </div>
                 </div>

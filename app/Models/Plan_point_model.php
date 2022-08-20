@@ -10,7 +10,7 @@ class Plan_point_model extends Model
     {
         $sql   = 'SELECT nama FROM point';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -51,7 +51,7 @@ class Plan_point_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM point WHERE tipe = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -90,7 +90,7 @@ class Plan_point_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -173,7 +173,7 @@ class Plan_point_model extends Model
         $sql = 'SELECT * FROM point WHERE parrent = ? AND tipe = 2 ';
 
         $query = $this->db->query($sql, $point);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -267,7 +267,7 @@ class Plan_point_model extends Model
         $sql   = 'SELECT * FROM point WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function point_show()
@@ -275,7 +275,7 @@ class Plan_point_model extends Model
         $sql   = 'SELECT * FROM point WHERE enabled=?';
         $query = $this->db->query($sql, 1);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_simbol()
@@ -283,7 +283,7 @@ class Plan_point_model extends Model
         $sql   = 'SELECT * FROM gis_simbol WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_point_atas()
@@ -291,7 +291,7 @@ class Plan_point_model extends Model
         $sql = 'SELECT m.* FROM point m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -300,7 +300,7 @@ class Plan_point_model extends Model
 
             $sql2  = 'SELECT s.* FROM point s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['point'] = $data[$i]['point'] . '<ul>';
@@ -324,7 +324,7 @@ class Plan_point_model extends Model
         $sql = 'SELECT m.* FROM point m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -333,7 +333,7 @@ class Plan_point_model extends Model
 
             $sql2  = 'SELECT s.* FROM point s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['point'] = $data[$i]['point'] . '<ul>';

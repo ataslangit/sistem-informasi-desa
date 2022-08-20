@@ -71,7 +71,7 @@ class First_penduduk_m extends Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         if ($lap <= 20) {
             $sql3 = 'SELECT (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.status_dasar=1) AS jumlah,
@@ -84,7 +84,7 @@ class First_penduduk_m extends Model
         }
 
         $query3 = $this->db->query($sql3);
-        $bel    = $query3->row_array();
+        $bel    = $query3->getRowArray();
 
         $total['jumlah']    = 0;
         $bel['no']          = '';
@@ -178,7 +178,7 @@ class First_penduduk_m extends Model
 		FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0' ";
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -196,14 +196,14 @@ class First_penduduk_m extends Model
 		(SELECT COUNT(v.id) FROM tweb_wil_clusterdesa v WHERE v.rt <> '0' AND v.rt <> '-') AS total_rt, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa ) and status_dasar=1) AS total_warga, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 1 and status_dasar=1) AS total_warga_l, (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.sex = 2 and status_dasar=1) AS total_warga_p, (SELECT COUNT(p.id) FROM tweb_keluarga k inner join tweb_penduduk p ON k.nik_kepala=p.id WHERE p.id_cluster IN(SELECT id FROM tweb_wil_clusterdesa) AND p.kk_level = 1 and status_dasar=1) AS total_kk FROM tweb_wil_clusterdesa u LEFT JOIN tweb_penduduk a ON u.id_kepala = a.id WHERE u.rt = '0' AND u.rw = '0' limit 1";
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_indikator()
     {
         $sql   = 'SELECT u.id,u.pertanyaan AS indikator,s.subjek,p.nama AS periode,p.tahun_pelaksanaan AS tahun,m.nama AS master,m.subjek_tipe,p.id AS id_periode FROM analisis_indikator u LEFT JOIN analisis_master m ON u.id_master = m.id LEFT JOIN analisis_ref_subjek s ON m.subjek_tipe = s.id LEFT JOIN analisis_periode p ON p.id_master = m.id AND p.aktif = 1 WHERE u.is_publik = 1 ORDER BY u.nomor ASC';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -219,7 +219,7 @@ class First_penduduk_m extends Model
     {
         $sql   = 'SELECT pertanyaan FROM analisis_indikator WHERE id = ?';
         $query = $this->db->query($sql, $id);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         return $data['pertanyaan'];
     }
@@ -242,7 +242,7 @@ class First_penduduk_m extends Model
 
         $sql   = 'SELECT * FROM analisis_parameter WHERE id_indikator = ? ORDER BY kode_jawaban ASC ';
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -251,7 +251,7 @@ class First_penduduk_m extends Model
 
             $sql    = "SELECT COUNT(r.id_subjek) AS jml FROM analisis_respon r {$sbj} WHERE r.id_parameter = ? AND r.id_periode = {$per}";
             $query  = $this->db->query($sql, $data[$i]['id']);
-            $respon = $query->row_array();
+            $respon = $query->getRowArray();
 
             $data[$i]['nilai'] = $respon['jml'];
 

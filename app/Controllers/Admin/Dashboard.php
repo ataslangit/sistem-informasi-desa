@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Config_model as ConfigModel;
+
 class Dashboard extends BaseController
 {
     public function __construct()
@@ -10,7 +12,7 @@ class Dashboard extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -21,7 +23,7 @@ class Dashboard extends BaseController
      */
     public function index()
     {
-        return redirect('admin/dashboard', 'refresh', 301);
+        return return redirect()->to('admin/dashboard', 'refresh', 301);
     }
 
     /**
@@ -34,7 +36,7 @@ class Dashboard extends BaseController
         $_SESSION['delik'] = 0;
         $nav['act']        = 0;
         $header            = $this->header_model->get_data();
-        $data['main']      = $this->config_model->get_data();
+        $data['main']      = $configModel->get_data();
 
         echo view('header', $header);
         echo view('home/nav', $nav);
@@ -54,47 +56,61 @@ class Dashboard extends BaseController
 
     public function insert()
     {
-        $this->config_model->insert();
-        redirect('admin/dashboard');
+        $configModel = new ConfigModel();
+
+        $configModel->insert1();
+        return redirect()->to('admin/dashboard');
     }
 
     public function update($id = '')
     {
-        $this->config_model->update($id);
+        $configModel = new ConfigModel();
 
-        redirect('admin/dashboard');
+        $configModel->update1($id);
+
+        return redirect()->to('admin/dashboard');
     }
 
     public function ajax_kantor_maps()
     {
-        $data['desa']        = $this->config_model->get_data();
+        $configModel = new ConfigModel();
+
+        $data['desa']        = $configModel->get_data();
         $data['form_action'] = site_url('admin/pengaturan_desa/ajax_kantor_maps');
         echo view('home/ajax_kantor_desa_maps', $data);
     }
 
     public function ajax_wilayah_maps()
     {
-        $data['desa']        = $this->config_model->get_data();
+        $configModel = new ConfigModel();
+
+        $data['desa']        = $configModel->get_data();
         $data['form_action'] = site_url('admin/pengaturan_desa/ajax_wilayah_maps');
         echo view('home/ajax_wilayah_desa_maps', $data);
     }
 
     public function update_kantor_maps()
     {
-        $this->config_model->update_kantor();
-        redirect('admin/dashboard');
+        $configModel = new ConfigModel();
+
+        $configModel->update_kantor();
+        return redirect()->to('admin/dashboard');
     }
 
     public function update_wilayah_maps()
     {
-        $this->config_model->update_wilayah();
-        redirect('admin/dashboard');
+        $configModel = new ConfigModel();
+
+        $configModel->update_wilayah();
+        return redirect()->to('admin/dashboard');
     }
 
     public function kosong_pend()
     {
-        $this->config_model->kosong_pend();
-        redirect('admin/dashboard');
+        $configModel = new ConfigModel();
+
+        $configModel->kosong_pend();
+        return redirect()->to('admin/dashboard');
     }
 
     public function undelik()
@@ -102,6 +118,6 @@ class Dashboard extends BaseController
         if (isset($_SESSION['delik'])) {
             unset($_SESSION['delik']);
         }
-        redirect('analisis_master/clear');
+        return redirect()->to('analisis_master/clear');
     }
 }

@@ -11,14 +11,14 @@ class First_m extends Model
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function siteman()
     {
         $_SESSION['mandiri'] = -1;
-        $nik                 = $this->input->post('nik');
-        $pin                 = $this->input->post('pin');
+        $nik                 = $this->request->getPost('nik');
+        $pin                 = $this->request->getPost('pin');
         $hash_pin            = hash_pin($pin);
 
         $sql   = 'SELECT pin,last_login FROM tweb_penduduk_mandiri WHERE nik=?';

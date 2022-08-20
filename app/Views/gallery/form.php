@@ -18,7 +18,7 @@
                                         <th class="top">Gambar</th>
                                         <td>
                                             <div>
-                                                <img width="440" height="300" src="<?= base_url() ?>assets/files/galeri/sedang_<?= $gallery['gambar'] ?>" alt="" />
+                                                <img width="440" height="300" src="<?= base_url() ?>/assets/files/galeri/sedang_<?= $gallery['gambar'] ?>" alt="" />
                                             </div>
                                         </td>
                                         <input type="hidden" name="old_gambar" value="<?= $gallery['gambar'] ?>">
@@ -33,7 +33,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>gallery" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/gallery" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

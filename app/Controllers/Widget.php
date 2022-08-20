@@ -10,7 +10,7 @@ class Widget extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -46,9 +46,9 @@ class Widget extends BaseController
     {
         $this->web_widget_model->update($id);
         if ($tipe === '1') {
-            redirect('web/widget');
-        } else {
-            redirect('web/widget/twitter');
+            return redirect()->to('web/widget');
         }
+
+        return redirect()->to('web/widget/twitter');
     }
 }

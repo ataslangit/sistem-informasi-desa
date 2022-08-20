@@ -60,9 +60,9 @@
             <td>
                 <div class="userbox-avatar">
                     <?php if ($main['logo']) { ?>
-                        <img src="<?= base_url() ?>assets/files/logo/<?= $main['logo'] ?>" alt="" />
+                        <img src="<?= base_url() ?>/assets/files/logo/<?= $main['logo'] ?>" alt="" />
                     <?php } else { ?>
-                        <img src="<?= base_url() ?>assets/files/logo/home.png" alt="" />
+                        <img src="<?= base_url() ?>/assets/files/logo/home.png" alt="" />
                     <?php } ?>
                 </div>
             </td>

@@ -10,7 +10,7 @@ class Laporan_rentan extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
 
         $_SESSION['success']  = 0;
@@ -22,7 +22,7 @@ class Laporan_rentan extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
 
-        redirect('laporan_rentan');
+        return redirect()->to('laporan_rentan');
     }
 
     public function index()
@@ -62,12 +62,13 @@ class Laporan_rentan extends BaseController
 
     public function dusun()
     {
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('laporan_rentan');
+
+        return redirect()->to('laporan_rentan');
     }
 }

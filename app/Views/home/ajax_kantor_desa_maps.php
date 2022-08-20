@@ -37,7 +37,7 @@
                 infoWindow = new google.maps.InfoWindow();
             }
             var content = '<div id="info">' +
-                '<img src="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" alt="" width="50" height="60"/>' +
+                '<img src="<?= base_url() ?>/assets/files/logo/<?= $desa['logo'] ?>" alt="" width="50" height="60"/>' +
                 '<h3><?= $desa['nama_desa'] ?></h3>' +
                 '<p>Lokasi Kantor Desa/Kelurahan</p>' +
                 '</div>';

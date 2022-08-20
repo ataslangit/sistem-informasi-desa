@@ -7,21 +7,21 @@
 
     <link rel="shortcut icon" href="<?= base_url() ?>favicon.ico" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?= base_url() ?>rss.xml" />
-    <link href="<?= base_url() ?>assets/css/screen.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style2.css" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/noJS.css" />
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.tipsy.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.elastic.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.flexbox.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.easing-1.3.pack.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/donjoscript/donjoscript2.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+    <link href="<?= base_url() ?>/assets/css/screen.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/noJS.css" />
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery.formtips.1.2.2.packed.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery.elastic.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery.flexbox.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery.easing-1.3.pack.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/donjoscript/donjoscript2.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/js/donjoscript/donjo.ui.dialog.js"></script>
     <style>
         body {
-            background: url("<?= base_url() ?>assets/files/bg.jpg") no-repeat center center fixed;
+            background: url("<?= base_url() ?>/assets/files/bg.jpg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;

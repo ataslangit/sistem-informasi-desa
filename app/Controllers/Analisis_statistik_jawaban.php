@@ -10,7 +10,7 @@ class Analisis_statistik_jawaban extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Statistik Jawaban';
         $_SESSION['asubmenu'] = 'analisis_statistik_jawaban';
@@ -20,14 +20,15 @@ class Analisis_statistik_jawaban extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
 
-        redirect('analisis_statistik_jawaban');
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -126,7 +127,7 @@ class Analisis_statistik_jawaban extends BaseController
     {
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         if ($ai['id_tipe'] === 3 || $ai['id_tipe'] === 4) {
-            redirect('analisis_statistik_jawaban');
+            return redirect()->to('analisis_statistik_jawaban');
         }
 
         $data['analisis_statistik_jawaban'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
@@ -168,7 +169,7 @@ class Analisis_statistik_jawaban extends BaseController
 
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
 
-        //redirect('analisis_statistik_jawaban');
+        //return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_jawaban'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_master']            = $this->analisis_statistik_jawaban_model->get_analisis_master();
@@ -209,7 +210,7 @@ class Analisis_statistik_jawaban extends BaseController
 
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         //if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
-        //	redirect('analisis_statistik_jawaban');
+        //	return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_pertanyaan'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_statistik_jawaban']    = $this->analisis_statistik_jawaban_model->get_analisis_parameter($par);
@@ -254,201 +255,222 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function tipe()
     {
-        $filter = $this->input->post('tipe');
+        $filter = $this->request->getPost('tipe');
         if ($filter !== 0) {
             $_SESSION['tipe'] = $filter;
         } else {
             unset($_SESSION['tipe']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function kategori()
     {
-        $filter = $this->input->post('kategori');
+        $filter = $this->request->getPost('kategori');
         if ($filter !== 0) {
             $_SESSION['kategori'] = $filter;
         } else {
             unset($_SESSION['kategori']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function dusun()
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function rw()
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function dusun2($id = '', $par = '')
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function rw2($id = '', $par = '')
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function rt2($id = '', $par = '')
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function dusun3($id = '')
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function rw3($id = '')
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function rt3($id = '')
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function insert()
     {
         $this->analisis_statistik_jawaban_model->insert();
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_statistik_jawaban_model->update($id);
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_statistik_jawaban_model->delete($id);
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_statistik_jawaban_model->delete_all();
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function p_insert($in = '')
     {
         $this->analisis_statistik_jawaban_model->p_insert($in);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_update($in = '', $id = '')
     {
         $this->analisis_statistik_jawaban_model->p_update($id);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_delete($in = '', $id = '')
     {
         $this->analisis_statistik_jawaban_model->p_delete($id);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_delete_all()
     {
         $this->analisis_statistik_jawaban_model->p_delete_all();
-        redirect('analisis_statistik_jawaban/parameter/');
+
+        return redirect()->to('analisis_statistik_jawaban/parameter/');
     }
 }

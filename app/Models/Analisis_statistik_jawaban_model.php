@@ -10,7 +10,7 @@ class Analisis_statistik_jawaban_model extends Model
     {
         $sql   = 'SELECT pertanyaan FROM analisis_indikator';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -125,7 +125,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql .= $this->tipe_sql();
         $sql .= $this->kategori_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -192,7 +192,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $per = $this->get_aktif_periode();
         $i   = 0;
@@ -209,7 +209,7 @@ class Analisis_statistik_jawaban_model extends Model
             $sql1 .= $this->rt_sql();
             //$sql1 .= "  GROUP BY r.id_indikator  ";
             $query1            = $this->db->query($sql1, $data[$i]['id']);
-            $respon            = $query1->row_array();
+            $respon            = $query1->getRowArray();
             $data[$i]['bobot'] = $respon['jml'];
 
             $dus = $this->dusun_sql();
@@ -219,7 +219,7 @@ class Analisis_statistik_jawaban_model extends Model
             $sql2 = "SELECT i.id,i.kode_jawaban,i.jawaban,(SELECT COUNT(r.id_subjek) FROM analisis_respon r {$sbj} WHERE r.id_parameter = i.id AND r.id_periode = {$per} {$dus} {$rw} {$rt} ) AS jml_p FROM analisis_parameter i WHERE i.id_indikator = ? ORDER BY i.kode_jawaban ";
 
             $query2          = $this->db->query($sql2, $data[$i]['id']);
-            $respon2         = $query2->result_array();
+            $respon2         = $query2->getResultArray();
             $data[$i]['par'] = $respon2;
 
             if ($data[$i]['act_analisis'] === 1) {
@@ -264,7 +264,7 @@ class Analisis_statistik_jawaban_model extends Model
 
         $sql   = 'SELECT * FROM analisis_parameter WHERE id_indikator = ? ORDER BY kode_jawaban ASC ';
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $per   = $this->get_aktif_periode();
 
         $i = 0;
@@ -277,7 +277,7 @@ class Analisis_statistik_jawaban_model extends Model
             $sql .= $this->rw_sql();
             $sql .= $this->rt_sql();
             $query  = $this->db->query($sql, $data[$i]['id']);
-            $respon = $query->row_array();
+            $respon = $query->getRowArray();
 
             $data[$i]['nilai'] = $respon['jml'];
 
@@ -314,7 +314,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql .= $this->rw_sql();
         $sql .= $this->rt_sql();
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -337,7 +337,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = 'SELECT * FROM analisis_indikator WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_analisis_master()
@@ -345,7 +345,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = 'SELECT * FROM analisis_master WHERE id=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_analisis_parameter($id = '')
@@ -353,7 +353,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = 'SELECT * FROM analisis_parameter WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_tipe()
@@ -361,7 +361,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = 'SELECT * FROM analisis_tipe_indikator';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_kategori()
@@ -370,14 +370,14 @@ class Analisis_statistik_jawaban_model extends Model
         $sql .= $this->master_sql();
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_aktif_periode()
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         return $data['id'];
     }
@@ -387,7 +387,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND rw = '0' ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_rw($dusun = '')
@@ -395,7 +395,7 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND dusun = ? AND rw <> '0'";
         $query = $this->db->query($sql, $dusun);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_rt($dusun = '', $rw = '')
@@ -403,6 +403,6 @@ class Analisis_statistik_jawaban_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rw = ? AND dusun = ? AND rt <> '0'";
         $query = $this->db->query($sql, [$rw, $dusun]);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

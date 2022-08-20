@@ -10,7 +10,7 @@ class Surat extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -125,11 +125,11 @@ class Surat extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('nik');
+        $cari = $this->request->getPost('nik');
         if ($cari !== '') {
-            redirect("surat/form/{$cari}");
-        } else {
-            redirect('surat');
+            return redirect()->to("surat/form/{$cari}");
         }
+
+        return redirect()->to('surat');
     }
 }

@@ -26,7 +26,7 @@
                 <tr>
                     <td width="150">Hasil Pendataan</td>
                     <td> : </td>
-                    <td><a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></td>
+                    <td><a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></td>
                 </tr>
                 <tr>
                     <td>Nomor Identitas</td>
@@ -118,8 +118,8 @@
                             <tr>
                                 <?php foreach ($list_bukti as $bukti) { ?>
                                     <td>
-                                        <a href="<?= base_url() ?>assets/files/pengesahan/<?= $bukti['pengesahan'] ?>" target="_blank">
-                                            <img src="<?= base_url() ?>assets/files/pengesahan/<?= $bukti['pengesahan'] ?>" width='320'>
+                                        <a href="<?= base_url() ?>/assets/files/pengesahan/<?= $bukti['pengesahan'] ?>" target="_blank">
+                                            <img src="<?= base_url() ?>/assets/files/pengesahan/<?= $bukti['pengesahan'] ?>" width='320'>
                                         </a>
                                     </td>
                                 <?php } ?>
@@ -129,7 +129,7 @@
         </div>
         <div class="ui-layout-south panel bottom">
             <div class="left">
-                <a href="<?= site_url() ?>analisis_laporan" class="uibutton icon prev">Kembali</a>
+                <a href="<?= site_url() ?>/analisis_laporan" class="uibutton icon prev">Kembali</a>
             </div>
             <div class="right">
                 <div class="uibutton-group">

@@ -90,9 +90,9 @@
         });
     </script>
 <?php } ?>
-<script src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
-<script src="<?= base_url() ?>assets/js/highcharts/highcharts-more.js"></script>
-<script src="<?= base_url() ?>assets/js/highcharts/exporting.js"></script>
+<script src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
+<script src="<?= base_url() ?>/assets/js/highcharts/highcharts-more.js"></script>
+<script src="<?= base_url() ?>/assets/js/highcharts/exporting.js"></script>
 <style>
     tr.hide {
         display: none;

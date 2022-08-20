@@ -1,7 +1,7 @@
-<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-1.5.2.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-layout.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/donjoscript/donjoscript2.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-layout.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/js/donjoscript/donjoscript2.js"></script>
 <?php $sekarang = date('d-m-Y');
 ?>
 <?= form_open($form_action, ['id' => 'validasi']) ?>

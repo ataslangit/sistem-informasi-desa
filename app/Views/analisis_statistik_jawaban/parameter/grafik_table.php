@@ -54,15 +54,15 @@
         </table>
         <div style="position:absolute; bottom:40px;">
             <div class="left">
-                <a href="<?= site_url() ?>analisis_statistik_jawaban" class="uibutton icon prev">Kembali</a>
+                <a href="<?= site_url() ?>/analisis_statistik_jawaban" class="uibutton icon prev">Kembali</a>
             </div>
         </div>
     </div>
     <div class="middin-center" style="padding: 5px;">
 
-        <script src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
-        <script src="<?= base_url() ?>assets/js/highcharts/highcharts-more.js"></script>
-        <script src="<?= base_url() ?>assets/js/highcharts/exporting.js"></script>
+        <script src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
+        <script src="<?= base_url() ?>/assets/js/highcharts/highcharts-more.js"></script>
+        <script src="<?= base_url() ?>/assets/js/highcharts/exporting.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 hiRes();

@@ -10,7 +10,7 @@ class Sms_model extends Model
     {
         $sql   = 'SELECT SenderNumber FROM inbox';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -51,7 +51,7 @@ class Sms_model extends Model
         $sql = 'SELECT COUNT(ID) AS id FROM inbox u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -81,7 +81,7 @@ class Sms_model extends Model
         $sql   = 'SELECT * FROM setting_sms LIMIT 1 ';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
@@ -118,7 +118,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -131,7 +131,7 @@ class Sms_model extends Model
         $sql = 'SELECT count(u.ID) as id FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -176,7 +176,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -189,7 +189,7 @@ class Sms_model extends Model
         $sql = 'SELECT count(u.ID) as id FROM outbox u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -234,7 +234,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -318,7 +318,7 @@ class Sms_model extends Model
         }
         $query = $this->db->query($sql, [$ID]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_nama()
@@ -326,7 +326,7 @@ class Sms_model extends Model
         $sql   = 'SELECT * FROM tweb_penduduk WHERE id NOT IN (SELECT id_pend FROM kontak)';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_kontak()
@@ -334,7 +334,7 @@ class Sms_model extends Model
         $sql   = 'SELECT a.*,b.* FROM kontak a LEFT JOIN tweb_penduduk b ON a.id_pend=b.id ';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_kontak($id = 0)
@@ -343,7 +343,7 @@ class Sms_model extends Model
 
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_grup($id = 0)
@@ -352,15 +352,15 @@ class Sms_model extends Model
 
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update_setting($ID = 0)
     {
-        $password   = md5($this->input->post('pass_lama'));
-        $pass_baru  = $this->input->post('pass_baru');
-        $pass_baru1 = $this->input->post('pass_baru1');
-        $nama       = $this->input->post('nama');
+        $password   = md5($this->request->getPost('pass_lama'));
+        $pass_baru  = $this->request->getPost('pass_baru');
+        $pass_baru1 = $this->request->getPost('pass_baru1');
+        $nama       = $this->request->getPost('nama');
 
         $sql   = 'SELECT password,id_grup,session FROM user WHERE id=?';
         $query = $this->db->query($sql, [$id]);
@@ -386,7 +386,7 @@ class Sms_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_grup_kontak()
@@ -394,7 +394,7 @@ class Sms_model extends Model
         $sql   = 'SELECT * FROM kontak_grup group by nama_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function sex_sql()
@@ -536,7 +536,7 @@ class Sms_model extends Model
         $sql .= $this->grup_sql();
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         foreach ($data as $hsl) {
             $no    = $hsl['no_hp'];
@@ -550,7 +550,7 @@ class Sms_model extends Model
         $sql = 'SELECT COUNT(a.id) as id FROM kontak a LEFT JOIN tweb_penduduk b ON a.id_pend=b.id WHERE 1';
         $sql .= $this->search_kontak_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -573,7 +573,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -632,7 +632,7 @@ class Sms_model extends Model
         $sql = "SELECT COUNT(nama_grup) as id FROM (SELECT nama_grup, (SELECT COUNT(id_kontak) FROM kontak_grup WHERE id_kontak<>'0') as jumlah_kontak FROM kontak_grup WHERE id_kontak='0' ) AS TB WHERE 1 ";
         $sql .= $this->search_grup_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -655,7 +655,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -734,7 +734,7 @@ class Sms_model extends Model
         $sql = "SELECT COUNT(c.id) as id FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
         $sql .= $this->search_anggota_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -755,7 +755,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $j     = $offset;
 
@@ -767,7 +767,7 @@ class Sms_model extends Model
         $sql   = "SELECT a.*, b.nama, b.alamat_sekarang, b.sex FROM kontak a LEFT JOIN tweb_penduduk b ON a.id_pend=b.id WHERE a.id NOT IN (SELECT id_kontak FROM kontak_grup WHERE nama_grup='{$id}') ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function insert_anggota($id = 0)
@@ -818,7 +818,7 @@ class Sms_model extends Model
         $sql = 'SELECT count(id_polling) as id FROM polling ';
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -837,7 +837,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -850,7 +850,7 @@ class Sms_model extends Model
         $sql   = "SELECT * FROM polling WHERE id_polling='{$id}'";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function insert_polling($id = 0)
@@ -899,7 +899,7 @@ class Sms_model extends Model
         $sql = "SELECT COUNT(c.id) as id FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
         $sql .= $this->search_anggota_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -920,7 +920,7 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $j     = $offset;
 

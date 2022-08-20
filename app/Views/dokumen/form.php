@@ -18,7 +18,7 @@
                                         <th class="top">Dokumen</th>
                                         <td>
                                             <div class="slidebox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/dokumen/<?= $dokumen['satuan'] ?>" alt="" />
+                                                <img src="<?= base_url() ?>/assets/files/dokumen/<?= $dokumen['satuan'] ?>" alt="" />
                                             </div>
                                         </td>
                                         <input type="hidden" name="old_file" value="<?= $dokumen['satuan'] ?>">
@@ -33,7 +33,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>dokumen" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/dokumen" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

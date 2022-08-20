@@ -26,14 +26,14 @@
     <meta property="og:url" content="<?= urlencode(current_url()); ?>">
     <meta property="og:title" content="<?= $single_artikel['judul'] ?? ''; ?>">
     <meta property="og:site_name" content="<?= unpenetration($desa['nama_desa']); ?>" />
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" />
-    <link type='text/css' href="<?= base_url() ?>assets/front/css/first.css" rel='Stylesheet' />
-    <link type='text/css' href="<?= base_url() ?>assets/css/ui-buttons.css" rel='Stylesheet' />
-    <link type='text/css' href="<?= base_url() ?>assets/front/css/colorbox.css" rel='Stylesheet' />
-    <script src="<?= base_url() ?>assets/front/js/stscode.js"></script>
-    <script src="<?= base_url() ?>assets/front/js/jquery.js"></script>
-    <script src="<?= base_url() ?>assets/front/js/layout.js"></script>
-    <script src="<?= base_url() ?>assets/front/js/jquery.colorbox.js"></script>
+    <link rel="shortcut icon" href="<?= base_url() ?>/assets/files/logo/<?= $desa['logo'] ?>" />
+    <link type='text/css' href="<?= base_url() ?>/assets/front/css/first.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= base_url() ?>/assets/css/ui-buttons.css" rel='Stylesheet' />
+    <link type='text/css' href="<?= base_url() ?>/assets/front/css/colorbox.css" rel='Stylesheet' />
+    <script src="<?= base_url() ?>/assets/front/js/stscode.js"></script>
+    <script src="<?= base_url() ?>/assets/front/js/jquery.js"></script>
+    <script src="<?= base_url() ?>/assets/front/js/layout.js"></script>
+    <script src="<?= base_url() ?>/assets/front/js/jquery.colorbox.js"></script>
     <script>
         $(document).ready(function() {
             $(".group2").colorbox({
@@ -83,7 +83,7 @@
                     <div id="divlogo-img">
                         <div class="intube">
                             <a href="<?= site_url(); ?>first/">
-                                <img src="<?= base_url() ?>assets/files/logo/<?= $desa['logo'] ?>" alt="<?= $desa['nama_desa'] ?>" />
+                                <img src="<?= base_url() ?>/assets/files/logo/<?= $desa['logo'] ?>" alt="<?= $desa['nama_desa'] ?>" />
                             </a>
                         </div>
                     </div>

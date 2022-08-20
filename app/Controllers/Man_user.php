@@ -10,7 +10,7 @@ class Man_user extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1', '2', '3'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -18,7 +18,7 @@ class Man_user extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('man_user');
+        return redirect()->to('man_user');
     }
 
     public function index($p = 1, $o = 0)
@@ -78,59 +78,67 @@ class Man_user extends BaseController
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function filter()
     {
-        $filter = $this->input->post('filter');
+        $filter = $this->request->getPost('filter');
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function insert()
     {
         $this->user_model->insert();
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->user_model->update($id);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->user_model->delete($id);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->user_model->delete_all();
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function user_lock($id = '')
     {
         $this->user_model->user_lock($id, 0);
-        redirect('man_user/index/');
+
+        return redirect()->to('man_user/index/');
     }
 
     public function user_unlock($id = '')
     {
         $this->user_model->user_lock($id, 1);
-        redirect('man_user/index/');
+
+        return redirect()->to('man_user/index/');
     }
 }

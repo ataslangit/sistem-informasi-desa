@@ -10,7 +10,7 @@ class Surat_keluar_model extends Model
     {
         $sql   = 'SELECT no_surat FROM log_surat';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -67,7 +67,7 @@ class Surat_keluar_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM log_surat u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -85,7 +85,7 @@ class Surat_keluar_model extends Model
         $sql .= $this->filterku_sql($nik);
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -114,7 +114,7 @@ class Surat_keluar_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -156,7 +156,7 @@ class Surat_keluar_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -185,7 +185,7 @@ class Surat_keluar_model extends Model
         $sql   = 'SELECT id FROM tweb_surat_format WHERE url_surat = ?';
         $query = $this->db->query($sql, $f);
         if ($query->num_rows() > 0) {
-            $pam                     = $query->row_array();
+            $pam                     = $query->getRowArray();
             $data['id_format_surat'] = $pam['id'];
         } else {
             $data['id_format_surat'] = $f;
@@ -194,7 +194,7 @@ class Surat_keluar_model extends Model
         $sql   = 'SELECT pamong_id FROM tweb_desa_pamong WHERE pamong_nama = ?';
         $query = $this->db->query($sql, $g);
         if ($query->num_rows() > 0) {
-            $pam               = $query->row_array();
+            $pam               = $query->getRowArray();
             $data['id_pamong'] = $pam['pamong_id'];
         } else {
             $data['id_pamong'] = 1;
@@ -217,7 +217,7 @@ class Surat_keluar_model extends Model
         $sql   = 'select round(((jml*100)/(select count(id) from log_surat)),2) as jumlah, nama from (SELECT COUNT(l.id) as jml, f.nama from log_surat l left join tweb_surat_format f on l.id_format_surat=f.id group by l.id_format_surat) as a';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function update($id = 0)
@@ -265,7 +265,7 @@ class Surat_keluar_model extends Model
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -279,10 +279,10 @@ class Surat_keluar_model extends Model
 
     public function update_setting($id = 0)
     {
-        $password   = md5($this->input->post('pass_lama'));
-        $pass_baru  = $this->input->post('pass_baru');
-        $pass_baru1 = $this->input->post('pass_baru1');
-        $nama       = $this->input->post('nama');
+        $password   = md5($this->request->getPost('pass_lama'));
+        $pass_baru  = $this->request->getPost('pass_baru');
+        $pass_baru1 = $this->request->getPost('pass_baru1');
+        $nama       = $this->request->getPost('nama');
 
         $sql   = 'SELECT password,id_grup,session FROM user WHERE id=?';
         $query = $this->db->query($sql, [$id]);
@@ -308,6 +308,6 @@ class Surat_keluar_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

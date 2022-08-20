@@ -10,7 +10,7 @@ header('Expires: 0');
 <head>
     <title>Cetak Laporan Kelompok Rentan</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<?= base_url() ?>assets/css/report.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>/assets/css/report.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

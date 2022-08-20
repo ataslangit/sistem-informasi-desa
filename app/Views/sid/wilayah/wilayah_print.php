@@ -4,14 +4,14 @@
 <head>
     <title>Data Wilayah</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<?= base_url() ?>assets/css/surat.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url() ?>assets/css/report.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>/assets/css/surat.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>/assets/css/report.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div id="container" style="min-width:800px;max-width:1024px;">
         <table width="100%">
-            <tr> <img src="<?= base_url() ?>assets/files/logo/<?= $desa['desa']['logo'] ?>" alt="" class="logo"></tr>
+            <tr> <img src="<?= base_url() ?>/assets/files/logo/<?= $desa['desa']['logo'] ?>" alt="" class="logo"></tr>
             <div class="header">
                 <h4 class="kop">PEMERINTAH KABUPATEN <?= strtoupper(unpenetration($desa['desa']['nama_kabupaten'])) ?> </h4>
                 <h4 class="kop">KECAMATAN <?= strtoupper(unpenetration($desa['desa']['nama_kecamatan'])) ?> </h4>

@@ -5,7 +5,7 @@
     {
         $sql   = 'SELECT nama FROM area';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -69,7 +69,7 @@
         $sql .= $this->polygon_sql();
         $sql .= $this->subpolygon_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -110,7 +110,7 @@
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -222,7 +222,7 @@
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         return $data;
     }
@@ -234,13 +234,13 @@
         if (isset($_SESSION['polygon'])) {
             $sqlx  = 'SELECT * FROM polygon WHERE id = ?';
             $query = $this->db->query($sqlx, $_SESSION['polygon']);
-            $temp  = $query->row_array();
+            $temp  = $query->getRowArray();
 
             $kf = $temp['parrent'];
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         return $data;
     }
@@ -262,7 +262,7 @@
         $sql   = 'SELECT * FROM area WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update_position($id = 0)
@@ -283,7 +283,7 @@
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND rw = '0' ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_desa()
@@ -291,7 +291,7 @@
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 }
 ?>

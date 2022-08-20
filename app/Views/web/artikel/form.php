@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?= base_url() ?>assets/tiny_mce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/tiny_mce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/tiny_mce/tinymce.min.js"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: 'textarea',
@@ -57,7 +57,7 @@
                                     <tr>
                                         <th class="top">Dokumen</th>
                                         <td>
-                                            <a href="<?= base_url() ?>assets/files/dokumen/<?= $artikel['dokumen'] ?>" />Download</a>
+                                            <a href="<?= base_url() ?>/assets/files/dokumen/<?= $artikel['dokumen'] ?>" />Download</a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -75,7 +75,7 @@
                                         <th class="top">Gambar</th>
                                         <td>
                                             <div class="gallerybox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar'] ?>" alt="" width="200" />
+                                                <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar'] ?>" alt="" width="200" />
                                             </div><input type="checkbox" name="gambar_hapus" value="<?= $artikel['gambar'] ?>" /> Hapus Gambar
                                         </td>
                                     </tr>
@@ -89,7 +89,7 @@
                                     <td>
                                         <?php if ($artikel['gambar1']) { ?>
                                             <div class="gallerybox-avatar">
-                                                <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar1'] ?>" alt="" width="200" />
+                                                <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar1'] ?>" alt="" width="200" />
                                             </div> <input type="checkbox" name="gambar1_hapus" value="<?= $artikel['gambar1'] ?>" /> Hapus Gambar
                                     </td>
                                 </tr>
@@ -103,7 +103,7 @@
                                 <td>
                                     <?php if ($artikel['gambar2']) { ?>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar2'] ?>" alt="" width="200" />
+                                            <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar2'] ?>" alt="" width="200" />
                                         </div> <input type="checkbox" name="gambar2_hapus" value="<?= $artikel['gambar2'] ?>" /> Hapus Gambar
                                 </td>
                             </tr>
@@ -117,7 +117,7 @@
                             <td>
                                 <?php if ($artikel['gambar3']) { ?>
                                     <div class="gallerybox-avatar">
-                                        <img src="<?= base_url() ?>assets/files/artikel/kecil_<?= $artikel['gambar3'] ?>" alt="" width="200" />
+                                        <img src="<?= base_url() ?>/assets/files/artikel/kecil_<?= $artikel['gambar3'] ?>" alt="" width="200" />
                                     </div> <input type="checkbox" name="gambar3_hapus" value="<?= $artikel['gambar3'] ?>" /> Hapus Gambar
                             </td>
                         </tr>
@@ -131,7 +131,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>web/index/<?= $cat ?>" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/web/index/<?= $cat ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

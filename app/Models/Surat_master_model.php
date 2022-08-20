@@ -10,7 +10,7 @@ class Surat_master_model extends Model
     {
         $sql   = 'SELECT nama FROM tweb_surat_format';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -41,7 +41,7 @@ class Surat_master_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM tweb_surat_format u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $this->load->library('paging');
@@ -86,7 +86,7 @@ class Surat_master_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -235,7 +235,7 @@ class Surat_master_model extends Model
     {
         $sql   = 'SELECT * FROM tweb_surat_atribut WHERE id_surat = ?';
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -253,7 +253,7 @@ class Surat_master_model extends Model
         $sql   = 'SELECT * FROM tweb_surat_format WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_tweb_surat_atribut($id = '')
@@ -261,7 +261,7 @@ class Surat_master_model extends Model
         $sql   = 'SELECT * FROM tweb_surat_atribut WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function favorit($id = 0, $k = 0)

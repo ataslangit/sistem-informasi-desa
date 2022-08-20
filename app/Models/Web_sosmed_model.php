@@ -11,7 +11,7 @@ class Web_sosmed_model extends Model
         $sql   = 'SELECT * FROM media_sosial WHERE id = ?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_sosmed()
@@ -19,7 +19,7 @@ class Web_sosmed_model extends Model
         $sql   = 'SELECT * FROM media_sosial WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function update($id = 0)
@@ -28,7 +28,7 @@ class Web_sosmed_model extends Model
 
         $sql   = 'SELECT * FROM media_sosial WHERE id =? ';
         $query = $this->db->query($sql, $id);
-        $hasil = $query->result_array();
+        $hasil = $query->getResultArray();
 
         if ($hasil) {
             $this->db->where('id', $id);

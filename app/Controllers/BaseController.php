@@ -2,6 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\Config_model;
+use App\Models\First_artikel_m;
+use App\Models\First_gallery_m;
+use App\Models\First_m;
+use App\Models\First_menu_m;
+use App\Models\First_penduduk_m;
+use App\Models\Header_model;
+use App\Models\User_model;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -35,7 +43,16 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['donjolib', 'form'];
+
+    protected $config_model;
+    protected $first_m;
+    protected $first_menu_m;
+    protected $first_artikel_m;
+    protected $first_penduduk_m;
+    protected $first_gallery_m;
+    protected $user_model;
+    protected $header_model;
 
     /**
      * Constructor.
@@ -48,5 +65,14 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        $this->config_model     = new Config_model();
+        $this->first_m          = new First_m();
+        $this->first_menu_m     = new First_menu_m();
+        $this->first_artikel_m  = new First_artikel_m();
+        $this->first_penduduk_m = new First_penduduk_m();
+        $this->first_gallery_m  = new First_gallery_m();
+        $this->user_model       = new User_model();
+        $this->header_model     = new Header_model();
     }
 }

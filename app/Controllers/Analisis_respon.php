@@ -12,7 +12,7 @@ class Analisis_respon extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if (! in_array($grup, ['1'], true)) {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Input Data';
         $_SESSION['asubmenu'] = 'analisis_respon';
@@ -23,14 +23,16 @@ class Analisis_respon extends BaseController
         unset($_SESSION['cari'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['isi']);
 
         $_SESSION['per_page'] = 50;
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -104,7 +106,7 @@ class Analisis_respon extends BaseController
         }
 
         if ($fs !== 0) {
-            redirect("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
+            return redirect()->to("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
         }
 
         $data['p']  = $p;
@@ -134,7 +136,8 @@ class Analisis_respon extends BaseController
     public function update_kuisioner($p = 1, $o = 0, $id = '')
     {
         $this->analisis_respon_model->update_kuisioner($id);
-        redirect("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
+
+        return redirect()->to("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
     }
 
     //CHILD--------------------
@@ -153,7 +156,8 @@ class Analisis_respon extends BaseController
     {
         $per = $this->analisis_respon_model->get_periode_child();
         $this->analisis_respon_model->update_kuisioner($idc, $per);
-        redirect("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
+
+        return redirect()->to("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
     }
 
     public function aturan_ajax()
@@ -189,76 +193,84 @@ class Analisis_respon extends BaseController
     public function satu_jiwa($op = 0)
     {
         $this->analisis_respon_model->satu_jiwa($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function dua_dunia($op = 0)
     {
         $this->analisis_respon_model->dua_dunia($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function import_proses($op = 0)
     {
         $this->analisis_respon_model->import_respon($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function search()
     {
-        $cari = $this->input->post('cari');
+        $cari = $this->request->getPost('cari');
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function isi()
     {
-        $isi = $this->input->post('isi');
+        $isi = $this->request->getPost('isi');
         if ($isi !== '') {
             $_SESSION['isi'] = $isi;
         } else {
             unset($_SESSION['isi']);
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function dusun()
     {
         unset($_SESSION['rw'], $_SESSION['rt']);
 
-        $dusun = $this->input->post('dusun');
+        $dusun = $this->request->getPost('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function rw()
     {
         unset($_SESSION['rt']);
-        $rw = $this->input->post('rw');
+        $rw = $this->request->getPost('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function rt()
     {
-        $rt = $this->input->post('rt');
+        $rt = $this->request->getPost('rt');
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 }

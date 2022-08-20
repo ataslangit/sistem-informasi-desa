@@ -42,7 +42,7 @@
                     <div id="sidecontent2" class="lmenu">
                         <ul>
                             <?php foreach ($menu_surat as $data) { ?>
-                                <li <?php if ($data['url_surat'] === $lap) { ?>class="selected" <?php } ?>><a href="<?= site_url() ?>surat/<?= $data['url_surat'] ?>"><?= unpenetration($data['nama']) ?></a></li>
+                                <li <?php if ($data['url_surat'] === $lap) { ?>class="selected" <?php } ?>><a href="<?= site_url() ?>/surat/<?= $data['url_surat'] ?>"><?= unpenetration($data['nama']) ?></a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -149,7 +149,7 @@
 
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
-                            <a href="<?= site_url() ?>surat" class="uibutton icon prev">Kembali</a>
+                            <a href="<?= site_url() ?>/surat" class="uibutton icon prev">Kembali</a>
                         </div>
                         <div class="right">
                             <div class="uibutton-group">

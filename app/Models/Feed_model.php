@@ -13,7 +13,7 @@ class Feed_model extends Model
 							LEFT JOIN kategori k ON a.id_kategori = k.id
 							WHERE (a.enabled=1) AND (a.judul <> '') ORDER BY a.id DESC LIMIT 0,20";
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $hasil = [];
         $i     = 0;
         if ($query->num_rows() > 0) {

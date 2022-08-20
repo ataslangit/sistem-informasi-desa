@@ -2,7 +2,7 @@
 <table class="inner">
     <tr style="vertical-align:top">
         <td style="background:#fff;padding:0px;">
-            <script type="text/javascript" src="<?= base_url() ?>assets/js/highcharts/highcharts.js"></script>
+            <script type="text/javascript" src="<?= base_url() ?>/assets/js/highcharts/highcharts.js"></script>
             <script type="text/javascript">
                 var chart;
                 $(document).ready(function() {
@@ -120,7 +120,7 @@
                         </div>
                         <div class="right">
                             <div class="uibutton-group">
-                                <a href="<?= site_url() ?>keluarga/clear" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>/keluarga/clear" class="uibutton icon prev">Kembali</a>
                             </div>
                         </div>
                     </div>

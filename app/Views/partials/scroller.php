@@ -1,5 +1,5 @@
-<link rel="stylesheet" id="rps-style-css" href="<?= base_url() ?>assets/front/css/slide.css" type="text/css" media="all">
-<script type="text/javascript" src="<?= base_url() ?>assets/front/js/jquery_003.js"></script>
+<link rel="stylesheet" id="rps-style-css" href="<?= base_url() ?>/assets/front/css/slide.css" type="text/css" media="all">
+<script type="text/javascript" src="<?= base_url() ?>/assets/front/js/jquery_003.js"></script>
 <script type="text/javascript">
     $j = jQuery.noConflict();
     $j(document).ready(function() {
