@@ -43,7 +43,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['donjolib', 'form'];
+    protected $helpers = ['donjolib', 'form', 'text'];
 
     protected $config_model;
     protected $first_m;
