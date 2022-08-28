@@ -2,11 +2,25 @@
 
 namespace App\Controllers;
 
+use App\Models\ArtikelModel;
+
 class Main extends BaseController
 {
+    /**
+     * Tampil halaman depan
+     *
+     * @return string
+     */
     public function index()
     {
-        return redirect()->to('first');
+        $artikelModel = new ArtikelModel();
+
+        $data = [
+            'artikel' => $artikelModel->ambilPos()->orderBy('tgl_upload desc')->paginate(5),
+            'pager'   => $artikelModel->pager,
+        ];
+
+        return view('frontend/main', $data);
     }
 
     public function initial()

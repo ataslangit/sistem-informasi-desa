@@ -1,5 +1,20 @@
 <?php
 
+use CodeIgniter\I18n\Time;
+
+/**
+ * Membuat link artikel
+ *
+ * @param int    $id    ID artikel
+ * @param string $judul Judul artikel
+ *
+ * @return string link artikel
+ */
+function linkArtikel(int $id, string $judul): string
+{
+    return 'first/artikel/' . url_title($id . '-' . $judul, '-', true);
+}
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];
@@ -287,6 +302,19 @@ function bulan($bln)
     }
 
     return $nm;
+}
+
+/**
+ * Menampilkan tanggal sesuai format
+ * contoh yang ditampilkan: 31 January 2017 12:18:39
+ *
+ * @param string $datetime Tanggal berupa datetime
+ */
+function tanggal(string $datetime): string
+{
+    $time = Time::parse($datetime);
+
+    return $time->toLocalizedString('d MMMM yyyy H:m:s');
 }
 
 function tgl_indo2($tgl)
