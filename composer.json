@@ -1,13 +1,32 @@
 {
     "name": "ataslangit/sistem-informasi-desa",
     "require": {
-        "php": ">=7.4",
-        "codeigniter/framework": "^3.1",
-        "vlucas/phpdotenv": "^5.4"
+        "php": "^7.4 || ^8.0",
+        "codeigniter4/framework": "^4.0"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.1",
+        "fakerphp/faker": "^1.9",
         "friendsofphp/php-cs-fixer": "^3",
-        "nexusphp/cs-config": "^3.3"
+        "mikey179/vfsstream": "^1.6",
+        "nexusphp/cs-config": "^3.3",
+        "phpunit/phpunit": "^9.1"
+    },
+    "suggest": {
+        "ext-fileinfo": "Improves mime type detection for files"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "**/Database/Migrations/**"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Support\\": "tests/_support"
+        }
+    },
+    "scripts": {
+        "csfix": "vendor/bin/php-cs-fixer fix",
+        "test": "phpunit"
     }
 }
