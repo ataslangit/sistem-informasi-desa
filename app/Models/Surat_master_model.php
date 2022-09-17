@@ -122,7 +122,7 @@ class Surat_master_model extends Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path.$data['url_surat'],'w+');
+        // $handle = fopen($path.$data['url_surat'],'w+');
 
         $berkas = $path . $data['url_surat'] . '.rtf';
         $handle = fopen($berkas, 'w+b');
@@ -138,7 +138,7 @@ class Surat_master_model extends Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path_form.$data['url_surat'],'w+');
+        // $handle = fopen($path_form.$data['url_surat'],'w+');
 
         $berkas = $path_form . $data['url_surat'] . '.php';
         $handle = fopen($berkas, 'w+b');
@@ -155,7 +155,7 @@ class Surat_master_model extends Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path_form.$data['url_surat'],'w+');
+        // $handle = fopen($path_form.$data['url_surat'],'w+');
 
         $berkas     = $path_form . 'print_' . $data['url_surat'] . '.php';
         $handle     = fopen($berkas, 'w+b');

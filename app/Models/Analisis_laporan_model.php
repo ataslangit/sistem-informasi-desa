@@ -29,7 +29,7 @@ class Analisis_laporan_model extends Model
     {
         if (isset($_SESSION['cari'])) {
             $cari = $_SESSION['cari'];
-            //$kw = $this->db->escape_like_str($cari);
+            // $kw = $this->db->escape_like_str($cari);
             $kw = '%' . $cari . '%';
 
             $subjek = $_SESSION['subjek_tipe'];
@@ -407,7 +407,7 @@ class Analisis_laporan_model extends Model
 
         while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
-            //$data[$i]['cek'] 	= null;
+            // $data[$i]['cek'] 	= null;
             $i++;
         }
 

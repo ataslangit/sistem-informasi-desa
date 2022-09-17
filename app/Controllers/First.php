@@ -80,8 +80,8 @@ class First extends BaseController
         $data['headline']      = $this->first_artikel_m->get_headline();
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
 
-        //$data['paging']  = $this->first_artikel_m->paging($p);
-        //$data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
+        // $data['paging']  = $this->first_artikel_m->paging($p);
+        // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
 
         $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
         $data['arsip']    = $this->first_artikel_m->arsip_show();
@@ -98,10 +98,10 @@ class First extends BaseController
         $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
         $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
 
-        //if($m == 2)
+        // if($m == 2)
         $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
 
-        //$data['menu_surat2'] = $this->surat_model->list_surat2();
+        // $data['menu_surat2'] = $this->surat_model->list_surat2();
         $data['m'] = $m;
         echo view('layouts/mandiri.php', $data);
     }

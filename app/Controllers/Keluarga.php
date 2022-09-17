@@ -998,7 +998,7 @@ class Keluarga extends BaseController
         echo view('sid/nav', $nav);
         echo view('sid/kependudukan/keluarga_statistik', $data);
         echo view('footer');
-        //return redirect()->to('keluarga');
+        // return redirect()->to('keluarga');
     }
 
     public function cetak_statistik($tipe = 0)

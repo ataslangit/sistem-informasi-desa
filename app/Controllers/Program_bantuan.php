@@ -112,7 +112,7 @@ class Program_bantuan extends BaseController
     public function hapus($id)
     {
         $this->program_bantuan_model->hapus_program($id);
-        //echo view('program_bantuan/formsuccess');
+        // echo view('program_bantuan/formsuccess');
         return redirect()->to('program_bantuan/');
     }
 

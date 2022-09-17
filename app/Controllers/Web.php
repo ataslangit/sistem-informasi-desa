@@ -87,7 +87,7 @@ class Web extends BaseController
 
         $nav['act'] = 0;
         echo view('header', $header);
-        //echo view('web/spacer');
+        // echo view('web/spacer');
         echo view('web/nav', $nav);
         if ($cat !== 1003) {
             echo view('web/artikel/form', $data);

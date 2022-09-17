@@ -169,7 +169,7 @@ class Analisis_statistik_jawaban extends BaseController
 
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
 
-        //return redirect()->to('analisis_statistik_jawaban');
+        // return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_jawaban'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_master']            = $this->analisis_statistik_jawaban_model->get_analisis_master();
@@ -209,7 +209,7 @@ class Analisis_statistik_jawaban extends BaseController
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
-        //if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
+        // if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
         //	return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_pertanyaan'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);

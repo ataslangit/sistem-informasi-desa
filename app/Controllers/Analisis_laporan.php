@@ -128,7 +128,7 @@ class Analisis_laporan extends BaseController
 
     public function multi_jawab()
     {
-        //echo phpinfo();
+        // echo phpinfo();
         $data['form_action'] = site_url('analisis_laporan/multi_exec');
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
         echo view('analisis_laporan/ajax_multi', $data);
@@ -138,7 +138,7 @@ class Analisis_laporan extends BaseController
     {
         $idcb = $_POST['id_cb'];
         print_r($idcb);
-        //return redirect()->to('analisis_laporan');
+        // return redirect()->to('analisis_laporan');
     }
 
     public function ajax_multi_jawab()

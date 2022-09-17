@@ -25,7 +25,7 @@ class User_model extends Model
 
                 $_SESSION['siteman'] = 1;
                 $_SESSION['sesi']    = $data['session'];
-                //$_SESSION['sesi'] = $row->session;
+                // $_SESSION['sesi'] = $row->session;
                 $_SESSION['user']     = $row->id;
                 $_SESSION['grup']     = $row->id_grup;
                 $_SESSION['per_page'] = 10;
@@ -54,10 +54,10 @@ class User_model extends Model
         }
     }
 
-    //time out
+    // time out
     public function reset_timer()
     {
-        $time                = 3600; //15menit
+        $time                = 3600; // 15menit
         $_SESSION['timeout'] = time() + $time;
     }
 

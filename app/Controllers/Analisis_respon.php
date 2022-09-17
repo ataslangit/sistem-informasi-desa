@@ -140,7 +140,7 @@ class Analisis_respon extends BaseController
         return redirect()->to("analisis_respon/kuisioner/{$p}/{$o}/{$id}");
     }
 
-    //CHILD--------------------
+    // CHILD--------------------
     public function kuisioner_child($p = 1, $o = 0, $id = '', $idc = '')
     {
         $data['p'] = $p;

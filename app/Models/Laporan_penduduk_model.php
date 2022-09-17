@@ -256,7 +256,7 @@ class Laporan_penduduk_model extends Model
             $i++;
         }
 
-        //BELEUM MENGISI
+        // BELEUM MENGISI
         $data[$i]['no']        = '';
         $data[$i]['id']        = 777;
         $data[$i]['nama']      = 'BELUM MENGISI';
