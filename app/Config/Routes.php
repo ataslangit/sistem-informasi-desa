@@ -38,6 +38,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Main::index');
 
 // route admin
+$routes->get('siteman', 'Admin\Siteman::index'); // redirect ke dashboard
+
 $routes->get('hom_desa', 'Admin/dashboard/index'); // redirect ke dashboard
 $routes->get('admin/dashboard', 'Admin/dashboard/dashboard');
 

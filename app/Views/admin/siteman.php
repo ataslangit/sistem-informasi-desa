@@ -30,16 +30,6 @@
                     'required'    => true,
                 ]) ?>
                 <button type="submit" id="but">LOGIN</button>
-                <?php if ($_SESSION['siteman'] === -1) { ?>
-                    <div id="note">
-                        Login Gagal. Username atau Password yang Anda masukkan salah!
-                    </div>
-                <?php } elseif ($_SESSION['siteman'] === -2) { ?>
-                    <div id="note">
-                        Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
-                    </div>
-                <?php }
-                unset($_SESSION['siteman']); ?>
             <?= form_close() ?>
         </div>
         <div id="facebook2">
