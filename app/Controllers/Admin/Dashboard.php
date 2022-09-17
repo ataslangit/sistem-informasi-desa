@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Models\Config_model as ConfigModel;
 
 class Dashboard extends BaseController
@@ -23,7 +24,7 @@ class Dashboard extends BaseController
      */
     public function index()
     {
-        return return redirect()->to('admin/dashboard', 'refresh', 301);
+        return redirect()->to('admin/dashboard', 'refresh', 301);
     }
 
     /**
@@ -59,6 +60,7 @@ class Dashboard extends BaseController
         $configModel = new ConfigModel();
 
         $configModel->insert1();
+
         return redirect()->to('admin/dashboard');
     }
 
@@ -94,6 +96,7 @@ class Dashboard extends BaseController
         $configModel = new ConfigModel();
 
         $configModel->update_kantor();
+
         return redirect()->to('admin/dashboard');
     }
 
@@ -102,6 +105,7 @@ class Dashboard extends BaseController
         $configModel = new ConfigModel();
 
         $configModel->update_wilayah();
+
         return redirect()->to('admin/dashboard');
     }
 
@@ -110,6 +114,7 @@ class Dashboard extends BaseController
         $configModel = new ConfigModel();
 
         $configModel->kosong_pend();
+
         return redirect()->to('admin/dashboard');
     }
 
@@ -118,6 +123,7 @@ class Dashboard extends BaseController
         if (isset($_SESSION['delik'])) {
             unset($_SESSION['delik']);
         }
+
         return redirect()->to('analisis_master/clear');
     }
 }

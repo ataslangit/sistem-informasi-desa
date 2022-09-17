@@ -15,6 +15,21 @@ function linkArtikel(int $id, string $judul): string
     return 'first/artikel/' . url_title($id . '-' . $judul, '-', true);
 }
 
+/**
+ * Generate hash password metode lama
+ *
+ * @param string $password Kata sandi
+ */
+function hash_password(string $password): string
+{
+    $password = strrev($password);
+    $password .= '!#@$#%';
+    $password = md5($password);
+    $password = substr($password, 3, 19);
+
+    return md5($password);
+}
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];
@@ -426,15 +441,6 @@ function getBulan($bln)
 function generator($length = 7)
 {
     return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);
-}
-function hash_password($password = '')
-{
-    $password = strrev($password);
-    $password .= '!#@$#%';
-    $password = md5($password);
-    $password = substr($password, 3, 19);
-
-    return md5($password);
 }
 
 function mandiri_timer()

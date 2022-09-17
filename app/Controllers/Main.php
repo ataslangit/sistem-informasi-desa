@@ -45,12 +45,4 @@ class Main extends BaseController
         $header = $this->header_model->get_config();
         echo view('siteman', $header);
     }
-
-    public function logout()
-    {
-        $this->config_model->opt();
-        $this->user_model->logout();
-        $header = $this->header_model->get_config();
-        echo view('siteman', $header);
-    }
 }
