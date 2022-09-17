@@ -32,7 +32,6 @@ class User_model extends Model
             // cocokkan hash password
             if (hash_password($password) === $get->password && $attempts <= 3) {
                 if ($get->active === '1') {
-
                     // set session
                     session()->set([
                         'id'       => $get->id,
