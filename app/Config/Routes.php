@@ -38,27 +38,32 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Main::index');
 
 // siteman
-$routes->group('siteman' , static function ($routes) {
+$routes->group('siteman', ['filter' => 'sudahMasuk'], static function ($routes) {
     $routes->get('/', 'Admin\Siteman::index');
     $routes->post('/', 'Admin\Siteman::check');
 });
 
+$routes->get('logout', 'Admin\Siteman::logout');
+
 
 // route admin
-$routes->get('hom_desa', 'Admin/dashboard/index'); // redirect ke dashboard
-$routes->get('admin/dashboard', 'Admin/dashboard/dashboard');
+$routes->get('hom_desa', 'Admin\dashboard::index'); // redirect ke dashboard
+$routes->get('database', 'Admin\database::index'); // lempar ke halaman database
 
-$routes->get('admin/about', 'Admin/dashboard/about');
+$routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($routes) {
+    $routes->get('dashboard', 'Admin\dashboard::dashboard');
 
-$routes->get('admin/pengaturan_desa/update/(:any)', 'Admin/dashboard/update/$1');
-$routes->get('admin/pengaturan_desa/ajax_kantor_maps', 'Admin/dashboard/ajax_kantor_maps');
-$routes->get('admin/pengaturan_desa/ajax_wilayah_maps', 'Admin/dashboard/ajax_wilayah_maps');
+    $routes->get('about', 'Admin\dashboard::about');
 
-// halaman database
-$routes->get('database', 'Admin/database/index'); // lempar ke halaman database
-$routes->get('admin/database', 'Admin/database/index');
-$routes->get('admin/database/import', 'Admin/database/import');
-$routes->get('admin/database/exec_backup', 'Admin/database/exec_backup');
+    $routes->get('pengaturan_desa/update/(:any)', 'Admin\dashboard::update/$1');
+    $routes->get('pengaturan_desa/ajax_kantor_maps', 'Admin\dashboard::ajax_kantor_maps');
+    $routes->get('pengaturan_desa/ajax_wilayah_maps', 'Admin\dashboard::ajax_wilayah_maps');
+
+    // halaman database
+    $routes->get('database', 'Admin\database::index');
+    $routes->get('database/import', 'Admin\database::import');
+    $routes->get('database/exec_backup', 'Admin\database::exec_backup');
+});
 
 /*
  * --------------------------------------------------------------------

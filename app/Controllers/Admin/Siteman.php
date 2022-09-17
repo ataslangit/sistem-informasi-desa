@@ -40,4 +40,16 @@ class Siteman extends BaseController
 
         return redirect()->to('siteman');
     }
+
+    /**
+     * Fungsi Logout
+     */
+    public function logout(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        // hapus session
+        session()->remove(['id', 'username', 'sesi']);
+        session()->set('masuk', false);
+
+        return redirect()->to('siteman');
+    }
 }

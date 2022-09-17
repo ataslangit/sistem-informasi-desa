@@ -33,10 +33,11 @@ class User_model extends Model
             if (hash_password($password) === $get->password && $attempts <= 3) {
                 if ($get->active === '1') {
 
-                // set session
+                    // set session
                     session()->set([
                         'id'       => $get->id,
                         'username' => $get->username,
+                        'sesi'     => $get->id_grup,
                         'masuk'    => true,
                     ]);
 
@@ -86,46 +87,6 @@ class User_model extends Model
             $this->logout();
 
             return null;
-        }
-    }
-
-    // time out
-    public function reset_timer()
-    {
-        $time                = 3600; // 15menit
-        $_SESSION['timeout'] = time() + $time;
-    }
-
-    public function cek_login()
-    {
-        $timeout = $_SESSION['timeout'];
-        if (time() < $timeout) {
-            $this->reset_timer();
-
-            return true;
-        }
-        unset($_SESSION['timeout']);
-
-        return false;
-    }
-
-    public function login()
-    {
-        $username = $this->request->getPost('username');
-        $password = hash_password($this->request->getPost('password'));
-
-        $sql   = 'SELECT id,password,id_grup,session FROM user WHERE id_grup=1 LIMIT 1';
-        $query = $this->db->query($sql);
-        $row   = $query->getRow();
-
-        if ($password !== $row->password) {
-            $_SESSION['siteman']  = 1;
-            $_SESSION['sesi']     = $row->session;
-            $_SESSION['user']     = $row->id;
-            $_SESSION['grup']     = $row->id_grup;
-            $_SESSION['per_page'] = 10;
-        } else {
-            $_SESSION['siteman'] = -1;
         }
     }
 
