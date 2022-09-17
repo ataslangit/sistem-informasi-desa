@@ -61,7 +61,7 @@ class Database extends BaseController
         $nav['act']           = 4;
         $data['form_action3'] = site_url('admin/database/ppls_individu');
         $data['form_action2'] = site_url('admin/database/ppls_rumahtangga');
-        //$data['form_action'] = site_url("database/ppls_kuisioner");
+        // $data['form_action'] = site_url("database/ppls_kuisioner");
         $header = $this->header_model->get_data();
         echo view('header', $header);
         echo view('nav', $nav);

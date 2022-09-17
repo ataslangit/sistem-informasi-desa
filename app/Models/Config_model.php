@@ -11,7 +11,7 @@ class Config_model extends Model
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';
         $query = $this->db->query($sql);
 
-        //if(!$query){
+        // if(!$query){
         $sql   = 'SELECT * FROM tweb_surat_format WHERE 1';
         $query = $this->db->query($sql);
         $data  = $query->getResultArray();
@@ -38,7 +38,7 @@ class Config_model extends Model
             fwrite($handle, $buffer);
             fclose($handle);
         }
-        //}
+        // }
     }
 
     public function initsurat()
@@ -301,8 +301,8 @@ class Config_model extends Model
         $this->cls();
 
         $b = "SELECT id FROM tweb_wil_clusterdesa WHERE rt <> '-' AND rt <> 0 AND rw <> 0 AND rw <> '-'";
-        //$query 	= $this->db->query($sql);
-        //$data	= $query->getResultArray();
+        // $query 	= $this->db->query($sql);
+        // $data	= $query->getResultArray();
     }
 
     public function opt()

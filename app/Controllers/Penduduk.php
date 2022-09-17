@@ -529,7 +529,7 @@ class Penduduk extends BaseController
                 $_SESSION[$col[$i]] = $adv_search[$col[$i]];
             }
         }
-        //print_r($adv_search);
+        // print_r($adv_search);
         return redirect()->to('penduduk');
     }
 

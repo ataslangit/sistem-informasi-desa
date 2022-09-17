@@ -112,7 +112,7 @@ class Kelompok extends BaseController
             $data['kelompok']    = $id;
             $data['pend']        = $this->kelompok_model->get_anggota($id, $id_a);
             $data['form_action'] = site_url("kelompok/update_a/{$id}/{$id_a}");
-            //echo $id.$id_a;
+            // echo $id.$id_a;
         }
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();

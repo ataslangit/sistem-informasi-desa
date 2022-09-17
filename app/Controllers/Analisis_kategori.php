@@ -73,10 +73,10 @@ class Analisis_kategori extends BaseController
             $data['form_action']       = site_url('analisis_kategori/insert');
         }
 
-        //echo view('header', $header);
-        //echo view('analisis_master/nav');
+        // echo view('header', $header);
+        // echo view('analisis_master/nav');
         echo view('analisis_kategori/ajax_form', $data);
-        //echo view('footer');
+        // echo view('footer');
     }
 
     public function search()

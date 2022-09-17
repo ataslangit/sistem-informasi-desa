@@ -50,7 +50,7 @@ class Import_model extends Model
                     if ($j > 0) {
                         if (strlen($convert[$i]) > 10) {
                             $strDusun = str_replace('  ', ' ', trim($item[5]));
-                            //$strDusun = str_replace(" ","_",$strDusun);
+                            // $strDusun = str_replace(" ","_",$strDusun);
 
                             $strRT = trim($item[3]);
 
@@ -206,7 +206,7 @@ class Import_model extends Model
 
     public function import_excel()
     {
-        //if($_FILES['userfile']['type'] == "application/vnd.ms-excel"){
+        // if($_FILES['userfile']['type'] == "application/vnd.ms-excel"){
         $gagal  = 0;
         $baris2 = '';
         $a      = 'DROP TABLE IF EXISTS impor';
@@ -384,7 +384,7 @@ class Import_model extends Model
             $_SESSION['success'] = -1;
         }
 
-        //}else{$_SESSION['success']=-1;}
+        // }else{$_SESSION['success']=-1;}
     }
 
     public function import_dasar()
@@ -592,16 +592,16 @@ class Import_model extends Model
         $gg = 0;
 
         for ($i = 2; $i <= $baris; $i++) {
-            //ID RuTa
+            // ID RuTa
             $id_rtm = $data->val($i, 2, $sheet);
 
-            //Level
+            // Level
             $rtm_level = $data->val($i, 3, $sheet);
             if ($rtm_level > 1) {
                 $rtm_level = 2;
             }
 
-            //NIK
+            // NIK
             $nik = $data->val($i, 1, $sheet);
 
             $sql   = 'SELECT nama FROM tweb_penduduk WHERE nik = ?';
@@ -667,7 +667,7 @@ class Import_model extends Model
             $penduduk['nama']   = $data->val($i, 12, $sheet);
             $penduduk['id_rtm'] = $data->val($i, 1, $sheet);
 
-            //$outp = $this->db->insert('tweb_penduduk',$penduduk);
+            // $outp = $this->db->insert('tweb_penduduk',$penduduk);
             $upd['rtm_level'] = 1;
 
             $this->db->where('id_rtm', $penduduk['id_rtm']);
@@ -710,7 +710,7 @@ class Import_model extends Model
             $penduduk['nama']   = $data->val($i, 12, $sheet);
             $penduduk['id_rtm'] = $data->val($i, 1, $sheet);
 
-            //$outp = $this->db->insert('tweb_penduduk',$penduduk);
+            // $outp = $this->db->insert('tweb_penduduk',$penduduk);
             $upd['rtm_level'] = 1;
 
             $this->db->where('id_rtm', $penduduk['id_rtm']);

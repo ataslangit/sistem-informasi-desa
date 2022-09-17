@@ -13,9 +13,9 @@ class Plan extends BaseController
             return redirect()->to('siteman');
         }
 
-        //$this->load->library('ion_auth');
+        // $this->load->library('ion_auth');
 
-        //$this->config->item('ion_auth') ;
+        // $this->config->item('ion_auth') ;
     }
 
     public function clear()

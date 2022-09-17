@@ -139,7 +139,7 @@ class Analisis_statistik_jawaban_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        //$_subjek = $this->get_subjek();
+        // $_subjek = $this->get_subjek();
 
         $subjek = $_SESSION['subjek_tipe'];
 
@@ -207,7 +207,7 @@ class Analisis_statistik_jawaban_model extends Model
             $sql1 .= $this->dusun_sql();
             $sql1 .= $this->rw_sql();
             $sql1 .= $this->rt_sql();
-            //$sql1 .= "  GROUP BY r.id_indikator  ";
+            // $sql1 .= "  GROUP BY r.id_indikator  ";
             $query1            = $this->db->query($sql1, $data[$i]['id']);
             $respon            = $query1->getRowArray();
             $data[$i]['bobot'] = $respon['jml'];
@@ -244,7 +244,7 @@ class Analisis_statistik_jawaban_model extends Model
 
     public function list_indikator($id = 0)
     {
-        //$_subjek = $this->get_subjek();
+        // $_subjek = $this->get_subjek();
 
         $subjek = $_SESSION['subjek_tipe'];
 
@@ -290,7 +290,7 @@ class Analisis_statistik_jawaban_model extends Model
     public function list_subjek($id = 0)
     {
         $per = $this->get_aktif_periode();
-        //$sbj = $this->get_subjek2();
+        // $sbj = $this->get_subjek2();
 
         $subjek = $_SESSION['subjek_tipe'];
 

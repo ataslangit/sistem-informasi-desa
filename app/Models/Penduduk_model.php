@@ -325,7 +325,7 @@ class Penduduk_model extends Model
             return $log_sql;
         }
         $log_sql = '';
-        //$log_sql= " AND u.status_dasar = 1 ";
+        // $log_sql= " AND u.status_dasar = 1 ";
         return $log_sql;
     }
 
@@ -688,7 +688,7 @@ class Penduduk_model extends Model
         $this->db->where('id', $id);
         $this->db->update('tweb_penduduk', $data);
 
-        //pindah luar desa
+        // pindah luar desa
         if ($data['status_dasar'] === 3) {
             $out['id_kk']    = '';
             $out['kk_level'] = '';
@@ -1057,7 +1057,7 @@ class Penduduk_model extends Model
                         $kf   = $_SESSION['filter'];
                     } break;
 
-                case 11: /*$table = 'tweb_status_dasar'; 			if(isset($_SESSION['status_dasar'])){$head = "STATUS DASAR";$kf = $_SESSION['status_dasar'];}*/ break;
+                case 11: /* $table = 'tweb_status_dasar'; 			if(isset($_SESSION['status_dasar'])){$head = "STATUS DASAR";$kf = $_SESSION['status_dasar'];} */ break;
 
                 case 12: $table = 'tweb_cacat';
                     if (isset($_SESSION['cacat'])) {
@@ -1075,7 +1075,7 @@ class Penduduk_model extends Model
                 if (count($data) > 0) {
                     $br = ' ';
                     $rn = "\r\n";
-                    //$out = "| ".$head.":";
+                    // $out = "| ".$head.":";
                     $out = ' _ ';
 
                     $i = 0;

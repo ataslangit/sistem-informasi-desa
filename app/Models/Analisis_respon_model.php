@@ -14,8 +14,8 @@ class Analisis_respon_model extends Model
 
     public function autocomplete()
     {
-        //$sql = "SELECT no_kk FROM tweb_keluarga
-        //UNION SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id //WHERE 1 ";
+        // $sql = "SELECT no_kk FROM tweb_keluarga
+        // UNION SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id //WHERE 1 ";
         $subjek = $_SESSION['subjek_tipe'];
 
         switch ($subjek) {
@@ -152,7 +152,7 @@ class Analisis_respon_model extends Model
 
             default: return null;
         }
-        //$sql = "SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1";
+        // $sql = "SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1";
         if ($id_kelompok !== 0) {
             $sql .= $this->kelompok_sql($id_kelompok);
         }
@@ -216,7 +216,7 @@ class Analisis_respon_model extends Model
 
             default: return null;
         }
-        //$sql = "SELECT u.*,p.nama,c.dusun,c.rw,c.rt,(SELECT id FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ";
+        // $sql = "SELECT u.*,p.nama,c.dusun,c.rw,c.rt,(SELECT id FROM analisis_respon WHERE id_subjek = u.id AND id_periode=? LIMIT 1) as cek FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id LEFT JOIN tweb_wil_clusterdesa c ON p.id_cluster = c.id WHERE 1 ";
         if ($id_kelompok !== 0) {
             $sql .= $this->kelompok_sql($id_kelompok);
         }
@@ -238,7 +238,7 @@ class Analisis_respon_model extends Model
         while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
-            //$this->update_hasil($data[$i]['id']);
+            // $this->update_hasil($data[$i]['id']);
 
             if ($data[$i]['cek']) {
                 $data[$i]['set'] = "<img src='" . base_url() . "assets/images/icon/ok.png'>";
@@ -315,7 +315,7 @@ class Analisis_respon_model extends Model
             }
         }
 
-        //CEK ada input
+        // CEK ada input
         if ($ir !== 0 || $ic !== 0 || $ia !== 0 || $it !== 0) {
             $sql = 'DELETE FROM analisis_respon WHERE id_subjek = ? AND id_periode=?';
             $this->db->query($sql, [$id, $per]);
@@ -525,7 +525,7 @@ class Analisis_respon_model extends Model
         return $data;
     }
 
-    //CHILD-----------------------
+    // CHILD-----------------------
 
     public function list_jawab4($id = 0, $in = 0, $per = 0)
     {
@@ -611,7 +611,7 @@ class Analisis_respon_model extends Model
 
         return $per;
     }
-    //---------------------------
+    // ---------------------------
 
     public function list_bukti($id = 0)
     {
@@ -643,7 +643,7 @@ class Analisis_respon_model extends Model
 
             default: return null;
         }
-        //$sql = "SELECT u.*,p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id WHERE u.id=?";
+        // $sql = "SELECT u.*,p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id WHERE u.id=?";
         $query = $this->db->query($sql, $id);
 
         return $query->getRowArray();
@@ -662,7 +662,7 @@ class Analisis_respon_model extends Model
 
                 default: return null;
             }
-            //$sql = "SELECT u.*,p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id WHERE u.id=?";
+            // $sql = "SELECT u.*,p.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk p ON u.nik_kepala = p.id WHERE u.id=?";
             $query = $this->db->query($sql, $id);
 
             return $query->getResultArray();
@@ -771,19 +771,19 @@ class Analisis_respon_model extends Model
             $data[$i]['no'] = $i + 1;
 
             if ($p === 1) {
-                //$j=0;
-                //while($j<count($indikator)){
+                // $j=0;
+                // while($j<count($indikator)){
 
                 $sql2 = 'SELECT kode_jawaban,asign,jawaban,r.id_indikator,r.id_parameter AS korek FROM analisis_respon r LEFT JOIN analisis_parameter p ON p.id = r.id_parameter WHERE r.id_periode = ? AND r.id_subjek = ? ORDER BY r.id_indikator';
 
-                //$sql2 	= "SELECT kode_jawaban WHERE r.id_periode = ? AND r.id_subjek = ? ORDER BY i.nomor ";
+                // $sql2 	= "SELECT kode_jawaban WHERE r.id_periode = ? AND r.id_subjek = ? ORDER BY i.nomor ";
 
                 $query2          = $this->db->query($sql2, [$per, $data[$i]['id']]);
                 $par             = $query2->getResultArray();
                 $data[$i]['par'] = $par;
 
             //	$j++;
-            //}
+            // }
             } else {
                 $data[$i]['par'] = null;
             }
@@ -883,7 +883,7 @@ class Analisis_respon_model extends Model
         $i = 0;
 
         while ($i < count($data)) {
-            //$this->update_hasil($data[$i]['id']);
+            // $this->update_hasil($data[$i]['id']);
 
             $sql   = 'SELECT SUM(i.bobot * nilai) as jml FROM analisis_respon r LEFT JOIN analisis_indikator i ON r.id_indikator = i.id LEFT JOIN analisis_parameter z ON r.id_parameter = z.id WHERE r.id_subjek = ? AND i.act_analisis=1 AND r.id_periode=?';
             $query = $this->db->query($sql, [$data[$i]['id'], $per]);
@@ -942,10 +942,10 @@ class Analisis_respon_model extends Model
         $ketemu = 0;
 
         for ($b = 1; $b <= $baris; $b++) {
-            //echo "<tr>";
+            // echo "<tr>";
             for ($k = 1; $k <= $kolom; $k++) {
                 $isi = $data->val($b, $k, $s);
-                //echo "<td>$b : $k ($isi)";
+                // echo "<td>$b : $k ($isi)";
 
                 // ketemu njuk stop
                 if ($isi === $key) {
@@ -955,7 +955,7 @@ class Analisis_respon_model extends Model
                     $b      = $baris + 1;
                     $k      = $kolom + 1;
                     $ketemu = 1;
-                    //echo "<- KETEMU";
+                    // echo "<- KETEMU";
                 }
             }
         }
@@ -984,9 +984,9 @@ class Analisis_respon_model extends Model
             }
 
             $dels .= '9999999';
-            //cek ada row
+            // cek ada row
 
-            //echo $dels;
+            // echo $dels;
             $sql = 'DELETE FROM analisis_respon WHERE id_subjek IN(?) AND id_periode=?';
             $this->db->query($sql, [$dels, $per]);
             $dels = '';
@@ -1031,11 +1031,11 @@ class Analisis_respon_model extends Model
                         } elseif ($indi['id_tipe'] === 2) {
                             $id_isi = explode(',', $isi);
 
-                            //if(count($id_isi) > 1){
-                            //foreach($id_isi AS $ids){
-                            //echo "<br>".count($id_isi)." -> ";
+                            // if(count($id_isi) > 1){
+                            // foreach($id_isi AS $ids){
+                            // echo "<br>".count($id_isi)." -> ";
                             for ($q = 0; $q < (count($id_isi)); $q++) {
-                                //echo $id_isi[$q]." ";
+                                // echo $id_isi[$q]." ";
                                 $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ? ;';
                                 $query = $this->db->query($sql, [$indi['id'], $id_isi[$q]]);
                                 $param = $query->getRowArray();
@@ -1049,7 +1049,7 @@ class Analisis_respon_model extends Model
                                     $n++;
                                 }
                             }
-                        //}
+                        // }
                         } else {
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                             $query = $this->db->query($sql, [$indi['id'], $isi]);
@@ -1068,10 +1068,10 @@ class Analisis_respon_model extends Model
                                 $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                                 $query = $this->db->query($sql, [$indi['id'], $isi]);
                                 $param = $query->getRowArray();
-                                //if($param){
+                                // if($param){
                                 $in_param = $param['id'];
-                                //}else{
-                                //$in_param	= $id_param;
+                                // }else{
+                                // $in_param	= $id_param;
                                 //	}
                             }
 
@@ -1101,7 +1101,7 @@ class Analisis_respon_model extends Model
             $_SESSION['success'] = -1;
         }
     }
-    //------------------
+    // ------------------
 
     public function satu_jiwa($op = 0)
     {
@@ -1124,7 +1124,7 @@ class Analisis_respon_model extends Model
         $this->db->query($sql, [$per]);
 
         $n = 0;
-        //foreach($tdata AS $data){
+        // foreach($tdata AS $data){
         $di = 0;
 
         while ($di < count($data)) {
@@ -1142,7 +1142,7 @@ class Analisis_respon_model extends Model
             foreach ($indikator as $indi) {
                 $k   = 'j' . $j;
                 $isi = $data[$di][$k];
-                //echo $isi."<br>";
+                // echo $isi."<br>";
                 if ($isi !== '') {
                     if ($indi['id_tipe'] === 1) {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ?;';
@@ -1167,11 +1167,11 @@ class Analisis_respon_model extends Model
                     } elseif ($indi['id_tipe'] === 2) {
                         $id_isi = explode(',', $isi);
 
-                        //if(count($id_isi) > 1){
-                        //foreach($id_isi AS $ids){
-                        //echo "<br>".count($id_isi)." -> ";
+                        // if(count($id_isi) > 1){
+                        // foreach($id_isi AS $ids){
+                        // echo "<br>".count($id_isi)." -> ";
                         for ($q = 0; $q < (count($id_isi)); $q++) {
-                            //echo $id_isi[$q]." ";
+                            // echo $id_isi[$q]." ";
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ? ;';
                             $query = $this->db->query($sql, [$indi['id'], $id_isi[$q]]);
                             $param = $query->getRowArray();
@@ -1185,7 +1185,7 @@ class Analisis_respon_model extends Model
                                 $n++;
                             }
                         }
-                    //}
+                    // }
                     } else {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                         $query = $this->db->query($sql, [$indi['id'], $isi]);
@@ -1204,10 +1204,10 @@ class Analisis_respon_model extends Model
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                             $query = $this->db->query($sql, [$indi['id'], $isi]);
                             $param = $query->getRowArray();
-                            //if($param){
+                            // if($param){
                             $in_param = $param['id'];
-                            //}else{
-                            //$in_param	= $id_param;
+                            // }else{
+                            // $in_param	= $id_param;
                             //	}
                         }
 
@@ -1259,7 +1259,7 @@ class Analisis_respon_model extends Model
         $this->db->query($sql, [$per]);
 
         $n = 0;
-        //foreach($tdata AS $data){
+        // foreach($tdata AS $data){
         $di = 0;
 
         while ($di < count($data)) {
@@ -1270,9 +1270,9 @@ class Analisis_respon_model extends Model
             $all = '';
 
             foreach ($indikator as $indi) {
-                //$k = "'".$j."'";
+                // $k = "'".$j."'";
                 $isi = $dat[$j];
-                //echo $isi."<br>";
+                // echo $isi."<br>";
                 if ($isi !== '') {
                     if ($indi['id_tipe'] === 1) {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ?;';
@@ -1297,11 +1297,11 @@ class Analisis_respon_model extends Model
                     } elseif ($indi['id_tipe'] === 2) {
                         $id_isi = explode(',', $isi);
 
-                        //if(count($id_isi) > 1){
-                        //foreach($id_isi AS $ids){
-                        //echo "<br>".count($id_isi)." -> ";
+                        // if(count($id_isi) > 1){
+                        // foreach($id_isi AS $ids){
+                        // echo "<br>".count($id_isi)." -> ";
                         for ($q = 0; $q < (count($id_isi)); $q++) {
-                            //echo $id_isi[$q]." ";
+                            // echo $id_isi[$q]." ";
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ? ;';
                             $query = $this->db->query($sql, [$indi['id'], $id_isi[$q]]);
                             $param = $query->getRowArray();
@@ -1315,7 +1315,7 @@ class Analisis_respon_model extends Model
                                 $n++;
                             }
                         }
-                    //}
+                    // }
                     } else {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                         $query = $this->db->query($sql, [$indi['id'], $isi]);
@@ -1334,10 +1334,10 @@ class Analisis_respon_model extends Model
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                             $query = $this->db->query($sql, [$indi['id'], $isi]);
                             $param = $query->getRowArray();
-                            //if($param){
+                            // if($param){
                             $in_param = $param['id'];
-                            //}else{
-                            //$in_param	= $id_param;
+                            // }else{
+                            // $in_param	= $id_param;
                             //	}
                         }
 
@@ -1368,7 +1368,7 @@ class Analisis_respon_model extends Model
         }
     }
 
-    //-----------------
+    // -----------------
     public function get_aktif_periode()
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';

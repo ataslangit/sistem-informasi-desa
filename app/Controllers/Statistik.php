@@ -512,7 +512,7 @@ class Statistik extends BaseController
         $menu['act']  = '2';
 
         echo view('header', $header);
-        //echo view('statistik/menu');
+        // echo view('statistik/menu');
         echo view('statistik/nav', $menu);
         echo view('statistik/rentang_umur', $data);
         echo view('footer');

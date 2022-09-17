@@ -140,12 +140,12 @@ class Analisis_master extends BaseController
         $data['menu_laporan'] = 'analisis_laporan';
         $header               = $this->header_model->get_data();
 
-        //PATCH
-        //if($p==1){
+        // PATCH
+        // if($p==1){
 
         $this->analisis_respon_model->pre_update();
-        //}
-        //----
+        // }
+        // ----
 
         $nav['act'] = 1;
         echo view('header', $header);
