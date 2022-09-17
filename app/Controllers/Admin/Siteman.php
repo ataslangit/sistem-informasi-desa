@@ -3,43 +3,40 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\User_model;
 
 class Siteman extends BaseController
 {
     /**
      * Menampilkan halaman login untuk pengurus website
-     *
-     * @return string
      */
-    public function index()
+    public function index(): string
     {
-        // $this->user_model->logout();
-        $header = $this->header_model->get_config();
-
-        // if (! isset($_SESSION['siteman'])) {
-        //     $_SESSION['siteman'] = 0;
-        // }
-        // $_SESSION['success']    = 0;
-        // $_SESSION['per_page']   = 10;
-        // $_SESSION['cari']       = '';
-        // $_SESSION['pengumuman'] = 0;
-        // $_SESSION['sesi']       = 'kosong';
-        // $_SESSION['timeout']    = 0;
-
-        return view('admin/siteman', $header);
-        // $_SESSION['siteman'] = 0;
+        return view('admin/siteman', []);
     }
 
-    public function auth()
+    public function check()
     {
-        $this->user_model->siteman();
+        $validation = \Config\Services::validation();
 
-        return redirect()->to('main');
-    }
+        if ($this->request->getPost()) {
+            $validation->setRules([
+                'username' => ['label' => 'nama pengguna', 'rules' => 'required'],
+                'password' => ['label' => 'kata sandi', 'rules' => 'required'],
+            ]);
+        }
 
-    public function login()
-    {
-        $this->user_model->logout();
+        if (! $validation->withRequest($this->request)->run()) {
+            return $this->index();
+        }
+
+        $userModel = new User_model();
+
+        $cek_masuk = $userModel->masuk($this->request->getPost('username'), $this->request->getPost('password'));
+
+        if (! $cek_masuk) {
+            return $this->index();
+        }
 
         return redirect()->to('siteman');
     }

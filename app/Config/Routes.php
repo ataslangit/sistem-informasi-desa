@@ -37,9 +37,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Main::index');
 
-// route admin
-$routes->get('siteman', 'Admin\Siteman::index'); // redirect ke dashboard
+// siteman
+$routes->group('siteman' , static function ($routes) {
+    $routes->get('/', 'Admin\Siteman::index');
+    $routes->post('/', 'Admin\Siteman::check');
+});
 
+
+// route admin
 $routes->get('hom_desa', 'Admin/dashboard/index'); // redirect ke dashboard
 $routes->get('admin/dashboard', 'Admin/dashboard/dashboard');
 

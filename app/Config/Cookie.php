@@ -16,7 +16,7 @@ class Cookie extends BaseConfig
      *
      * @var string
      */
-    public $prefix = '';
+    public $prefix = '--aman_';
 
     /**
      * --------------------------------------------------------------------------

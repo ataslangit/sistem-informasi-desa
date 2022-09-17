@@ -1,41 +1,82 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <title>SID <?= APP_VERSION ?> Login</title>
-    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/login-new.css" media="screen" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[name="username"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[name="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="loginform">
-        <a href="<?= site_url('first') ?>">
-            <div id="facebook">
-                <div id="sid">SID</div>
-                <div id="connect">ver.</div>
-                <div id="logo"><img src="<?= base_url() ?>/assets/images/SID-e1351656852451.png"></div>
-                <div id="desa">Desa <?= unpenetration($desa['nama_desa']) ?></div>
-                <div id="kec">Kecamatan <?= unpenetration($desa['nama_kecamatan']) ?></div>
-                <div id="kab">Kabupaten <?= unpenetration($desa['nama_kabupaten']) ?></div>
-            </div>
-        </a>
-        <div id="mainlogin">
-            <div id="or"><?= APP_VERSION ?></div>
-            <h1>Masukkan Username dan Password</h1>
-            <?= form_open('siteman/auth') ?>
-                <input name="username" type="text" placeholder="username" value="" required>
-                <?= form_password([
-                    'name'        => 'password',
-                    'placeholder' => 'password',
-                    'required'    => true,
-                ]) ?>
-                <button type="submit" id="but">LOGIN</button>
-            <?= form_close() ?>
+<body class="text-center">
+
+    <main class="form-signin w-100 m-auto">
+        <?= form_open('siteman') ?>
+        <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Silakan masuk</h1>
+
+        <div class="form-floating">
+            <?= form_input([
+                'class'       => 'form-control',
+                'id'          => 'username',
+                'name'        => 'username',
+                'placeholder' => 'nama pengguna',
+                'required'    => true,
+            ]) ?>
+            <?= form_label('Nama Pengguna', 'username') ?>
         </div>
-        <div id="facebook2">
-            <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?= base_url() ?>/assets/images/logo-combine.png"></a></div>
+        <div class="form-floating">
+            <?= form_password([
+                'class'       => 'form-control',
+                'id'          => 'password',
+                'name'        => 'password',
+                'placeholder' => 'kata sandi',
+                'required'    => true,
+            ]) ?>
+            <?= form_label('Kata Sandi', 'password') ?>
         </div>
-    </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">Atas Langit &copy; 2022</p>
+        <?= form_close() ?>
+    </main>
 </body>
 
 </html>

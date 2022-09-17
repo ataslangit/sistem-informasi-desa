@@ -6,35 +6,70 @@ use CodeIgniter\Model;
 
 class User_model extends Model
 {
-    public function siteman()
+    protected $table            = 'user';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'object';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'username', 'password', 'id_grup', 'email',
+        'last_login', 'active', 'nama', 'company',
+        'phone', 'foto', 'session',
+    ];
+
+    /**
+     * Fungsi untuk login
+     */
+    public function masuk(string $username, string $password): bool
     {
-        $request = \Config\Services::request();
+        // cari username
+        $attempts = $this->attempts();
+        $get      = $this->where('username', $username)->first();
+        $return   = false;
 
-        $username = $request->getPost('username');
-        $password = hash_password($request->getPost('password'));
+        if ($get !== null) {
+            // cocokkan hash password
+            if (hash_password($password) === $get->password && $attempts <= 3) {
+                if ($get->active === '1') {
 
-        $sql   = 'SELECT id,password,id_grup,session FROM user WHERE username=?';
-        $query = $this->db->query($sql, [$username]);
-        $row   = $query->getRow();
-        if ($row) {
-            if ($password === $row->password) {
-                $this->reset_timer();
-                $data['session'] = hash_password(time() . $password);
-                $this->db->where('id', $row->id);
-                $this->db->update('user', $data);
+                // set session
+                    session()->set([
+                        'id'       => $get->id,
+                        'username' => $get->username,
+                        'masuk'    => true,
+                    ]);
 
-                $_SESSION['siteman'] = 1;
-                $_SESSION['sesi']    = $data['session'];
-                // $_SESSION['sesi'] = $row->session;
-                $_SESSION['user']     = $row->id;
-                $_SESSION['grup']     = $row->id_grup;
-                $_SESSION['per_page'] = 10;
+                    $return = true;
+                }
             } else {
-                $_SESSION['siteman'] = -1;
+                $this->attempts(true);
             }
-        } else {
-            $_SESSION['siteman'] = -1;
         }
+
+        return $return;
+    }
+
+    /**
+     * Ambil nilai attempt
+     */
+    public function attempts(bool $tambah = false): int
+    {
+        $attempts     = 0;
+        $attempt_name = config('Cookie')->prefix . 'attempts';
+        $cek_attempts = isset($_COOKIE[$attempt_name]);
+
+        if ($cek_attempts) {
+            $attempts = $_COOKIE[$attempt_name];
+        }
+
+        if ($tambah) {
+            $attempts = $attempts + 1;
+
+            setcookie($attempt_name, $attempts, time() + 15 * 60);
+        }
+
+        return $attempts;
     }
 
     public function sesi_grup($sesi = '')
