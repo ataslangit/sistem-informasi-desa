@@ -4,6 +4,11 @@ namespace App\Controllers;
 
 class Siteman extends BaseController
 {
+    /**
+     * Menampilkan halaman login untuk pengurus website
+     *
+     * @return string
+     */
     public function index()
     {
         $this->user_model->logout();
