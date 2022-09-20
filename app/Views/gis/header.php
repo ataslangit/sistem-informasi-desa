@@ -92,15 +92,15 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
             </div>
 
             <ul class="dropdown" tabindex="1">
-                <?php if ($_SESSION['grup'] === 1 || $_SESSION['grup'] === 2) { ?>
+                <?php if ($_SESSION['sesi'] === 1 || $_SESSION['sesi'] === 2) { ?>
                     <li><a href="<?= site_url('admin/dashboard') ?>"><i class="icon-home icon-large"></i>SID Home</a></li>
                     <li><a href="<?= site_url() ?>/sid_core"><i class="icon-group icon-large"></i>Penduduk</a></li>
                     <li><a href="<?= site_url() ?>/statistik"><i class="icon-bar-chart icon-large"></i>Statistik</a></li>
                     <li><a href="<?= site_url() ?>/surat"><i class="icon-print icon-large"></i>Cetak Surat</a></li>
                     <li><a href="<?= site_url() ?>/analisis"><i class="icon-dashboard icon-large"></i>Analisis</a></li>
                 <?php } ?>
-                <?php if ($_SESSION['grup'] === 1 || $_SESSION['grup'] === 2) { ?>
-                    <?php if ($_SESSION['grup'] === 1) { ?>
+                <?php if ($_SESSION['sesi'] === 1 || $_SESSION['sesi'] === 2) { ?>
+                    <?php if ($_SESSION['sesi'] === 1) { ?>
                         <li><a href="<?= site_url() ?>/man_user/clear"><i class="icon-user icon-large"></i>Pengguna</a></li>
                         <li><a href="<?= site_url() ?>/database"><i class="icon-hdd icon-large"></i>Database</a></li>
                     <?php } ?>

@@ -79,14 +79,14 @@
                         } else {
                             echo 'Artikel Statis';
                         } ?> Baru</a>
-                        <?php if ($_SESSION['grup'] < 4) { ?>
+                        <?php if ($_SESSION['sesi'] < 4) { ?>
                             <button type="button" title="Hapus Artikel" onclick="deleteAllBox('mainform','<?= site_url("web/delete_all/{$p}/{$o}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus
                             <?php } ?>
                     </div>
                 </div>
                 <?php if ($cat < 999) { ?>
                     <div class="right">
-                        <?php if ($_SESSION['grup'] < 4) { ?>
+                        <?php if ($_SESSION['sesi'] < 4) { ?>
                             <button type="button" title="Hapus Kategori <?= $kategori['kategori'] ?>" onclick="deleteAllBox('mainform','<?= site_url("web/hapus/{$cat}/{$p}/{$o}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Kategori <?= $kategori['kategori'] ?>
                             <?php } ?>
                     </div>
@@ -145,7 +145,7 @@
                                 <td>
                                     <div class="uibutton-group">
                                         <a href="<?= site_url("web/form/{$cat}/{$p}/{$o}/{$data['id']}") ?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Ubah </span></a>
-                                        <?php if ($_SESSION['grup'] < 4) { ?>
+                                        <?php if ($_SESSION['sesi'] < 4) { ?>
                                             <a href="<?= site_url("web/delete/{$cat}/{$p}/{$o}/{$data['id']}") ?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
                                             <?php if ($data['enabled'] === '2') : ?>
                                                 <a href="<?= site_url("web/artikel_lock/{$cat}/{$data['id']}") ?>" class="uibutton tipsy south" title="Aktivasi artikel"><span class="icon-lock icon-large"></span></a>

@@ -19,7 +19,7 @@
                             <div class="left">
                                 <div class="uibutton-group">
                                     <a href="<?= site_url("gallery/form_sub_gallery/{$gallery}") ?>" class="uibutton tipsy south" title="Tambah Data"><span class="icon-plus icon-large">&nbsp;</span>Tambah Gambar Baru</a>
-                                    <?php if ($_SESSION['grup'] < 4) { ?>
+                                    <?php if ($_SESSION['sesi'] < 4) { ?>
                                         <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?= site_url("gallery/delete_all_sub_gallery/{$p}/{$o}") ?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data
                                         <?php } ?>
                                 </div>
@@ -81,7 +81,7 @@
                                             <td>
                                                 <div class="uibutton-group">
                                                     <a href="<?= site_url("gallery/form_sub_gallery/{$gallery}/{$data['id']}") ?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Edit </span></a>
-                                                    <?php if ($_SESSION['grup'] < 4) { ?>
+                                                    <?php if ($_SESSION['sesi'] < 4) { ?>
                                                         <a href="<?= site_url("gallery/delete_sub_gallery/{$gallery}/{$data['id']}") ?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if ($data['enabled'] === '2') : ?>
                                                             <a href="<?= site_url('gallery/gallery_lock/' . $data['id']) ?>" class="uibutton tipsy south" title="Enable gallery"><span class="icon-lock icon-large"></span></a><?php elseif ($data['enabled'] === '1') : ?>
                                                             <a href="<?= site_url('gallery/gallery_unlock/' . $data['id']) ?>" class="uibutton tipsy south" title="Disable gallery"><span class="icon-unlock icon-large"></span></a>

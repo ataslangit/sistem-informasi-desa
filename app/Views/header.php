@@ -46,7 +46,7 @@
 
             <ul class="dropdown" tabindex="1">
                 <li><a href="<?= site_url('user_setting') ?>" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="icon-user icon-large"></i>Setting User</a></li>
-                <?php if ($_SESSION['grup'] === 1) { ?>
+                <?php if ($_SESSION['sesi'] === 1) { ?>
                     <li><a href="<?= site_url('modul/clear') ?>"><i class="icon-gear icon-large"></i>Pengaturan</a></li>
                 <?php } ?>
                 <li><a href="<?= site_url('siteman') ?>"><i class="icon-off icon-large"></i>Log Out</a></li>

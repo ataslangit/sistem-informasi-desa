@@ -1,6 +1,6 @@
 <div id="nav">
     <ul>
-        <?php if ($_SESSION['grup'] !== 4) { ?>
+        <?php if ($_SESSION['sesi'] !== 4) { ?>
             <li <?php if ($act === 0) { ?>class="selected" <?php } ?>>
                 <a href="<?= site_url('web/index/1') ?>">Artikel</a>
             </li>

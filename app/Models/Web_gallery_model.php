@@ -129,7 +129,7 @@ class Web_gallery_model extends Model
                 $data           = $_POST;
                 $data['gambar'] = $nama_file;
 
-                if ($_SESSION['grup'] === 4) {
+                if ($_SESSION['sesi'] === 4) {
                     $data['enabled'] = 2;
                 }
 
@@ -293,7 +293,7 @@ class Web_gallery_model extends Model
                 $data['parrent'] = $parrent;
                 $data['tipe']    = 2;
 
-                if ($_SESSION['grup'] === 4) {
+                if ($_SESSION['sesi'] === 4) {
                     $data['enabled'] = 2;
                 }
 
