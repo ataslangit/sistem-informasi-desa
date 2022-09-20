@@ -46,7 +46,7 @@ $routes->group('siteman', ['filter' => 'sudahMasuk'], static function ($routes) 
 $routes->get('logout', 'Admin\Siteman::logout');
 
 // route admin
-$routes->get('hom_desa', 'Admin\dashboard::index'); // redirect ke dashboard
+$routes->addRedirect('hom_desa', 'admin/dashboard'); // redirect ke dashboard
 $routes->get('database', 'Admin\database::index'); // lempar ke halaman database
 
 $routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($routes) {

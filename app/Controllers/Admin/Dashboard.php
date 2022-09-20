@@ -9,22 +9,9 @@ class Dashboard extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2'], true)) {
-            return redirect()->to('siteman');
+        if (! in_array(session('sesi'), ['1', '2'], true)) {
+            return redirect()->to('logout');
         }
-    }
-
-    /**
-     * Redirect ke halaman dashboard
-     *
-     * @return void
-     */
-    public function index()
-    {
-        return redirect()->to('admin/dashboard', 'refresh', 301);
     }
 
     /**
