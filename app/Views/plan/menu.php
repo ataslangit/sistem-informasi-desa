@@ -1,6 +1,6 @@
 <div class="module-panel">
     <div class="contentm" style="overflow: hidden;">
-        <?php if ($_SESSION['grup'] === 1 || $_SESSION['grup'] === 2) { ?>
+        <?php if ($_SESSION['sesi'] === 1 || $_SESSION['sesi'] === 2) { ?>
             <a class="cpanel" href="<?= site_url('admin/about') ?>">
                 <img src="<?= base_url() ?>/assets/images/cpanel/go-home-5.png" alt="" />
                 <span>SID Home</span>
@@ -29,7 +29,7 @@
                     <span>SID GIS</span>
                 </a>
             </a>
-            <?php if ($_SESSION['grup'] === 1) { ?>
+            <?php if ($_SESSION['sesi'] === 1) { ?>
                 <a class="cpanel" href="<?= site_url() ?>/man_user/clear">
                     <img src="<?= base_url() ?>/assets/images/cpanel/system-users.png" alt="" />
                     <span>Pengguna</span>

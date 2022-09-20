@@ -15,21 +15,20 @@ class Dashboard extends BaseController
     }
 
     /**
-     * Halaman dashboard admin
-     *
-     * @return void
+     * Menampilkan halaman dashboard admin
      */
-    public function dashboard()
+    public function index(): string
     {
+        $configModel       = new ConfigModel();
         $_SESSION['delik'] = 0;
         $nav['act']        = 0;
         $header            = $this->header_model->get_data();
         $data['main']      = $configModel->get_data();
 
-        echo view('header', $header);
-        echo view('home/nav', $nav);
-        echo view('home/konfigurasi_form', $data);
-        echo view('footer');
+        return view('header', $header) .
+        view('home/nav', $nav) .
+        view('home/konfigurasi_form', $data) .
+        view('footer');
     }
 
     public function about()

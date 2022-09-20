@@ -1,6 +1,6 @@
 <div id="nav">
     <ul>
-        <?php if ($_SESSION['grup'] === 1) { ?>
+        <?php if ($_SESSION['sesi'] === 1) { ?>
             <li <?php if ($act === 0) { ?>class="selected" <?php } ?>>
                 <a href="<?= site_url('admin/dashboard') ?>">Identitas Desa</a>
             </li>

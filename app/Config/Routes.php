@@ -50,7 +50,7 @@ $routes->addRedirect('hom_desa', 'admin/dashboard'); // redirect ke dashboard
 $routes->get('database', 'Admin\database::index'); // lempar ke halaman database
 
 $routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($routes) {
-    $routes->get('dashboard', 'Admin\dashboard::dashboard');
+    $routes->get('dashboard', 'Admin\dashboard::index');
 
     $routes->get('about', 'Admin\dashboard::about');
 

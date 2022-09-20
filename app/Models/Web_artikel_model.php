@@ -49,7 +49,7 @@ class Web_artikel_model extends Model
 
     public function grup_sql()
     {
-        if ($_SESSION['grup'] === 4) {
+        if ($_SESSION['sesi'] === 4) {
             $kf         = $_SESSION['user'];
             $filter_sql = " AND a.id_user = {$kf}";
 
@@ -189,7 +189,7 @@ class Web_artikel_model extends Model
         $data['gambar2']     = $fp . $nama_file2;
         $data['gambar3']     = $fp . $nama_file3;
 
-        if ($_SESSION['grup'] === 4) {
+        if ($_SESSION['sesi'] === 4) {
             $data['enabled'] = 2;
         }
 

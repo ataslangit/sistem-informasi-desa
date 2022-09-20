@@ -21,11 +21,12 @@ class Header_model extends Model
         $outp['sasaran'] = ['1' => 'Penduduk', '2' => 'Keluarga / KK', '3' => 'Rumah Tangga', '4' => 'Kelompok/Organisasi Kemasyarakatan'];
 
         // Pembenahan per 13 Juli 15, sebelumnya ada notifikasi Error, saat $_SESSOIN['user'] nya kosong!
-        $id    = @$_SESSION['user'];
+        $id    = @$_SESSION['id'];
         $sql   = 'SELECT nama,foto FROM user WHERE id=?';
         $query = $this->db->query($sql, $id);
+
         if ($query) {
-            if ($query->num_rows() > 0) {
+            if ($query->getNumRows() > 0) {
                 $data         = $query->getRowArray();
                 $outp['nama'] = $data['nama'];
                 $outp['foto'] = $data['foto'];
@@ -42,7 +43,7 @@ class Header_model extends Model
         $outp['lapor'] = $lap['jml'];
 
         $sql           = 'SELECT * FROM setting_modul WHERE aktif =  1 AND level >= ?;';
-        $query         = $this->db->query($sql, $_SESSION['grup']);
+        $query         = $this->db->query($sql, $_SESSION['sesi']);
         $modul         = $query->getResultArray();
         $outp['modul'] = $modul;
 
