@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Penduduk_model;
 
 class Penduduk extends BaseController
 {
@@ -13,8 +14,10 @@ class Penduduk extends BaseController
         }
     }
 
-    public function index($p = 1, $o = 0)
+    public function index($p = 1, $o = 0): string
     {
+        $pendudukModel = new Penduduk_model();
+
         unset($_SESSION['log']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -49,11 +52,11 @@ class Penduduk extends BaseController
 
         if (isset($_SESSION['dusun'])) {
             $data['dusun']   = $_SESSION['dusun'];
-            $data['list_rw'] = $this->penduduk_model->list_rw($data['dusun']);
+            $data['list_rw'] = $pendudukModel->list_rw($data['dusun']);
 
             if (isset($_SESSION['rw'])) {
                 $data['rw']      = $_SESSION['rw'];
-                $data['list_rt'] = $this->penduduk_model->list_rt($data['dusun'], $data['rw']);
+                $data['list_rt'] = $pendudukModel->list_rt($data['dusun'], $data['rw']);
 
                 if (isset($_SESSION['rt'])) {
                     $data['rt'] = $_SESSION['rt'];
@@ -73,23 +76,22 @@ class Penduduk extends BaseController
             $_SESSION['per_page'] = $_POST['per_page'];
         }
         $data['per_page'] = $_SESSION['per_page'];
-
-        $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
-        $data['paging']     = $this->penduduk_model->paging($p, $o);
-        $data['main']       = $this->penduduk_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']    = $this->penduduk_model->autocomplete();
-        $data['list_agama'] = $this->penduduk_model->list_agama();
-        $data['list_dusun'] = $this->penduduk_model->list_dusun();
+        // $data['paging'] = {};
+        $data['main']       = $pendudukModel->list_data($o, 2, 2);
+        $data['keyword']    = $pendudukModel->autocomplete();
+        $data['list_agama'] = $pendudukModel->list_agama();
+        $data['list_dusun'] = $pendudukModel->list_dusun();
+        $data['grup'] = session('sesi');
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;
 
-        $data['info'] = $this->penduduk_model->get_filter();
+        $data['info'] = $pendudukModel->get_filter();
 
-        echo view('header', $header);
-        echo view('sid/nav', $nav);
-        echo view('sid/kependudukan/penduduk', $data);
-        echo view('footer');
+        return view('header', $header) .
+        view('sid/nav', $nav) .
+        view('sid/kependudukan/penduduk', $data) .
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')

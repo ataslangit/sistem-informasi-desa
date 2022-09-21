@@ -6,6 +6,23 @@ use CodeIgniter\Model;
 
 class Penduduk_model extends Model
 {
+    protected $table            = 'tweb_penduduk';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'object';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'nama', 'nik', 'id_kk', 'kk_level', 'id_rtm', 'rtm_level', 'sex',
+        'tempatlahir', 'tanggallahir', 'agama_id', 'pendidikan_kk_id',
+        'pendidikan_id', 'pendidikan_sedang_id', 'pekerjaan_id', 'status_kawin',
+        'warganegara_id', 'dokumen_pasport', 'dokumen_kitas', 'ayah_nik',
+        'ibu_nik', 'nama_ayah', 'nama_ibu', 'foto', 'golongan_darah_id',
+        'id_cluster', 'status', 'alamat_sebelumnya', 'alamat_sekarang', 'status_dasar',
+        'hamil', 'cacat_id', 'sakit_menahun_id', 'jamkesmas', 'akta_lahir',
+        'akta_perkawinan', 'tanggalperkawinan', 'akta_perceraian', 'tanggalperceraian',
+    ];
+
     public function autocomplete()
     {
         $sql   = 'SELECT nama FROM tweb_penduduk';
@@ -329,48 +346,6 @@ class Penduduk_model extends Model
         return $log_sql;
     }
 
-    public function paging($p = 1, $o = 0, $log = 0)
-    {
-        $sql = 'SELECT COUNT(u.id) AS id FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa a ON u.id_cluster = a.id LEFT JOIN tweb_keluarga d ON u.id_kk = d.id LEFT JOIN tweb_penduduk_pendidikan_kk n ON u.pendidikan_kk_id = n.id LEFT JOIN tweb_penduduk_pekerjaan p ON u.pekerjaan_id = p.id LEFT JOIN tweb_penduduk_kawin k ON u.status_kawin = k.id LEFT JOIN tweb_penduduk_sex x ON u.pendidikan_id = x.id LEFT JOIN tweb_penduduk_agama g ON u.agama_id = g.id LEFT JOIN tweb_penduduk_warganegara v ON u.warganegara_id = v.id LEFT JOIN tweb_golongan_darah m ON u.golongan_darah_id = m.id LEFT JOIN tweb_cacat f ON u.cacat_id = f.id LEFT JOIN tweb_sakit_menahun j ON u.sakit_menahun_id = j.id WHERe 1 ';
-        $sql .= $this->search_sql();
-        $sql .= $this->filter_sql();
-        $sql .= $this->duplikat_sql();
-        $sql .= $this->status_dasar_sql();
-        $sql .= $this->sex_sql();
-        $sql .= $this->dusun_sql();
-        $sql .= $this->rw_sql();
-        $sql .= $this->rt_sql();
-        $sql .= $this->hubungan_sql();
-        $sql .= $this->agama_sql();
-        $sql .= $this->cacat_sql();
-        $sql .= $this->cacatx_sql();
-        $sql .= $this->menahun_sql();
-        $sql .= $this->menahunx_sql();
-        $sql .= $this->golongan_darah_sql();
-        $sql .= $this->warganegara_sql();
-        $sql .= $this->umur_min_sql();
-        $sql .= $this->umur_max_sql();
-        $sql .= $this->pekerjaan_sql();
-        $sql .= $this->statuskawin_sql();
-        $sql .= $this->pendidikan_kk_sql();
-        $sql .= $this->pendidikan_sedang_sql();
-        $sql .= $this->status_penduduk_sql();
-        $sql .= $this->hamil_sql();
-        $sql .= $this->umur_sql();
-        $sql .= $this->log_sql();
-        $query    = $this->db->query($sql);
-        $row      = $query->getRowArray();
-        $jml_data = $row['id'];
-
-        $this->load->library('paging');
-        $cfg['page']     = $p;
-        $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
-
-        return $this->paging;
-    }
-
     public function list_data($o = 0, $offset = 0, $limit = 500, $log = 0)
     {
         switch ($o) {
@@ -524,7 +499,7 @@ class Penduduk_model extends Model
         return $data;
     }
 
-    public function insert()
+    public function insert2()
     {
         $data        = $_POST;
         $lokasi_file = $_FILES['foto']['tmp_name'];
@@ -593,7 +568,7 @@ class Penduduk_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update2($id = 0)
     {
         $data = $_POST;
 
@@ -710,7 +685,7 @@ class Penduduk_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete2($id = '')
     {
         $sql  = 'DELETE FROM tweb_penduduk WHERE id=?';
         $outp = $this->db->query($sql, [$id]);

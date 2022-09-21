@@ -72,23 +72,6 @@ class User_model extends Model
         return $attempts;
     }
 
-    public function sesi_grup($sesi = '')
-    {
-        $sql   = "SELECT id_grup FROM user WHERE session=? AND session <> ''";
-        $query = $this->db->query($sql, [$sesi]);
-        $row   = $query->getRowArray();
-        if ($this->cek_login()) {
-            if (isset($row['id_grup'])) {
-                return $row['id_grup'];
-            }
-        } else {
-            $_SESSION['siteman'] = -2;
-            $this->logout();
-
-            return null;
-        }
-    }
-
     public function logout()
     {
         if (isset($_SESSION['user'])) {
