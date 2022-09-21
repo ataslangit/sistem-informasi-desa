@@ -10,7 +10,7 @@ class Dashboard extends BaseController
     public function __construct()
     {
         if (! in_array(session('sesi'), ['1', '2'], true)) {
-            return redirect()->to('logout');
+            throw new \CodeIgniter\Router\Exceptions\RedirectException('logout', 301);
         }
     }
 
