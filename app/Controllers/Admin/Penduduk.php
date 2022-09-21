@@ -1,28 +1,16 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
 
 class Penduduk extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2'], true)) {
-            return redirect()->to('siteman');
+        if (! in_array(session('sesi'), ['1', '2'], true)) {
+            return redirect()->to('logout');
         }
-    }
-
-    public function clear()
-    {
-        unset($_SESSION['log']);
-        $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['judul_statistik'], $_SESSION['judul_statistik_cetak'], $_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['status_penduduk'], $_SESSION['hamil'], $_SESSION['status'], $_SESSION['umurx'], $_SESSION['cacatx'], $_SESSION['menahunx']);
-
-        $_SESSION['per_page'] = 50;
-
-        return redirect()->to('penduduk');
     }
 
     public function index($p = 1, $o = 0)
