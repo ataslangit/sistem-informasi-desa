@@ -47,10 +47,13 @@ $routes->get('logout', 'Admin\Siteman::logout');
 
 // route admin
 $routes->addRedirect('hom_desa', 'admin/dashboard'); // redirect ke dashboard
+$routes->addRedirect('penduduk', 'admin/penduduk'); // redirect ke admin > penduduk
+$routes->addRedirect('penduduk/clear', 'admin/penduduk'); // redirect ke admin > penduduk
 $routes->get('database', 'Admin\database::index'); // lempar ke halaman database
 
 $routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($routes) {
     $routes->get('dashboard', 'Admin\dashboard::index');
+    $routes->get('penduduk', 'Admin\Penduduk::index');
 
     $routes->get('about', 'Admin\dashboard::about');
 

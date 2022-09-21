@@ -1,32 +1,23 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
+use App\Models\Penduduk_model;
 
 class Penduduk extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if (! in_array($grup, ['1', '2'], true)) {
-            return redirect()->to('siteman');
+        if (! in_array(session('sesi'), ['1', '2'], true)) {
+            return redirect()->to('logout');
         }
     }
 
-    public function clear()
+    public function index($p = 1, $o = 0): string
     {
-        unset($_SESSION['log']);
-        $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['judul_statistik'], $_SESSION['judul_statistik_cetak'], $_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['status_penduduk'], $_SESSION['hamil'], $_SESSION['status'], $_SESSION['umurx'], $_SESSION['cacatx'], $_SESSION['menahunx']);
+        $pendudukModel = new Penduduk_model();
 
-        $_SESSION['per_page'] = 50;
-
-        return redirect()->to('penduduk');
-    }
-
-    public function index($p = 1, $o = 0)
-    {
         unset($_SESSION['log']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -61,11 +52,11 @@ class Penduduk extends BaseController
 
         if (isset($_SESSION['dusun'])) {
             $data['dusun']   = $_SESSION['dusun'];
-            $data['list_rw'] = $this->penduduk_model->list_rw($data['dusun']);
+            $data['list_rw'] = $pendudukModel->list_rw($data['dusun']);
 
             if (isset($_SESSION['rw'])) {
                 $data['rw']      = $_SESSION['rw'];
-                $data['list_rt'] = $this->penduduk_model->list_rt($data['dusun'], $data['rw']);
+                $data['list_rt'] = $pendudukModel->list_rt($data['dusun'], $data['rw']);
 
                 if (isset($_SESSION['rt'])) {
                     $data['rt'] = $_SESSION['rt'];
@@ -85,23 +76,22 @@ class Penduduk extends BaseController
             $_SESSION['per_page'] = $_POST['per_page'];
         }
         $data['per_page'] = $_SESSION['per_page'];
-
-        $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
-        $data['paging']     = $this->penduduk_model->paging($p, $o);
-        $data['main']       = $this->penduduk_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']    = $this->penduduk_model->autocomplete();
-        $data['list_agama'] = $this->penduduk_model->list_agama();
-        $data['list_dusun'] = $this->penduduk_model->list_dusun();
+        // $data['paging'] = {};
+        $data['main']       = $pendudukModel->list_data($o, 2, 2);
+        $data['keyword']    = $pendudukModel->autocomplete();
+        $data['list_agama'] = $pendudukModel->list_agama();
+        $data['list_dusun'] = $pendudukModel->list_dusun();
+        $data['grup'] = session('sesi');
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;
 
-        $data['info'] = $this->penduduk_model->get_filter();
+        $data['info'] = $pendudukModel->get_filter();
 
-        echo view('header', $header);
-        echo view('sid/nav', $nav);
-        echo view('sid/kependudukan/penduduk', $data);
-        echo view('footer');
+        return view('header', $header) .
+        view('sid/nav', $nav) .
+        view('sid/kependudukan/penduduk', $data) .
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')

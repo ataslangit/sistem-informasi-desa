@@ -200,33 +200,33 @@
                                     <option value="200" <?php selected($per_page, 200); ?>>200</option>
                                 </select>
                                 <label>Dari</label>
-                                <label><strong><?= $paging->num_rows ?></strong></label>
+                                <label><strong><?php // $paging->num_rows ?></strong></label>
                                 <label>Total Data</label>
                                 <?= form_close() ?>
                             </div>
                         </div>
                         <div class="right">
                             <div class="uibutton-group">
-                                <?php if ($paging->start_link) : ?>
+                                <?php /* if ($paging->start_link) : ?>
                                     <a href="<?= site_url("penduduk/index/{$paging->start_link}/{$o}") ?>" class="uibutton">Awal</a>
                                 <?php endif; ?>
                                 <?php if ($paging->prev) : ?>
                                     <a href="<?= site_url("penduduk/index/{$paging->prev}/{$o}") ?>" class="uibutton">Prev</a>
-                                <?php endif; ?>
+                                <?php endif; */ ?>
                             </div>
                             <div class="uibutton-group">
 
-                                <?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++) : ?>
+                                <?php /* for ($i = $paging->start_link; $i <= $paging->end_link; $i++) : ?>
                                     <a href="<?= site_url("penduduk/index/{$i}/{$o}") ?>" <?php jecho($p, $i, "class='uibutton special'") ?> class="uibutton"><?= $i ?></a>
-                                <?php endfor; ?>
+                                <?php endfor; */ ?>
                             </div>
                             <div class="uibutton-group">
-                                <?php if ($paging->next) : ?>
+                                <?php /* if ($paging->next) : ?>
                                     <a href="<?= site_url("penduduk/index/{$paging->next}/{$o}") ?>" class="uibutton">Next</a>
                                 <?php endif; ?>
                                 <?php if ($paging->end_link) : ?>
                                     <a href="<?= site_url("penduduk/index/{$paging->end_link}/{$o}") ?>" class="uibutton">Akhir</a>
-                                <?php endif; ?>
+                                <?php endif; */ ?>
                             </div>
                         </div>
                     </div>
