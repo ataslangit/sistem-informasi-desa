@@ -10,7 +10,7 @@ class Penduduk extends BaseController
     public function __construct()
     {
         if (! in_array(session('sesi'), ['1', '2'], true)) {
-            return redirect()->to('logout');
+            throw new \CodeIgniter\Router\Exceptions\RedirectException('logout', 301);
         }
     }
 
@@ -81,7 +81,7 @@ class Penduduk extends BaseController
         $data['keyword']    = $pendudukModel->autocomplete();
         $data['list_agama'] = $pendudukModel->list_agama();
         $data['list_dusun'] = $pendudukModel->list_dusun();
-        $data['grup'] = session('sesi');
+        $data['grup']       = session('sesi');
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;

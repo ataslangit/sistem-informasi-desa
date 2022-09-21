@@ -43,7 +43,7 @@ $routes->group('siteman', ['filter' => 'sudahMasuk'], static function ($routes) 
     $routes->post('/', 'Admin\Siteman::check');
 });
 
-$routes->get('logout', 'Admin\Siteman::logout');
+$routes->get('logout', 'Admin\Siteman::logout', ['as' => 'logout']);
 
 // route admin
 $routes->addRedirect('hom_desa', 'admin/dashboard'); // redirect ke dashboard
@@ -52,14 +52,14 @@ $routes->addRedirect('penduduk/clear', 'admin/penduduk'); // redirect ke admin >
 $routes->get('database', 'Admin\database::index'); // lempar ke halaman database
 
 $routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($routes) {
-    $routes->get('dashboard', 'Admin\dashboard::index');
+    $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('penduduk', 'Admin\Penduduk::index');
 
-    $routes->get('about', 'Admin\dashboard::about');
+    $routes->get('about', 'Admin\Dashboard::about');
 
-    $routes->get('pengaturan_desa/update/(:any)', 'Admin\dashboard::update/$1');
-    $routes->get('pengaturan_desa/ajax_kantor_maps', 'Admin\dashboard::ajax_kantor_maps');
-    $routes->get('pengaturan_desa/ajax_wilayah_maps', 'Admin\dashboard::ajax_wilayah_maps');
+    $routes->get('pengaturan_desa/update/(:any)', 'Admin\Dashboard::update/$1');
+    $routes->get('pengaturan_desa/ajax_kantor_maps', 'Admin\Dashboard::ajax_kantor_maps');
+    $routes->get('pengaturan_desa/ajax_wilayah_maps', 'Admin\Dashboard::ajax_wilayah_maps');
 
     // halaman database
     $routes->get('database', 'Admin\database::index');
