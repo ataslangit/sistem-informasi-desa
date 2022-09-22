@@ -41,8 +41,9 @@ class AnalisisPeriode extends Migration
                 'constraint' => 4,
             ],
         ]);
-        $this->forge->addKey('id', true);
-        $this->forge->addKey(['id_master', 'id_state']);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('id_master');
+        $this->forge->addKey('id_state');
         $this->forge->createTable('analisis_periode', true);
     }
 

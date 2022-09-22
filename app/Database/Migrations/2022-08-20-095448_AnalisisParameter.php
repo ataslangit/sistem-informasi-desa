@@ -37,7 +37,7 @@ class AnalisisParameter extends Migration
                 'default'    => '0',
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
         $this->forge->addKey('id_indikator');
         $this->forge->createTable('analisis_parameter', true);
     }

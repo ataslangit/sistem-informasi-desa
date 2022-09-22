@@ -46,9 +46,10 @@ class AnalisisMaster extends Migration
             'pembagi' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 10,
+                'default'    => '100',
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
         $this->forge->createTable('analisis_master', true);
     }
 

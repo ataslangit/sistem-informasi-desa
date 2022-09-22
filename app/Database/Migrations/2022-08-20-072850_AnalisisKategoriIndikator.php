@@ -15,7 +15,7 @@ class AnalisisKategoriIndikator extends Migration
                 'auto_increment' => true,
             ],
             'id_master' => [
-                'type'       => 'INT',
+                'type'       => 'TINYINT',
                 'constraint' => 4,
             ],
             'kategori_kode' => [

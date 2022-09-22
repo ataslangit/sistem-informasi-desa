@@ -12,7 +12,6 @@ class AnalisisRefSubjek extends Migration
             'id' => [
                 'type'           => 'TINYINT',
                 'constraint'     => 4,
-                'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'subjek' => [
@@ -21,7 +20,7 @@ class AnalisisRefSubjek extends Migration
             ],
         ]);
 
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
         $this->forge->createTable('analisis_ref_subjek', true);
     }
 

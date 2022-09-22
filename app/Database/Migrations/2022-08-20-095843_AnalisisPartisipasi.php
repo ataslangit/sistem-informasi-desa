@@ -32,8 +32,11 @@ class AnalisisPartisipasi extends Migration
                 'default'    => '1',
             ],
         ]);
-        $this->forge->addKey('id', true);
-        $this->forge->addKey(['id_subjek', 'id_master', 'id_periode', 'id_klassifikasi']);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('id_subjek');
+        $this->forge->addKey('id_master');
+        $this->forge->addKey('id_periode');
+        $this->forge->addKey('id_klassifikasi');
         $this->forge->createTable('analisis_partisipasi', true);
     }
 
