@@ -20,11 +20,6 @@
             "**/Database/Migrations/**"
         ]
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\Support\\": "tests/_support"
-        }
-    },
     "scripts": {
         "csfix": "vendor/bin/php-cs-fixer fix",
         "test": "phpunit"
