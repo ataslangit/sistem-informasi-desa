@@ -6,8 +6,7 @@
 .gitignore export-ignore
 
 .php-cs-fixer.php export-ignore
-
+docs/ export-ignore
 src/ export-ignore
 package.json export-ignore
-postcss.config.js export-ignore
 vite.config.js export-ignore
