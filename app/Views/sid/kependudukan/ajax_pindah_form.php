@@ -14,7 +14,7 @@
                 document.getElementById("rw").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET", "<?= site_url() ?>/penduduk/ajax_penduduk_pindah_rw/" + str, true);
+        xmlhttp.open("GET", "<?= site_url() ?>penduduk/ajax_penduduk_pindah_rw/" + str, true);
         xmlhttp.send();
     }
 
@@ -33,7 +33,7 @@
                 document.getElementById("rt").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET", "<?= site_url() ?>/penduduk/ajax_penduduk_pindah_rt/" + dusun + "/" + str, true);
+        xmlhttp.open("GET", "<?= site_url() ?>penduduk/ajax_penduduk_pindah_rt/" + dusun + "/" + str, true);
         xmlhttp.send();
     }
 </script>

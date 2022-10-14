@@ -12,10 +12,10 @@
     </tr>
     <tr>
         <td width='90'>
-            <a href="<?= site_url() ?>/analisis_respon/data_unduh" class="uibutton confirm" target="_blank"> Form Excel </a>
+            <a href="<?= site_url() ?>analisis_respon/data_unduh" class="uibutton confirm" target="_blank"> Form Excel </a>
         </td>
         <td>
-            <a href="<?= site_url() ?>/analisis_respon/data_unduh/1" class="uibutton confirm" target="_blank"> Form Excel + Isi Data</a>
+            <a href="<?= site_url() ?>analisis_respon/data_unduh/1" class="uibutton confirm" target="_blank"> Form Excel + Isi Data</a>
         </td>
     </tr>
 </table>
@@ -24,5 +24,5 @@
     Lanjut :
         <a href="<?= site_url()?>analisis_respon/import/1" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
         */ ?>
-    <a href="<?= site_url() ?>/analisis_respon/import" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>
+    <a href="<?= site_url() ?>analisis_respon/import" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>
 </div>

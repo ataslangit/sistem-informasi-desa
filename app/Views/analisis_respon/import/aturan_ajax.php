@@ -7,12 +7,12 @@
     </tr>
     <tr>
         <td>
-            <a href="<?= site_url() ?>/analisis_respon/aturan_unduh" class="uibutton confirm" target="_blank"> Aturan Data </a>
+            <a href="<?= site_url() ?>analisis_respon/aturan_unduh" class="uibutton confirm" target="_blank"> Aturan Data </a>
         </td>
     </tr>
 </table>
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
     <div class="uibutton-group">
-        <a href="<?= site_url() ?>/analisis_respon/data_ajax" class="uibutton special" target="ajax-modal" rel="window" header="Unduh Form Data Import">Lanjut</a>
+        <a href="<?= site_url() ?>analisis_respon/data_ajax" class="uibutton special" target="ajax-modal" rel="window" header="Unduh Form Data Import">Lanjut</a>
     </div>
 </div>

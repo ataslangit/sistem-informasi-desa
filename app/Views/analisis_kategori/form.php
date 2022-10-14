@@ -8,7 +8,7 @@
                 </div>
                 <div id="contentpane">
                     <div class="ui-layout-north panel">
-                        <h3>Form Data Kategori/Variabel - <a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></h3>
+                        <h3>Form Data Kategori/Variabel - <a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></h3>
                     </div>
                     <?= form_open_multipart($form_action, ['id' => 'validasi']) ?>
                         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
@@ -22,7 +22,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?= site_url() ?>/analisis_kategori" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>analisis_kategori" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

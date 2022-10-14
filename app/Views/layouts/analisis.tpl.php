@@ -12,7 +12,7 @@
                             <?php foreach ($list_indikator as $data) { ?>
                                 <div class="box box-primary">
                                     <div class="box-header">
-                                        <a href="<?= site_url() ?>/first/data_analisis/<?= $data['id'] ?>/<?= $data['subjek_tipe'] ?>/<?= $data['id_periode'] ?>">
+                                        <a href="<?= site_url() ?>first/data_analisis/<?= $data['id'] ?>/<?= $data['subjek_tipe'] ?>/<?= $data['id_periode'] ?>">
                                             <h4><?= $data['indikator'] ?></h4>
                                         </a>
                                     </div>

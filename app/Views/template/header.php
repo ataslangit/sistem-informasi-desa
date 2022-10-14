@@ -5,54 +5,54 @@
                 <div id="menu_vert">
                     <div id="menuwrapper">
 
-                        <link type='text/css' href="http://localhost:2772/assets/front/css/default.css" rel='Stylesheet' />
+                        <link type='text/css' href="<?= site_url() ?>assets/front/css/default.css" rel='Stylesheet' />
                         <div id='cssmenu'>
                             <ul id="global-nav" class="top">
-                                <li><a href='http://localhost:2772/first/artikel/1'>Profil Desa</a>
+                                <li><a href='<?= site_url() ?>first/artikel/1'>Profil Desa</a>
                                     <ul>
-                                        <li><a href='http://localhost:2772/first/artikel/2'>Sejarah Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/3'>Kondisi Umum Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/4'>Masalah & Isu Strategis Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/5'>Kebijakan Pembangunan Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/6'>Kebijakan Keuangan Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/2'>Sejarah Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/3'>Kondisi Umum Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/4'>Masalah & Isu Strategis Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/5'>Kebijakan Pembangunan Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/6'>Kebijakan Keuangan Desa</a></li>
                                     </ul>
                                 </li>
-                                <li><a href='http://localhost:2772/first/artikel/7'>Pemerintahan Desa</a>
+                                <li><a href='<?= site_url() ?>first/artikel/7'>Pemerintahan Desa</a>
                                     <ul>
-                                        <li><a href='http://localhost:2772/first/artikel/22'>Visi dan Misi</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/8'>Kepala Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/9'>Perangkat Desa</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/10'>Badan Permusyawaratan Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/22'>Visi dan Misi</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/8'>Kepala Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/9'>Perangkat Desa</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/10'>Badan Permusyawaratan Desa</a></li>
                                     </ul>
                                 </li>
-                                <li><a href='http://localhost:2772/first/artikel/11'>Lembaga Masyarakat Desa</a>
+                                <li><a href='<?= site_url() ?>first/artikel/11'>Lembaga Masyarakat Desa</a>
                                     <ul>
-                                        <li><a href='http://localhost:2772/first/artikel/12'>LPMD</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/13'>Lembaga Adat</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/14'>TP PKK</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/15'>BUMDes</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/16'>Karang Taruna</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/17'>RT/RW</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/18'>Linmas</a></li>
-                                        <li><a href='http://localhost:2772/first/artikel/19'>Lembaga Masyarakat Lainnya</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/12'>LPMD</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/13'>Lembaga Adat</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/14'>TP PKK</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/15'>BUMDes</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/16'>Karang Taruna</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/17'>RT/RW</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/18'>Linmas</a></li>
+                                        <li><a href='<?= site_url() ?>first/artikel/19'>Lembaga Masyarakat Lainnya</a></li>
                                     </ul>
                                 </li>
-                                <li><a href='http://localhost:2772/first/artikel/20'>Data Desa</a>
+                                <li><a href='<?= site_url() ?>first/artikel/20'>Data Desa</a>
                                     <ul>
-                                        <li><a href='http://localhost:2772/first/statistik/wilayah'>Data Wilayah Administratif</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/pendidikan-dalam-kk'>Data Pendidikan dalam KK</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/pendidikan-ditempuh'>Data Pendidikan Ditempuh</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/pekerjaan'>Data Pekerjaan</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/agama'>Data Agama</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/jenis-kelamin'>Data Jenis Kelamin</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/golongan-darah'>Data Golongan Darah</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/kelompok-umur'>Data Kelompok Umur</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/warga-negara'>Data Warga Negara</a></li>
-                                        <li><a href='http://localhost:2772/first/statistik/status-perkawinan'>Status Perkawinan</a></li>
-                                        <li><a href='http://localhost:2772/first/data_analisis'>Data Analisis</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/wilayah'>Data Wilayah Administratif</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/pendidikan-dalam-kk'>Data Pendidikan dalam KK</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/pendidikan-ditempuh'>Data Pendidikan Ditempuh</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/pekerjaan'>Data Pekerjaan</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/agama'>Data Agama</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/jenis-kelamin'>Data Jenis Kelamin</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/golongan-darah'>Data Golongan Darah</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/kelompok-umur'>Data Kelompok Umur</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/warga-negara'>Data Warga Negara</a></li>
+                                        <li><a href='<?= site_url() ?>first/statistik/status-perkawinan'>Status Perkawinan</a></li>
+                                        <li><a href='<?= site_url() ?>first/data_analisis'>Data Analisis</a></li>
                                     </ul>
                                 </li>
-                                <li><a href='http://localhost:2772/first/artikel/21'>Kontak Desa</a></li>
+                                <li><a href='<?= site_url() ?>first/artikel/21'>Kontak Desa</a></li>
                             </ul>
                         </div>
 
@@ -62,7 +62,7 @@
                 <div id="menu_vert2">
 
                     <script type="text/javascript">
-                        sts_bs("JWS", [20080623, "http://localhost:2772/assets/files/artikel/", "", "blank.gif", 7, 1, 1, 1, "630px", "right", 0, 2, 150, 90, 0, 90, 1, 0, 90, 2000, 2, 15, 0, "", -2, 0], ["ItBS", "ItBW", "ItBC", "GBgC", "GBgI", "GBgR"]);
+                        sts_bs("JWS", [20080623, "<?= site_url() ?>assets/files/artikel/", "", "blank.gif", 7, 1, 1, 1, "630px", "right", 0, 2, 150, 90, 0, 90, 1, 0, 90, 2000, 2, 15, 0, "", -2, 0], ["ItBS", "ItBW", "ItBC", "GBgC", "GBgI", "GBgR"]);
                         sts_tbd([0], ["BS", "BW", "BC", "CnSz", "LtCn", "RtCn", "RbCn", "LbCn", "TBgC", "TBgI", "TBgR", "RiBgC", "RiBgI", "RiBgR", "BtBgC", "BtBgI", "BtBgR", "LBgC", "LBgI", "LBgR"]);
                         sts_ai("i0", [1, "", "", "_self", "kecil_14859379462017 02 - Contoh Foto SID 3.10.jpg", 146, 90, "center"], ["ItBgC", "OtF", "OtFC", "OtFD", "OvF", "OvFC", "OvFD"], "i0", "i0");
                         sts_ai("i1", [, , , , "kecil_14859370772017 02 - Contoh Foto SID 3.10 b.jpg", 146, 90, "center"], [], "i1", "i1");
@@ -90,8 +90,8 @@
             </div>
             <div id="divlogo-img">
                 <div class="intube">
-                    <a href="http://localhost:2772/first/">
-                        <img src="http://localhost:2772/assets/files/logo/logo-kab.png" alt="Bumi Pertiwi" />
+                    <a href="<?= site_url() ?>first/">
+                        <img src="<?= site_url() ?>assets/files/logo/logo-kab.png" alt="Bumi Pertiwi" />
                     </a>
                 </div>
             </div>
@@ -191,14 +191,14 @@
 
             <div id='cssmenu'>
                 <ul id="global-nav" class="main">
-                    <li><a href="http://localhost:2772/first">Beranda</a></li>
-                    <li><a href='http://localhost:2772/first/kategori/1'>Berita </a></li>
-                    <li><a href='http://localhost:2772/first/kategori/4'>Agenda </a></li>
-                    <li><a href='http://localhost:2772/first/kategori/5'>Produk Hukum</a></li>
-                    <li><a href='http://localhost:2772/first/kategori/6'>Perencanaan & Penganggaran</a></li>
-                    <li><a href='http://localhost:2772/first/kategori/8'>Laporan</a></li>
-                    <li><a href='http://localhost:2772/first/kategori/18'>Panduan Layanan Publik</a></li>
-                    <li><a href='http://localhost:2772/first/kategori/19'>Potensi & Produk Usaha</a></li>
+                    <li><a href="<?= site_url() ?>first">Beranda</a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/1'>Berita </a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/4'>Agenda </a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/5'>Produk Hukum</a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/6'>Perencanaan & Penganggaran</a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/8'>Laporan</a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/18'>Panduan Layanan Publik</a></li>
+                    <li><a href='<?= site_url() ?>first/kategori/19'>Potensi & Produk Usaha</a></li>
                 </ul>
             </div>
 
