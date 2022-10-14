@@ -29,15 +29,15 @@ class Artikel extends Migration
             ],
             'tgl_upload' => [
                 'type'    => 'TIMESTAMP',
-                'default' => new RawSql('TIMESTAMP'),
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
             'id_kategori' => [
                 'type'       => 'INT',
-                'constraint' => 4,
+                'constraint' => "4",
             ],
             'id_user' => [
                 'type'       => 'INT',
-                'constraint' => 4,
+                'constraint' => "4",
             ],
             'judul' => [
                 'type'       => 'VARCHAR',
