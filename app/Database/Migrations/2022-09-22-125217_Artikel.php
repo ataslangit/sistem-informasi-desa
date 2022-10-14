@@ -33,11 +33,11 @@ class Artikel extends Migration
             ],
             'id_kategori' => [
                 'type'       => 'INT',
-                'constraint' => "4",
+                'constraint' => '4',
             ],
             'id_user' => [
                 'type'       => 'INT',
-                'constraint' => "4",
+                'constraint' => '4',
             ],
             'judul' => [
                 'type'       => 'VARCHAR',
