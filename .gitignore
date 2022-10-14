@@ -126,4 +126,5 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-.php-cs-fixer.cache
+/.php-cs-fixer.cache
+/install.db
