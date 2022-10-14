@@ -7,8 +7,8 @@
                     <legend>Laporan : </legend>
                     <div class="lmenu">
                         <ul>
-                            <li><a href="<?= site_url() ?>/sid_laporan_bulanan">Laporan Bulanan</a></li>
-                            <li><a href="<?= site_url() ?>/sid_laporan_kelompok">Data Kelompok Rentan</a></li>
+                            <li><a href="<?= site_url() ?>sid_laporan_bulanan">Laporan Bulanan</a></li>
+                            <li><a href="<?= site_url() ?>sid_laporan_kelompok">Data Kelompok Rentan</a></li>
                         </ul>
                     </div>
                 </fieldset>
@@ -17,10 +17,10 @@
                     <div class="lmenu">
                         <ul>
                             <li <?php if ($lap === 21) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/21">Kelas Sosial</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/21">Kelas Sosial</a>
                             </li>
                             <li <?php if ($lap === 22) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/22">Raskin</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/22">Raskin</a>
                             </li>
                         </ul>
                     </div>
@@ -31,37 +31,37 @@
                     <div class="lmenu">
                         <ul>
                             <li <?php if ($lap === 0) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/0">Pendidikan</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/0">Pendidikan</a>
                             </li>
                             <li <?php if ($lap === 1) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/1">Pekerjaan</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/1">Pekerjaan</a>
                             </li>
                             <li <?php if ($lap === 2) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/2">Status Perkawinan</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/2">Status Perkawinan</a>
                             </li>
                             <li <?php if ($lap === 3) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/3">Agama</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/3">Agama</a>
                             </li>
                             <li <?php if ($lap === 4) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/4">Jenis Kelamin</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/4">Jenis Kelamin</a>
                             </li>
                             <li <?php if ($lap === 5) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/5">Warga Negara</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/5">Warga Negara</a>
                             </li>
                             <li <?php if ($lap === 6) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/6">Status Penduduk</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/6">Status Penduduk</a>
                             </li>
                             <li <?php if ($lap === 7) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/7">Golongan Darah</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/7">Golongan Darah</a>
                             </li>
                             <li <?php if ($lap === 8) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/8">Cacat Fisik</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/8">Cacat Fisik</a>
                             </li>
                             <li <?php if ($lap === 9) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/9">Cacat Mental</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/9">Cacat Mental</a>
                             </li>
                             <li <?php if ($lap === 10) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_penduduk/index/10">Sakit Menahun</a>
+                                <a href="<?= site_url() ?>sid_laporan_penduduk/index/10">Sakit Menahun</a>
                             </li>
                         </ul>
                     </div>
@@ -71,10 +71,10 @@
                     <div class="lmenu">
                         <ul>
                             <li <?php if ($lap === 9) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_keluarga/index/9">Jamkesmas</a>
+                                <a href="<?= site_url() ?>sid_laporan_keluarga/index/9">Jamkesmas</a>
                             </li>
                             <li <?php if ($lap === 10) { ?>class="selected" <?php } ?>>
-                                <a href="<?= site_url() ?>/sid_laporan_keluarga/index/10">Tingkat Kemiskinan Menurut BPS</a>
+                                <a href="<?= site_url() ?>sid_laporan_keluarga/index/10">Tingkat Kemiskinan Menurut BPS</a>
                             </li>
                             <li><a href="?code=1&amp;xcode=15">Tingkat Kemiskinan Menurut DINSOS</a></li>
                             <li><a href="?code=1&amp;xcode=16">Tingkat Kemiskinan Menurut KB</a></li>

@@ -120,7 +120,7 @@
                         </div>
                         <div class="right">
                             <div class="uibutton-group">
-                                <a href="<?= site_url() ?>/keluarga/clear" class="uibutton icon prev">Kembali</a>
+                                <a href="<?= site_url() ?>keluarga/clear" class="uibutton icon prev">Kembali</a>
                             </div>
                         </div>
                     </div>

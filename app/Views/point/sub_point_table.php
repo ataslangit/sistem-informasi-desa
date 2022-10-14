@@ -59,7 +59,7 @@
                     <?= form_close() ?>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
-                            <a href="<?= site_url() ?>/point/index/1" class="uibutton icon prev">Kembali</a>
+                            <a href="<?= site_url() ?>point/index/1" class="uibutton icon prev">Kembali</a>
                         </div>
                         <div class="right">
                         </div>

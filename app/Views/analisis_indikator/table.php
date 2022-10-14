@@ -13,7 +13,7 @@
     <div id="contentpane">
         <?= form_open('', ['id' => 'mainform', 'name' => 'mainform']) ?>
             <div class="ui-layout-north panel">
-                <h3>Manajemen Indikator Analisis - <a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><a href="<?= site_url() ?>/analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></a></h3>
+                <h3>Manajemen Indikator Analisis - <a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><a href="<?= site_url() ?>analisis_master/menu/<?= $_SESSION['analisis_master'] ?>"><?= $analisis_master['nama'] ?></a></a></h3>
                 <div class="left">
                     <div class="uibutton-group">
                         <?php if ($analisis_master['lock'] === 1) { ?><a href="<?= site_url('analisis_indikator/form') ?>" class="uibutton tipsy south" title="Tambah Data"><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Indikator Baru</a>
@@ -136,7 +136,7 @@
             <div class="left">
                 <div class="table-info">
                     <?= form_open('analisis_indikator', ['id' => 'paging']) ?>
-                        <a href="<?= site_url() ?>/analisis_indikator/leave" class="uibutton icon prev">Kembali</a>
+                        <a href="<?= site_url() ?>analisis_indikator/leave" class="uibutton icon prev">Kembali</a>
                         <select name="per_page" onchange="$('#paging').submit()">
                             <option value="20" <?php selected($per_page, 20); ?>>20</option>
                             <option value="50" <?php selected($per_page, 50); ?>>50</option>

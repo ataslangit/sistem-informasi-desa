@@ -6,53 +6,53 @@
                 <legend>Statistik Penduduk</legend>
                 <div id="sidecontent3" class="lmenu">
                     <ul>
-                        <a href="<?= site_url() ?>/statistik/pie/13">
+                        <a href="<?= site_url() ?>statistik/pie/13">
                             <li <?php if ($lap === 15) { ?>class="selected" <?php } ?>>
                                 Umur</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/0">
+                        <a href="<?= site_url() ?>statistik/pie/0">
                             <li <?php if ($lap === 0) { ?>class="selected" <?php } ?>>
                                 Pendidikan Dalam KK</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/14">
+                        <a href="<?= site_url() ?>statistik/pie/14">
                             <li <?php if ($lap === 14) { ?>class="selected" <?php } ?>>
                                 Pendidikan Sedang Ditempuh
                         </a></li>
-                        <a href="<?= site_url() ?>/statistik/pie/1">
+                        <a href="<?= site_url() ?>statistik/pie/1">
                             <li <?php if ($lap === 1) { ?>class="selected" <?php } ?>>
                                 Pekerjaan</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/2">
+                        <a href="<?= site_url() ?>statistik/pie/2">
                             <li <?php if ($lap === 2) { ?>class="selected" <?php } ?>>
                                 Status Perkawinan</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/3">
+                        <a href="<?= site_url() ?>statistik/pie/3">
                             <li <?php if ($lap === 3) { ?>class="selected" <?php } ?>>
                                 Agama</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/4">
+                        <a href="<?= site_url() ?>statistik/pie/4">
                             <li <?php if ($lap === 4) { ?>class="selected" <?php } ?>>
                                 Jenis Kelamin</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/5">
+                        <a href="<?= site_url() ?>statistik/pie/5">
                             <li <?php if ($lap === 5) { ?>class="selected" <?php } ?>>
                                 Warga Negara</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/6">
+                        <a href="<?= site_url() ?>statistik/pie/6">
                             <li <?php if ($lap === 6) { ?>class="selected" <?php } ?>>
                                 Status Penduduk</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/7">
+                        <a href="<?= site_url() ?>statistik/pie/7">
                             <li <?php if ($lap === 7) { ?>class="selected" <?php } ?>>
                                 Golongan Darah</li>
                         </a>
-                        <a href="<?= site_url() ?>/statistik/pie/9">
+                        <a href="<?= site_url() ?>statistik/pie/9">
                             <li <?php if ($lap === 9) { ?>class="selected" <?php } ?>>
                                 Cacat</li>
                         </a>
                         <?php
                         ?>
-                        <a href="<?= site_url() ?>/statistik/pie/11">
+                        <a href="<?= site_url() ?>statistik/pie/11">
                             <li <?php if ($lap === 11) { ?>class="selected" <?php } ?>>
                                 Jamkesmas</li>
                         </a>
