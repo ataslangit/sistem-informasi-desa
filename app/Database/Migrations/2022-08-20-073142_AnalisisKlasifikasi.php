@@ -31,7 +31,7 @@ class AnalisisKlasifikasi extends Migration
                 'constraint' => '5,2',
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
         $this->forge->addKey('id_master');
         $this->forge->createTable('analisis_klasifikasi', true);
     }

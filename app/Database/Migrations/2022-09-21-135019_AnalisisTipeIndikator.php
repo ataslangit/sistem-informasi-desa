@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AnalisisRefSubjek extends Migration
+class AnalisisTipeIndikator extends Migration
 {
     public function up()
     {
@@ -14,18 +14,18 @@ class AnalisisRefSubjek extends Migration
                 'constraint'     => 4,
                 'auto_increment' => true,
             ],
-            'subjek' => [
+            'tipe' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 20,
             ],
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('analisis_ref_subjek', true);
+        $this->forge->createTable('analisis_tipe_indikator', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('analisis_ref_subjek');
+        $this->forge->dropTable('analisis_tipe_indikator');
     }
 }
