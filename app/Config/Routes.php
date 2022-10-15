@@ -36,7 +36,10 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Main::index', ['as' => 'frontend']);
-$routes->addRedirect('/first', 'frontend', 301); // untuk handle pada versi lama
+
+// detail berita
+// contoh: /first/artikel/38-pelatihan-jurnalistik-untuk-pegiat-karang-taruna
+$routes->get('/artikel/(:segment)', 'Main::detail_artikel/$1', ['as' => 'single.artikel']);
 
 // siteman
 $routes->group('siteman', ['filter' => 'sudahMasuk'], static function ($routes) {
@@ -64,6 +67,10 @@ $routes->group('admin', ['filter' => 'sudahMasuk:admin'], static function ($rout
     $routes->get('database/import', 'Admin\database::import');
     $routes->get('database/exec_backup', 'Admin\database::exec_backup');
 });
+
+// untuk handle URL pada versi lama
+$routes->addRedirect('/first', 'frontend', 301);
+$routes->addRedirect('/first/artikel/(:segment)', 'single.artikel', 301);
 
 /*
  * --------------------------------------------------------------------

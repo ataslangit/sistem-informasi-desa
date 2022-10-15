@@ -25,7 +25,7 @@ class ArtikelModel extends Model
     public function ambilPos()
     {
         $this->builder()
-            ->select('artikel.*')
+            ->select('artikel.*, u.nama, u.username')
             ->join('user u', 'artikel.id_user=u.id', 'left')
             ->join('kategori k', 'artikel.id_kategori=k.id', 'left')
             ->where(['artikel.enabled' => '1', 'k.tipe' => '1', 'artikel.headline != 1' => null, 'k.kategori != "teks_berjalan"' => null]);
