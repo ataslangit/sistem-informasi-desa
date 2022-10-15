@@ -35,7 +35,8 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Main::index');
+$routes->get('/', 'Main::index', ['as' => 'frontend']);
+$routes->addRedirect('/first', 'frontend', 301); // untuk handle pada versi lama
 
 // siteman
 $routes->group('siteman', ['filter' => 'sudahMasuk'], static function ($routes) {
