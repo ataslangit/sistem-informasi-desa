@@ -9,8 +9,7 @@
         "fakerphp/faker": "^1.9",
         "friendsofphp/php-cs-fixer": "^3",
         "mikey179/vfsstream": "^1.6",
-        "nexusphp/cs-config": "^3.3",
-        "phpunit/phpunit": "^9.1"
+        "nexusphp/cs-config": "^3.3"
     },
     "suggest": {
         "ext-fileinfo": "Improves mime type detection for files"
@@ -21,7 +20,6 @@
         ]
     },
     "scripts": {
-        "csfix": "vendor/bin/php-cs-fixer fix",
-        "test": "phpunit"
+        "csfix": "vendor/bin/php-cs-fixer fix"
     }
 }
