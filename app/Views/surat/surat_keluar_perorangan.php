@@ -121,7 +121,7 @@
                                         <td><?= $data['no_surat'] ?></td>
                                         <td><?= $data['format'] ?></td>
                                         <td><?= unpenetration($data['pamong']) ?></td>
-                                        <td><?= tgl_indo2($data['tanggal']) ?></td>
+                                        <td><?= tanggal($data['tanggal']) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

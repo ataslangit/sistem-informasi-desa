@@ -196,7 +196,7 @@ if ($agenda) {
                 <?php foreach ($komen as $data) { ?>
                     <li><i class="fa fa-comment"></i> <?= $data['owner'] ?> :
                         <?= $data['komentar'] ?><br />
-                        <small>ditulis pada <?= tgl_indo2($data['tgl_upload']) ?></small>
+                        <small>ditulis pada <?= tanggal($data['tgl_upload']) ?></small>
                         <br />
                         <br />
                     </li>

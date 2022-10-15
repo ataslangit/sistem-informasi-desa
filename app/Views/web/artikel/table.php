@@ -159,7 +159,7 @@
                                 </td>
                                 <td><?= $data['judul'] ?></td>
                                 <td><?= $data['aktif'] ?></td>
-                                <td><?= tgl_indo2($data['tgl_upload']) ?></td>
+                                <td><?= tanggal($data['tgl_upload']) ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

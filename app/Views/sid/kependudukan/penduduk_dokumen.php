@@ -42,7 +42,7 @@
                                 </td>
                                 <td><?= $data['nama'] ?></td>
                                 <td><a href="<?= base_url() ?>/assets/files/dokumen/<?= urlencode($data['satuan']) ?>"><?= $data['satuan'] ?></a></td>
-                                <td><?= tgl_indo2($data['tgl_upload']) ?></td>
+                                <td><?= tanggal($data['tgl_upload']) ?></td>
                                 <td></td>
                             </tr>
                         <?php } ?>
