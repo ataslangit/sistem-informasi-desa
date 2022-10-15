@@ -4,7 +4,7 @@ if ($headline) {
 	<div class="box box-danger">
 		<div class="box-header with-border">
 			<h3 class="box-title"><a href="' . site_url("first/artikel/{$headline['id']}") . '">' . $headline['judul'] . '</a></h3>
-			<div class="pull-right small">' . $headline['owner'] . ', ' . tgl_indo2($headline['tgl_upload']) . '</div>
+			<div class="pull-right small">' . $headline['owner'] . ', ' . tanggal($headline['tgl_upload']) . '</div>
 		</div>
 		<div class="box-body" style="text-align:justify;">';
     if ($headline['gambar'] !== '') {
@@ -62,7 +62,7 @@ if ($artikel) {
 					<h3 class="judul"><a href="' . site_url("first/artikel/{$data['id']}-{$judul}") . '">' . $data['judul'] . '</a></h3>
 
 					<div class="teks" style="text-align:justify;">
-						<div class="kecil"><i class="fa fa-clock-o"></i> ' . tgl_indo2($data['tgl_upload']) . ' <i class="fa fa-user"></i> ' . $data['owner'] . '</div>
+						<div class="kecil"><i class="fa fa-clock-o"></i> ' . tanggal($data['tgl_upload']) . ' <i class="fa fa-user"></i> ' . $data['owner'] . '</div>
 						<div class="img">';
         if ($data['gambar'] !== '') {
             if (is_file('assets/files/artikel/kecil_' . $data['gambar'])) {

@@ -70,7 +70,7 @@
                                         <td><?= $data['format'] ?></td>
                                         <td><?= unpenetration($data['nama']) ?></td>
                                         <td><?= $data['pamong'] ?></td>
-                                        <td><?= tgl_indo2($data['tanggal']) ?></td>
+                                        <td><?= tanggal($data['tanggal']) ?></td>
                                         <td><?= $data['nama_user'] ?></td>
                                     </tr>
                                 <?php

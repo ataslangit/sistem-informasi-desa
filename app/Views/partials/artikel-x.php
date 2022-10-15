@@ -47,7 +47,7 @@
         </div>
         <div class="art-spacer" style="display:block;clear:both;">
             Ditulis oleh: <b><?= $single_artikel['owner'] ?><br></b>
-            <small>Pada: <?= tgl_indo2($single_artikel['tgl_upload']) ?></small>
+            <small>Pada: <?= tanggal($single_artikel['tgl_upload']) ?></small>
         </div>
         <style>
             #pageshare {
@@ -78,7 +78,7 @@
                     <div class="kom-box">
                         <span class="post-title">
                             <b><?= $data['owner'] ?><br></b>
-                            <small><?= tgl_indo2($data['tgl_upload']) ?></small>
+                            <small><?= tanggal($data['tgl_upload']) ?></small>
                             <p><b>Berkata: </b><?= $data['komentar'] ?>
                             </p>
                         </span>

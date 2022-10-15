@@ -27,8 +27,8 @@
                                         <td align="center" width="2"><?= $data['no'] ?></td>
                                         <td><?= $data['nik'] ?></td>
                                         <td><?= unpenetration($data['nama']) ?></td>
-                                        <td><?= tgl_indo2($data['tanggal_buat']) ?></td>
-                                        <td><?= tgl_indo2($data['last_login']) ?></td>
+                                        <td><?= tanggal($data['tanggal_buat']) ?></td>
+                                        <td><?= tanggal($data['last_login']) ?></td>
                                     </tr>
                                 <?php
                                 endforeach;

@@ -332,15 +332,6 @@ function tanggal(string $datetime): string
     return $time->toLocalizedString('d MMMM yyyy H:m:s');
 }
 
-function tgl_indo2($tgl)
-{
-    $tanggal = substr($tgl, 8, 2);
-    $jam     = substr($tgl, 11, 8);
-    $bulan   = getBulan(substr($tgl, 5, 2));
-    $tahun   = substr($tgl, 0, 4);
-
-    return $tanggal . ' ' . $bulan . ' ' . $tahun . ' ' . $jam . ' WIB';
-}
 function tgl_indo($tgl)
 {
     $tanggal = substr($tgl, 8, 2);

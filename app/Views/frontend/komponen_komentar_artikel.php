@@ -10,7 +10,7 @@
             <?php if ($data['enabled'] === 1) { ?>
                     <div class="kom-box">
                         <div style="font-size:.8em;font-color:#aaa;">
-                            <i class="fa fa-user"></i> ' . $data['owner'] . ' <i class="fa fa-clock-o"></i> ' . tgl_indo2($data['tgl_upload']) . '
+                            <i class="fa fa-user"></i> ' . $data['owner'] . ' <i class="fa fa-clock-o"></i> ' . tanggal($data['tgl_upload']) . '
                         </div>
                         <div>
                             <blockquote>' . $data['komentar'] . '</blockquote>

@@ -82,7 +82,7 @@
                                             <td><?= $data['SenderNumber'] ?></td>
                                             <td><?= $data['TextDecoded'] ?></td>
 
-                                            <td><?= tgl_indo2($data['ReceivingDateTime']) ?></td>
+                                            <td><?= tanggal($data['ReceivingDateTime']) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
