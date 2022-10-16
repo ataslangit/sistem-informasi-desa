@@ -1,0 +1,19 @@
+# .github/release.yml
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - octocat
+  categories:
+    - title: ⬆️ Peningkatan
+      labels:
+        - peningkatan
+    - title: 🛠️ Perbaikan
+      labels:
+        - perbaikan
+        - bug
+    - title: Lain-lain
+      labels:
+        - "*"
