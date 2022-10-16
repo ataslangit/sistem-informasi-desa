@@ -4,22 +4,26 @@
 		<title><?php if(@$single_artikel){echo $single_artikel['judul']." - ";}?>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
 		<meta content="utf-8" http-equiv="encoding">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<?php
-		if(isset($single_artikel['gambar'])){
-			$gambar = $single_artikel['gambar'];
-		}elseif(isset($single_artikel['gambar1'])){
-			$gambar = $single_artikel['gambar1'];
-		}elseif(isset($single_artikel['gambar2'])){
-			$gambar = $single_artikel['gambar2'];
-		}elseif(isset($single_artikel['gambar3'])){
-			$gambar = $single_artikel['gambar4'];
-		}
-		?>
-		<meta property="og:image" content="<?php echo base_url()."assets/files/artikel/kecil_".$gambar; ?>"  >
-		<meta property="og:image:width" content="300">
-		<meta property="og:image:height" content="180">
-		<meta property="og:url" content="<?php echo urlencode(current_url()); ?>">
-		<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>"> 
+		
+		<?php if(isset($single_artikel)) { ?>
+			<?php
+			if(isset($single_artikel['gambar'])){
+				$gambar = $single_artikel['gambar'];
+			}elseif(isset($single_artikel['gambar1'])){
+				$gambar = $single_artikel['gambar1'];
+			}elseif(isset($single_artikel['gambar2'])){
+				$gambar = $single_artikel['gambar2'];
+			}elseif(isset($single_artikel['gambar3'])){
+				$gambar = $single_artikel['gambar4'];
+			}
+			?>
+			<meta property="og:image" content="<?= base_url() . 'assets/files/artikel/kecil_' . $gambar; ?>"  >
+			<meta property="og:image:width" content="300">
+			<meta property="og:image:height" content="180">
+			<meta property="og:url" content="<?php echo urlencode(current_url()); ?>">
+			<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>"> 
+		<?php } ?>
+		
 		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>"/>
 		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
