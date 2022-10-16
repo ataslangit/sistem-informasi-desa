@@ -574,7 +574,7 @@ class Spreadsheet_Excel_Reader
         }
         $height = $this->height($row, $col, $sheet);
         if ($height !== '') {
-            $css .= "font-size:{$height}" . 'px;';
+            $css .= "font-size:{$height}px;";
         }
         $bgcolor = $this->bgColor($row, $col, $sheet);
         if ($bgcolor !== '') {
