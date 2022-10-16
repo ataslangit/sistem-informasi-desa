@@ -26,6 +26,7 @@
 		
 		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>"/>
 		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
+		<link type='text/css' href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/css/ui-buttons.css" rel='Stylesheet' />
 		<link type='text/css' href="<?php echo base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
