@@ -3,17 +3,17 @@
 changelog:
   exclude:
     labels:
-      - ignore-for-release
+      - abaikan-rilis
     authors:
       - octocat
   categories:
-    - title: ⬆️ Peningkatan
+    - title: 🚀 Peningkatan
       labels:
         - peningkatan
     - title: 🛠️ Perbaikan
       labels:
         - perbaikan
         - bug
-    - title: Lain-lain
+    - title: ➡️ Lain-lain
       labels:
         - "*"
