@@ -1,4 +1,13 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+| -------------------------------------------------------------------
+| MIME TYPES
+| -------------------------------------------------------------------
+| This file contains an array of mime types.  It is used by the
+| Upload class to help identify allowed file types.
+|
+*/
+
 $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'cpt'	=>	'application/mac-compactpro',
 				'csv'	=>	array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel'),
@@ -42,7 +51,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'tgz'	=>	array('application/x-tar', 'application/x-gzip-compressed'),
 				'xhtml'	=>	'application/xhtml+xml',
 				'xht'	=>	'application/xhtml+xml',
-				'zip'	=> array('application/x-zip', 'application/zip', 'application/x-zip-compressed'),
+				'zip'	=>  array('application/x-zip', 'application/zip', 'application/x-zip-compressed'),
 				'mid'	=>	'audio/midi',
 				'midi'	=>	'audio/midi',
 				'mpga'	=>	'audio/mpeg',
@@ -62,7 +71,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'jpeg'	=>	array('image/jpeg', 'image/pjpeg'),
 				'jpg'	=>	array('image/jpeg', 'image/pjpeg'),
 				'jpe'	=>	array('image/jpeg', 'image/pjpeg'),
-				'png'	=>	array('image/png', 'image/x-png'),
+				'png'	=>	array('image/png',  'image/x-png'),
 				'tiff'	=>	'image/tiff',
 				'tif'	=>	'image/tiff',
 				'css'	=>	'text/css',
@@ -84,10 +93,14 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'avi'	=>	'video/x-msvideo',
 				'movie'	=>	'video/x-sgi-movie',
 				'doc'	=>	'application/msword',
-				'docx'	=>	'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-				'xlsx'	=>	'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				'docx'	=>	array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/zip'),
+				'xlsx'	=>	array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip'),
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
 				'json' => array('application/json', 'text/json')
 			);
+
+
+/* End of file mimes.php */
+/* Location: ./application/config/mimes.php */
