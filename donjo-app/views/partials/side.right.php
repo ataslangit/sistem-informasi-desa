@@ -1,43 +1,43 @@
-<?php if ($_SESSION['mandiri'] <> 1) { ?>
-	<?php if ($_SESSION['mandiri_wait'] == 1) { ?>
-		<div class="box box-primary box-solid">
-			<div class="box-header">
-				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
-				Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
-			</div>
-			<div class="box-body">
-				<h4>Gagal 3 kali. Sila coba kembali dalam <?php echo waktu_ind((time() - $_SESSION['mandiri_timeout']) * (-1)); ?> detik lagi</h4>
-				<div id="note">
-					Login Gagal. Username atau Password yang Anda masukkan salah!
-				</div>
+<?php if (isset($_SESSION['mandiri']) && $_SESSION['mandiri'] <> 1 && $_SESSION['mandiri_wait'] == 1) { ?>
+	<div class="box box-primary box-solid">
+		<div class="box-header">
+			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+			Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
+		</div>
+		<div class="box-body">
+			<h4>Gagal 3 kali. Sila coba kembali dalam <?php echo waktu_ind((time() - $_SESSION['mandiri_timeout']) * (-1)); ?> detik lagi</h4>
+			<div id="note">
+				Login Gagal. Username atau Password yang Anda masukkan salah!
 			</div>
 		</div>
-	<?php } else { ?>
-		<div class="box box-primary box-solid">
-			<div class="box-header">
-				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
-				Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
-			</div>
-			<div class="box-body">
-				<h4>Masukkan NIK dan PIN!</h4>
-				<form action="<?php echo site_url('first/auth') ?>" method="post">
-					<input name="nik" type="text" placeholder="NIK" value="" required>
-					<input name="pin" type="password" placeholder="PIN" value="" required>
-					<button type="submit" id="but">Masuk</button>
-					<?php if ($_SESSION['mandiri_try'] and $_SESSION['mandiri'] == -1) { ?>
+	</div>
+<?php } elseif (!isset($_SESSION['mandiri'])) { ?>
+	<div class="box box-primary box-solid">
+		<div class="box-header">
+			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+			Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
+		</div>
+		<div class="box-body">
+			<h4>Masukkan NIK dan PIN!</h4>
+			<form action="<?php echo site_url('first/auth') ?>" method="post">
+				<input name="nik" type="text" placeholder="NIK" value="" required>
+				<input name="pin" type="password" placeholder="PIN" value="" required>
+				<button type="submit" id="but">Masuk</button>
+				<?php if (isset($_SESSION['mandiri'])) { ?>
+					<?php if ($_SESSION['mandiri_try'] && $_SESSION['mandiri'] === -1) { ?>
 						<div id="note">
-							Kesempatan mencoba <?php echo ($_SESSION['mandiri_try'] - 1); ?> kali lagi.
+							Kesempatan mencoba <?= $_SESSION['mandiri_try'] - 1; ?> kali lagi.
 						</div>
 					<?php } ?>
-					<?php if ($_SESSION['mandiri'] == -1) { ?>
+					<?php if ($_SESSION['mandiri'] === -1) { ?>
 						<div id="note">
 							Login Gagal. Username atau Password yang Anda masukkan salah!
 						</div>
 					<?php } ?>
-				</form>
-			</div>
+				<?php } ?>
+			</form>
 		</div>
-	<?php } ?>
+	</div>
 <?php } else { ?>
 	<div class="box box-primary box-solid">
 		<div class="box-header">
