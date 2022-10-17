@@ -294,7 +294,7 @@
 					$data_profil = array(
 						"id"=>$id,
 						"nama"=> $row["nama"],
-						"ndesc"=>"Ketua: ".$row["ketua"]." [".$row["nik"]."]<br />Alamat: RT ".strtoupper($row["rt"])." / RW ".strtoupper($row["rw"])." ".strtoupper($row["dusun"]),
+						"ndesc"=>"Ketua: ".$row["ketua"]." [".$row["nik"]."]<br>Alamat: RT ".strtoupper($row["rt"])." / RW ".strtoupper($row["rw"])." ".strtoupper($row["dusun"]),
 						"foto"=>""
 						);
 				}

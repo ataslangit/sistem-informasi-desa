@@ -3,7 +3,7 @@
 <div id="content" class="container_12 clearfix">
 <div id="content-main" class="grid_7">
    
-<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet">
 
 <div>
 <table width="100%">

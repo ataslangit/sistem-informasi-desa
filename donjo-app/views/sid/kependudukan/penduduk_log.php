@@ -1,4 +1,4 @@
-<script TYPE='text/javascript'>
+<script>
 $(function() {
 var keyword = <?php echo $keyword?> ;
 $( "#cari" ).autocomplete({

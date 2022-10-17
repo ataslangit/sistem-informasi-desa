@@ -111,7 +111,7 @@ EOF;
 
 		if ($inline)
 		{
-			return '<script type="text/javascript" charset="utf-8">/*<![CDATA[ */'.$r.'// ]]></script>';
+			return '<script charset="utf-8">/*<![CDATA[ */'.$r.'// ]]></script>';
 		}
 		else
 		{
@@ -166,7 +166,7 @@ if ( ! function_exists('get_clickable_smileys'))
 				continue;
 			}
 
-			$link[] = "<a href=\"javascript:void(0);\" onclick=\"insert_smiley('".$key."', '".$alias."')\"><img src=\"".$image_url.$smileys[$key][0]."\" width=\"".$smileys[$key][1]."\" height=\"".$smileys[$key][2]."\" alt=\"".$smileys[$key][3]."\" style=\"border:0;\" /></a>";
+			$link[] = "<a href=\"javascript:void(0);\" onclick=\"insert_smiley('".$key."', '".$alias."')\"><img src=\"".$image_url.$smileys[$key][0]."\" width=\"".$smileys[$key][1]."\" height=\"".$smileys[$key][2]."\" alt=\"".$smileys[$key][3]."\" style=\"border:0;\"></a>";
 
 			$used[$smileys[$key][0]] = TRUE;
 		}
@@ -209,7 +209,7 @@ if ( ! function_exists('parse_smileys'))
 
 		foreach ($smileys as $key => $val)
 		{
-			$str = str_replace($key, "<img src=\"".$image_url.$smileys[$key][0]."\" width=\"".$smileys[$key][1]."\" height=\"".$smileys[$key][2]."\" alt=\"".$smileys[$key][3]."\" style=\"border:0;\" />", $str);
+			$str = str_replace($key, "<img src=\"".$image_url.$smileys[$key][0]."\" width=\"".$smileys[$key][1]."\" height=\"".$smileys[$key][2]."\" alt=\"".$smileys[$key][3]."\" style=\"border:0;\">", $str);
 		}
 
 		return $str;
@@ -267,7 +267,7 @@ if ( ! function_exists('js_insert_smiley'))
 	function js_insert_smiley($form_name = '', $form_field = '')
 	{
 		return <<<EOF
-<script type="text/javascript">
+<script>
 	function insert_smiley(smiley)
 	{
 		document.{$form_name}.{$form_field}.value += " " + smiley;

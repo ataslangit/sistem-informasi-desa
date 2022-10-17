@@ -1975,11 +1975,11 @@ class CI_Email {
 
 		if (substr($msg, 0, 5) != 'lang:' || FALSE === ($line = $CI->lang->line(substr($msg, 5))))
 		{
-			$this->_debug_msg[] = str_replace('%s', $val, $msg)."<br />";
+			$this->_debug_msg[] = str_replace('%s', $val, $msg)."<br>";
 		}
 		else
 		{
-			$this->_debug_msg[] = str_replace('%s', $val, $line)."<br />";
+			$this->_debug_msg[] = str_replace('%s', $val, $line)."<br>";
 		}
 	}
 
