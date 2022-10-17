@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
 <script>
 	function PolygonCreator(map){
 		this.map=map;this.pen=new Pen(this.map);
@@ -91,15 +91,15 @@
 </style>
 	<div id="map"></div>
 <form action="<?php echo $form_action?>" method="post">
- <input type="hidden" name="lat" id="lat" value="<?php echo $rw['lat']?>"/>
- <input type="hidden" name="lng" id="lng" value="<?php echo $rw['lng']?>"/>
- <input type="hidden" name="zoom" id="zoom" value="<?php echo $rw['zoom']?>"/>
- <input type="hidden" name="map_tipe" id="map_tipe" value="<?php echo $rw['map_tipe']?>"/>
+ <input type="hidden" name="lat" id="lat" value="<?php echo $rw['lat']?>">
+ <input type="hidden" name="lng" id="lng" value="<?php echo $rw['lng']?>">
+ <input type="hidden" name="zoom" id="zoom" value="<?php echo $rw['zoom']?>">
+ <input type="hidden" name="map_tipe" id="map_tipe" value="<?php echo $rw['map_tipe']?>">
 	<input type="hidden" id="dataPanel" name="path" value="<?php echo $rw['path']?>">
 	<div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
 	<div class="uibutton-group">
 		<button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
-		<input class="uibutton confirm" id="showData" value="Simpan" type="button"/>
+		<input class="uibutton confirm" id="showData" value="Simpan" type="button">
 	</div>
 	</div>
 </form>

@@ -1,10 +1,10 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/validasi.js"></script>
 <form action="<?php echo $form_action?>" method="post" id="validasi">
 <table style="width:100%">
 	<tr>
 		<th>Nama Polling</th>
-		<td><input name="nama_polling" type="text" class="inputbox required" size="30" maxlength='20' value="<?php if ($main){ foreach($main as $data): echo $data['nama_polling']; endforeach; }?>"/>
+		<td><input name="nama_polling" type="text" class="inputbox required" size="30" maxlength='20' value="<?php if ($main){ foreach($main as $data): echo $data['nama_polling']; endforeach; }?>">
 </td>
 	</tr>
 	<tr>

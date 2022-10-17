@@ -55,7 +55,7 @@
 			</div>
 		</td>
 <td style="background:#fff;padding:0px;"> 
-<script type="text/javascript">
+<script>
 $(function () {
  var chart;
  

@@ -19,7 +19,7 @@
 		<tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['dusun']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['dusun']?>">
 			</td>
  <td><?php echo $data['dusun']?></td>
 	 <td><?php echo $data['nama_kadus']?></td> 
@@ -36,7 +36,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="50">Total</th>
 				<th></th>
 				<th></th>

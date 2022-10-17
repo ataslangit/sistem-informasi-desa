@@ -2,7 +2,7 @@
 <body>
 <div id="content" class="container_12 clearfix">
 <div id="content-main" class="grid_7">
-<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet">
 <div>
 <table width="100%">
 <tr> <img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="" class="logo"></tr>
@@ -12,7 +12,7 @@
 <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['nama_desa']))?></h4>
 <h5 class="kop2"><?php echo (unpenetration($desa['alamat_kantor']))?> </h5>
 <div style="text-align: center;">
-<hr /></div></div>
+<hr></div></div>
 <div align="center"><u><h4 class="kop">SURAT PERNYATAAN BELUM MEMILIKI AKTA KELAHIRAN</h4></u></div>
 <div align="center"><h4 class="kop-nomor">No: <?php echo $input['nomor']?></h4></div>
 </table>

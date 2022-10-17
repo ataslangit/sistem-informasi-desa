@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Data Analisis</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
 <style>
 td{
  mso-number-format:"\@";
@@ -30,7 +31,7 @@ td,th{
 				<th align="left">Tipe Indikator</th>
 				<th align="left">Kategori Indikator</th>
 				<th align="left">Aksi Analisis</th>
-							
+
 		</tr>
 	</thead>
 	<tbody>
@@ -63,7 +64,7 @@ td,th{
 	</tbody>
 </table>
 </div>
- 
+
  <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
 </div>
 </body></html>

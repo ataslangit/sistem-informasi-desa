@@ -13,11 +13,11 @@
 <table class="form">
 <tr>
 <th>Pengirim</th>
-<td><input class="inputbox" type="text" name="owner" value="<?php echo $komentar['owner']?>" size="60"/></td>
+<td><input class="inputbox" type="text" name="owner" value="<?php echo $komentar['owner']?>" size="60"></td>
 </tr>
 <tr>
 <th>e-mail</th>
-<td><input class="inputbox" type="text" name="email" value="<?php echo $komentar['email']?>" size="60"/></td>
+<td><input class="inputbox" type="text" name="email" value="<?php echo $komentar['email']?>" size="60"></td>
 </tr>
 <tr>
 <td colspan="2">

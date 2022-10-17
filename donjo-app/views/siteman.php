@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <title>SID <?= VERSI_SID ?> Login</title>
- <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login-new.css" media="screen" type="text/css" />
+ <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login-new.css" media="screen">
 </head>
 <body>
 	<div id="loginform">

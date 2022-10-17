@@ -21,7 +21,7 @@
 		<thead>
  <tr>
  <th width="2">No</th>
- <th width="20"><input type="checkbox" class="checkall"/></th>
+ <th width="20"><input type="checkbox" class="checkall"></th>
  <th width="20">Aksi</th>
  <th width="220">Nama Dokumen</th>
 				<th width="360">File</th>
@@ -34,7 +34,7 @@
 		<tr>
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td><div class="uibutton-group">
 				<a href="<?php echo site_url("penduduk/delete_dokumen/$penduduk[id]/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"><span></a>

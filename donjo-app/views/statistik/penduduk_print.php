@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Laporan Statistik</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
 </head>
 <body>
 <div id="container">
@@ -106,13 +107,13 @@
  <div class="nowrap"><label>&nbsp;</label></div>
  <div class="nowrap"><label><br></label></div>
  </td>
- <td class="top" align="center" width="30%"> 
+ <td class="top" align="center" width="30%">
  <div class="nowrap"><label>&nbsp;</label></div>
  <div class="nowrap"><label><br>KEPALA DESA <?php echo strtoupper($config['nama_desa'])?></label></div>
  <div style="height: 50px;"></div>
  <div class="nowrap"><strong style="text-transform: uppercase;"><?php echo strtoupper($config['nama_kepala_desa'])?></strong></div>
  </td>
- </tr> 
+ </tr>
  </tbody></table>
  <br>
  <table class="noborder">
@@ -126,8 +127,8 @@
  </td>
  </tr>
  </tbody></table>
- 
+
  </td>
  </tr>
-</tbody></table> 
+</tbody></table>
 </body></html>

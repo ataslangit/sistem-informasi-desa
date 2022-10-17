@@ -78,56 +78,56 @@ table.form.detail td{
 <?php }?>
 <tr>
 <th>Nomor Surat</th>
-<td><input name="nomor" type="text" class="inputbox required" size="12"/></td>
+<td><input name="nomor" type="text" class="inputbox required" size="12"></td>
 </tr>
 <tr>
 	<th>DATA KELAHIRAN :</th>
 </tr>
 <tr>
 	<th>Hari/ Tanggal/ Jam</th>
-	<td><input name="hari" type="text" class="inputbox required" size="10"/> / 
-	<input name="tanggal" type="text" class="inputbox required datepicker" size="10"/> / 
-	<input name="jam" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="hari" type="text" class="inputbox required" size="10"> / 
+	<input name="tanggal" type="text" class="inputbox required datepicker" size="10"> / 
+	<input name="jam" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>Tempat kelahiran</th>
-	<td><input name="tempat_lahir_bayi" type="text" class="inputbox required" size="10"/> 
+	<td><input name="tempat_lahir_bayi" type="text" class="inputbox required" size="10"> 
 </td>
 </tr>
 <tr>
 	<th>Nama Bayi</th>
-	<td><input name="nama_bayi" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="nama_bayi" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 	<th>Jenis Kelamin Bayi</th>
-	<td><input name="sex_bayi" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="sex_bayi" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>DATA PELAPOR :</th>
 </tr>
 <tr>
 	<th>Nama</th>
-	<td><input name="nama_pelapor" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="nama_pelapor" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 	<th>NIK</th>
-	<td><input name="nik_pelapor" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="nik_pelapor" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>Umur</th>
-	<td><input name="umur_pelapor" type="text" class="inputbox required" size="5"/> tahun</td>
+	<td><input name="umur_pelapor" type="text" class="inputbox required" size="5"> tahun</td>
 </tr>
 <tr>
 	<th>Pekerjaan</th>
-	<td><input name="pek_pelapor" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="pek_pelapor" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>Alamat</th>
-	<td><input name="alamat_pelapor" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="alamat_pelapor" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Hubungan Pelapor dengan Bayi</th>
-	<td><input name="hubungan" type="text" class="inputbox required" size="20"/></td>
+	<td><input name="hubungan" type="text" class="inputbox required" size="20"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

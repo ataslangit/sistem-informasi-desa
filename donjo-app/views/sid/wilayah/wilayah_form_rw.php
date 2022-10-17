@@ -30,7 +30,7 @@ $("#nik_detail").show();
  <table class="form">
  <tr>
  <th width="160">Nomor RW</th>
- <td><input name="rw" type="text" class="inputbox required number" size="40" value="<?php echo $rw?>"/></td>
+ <td><input name="rw" type="text" class="inputbox required number" size="40" value="<?php echo $rw?>"></td>
  </tr>
 			<tr>
 			<?php if($rw){?>
@@ -38,7 +38,7 @@ $("#nik_detail").show();
  <th>Ketua RW Sebelumnya</th>
  <td>
  <?php echo $individu['nama']?>
-					<br />NIK - <?php echo $individu['nik']?>
+					<br>NIK - <?php echo $individu['nik']?>
  </td>
  </tr>
 			<?php }?>

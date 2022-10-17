@@ -7,9 +7,9 @@
 		<p>
 <? if($single_artikel['gambar']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <?php echo $single_artikel['isi']?>		</p>
@@ -17,23 +17,23 @@
 <div class="entry" style="display:block;">
 <? if($single_artikel['gambar1']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar1'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar1']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar1']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar1']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar1']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if($single_artikel['gambar2']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar2'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar2']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar2']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar2']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar2']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if($single_artikel['gambar3']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar3'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar3']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar3']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar3']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar3']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if(isset($single_artikel['dokumen'])){if($single_artikel['dokumen']!=''){?>
@@ -51,8 +51,8 @@
 #pageshare .sbutton {float:left;margin:0px 4px;}
 </style>
 <div id='pageshare' title="bagikan ke teman anda">
-<div class='sbutton' id='fb'><a name="fb_share" href="http://www.facebook.com/sharer.php?u='<?php echo site_url(); ?>first/artikel/<?php echo $single_artikel['id']?>'">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script></div>
-<div class='sbutton' id='rt'><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a><script src='http://platform.twitter.com/widgets.js' type="text/javascript"></script></div>
+<div class='sbutton' id='fb'><a name="fb_share" href="http://www.facebook.com/sharer.php?u='<?php echo site_url(); ?>first/artikel/<?php echo $single_artikel['id']?>'">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script></div>
+<div class='sbutton' id='rt'><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a><script src='http://platform.twitter.com/widgets.js'></script></div>
 </div>
 </br>&nbsp;
 </br>
@@ -73,7 +73,7 @@
 </div>	
 <div class="themes comments">
 <h3>Post Komentar :</h3>
-<br/>
+<br>
  <table width=100%>
  <form name='form' action="<?=site_url("first/add_comment/$single_artikel[id]")?>" method=POST onSubmit=\"return validasi(this)\">
  <tr class="komentar"><td>Nama</td><td> <input type=text name="owner" size=20 maxlength=30></td></tr>
@@ -81,7 +81,7 @@
  <tr class="komentar"><td valign=top>Komentar</td><td> <textarea name="komentar" style='width: 300px; height: 100px;'></textarea></td></tr>
  <tr><td>&nbsp;</td><td><input type="submit" value="Kirim"></td></tr>
 		</form>
-		</table><br />
+		</table><br>
 </div>
 	<input type="button" value="Kembali" onclick="self.history.back()">
 </div>

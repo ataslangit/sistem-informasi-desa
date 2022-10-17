@@ -27,7 +27,7 @@ echo form_open('data_persil/persil_jenis')."\n";
 echo "
 	<div class=\"form-group\">
 		<label>Nama Jenis Persil</label>
-		<input type=\"text\" class=\"form-control\" name=\"nama\" id=\"nama\" placeholder=\"Tuliskan Jenis Persil\" value=\"".$nama."\"/>
+		<input type=\"text\" class=\"form-control\" name=\"nama\" id=\"nama\" placeholder=\"Tuliskan Jenis Persil\" value=\"".$nama."\">
 	</div>
 	<div class=\"form-group\">
 		<label>Keterangan</label>
@@ -35,9 +35,9 @@ echo "
 	</div>
 	<div class=\"form-group\">
 		<div class=\"uibutton-group\">
-		<input type=\"hidden\" name=\"id\" value=\"".$id."\"/>
-		<input type=\"submit\" class=\"uibutton confirm\" name=\"tombol\" id=\"tombol\" value=\"Simpan\"/>
-		<input type=\"reset\" class=\"uibutton\" name=\"tombolreset\" id=\"tombolreset\" value=\"Batal\"/>
+		<input type=\"hidden\" name=\"id\" value=\"".$id."\">
+		<input type=\"submit\" class=\"uibutton confirm\" name=\"tombol\" id=\"tombol\" value=\"Simpan\">
+		<input type=\"reset\" class=\"uibutton\" name=\"tombolreset\" id=\"tombolreset\" value=\"Batal\">
 		</div>
 	</div>
 ";

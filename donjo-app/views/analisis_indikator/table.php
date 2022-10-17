@@ -45,7 +45,7 @@
 </select>
 </div>
 <div class="right">
-<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('analisis_indikator/search')?>');$('#'+'mainform').submit();}" />
+<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('analisis_indikator/search')?>');$('#'+'mainform').submit();}">
 <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_indikator/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
 </div>
 </div>
@@ -53,7 +53,7 @@
 		<thead>
 <tr>
 <th width="10">No</th>
-<?php if($analisis_master['lock']==1){?> <th><input type="checkbox" class="checkall"/></th>
+<?php if($analisis_master['lock']==1){?> <th><input type="checkbox" class="checkall"></th>
 <th width="200">Aksi</th><?php }?>
 	 		<?php if($o==2): ?>
 				<th align="left" width="10"><a href="<?php echo site_url("analisis_indikator/index/$p/1")?>">Kode<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
@@ -111,7 +111,7 @@
 			<?php if($analisis_master['lock']==1){?>
 			
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td>
 				<div class="uibutton-group">

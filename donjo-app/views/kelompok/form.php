@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
+<script src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
 <script>
 $(function(){
  var nik = {};
@@ -33,11 +33,11 @@ $("#nik_detail").show();
 							<table class="form">
 								<tr>
 									<th>Nama kelompok</th>
-									<td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo $kelompok['nama']?>"/></td>
+									<td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo $kelompok['nama']?>"></td>
 								</tr>
 								<tr>
 									<th>Nomor / Kode kelompok</th>
-									<td><input name="kode" type="text" class="inputbox" size="80" value="<?php echo $kelompok['kode']?>"/></td>
+									<td><input name="kode" type="text" class="inputbox" size="80" value="<?php echo $kelompok['kode']?>"></td>
 								</tr>
 								<tr>
 									<th width="100">Kategori Kelompok</th>

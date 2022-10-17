@@ -9,11 +9,11 @@
 	<table class="form">
 	<tr>
 	<th>Kode Surat</th>
-	<td><input name="kode_surat" type="text" class="inputbox required" size="12" value="<?php echo $surat_master['kode_surat']?>"/></td>
+	<td><input name="kode_surat" type="text" class="inputbox required" size="12" value="<?php echo $surat_master['kode_surat']?>"></td>
 	</tr>
 	<tr>
 	<th>Nama Layanan</th>
-	<td>SURAT <input name="nama" type="text" class="inputbox required" size="50" value="<?php echo $surat_master['nama']?>"/></td>
+	<td>SURAT <input name="nama" type="text" class="inputbox required" size="50" value="<?php echo $surat_master['nama']?>"></td>
 	</tr>
 	</table>
 	</div>

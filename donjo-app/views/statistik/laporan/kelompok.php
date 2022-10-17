@@ -14,7 +14,7 @@
  </div>
  </div>
  <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-<style type="text/css">
+<style>
 table.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
 table.tftable th {font-size:12px;background-color:#8DABD4;border-width: 1px;padding: 3px;border-style: solid;border-color: #7195BA;text-align:left;}
 table.tftable tr {background-color:#ffffff;}

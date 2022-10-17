@@ -12,7 +12,7 @@
 		$(".color2").colorbox({rel:'color2', transition:"fade"});
 	});
 </script>
-<link type='text/css' href="<?php echo base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
+<link href="<?php echo base_url()?>assets/front/css/colorbox.css" rel="stylesheet">
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
@@ -42,7 +42,7 @@
  </select>
  </div>
  <div class="right">
- <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('gallery/search')?>');$('#'+'mainform').submit();}" />
+ <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('gallery/search')?>');$('#'+'mainform').submit();}">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('gallery/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
  </div>
  </div>
@@ -50,7 +50,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="130">Aksi</th>
 			
 	 		<?php if($o==2): ?>
@@ -84,7 +84,7 @@
 		<tr>
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td> 
 				<div class="uibutton-group">

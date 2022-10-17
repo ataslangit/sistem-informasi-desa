@@ -2,7 +2,7 @@
 <body>
 <div id="content" class="container_12 clearfix">
 <div id="content-main" class="grid_7">
-<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet">
 <div>
 <table width="100%">
 <tr> <img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="" class="logo"></tr>
@@ -12,7 +12,7 @@
 <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['nama_desa']))?></h4>
 <h5 class="kop2"><?php echo (unpenetration($desa['alamat_kantor']))?> </h5>
 	<div style="text-align: center;">
-		<hr />
+		<hr>
 	</div>
 </div>
 <div align="center"><u><h4 class="kop">BIODATA PENDUDUK</h4></u></div>
@@ -26,7 +26,7 @@
 <tr><td>Nomor Kartu Keluarga</td><td>:</td><td><?php echo $kk['no_kk']?></td></tr>
 <tr><td>Alamat Keluarga</td><td>:</td><td>RT. <?php echo $kk['rt']?>, RW. <?php echo $kk['rw']?>, Dusun <?php echo ununderscore(unpenetration($kk['dusun']))?>, Desa <?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>, Kab. <?php echo unpenetration($desa['nama_kabupaten'])?> </td></tr>
 </table>
-<br/>
+<br>
 <table width="100%">
 <tr><td ><b>II.	DATA INDIVIDU</b></td></tr>
 <tr><td width="40%">Nama Lengkap</td><td width="3%">:</td><td width="64%"><?php echo unpenetration($data['nama'])?></td></tr>
@@ -52,7 +52,7 @@
 <tr><td>Pendidikan Terakhir</td><td>:</td><td><?php echo $pribadi['pend']?></td></tr>
 <tr><td>Pekerjaan</td><td>:</td><td><?php echo $pribadi['pek']?></td></tr>
 </table>
-<br/>
+<br>
 <table width="100%">
 <tr></tr>
 <tr><td colspan="3"><b>III.	DATA ORANG TUA</b></td></tr>

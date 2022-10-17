@@ -28,7 +28,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="80">Aksi</th>
 				<th width='100'>NIK</th>
 				<th width='100'>Nomor KK</th>
@@ -46,7 +46,7 @@
 		<tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td>
 				<div class="uibutton-group">

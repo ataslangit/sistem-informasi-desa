@@ -9,15 +9,15 @@
 				<table class="form">
 					<tr>
 						<th>Nama Modul</th>
-						<td><input name="modul" type="text" class="inputbox required" size="40" value="<?php echo ($modul['modul'])?>"/></td>
+						<td><input name="modul" type="text" class="inputbox required" size="40" value="<?php echo ($modul['modul'])?>"></td>
 					</tr>
 					<tr>
 						<th>URL</th>
-						<td><input name="url" type="text" class="inputbox" size="20" value="<?php echo $modul['url']?>"/></td>
+						<td><input name="url" type="text" class="inputbox" size="20" value="<?php echo $modul['url']?>"></td>
 					</tr>
 					<tr>
 						<th>Ikon</th>
-						<td><input name="ikon" type="text" class="inputbox" size="20" value="<?php echo ($modul['ikon'])?>"/></td>
+						<td><input name="ikon" type="text" class="inputbox" size="20" value="<?php echo ($modul['ikon'])?>"></td>
 					</tr> 
 					<tr>
 							<th width="100">Status</th>

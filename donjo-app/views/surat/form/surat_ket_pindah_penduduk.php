@@ -83,19 +83,19 @@ table.form.detail td{
 			<tr>
 				<th>Nomor Surat</th>
 				<td>
-					<input name="nomor" type="text" class="inputbox required" size="12"/>
+					<input name="nomor" type="text" class="inputbox required" size="12">
 				</td>
 			</tr>
 			<tr>
 				<th>Alasan Pindah</th>
 				<td>
-					<input name="alasan" type="text" class="inputbox required" size="40"/>
+					<input name="alasan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>Jumlah Pengikut</th>
 				<td>
-					<input name="jml_pengikut" type="text" class="inputbox required" size="40"/>
+					<input name="jml_pengikut" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
@@ -106,7 +106,7 @@ table.form.detail td{
 	<thead>
 		<tr>
 			<th>No</th>
-			<th><input type="checkbox" class="checkall"/></th>
+			<th><input type="checkbox" class="checkall"></th>
 			<th align="left" width='70'>NIK</th>
 			<th align="left" width='100'>Nama</th>
 			<th align="left" width='30' align="center">JK</th>
@@ -123,7 +123,7 @@ table.form.detail td{
 		<tr>
  <td align="center" width="2"><?php echo $i?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="'<?php echo $data['nik']?>'" />
+				<input type="checkbox" name="id_cb[]" value="'<?php echo $data['nik']?>'">
 			</td>
 			<td><?php echo $data['nik']?></td>
 			<td><?php echo unpenetration($data['nama'])?></td>
@@ -148,55 +148,55 @@ table.form.detail td{
 			<tr>	
 				<th>RW</th>
 				<td>
-					<input name="rw_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="rw_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>RT</th>
 				<td>
-					<input name="rt_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="rt_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>Kampung</th>
 				<td>
-					<input name="kampung_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="kampung_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>Kelurahan</th>
 				<td>
-					<input name="kelurahan_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="kelurahan_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>Kecamatan</th>
 				<td>
-					<input name="kecamatan_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="kecamatan_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>kabupaten</th>
 				<td>
-					<input name="kabupaten_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="kabupaten_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>provinsi</th>
 				<td>
-					<input name="kantor_tujuan" type="text" class="inputbox required" size="40"/>
+					<input name="kantor_tujuan" type="text" class="inputbox required" size="40">
 				</td>
 			</tr>
 			<tr>
 				<th>Berlaku</th>
 				<td>
-					<input name="awal" type="text" class="inputbox required datepicker" size="20"/>
+					<input name="awal" type="text" class="inputbox required datepicker" size="20">
 				</td>
 			</tr>
 			<tr>
 				<th>Keterangan</th>
 				<td>
-					<input name="keterangan" type="text" class="inputbox required" size="20"/>
+					<input name="keterangan" type="text" class="inputbox required" size="20">
 				</td>
 			</tr>
 			

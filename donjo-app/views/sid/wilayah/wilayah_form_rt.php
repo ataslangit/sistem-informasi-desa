@@ -29,14 +29,14 @@ $('#id_kepala').flexbox(nik, {
  <table class="form">
  <tr>
  <th width="160">Nomor RT</th>
- <td><input name="rt" type="text" class="inputbox required number" size="40" value="<?php echo $rt?>"/></td>
+ <td><input name="rt" type="text" class="inputbox required number" size="40" value="<?php echo $rt?>"></td>
  </tr>
 			<?php if($rt){?>
 			<tr>
  <th>Ketua RT Sebelumnya</th>
  <td>
  <?php echo $individu['nama']?>
-					<br />NIK - <?php echo $individu['nik']?>
+					<br>NIK - <?php echo $individu['nik']?>
  </td>
  </tr>
 			<?php }?>

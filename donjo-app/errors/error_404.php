@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>404 Page Not Found</title>
-<style type="text/css">
+<style>
 
 ::selection{ background-color: #E13300; color: white; }
 ::moz-selection{ background-color: #E13300; color: white; }

@@ -1,7 +1,7 @@
 <?php if (isset($_SESSION['mandiri']) && $_SESSION['mandiri'] <> 1 && $_SESSION['mandiri_wait'] == 1) { ?>
 	<div class="box box-primary box-solid">
 		<div class="box-header">
-			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br>
 			Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
 		</div>
 		<div class="box-body">
@@ -14,7 +14,7 @@
 <?php } elseif (!isset($_SESSION['mandiri'])) { ?>
 	<div class="box box-primary box-solid">
 		<div class="box-header">
-			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+			<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br>
 			Silakan datang / hubungi perangkat desa untuk mendapatkan kode PIN Anda.
 		</div>
 		<div class="box-body">
@@ -86,7 +86,7 @@
 	<?php if ($_SESSION['lg'] == 1) { ?>
 		<div class="box box-primary box-solid">
 			<div class="box-header">
-				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br>
 				Untuk keamanan, sila ubah kode PIN Anda.
 			</div>
 			<div class="box-body">
@@ -104,7 +104,7 @@
 	<?php } else if ($_SESSION['lg'] == 1) { ?>
 		<div class="box box-primary box-solid">
 			<div class="box-header">
-				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br />
+				<h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br>
 				Untuk keamanan, silakan ubah kode PIN Anda.
 			</div>
 			<div class="box-body">
@@ -165,10 +165,10 @@
 			<ul class="sidebar-latest">
 				<?php foreach ($komen as $data) { ?>
 					<li><i class="fa fa-comment"></i> <?php echo $data['owner'] ?> :
-						<?php echo $data['komentar'] ?><br />
+						<?php echo $data['komentar'] ?><br>
 						<small>ditulis pada <?php echo tgl_indo2($data['tgl_upload']) ?></small>
-						<br />
-						<br />
+						<br>
+						<br>
 					</li>
 				<?php } ?>
 			</ul>
@@ -182,7 +182,7 @@
 	</div>
 	<div class="box-body">
 		<?php foreach ($sosmed as $data) {
-			echo "<a href=\"" . $data["link"] . "\" target=\"_blank\"><img src=\"" . base_url() . "assets/front/" . $data["gambar"] . "\" alt=\"" . $data["nama"] . "\" style=\"width:50px;height:50px;\"/></a>";
+			echo "<a href=\"" . $data["link"] . "\" target=\"_blank\"><img src=\"" . base_url() . "assets/front/" . $data["gambar"] . "\" alt=\"" . $data["nama"] . "\" style=\"width:50px;height:50px;\"></a>";
 		} ?>
 	</div>
 </div>
@@ -236,10 +236,10 @@
 			$length = strlen($pattern) - $len;
 			$start = substr($pattern, 0, $length) . substr($tot, 0, $len - 1);
 			$last = substr($tot, $len - 1, 1);
-			$last_rpc = '<img src="_BASE_URL_/assets/images/counter/animasi/' . $last . '.gif" align="absmiddle" />';
+			$last_rpc = '<img src="_BASE_URL_/assets/images/counter/animasi/' . $last . '.gif" align="absmiddle">';
 			$inc = str_replace($last, $last_rpc, $last);
 			for ($i = 0; $i <= 9; $i++) {
-				$rpc = '<img src="_BASE_URL_/assets/images/counter/' . $i . '.gif" align="absmiddle"/>';
+				$rpc = '<img src="_BASE_URL_/assets/images/counter/' . $i . '.gif" align="absmiddle">';
 				$start = str_replace($i, $rpc, $start);
 			}
 			$num = $start . $inc;
@@ -307,9 +307,9 @@ if ($w_cos) {
 		</div>
 		<div class=\"box-body\">	
 			<div id=\"map_canvas\" style=\"height:200px;\"></div>
-			<script type=\"text/javascript\" src=\"//maps.google.com/maps/api/js?key=" . $data_config['gapi_key'] . "&sensor=false\"></script>";
+			<script src=\"//maps.google.com/maps/api/js?key=" . $data_config['gapi_key'] . "&sensor=false\"></script>";
 	?>
-	<script type="text/javascript">
+	<script>
 		var map;
 		var marker;
 		var location;
@@ -346,7 +346,7 @@ if ($w_cos) {
 	</script>
 	<?php
 	echo "
-			<a href=\"//www.google.co.id/maps/@" . $data_config['lat'] . "," . $data_config['lng'] . "z?hl=id\" target=\"_blank\">tampilkan dalam peta lebih besar</a><br />
+			<a href=\"//www.google.co.id/maps/@" . $data_config['lat'] . "," . $data_config['lng'] . "z?hl=id\" target=\"_blank\">tampilkan dalam peta lebih besar</a><br>
 		</div>
 	</div>
 	";

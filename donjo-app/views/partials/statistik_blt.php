@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script>
 			var chart;
 			$(document).ready(function() {
 				chart = new Highcharts.Chart({
@@ -145,7 +145,7 @@
 <h2><a href="#">Grafik Statistik Penduduk</a></h2>
 </div>
 <div class='entry'>
-<link href="<?php echo base_url()?>assets/front/general.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>assets/front/general.css" rel="stylesheet">
 	<div id="container" style="min-width: 550px; height: 500px; margin: 0 auto"></div>
 	<div id="contentpane">
  <div class="ui-layout-north panel top">

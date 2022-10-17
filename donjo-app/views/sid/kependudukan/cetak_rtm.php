@@ -1,7 +1,7 @@
 <?php $this->load->view('print/headjs.php');?>
 <body>
 <div id="container">
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
 <!-- Print Body -->
 <div id="body">
 <div align="center">

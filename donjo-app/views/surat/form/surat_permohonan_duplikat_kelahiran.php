@@ -83,48 +83,48 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
  <th>Hari lahir, Pukul</th>
- <td><input name="hari_bayi" type="text" class="inputbox required " size="10"/>
- <input name="jam_bayi" type="text" class="inputbox required " size="10"/></td>
+ <td><input name="hari_bayi" type="text" class="inputbox required " size="10">
+ <input name="jam_bayi" type="text" class="inputbox required " size="10"></td>
 </tr>
 <tr>
  <th>Tempat Lahir</th>
- <td><input name="tempatlahir_bayi" type="text" class="inputbox required" size="15"/></td>
+ <td><input name="tempatlahir_bayi" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>DATA PELAPOR :</th>
 </tr>
 <tr>
  <th>Nama</th>
- <td><input name="nama_pelapor" type="text" class="inputbox required" size="30"/></td>
+ <td><input name="nama_pelapor" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
  <th>NIK</th>
- <td><input name="nik_pelapor" type="text" class="inputbox required" size="30"/></td>
+ <td><input name="nik_pelapor" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
  <th>Jenis Kelamin</th>
- <td><input name="sex_pelapor" type="text" class="inputbox required" size="15"/></td>
+ <td><input name="sex_pelapor" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
  <th>Tempat Lahir</th>
- <td><input name="tempatlahir_pelapor" type="text" class="inputbox required" size="15"/></td>
+ <td><input name="tempatlahir_pelapor" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
  <th>Tanggal lahir</th>
- <td><input name="tanggallahir_pelapor" type="text" class="inputbox required datepicker" size="15"/></td>
+ <td><input name="tanggallahir_pelapor" type="text" class="inputbox required datepicker" size="15"></td>
 </tr>
 <tr>
  <th>Pekerjaan</th>
- <td><input name="pek_pelapor" type="text" class="inputbox required" size="15"/></td>
+ <td><input name="pek_pelapor" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
  <th>Alamat</th>
- <td><input name="alamat_pelapor" type="text" class="inputbox required" size="40"/></td>
+ <td><input name="alamat_pelapor" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

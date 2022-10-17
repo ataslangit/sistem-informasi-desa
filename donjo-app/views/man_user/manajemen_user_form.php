@@ -60,7 +60,7 @@ $('tr.uptd').hide();
 </tr>
 <tr>
 <th>Username</th>
-<td><input name="username" type="text" class="inputbox required" size="40" value="<?php echo $user['username']?>"/></td>
+<td><input name="username" type="text" class="inputbox required" size="40" value="<?php echo $user['username']?>"></td>
 </tr>
 <tr>
 <th>Password</th>
@@ -68,24 +68,24 @@ $('tr.uptd').hide();
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama" type="text" class="inputbox" size="40" value="<?php echo $user['nama']?>"/></td>
+<td><input name="nama" type="text" class="inputbox" size="40" value="<?php echo $user['nama']?>"></td>
 </tr>
 <tr>
 <th>Nomor HP</th>
-<td><input name="phone" type="text" class="inputbox" size="20" value="<?php echo $user['phone']?>"/></td>
+<td><input name="phone" type="text" class="inputbox" size="20" value="<?php echo $user['phone']?>"></td>
 </tr> 
 <tr>
 <th>e-mail</th>
-<td><input name="email" type="text" class="inputbox" size="20" value="<?php echo $user['email']?>"/></td>
+<td><input name="email" type="text" class="inputbox" size="20" value="<?php echo $user['email']?>"></td>
 </tr> 
 <tr>
 <th class="top">Foto</th>
 <td>
 <div class="userbox-avatar">
 <?php if($user['foto']){?>
-<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $user['foto']?>" alt=""/>
+<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $user['foto']?>" alt="">
 <?php }else{?>
-<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 <?php }?>
 </div>
 </td>
@@ -93,7 +93,7 @@ $('tr.uptd').hide();
 </tr>
 <tr>
 <th>Ganti Foto</th>
-<td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
+<td><input type="file" name="foto"> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
 </tr>
 </table>
 </div>

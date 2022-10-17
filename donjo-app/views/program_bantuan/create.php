@@ -46,7 +46,7 @@
 					</div>
 					<div class="form-group">
 						<label>Nama Program</label>
-						<input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan nama program"/>
+						<input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan nama program">
 					</div>
 					<div class="form-group">
 						<label>Keterangan</label>
@@ -54,14 +54,14 @@
 					</div>
 					<div class="form-group">
 						<label>Rentang Waktu Program</label>
-						Mulai <input type="text" class="inputbox required" style="width:200px" name="sdate" id="sdate" placeholder="" value=""/>
-						s.d <input type="text" class="inputbox required" style="width:200px" name="edate" id="edate" placeholder="" value=""/>
+						Mulai <input type="text" class="inputbox required" style="width:200px" name="sdate" id="sdate" placeholder="" value="">
+						s.d <input type="text" class="inputbox required" style="width:200px" name="edate" id="edate" placeholder="" value="">
 					</div>
 					
 					<div class="form-group">
 						<div class="uibutton-group">
-						<input type="submit" class="uibutton confirm" name="tombol" id="tombol" value="Simpan"/>
-						<input type="reset" class="uibutton" name="tombolreset" id="tombolreset" value="Batal"/>
+						<input type="submit" class="uibutton confirm" name="tombol" id="tombol" value="Simpan">
+						<input type="reset" class="uibutton" name="tombolreset" id="tombolreset" value="Batal">
 						</div>
 					</div>
 				</form>
@@ -103,8 +103,8 @@ $(document).ready(function () {
  }
  });
 });</script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
+<script>
 tinyMCE.init({
  
 		mode : "textareas",

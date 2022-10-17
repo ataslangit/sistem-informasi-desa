@@ -85,7 +85,7 @@
 		<a href="<?php echo site_url("analisis_laporan/ajax_multi_jawab")?>" target="ajax-modal-map" rel="window" header="Filter Indikator" class="uibutton tipsy south" title="Filter Indikator"><span class="icon-search icon-large">&nbsp;</span>Filter Indikator</a>
 	</div>
 	<div class="right">
-		<input name="cari" id="cari" type="text" class="inputbox help tipped" size="40" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('analisis_laporan/search')?>');$('#'+'mainform').submit();}" />
+		<input name="cari" id="cari" type="text" class="inputbox help tipped" size="40" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('analisis_laporan/search')?>');$('#'+'mainform').submit();}">
 		<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_laporan/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
 	</div>
 </div>

@@ -6,7 +6,7 @@ source: keyword
 });
 });
 </script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/chosen/chosen.jquery.js"></script>
+<script src="<?php echo base_url()?>assets/js/chosen/chosen.jquery.js"></script>
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
@@ -37,7 +37,7 @@ source: keyword
 </select>
 </div>
 <div class="right">
-<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Search.."/>
+<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Search..">
 <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('point/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south"title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
 </div>
 </div>
@@ -45,7 +45,7 @@ source: keyword
 <thead>
 <tr>
 <th>No</th>
-<th><input type="checkbox" class="checkall"/></th>
+<th><input type="checkbox" class="checkall"></th>
 <th width="120">Aksi</th>
  <?php if($o==2): ?>
 <th align="left"><a href="<?php echo site_url("point/index/$p/1")?>">Kategori<span class="ui-icon ui-icon-triangle-1-n">
@@ -70,7 +70,7 @@ source: keyword
 <tr>
 <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td><div class="uibutton-group">
 	<a href="<?php echo site_url("point/form/$p/$o/$data[id]")?>" class="uibutton icon-edit tipsy south" title="Edit Data"></a>

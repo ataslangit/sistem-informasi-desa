@@ -36,7 +36,7 @@
  <tr>
  <th width="10">No</th>
 				<?php if($analisis_master['lock']==1){?>
- <th width="10"><input type="checkbox" class="checkall"/></th>
+ <th width="10"><input type="checkbox" class="checkall"></th>
  <th width="80">Aksi</th>
 				<?php }?>
  <th width="80">Kode</th>
@@ -51,7 +51,7 @@
  <td align="center" width="2"><?php echo $data['no']?></td>
 		 <?php if($analisis_master['lock']==1){?>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
  <td><div class="uibutton-group">
  <a href="<?php echo site_url("analisis_statistik_jawaban/form_parameter/$analisis_statistik_jawaban[id]/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data" target="ajax-modal" rel="window" header="Form Data Parameter"><span class="icon-edit icon-large"> Ubah </span></a><a href="<?php echo site_url("analisis_statistik_jawaban/delete_parameter/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>

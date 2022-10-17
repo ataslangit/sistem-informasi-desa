@@ -3,11 +3,11 @@
 <head>
 	<title><?php echo $id; ?></title>
 	<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=utf-8">
-	<meta name="ProgId" content="Arcapada.Notepad.HTML.Editor" />
-	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-	<link rel="stylesheet" type="text/css" href="/css/siteman_styles.css" />
-	<link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
-	<link rel="stylesheet" href="/css/siteman_print.css" type="text/css" media="print" />
+	<meta name="ProgId" content="Arcapada.Notepad.HTML.Editor">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<link rel="stylesheet" href="/css/siteman_styles.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	<link rel="stylesheet" href="/css/siteman_print.css" media="print">
 </head>
 <body>
 <TABLE FRAME=VOID CELLSPACING=0 COLS=11 RULES=NONE BORDER=0>

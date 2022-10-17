@@ -2,7 +2,7 @@
 <table style="width:100%">
 <tr>
 <th width="100">Nama Point</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $point['nama']?>" size="40"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $point['nama']?>" size="40"></td>
 </tr>
 			<tr>
 				<th>Simbol</th>

@@ -12,19 +12,19 @@
  <table class="form">
  <tr>
  <th>Nama</th>
- <td><input name="pamong_nama" type="text" class="inputbox required" size="40" value="<?php echo unpenetration($pamong['pamong_nama'])?>"/></td>
+ <td><input name="pamong_nama" type="text" class="inputbox required" size="40" value="<?php echo unpenetration($pamong['pamong_nama'])?>"></td>
  </tr>
  <tr>
  <th>NIP</th>
- <td><input name="pamong_nip" type="text" class="inputbox" size="20" value="<?php echo $pamong['pamong_nip']?>"/></td>
+ <td><input name="pamong_nip" type="text" class="inputbox" size="20" value="<?php echo $pamong['pamong_nip']?>"></td>
  </tr>
  <tr>
  <th>NIK</th>
- <td><input name="pamong_nik" type="text" class="inputbox" size="40" value="<?php echo $pamong['pamong_nik']?>"/></td>
+ <td><input name="pamong_nik" type="text" class="inputbox" size="40" value="<?php echo $pamong['pamong_nik']?>"></td>
  </tr>
  <tr>
  <th>Jabatan</th>
- <td><input name="jabatan" type="text" class="inputbox" size="20" value="<?php echo unpenetration($pamong['jabatan'])?>"/></td>
+ <td><input name="jabatan" type="text" class="inputbox" size="20" value="<?php echo unpenetration($pamong['jabatan'])?>"></td>
  </tr> 
  <tr>
 				<th width="100">Status</th>

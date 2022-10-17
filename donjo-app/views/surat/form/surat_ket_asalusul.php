@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -92,28 +92,28 @@ padding:5px;
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama_ayah" type="text" class="inputbox " size="30"/></td>
+<td><input name="nama_ayah" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
-<td><input name="tempatlahir_ayah" type="text" class="inputbox " size="30"/> 
-<input name="tanggallahir_ayah" type="text" class="inputbox datepicker" size="20"/></td>
+<td><input name="tempatlahir_ayah" type="text" class="inputbox " size="30"> 
+<input name="tanggallahir_ayah" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Warganegara</th>
-<td><input name="wn_ayah" type="text" class="inputbox " size="15"/></td>
+<td><input name="wn_ayah" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 <th>Agama</th>
-<td><input name="agama_ayah" type="text" class="inputbox " size="15"/></td>
+<td><input name="agama_ayah" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 <th>Pekerjaan</th>
-<td><input name="pek_ayah" type="text" class="inputbox " size="30"/></td>
+<td><input name="pek_ayah" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tinggal</th>
-<td><input name="alamat_ayah" type="text" class="inputbox " size="40"/></td>
+<td><input name="alamat_ayah" type="text" class="inputbox " size="40"></td>
 </tr>
 <tr>
 <th>DATA IBU (Isi jika ibu bukan warga desa ini)</th>
@@ -121,28 +121,28 @@ padding:5px;
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama_ibu" type="text" class="inputbox " size="30"/></td>
+<td><input name="nama_ibu" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
-<td><input name="tempatlahir_ibu" type="text" class="inputbox " size="30"/> 
-<input name="tanggallahir_ibu" type="text" class="inputbox datepicker" size="20"/></td>
+<td><input name="tempatlahir_ibu" type="text" class="inputbox " size="30"> 
+<input name="tanggallahir_ibu" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Warganegara</th>
-<td><input name="wn_ibu" type="text" class="inputbox " size="15"/></td>
+<td><input name="wn_ibu" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 <th>Agama</th>
-<td><input name="agama_ibu" type="text" class="inputbox " size="15"/></td>
+<td><input name="agama_ibu" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 <th>Pekerjaan</th>
-<td><input name="pek_ibu" type="text" class="inputbox " size="30"/></td>
+<td><input name="pek_ibu" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tinggal</th>
-<td><input name="alamat_ibu" type="text" class="inputbox " size="40"/></td>
+<td><input name="alamat_ibu" type="text" class="inputbox " size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

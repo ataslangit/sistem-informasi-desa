@@ -1,8 +1,8 @@
 <!-- Start of Space Admin -->
 	<table class="inner">
 	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> <script type="text/javascript" src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script type="text/javascript">
+<td style="background:#fff;padding:0px;"> <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script>
 			var chart;
 			$(document).ready(function() {
 				chart = new Highcharts.Chart({

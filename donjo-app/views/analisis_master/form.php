@@ -1,6 +1,6 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
+<script>
 tinymce.init({
 selector: 'textarea',
 height: 600,
@@ -51,7 +51,7 @@ display:none;
 <table class="form">
 <tr>
 <th>Nama Analisis</th>
-<td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo $analisis_master['nama']?>"/></td>
+<td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo $analisis_master['nama']?>"></td>
 </tr>
 <tr>
 <th width="100">Subjek/Unit Analisis</th>
@@ -89,7 +89,7 @@ display:none;
 </tr>
 <tr>
 <th>Bilangan Pembagi</th>
-<td><input name="pembagi" type="text" class="inputbox number" size="20" value="<?php echo $analisis_master['pembagi']?>"/> *) untuk tanda koma "," gunakan tanda titik "." sebagai substitusinya.</td>
+<td><input name="pembagi" type="text" class="inputbox number" size="20" value="<?php echo $analisis_master['pembagi']?>"> *) untuk tanda koma "," gunakan tanda titik "." sebagai substitusinya.</td>
 </tr>
 <th>Analisis Terhubung</th><td>
 	<select name="id_child">

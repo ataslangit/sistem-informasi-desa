@@ -145,7 +145,7 @@ if ( ! function_exists('form_hidden'))
 
 		if ( ! is_array($value))
 		{
-			$form .= '<input type="hidden" name="'.$name.'" value="'.form_prep($value, $name).'" />'."\n";
+			$form .= '<input type="hidden" name="'.$name.'" value="'.form_prep($value, $name).'">'."\n";
 		}
 		else
 		{
@@ -177,7 +177,7 @@ if ( ! function_exists('form_input'))
 	{
 		$defaults = array('type' => 'text', 'name' => (( ! is_array($data)) ? $data : ''), 'value' => $value);
 
-		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+		return "<input "._parse_form_attributes($data, $defaults).$extra.">";
 	}
 }
 
@@ -401,7 +401,7 @@ if ( ! function_exists('form_checkbox'))
 			unset($defaults['checked']);
 		}
 
-		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+		return "<input "._parse_form_attributes($data, $defaults).$extra.">";
 	}
 }
 
@@ -448,7 +448,7 @@ if ( ! function_exists('form_submit'))
 	{
 		$defaults = array('type' => 'submit', 'name' => (( ! is_array($data)) ? $data : ''), 'value' => $value);
 
-		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+		return "<input "._parse_form_attributes($data, $defaults).$extra.">";
 	}
 }
 
@@ -469,7 +469,7 @@ if ( ! function_exists('form_reset'))
 	{
 		$defaults = array('type' => 'reset', 'name' => (( ! is_array($data)) ? $data : ''), 'value' => $value);
 
-		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+		return "<input "._parse_form_attributes($data, $defaults).$extra.">";
 	}
 }
 

@@ -85,38 +85,38 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 <th>Hari, Tanggal Mati</th>
 <td>
-<input name="hari" type="text" class="inputbox required" size="10"/>, 
-<input name="tanggal_mati" type="text" class="inputbox required datepicker" size="10"/>
+<input name="hari" type="text" class="inputbox required" size="10">, 
+<input name="tanggal_mati" type="text" class="inputbox required datepicker" size="10">
 </td>
 </tr>
 <tr>
 <th>Tempat Mati</th>
 <td>
-<input name="tempat_mati" type="text" class="inputbox required " size="15"/> 
+<input name="tempat_mati" type="text" class="inputbox required " size="15"> 
 </td>
 </tr>
 <tr>
 <th>Lama di Kandungan</th>
 <td>
-<input name="lama_kandungan" type="text" class="inputbox required " size="5"/> bulan
+<input name="lama_kandungan" type="text" class="inputbox required " size="5"> bulan
 </td>
 </tr>
 <tr>
 <th>Pelapor</th>
 <td>
-<input name="pelapor" type="text" class="inputbox required " size="30"/> 
+<input name="pelapor" type="text" class="inputbox required " size="30"> 
 </td>
 </tr>
 <tr>
 <th>Hubungan dengan yang Lahir Mati</th>
 <td>
-<input name="hubungan" type="text" class="inputbox required " size="20"/> 
+<input name="hubungan" type="text" class="inputbox required " size="20"> 
 </td>
 </tr>
 <tr>

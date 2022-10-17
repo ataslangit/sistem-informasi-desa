@@ -55,8 +55,8 @@
 </style>
 <form action="<?php echo $form_action?>" method="post" id="validasi">
 <div id="map"></div>
- <input type="hidden" name="lat" id="lat" />
- <input type="hidden" name="lng" id="lng" />
+ <input type="hidden" name="lat" id="lat">
+ <input type="hidden" name="lng" id="lng">
  <?php 
 ?>
 <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">

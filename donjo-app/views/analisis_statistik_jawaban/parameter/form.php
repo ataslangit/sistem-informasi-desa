@@ -15,11 +15,11 @@
 <table class="form">
 <tr>
 <th>Jawaban</th>
-<td><textarea name="jawaban" style="resize:none;width:500px;height:40px;"/><?php echo $analisis_parameter['jawaban']?></textarea></td>
+<td><textarea name="jawaban" style="resize:none;width:500px;height:40px;"><?php echo $analisis_parameter['jawaban']?></textarea></td>
 </tr>
 <tr>
 <th>Nilai</th>
-<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"/></td>
+<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"></td>
 </tr>
 </tr>  
 </table>

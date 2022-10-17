@@ -7,7 +7,7 @@
 		</tr>
 		<tr>
 			<th>Unggah Form Excel</th>
-			<td><input name="respon" type="file" /></td>
+			<td><input name="respon" type="file"></td>
 		</tr>
 	</table>
 	<div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">

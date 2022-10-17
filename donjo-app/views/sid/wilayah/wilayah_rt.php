@@ -28,7 +28,7 @@
 		<thead>
  <tr>
  <th width="5">No</th>
- <th width="5"><input type="checkbox" class="checkall"/></th>
+ <th width="5"><input type="checkbox" class="checkall"></th>
  <th width="100">Aksi</th>
 				<th width="50">RT</th>
 				<th width="150">NIK Ketua RT</th>
@@ -46,7 +46,7 @@
 		<tr>
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td width="5"><div class="uibutton-group">
 				<?php if($data['rt']!="-"){?><a href="<?php echo site_url("sid_core/form_rt/$id_dusun/$rw/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Ubah </span></a>

@@ -94,34 +94,34 @@ table.form.detail td{
 <?php }?>
 <tr>
 <th>Nomor Surat</th>
-<td><input name="nomor" type="text" class="inputbox required" size="12"/></td>
+<td><input name="nomor" type="text" class="inputbox required" size="12"></td>
 </tr>
 <tr>
 <th>Nama Anak</th>
-<td><input name="nama_anak" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama_anak" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal lahir</th>
-<td><input name="tempatlahir_anak" type="text" class="inputbox required" size="10"/> 
-<input name="tanggallahir_anak" type="text" class="inputbox required datepicker" size="10"/></td>
+<td><input name="tempatlahir_anak" type="text" class="inputbox required" size="10"> 
+<input name="tanggallahir_anak" type="text" class="inputbox required datepicker" size="10"></td>
 </tr>
 <tr>
 <th>Hari Lahir</th>
-<td><input name="harilahir_anak" type="text" class="inputbox required" size="5"/></td>
+<td><input name="harilahir_anak" type="text" class="inputbox required" size="5"></td>
 </tr>
 <tr>
 <th>Alamat</th>
-<td><input name="alamat_anak" type="text" class="inputbox required" size="40"/></td>
+<td><input name="alamat_anak" type="text" class="inputbox required" size="40"></td>
 </tr>
 <th>Nama Ayah</th>
-<td><input name="nama_ayah" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama_ayah" type="text" class="inputbox required" size="30"></td>
 </tr>
 <th>Nama Ibu</th>
-<td><input name="nama_ibu" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama_ibu" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Alamat</th>
-<td><input name="nama_ortu" type="text" class="inputbox required" size="40"/></td>
+<td><input name="nama_ortu" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

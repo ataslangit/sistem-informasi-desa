@@ -28,7 +28,7 @@ class CI_Typography {
 	// Block level elements that should not be wrapped inside <p> tags
 	var $block_elements = 'address|blockquote|div|dl|fieldset|form|h\d|hr|noscript|object|ol|p|pre|script|table|ul';
 
-	// Elements that should not have <p> and <br /> tags within them.
+	// Elements that should not have <p> and <br> tags within them.
 	var $skip_elements	= 'p|pre|ol|ul|dl|object|table|h\d';
 
 	// Tags we want the parser to completely ignore when splitting the string.
@@ -48,7 +48,7 @@ class CI_Typography {
 	 *
 	 * This function converts text, making it typographically correct:
 	 *	- Converts double spaces into paragraphs.
-	 *	- Converts single line breaks into <br /> tags
+	 *	- Converts single line breaks into <br> tags
 	 *	- Converts single and double quotes into correctly facing curly quote entities.
 	 *	- Converts three dots into ellipsis.
 	 *	- Converts double dashes into em-dashes.
@@ -166,7 +166,7 @@ class CI_Typography {
 				$chunk .= "\n";
 			}
 
-			//  Convert Newlines into <p> and <br /> tags
+			//  Convert Newlines into <p> and <br> tags
 			$str .= $this->_format_newlines($chunk);
 		}
 
@@ -216,7 +216,7 @@ class CI_Typography {
 						// some of the newlines get truncated, resulting in <p> tags
 						// starting immediately after <block> tags on the same line.
 						// This forces a newline after such occurrences, which looks much nicer.
-						"/><p>\n/"			=> ">\n<p>",
+						"><p>\n/"			=> ">\n<p>",
 
 						// Similarly, there might be cases where a closing </block> will follow
 						// a closing </p> tag, so we'll correct it by adding a newline in between
@@ -310,7 +310,7 @@ class CI_Typography {
 	/**
 	 * Format Newlines
 	 *
-	 * Converts newline characters into either <p> tags or <br />
+	 * Converts newline characters into either <p> tags or <br>
 	 *
 	 * @access	public
 	 * @param	string
@@ -331,8 +331,8 @@ class CI_Typography {
 		// Convert two consecutive newlines to paragraphs
 		$str = str_replace("\n\n", "</p>\n\n<p>", $str);
 
-		// Convert single spaces to <br /> tags
-		$str = preg_replace("/([^\n])(\n)([^\n])/", "\\1<br />\\2\\3", $str);
+		// Convert single spaces to <br> tags
+		$str = preg_replace("/([^\n])(\n)([^\n])/", "\\1<br>\\2\\3", $str);
 
 		// Wrap the whole enchilada in enclosing paragraphs
 		if ($str != "\n")

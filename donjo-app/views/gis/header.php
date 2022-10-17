@@ -1,42 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="id">
+
 <head>
 <title>Sistem Informasi Desa</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
-<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml" />
-<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml">
+<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style2.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" /></noscript> 
+<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
+<link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css"></noscript>
 
 
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script><script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=4&sensor=false"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/validasi.js"></script><script src="http://maps.googleapis.com/maps/api/js?v=4&sensor=false"></script>
 <!---->
 <!--[if lte IE 6]>
-<style type="text/css">
+<style>
 img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
-</style> 
-<link href="=base_url()?>assets/css/ie6.css" rel="stylesheet" type="text/css" />
+</style>
+<link href="=base_url()?>assets/css/ie6.css" rel="stylesheet">
 <![endif]-->
 
-<style type="text/css">
+<style>
 .iconic {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -69,15 +70,15 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 </head>
 <body>
 <div class="ui-layout-north" id="header">
-	<div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""/></a></div>
+	<div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""></a></div>
 	<div id="sid-judul">SID Sistem Informasi Desa</div>
 	<div id="sid-info"><?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>, <?php echo unpenetration($desa['nama_kabupaten'])?></div>
 	<div id="userbox" class="wrapper-dropdown-3" tabindex="1">
  <div class="avatar">
 		<?php if($foto){?>
-			<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt=""/>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt="">
 		<?php }else{?>
-			<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 		<?php }?>
 	</div>
 	<div class="info">
@@ -93,7 +94,7 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 	<li><a href="<?php echo site_url()?>surat"><i class="icon-print icon-large"></i>Cetak Surat</a></li>
 	<li><a href="<?php echo site_url()?>analisis"><i class="icon-dashboard icon-large"></i>Analisis</a></li>
 <?php }?>
-<?php if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>	
+<?php if($_SESSION['grup']==1 OR $_SESSION['grup']==2){?>
 	<?php if($_SESSION['grup']==1){?>
 		<li><a href="<?php echo site_url()?>man_user/clear"><i class="icon-user icon-large"></i>Pengguna</a></li>
 		<li><a href="<?php echo site_url()?>database"><i class="icon-hdd icon-large"></i>Database</a></li>
@@ -103,6 +104,6 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 <?php }?>
 <li><a href="<?php echo site_url()?>siteman"><i class="icon-off icon-large"></i>Log Out</a></li>
 </ul>
-		
+
  </div>
 </div>

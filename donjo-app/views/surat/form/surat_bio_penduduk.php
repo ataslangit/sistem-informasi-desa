@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -91,43 +91,43 @@ padding:5px;
 </tr>
 <tr>
 	<th>Alamat Sebelumnya</th>
-	<td><input name="alamat_sebelumnya" type="text" class="inputbox " size="40"/></td>
+	<td><input name="alamat_sebelumnya" type="text" class="inputbox " size="40"></td>
 </tr>
 <tr>
 	<th>No Paspor</th>
-	<td><input name="no_paspor" type="text" class="inputbox " size="30"/></td>
+	<td><input name="no_paspor" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tanggal Berakhir Paspor</th>
-	<td><input name="tgl_berakhir_paspor" type="text" class="inputbox datepicker" size="20"/></td>
+	<td><input name="tgl_berakhir_paspor" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Akte Kelahiran</th>
-	<td><input name="akte_kelahiran" type="text" class="inputbox " size="30"/></td>
+	<td><input name="akte_kelahiran" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>No Akte Kelahiran</th>
-	<td><input name="no_akte_kelahiran" type="text" class="inputbox " size="30"/></td>
+	<td><input name="no_akte_kelahiran" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Akte Perkawinan /Buku Nikah</th>
-	<td><input name="akte_perkawinan" type="text" class="inputbox " size="30"/></td>
+	<td><input name="akte_perkawinan" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>No Akte Perkawinan /Buku Nikah</th>
-	<td><input name="no_akte_perkawinan" type="text" class="inputbox " size="30"/></td>
+	<td><input name="no_akte_perkawinan" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tanggal Akte Perkawinan /Buku Nikah</th>
-	<td><input name="tgl_akte_perkawinan" type="text" class="inputbox datepicker" size="20"/></td>
+	<td><input name="tgl_akte_perkawinan" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Akte Perceraian</th>
-	<td><input name="akte_perceraian" type="text" class="inputbox " size="30"/></td>
+	<td><input name="akte_perceraian" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tanggal Perceraian</th>
-	<td><input name="tgl_perceraian" type="text" class="inputbox datepicker" size="20"/></td>
+	<td><input name="tgl_perceraian" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

@@ -1,4 +1,4 @@
-<p>Salah satu fungsi aplikasi Sistem Informasi Desa (SID) adalah untuk mengoptimalkan pelayanan administrasi publik berbasis data. Pelayanan administrasi publik yang bisa dilakukan dengan aplikasi SID meliputi pelayanan olah data dan pelayanan olah dokumen/surat. Pelayanan olah data dapat dilakukan dengan memanfaatkan fungsi-fungsi statistik yang dapat dimanfaatkan untuk laporan dan rujukan pengambilan keputusan. Pelayanan olah dokumen bisa dilakukan dari data yang telah diolah dan/atau dari pengelolaan administrasi surat-menyurat.<br /></p>
+<p>Salah satu fungsi aplikasi Sistem Informasi Desa (SID) adalah untuk mengoptimalkan pelayanan administrasi publik berbasis data. Pelayanan administrasi publik yang bisa dilakukan dengan aplikasi SID meliputi pelayanan olah data dan pelayanan olah dokumen/surat. Pelayanan olah data dapat dilakukan dengan memanfaatkan fungsi-fungsi statistik yang dapat dimanfaatkan untuk laporan dan rujukan pengambilan keputusan. Pelayanan olah dokumen bisa dilakukan dari data yang telah diolah dan/atau dari pengelolaan administrasi surat-menyurat.<br></p>
 <p>Aplikasi SID menghimpun seluruh data penduduk desa, sehingga bisa digunakan untuk data dasar pembuatan surat administrasi kependudukan. Pelayanan administrasi persuratan itu dapat dikelola oleh pemerintah desa di kantor pemerintah desa masing-masing. Tata cara pemanfaatan module cetak surat aplikasi SID dalam alur pelayanan publik di kantor desa secara garis besar dapat dilakukan dengan urutan sebagai berikut:</p>
 <p>
 	<ol>
@@ -15,7 +15,7 @@
 <hr>
 <p>PANDUAN KODE EKSPORT SURAT</p>
 <div style="background-color:#fefecc;padding:10px;border:1px solid #aaaa77;">
-<p>PRINSIP FUNGSI<br />[kata_template] -&gt; akan digantikan dengan data di bawah ini (sebelah kanan)<br /><br />DATA SURAT<br />[kode_surat] -> $surat[kode_surat]<br>
+<p>PRINSIP FUNGSI<br>[kata_template] -&gt; akan digantikan dengan data di bawah ini (sebelah kanan)<br><br>DATA SURAT<br>[kode_surat] -> $surat[kode_surat]<br>
 [judul_surat]",strtoupper("surat ".$surat['nama']),$buffer);<br>
 [JUDUL_SURAT]",strtoupper("surat ".$surat['nama']),$buffer);<br>
 [tgl_surat] -> $tgl<br>

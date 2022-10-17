@@ -38,7 +38,7 @@
  <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
  <div class="table-panel top">
  <div class="right">
- <input name="cari_kontak" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari_kontak?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('sms/search_kontak')?>');$('#'+'mainform').submit();}" />
+ <input name="cari_kontak" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari_kontak?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('sms/search_kontak')?>');$('#'+'mainform').submit();}">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('sms/search_kontak')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
  </div>
  </div>
@@ -46,7 +46,7 @@
 		<thead>
 		 	<tr>
 				<th width="20">No</th>
-				<th width="15"><input type="checkbox" class="checkall"/></th>
+				<th width="15"><input type="checkbox" class="checkall"></th>
 				<th width="30">Aksi</th>
 				<th width="100">Nama</th>
 			 	<th width="25">Jenis Kelamin</th>	
@@ -59,7 +59,7 @@
 			<tr>
 		 		<td align="center" width="2"><?php echo $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 				</td>
 		 		<td align="center">
 				<div class="uibutton-group">

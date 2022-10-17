@@ -83,19 +83,19 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 <th>Keterangan</th>
 <td>
-<input name="keterangan" type="text" class="inputbox required" size="40"/>
+<input name="keterangan" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Berlaku</th>
 <td>
-<input name="berlaku_dari" type="text" class="inputbox required datepicker " size="20"/> sampai <input name="berlaku_sampai" type="text" class="inputbox required datepicker " size="20"/>
+<input name="berlaku_dari" type="text" class="inputbox required datepicker " size="20"> sampai <input name="berlaku_sampai" type="text" class="inputbox required datepicker " size="20">
 </td>
 </tr>
 <tr>

@@ -181,7 +181,7 @@ if ( ! function_exists('br'))
 {
 	function br($num = 1)
 	{
-		return str_repeat("<br />", $num);
+		return str_repeat("<br>", $num);
 	}
 }
 
@@ -335,7 +335,7 @@ if ( ! function_exists('link_tag'))
 				}
 			}
 
-			$link .= "/>";
+			$link .= ">";
 		}
 		else
 		{
@@ -408,7 +408,7 @@ if ( ! function_exists('meta'))
 			$content	= ( ! isset($meta['content']))	? ''	: $meta['content'];
 			$newline	= ( ! isset($meta['newline']))	? "\n"	: $meta['newline'];
 
-			$str .= '<meta '.$type.'="'.$name.'" content="'.$content.'" />'.$newline;
+			$str .= '<meta '.$type.'="'.$name.'" content="'.$content.'">'.$newline;
 		}
 
 		return $str;

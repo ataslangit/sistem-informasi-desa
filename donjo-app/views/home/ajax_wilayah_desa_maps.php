@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
 <script>
 	function PolygonCreator(map){
 		this.map=map;this.pen=new Pen(this.map);
@@ -89,7 +89,7 @@
 <div id="map"></div>
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
 	<div class="uibutton-group">
-		<input class="uibutton" id="reset" value="Reset" type="button"/>
+		<input class="uibutton" id="reset" value="Reset" type="button">
 		<button id="showData" class="uibutton confirm" type="button" onclick="$('#window-wil').dialog('close');$('p.wil').show();">Simpan</button>
 	</div>
 </div>

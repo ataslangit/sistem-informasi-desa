@@ -9,7 +9,7 @@
 <table class="form">
 <tr>
 <th width="120">Judul Widget</th>
-<td><input class="inputbox" type="text" name="judul" value="<?php echo $artikel['judul']?>" size="60"/></td>
+<td><input class="inputbox" type="text" name="judul" value="<?php echo $artikel['judul']?>" size="60"></td>
 </tr>
 <tr>
 <tr>
@@ -33,64 +33,64 @@
 <th class="top">Gambar</th>
 <td>
 <div class="gallerybox-avatar">
-<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar']?>" alt="" width="200"/>
+<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar']?>" alt="" width="200">
 </div>
 </td>
 </tr>
 <?php }?>
 <tr>
 <th>Dokumen Lampiran</th>
-<td><input type="file" name="dokumen" /> <span style="color: #aaa;"></span></td>
+<td><input type="file" name="dokumen"> <span style="color: #aaa;"></span></td>
 </tr>
 <tr>
 <th>Nama Dokumen (akan menjadi link unduh/download)</th>
-<td><input size="30" type="text" name="link_dokumen" value="<?php echo $artikel['link_dokumen']?>"/></td>
+<td><input size="30" type="text" name="link_dokumen" value="<?php echo $artikel['link_dokumen']?>"></td>
 </tr>
 <tr>
 <th>Unggah/Upload Gambar Utama</th>
-<td><input type="file" name="gambar" /> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
+<td><input type="file" name="gambar"> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
 </tr>
 <tr>
 <th class="top">Gambar</th>
 <td>
 <?php if($artikel['gambar1']){?> 
 <div class="gallerybox-avatar">
-<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar1']?>" alt="" width="200"/>
+<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar1']?>" alt="" width="200">
 </div>
 </td>
 </tr>
 <?php }?>
 <tr>
 <th>Gambar Tambahan</th>
-<td><input type="file" name="gambar1" /> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
+<td><input type="file" name="gambar1"> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
 </tr>
 <tr>
 <th class="top">Gambar</th>
 <td>
 <?php if($artikel['gambar2']){?> 
 <div class="gallerybox-avatar">
-<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar2']?>" alt="" width="200"/>
+<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar2']?>" alt="" width="200">
 </div>
 </td>
 </tr>
 <?php }?>
 <tr>
 <th>Gambar Tambahan</th>
-<td><input type="file" name="gambar2" /> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
+<td><input type="file" name="gambar2"> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
 </tr>
 <tr>
 <th class="top">Gambar</th>
 <td>
 <?php if($artikel['gambar3']){?> 
 <div class="gallerybox-avatar">
-<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar3']?>" alt="" width="200"/>
+<img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar3']?>" alt="" width="200">
 </div>
 </td>
 </tr>
 <?php }?>
 <tr>
 <th>Gambar Tambahan</th>
-<td><input type="file" name="gambar3" /> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
+<td><input type="file" name="gambar3"> <span style="color: #aaa;">(Kosongi jika tidak ingin mengubah gambar)</span></td>
 </tr>
 </table>
 </div>

@@ -2,7 +2,7 @@
 <table style="width:100%">
 <tr>
 <th width="100">Nama line</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $line['nama']?>" size="40"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $line['nama']?>" size="40"></td>
 </tr>
 <tr>
 	<th>Warna</th>
@@ -18,4 +18,4 @@
  </div>
 </div>
 </form>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>
+<script src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>

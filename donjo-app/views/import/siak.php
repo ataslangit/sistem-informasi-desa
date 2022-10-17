@@ -32,9 +32,9 @@
 									<form id="mainform" action="<?php echo $form_action; ?>" method="post" enctype="multipart/form-data">
 									<table>
 										<tr><td>Berkas DK :</td>
-											<td><input type="file" name="file_dk" id="file_dk"/></td></tr>
+											<td><input type="file" name="file_dk" id="file_dk"></td></tr>
 										<tr><td>Berkas BW :</td>
-											<td><input type="file" name="file_bw" id="file_bw"/></td></tr>
+											<td><input type="file" name="file_bw" id="file_bw"></td></tr>
 										<tr><td>&nbsp;</td>
 											<td>
 										<a onclick="formAction('mainform','<?php echo $form_action ?>')" class="uibutton special" target="confirm2" message="Proses Import Sedang Berlangsung!!!" header="Harap Tunggu"> Import </a>

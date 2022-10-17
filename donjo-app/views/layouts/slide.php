@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 	sts_bs("JWS",[20080623,"<?php echo base_url()?>assets/files/artikel/","","blank.gif",7,1,1,1,"630px","right",0,2,150,90,0,90,1,0,90,2000,2,15,0,"",-2,0],["ItBS","ItBW","ItBC","GBgC","GBgI","GBgR"]);
 	sts_tbd([0],["BS","BW","BC","CnSz","LtCn","RtCn","RbCn","LbCn","TBgC","TBgI","TBgR","RiBgC","RiBgI","RiBgR","BtBgC","BtBgI","BtBgR","LBgC","LBgI","LBgR"]);
 	<?php $i=0;foreach($slide AS $data){

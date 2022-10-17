@@ -341,7 +341,7 @@ if ( ! function_exists('safe_mailto'))
 		$x = array_reverse($x);
 		ob_start();
 
-	?><script type="text/javascript">
+	?><script>
 	//<![CDATA[
 	var l=new Array();
 	<?php

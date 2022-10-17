@@ -83,31 +83,31 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="20"/>
+<input name="nomor" type="text" class="inputbox required" size="20">
 </td>
 </tr>
 <tr>
 <th>Hari</th>
 <td>
-<input name="hari" type="text" class="inputbox required" size="10"/>
+<input name="hari" type="text" class="inputbox required" size="10">
 </td>
 </tr>
 <tr>
 <th>Tanggal</th>
 <td>
-<input name="tgl_keg" type="text" class="inputbox required datepicker " size="20"/>
+<input name="tgl_keg" type="text" class="inputbox required datepicker " size="20">
 </td>
 </tr>
 <tr>
 <th>Tempat</th>
 <td>
-<input name="lokasi_keg" type="text" class="inputbox required" size="60"/>
+<input name="lokasi_keg" type="text" class="inputbox required" size="60">
 </td>
 </tr>
 <tr>
 <th>Barang yang hilang</th>
 <td>
-<input name="keperluan" type="text" class="inputbox required" size="80"/>
+<input name="keperluan" type="text" class="inputbox required" size="80">
 </td>
 </tr>
 <tr>

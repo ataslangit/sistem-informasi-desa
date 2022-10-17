@@ -28,7 +28,7 @@
 <thead>
 <tr>
 <th>No</th>
-<th><input type="checkbox" class="checkall"/></th>
+<th><input type="checkbox" class="checkall"></th>
 <th width="150">Aksi</th>
 <th align="center">Nama</th>
 <th align="center">Enabled</th>
@@ -41,7 +41,7 @@
 <tr>
 <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td><div class="uibutton-group">
 <a href="<?php echo site_url("point/ajax_add_sub_point/$point/$data[id]")?>" class="uibutton icon-edit tipsy south" target="ajax-modalc" rel="window" header="Edit Point" title="Edit Data">Edit</a><a href="<?php echo site_url("point/delete_sub_point/$point/$data[id]")?>" class="uibutton icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data">Hapus</a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url("point/point_lock_sub_point/$point/$data[id]")?>" class="uibutton icon-lock tipsy south" title="Enable point"></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("point/point_unlock_sub_point/$point/$data[id]")?>" class="uibutton icon-unlock tipsy south" title="Disable point">Aktif</a><?php endif;?>

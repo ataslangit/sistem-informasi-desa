@@ -12,7 +12,7 @@
 		<tr>
 			<td width="150">Upload Template</td>
 			<td>
-				<input type="file" name="foto" /><span style="color: #aaa;">(File harus dalam format .rtf)</span>
+				<input type="file" name="foto"><span style="color: #aaa;">(File harus dalam format .rtf)</span>
 			</td>
 		</tr>
 	</table>

@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/validasi.js"></script>
 <form action="<?php echo $form_action?>" method="post" id="validasi">
  <div class="ui-layout-north panel">
  </div>
@@ -10,7 +10,7 @@
 		<thead>
 		 	<tr>
 				<th width="10">No</th>
-				<th width="15"><input type="checkbox" class="checkall"/></th>
+				<th width="15"><input type="checkbox" class="checkall"></th>
 				<th width="100">Nama </th>
 			 	<th width="25">Jenis Kelamin</th>	
 			 	<th width="25">Alamat</th>	
@@ -22,7 +22,7 @@
 			<tr>
 		 		<td align="center" width="2"><?php echo $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 				</td>
 				 <td><?php echo unpenetration($data['nama'])?></td>
 				 <td><?php echo $data['sex']?></td>

@@ -29,7 +29,7 @@
 		<thead>
  <tr>
  <th width="5">No</th>
- <th width="5"><input type="checkbox" class="checkall"/></th>
+ <th width="5"><input type="checkbox" class="checkall"></th>
  <th width="120">Aksi</th>
 				<th width="50">RW</th>
 				<th width="150">NIK Ketua RW</th>
@@ -47,7 +47,7 @@
 		<tr>
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td width="5"><div class="uibutton-group">
 <a href="<?php echo site_url("sid_core/sub_rt/$id_dusun/$data[rw]")?>" class="uibutton tipsy south" title="Rincian Sub Wilayah"><span class="icon-list icon-large"> Rincian </span></a>

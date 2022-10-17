@@ -31,7 +31,7 @@ table.form.detail td{
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 <table class="form">
 <div class="block"><head>
-		<script type="text/javascript">
+		<script>
 $(function () {
  var chart;
  
@@ -80,7 +80,7 @@ $(function () {
 		</script>
 	</head>
 	<body>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
 <div id="container" style="min-width: 500px; height: 500px; margin: 0 auto"></div>
 	</body>
 </table>

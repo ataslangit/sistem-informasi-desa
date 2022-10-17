@@ -38,7 +38,7 @@
  <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
  <div class="table-panel top">
  <div class="right">
- <input name="cari_anggota" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari_anggota?>" title="Search.."/>
+ <input name="cari_anggota" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari_anggota?>" title="Search..">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url("sms/search_anggota/$grup[nama_grup]")?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
  </div>
  </div>
@@ -46,7 +46,7 @@
 		<thead>
 		 	<tr>
 				<th width="10">No</th>
-				<th width="15"><input type="checkbox" class="checkall"/></th>
+				<th width="15"><input type="checkbox" class="checkall"></th>
 				<th width="15" >Aksi</th>
 				<th width="100">Nama Anggota</th>
 			 	<th width="25">Jenis Kelamin</th>	
@@ -59,7 +59,7 @@
 			<tr>
 		 		<td align="center" width="2"><?php echo $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id_kontak']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id_kontak']?>">
 				</td>
 		 		<td align="center">
 				<?php 

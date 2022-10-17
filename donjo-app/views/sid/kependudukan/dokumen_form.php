@@ -11,17 +11,17 @@
 		<tr>
 			<td width="90">Nama / Jenis Dokumen</td>
 			<td>
-				<input class="inputbox" type="text" name="nama" size="40" />
+				<input class="inputbox" type="text" name="nama" size="40">
 			</td>
 		</tr>
 		<tr>
 			<td>Berkas Dokumen</td>
 			<td>
-				<input type="file" name="satuan" />
+				<input type="file" name="satuan">
 			</td>
 		</tr>
 	</table>
-<input type="hidden" name="id_pend" value="<?php echo $penduduk['id']?>"/>
+<input type="hidden" name="id_pend" value="<?php echo $penduduk['id']?>">
 <div class="ui-layout-south panel bottom bawah">
 	<div class="right">
  <div class="uibutton-group">

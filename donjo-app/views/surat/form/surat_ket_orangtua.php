@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -92,34 +92,34 @@ padding:5px;
 <tr>
 <th>Nama Lengkap</th>
 <td>
-<input name="nama_ayah" type="text" class="inputbox required" size="40"/>
+<input name="nama_ayah" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
 <td>
-<input name="tempat_lahir_ayah" type="text" class="inputbox required" size="30"/> 
-<input name="tgl_lahir_ayah" type="text" class="inputbox required datepicker" size="30"/>
+<input name="tempat_lahir_ayah" type="text" class="inputbox required" size="30"> 
+<input name="tgl_lahir_ayah" type="text" class="inputbox required datepicker" size="30">
 </td>
 </tr><tr>
 <th>Warganegara</th>
 <td>
-<input name="wn_ayah" type="text" class="inputbox required" size="40"/>
+<input name="wn_ayah" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Agama</th>
 <td>
-<input name="agama_ayah" type="text" class="inputbox required" size="40"/>
+<input name="agama_ayah" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Pekerjaan</th>
 <td>
-<input name="pekerjaan_ayah" type="text" class="inputbox required" size="40"/>
+<input name="pekerjaan_ayah" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Tempat Tinggal</th>
 <td>
-<input name="tempat_tinggal_ayah" type="text" class="inputbox required" size="40"/>
+<input name="tempat_tinggal_ayah" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
@@ -128,34 +128,34 @@ padding:5px;
 <tr>
 <th>Nama Lengkap</th>
 <td>
-<input name="nama_ibu" type="text" class="inputbox required" size="40"/>
+<input name="nama_ibu" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
 <td>
-<input name="tempat_lahir_ibu" type="text" class="inputbox required" size="30"/> 
-<input name="tgl_lahir_ibu" type="text" class="inputbox required datepicker" size="20"/>
+<input name="tempat_lahir_ibu" type="text" class="inputbox required" size="30"> 
+<input name="tgl_lahir_ibu" type="text" class="inputbox required datepicker" size="20">
 </td>
 </tr><tr>
 <th>Warganegara</th>
 <td>
-<input name="wn_ibu" type="text" class="inputbox required" size="40"/>
+<input name="wn_ibu" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Agama</th>
 <td>
-<input name="agama_ibu" type="text" class="inputbox required" size="40"/>
+<input name="agama_ibu" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Pekerjaan</th>
 <td>
-<input name="pekerjaan_ibu" type="text" class="inputbox required" size="40"/>
+<input name="pekerjaan_ibu" type="text" class="inputbox required" size="40">
 </td>
 </tr><tr>
 <th>Tempat Tinggal</th>
 <td>
-<input name="tempat_tinggal_ibu" type="text" class="inputbox required" size="40"/>
+<input name="tempat_tinggal_ibu" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>

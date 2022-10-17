@@ -8,7 +8,7 @@
 		</tr>
 		<tr>
 			<th>File Master Analisis</th>
-			<td><input name="userfile" type="file" /></td>
+			<td><input name="userfile" type="file"></td>
 		</tr>
 	</table>
 	<div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">

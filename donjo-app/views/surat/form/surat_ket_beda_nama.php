@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -91,44 +91,44 @@ padding:5px;
 </tr>
 <tr>
 <th>Identitas dalam (nama kartu)</th>
-<td><input name="kartu" type="text" class="inputbox required" size="15"/></td>
+<td><input name="kartu" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Nomor identitas</th>
-<td><input name="identitas" type="text" class="inputbox required" size="15"/></td>
+<td><input name="identitas" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox required" size="30"/> 
-<input name="tanggallahir" type="text" class="inputbox required datepicker" size="20"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox required" size="30"> 
+<input name="tanggallahir" type="text" class="inputbox required datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Jenis Kelamin</th>
-<td><input name="sex" type="text" class="inputbox required" size="10"/></td>
+<td><input name="sex" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 <th>Alamat</th>
-<td><input name="alamat" type="text" class="inputbox required" size="40"/></td>
+<td><input name="alamat" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Agama</th>
-<td><input name="agama" type="text" class="inputbox required" size="15"/></td>
+<td><input name="agama" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Pekerjaan</th>
-<td><input name="pekerjaan" type="text" class="inputbox required" size="15"/></td>
+<td><input name="pekerjaan" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Keterangan</th>
-<td><input name="keterangan" type="text" class="inputbox required" size="60"/></td>
+<td><input name="keterangan" type="text" class="inputbox required" size="60"></td>
 </tr>
 <tr>
 <th>Perbedaan</th>
-<td><input name="perbedaan" type="text" class="inputbox required" size="40"/></td>
+<td><input name="perbedaan" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

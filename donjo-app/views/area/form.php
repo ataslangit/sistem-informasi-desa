@@ -11,7 +11,7 @@
 <table class="form">
 <tr>
 <th width="100">Nama area / Porperti</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $area['nama']?>" size="60"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $area['nama']?>" size="60"></td>
 </tr>
 <tr>
 	<th>Kategori</th>
@@ -28,14 +28,14 @@
 <tr>
 	<th>Foto</th>
 	<td>
-		<img src="<?php echo base_url()?>assets/files/gis/area/sedang_<?php echo $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;" />
+		<img src="<?php echo base_url()?>assets/files/gis/area/sedang_<?php echo $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">
 	</td>
 </tr>
 <?php }?>
 <tr>
 	<th>Ganti Foto</th>
 	<td>
-		<input class="inputbox" type="file" name="foto" value="<?php echo $area['foto']?>" size="30"/>
+		<input class="inputbox" type="file" name="foto" value="<?php echo $area['foto']?>" size="30">
 		)* Kosongi jika tidak ingin merubah Foto.
 	</td>
 </tr>

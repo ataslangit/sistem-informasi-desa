@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -92,34 +92,34 @@ padding:5px;
 <tr>
 <th>Nama Lengkap</th>
 <td>
-<input name="nama_pasangan" type="text" class="inputbox required" size="30"/>
+<input name="nama_pasangan" type="text" class="inputbox required" size="30">
 </td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
 <td>
-<input name="tempatlahir_pasangan" type="text" class="inputbox required" size="30"/> 
-<input name="tanggallahir_pasangan" type="text" class="inputbox required datepicker" size="20"/>
+<input name="tempatlahir_pasangan" type="text" class="inputbox required" size="30"> 
+<input name="tanggallahir_pasangan" type="text" class="inputbox required datepicker" size="20">
 </td>
 </tr><tr>
 <th>Warganegara</th>
 <td>
-<input name="wn_pasangan" type="text" class="inputbox required" size="15"/>
+<input name="wn_pasangan" type="text" class="inputbox required" size="15">
 </td>
 </tr><tr>
 <th>Agama</th>
 <td>
-<input name="agama_pasangan" type="text" class="inputbox required" size="15"/>
+<input name="agama_pasangan" type="text" class="inputbox required" size="15">
 </td>
 </tr><tr>
 <th>Pekerjaan</th>
 <td>
-<input name="pekerjaan_pasangan" type="text" class="inputbox required" size="15"/>
+<input name="pekerjaan_pasangan" type="text" class="inputbox required" size="15">
 </td>
 </tr><tr>
 <th>Tempat Tinggal</th>
 <td>
-<input name="alamat_pasangan" type="text" class="inputbox required" size="40"/>
+<input name="alamat_pasangan" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>

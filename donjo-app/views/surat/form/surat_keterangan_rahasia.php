@@ -104,7 +104,7 @@ tr .hide{
 											<thead>
 												<tr>
 													<th>No</th>
-													<th><input type="checkbox" class="checkall"/></th>
+													<th><input type="checkbox" class="checkall"></th>
 													<th align="left" width='70'>NIK</th>
 													<th align="left" width='100'>Nama</th>
 													<th align="left" width='30' align="center">JK</th>
@@ -122,7 +122,7 @@ tr .hide{
 												<tr>
 													<td align="center" width="2"><?php echo $i?></td>
 													<td align="center" width="5">
-														<input type="checkbox" name="id_cb[]" value="'<?php echo $data['nik']?>'" />
+														<input type="checkbox" name="id_cb[]" value="'<?php echo $data['nik']?>'">
 													</td>
 													<td><?php echo $data['nik']?></td>
 													<td><?php echo unpenetration($data['nama'])?></td>
@@ -150,7 +150,7 @@ tr .hide{
 						?>
 						<tr>
 							<th width="200">Nomor Surat</th>
-							<td ><input name="nomor" type="text" class="inputbox " size="12"/></td>
+							<td ><input name="nomor" type="text" class="inputbox " size="12"></td>
 						</tr>
 						<tr>
 							<th>Keperluan</th>
@@ -173,7 +173,7 @@ tr .hide{
 						<tr>
 							<th>Berlaku</th>
 							<?php $skrg = date("d-m-Y")?>
-							<td><input name="berlaku_dari" type="text" class="inputbox  datepicker" size="20" value="<?php echo $skrg;?>"/> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker" size="20"/></td>
+							<td><input name="berlaku_dari" type="text" class="inputbox  datepicker" size="20" value="<?php echo $skrg;?>"> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker" size="20"></td>
 						</tr>
 						<tr>
 							<th>Staf/ Jabatan Pemerintah Desa</th>

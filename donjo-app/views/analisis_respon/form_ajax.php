@@ -74,10 +74,10 @@ $(function(){
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<tr><td id="">
-				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value="<?php echo $data2['jawaban']?>"/></div>
+				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value="<?php echo $data2['jawaban']?>"></div>
 				<?php }else{?>
 				<tr><td id="">
-				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value=""/></div>
+				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value=""></div>
 				<?php }?>
 				
 			<?php }elseif($data['id_tipe']==4){?>
@@ -85,10 +85,10 @@ $(function(){
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<tr><td id="">
-				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value="<?php echo $data2['jawaban']?>"/></div>
+				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value="<?php echo $data2['jawaban']?>"></div>
 				<?php }else{?>
 				<tr><td id="">
-				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value=""/></div>
+				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value=""></div>
 				<?php }?>
 				
 			<?php }?>

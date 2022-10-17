@@ -14,9 +14,9 @@
 				<p>
 				Proses restore database SID disarankan menggunakan perangkat PhpMyAdmin untuk meminimalkan kesalahan. Silakan klik tombol berikut untuk masuk ke halaman PhpMyadmin.
 				</p>
-					<input type="hidden" name="pma_username" value="root" />
-					<input type="hidden" name="pma_password" value="combine" />
-					<input type="submit" class="uibutton special" value="Restore Database: PhpMyAdmin" /> 
+					<input type="hidden" name="pma_username" value="root">
+					<input type="hidden" name="pma_password" value="combine">
+					<input type="submit" class="uibutton special" value="Restore Database: PhpMyAdmin"> 
 			</form> 
 </div>
 </div>

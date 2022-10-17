@@ -2,12 +2,12 @@
 <table style="width:100%">
 <tr>
 <th width="100">Nama garis</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $garis['nama']?>" size="40"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $garis['nama']?>" size="40"></td>
 </tr>
 <tr>
 	<th>Simbol</th>
 	<td>
-		<input class="inputbox" type="file" name="simbol" value="<?php echo $garis['simbol']?>" size="20"/>
+		<input class="inputbox" type="file" name="simbol" value="<?php echo $garis['simbol']?>" size="20">
 	</td>
 </tr>
 </table>
