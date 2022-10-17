@@ -34,8 +34,8 @@ define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE',	'w+b'); // truncates existing file
 define('FOPEN_WRITE_CREATE',					'ab');
 define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
-define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+define('VERSI_SID', '3.11.0');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

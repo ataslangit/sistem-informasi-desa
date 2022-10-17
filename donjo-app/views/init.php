@@ -73,7 +73,7 @@ box-shadow:0px 0px 15px #777;
 </script>
 <div id="full">
 <h1>BERHASIL!<h1>
-<h2>Anda baru saja menginstall aplikasi SID 3.10 dengan lancar.<h2>
+<h2>Anda baru saja menginstall aplikasi SID <?= VERSI_SID ?> dengan lancar.<h2>
 <a href ="<?php echo site_url();?>siteman" class="uibutton special">Mulai SID </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 </body>

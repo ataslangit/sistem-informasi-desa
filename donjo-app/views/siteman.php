@@ -2,7 +2,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
- <title>SID 3.10 Login</title>
+ <title>SID <?= VERSI_SID ?> Login</title>
  <link rel="stylesheet" href="<?php echo base_url()?>assets/css/login-new.css" media="screen" type="text/css" />
 </head>
 <body>
@@ -18,7 +18,7 @@
 		</div>
 		</a>
 		<div id="mainlogin">
-		<div id="or">3.10</div>
+		<div id="or"><?= VERSI_SID ?></div>
 		<h1>Masukkan Username dan Password</h1>
 		<form action="<?php echo site_url('siteman/auth')?>" method="post">
 		<input name="username" type="text" placeholder="username" value="" required>

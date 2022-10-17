@@ -5,7 +5,7 @@ $details = "<rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:sy=\"http:/
 	<link>". base_url() ."</link>
 	<description>Situs Web Desa ". $data_config["nama_desa"] ." Kec. ". $data_config["nama_kecamatan"] ." Kab. ". $data_config["nama_kabupaten"] ." - ". $data_config["nama_propinsi"] ."</description>
 	<language>ID</language>
-	<generator>Sistem Informasi Desa v3.10</generator>
+	<generator>Sistem Informasi Desa v". VERSI_SID ."</generator>
 	<pubDate>".date(DATE_RFC2822)."</pubDate>
 	<image>
 		<title>Desa ". $data_config["nama_desa"] ."</title>
