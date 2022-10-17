@@ -17,7 +17,7 @@
 					}else{
 						echo "<legend>Daftar Program Bantuan dengan Sasaran ".$sasaran[$tampil]."</legend>";
 					}
-					
+
 					if($_SESSION["success"]==1){
 						echo "
 						<div>
@@ -25,25 +25,25 @@
 						</div>";
 						$_SESSION["success"]==0;
 					}
-					
+
 					?>
-					
+
 					<div class="table-panel top">
 						<table class="list">
 							<thead><tr><th>#</th><th></th><th>Nama Program</th><th>Masa Berlaku</th><th>Sasaran</th></tr></thead>
 							<tbody>
-							<?php 
+							<?php
 							$nomer = 0;
-							foreach ($program as $item): 
+							foreach ($program as $item):
 								$nomer++;
 							?>
 								<tr>
 									<td class="angka" style="width:40px;"><?php echo $nomer; ?></td>
 									<td style="width:120px;">
 										<div class="uibutton-group">
-											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/detail/'.$item["id"].'/'); ?>" title="Detail"><span class="icon-list icon-large"></span> Detail</a>
-											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/edit/'.$item["id"].'/'); ?>" title="Ubah"><span class="icon-pencil icon-large"></span></a>
-											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/hapus/'.$item["id"].'/'); ?>" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
+											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/detail/'.$item["id"].'/'); ?>" title="Detail"><span class="fa fa-list"></span> Detail</a>
+											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/edit/'.$item["id"].'/'); ?>" title="Ubah"><span class="fa fa-pencil"></span></a>
+											<a class="uibutton tipsy south" href="<?php echo site_url('program_bantuan/hapus/'.$item["id"].'/'); ?>" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
 										</div>
 									</td>
 									<td><a href="<?php echo site_url('program_bantuan/detail/'.$item["id"].'/')?>"><?php echo $item["nama"] ?></a></td>

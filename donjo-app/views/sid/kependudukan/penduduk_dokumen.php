@@ -1,12 +1,12 @@
 <div id="pageC">
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel">
 			<h3>Dokumen / Kelengkpan Penduduk - <?php echo $penduduk['nama']?> [<?php echo $penduduk['nik']?>]</h3>
  <div class="left">
  <div class="uibutton-group">
- <a header="Form Dokumen" target="ajax-modal" rel="dokumen" href="<?php echo site_url("penduduk/dokumen_form/$penduduk[id]")?>" class="uibutton"><span class="icon-plus-sign icon-large"></span> Tambah Dokumen</a>
- <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("penduduk/delete_all_dokumen/$penduduk[id]")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus
+ <a header="Form Dokumen" target="ajax-modal" rel="dokumen" href="<?php echo site_url("penduduk/dokumen_form/$penduduk[id]")?>" class="uibutton"><span class="fa fa-plus"></span> Tambah Dokumen</a>
+ <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("penduduk/delete_all_dokumen/$penduduk[id]")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus
  </div>
  </div>
  </div>
@@ -37,7 +37,7 @@
 				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td><div class="uibutton-group">
-				<a href="<?php echo site_url("penduduk/delete_dokumen/$penduduk[id]/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"><span></a>
+				<a href="<?php echo site_url("penduduk/delete_dokumen/$penduduk[id]/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"><span></a>
 			 </td>
 			 <td><?php echo $data['nama']?></td>
 			 <td><a href="<?php echo base_url()?>assets/files/dokumen/<?php echo urlencode($data['satuan'])?>" ><?php echo $data['satuan']?></a></td>
@@ -50,7 +50,7 @@
 	<br>
  <div class="left">
  <div class="uibutton-group">
-				<a href="<?php echo site_url("penduduk/form/1/0/$penduduk[id]")?>" class="uibutton icon prev"><span class="icon-prev icon-large"></span> Kembali</a>
+				<a href="<?php echo site_url("penduduk/form/1/0/$penduduk[id]")?>" class="uibutton icon prev"><span class="fa fa-previous"></span> Kembali</a>
  </div>
  </div>
  </div>

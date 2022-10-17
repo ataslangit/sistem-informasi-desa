@@ -26,7 +26,7 @@
 <?php $this->load->view('analisis_master/left',$data);?>
 <div class="content-header">
 </div>
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
 	<div class="ui-layout-north panel">
 	</div>
@@ -49,14 +49,14 @@
 			</tr>
 		</table>
 	<div class="table-panel top">
-	<div class="left">	
+	<div class="left">
 		<select name="dusun" onchange="formAction('mainform','<?php echo site_url('analisis_respon/dusun')?>')">
 			<option value="">Dusun</option>
 			<?php foreach($list_dusun AS $data){?>
 				<option value="<?php echo $data['dusun']?>" <?php if($dusun == $data['dusun']) :?>selected<?php endif?>><?php echo $data['dusun']?></option>
 			<?php }?>
 		</select>
-		
+
 		<?php if($dusun){?>
 			<select name="rw" onchange="formAction('mainform','<?php echo site_url('analisis_respon/rw')?>')">
 				<option value="">RW</option>
@@ -65,7 +65,7 @@
 				<?php }?>
 			</select>
 		<?php }?>
-		
+
 		<?php if($rw){?>
 		 <select name="rt" onchange="formAction('mainform','<?php echo site_url('analisis_respon/rt')?>')">
 			<option value="">RT</option>
@@ -74,17 +74,17 @@
 			<?php }?>
 		 </select>
 		<?php }?>
-		
+
 		<select name="isi" onchange="formAction('mainform','<?php echo site_url('analisis_respon/isi')?>')">
 			<option value=""> --- Semua --- </option>
 			<option value="1" <?php if($isi == 1) :?>selected<?php endif?>>Sudah Terinput</option>
 			<option value="2" <?php if($isi == 2) :?>selected<?php endif?>>Belum Terinput</option>
 		</select>
-		<a href="<?php echo site_url("analisis_respon/data_ajax")?>" class="uibutton special tipsy south" title="Fungsi Import harap digunakan secara seksama" target="ajax-modal" rel="window" header="Unduh Form Rujukan Import"><span class="icon-file-text icon-large">&nbsp;</span>Import</a>
+		<a href="<?php echo site_url("analisis_respon/data_ajax")?>" class="uibutton special tipsy south" title="Fungsi Import harap digunakan secara seksama" target="ajax-modal" rel="window" header="Unduh Form Rujukan Import"><span class="fa fa-download">&nbsp;</span>Import</a>
 	</div>
 	<div class="right">
 		<input name="cari" id="cari" type="text" class="inputbox help tipped" size="40" value="<?php echo $cari?>" title="Cari.." onkeypress="if(event.keyCode == 13) $('#'+'mainform').attr('action','<?php echo site_url('analisis_respon/search')?>');$('#'+'mainform').submit();}">
-		<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_respon/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+		<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_respon/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
 	</div>
 	</div>
 	<table class="list">
@@ -99,7 +99,7 @@
 			<?php else: ?>
 				<th align="left" width='120'><a href="<?php echo site_url("analisis_respon/index/$p/1")?>"><?php echo $nomor?><span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 			<?php endif; ?>
-			
+
 	 		<?php if($o==4): ?>
 				<th align="left" width='250'><a href="<?php echo site_url("analisis_respon/index/$p/3")?>"><?php echo $nama?><span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 			<?php elseif($o==3): ?>
@@ -107,13 +107,13 @@
 			<?php else: ?>
 				<th align="left" width='250'><a href="<?php echo site_url("analisis_respon/index/$p/3")?>"><?php echo $nama?><span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 			<?php endif; ?>
-			
+
 				<th width='50'>L/P</th>
 				<th width='100'>Dusun</th>
 				<th width='30'>RW</th>
 				<th width='30'>RT</th>
 				<th width='50'>Status</th>
-			
+
 				<th></th>
 			</tr>
 		</thead>
@@ -123,7 +123,7 @@
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td>
 				<div class="uibutton-group">
-					<a href="<?php echo site_url("analisis_respon/kuisioner/$p/$o/$data[id]")?>" class="uibutton south"><span class="icon-list icon-large"> Input Data</span></a>
+					<a href="<?php echo site_url("analisis_respon/kuisioner/$p/$o/$data[id]")?>" class="uibutton south"><span class="fa fa-list"> Input Data</span></a>
 				</div>
 			 </td>
 			<td><?php echo $data['nid']?></td>
@@ -141,7 +141,7 @@
 </div>
 </form>
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
+<div class="left">
 <div class="table-info">
 	<form id="paging" action="<?php echo site_url('analisis_respon')?>" method="post">
 		<a href="<?php echo site_url()?>analisis_respon/leave" class="uibutton icon prev">Kembali</a>

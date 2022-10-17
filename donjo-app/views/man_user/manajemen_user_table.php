@@ -9,17 +9,17 @@
 <div id="pageC">
 	<table class="inner">
 <tr style="vertical-align:top">
-		<td style="background:#fff;padding:0px;"> 
+		<td style="background:#fff;padding:0px;">
 <div class="content-header">
  <h3>Manajemen Pengguna</h3>
 </div>
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel">
  <div class="left">
  <div class="uibutton-group">
- <a href="<?php echo site_url('man_user/form')?>" class="uibutton tipsy south" title="Tambah Data" ><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah Penguna Baru</a>
- <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("man_user/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data
+ <a href="<?php echo site_url('man_user/form')?>" class="uibutton tipsy south" title="Tambah Data" ><span class="fa fa-plus">&nbsp;</span>Tambah Penguna Baru</a>
+ <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("man_user/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Data
  </div>
  </div>
  </div>
@@ -36,7 +36,7 @@
  </div>
  <div class="right">
  <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('man_user/search')?>');$('#'+'mainform').submit();}">
- <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('man_user/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+ <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('man_user/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
  </div>
  </div>
  <table class="list">
@@ -52,7 +52,7 @@
 							<?php else: ?>
 								<th align="left" width='100'><a href="<?php echo site_url("man_user/index/$p/1")?>">Username<span class="ui-icon ui-icon-triangle-2-n-s"></span></a></th>
 							<?php endif; ?>
-							
+
 							<?php if($o==4): ?>
 								<th align="left"><a href="<?php echo site_url("man_user/index/$p/3")?>">Nama Pengguna<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 							<?php elseif($o==3): ?>
@@ -60,7 +60,7 @@
 							<?php else: ?>
 								<th align="left"><a href="<?php echo site_url("man_user/index/$p/3")?>">Nama Pengguna<span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 							<?php endif; ?>
-							
+
 							<?php if($o==6): ?>
 								<th align="left" width='100'><a href="<?php echo site_url("man_user/index/$p/5")?>">Level<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 							<?php elseif($o==5): ?>
@@ -69,7 +69,7 @@
 								<th align="left" width='100'><a href="<?php echo site_url("man_user/index/$p/5")?>">Level<span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 							<?php endif; ?>
 								<th align="left" width='160' align="center">Last Login</th>
- 
+
 			</tr>
 		</thead>
 		<tbody>
@@ -82,12 +82,12 @@
 				<?php endif; ?>
 			</td>
  <td><div class="uibutton-group">
- <a href="<?php echo site_url("man_user/form/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Ubah </span></a>
+ <a href="<?php echo site_url("man_user/form/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"> Ubah </span></a>
  <?php if($data['username']!='admin'){?>
-							<a href="<?php echo site_url("man_user/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
+							<a href="<?php echo site_url("man_user/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
 						<?php if($data['active'] == '0'): ?>
-							<a href="<?php echo site_url('man_user/user_unlock/'.$data['id'])?>" class="uibutton tipsy south" title="Aktivasi User"><span class="icon-lock icon-large"></span></a>
-						<?php elseif($data['active'] == '1'): ?><a href="<?php echo site_url('man_user/user_lock/'.$data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan User"><span class="icon-unlock icon-large"></span></a>
+							<a href="<?php echo site_url('man_user/user_unlock/'.$data['id'])?>" class="uibutton tipsy south" title="Aktivasi User"><span class="fa fa-lock"></span></a>
+						<?php elseif($data['active'] == '1'): ?><a href="<?php echo site_url('man_user/user_lock/'.$data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan User"><span class="fa fa-unlock"></span></a>
 			<?php endif; ?>
 			<?php }?></div>
  </td>
@@ -102,7 +102,7 @@
  </div>
 	</form>
  <div class="ui-layout-south panel bottom">
- <div class="left"> 
+ <div class="left">
 		<div class="table-info">
  <form id="paging" action="<?php echo site_url('man_user')?>" method="post">
 		 <label>Tampilkan</label>
@@ -127,7 +127,7 @@
 			<?php endif; ?>
  </div>
  <div class="uibutton-group">
- 
+
 				<?php for($i=$paging->start_link;$i<=$paging->end_link;$i++): ?>
 				<a href="<?php echo site_url("man_user/index/$i/$o")?>" <?php jecho($p,$i,"class='uibutton special'")?> class="uibutton"><?php echo $i?></a>
 				<?php endfor; ?>

@@ -53,12 +53,12 @@
 </div>
 
 <ul class="dropdown" tabindex="1">
-	<li><a href="<?php echo site_url()?>hom_desa"><i class="icon-home icon-large"></i>SID Home</a></li>
-	<li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="icon-user icon-large"></i>Setting User</a></li>
+	<li><a href="<?php echo site_url()?>hom_desa"><i class="fa fa-home"></i>SID Home</a></li>
+	<li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="fa fa-user"></i>Setting User</a></li>
 	<?php if($_SESSION['grup']==1){?>
-	<li><a href="<?php echo site_url()?>modul/clear"><i class="icon-gear icon-large"></i>Pengaturan</a></li>
+	<li><a href="<?php echo site_url()?>modul/clear"><i class="fa fa-cogs"></i>Pengaturan</a></li>
 	<?php }?>
-	<li><a href="<?php echo site_url()?>siteman"><i class="icon-off icon-large"></i>Log Out</a></li>
+	<li><a href="<?php echo site_url()?>siteman"><i class="fa fa-sign-out"></i>Log Out</a></li>
 </ul>
 
 </div>

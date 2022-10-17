@@ -20,20 +20,20 @@
 				</ul>
 			</div>
 		</fieldset>
-		
+
 	</td>
 		</td>
-		<td style="background:#fff;padding:5px;"> 
+		<td style="background:#fff;padding:5px;">
 <div class="content-header">
  <h3>Kirim Pesan</h3>
 </div>
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel">
  <div class="left">
  <div class="uibutton-group">
- <a href="<?php echo site_url('sms/form/0/0/4')?>" class="uibutton tipsy south" title="Tulis Pesan Baru" target="ajax-modalx" rel="window" header="Tulis Pesan Baru"><span class="icon-comment icon-large">&nbsp;</span>Tulis Pesan Baru</a>
- <a href="<?php echo site_url('sms/broadcast/0/0/2')?>" class="uibutton tipsy south" title="Broadcast Pesan" target="ajax-modalx" rel="window" header="Tulis Pesan Broadcast"><span class="icon-comments icon-large">&nbsp;</span>Kirim Pesan ke Banyak</a>
+ <a href="<?php echo site_url('sms/form/0/0/4')?>" class="uibutton tipsy south" title="Tulis Pesan Baru" target="ajax-modalx" rel="window" header="Tulis Pesan Baru"><span class="fa fa-comment">&nbsp;</span>Tulis Pesan Baru</a>
+ <a href="<?php echo site_url('sms/broadcast/0/0/2')?>" class="uibutton tipsy south" title="Broadcast Pesan" target="ajax-modalx" rel="window" header="Tulis Pesan Broadcast"><span class="fa fa-comments">&nbsp;</span>Kirim Pesan ke Banyak</a>
  </div>
  </div>
  </div>
@@ -41,7 +41,7 @@
  <table class="list">
 		<thead>
  <tr>
- <th width="20">No</th> 
+ <th width="20">No</th>
  <th width="150">Nama</th>
  <?php if($o==2): ?>
 				<th align="left" width='100'><a href="<?php echo site_url("sms/index/$p/1")?>">Nomor HP<span class="ui-icon ui-icon-triangle-1-n"></span></a></th>
@@ -50,10 +50,10 @@
 			<?php else: ?>
 				<th align="left" width='100'><a href="<?php echo site_url("sms/index/$p/1")?>">Nomor HP<span class="ui-icon ui-icon-triangle-2-n-s"></span></a></th>
 			<?php endif; ?>
-			
+
 			<th align="left">Isi Pesan</th>
-			
-			
+
+
 			<?php if($o==6): ?>
 				<th align="left" width='160'><a href="<?php echo site_url("sms/index/$p/5")?>">Dikirim<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 			<?php elseif($o==5): ?>
@@ -67,11 +67,11 @@
  <?php $no=1;foreach($main as $data): ?>
 		<tr>
  <td align="center" width="2"><?php echo $no;$no++; ?></td>
-			
+
  <td><?php echo unpenetration($data['nama'])?></td>
  <td><?php echo $data['DestinationNumber']?></td>
  <td><?php echo $data['TextDecoded']?></td>
- 
+
  <td><?php echo tgl_indo2($data['SendingDateTime'])?></td>
 		 </tr>
  <?php endforeach; ?>
@@ -80,7 +80,7 @@
  </div>
 	</form>
  <div class="ui-layout-south panel bottom">
- <div class="left"> 
+ <div class="left">
 		<div class="table-info">
  <form id="paging" action="<?php echo site_url('sms/outbox')?>" method="post">
 		 <label>Tampilkan</label>
@@ -105,7 +105,7 @@
 			<?php endif; ?>
  </div>
  <div class="uibutton-group">
- 
+
 				<?php for($i=$paging->start_link;$i<=$paging->end_link;$i++): ?>
 				<a href="<?php echo site_url("sms/outbox/$i/$o")?>" <?php jecho($p,$i,"class='uibutton special'")?> class="uibutton"><?php echo $i?></a>
 				<?php endfor; ?>

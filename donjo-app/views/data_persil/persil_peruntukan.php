@@ -46,7 +46,7 @@ echo "
 echo "</form>
 </fieldset>";
 ?>
-<?php 
+<?php
 if($persil_peruntukan){
 	if(count($persil_peruntukan)>0){
 		echo "
@@ -62,9 +62,9 @@ if($persil_peruntukan){
 			<td>".$nomer."</td>
 			<td>
 				<div class=\"uibutton-group\">
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/peruntukan/".$key) ."\" title=\"Detail\"><span class=\"icon-list icon-large\"></span> Detail</a>
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/persil_peruntukan/".$key) ."\" title=\"Ubah\"><span class=\"icon-pencil icon-large\"></span></a>
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/hapus_persil_peruntukan/".$key) ."\" title=\"Hapus Data\" target=\"confirm\" message=\"Apakah Anda Yakin?\" header=\"Hapus Data\"><span class=\"icon-trash icon-large\"></span></a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/peruntukan/".$key) ."\" title=\"Detail\"><span class=\"fa fa-list\"></span> Detail</a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/persil_peruntukan/".$key) ."\" title=\"Ubah\"><span class=\"fa fa-pencil\"></span></a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/hapus_persil_peruntukan/".$key) ."\" title=\"Hapus Data\" target=\"confirm\" message=\"Apakah Anda Yakin?\" header=\"Hapus Data\"><span class=\"fa fa-trash-o\"></span></a>
 				</div>
 			</td>
 			<td><a href=\"".site_url('data_persil/jenis/'.$key.'/')."\">".$item[0]."</a></td>

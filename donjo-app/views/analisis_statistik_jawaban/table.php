@@ -8,7 +8,7 @@
 </script>
 <div id="pageC">
 <?php $this->load->view('analisis_master/left',$data);?>
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
 <div class="ui-layout-north panel">
 <div class="left">
@@ -19,14 +19,14 @@
 <div class="table-panel top">
 <div class="left">
 <select name="tipe" onchange="formAction('mainform','<?php echo site_url('analisis_statistik_jawaban/tipe')?>')">
-<option value="">-- Filter by Tipe Indikator --</option>				
+<option value="">-- Filter by Tipe Indikator --</option>
 					<?php foreach($list_tipe AS $data){?>
 					<option value="<?php echo $data['id']?>" <?php if($tipe == $data['id']) :?>selected<?php endif?>><?php echo $data['tipe']?></option>
 					<?php }?>
 </select>
 				&nbsp;
 <select name="kategori" onchange="formAction('mainform','<?php echo site_url('analisis_statistik_jawaban/kategori')?>')">
-<option value="">-- Filter by Kategori Indikator --</option>				
+<option value="">-- Filter by Kategori Indikator --</option>
 					<?php foreach($list_kategori AS $data){?>
 					<option value="<?php echo $data['id']?>" <?php if($kategori == $data['id']) :?>selected<?php endif?>><?php echo $data['kategori']?></option>
 					<?php }?>
@@ -37,14 +37,14 @@
 <option value="1" <?php if($filter==1) :?>selected<?php endif?>>Ya</option>
 <option value="2" <?php if($filter==2) :?>selected<?php endif?>>Tidak</option>
 </select>
-				
+
 				<select name="dusun" onchange="formAction('mainform','<?php echo site_url('analisis_statistik_jawaban/dusun')?>')">
 					<option value="">Dusun</option>
 					<?php foreach($list_dusun AS $data){?>
 					<option value="<?php echo $data['dusun']?>" <?php if($dusun == $data['dusun']) :?>selected<?php endif?>><?php echo ununderscore(unpenetration($data['dusun']))?></option>
 					<?php }?>
 				</select>
-				
+
 				<?php if($dusun){?>
 				<select name="rw" onchange="formAction('mainform','<?php echo site_url('analisis_statistik_jawaban/rw')?>')">
 					<option value="">RW</option>
@@ -53,7 +53,7 @@
 					<?php }?>
 				</select>
 				<?php }?>
-				
+
 				<?php if($rw){?>
 				<select name="rt" onchange="formAction('mainform','<?php echo site_url('analisis_statistik_jawaban/rt')?>')">
 					<option value="">RT</option>
@@ -62,13 +62,13 @@
 					<?php }?>
 				</select>
 				<?php }?>
-				
-<a href="<?php echo site_url("analisis_statistik_jawaban/cetak/$o")?>" class="uibutton special tipsy south" title="Cetak Data" target="_blank"><span class="icon-print icon-large">&nbsp;</span>Cetak</a>
-<a href="<?php echo site_url("analisis_statistik_jawaban/excel/$o")?>" class="uibutton special tipsy south" title="Unduh" target="_blank"><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
+
+<a href="<?php echo site_url("analisis_statistik_jawaban/cetak/$o")?>" class="uibutton special tipsy south" title="Cetak Data" target="_blank"><span class="fa fa-print">&nbsp;</span>Cetak</a>
+<a href="<?php echo site_url("analisis_statistik_jawaban/excel/$o")?>" class="uibutton special tipsy south" title="Unduh" target="_blank"><span class="fa fa-download">&nbsp;</span>Unduh</a>
 </div>
 <div class="right">
 <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('analisis_statistik_jawaban/search')?>');$('#'+'mainform').submit();}">
-<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_statistik_jawaban/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('analisis_statistik_jawaban/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
 </div>
 </div>
 <table class="list">
@@ -82,7 +82,7 @@
 			<?php else: ?>
 				<th align="left"><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/3")?>">Pertanyaan/Indikator<span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 			<?php endif; ?>
-			
+
 			<th align="left">Total</th>
 	 		<?php if($o==2): ?>
 				<th align="left" width="10"><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/1")?>">Kode<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
@@ -91,11 +91,11 @@
 			<?php else: ?>
 				<th align="left" width="10"><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/1")?>">Kode<span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 			<?php endif; ?>
-			
+
 			<th align="left" colspan="2">Jawaban</th>
 			<th align="left">Responden</th>
 			<th align="right">Jumlah</th>
-			
+
 			<?php if($o==6): ?>
 				<th align="left" width='100'><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/5")?>">Tipe Pertanyaan<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 			<?php elseif($o==5): ?>
@@ -111,7 +111,7 @@
 			<?php else: ?>
 				<th align="left" width='100'><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/5")?>">Kategori/Variabel<span class="ui-icon ui-icon-triangle-2-n-s">&nbsp;</span></a></th>
 			<?php endif; ?>
-			
+
 			<?php if($o==2): ?>
 				<th align="left" width='100'><a href="<?php echo site_url("analisis_statistik_jawaban/index/$p/1")?>">Aksi Analisis<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 			<?php elseif($o==1): ?>
@@ -122,7 +122,7 @@
 			</tr>
 		</thead>
 		<tbody>
-<?php 
+<?php
 $total = 0;
 foreach($main as $data): ?>
 	<tr>
@@ -150,7 +150,7 @@ foreach($main as $data): ?>
 		<td><?php echo $data['kategori']?></td>
 		<td><?php echo $data['act_analisis']?></td>
 	</tr>
-<?php 
+<?php
 if($data['jumlah'] != "-"){
 	$total += $data['jumlah'];
 }
@@ -163,14 +163,14 @@ endforeach; ?>
 		<td align="right"><b><?php echo $total; ?></b></td>
 		<td colspan="3"></td>
 	</tr>
-	<?php } ?>	
-	
+	<?php } ?>
+
 </tbody>
 </table>
 </div>
 	</form>
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
+<div class="left">
 <div class="table-info">
 <form id="paging" action="<?php echo site_url('analisis_statistik_jawaban')?>" method="post">
 <select name="per_page" onchange="$('#paging').submit()" >

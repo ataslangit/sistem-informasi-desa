@@ -1,4 +1,4 @@
- @import url('font-awesome.css'); 
+ @import url('font-awesome.min.css');
 
 /* DEMO 3 */
 
@@ -69,7 +69,7 @@
     right: 15px;
     border-width: 0 6px 6px 6px;
     border-style: solid;
-    border-color: #fff transparent;    
+    border-color: #fff transparent;
 
 }
 
@@ -82,7 +82,7 @@
     right: 13px;
     border-width: 0 8px 8px 8px;
     border-style: solid;
-    border-color: rgba(0,0,0,0.1) transparent;    
+    border-color: rgba(0,0,0,0.1) transparent;
 }
 
 .wrapper-dropdown-3 .dropdown li a {
@@ -550,8 +550,8 @@ select[multiple].form-group-lg .form-control {
   margin-top: 5px;
   margin-bottom: 10px;
   color: #737373;
-} 
- 
+}
+
 .form-control {
   border-radius: 0px !important;
   box-shadow: none;
