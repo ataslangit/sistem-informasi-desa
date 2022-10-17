@@ -12,7 +12,7 @@
 <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['nama_desa']))?></h4>
 <h5 class="kop2"><?php echo (unpenetration($desa['alamat_kantor']))?> </h5>
 <div style="text-align: center;">
-<hr /></div></div>
+<hr></div></div>
 </table>
 <div class="clear"></div>
 <div id="isi3">

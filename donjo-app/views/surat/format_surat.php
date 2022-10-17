@@ -36,7 +36,7 @@ $('#'+'main').submit();
 				<div>
 		<div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 			<div class="teks">
-			<p>Jenis-jenis surat dapat diubah, ditambah, atau dikurangi dengan menggunakan fungsi pengaturan di Menu Master Surat.<br /></p>
+			<p>Jenis-jenis surat dapat diubah, ditambah, atau dikurangi dengan menggunakan fungsi pengaturan di Menu Master Surat.<br></p>
 				<?php foreach($surat_favorit AS $data){?>
 				<a class="csurat" href="<?php echo site_url()?>surat/form/<?php echo $data['url_surat']?>">
 					<img src="<?php echo base_url()?>assets/images/cpanel/edit-select-all-1.png">

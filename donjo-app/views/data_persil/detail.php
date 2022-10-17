@@ -65,14 +65,14 @@ echo "
 					<dd>: ".$persil_detail["nopersil"]."</dd>
 				<dt>Keterangan Persil</dt>
 					<dd>: ".$persil_jenis[$persil_detail["persil_jenis_id"]][0]."
-					<br />".$persil_jenis[$persil_detail["persil_jenis_id"]][1]."</dd>
+					<br>".$persil_jenis[$persil_detail["persil_jenis_id"]][1]."</dd>
 				<dt>Luas Tanah</dt>
 					<dd>: ".$persil_detail["luas"]." m<sup>2</sup></dd>
 				<dt>Kelas Tanah</dt>
 					<dd>: ".$persil_detail["kelas"]."</dd>
 				<dt>Peruntukan</dt>
 					<dd>: ".$persil_peruntukan[$persil_detail["persil_peruntukan_id"]][0]."
-					<br />".$persil_peruntukan[$persil_detail["persil_peruntukan_id"]][1]."</dd>
+					<br>".$persil_peruntukan[$persil_detail["persil_peruntukan_id"]][1]."</dd>
 				<dt>Nomor SPPT PBB</dt>
 					<dd>: ".$persil_detail["no_sppt_pbb"]."</dd>
 				<dt>Lokasi</dt>

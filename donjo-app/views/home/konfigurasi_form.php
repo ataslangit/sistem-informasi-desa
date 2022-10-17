@@ -77,7 +77,7 @@
  </tr>
  <tr>
  <th>Google API Key</th>
- <td><input name="gapi_key" type="text" class="inputbox" size="45" value="<?php echo $main['gapi_key']?>"><br /> *) Kode unik yang didapatkan dari pendaftaran akun Google Maps. Klik di sini untuk petunjuk lebih jelas: <a target='_blank' href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google API Key</a></td></td>
+ <td><input name="gapi_key" type="text" class="inputbox" size="45" value="<?php echo $main['gapi_key']?>"><br> *) Kode unik yang didapatkan dari pendaftaran akun Google Maps. Klik di sini untuk petunjuk lebih jelas: <a target='_blank' href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google API Key</a></td></td>
  </tr>
  </table>
  </div>

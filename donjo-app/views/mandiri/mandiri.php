@@ -83,7 +83,7 @@
 <script>
 	$(function(){
 	<?php if($_SESSION['pin']){ ?>
-		modalpin('pin','PIN WARGA','Berikut adalah kode PIN Anda. Sila catat atau ingat dengan baik. Kode PIN ini bersifat rahasia dan hanya bisa dilihat satu kali ini. Jika lupa PIN, lapor kepada perangkat desa untuk dilakukan reset. <br /> <h4>Kode PIN : <?php echo $_SESSION['pin']; ?></h4>');
+		modalpin('pin','PIN WARGA','Berikut adalah kode PIN Anda. Sila catat atau ingat dengan baik. Kode PIN ini bersifat rahasia dan hanya bisa dilihat satu kali ini. Jika lupa PIN, lapor kepada perangkat desa untuk dilakukan reset. <br> <h4>Kode PIN : <?php echo $_SESSION['pin']; ?></h4>');
 	<?php }?>
 		
 	function modalpin(id,title,message,width,height){

@@ -38,7 +38,7 @@ $("#nik_detail").show();
  <th>Ketua RW Sebelumnya</th>
  <td>
  <?php echo $individu['nama']?>
-					<br />NIK - <?php echo $individu['nik']?>
+					<br>NIK - <?php echo $individu['nik']?>
  </td>
  </tr>
 			<?php }?>

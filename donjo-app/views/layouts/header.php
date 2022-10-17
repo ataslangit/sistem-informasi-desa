@@ -65,8 +65,8 @@
 								<div class="intube">
 									<div id="siteTitle">
 										<h1>Desa <?php echo unpenetration($desa['nama_desa'])?></h1>
-										<h2>Kecamatan <?php echo unpenetration($desa['nama_kecamatan'])?><br />
-										Kabupaten <?php echo unpenetration($desa['nama_kabupaten'])?><br />
+										<h2>Kecamatan <?php echo unpenetration($desa['nama_kecamatan'])?><br>
+										Kabupaten <?php echo unpenetration($desa['nama_kabupaten'])?><br>
                                                                                 Provinsi <?php echo unpenetration($desa['nama_propinsi'])?></h2>
 										<h3><?php echo unpenetration($desa['alamat_kantor'])?></h3>
 									</div>

@@ -73,7 +73,7 @@
 </div>	
 <div class="themes comments">
 <h3>Post Komentar :</h3>
-<br/>
+<br>
  <table width=100%>
  <form name='form' action="<?=site_url("first/add_comment/$single_artikel[id]")?>" method=POST onSubmit=\"return validasi(this)\">
  <tr class="komentar"><td>Nama</td><td> <input type=text name="owner" size=20 maxlength=30></td></tr>
@@ -81,7 +81,7 @@
  <tr class="komentar"><td valign=top>Komentar</td><td> <textarea name="komentar" style='width: 300px; height: 100px;'></textarea></td></tr>
  <tr><td>&nbsp;</td><td><input type="submit" value="Kirim"></td></tr>
 		</form>
-		</table><br />
+		</table><br>
 </div>
 	<input type="button" value="Kembali" onclick="self.history.back()">
 </div>

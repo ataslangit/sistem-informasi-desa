@@ -6,7 +6,7 @@
 </div>
 <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 	<div style="max-width:640px;text-align:justify;border:1px solid #cecece;padding:10px 10px 10px 4px;background:#efffef;">
-	<?php echo $analisis_master['deskripsi']?><br /><br /><br />
+	<?php echo $analisis_master['deskripsi']?><br><br><br>
 	</div>
 </div>
 <div class="ui-layout-south panel bottom">

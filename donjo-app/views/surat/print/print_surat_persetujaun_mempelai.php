@@ -12,7 +12,7 @@
 <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['nama_desa']))?></h4>
 <h5 class="kop2"><?php echo (unpenetration($desa['alamat_kantor']))?> </h5>
 <div style="text-align: center;">
-<hr /></div></div>
+<hr></div></div>
 <div align="center"><h4 class="kop">SURAT PERSETUJUAN MEMPELAI</h4></div>
 <div align="center"><h4 class="kop"><u>NO: <?php echo $input['nomor']?></u></h4></div>
 </table>

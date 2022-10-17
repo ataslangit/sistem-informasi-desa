@@ -15,7 +15,7 @@
 <h4 class="kop">KECAMATAN <?php echo strtoupper(unpenetration($desa['desa']['nama_kecamatan']))?> </h4>
 <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['desa']['nama_desa']))?></h4>
 <h5 class="kop2"><?php echo (unpenetration($desa['desa']['alamat_kantor']))?> </h5>
-<hr />
+<hr>
 </div>
 <div align="center">
 <br>

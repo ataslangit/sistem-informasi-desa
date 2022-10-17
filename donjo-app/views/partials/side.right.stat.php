@@ -61,7 +61,7 @@ if($data_config['lat']!= "0"){
 			</script>		
 		<?php
 		echo "
-			<a href=\"//www.google.co.id/maps/@".$data_config['lat'].",".$data_config['lng']."z?hl=id\" target=\"_blank\">tampilkan dalam peta lebih besar</a><br />
+			<a href=\"//www.google.co.id/maps/@".$data_config['lat'].",".$data_config['lng']."z?hl=id\" target=\"_blank\">tampilkan dalam peta lebih besar</a><br>
 		</div>
 	</div>
 	";

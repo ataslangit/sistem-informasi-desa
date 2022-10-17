@@ -17,7 +17,7 @@ if($single_artikel["id"]){
 		
 			if($single_artikel['dokumen']!=''){
 				if(is_file("assets/files/dokumen/".$single_artikel['dokumen'])) {
-					echo "<p>Dokumen Lampiran : <a target=\"_blank\" href=\"".base_url()."assets/files/dokumen/".$single_artikel['dokumen']."\" title=\"\">".$single_artikel['link_dokumen']."</a></p><br/>";
+					echo "<p>Dokumen Lampiran : <a target=\"_blank\" href=\"".base_url()."assets/files/dokumen/".$single_artikel['dokumen']."\" title=\"\">".$single_artikel['link_dokumen']."</a></p><br>";
 				}
 			}
 			if($single_artikel['gambar1']!=''){

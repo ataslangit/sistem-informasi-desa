@@ -36,7 +36,7 @@ $('#id_kepala').flexbox(nik, {
  <th>Ketua RT Sebelumnya</th>
  <td>
  <?php echo $individu['nama']?>
-					<br />NIK - <?php echo $individu['nik']?>
+					<br>NIK - <?php echo $individu['nik']?>
  </td>
  </tr>
 			<?php }?>
