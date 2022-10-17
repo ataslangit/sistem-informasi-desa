@@ -41,7 +41,7 @@
 	</head>
 <body>
 <div id="full">
-<h1>Instalasi Database SID 3.10</h1>
+<h1>Instalasi Database SID <?= VERSI_SID ?></h1>
 <hr>
 <div style="width:400px;margin:0px auto;">
 <h4>Klik “Lanjut” untuk memulai proses instalasi database SID. Proses instalasi memerlukan waktu singkat. Setelah selesai, Anda akan mendapatkan “username” dan “password”. Catat/simpan “username” dan “password” sebelum meneruskan ke langkah selanjutnya.</h4><br>
