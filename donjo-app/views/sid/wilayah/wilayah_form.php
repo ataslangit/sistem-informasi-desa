@@ -30,7 +30,7 @@ $("#nik_detail").show();
  <table class="form">
  <tr>
  <th width="160">Nama Dusun</th>
- <td><input name="dusun" type="text" class="inputbox required" size="60" value="<?php echo $dusun?>"/></td>
+ <td><input name="dusun" type="text" class="inputbox required" size="60" value="<?php echo $dusun?>"></td>
  </tr>
 			<?php if($dusun){?>
 			<tr>

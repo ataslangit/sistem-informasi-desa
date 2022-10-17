@@ -47,16 +47,16 @@ display:none;
 </tr>
 <tr>
 <th>Kode Pertanyaan</th>
-<td><input name="nomor" type="text" class="inputbox number" size="5" value="<?php echo $analisis_statistik_jawaban['nomor']?>"/></td>
+<td><input name="nomor" type="text" class="inputbox number" size="5" value="<?php echo $analisis_statistik_jawaban['nomor']?>"></td>
 </tr>
 <tr>
 <th>Pertanyaan</th>
-<td><textarea name="pertanyaan" style="resize:none;width:500px;height:80px;"/><?php echo $analisis_statistik_jawaban['pertanyaan']?></textarea></td>
+<td><textarea name="pertanyaan" style="resize:none;width:500px;height:80px;"><?php echo $analisis_statistik_jawaban['pertanyaan']?></textarea></td>
 </tr>
 <tr class="delik">
 <th>Bobot</th>
 <td>
-	<input name="bobot" type="text" class="inputbox number" size="10" value="<?php if($analisis_statistik_jawaban['bobot']==""){echo "1";}else{echo $analisis_statistik_jawaban['bobot'];}?>"/>
+	<input name="bobot" type="text" class="inputbox number" size="10" value="<?php if($analisis_statistik_jawaban['bobot']==""){echo "1";}else{echo $analisis_statistik_jawaban['bobot'];}?>">
 </td>
 </tr>
 <tr class="delik">

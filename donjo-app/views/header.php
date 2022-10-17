@@ -3,12 +3,12 @@
 
 	<head>
 		<title>SID - Desa <?php echo $desa['nama_desa'] ?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
-		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml" />
-		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style2.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>">
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml">
+		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css">
 		<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
@@ -27,15 +27,15 @@
 	</head>
 <body>
 <div class="ui-layout-north" id="header">
-	<div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""/></a></div>
+	<div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""></a></div>
 	<div id="sid-judul">Sistem Informasi Desa</div>
 	<div id="sid-info">Desa <?php echo $desa['nama_desa']?>, <?php echo $desa['nama_kecamatan']?>, <?php echo $desa['nama_kabupaten']?> </div>
 	<div id="userbox" class="wrapper-dropdown-3" tabindex="1">
  <div class="avatar">
 		<?php if($foto){?>
-			<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt=""/>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt="">
 		<?php }else{?>
-			<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+			<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 		<?php }?>
 	</div>
 <div class="info">
@@ -75,7 +75,7 @@
 	<div class="contentm" style="overflow: hidden;">
 		<?php foreach ($modul AS $mod){?>
 		<a class="cpanel" href="<?php echo site_url()?><?php echo $mod['url']?>">
-			<img src="<?php echo base_url()?>assets/images/cpanel/<?php echo $mod['ikon']?>" alt=""/>
+			<img src="<?php echo base_url()?>assets/images/cpanel/<?php echo $mod['ikon']?>" alt="">
 			<span><?php echo $mod['modul']?></span>
 		</a>
 		<?php } ?>

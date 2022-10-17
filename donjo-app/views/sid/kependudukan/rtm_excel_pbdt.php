@@ -22,7 +22,7 @@ font-weight:normal;
 horizontal-align:left;
 }
 </style>
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
 <div id="body">
 <div class="header" align="center">
 <label>PEMERINTAH DAERAH KABUPATEN GUNUNGKIDUL</label><br>

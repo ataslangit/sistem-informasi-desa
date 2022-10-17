@@ -8,7 +8,7 @@
 <table class="form">
 <tr>
 <th width="100">Nama Kategori</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $polygon['nama']?>" size="40"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $polygon['nama']?>" size="40"></td>
 </tr>
 <tr>
 	<th>Warna</th>

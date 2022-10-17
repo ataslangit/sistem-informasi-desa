@@ -33,7 +33,7 @@
  </select>
  </div>
  <div class="right">
- <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('dokumen/search')?>');$('#'+'mainform').submit();}" />
+ <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('dokumen/search')?>');$('#'+'mainform').submit();}">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('dokumen/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
  </div>
  </div>
@@ -41,7 +41,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="120">Aksi</th>
 			
 	 		<?php if($o==2): ?>
@@ -75,7 +75,7 @@
 		<tr>
 			<td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
 			<td><div class="uibutton-group">
 				<a href="<?php echo site_url("dokumen/form/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Ubah </span></a><a href="<?php echo site_url("dokumen/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"><span></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url('dokumen/dokumen_lock/'.$data['id'])?>" class="uibutton tipsy south" title="Aktivasi dokumen"><span class="icon-lock icon-large"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url('dokumen/dokumen_unlock/'.$data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan dokumen"><span class="icon-unlock icon-large"><span></a>

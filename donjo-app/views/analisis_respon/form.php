@@ -150,10 +150,10 @@ $(function(){
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<td id="">
-				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value="<?php echo $data2['jawaban']?>"/></div>
+				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value="<?php echo $data2['jawaban']?>"></div>
 				<?php }else{?>
 				<td id="">
-				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value=""/></div>
+				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value=""></div>
 				<?php }?>
 				
 			<?php }elseif($data['id_tipe']==4){?>
@@ -161,10 +161,10 @@ $(function(){
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<td id="">
-				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value="<?php echo $data2['jawaban']?>"/></div>
+				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value="<?php echo $data2['jawaban']?>"></div>
 				<?php }else{?>
 				<td id="">
-				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value=""/></div>
+				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value=""></div>
 				<?php }?>
 				
 			<?php }?>
@@ -176,7 +176,7 @@ $(function(){
 		</table>
 		<table>
 		<tr>
-			<td><label>Unggah Berkas Form Pendataan :</label><input name="pengesahan" type="file" />*) Format file harus *.jpg</td>
+			<td><label>Unggah Berkas Form Pendataan :</label><input name="pengesahan" type="file">*) Format file harus *.jpg</td>
 		</tr>
 		<tr>
 			<td>*) Berkas form pendataan digunakan sebagai penguat / bukti pendataan maupun untuk verifikasi data yang sudah terinput.</td>

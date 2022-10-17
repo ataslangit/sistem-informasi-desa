@@ -18,7 +18,7 @@
 		<tr>
 			<td width="150">Upload Fil XLS</td>
 			<td>
-				<input type="file" name="persil" /><span style="color: #aaa;">(File harus dalam format .xls)</span>
+				<input type="file" name="persil"><span style="color: #aaa;">(File harus dalam format .xls)</span>
 			</td>
 		</tr>
 	</table>

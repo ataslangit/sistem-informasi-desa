@@ -42,7 +42,7 @@
 		<thead>
 		 	<tr>
 				<th width="10">No</th>
-				<th width="15"><input type="checkbox" class="checkall"/></th>
+				<th width="15"><input type="checkbox" class="checkall"></th>
 				<th width="15" >Aksi</th>
 				<th width="100">Nama Polling</th>
 				<th width="100">Keterangan</th>
@@ -54,7 +54,7 @@
 			<tr>
 		 		<td align="center" width="2"><?php echo $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id_polling']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id_polling']?>">
 				</td>
 		 		<td align="center">
 				<?php 

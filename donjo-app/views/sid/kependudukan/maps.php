@@ -52,10 +52,10 @@
 </style>
 <form action="<?php echo $form_action?>" method="post" id="validasi">
 <div id="map"></div>
- <input type="hidden" name="lat" id="lat" />
- <input type="hidden" name="lng" id="lng" />
- <input type="hidden" name="zoom" id="zoom" />
- <input type="hidden" name="map_tipe" id="map_tipe" />
+ <input type="hidden" name="lat" id="lat">
+ <input type="hidden" name="lng" id="lng">
+ <input type="hidden" name="zoom" id="zoom">
+ <input type="hidden" name="map_tipe" id="map_tipe">
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
 <div class="uibutton-group">
 	<button class="uibutton confirm" type="submit">Simpan</button>

@@ -40,7 +40,7 @@
 							Pilih File .xls:
 						</td>
 						<td width="250">
-							<input name="userfile" type="file" />
+							<input name="userfile" type="file">
 						<td>
 							<a href="#" onclick="document.getElementById('excell').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?php echo base_url()?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Penduduk</a>
 						</td>
@@ -108,7 +108,7 @@
 							Pilih File .xls:
 						</td>
 						<td width="250">
-							<input name="userfile" type="file" />
+							<input name="userfile" type="file">
 						<td>
 							<a href="#" onclick="document.getElementById('kelompok').submit();" class="uibutton special" value="Import" target="confirm2" message="Harap tunggu sampai proses import selesai. Proses ini dapat memakan waktu antara 1 (satu) menit hingga 45 menit, tergantung kecepatan komputer dan juga jumlah data penduduk yang dimasukkan.<div align='center'><img src='<?php echo base_url()?>assets/images/background/loading.gif'></div>" header="Proses Import Sedang Berjalan.">Import Data Pengelompokan Rumah Tangga</a>
 						</td>

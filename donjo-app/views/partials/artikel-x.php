@@ -7,9 +7,9 @@
 		<p>
 <? if($single_artikel['gambar']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <?php echo $single_artikel['isi']?>		</p>
@@ -17,23 +17,23 @@
 <div class="entry" style="display:block;">
 <? if($single_artikel['gambar1']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar1'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar1']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar1']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar1']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar1']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if($single_artikel['gambar2']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar2'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar2']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar2']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar2']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar2']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if($single_artikel['gambar3']!=''){?>
 		<? if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar3'])) {?>
-			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar3']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar3']?>" /></a>
+			<a class="group2" href="<?php echo base_url(); ?>assets/files/artikel/sedang_<?php echo $single_artikel['gambar3']?>" title="<?php echo $single_artikel['judul']?>"><img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/files/artikel/kecil_<?php echo $single_artikel['gambar3']?>"></a>
 			<? }else{?>
-			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg" />
+			<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?php echo base_url(); ?>assets/images/404-image-not-found.jpg">
 		<? }?>
 <? }?>	
 <? if(isset($single_artikel['dokumen'])){if($single_artikel['dokumen']!=''){?>

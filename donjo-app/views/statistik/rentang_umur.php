@@ -33,7 +33,7 @@
 		<thead>
 		 	<tr>
 				<th width="5">No</th>
-				<th width="5"><input type="checkbox" class="checkall"/></th>
+				<th width="5"><input type="checkbox" class="checkall"></th>
 				<th width="8%">Aksi</th>
 		 	<th width="20%">Rentang</th>	
 		 	<th></th>
@@ -44,7 +44,7 @@
 			<tr>
 		 		<td align="center" width="2"><?php echo $no?></td>
 				<td align="center" width="5">
-					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+					<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 				</td>
 		 		<td align="center">
 				<div class="uibutton-group">

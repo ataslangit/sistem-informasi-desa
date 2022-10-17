@@ -75,7 +75,7 @@
  '</div>'+
  '<h1 id="firstHeading" class="firstHeading"><?php echo $area['nama']?></h1>'+
  '<div id="bodyContent">'+
- '<img src="<?php echo base_url()?>assets/files/gis/area/sedang_<?php echo $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
+ '<img src="<?php echo base_url()?>assets/files/gis/area/sedang_<?php echo $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">'+
  '<p><?php echo $area['desk']?></p>'+
  '</div>'+
  '</div>';
@@ -112,7 +112,7 @@
  '</div>'+
  '<h1 id="firstHeading" class="firstHeading"><?php echo $garis['nama']?></h1>'+
  '<div id="bodyContent">'+
- '<img src="<?php echo base_url()?>assets/files/gis/garis/sedang_<?php echo $garis['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;"/>'+
+ '<img src="<?php echo base_url()?>assets/files/gis/garis/sedang_<?php echo $garis['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">'+
  '<p><?php echo $garis['desk']?></p>'+
  '</div>'+
  '</div>';
@@ -154,7 +154,7 @@
 			
 			var content = '<table border=0 style="width:400px"><tr>' +
 		<?php if($data['foto']!=""){?>
-			'<td><img src="<?php echo base_url()?>assets/files/gis/lokasi/sedang_<?php echo $data['foto']?>" class="foto"/></td>' + 
+			'<td><img src="<?php echo base_url()?>assets/files/gis/lokasi/sedang_<?php echo $data['foto']?>" class="foto"></td>' + 
 		<?php }?>
 			'<td style="padding-left:3px"><font size="2.5" style="font-weight:bold;"><?php echo $data['nama']?></font>' +
 			'<p><?php echo $data['desk']?></p>'+
@@ -178,9 +178,9 @@
 				infoWindow = new google.maps.InfoWindow();
 			}
 			<?php if($data['foto']!=''){ ?>
-				var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $data['foto']?>" class="foto_pend"/></td>';
+				var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $data['foto']?>" class="foto_pend"></td>';
 			<?php } else { ?>
-				var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" class="foto_pend"/></td>';
+				var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" class="foto_pend"></td>';
 			<?php } ?>
 			
 			var content = '<table border=0><tr>' + poto + 
@@ -311,7 +311,7 @@ function handle_point(cb) {
 	<option value="<?php echo $data['id']?>" <?php if($agama==$data['id']){?>selected<?php }?>><?php echo $data['nama']?></option>
 	<?php }?>
 </select>
-<input name="cari" id="cari" type="text" class="inputbox2 help tipped" size="20" value="<?php echo $cari?>" title="Search.."/>
+<input name="cari" id="cari" type="text" class="inputbox2 help tipped" size="20" value="<?php echo $cari?>" title="Search..">
 <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('gis/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
 <button href="<?php echo site_url("gis/ajax_adv_search")?>" target="ajax-modalx" rel="window" header="Pencarian Spesifik" class="uibutton tipsy south" title="Pencarian Spesifik"><span class="ui-icon ui-icon-search">&nbsp;</span>Pencarian Spesifik</button>
 <a href="<?php echo site_url("gis/clear")?>" class="uibutton tipsy south" title="Clear Pencarian" style=""><span class="ui-icon ui-icon-search">&nbsp;</span>Clear</a>

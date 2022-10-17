@@ -39,7 +39,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="35">Aksi</th>
 				<th>Nomor RT</th>
 				<th>NIK Ketua RT</th>
@@ -55,7 +55,7 @@
 		<tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['rt']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['rt']?>">
 			</td>
  <td width="5">
  <?php if($data['rt']!="-"){?><a href="<?php echo site_url("sid_wilayah/form_rt/$p/$o/$dusun/$rw/$data[rt]")?>" class="icon-edit icon-large" title="Edit Data"></a><a href="<?php echo site_url("sid_wilayah/delete_rt/$p/$o/$dusun/$rw/$data[rt]")?>" class="icon-trash icon-large" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php }?>
@@ -75,7 +75,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="50">Total</th>
 				<th></th>
 				<th></th>

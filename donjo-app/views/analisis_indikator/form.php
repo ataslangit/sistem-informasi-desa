@@ -44,16 +44,16 @@ display:none;
 </tr>
 <tr>
 <th>Kode Pertanyaan</th>
-<td><input name="nomor" type="text" class="inputbox number" size="5" value="<?php echo $analisis_indikator['nomor']?>"/></td>
+<td><input name="nomor" type="text" class="inputbox number" size="5" value="<?php echo $analisis_indikator['nomor']?>"></td>
 </tr>
 <tr>
 <th>Pertanyaan</th>
-<td><textarea name="pertanyaan" style="resize:none;width:500px;height:80px;"/><?php echo $analisis_indikator['pertanyaan']?></textarea></td>
+<td><textarea name="pertanyaan" style="resize:none;width:500px;height:80px;"><?php echo $analisis_indikator['pertanyaan']?></textarea></td>
 </tr>
 <tr class="delik">
 <th>Bobot</th>
 <td>
-	<input name="bobot" type="text" class="inputbox number" size="10" value="<?php if($analisis_indikator['bobot']==""){echo "1";}else{echo $analisis_indikator['bobot'];}?>"/>
+	<input name="bobot" type="text" class="inputbox number" size="10" value="<?php if($analisis_indikator['bobot']==""){echo "1";}else{echo $analisis_indikator['bobot'];}?>">
 </td>
 </tr>
 <tr class="delik">

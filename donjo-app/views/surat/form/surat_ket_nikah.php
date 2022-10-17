@@ -95,37 +95,37 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 <th>Keterangan</th>
 <td>
-<input name="keterangan" type="text" class="inputbox required" size="40"/>
+<input name="keterangan" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Bin/Binti</th>
 <td>
-<input name="bin" type="text" class="inputbox required" size="40"/>
+<input name="bin" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Jika pria, terangkan jejaka, duda atau beristri dan berapa istrinya</th>
 <td>
-<input name="jaka" type="text" class="inputbox " size="40"/>
+<input name="jaka" type="text" class="inputbox " size="40">
 </td>
 </tr>
 <tr>
 <th>Jika wanita, terangkan gadis atau janda</th>
 <td>
-<input name="perawan" type="text" class="inputbox " size="40"/>
+<input name="perawan" type="text" class="inputbox " size="40">
 </td>
 </tr>
 <tr>
 <th>Nama Istri/Suami terdahulu</th>
 <td>
-<input name="pasangan_dulu" type="text" class="inputbox " size="40"/>
+<input name="pasangan_dulu" type="text" class="inputbox " size="40">
 </td>
 </tr>
 <tr>

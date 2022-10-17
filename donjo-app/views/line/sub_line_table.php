@@ -28,7 +28,7 @@
 <thead>
 <tr>
 <th>No</th>
-<th><input type="checkbox" class="checkall"/></th>
+<th><input type="checkbox" class="checkall"></th>
 <th width="50">Aksi</th>
 <th align="center">Nama</th>
 <th align="center">Enabled</th>
@@ -40,7 +40,7 @@
 <tr>
 <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td>
 <a href="<?php echo site_url("line/ajax_add_sub_line/$line/$data[id]")?>" class="ui-icons icon-edit tipsy south" target="ajax-modal" rel="window" header="Edit line" title="Edit Data"></a><a href="<?php echo site_url("line/delete_sub_line/$line/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url("line/line_lock_sub_line/$line/$data[id]")?>" class="ui-icons icon-lock tipsy south" title="Enable line"></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("line/line_unlock_sub_line/$line/$data[id]")?>" class="ui-icons icon-unlock tipsy south" title="Disable line"></a><?php endif;?>

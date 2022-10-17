@@ -11,7 +11,7 @@ header("Expires: 0");
 <head>
 <title>Data Kelompok - <?php echo $kelompok['nama']?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
 <style>
 .textx{
  mso-number-format:"\@";

@@ -83,25 +83,25 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 <th>Barang yang hilang</th>
 <td>
-<input name="barang" type="text" class="inputbox required" size="40"/>
+<input name="barang" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Rincian</th>
 <td>
-<input name="rincian" type="text" class="inputbox required" size="40"/>
+<input name="rincian" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>
 <th>Keterangan kejadian</th>
 <td>
-<input name="keterangan" type="text" class="inputbox required" size="40"/>
+<input name="keterangan" type="text" class="inputbox required" size="40">
 </td>
 </tr>
 <tr>

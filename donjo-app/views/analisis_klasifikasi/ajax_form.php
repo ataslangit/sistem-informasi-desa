@@ -4,15 +4,15 @@
 	<table class="form">
 		<tr>
 			<th>Klasifikasi</th>
-			<td><input name="nama" type="text" class="inputbox" size="40" value="<?php echo $analisis_klasifikasi['nama']?>"/></td>
+			<td><input name="nama" type="text" class="inputbox" size="40" value="<?php echo $analisis_klasifikasi['nama']?>"></td>
 		</tr>
 		<tr>
 			<th>Nilai Minimal</th>
-			<td><input name="minval" type="text" class="inputbox" size="10" value="<?php echo $analisis_klasifikasi['minval']?>"/></td>
+			<td><input name="minval" type="text" class="inputbox" size="10" value="<?php echo $analisis_klasifikasi['minval']?>"></td>
 		</tr>
 		<tr>
 			<th>Nilai Maksimal</th>
-			<td><input name="maxval" type="text" class="inputbox" size="10" value="<?php echo $analisis_klasifikasi['maxval']?>"/></td>
+			<td><input name="maxval" type="text" class="inputbox" size="10" value="<?php echo $analisis_klasifikasi['maxval']?>"></td>
 		</tr>
 	</table>
 	<div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">

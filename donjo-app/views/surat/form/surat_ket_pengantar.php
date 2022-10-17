@@ -80,7 +80,7 @@ table.form.detail td{
 						?>
 						<tr>
 							<th width="40%">Nomor Surat</th>
-							<td width="60%"><input name="nomor" type="text" class="inputbox required" size="12"/></td>
+							<td width="60%"><input name="nomor" type="text" class="inputbox required" size="12"></td>
 						</tr>
 						<tr>
 							<th>Keperluan</th>
@@ -88,15 +88,15 @@ table.form.detail td{
 						</tr>
 						<tr>
 							<th>Tujuan</th>
-							<td><input name="tujuan" type="text" class="inputbox" size="60"/></td>
+							<td><input name="tujuan" type="text" class="inputbox" size="60"></td>
 						</tr>
 						<tr>
 							<th>Keterangan</th>
-							<td><input name="keterangan" type="text" class="inputbox" size="60"/></td>
+							<td><input name="keterangan" type="text" class="inputbox" size="60"></td>
 						</tr>
 						<tr>
 							<th>Berlaku</th>
-							<td><input name="berlaku_dari" type="text" class="inputbox required datepicker" size="20"/> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker " size="20"/></td>
+							<td><input name="berlaku_dari" type="text" class="inputbox required datepicker" size="20"> sampai <input name="berlaku_sampai" type="text" class="inputbox datepicker " size="20"></td>
 						</tr>
 						<tr>
 							<th>Staf Pemerintah Desa</th>

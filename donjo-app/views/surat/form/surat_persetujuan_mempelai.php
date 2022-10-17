@@ -54,7 +54,7 @@ padding:5px;
 <table class="form">
 <tr>
 	<th>Nomor Surat</th>
-	<td><input name="nomor" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="nomor" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>DATA SUAMI (Berasal dari desa)			:</th>
@@ -73,32 +73,32 @@ padding:5px;
 <th>DATA SUAMI (Berasal dari luar desa)		:</th>
 <tr>
 	<th>Nama Lengkap</th>
-	<td><input name="nama_suami" type="text" class="inputbox " size="30"/>*) Diisi jika suami berasal dari luar desa</td>
+	<td><input name="nama_suami" type="text" class="inputbox " size="30">*) Diisi jika suami berasal dari luar desa</td>
 </tr>
 <tr>
 	<th>Bin</th>
-	<td><input name="bin_suami" type="text" class="inputbox " size="30"/></td>
+	<td><input name="bin_suami" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tanggal Lahir</th>
-	<td><input name="tempatlahir_suami" type="text" class="inputbox " size="30"/> 
-	<input name="tanggallahir_suami" type="text" class="inputbox datepicker" size="20"/></td>
+	<td><input name="tempatlahir_suami" type="text" class="inputbox " size="30"> 
+	<input name="tanggallahir_suami" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Warganegara</th>
-	<td><input name="wn_suami" type="text" class="inputbox " size="15"/></td>
+	<td><input name="wn_suami" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 	<th>Agama</th>
-	<td><input name="agama_suami" type="text" class="inputbox " size="15"/></td>
+	<td><input name="agama_suami" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 	<th>Pekerjaan</th>
-	<td><input name="pekerjaan_suami" type="text" class="inputbox " size="30"/></td>
+	<td><input name="pekerjaan_suami" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tinggal</th>
-	<td><input name="tempat_tinggal_suami" type="text" class="inputbox " size="40"/></td>
+	<td><input name="tempat_tinggal_suami" type="text" class="inputbox " size="40"></td>
 </tr>
 <tr>
 <th>DATA ISTRI (Berasal dari desa)			:</th>
@@ -118,32 +118,32 @@ padding:5px;
 </tr>
 <tr>
 	<th>Nama Lengkap</th>
-	<td><input name="nama_istri" type="text" class="inputbox " size="30"/>*) Diisi jika istri berasal dari luar desa</td>
+	<td><input name="nama_istri" type="text" class="inputbox " size="30">*) Diisi jika istri berasal dari luar desa</td>
 </tr>
 <tr>
 	<th>Bin</th>
-	<td><input name="bin_istri" type="text" class="inputbox " size="30"/></td>
+	<td><input name="bin_istri" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tanggal Lahir</th>
-	<td><input name="tempatlahir_istri" type="text" class="inputbox " size="30"/> 
-	<input name="tanggallahir_istri" type="text" class="inputbox datepicker" size="20"/></td>
+	<td><input name="tempatlahir_istri" type="text" class="inputbox " size="30"> 
+	<input name="tanggallahir_istri" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Warganegara</th>
-	<td><input name="wn_istri" type="text" class="inputbox " size="15"/></td>
+	<td><input name="wn_istri" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 	<th>Agama</th>
-	<td><input name="agama_istri" type="text" class="inputbox " size="15"/></td>
+	<td><input name="agama_istri" type="text" class="inputbox " size="15"></td>
 </tr>
 <tr>
 	<th>Pekerjaan</th>
-	<td><input name="pekerjaan_istri" type="text" class="inputbox " size="30"/></td>
+	<td><input name="pekerjaan_istri" type="text" class="inputbox " size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tinggal</th>
-	<td><input name="tempat_tinggal_istri" type="text" class="inputbox " size="40"/></td>
+	<td><input name="tempat_tinggal_istri" type="text" class="inputbox " size="40"></td>
 </tr>
 </table>
 </div>

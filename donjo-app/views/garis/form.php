@@ -11,7 +11,7 @@
 <table class="form">
 <tr>
 <th width="100">Nama garis / Porperti</th>
-<td><input class="inputbox" type="text" name="nama" value="<?php echo $garis['nama']?>" size="60"/></td>
+<td><input class="inputbox" type="text" name="nama" value="<?php echo $garis['nama']?>" size="60"></td>
 </tr>
 <tr>
 	<th>Kategori</th>
@@ -29,7 +29,7 @@
 	<th>Foto</th>
 	<td>
 		<div class="userbox-avatar">
-			<img src="<?php echo base_url()?>assets/files/gis/garis/kecil_<?php echo $garis['foto']?>"/>
+			<img src="<?php echo base_url()?>assets/files/gis/garis/kecil_<?php echo $garis['foto']?>">
 		</div>
 	</td>
 </tr>
@@ -37,7 +37,7 @@
 <tr>
 	<th>Ganti Foto</th>
 	<td>
-		<input class="" type="file" name="foto" value="<?php echo $garis['foto']?>" size="30"/>
+		<input class="" type="file" name="foto" value="<?php echo $garis['foto']?>" size="30">
 		)* Kosongi jika tidak ingin merubah Foto.
 	</td>
 </tr>

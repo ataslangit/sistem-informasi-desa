@@ -83,7 +83,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -91,43 +91,43 @@ padding:5px;
 </tr>
 <tr>
 <th>Jenis Barang</th>
-<td><input name="jenis" type="text" class="inputbox required" size="30"/></td>
+<td><input name="jenis" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Rincian Barang</th>
-<td><input name="barang" type="text" class="inputbox required" size="40"/></td>
+<td><input name="barang" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>IDENTITAS PEMBELI</th>
 </tr>
 <tr>
 <th>Nomor identitas</th>
-<td><input name="identitas" type="text" class="inputbox required" size="15"/></td>
+<td><input name="identitas" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox required" size="30"/> 
-<input name="tanggallahir" type="text" class="inputbox required datepicker" size="20"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox required" size="30"> 
+<input name="tanggallahir" type="text" class="inputbox required datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Jenis Kelamin</th>
-<td><input name="sex" type="text" class="inputbox required" size="10"/></td>
+<td><input name="sex" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 <th>Alamat</th>
-<td><input name="alamat" type="text" class="inputbox required" size="40"/></td>
+<td><input name="alamat" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Pekerjaan</th>
-<td><input name="pekerjaan" type="text" class="inputbox required" size="15"/></td>
+<td><input name="pekerjaan" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 <th>Nama ketua adat</th>
-<td><input name="ketua_adat" type="text" class="inputbox required" size="40"/></td>
+<td><input name="ketua_adat" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

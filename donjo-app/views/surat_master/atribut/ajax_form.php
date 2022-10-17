@@ -4,17 +4,17 @@
 <table class="form">
 <tr>
 <th>Atribut</th>
-<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nama']?>"/></td>
+<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nama']?>"></td>
 </tr><tr>
 <th>Tipe</th>
-<td><input name="id_tipe" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"/></td>
+<td><input name="id_tipe" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"></td>
 </tr><tr>
 <th>Nilai</th>
-<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"/></td>
+<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"></td>
 </tr>
 <tr>
 <th>Nilai</th>
-<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"/></td>
+<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"></td>
 </tr>
 </tr> 
 </table>

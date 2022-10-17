@@ -83,7 +83,7 @@ source: keyword
 				<a href="<?php echo site_url("penduduk/clear")?>" class="uibutton tipsy south" title="Bersihkan Pencarian"><span class="icon-refresh icon-large">&nbsp;</span>Bersihkan</a>
 			 </div>
  <div class="right">
- <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('penduduk/search')?>');$('#'+'mainform').submit();}" />
+ <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('penduduk/search')?>');$('#'+'mainform').submit();}">
  
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('penduduk/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span> Cari </button>
 <a href="<?php echo site_url("penduduk/duplikat")?>" class="uibutton tipsy south" title="Cari Duplikat"><span class="icon-copy icon-large">&nbsp;</span></a>
@@ -100,7 +100,7 @@ source: keyword
 	<thead>
 		<tr>
 			<th>No</th>
-			<th><input type="checkbox" class="checkall"/></th>
+			<th><input type="checkbox" class="checkall"></th>
 			<th width="156">Aksi</th>
 			<?php if($o==2): ?>
 			<th align="left" width='100'><a href="<?php echo site_url("penduduk/index/$p/1")?>">NIK<span class="ui-icon ui-icon-triangle-1-n"></span></a></th>
@@ -156,7 +156,7 @@ source: keyword
 <tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td> <div class="uibutton-group">
 <a href="<?php echo site_url("penduduk/detail/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Rincian Data Penduduk"> <span class="icon-zoom-in icon-large"> Rincian </span></a>

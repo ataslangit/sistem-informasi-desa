@@ -6,7 +6,7 @@
 	<div class="box-body">
 <?php 
 foreach($sosmed As $data){
-	echo "<a href=\"".$data["link"]."\" target=\"_blank\"><img src=\"".base_url()."assets/front/".$data["gambar"]."\" alt=\"".$data["nama"]."\" style=\"width:50px;height:50px;\"/></a>";
+	echo "<a href=\"".$data["link"]."\" target=\"_blank\"><img src=\"".base_url()."assets/front/".$data["gambar"]."\" alt=\"".$data["nama"]."\" style=\"width:50px;height:50px;\"></a>";
 }
 ?>	
 	</div>
@@ -115,10 +115,10 @@ if($data_config['lat']!= "0"){
 		$length = strlen($pattern)-$len;
 		$start = substr($pattern,0,$length).substr($tot,0,$len-1);
 		$last = substr($tot,$len-1,1);
-		$last_rpc= '<img src="_BASE_URL_/assets/images/counter/animasi/'.$last.'.gif" align="absmiddle" />'; 
+		$last_rpc= '<img src="_BASE_URL_/assets/images/counter/animasi/'.$last.'.gif" align="absmiddle">'; 
 		$inc = str_replace($last,$last_rpc,$last);
 		for($i=0;$i<=9;$i++){
-			$rpc ='<img src="_BASE_URL_/assets/images/counter/'.$i.'.gif" align="absmiddle"/>';
+			$rpc ='<img src="_BASE_URL_/assets/images/counter/'.$i.'.gif" align="absmiddle">';
 			$start=str_replace($i,$rpc,$start);
 		}
 		$num = $start.$inc;

@@ -3,12 +3,12 @@
 
 	<head>
 		<title>SID - Desa <?php echo $desa['nama_desa'] ?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
-		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml" />
-		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style2.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>">
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml">
+		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css">
 		<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>

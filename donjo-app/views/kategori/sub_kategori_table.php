@@ -37,7 +37,7 @@
 <thead>
 <tr>
 <th>No</th>
-<th><input type="checkbox" class="checkall"/></th>
+<th><input type="checkbox" class="checkall"></th>
 <th width="120">Aksi</th>
 <th align="center">Kategori</th>
 <th align="center">Enabled</th>
@@ -49,7 +49,7 @@
 <tr>
 <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td><div class="uibutton-group">
 <a href="<?php echo site_url("kategori/ajax_add_sub_kategori/$kategori/$data[id]")?>" class="uibutton tipsy south" target="ajax-modal" rel="window" header="Edit kategori" title="Edit Data"><span class="icon-edit icon-large"> Edit </span></a><a href="<?php echo site_url("kategori/delete_sub_kategori/$kategori/$data[id]")?>" class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url("kategori/kategori_lock_sub_kategori/$kategori/$data[id]")?>" class="uibutton tipsy south" title="Enable kategori"><span class="icon-lock icon-large"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("kategori/kategori_unlock_sub_kategori/$kategori/$data[id]")?>" class="uibutton tipsy south" title="Disable kategori"><span class="icon-unlock icon-large"></span></a><?php endif;?></div>

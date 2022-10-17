@@ -3,13 +3,13 @@
 
 	<head>
 		<title>Sistem Informasi Desa (SID)</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
-		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml" />
-		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style2.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" />
+		<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico">
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml">
+		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
+		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css">
 		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>

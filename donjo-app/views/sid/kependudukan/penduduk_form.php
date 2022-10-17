@@ -45,9 +45,9 @@
 <td>
 <div class="userbox-avatar">
 <?php if($penduduk['foto']){?>
-<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $penduduk['foto']?>" alt=""/>
+<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $penduduk['foto']?>" alt="">
 <?php }else{?>
-<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 <?php }?>
 </div>
 </td>
@@ -55,19 +55,19 @@
 </tr>
 <tr>
 <th>Ganti Foto</th>
-<td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
+<td><input type="file" name="foto"> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah foto)</span></td>
 </tr>
 <tr>
 <th width="100">Nama</th>
-<td><input name="nama" type="text" class="inputbox required" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama']))?>"/></td>
+<td><input name="nama" type="text" class="inputbox required" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama']))?>"></td>
 </tr>
 <tr>
 <th>NIK</th>
-<td><input name="nik" type="text" class="inputbox required" size="30" value="<?php echo $penduduk['nik']?>"/></td>
+<td><input name="nik" type="text" class="inputbox required" size="30" value="<?php echo $penduduk['nik']?>"></td>
 </tr>
 <tr>
 <th>Akta Kelahiran</th>
-<td><input name="akta_lahir" type="text" class="inputbox" size="30" value="<?php echo $penduduk['akta_lahir']?>"/></td>
+<td><input name="akta_lahir" type="text" class="inputbox" size="30" value="<?php echo $penduduk['akta_lahir']?>"></td>
 </tr>
 <tr>
 <th>Jenis Kelamin</th>
@@ -82,11 +82,11 @@
 </tr>
 <tr>
 <th>Tempat Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox" size="65" value="<?php echo strtoupper($penduduk['tempatlahir'])?>"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox" size="65" value="<?php echo strtoupper($penduduk['tempatlahir'])?>"></td>
 </tr> 
 <tr>
 <th>Tanggal Lahir</th>
-<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggallahir']?>"/></td>
+<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggallahir']?>"></td>
 </tr> 
 <tr>
 <th>Agama</th>
@@ -153,49 +153,49 @@
 </tr> 
 <tr>
 <th>Dokumen Paspor</th>
-<td><input name="dokumen_pasport" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['dokumen_pasport'])?>"/></td>
+<td><input name="dokumen_pasport" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['dokumen_pasport'])?>"></td>
 </tr>
 <tr>
 <th>Dokumen KITAS</th>
-<td><input name="dokumen_kitas" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['dokumen_kitas'])?>"/></td>
+<td><input name="dokumen_kitas" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['dokumen_kitas'])?>"></td>
 </tr>
 
 <tr>
 <th>Akta Perkawinan</th>
-<td><input name="akta_perkawinan" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perkawinan'])?>"/></td>
+<td><input name="akta_perkawinan" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perkawinan'])?>"></td>
 </tr> 
 <tr>
 <th>Tanggal Perkawinan</th>
-<td><input name="tanggalperkawinan" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperkawinan']?>"/></td>
+<td><input name="tanggalperkawinan" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperkawinan']?>"></td>
 </tr> 
 
 
 <tr>
 <th>Akta Perceraian</th>
-<td><input name="akta_perceraian" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perceraian'])?>"/></td>
+<td><input name="akta_perceraian" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perceraian'])?>"></td>
 </tr> 
 <tr>
 <th>Tanggal Perceraian</th>
-<td><input name="tanggalperceraian" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperceraian']?>"/></td>
+<td><input name="tanggalperceraian" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperceraian']?>"></td>
 </tr> 
 
 
 
 <tr>
 <th>NIK Ayah</th>
-<td><input name="ayah_nik" type="text" class="inputbox" size="30" value="<?php echo $penduduk['ayah_nik']?>"/></td>
+<td><input name="ayah_nik" type="text" class="inputbox" size="30" value="<?php echo $penduduk['ayah_nik']?>"></td>
 </tr> 
 <tr>
 <th>NIK Ibu</th>
-<td><input name="ibu_nik" type="text" class="inputbox" size="30" value="<?php echo $penduduk['ibu_nik']?>"/></td>
+<td><input name="ibu_nik" type="text" class="inputbox" size="30" value="<?php echo $penduduk['ibu_nik']?>"></td>
 </tr>
 <tr>
 <th>Nama Ayah</th>
-<td><input name="nama_ayah" type="text" class="inputbox" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama_ayah']))?>"/></td>
+<td><input name="nama_ayah" type="text" class="inputbox" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama_ayah']))?>"></td>
 </tr> 
 <tr>
 <th>Nama Ibu</th>
-<td><input name="nama_ibu" type="text" class="inputbox" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama_ibu']))?>"/></td>
+<td><input name="nama_ibu" type="text" class="inputbox" size="60" value="<?php echo strtoupper(unpenetration($penduduk['nama_ibu']))?>"></td>
 </tr>
 <tr>
 <th>Golongan Darah</th>
@@ -219,11 +219,11 @@
 </tr>
 <tr>
 <th>Alamat Sebelumnya</th>
-<td><input name="alamat_sebelumnya" type="text" class="inputbox" size="60" value="<?php echo strtoupper($penduduk['alamat_sebelumnya'])?>"/></td>
+<td><input name="alamat_sebelumnya" type="text" class="inputbox" size="60" value="<?php echo strtoupper($penduduk['alamat_sebelumnya'])?>"></td>
 </tr>
 <tr>
 <th>Alamat Sekarang</th>
-<td><input name="alamat_sekarang" type="text" class="inputbox" size="60" value="<?php echo strtoupper($penduduk['alamat_sekarang'])?>"/></td>
+<td><input name="alamat_sekarang" type="text" class="inputbox" size="60" value="<?php echo strtoupper($penduduk['alamat_sekarang'])?>"></td>
 </tr>
 <tr>
 <th>Cacat</th>

@@ -9,7 +9,7 @@ if($single_artikel["id"]){
 			if($single_artikel['gambar']!=''){
 				if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar'])) {
 					echo "<div class=\"sampul\"><a class=\"group2\" href=\"".base_url()."assets/files/artikel/sedang_".$single_artikel['gambar']."\" title=\"\">
-					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar']."\" /></a></div>";
+					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar']."\"></a></div>";
 				}
 			}
 		echo "
@@ -23,19 +23,19 @@ if($single_artikel["id"]){
 			if($single_artikel['gambar1']!=''){
 				if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar1'])) {
 					echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".base_url()."assets/files/artikel/sedang_".$single_artikel['gambar1']."\" title=\"\">
-					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar1']."\" /></a></div>";
+					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar1']."\"></a></div>";
 				}
 			}
 			if($single_artikel['gambar2']!=''){
 				if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar2'])) {
 					echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".base_url()."assets/files/artikel/sedang_".$single_artikel['gambar2']."\" title=\"\">
-					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar2']."\" /></a></div>";
+					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar2']."\"></a></div>";
 				}
 			}
 			if($single_artikel['gambar3']!=''){
 				if(is_file("assets/files/artikel/kecil_".$single_artikel['gambar3'])) {
 					echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".base_url()."assets/files/artikel/sedang_".$single_artikel['gambar3']."\" title=\"\">
-					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar3']."\" /></a></div>";
+					<img src=\"".base_url()."assets/files/artikel/kecil_".$single_artikel['gambar3']."\"></a></div>";
 				}
 			}
 		echo "

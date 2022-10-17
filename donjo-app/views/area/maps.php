@@ -93,7 +93,7 @@
 	<div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
 	<div class="uibutton-group">
 		<button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>
-		<input class="uibutton confirm" id="showData" value="Simpan" type="button"/>
+		<input class="uibutton confirm" id="showData" value="Simpan" type="button">
 	</div>
 	</div>
 </form>

@@ -89,7 +89,7 @@
 <div id="map"></div>
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
 	<div class="uibutton-group">
-		<input class="uibutton" id="reset" value="Reset" type="button"/>
+		<input class="uibutton" id="reset" value="Reset" type="button">
 		<button id="showData" class="uibutton confirm" type="button" onclick="$('#window-wil').dialog('close');$('p.wil').show();">Simpan</button>
 	</div>
 </div>

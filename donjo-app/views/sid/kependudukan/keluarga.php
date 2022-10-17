@@ -62,7 +62,7 @@
  </div>
  </div>
  <div class="right">
- <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('keluarga/search')?>');$('#'+'mainform').submit();}" />
+ <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('keluarga/search')?>');$('#'+'mainform').submit();}">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('keluarga/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
  </div>
 			
@@ -72,7 +72,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="160">Aksi</th>
 				
 				<th width="150" align="left">
@@ -108,7 +108,7 @@
 		<tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
  <td width="5"><div class="uibutton-group">
 			<a href="<?php echo site_url("keluarga/anggota/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Rincian Anggota Keluarga"><span class="icon-list icon-large"> Rincian </span></a>

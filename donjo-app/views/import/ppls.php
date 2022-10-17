@@ -19,9 +19,9 @@
 										Rumah Tangga .xls:
 									</td>
 									<td width="250">
-										<input name="userfile" type="file" />
+										<input name="userfile" type="file">
 									<td>
-										<input type="submit" class="uibutton special" value="Import" /> 
+										<input type="submit" class="uibutton special" value="Import"> 
 									</td>
 									<td>
 										&nbsp;
@@ -34,9 +34,9 @@
 										PBDT Individu .xls:
 									</td>
 									<td width="250">
-										<input name="userfile" type="file" />
+										<input name="userfile" type="file">
 									<td>
-										<input type="submit" class="uibutton special" value="Import" /> 
+										<input type="submit" class="uibutton special" value="Import"> 
 									</td>
 									<td>
 										&nbsp;

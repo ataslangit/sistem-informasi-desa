@@ -14,7 +14,7 @@
 <table class="form">
 <tr>
 <th>Nama Kategori/Variabel</th>
-<td><input name="kategori" type="text" class="inputbox" size="100" value="<?php echo $analisis_kategori['kategori']?>"/></td>
+<td><input name="kategori" type="text" class="inputbox" size="100" value="<?php echo $analisis_kategori['kategori']?>"></td>
 </tr>
 </table>
 </div>

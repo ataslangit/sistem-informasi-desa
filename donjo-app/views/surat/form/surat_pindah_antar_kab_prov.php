@@ -83,19 +83,19 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 <th>Alamat Tujuan Pindah</th>
 <td>
-<input name="alamat_tujuan" type="text" class="inputbox required" size="45"/>
+<input name="alamat_tujuan" type="text" class="inputbox required" size="45">
 </td>
 </tr>
 <tr>
 <th>Jumlah Keluarga yang Pindah</th>
 <td>
-<input name="jumlah" type="text" class="inputbox required" size="5"/> orang
+<input name="jumlah" type="text" class="inputbox required" size="5"> orang
 </td>
 </tr>
 <tr>

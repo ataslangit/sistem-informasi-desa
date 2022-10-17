@@ -82,7 +82,7 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
@@ -90,40 +90,40 @@ padding:5px;
 </tr>
 <tr>
 	<th>Nama </th>
-	<td><input name="nama" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="nama" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 	<th>Bin/ Binti </th>
-	<td><input name="bin" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="bin" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tanggal Lahir </th>
-	<td><input name="tempat_lahir" type="text" class="inputbox required" size="30"/> 
-	<input name="tanggal_lahir" type="text" class="inputbox required datepicker" size="20"/></td>
+	<td><input name="tempat_lahir" type="text" class="inputbox required" size="30"> 
+	<input name="tanggal_lahir" type="text" class="inputbox required datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Warganegara </th>
-	<td><input name="wn" type="text" class="inputbox required" size="15"/></td>
+	<td><input name="wn" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 	<th>Agama </th>
-	<td><input name="agama" type="text" class="inputbox required" size="15"/></td>
+	<td><input name="agama" type="text" class="inputbox required" size="15"></td>
 </tr>
 <tr>
 	<th>Pekerjaan </th>
-	<td><input name="pekerjaan" type="text" class="inputbox required" size="30"/></td>
+	<td><input name="pekerjaan" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 	<th>Tempat Tinggal </th>
-	<td><input name="tempat_tinggal" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="tempat_tinggal" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Tanggal Meninggal </th>
-	<td><input name="tgl_meninggal" type="text" class="inputbox required datepicker" size="20"/></td>
+	<td><input name="tgl_meninggal" type="text" class="inputbox required datepicker" size="20"></td>
 </tr>
 <tr>
 	<th>Tempat Meninggal </th>
-	<td><input name="tempat_meninggal" type="text" class="inputbox required " size="40"/></td>
+	<td><input name="tempat_meninggal" type="text" class="inputbox required " size="40"></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

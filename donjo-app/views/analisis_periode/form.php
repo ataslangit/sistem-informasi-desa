@@ -12,7 +12,7 @@
 <table class="form">
 <tr>
 <th>Nama Periode</th>
-<td><input name="nama" type="text" class="inputbox" size="50" value="<?php echo $analisis_periode['nama']?>"/></td>
+<td><input name="nama" type="text" class="inputbox" size="50" value="<?php echo $analisis_periode['nama']?>"></td>
 </tr>
 <tr>
 <th>Periode Aktif</th>
@@ -37,7 +37,7 @@
 </tr> 
 <tr>
 <th>Tahun Pelaksanaan</th>
-<td><input name="tahun_pelaksanaan" type="text" class="inputbox" size="4" value="<?php echo $analisis_periode['tahun_pelaksanaan']?>"/></td>
+<td><input name="tahun_pelaksanaan" type="text" class="inputbox" size="4" value="<?php echo $analisis_periode['tahun_pelaksanaan']?>"></td>
 </tr>
 <?php if($analisis_periode == null){?>
 <tr>
@@ -53,7 +53,7 @@
 
 <tr>
 <th>Keterangan</th>
-<td><textarea name="keterangan" style="resize:none;width:500px;height:40px;"/><?php echo $analisis_periode['keterangan']?></textarea></td>
+<td><textarea name="keterangan" style="resize:none;width:500px;height:40px;"><?php echo $analisis_periode['keterangan']?></textarea></td>
 </tr>
 <tr>
 </table>

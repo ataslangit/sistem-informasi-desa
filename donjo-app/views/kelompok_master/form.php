@@ -9,7 +9,7 @@
 <table class="form">
 <tr>
 <th>Kategori/ Kategori Kelompok</th>
-<td><input name="kelompok" type="text" class="inputbox" size="80" value="<?php echo $kelompok_master['kelompok']?>"/></td>
+<td><input name="kelompok" type="text" class="inputbox" size="80" value="<?php echo $kelompok_master['kelompok']?>"></td>
 </tr>
 <tr>
 <tr>

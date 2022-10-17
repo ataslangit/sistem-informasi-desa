@@ -11,14 +11,14 @@
  <table class="form">
  <tr>
  <th>Judul Dokumen</th>
- <td><input name="nama" type="text" class="inputbox" size="100" value="<?php echo $dokumen['nama']?>"/></td>
+ <td><input name="nama" type="text" class="inputbox" size="100" value="<?php echo $dokumen['nama']?>"></td>
  </tr>
 				<?php if($dokumen['satuan']){?>
  <tr>
  <th class="top">Dokumen</th>
  <td>
 				<div class="slidebox-avatar">
-					<img src="<?php echo base_url()?>assets/files/dokumen/<?php echo $dokumen['satuan']?>" alt=""/>
+					<img src="<?php echo base_url()?>assets/files/dokumen/<?php echo $dokumen['satuan']?>" alt="">
 				</div>
 				</td>
 				<input type="hidden" name="old_file" value="<?php echo $dokumen['satuan']?>">
@@ -26,7 +26,7 @@
 				<?php }?>
  <tr>
  <th>Upload Dokumen</th>
- <td><input type="file" name="satuan" /> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah dokumen)</span></td>
+ <td><input type="file" name="satuan"> <span style="color: #aaa;">(Kosongkan jika tidak ingin mengubah dokumen)</span></td>
  </tr>
  </table>
  </div>

@@ -83,70 +83,70 @@ padding:5px;
 <tr>
 <th>Nomor Surat</th>
 <td>
-<input name="nomor" type="text" class="inputbox required" size="12"/>
+<input name="nomor" type="text" class="inputbox required" size="12">
 </td>
 </tr>
 <tr>
 	<th>Calon Mempelai Pria</th>
-	<td><input name="suami" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="suami" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Calon Mempelai Wanita</th>
-	<td><input name="istri" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="istri" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Hari, Tanggal, Jam</th>
-	<td><input name="hari" type="text" class="inputbox required" size="15"/>,
-	<input name="tanggal" type="text" class="inputbox required datepicker" size="15"/>,
-	<input name="jam" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="hari" type="text" class="inputbox required" size="15">,
+	<input name="tanggal" type="text" class="inputbox required datepicker" size="15">,
+	<input name="jam" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>Mas Kawin</th>
-	<td><input name="mas_kawin" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="mas_kawin" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Tunai / Hutang</th>
-	<td><input name="tunai" type="text" class="inputbox required" size="10" value="tunai"/></td>
+	<td><input name="tunai" type="text" class="inputbox required" size="10" value="tunai"></td>
 </tr>
 <tr>
 	<th>Tempat</th>
-	<td><input name="tempat" type="text" class="inputbox required" size="40"/></td>
+	<td><input name="tempat" type="text" class="inputbox required" size="40"></td>
 </tr>
 <tr>
 	<th>Jumlah Lampiran</th>
-	<td><input name="jml_lampiran" type="text" class="inputbox required" size="10"/></td>
+	<td><input name="jml_lampiran" type="text" class="inputbox required" size="10"></td>
 </tr>
 <tr>
 	<th>Lampiran 1</th>
-	<td><input name="lampiran1" type="text" class="inputbox " size="40" value="Surat Keterangan Untuk Nikah (model N-1)"/></td>
+	<td><input name="lampiran1" type="text" class="inputbox " size="40" value="Surat Keterangan Untuk Nikah (model N-1)"></td>
 </tr>
 <tr>
 	<th>Lampiran 2</th>
-	<td><input name="lampiran2" type="text" class="inputbox " size="40" value="Surat Keterangan Asal Usul (model N-2)"/></td>
+	<td><input name="lampiran2" type="text" class="inputbox " size="40" value="Surat Keterangan Asal Usul (model N-2)"></td>
 </tr>
 <tr>
 	<th>Lampiran 3</th>
-	<td><input name="lampiran3" type="text" class="inputbox " size="40" value="Surat Persetujuan Mempelai (model N-3)"/></td>
+	<td><input name="lampiran3" type="text" class="inputbox " size="40" value="Surat Persetujuan Mempelai (model N-3)"></td>
 </tr>
 <tr>
 	<th>Lampiran 4</th>
-	<td><input name="lampiran4" type="text" class="inputbox " size="40" value="Surat Keterangan Tentang Orang Tua (model N-4)"/></td>
+	<td><input name="lampiran4" type="text" class="inputbox " size="40" value="Surat Keterangan Tentang Orang Tua (model N-4)"></td>
 </tr>
 <tr>
 	<th>Lampiran 5</th>
-	<td><input name="lampiran5" type="text" class="inputbox " size="40" value="Surat Keterangan Izin Orang Tua (model N-5)"/></td>
+	<td><input name="lampiran5" type="text" class="inputbox " size="40" value="Surat Keterangan Izin Orang Tua (model N-5)"></td>
 </tr>
 <tr>
 	<th>Lampiran 6</th>
-	<td><input name="lampiran6" type="text" class="inputbox " size="40" value=""/></td>
+	<td><input name="lampiran6" type="text" class="inputbox " size="40" value=""></td>
 </tr>
 <tr>
 	<th>Lampiran 7</th>
-	<td><input name="lampiran7" type="text" class="inputbox " size="40" value=""/></td>
+	<td><input name="lampiran7" type="text" class="inputbox " size="40" value=""></td>
 </tr>
 <tr>
 	<th>Lampiran 8</th>
-	<td><input name="lampiran8" type="text" class="inputbox " size="40" value=""/></td>
+	<td><input name="lampiran8" type="text" class="inputbox " size="40" value=""></td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

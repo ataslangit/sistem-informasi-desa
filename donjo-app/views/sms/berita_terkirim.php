@@ -42,7 +42,7 @@
 		<thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="90">Aksi</th>
  <th width="150">Nama</th>
  <?php if($o==2): ?>
@@ -70,7 +70,7 @@
 		<tr>
  <td align="center" width="2"><?php echo $no;$no++; ?></td>
 			<td align="center" width="5">
-				<input type="checkbox" name="id_cb[]" value="<?php echo $data['ID']?>" />
+				<input type="checkbox" name="id_cb[]" value="<?php echo $data['ID']?>">
 			</td>
  <td><div class="uibutton-group">
  <a href="<?php echo site_url("sms/form/$p/$o/2/$data[ID]")?>" class="uibutton tipsy south" title="Tampilkan dan Balas" target="ajax-modalx" rel="window" header="Lihat Pesan"><span class="icon-zoom-in icon-large"> Balas </span></a><a href="<?php echo site_url("sms/delete/$p/$o/2/$data[ID]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a></div>

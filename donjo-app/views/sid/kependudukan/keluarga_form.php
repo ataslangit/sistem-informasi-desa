@@ -95,13 +95,13 @@ table.form.detail td{
 <th class="top">Foto</th>
 <td>
 <div class="userbox-avatar">
-<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 </div>
 </td>
 </tr>
 <tr>
 <th>Ganti Foto</th>
-<td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
+<td><input type="file" name="foto"> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
 </tr>
 <tr>
 <th width="120">Nomor KK</th>
@@ -109,11 +109,11 @@ table.form.detail td{
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama" type="text" class="inputbox required" size="60"/></td>
+<td><input name="nama" type="text" class="inputbox required" size="60"></td>
 </tr>
 <tr>
 <th>NIK</th>
-<td><input name="nik" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nik" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Jenis Kelamin</th>
@@ -121,18 +121,18 @@ table.form.detail td{
 <div class="uiradio">
 <input type="radio" id="sx1" name="sex" value="1"/ checked>
 <label for="sx1">Laki-laki</label>
-<input type="radio" id="sx2" name="sex" value="2"/>
+<input type="radio" id="sx2" name="sex" value="2">
 <label for="sx2">Perempuan</label>
 </div>
 </td>
 </tr>
 <tr>
 <th>Tempat Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox" size="65"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox" size="65"></td>
 </tr>
 <tr>
 <th>Tanggal Lahir</th>
-<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20"/></td>
+<td><input name="tanggallahir" type="text" class="inputbox datepicker" size="20"></td>
 </tr>
 <tr>
 <th>Agama</th>
@@ -190,27 +190,27 @@ table.form.detail td{
 </tr> 
 <tr>
 <th>No Pasport</th>
-<td><input name="dokumen_pasport" type="text" class="inputbox" size="20" /></td>
+<td><input name="dokumen_pasport" type="text" class="inputbox" size="20"></td>
 </tr>
 <tr>
 <th>No Kitas/Kitap</th>
-<td><input name="dokumen_kitas" type="text" class="inputbox" size="20"/></td>
+<td><input name="dokumen_kitas" type="text" class="inputbox" size="20"></td>
 </tr>
 <tr>
 <th>NIK Ayah</th>
-<td><input name="ayah_nik" type="text" class="inputbox" size="30" /></td>
+<td><input name="ayah_nik" type="text" class="inputbox" size="30"></td>
 </tr>
 <tr>
 <th>NIK Ibu</th>
-<td><input name="ibu_nik" type="text" class="inputbox" size="30" /></td>
+<td><input name="ibu_nik" type="text" class="inputbox" size="30"></td>
 </tr>
 <tr>
 <th>Nama Ayah</th>
-<td><input name="nama_ayah" type="text" class="inputbox" size="60" /></td>
+<td><input name="nama_ayah" type="text" class="inputbox" size="60"></td>
 </tr>
 <tr>
 <th>Nama Ibu</th>
-<td><input name="nama_ibu" type="text" class="inputbox" size="60" /></td>
+<td><input name="nama_ibu" type="text" class="inputbox" size="60"></td>
 </tr>
 <tr>
 <th>Golongan Darah</th>

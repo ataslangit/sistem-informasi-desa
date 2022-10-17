@@ -94,23 +94,23 @@ table.form.detail td{
 <?php }?>
 <tr>
 <th>Nomor Surat</th>
-<td><input name="nomor" type="text" class="inputbox required" size="12"/></td>
+<td><input name="nomor" type="text" class="inputbox required" size="12"></td>
 </tr>
 <tr>
 <th>DATA KELAHIRAN</th>
 </tr>
 <tr>
 <th>Nama</th>
-<td><input name="nama" type="text" class="inputbox required" size="30"/></td>
+<td><input name="nama" type="text" class="inputbox required" size="30"></td>
 </tr>
 <tr>
 <th>Tempat Tanggal Lahir</th>
-<td><input name="tempatlahir" type="text" class="inputbox required" size="10"/> 
-<input name="tanggllahir" type="text" class="inputbox required datepicker" size="10"/></td>
+<td><input name="tempatlahir" type="text" class="inputbox required" size="10"> 
+<input name="tanggllahir" type="text" class="inputbox required datepicker" size="10"></td>
 </tr>
 <tr>
 <th>Jenis Kelamin</th>
-<td><input name="sex" type="text" class="inputbox required" size="10"/> </td>
+<td><input name="sex" type="text" class="inputbox required" size="10"> </td>
 </tr>
 <tr>
 <th>Staf Pemerintah Desa</th>

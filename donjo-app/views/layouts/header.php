@@ -3,7 +3,7 @@
 
 	<head>
 		<title><?php if(@$single_artikel){echo $single_artikel['judul']." - ";}?>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 		<?php if(isset($single_artikel)) { ?>
 			<?php
@@ -24,12 +24,12 @@
 			<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>">
 		<?php } ?>
 
-		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>"/>
-		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
-		<link type='text/css' href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
-		<link type='text/css' href="<?php echo base_url()?>assets/front/css/first.css" rel='Stylesheet' />
-		<link type='text/css' href="<?php echo base_url()?>assets/css/ui-buttons.css" rel='Stylesheet' />
-		<link type='text/css' href="<?php echo base_url()?>assets/front/css/colorbox.css" rel='Stylesheet' />
+		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>">
+		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>">
+		<link href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
+		<link href="<?php echo base_url()?>assets/front/css/first.css" rel="stylesheet">
+		<link href="<?php echo base_url()?>assets/css/ui-buttons.css" rel="stylesheet">
+		<link href="<?php echo base_url()?>assets/front/css/colorbox.css" rel="stylesheet">
 		<script src="<?php echo base_url()?>assets/front/js/stscode.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/jquery.js"></script>
 		<script src="<?php echo base_url()?>assets/front/js/layout.js"></script>
@@ -76,11 +76,11 @@
 						<div id="divlogo-img">
 							<div class="intube">
 								<a href="<?php echo site_url(); ?>first/">
-								<img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="<?php echo $desa['nama_desa']?>"/>
+								<img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="<?php echo $desa['nama_desa']?>">
 								</a>
 							</div>
 						</div>
-						<br class="clearboth"/>
+						<br class="clearboth">
 					</div>
 
 					<?php if(count($teks_berjalan)>0){

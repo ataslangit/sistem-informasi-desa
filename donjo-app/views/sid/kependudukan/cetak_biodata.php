@@ -2,13 +2,13 @@
 <body>
 	<div id="content" class="container_12 clearfix">
 		<div id="content-main" class="grid_7">
-			<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet">
 			<div>
 				<table width="100%">
 					<div>
 						
 						<div align="center"><td rowspan="18" align="center"><?php if($penduduk['foto']){?>
-							<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $penduduk['foto']?>" alt=""/>
+							<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $penduduk['foto']?>" alt="">
 							<?php }?>
 						</td>
 					</div>

@@ -82,48 +82,48 @@ tr.uptd{
  </tr>
  <tr>
  <th>Username</th>
- <td><input name="username" type="text" class="inputbox required" size="40" value="<?php echo $user['username']?>"/></td>
+ <td><input name="username" type="text" class="inputbox required" size="40" value="<?php echo $user['username']?>"></td>
  </tr>
  <tr>
  <th>Password</th>
- <td><input name="password" type="password" class="inputbox" size="20" value="<?php echo $user['password']?>"/></td>
+ <td><input name="password" type="password" class="inputbox" size="20" value="<?php echo $user['password']?>"></td>
  </tr>
  <tr>
  <th>Nama</th>
- <td><input name="nama" type="text" class="inputbox" size="60" value="<?php echo $user['nama']?>"/></td>
+ <td><input name="nama" type="text" class="inputbox" size="60" value="<?php echo $user['nama']?>"></td>
  </tr>
  <tr>
  <th>Nomor HP</th>
- <td><input name="nomor_hp" type="text" class="inputbox" size="20" value="<?php echo $user['phone']?>"/></td>
+ <td><input name="nomor_hp" type="text" class="inputbox" size="20" value="<?php echo $user['phone']?>"></td>
  </tr> 
  <tr>
  <th>Mail</th>
- <td><input name="email" type="text" class="inputbox" size="20" value="<?php echo $user['email']?>"/></td>
+ <td><input name="email" type="text" class="inputbox" size="20" value="<?php echo $user['email']?>"></td>
  </tr> 
  <tr class="skpd_uptd">
  <th>Nama Bendahara</th>
- <td><input name="nama_bendahara" type="text" class="inputbox" size="50" value="<?php echo $user['nama_bendahara']?>"/></td>
+ <td><input name="nama_bendahara" type="text" class="inputbox" size="50" value="<?php echo $user['nama_bendahara']?>"></td>
  </tr>
  <tr class="skpd_uptd">
  <th>NIP Bendahara</th>
- <td><input name="nip_bendahara" type="text" class="inputbox" size="25" value="<?php echo $user['nip_bendahara']?>"/></td>
+ <td><input name="nip_bendahara" type="text" class="inputbox" size="25" value="<?php echo $user['nip_bendahara']?>"></td>
  </tr>
 			<tr class="skpd_uptd">
  <th>Nama Pengguna Anggaran</th>
- <td><input name="nama_pengguna" type="text" class="inputbox" size="50" value="<?php echo $user['nama_pengguna']?>"/></td>
+ <td><input name="nama_pengguna" type="text" class="inputbox" size="50" value="<?php echo $user['nama_pengguna']?>"></td>
  </tr>
  <tr class="skpd_uptd">
  <th>NIP Pengguna Anggaran</th>
- <td><input name="nip_pengguna" type="text" class="inputbox" size="25" value="<?php echo $user['nip_pengguna']?>"/></td>
+ <td><input name="nip_pengguna" type="text" class="inputbox" size="25" value="<?php echo $user['nip_pengguna']?>"></td>
  </tr>
  <tr>
  <th class="top">Foto</th>
  <td>
 				<div class="userbox-avatar">
 				<?php if($user['foto']){?>
-					<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $user['foto']?>" alt=""/>
+					<img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $user['foto']?>" alt="">
 				<?php }else{?>
-					<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt=""/>
+					<img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
 				<?php }?>
 				</div>
 				</td>
@@ -131,7 +131,7 @@ tr.uptd{
  </tr>
  <tr>
  <th>Ganti Foto</th>
- <td><input type="file" name="foto" /> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
+ <td><input type="file" name="foto"> <span style="color: #aaa;">(Kosongi jika tidak ingin merubah foto)</span></td>
  </tr>
  </table>
  </div>

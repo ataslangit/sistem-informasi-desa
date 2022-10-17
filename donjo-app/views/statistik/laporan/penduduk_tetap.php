@@ -52,7 +52,7 @@
  <a href="<?php echo site_url("sid_penduduk/clear")?>" class="uibutton tipsy south" title="Clear Pencarian"><span class="ui-icon ui-icon-search">&nbsp;</span>Clear</a>
  </div>
  <div class="right">
- <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Search.."/>
+ <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Search..">
  <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('sid_penduduk/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="ui-icon ui-icon-search">&nbsp;</span>Search</button>
  </div>
  </div>
@@ -60,7 +60,7 @@
 <thead>
  <tr>
  <th>No</th>
- <th><input type="checkbox" class="checkall"/></th>
+ <th><input type="checkbox" class="checkall"></th>
  <th width="50">Aksi</th>
  <?php if($o==2): ?>
 <th align="left" width='100'><a href="<?php echo site_url("sid_penduduk/index/$p/1")?>">NIK<span class="ui-icon ui-icon-triangle-1-n"></span></a></th>
@@ -91,7 +91,7 @@
 <tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td>
 <a href="<?php echo site_url("sid_penduduk/form/$p/$o/1/$data[id]")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?php echo site_url("sid_penduduk/ajax_penduduk_maps/$p/$o/$data[id]")?>" target="ajax-modalz" rel="window" header="Lokasi <?php echo $data['nama']?>" class="ui-icons icon-maps tipsy south" title="Lokasi <?php echo $data['nama']?>"></a><a href="<?php echo site_url("sid_penduduk/delete/$p/$o/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a>

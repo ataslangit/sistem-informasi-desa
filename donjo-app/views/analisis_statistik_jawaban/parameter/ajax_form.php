@@ -4,7 +4,7 @@
 <table class="form">
 <tr>
 <th>Kode</th>
-<td><input name="kode_jawaban" type="text" class="inputbox" size="5" value="<?php echo $analisis_parameter['kode_jawaban']?>"/></td>
+<td><input name="kode_jawaban" type="text" class="inputbox" size="5" value="<?php echo $analisis_parameter['kode_jawaban']?>"></td>
 </tr>
 <tr>
 <th>Jawaban</th>
@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <th>Nilai</th>
-<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"/></td>
+<td><input name="nilai" type="text" class="inputbox" size="10" value="<?php echo $analisis_parameter['nilai']?>"></td>
 </tr>
 </tr>  
 </table>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" id="rps-style-css" href="<?php echo base_url()?>assets/front/css/slide.css" type="text/css" media="all">
+<link rel="stylesheet" id="rps-style-css" href="<?php echo base_url()?>assets/front/css/slide.css" media="all">
 <script type="text/javascript" src="<?php echo base_url()?>assets/front/js/jquery_003.js"></script>
 <script type="text/javascript">
 $j = jQuery.noConflict();

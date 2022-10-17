@@ -35,7 +35,7 @@ source: keyword
 </select>
 </div>
 <div class="right">
-<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url("kategori/search")?>');$('#'+'mainform').submit();}" />
+<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url("kategori/search")?>');$('#'+'mainform').submit();}">
 <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url("kategori/search")?>');$('#'+'mainform').submit();" class="uibutton tipsy south"title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
 </div>
 </div>
@@ -43,7 +43,7 @@ source: keyword
 <thead>
 <tr>
 <th>No</th>
-<th><input type="checkbox" class="checkall"/></th>
+<th><input type="checkbox" class="checkall"></th>
 <th width="160">Aksi</th>
  <?php if($o==2): ?>
 <th align="left"><a href="<?php echo site_url("kategori/index/$p/1")?>">kategori<span class="ui-icon ui-icon-triangle-1-n">
@@ -67,7 +67,7 @@ source: keyword
 <tr>
 <td align="center" width="2"><?php echo $data['no']?></td>
 <td align="center" width="5">
-<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 </td>
 <td><div class="uibutton-group">
 <a href="<?php echo site_url("kategori/sub_kategori/$data[id]")?>" class="uibutton tipsy south" title="Rincian Sub kategori"><span class="icon-list icon-large"> Rincian</span></a>

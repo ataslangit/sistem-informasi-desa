@@ -19,7 +19,7 @@
 					</div>
 				</div>
 					<div class="right">
-						<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('surat_master/search')?>');$('#'+'mainform').submit();}" />
+						<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('surat_master/search')?>');$('#'+'mainform').submit();}">
 						<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('surat_master/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
 					</div>
 			</div>
@@ -28,7 +28,7 @@
 						<thead>
 							<tr>
 								<th width="10">No</th>
-								<th><input type="checkbox" class="checkall"/></th>
+								<th><input type="checkbox" class="checkall"></th>
 								<th width="120">Aksi</th>
 							<?php if($o==4): ?>
 								<th align="left"><a href="<?php echo site_url("surat_master/index/$p/3")?>">Nama Surat<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
@@ -55,7 +55,7 @@
 									<?php echo $data['no']?>
 								</td>
 								<td align="center" width="5">
-									<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>" />
+									<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 								</td>
 								<td>
 									<div class="uibutton-group">
