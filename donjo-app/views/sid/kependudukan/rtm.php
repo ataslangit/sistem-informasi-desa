@@ -6,29 +6,29 @@
 		});
 	});
 </script>
-<div id="pageC"> 
+<div id="pageC">
 <!-- Start of Space Admin -->
 	<table class="inner">
 	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
-<div id="contentpane"> 
+<td style="background:#fff;padding:0px;">
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel">
  <h3>Pengaturan / Pengelompokan Rumah Tangga</h3>
  <div class="left">
  <div class="uibutton-group">
- <a href="<?php echo site_url('rtm/form_old')?>" target="ajax-modalx" rel="window" header="Tambah Data Rumah Tangga Per Penduduk" class="uibutton tipsy south" title="Tambah data dari penduduk" ><span class="icon-plus icon-large">&nbsp;</span>Tambah Rumah Tangga</a>
- 
- <?php 
+ <a href="<?php echo site_url('rtm/form_old')?>" target="ajax-modalx" rel="window" header="Tambah Data Rumah Tangga Per Penduduk" class="uibutton tipsy south" title="Tambah data dari penduduk" ><span class="fa fa-plus">&nbsp;</span>Tambah Rumah Tangga</a>
+
+ <?php
 ?>
- 
- <?php if($grup==1){?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("rtm/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data</button><?php }?>
-				
-				<a href="<?php echo site_url("rtm/cetak/$o")?>" target="_blank" class="uibutton tipsy south" title="Cetak" ><span class="icon-print icon-large">&nbsp;</span>Cetak</a>
-			
-			<a href="<?php echo site_url("rtm/excel/$o")?>" target="_blank" class="uibutton tipsy south" title="Unduh" ><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
+
+ <?php if($grup==1){?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("rtm/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Data</button><?php }?>
+
+				<a href="<?php echo site_url("rtm/cetak/$o")?>" target="_blank" class="uibutton tipsy south" title="Cetak" ><span class="fa fa-print">&nbsp;</span>Cetak</a>
+
+			<a href="<?php echo site_url("rtm/excel/$o")?>" target="_blank" class="uibutton tipsy south" title="Unduh" ><span class="fa fa-download">&nbsp;</span>Unduh</a>
 			<?php /*
-			<a href="<?php echo site_url("rtm/excel_pbdt/$o")?>" target="_blank" class="uibutton special tipsy south" title="Unduh" ><span class="icon-file-text icon-large">&nbsp;</span>Excel PBDT</a>
+			<a href="<?php echo site_url("rtm/excel_pbdt/$o")?>" target="_blank" class="uibutton special tipsy south" title="Unduh" ><span class="fa fa-download">&nbsp;</span>Excel PBDT</a>
 			*/ ?>
  &nbsp;
 				<select name="dusun" onchange="formAction('mainform','<?php echo site_url('rtm/dusun')?>')">
@@ -37,7 +37,7 @@
  <option value="<?php echo $data['dusun']?>" <?php if($dusun == $data['dusun']) :?>selected<?php endif?>><?php echo strtoupper(unpenetration(ununderscore($data['dusun'])))?></option>
 					<?php }?>
  </select>
-				
+
 				<?php if($dusun){?>
  <select name="rw" onchange="formAction('mainform','<?php echo site_url('rtm/rw')?>')">
  <option value="">RW</option>
@@ -46,7 +46,7 @@
 					<?php }?>
  </select>
 				<?php }?>
-				
+
 				<?php if($rw){?>
  <select name="rt" onchange="formAction('mainform','<?php echo site_url('rtm/rt')?>')">
  <option value="">RT</option>
@@ -55,14 +55,14 @@
 					<?php }?>
  </select>
 				<?php }?>
-				
+
  </div>
  </div>
  <div class="right">
  <div class="uibutton-group">
- 
+
  <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('rtm/search')?>');$('#'+'mainform').submit();}">
- <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('rtm/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+ <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('rtm/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
  </div>
  </div>
  </div>
@@ -73,7 +73,7 @@
  <th>No</th>
  <th><input type="checkbox" class="checkall"></th>
  <th width="160">Aksi</th>
-				
+
 				<th width="150" align="left">
 				<?php if($o==2): ?>
 				<a href="<?php echo site_url("rtm/index/$p/1")?>">Nomor Rumah Tangga<span class="ui-icon ui-icon-triangle-1-n">
@@ -92,7 +92,7 @@
 				<a href="<?php echo site_url("rtm/index/$p/3")?>">Kepala Rumah Tangga<span class="ui-icon ui-icon-triangle-2-n-s">
 				<?php endif; ?>
 				&nbsp;</span></a></th>
-				
+
 				<th width="100" >Jumlah Anggota</th>
 				<th width="120">Dusun</th>
 				<th width="30">RW</th>
@@ -108,8 +108,8 @@
 				<input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
 			</td>
  <td width="5"><div class="uibutton-group">
-			<a href="<?php echo site_url("rtm/anggota/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Rincian Anggota Rumah Tangga"><span class="icon-list icon-large"> Rincian </span></a>
- <?php if($grup==1){?><a href="<?php echo site_url("rtm/edit_nokk/$p/$o/$data[id]")?>" target="ajax-modal" rel="window" header="Edit Rumah Tangga" class="uibutton tipsy south" title="Edit Data" ><span class="icon-edit icon-large"></span></a><a href="<?php echo site_url("rtm/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span> </a><?php } ?>
+			<a href="<?php echo site_url("rtm/anggota/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Rincian Anggota Rumah Tangga"><span class="fa fa-list"> Rincian </span></a>
+ <?php if($grup==1){?><a href="<?php echo site_url("rtm/edit_nokk/$p/$o/$data[id]")?>" target="ajax-modal" rel="window" header="Edit Rumah Tangga" class="uibutton tipsy south" title="Edit Data" ><span class="fa fa-pencil"></span></a><a href="<?php echo site_url("rtm/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span> </a><?php } ?>
 		</div> </td>
  <td><label> <?php echo $data['no_kk']?> </label></td>
 		 <td><?php echo strtoupper(unpenetration($data['kepala_kk']))?></td>
@@ -121,12 +121,12 @@
 		 </tr>
  <?php endforeach; ?>
 		</tbody>
-		
+
  </table>
  </div>
 	</form>
  <div class="ui-layout-south panel bottom">
- <div class="left"> 
+ <div class="left">
 		<div class="table-info">
  <form id="paging" action="<?php echo site_url('rtm')?>" method="post">
 		 <label>Tampilkan</label>
@@ -151,7 +151,7 @@
 			<?php endif; ?>
  </div>
  <div class="uibutton-group">
- 
+
 				<?php for($i=$paging->start_link;$i<=$paging->end_link;$i++): ?>
 				<a href="<?php echo site_url("rtm/index/$i/$o")?>" <?php jecho($p,$i,"class='uibutton special'")?> class="uibutton"><?php echo $i?></a>
 				<?php endfor; ?>

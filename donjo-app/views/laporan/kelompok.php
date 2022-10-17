@@ -1,14 +1,14 @@
-<div id="pageC"> 
+<div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;"> 
-<div id="contentpane"> 
+<td style="background:#fff;padding:0px;">
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel top">
  <div class="left">
  <div class="uibutton-group">
-			<a href="<?php echo site_url("laporan_rentan/cetak")?>" class="uibutton tipsy south" title="Cetak" target="_blank"><span class="icon-print icon-large">&nbsp;</span>Cetak</a>
-	<a href="<?php echo site_url("laporan_rentan/excel")?>" class="uibutton tipsy south" title="Excel" target="_blank"><span class="icon-file-text icon-large">&nbsp;</span>Unduh</a>
+			<a href="<?php echo site_url("laporan_rentan/cetak")?>" class="uibutton tipsy south" title="Cetak" target="_blank"><span class="fa fa-print">&nbsp;</span>Cetak</a>
+	<a href="<?php echo site_url("laporan_rentan/excel")?>" class="uibutton tipsy south" title="Excel" target="_blank"><span class="fa fa-download">&nbsp;</span>Unduh</a>
  </div>
  </div>
  </div>
@@ -19,41 +19,41 @@ table.tftable th {font-size:12px;background-color:#8DABD4;border-width: 1px;padd
 table.tftable tr {background-color:#ffffff;}
 table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
 </style>
- 
-	 <table width="100%"><?php foreach($config as $data){?>	
-				<tbody><tr>			
+
+	 <table width="100%"><?php foreach($config as $data){?>
+				<tbody><tr>
 				<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA <?php echo unpenetration($data['nama_kabupaten'])?></h4></td>
-																	
-				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>	
-				<tr>				
+
+				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>
+				<tr>
 					<td></td>
 					<td width="100%"><h3>DATA PILAH KEPENDUDUKAN MENURUT UMUR DAN FAKTOR KERENTANAN</h3></td>
-					
-									
+
+
 				</tr>
 				</tbody></table>
 				<table>
-				<tbody><tr>						
+				<tbody><tr>
 					<td>Desa/Kelurahan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo unpenetration($data['nama_desa'])?></h4></td>
-					<td></td>	
+					<td></td>
 				</tr>
-				<tr>					
+				<tr>
 					<td>Kecamatan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo unpenetration($data['nama_kecamatan'])?></td>
-					<td></td>	
-<?php }?>	
+					<td></td>
+<?php }?>
 				</tr>
-				<tr>						
+				<tr>
 					<td>Periode</td>
 					<td width="3%">:</td>
 <?php $bln = date("m");$thn=date("Y");?>
 					<td><?php echo $bln."/".$thn?> </td>
-					<td width="40%"></td>	
+					<td width="40%"></td>
 				</tr>
-				 <tr>						
+				 <tr>
 					<td>Dusun</td>
 					<td width="3%">:</td>
 					<td>
@@ -61,9 +61,9 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 					<option value="">--- Pilih Dusun ---</option>
 					<?php foreach($list_dusun as $data){?>
 					<option value="<?php echo $data['dusun']?>" <?php if($dusun==$data['dusun']){?>selected<?php }?>><?php echo ununderscore(unpenetration($data['dusun']))?></option>
-					<?php }?></select> 
+					<?php }?></select>
 					</td>
-					<td width="40%"></td>	
+					<td width="40%"></td>
 				</tr>
 		</tbody></table>
 	<table width="100%" id="tfhover" class="tftable" border="1">
@@ -100,7 +100,7 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 </tr>
 </thead>
 <tbody>
-<?php 
+<?php
 	$bayi=0;
 	$balita=0;
 	$sd=0;
@@ -134,7 +134,7 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 <td align="right"><a href="<?php echo site_url("penduduk/lap_statistik/$id_cluster/12")?>"><?php echo $data['susu']?></a></td>
 <td align="right"><a href="<?php echo site_url("penduduk/lap_statistik/$id_cluster/9")?>"><?php echo $data['cacat']?></a></td>
 <td align="right"><a href="<?php echo site_url("penduduk/lap_statistik/$id_cluster/9")?>"><?php echo $data['cacat2']?></a></td>
-<?php 
+<?php
 	$bayi=$bayi+$data['bayi'];
 	$balita=$balita+$data['balita'];
 	$sd=$sd+$data['sd'];
@@ -153,7 +153,7 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 </tr>
  <?php }?>
  </tbody>
- 
+
 <thead>
 	<tr>
 		<th colspan="5" align="center"><div align="center">Total</div></th>
@@ -171,14 +171,14 @@ table.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: so
 		<th><div align="right"><?php echo $cacat2;?></div></th>
 	</tr>
 </thead>
-</table> 
+</table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
  </div>
 	</div>
 	<div class="ui-layout-south panel bottom">
-<div class="left"> 
+<div class="left">
 <a href="<?php echo site_url()?>sid_wilayah" class="uibutton icon prev">Kembali</a>
 </div>
 <div class="right">

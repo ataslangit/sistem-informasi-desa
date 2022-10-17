@@ -14,7 +14,7 @@ source: keyword
 <legend>Kategori Artikel</legend>
 <div id="sidecontent3" class="lmenu" >
 <ul>
-<?php 
+<?php
 	foreach($list_kategori AS $data){
 	?>
 		<li <?php if($cat == $data['id'])echo "class='selected'";?>>
@@ -28,22 +28,22 @@ source: keyword
 		</a>
 		</li>
 <?php }?>
-<?php 
+<?php
 ?>
 	</ul>
 		</fieldset>
-		
+
 </div><legend>Artikel Statis</legend>
 <div class="lmenu" >
 <ul>
 	<li <?php if($cat == 1003)echo "class='selected'";?>>
 		<a href="<?php echo site_url("web/index/1003")?>">
-		Customizable Widget 
+		Customizable Widget
 		</a>
 	</li>
 	<li <?php if($cat == 999)echo "class='selected'";?>>
 		<a href="<?php echo site_url("web/index/999")?>">
-		Halaman Statis 
+		Halaman Statis
 		</a>
 	</li>
 	<li <?php if($cat == 1000)echo "class='selected'";?>>
@@ -54,7 +54,7 @@ source: keyword
 </ul>
 </div>
 </td>
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 <div class="content-header">
 	<?php
 	?>
@@ -64,16 +64,16 @@ source: keyword
 <div class="ui-layout-north panel">
 <div class="left">
 <div class="uibutton-group">
-<a href="<?php echo site_url("web/form/$cat")?>" class="uibutton tipsy south" title="Tambah Data" ><span class="icon-plus-sign icon-large">&nbsp;</span>Tambah <?php if($kategori){echo $kategori['kategori'];}else{echo "Artikel Statis";}?> Baru</a>
+<a href="<?php echo site_url("web/form/$cat")?>" class="uibutton tipsy south" title="Tambah Data" ><span class="fa fa-plus">&nbsp;</span>Tambah <?php if($kategori){echo $kategori['kategori'];}else{echo "Artikel Statis";}?> Baru</a>
 <?php if($_SESSION['grup']<4){?>
-<button type="button" title="Hapus Artikel" onclick="deleteAllBox('mainform','<?php echo site_url("web/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus
+<button type="button" title="Hapus Artikel" onclick="deleteAllBox('mainform','<?php echo site_url("web/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus
 <?php }?>
 </div>
 </div>
 <?php if($cat < 999){?>
 <div class="right">
 <?php if($_SESSION['grup']<4){?>
-<button type="button" title="Hapus Kategori <?php echo $kategori['kategori']?>" onclick="deleteAllBox('mainform','<?php echo site_url("web/hapus/$cat/$p/$o")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Kategori <?php echo $kategori['kategori']?>
+<button type="button" title="Hapus Kategori <?php echo $kategori['kategori']?>" onclick="deleteAllBox('mainform','<?php echo site_url("web/hapus/$cat/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Kategori <?php echo $kategori['kategori']?>
 <?php }?>
 </div>
 <?php }?>
@@ -89,7 +89,7 @@ source: keyword
 </div>
 <div class="right">
 <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url("web/search/$cat")?>');$('#'+'mainform').submit();}">
-<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url("web/search/$cat")?>');$('#'+'mainform').submit();" class="uibutton tipsy south"title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url("web/search/$cat")?>');$('#'+'mainform').submit();" class="uibutton tipsy south"title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
 </div>
 </div>
 <table class="list">
@@ -130,15 +130,15 @@ source: keyword
 </td>
 <td>
 <div class="uibutton-group">
-	<a href="<?php echo site_url("web/form/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="icon-edit icon-large"> Ubah </span></a>
+	<a href="<?php echo site_url("web/form/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"> Ubah </span></a>
 <?php if($_SESSION['grup']<4){?>
-	<a href="<?php echo site_url("web/delete/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
+	<a href="<?php echo site_url("web/delete/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
 	<?php if($data['enabled'] == '2'):?>
-	<a href="<?php echo site_url("web/artikel_lock/$cat/$data[id]")?>" class="uibutton tipsy south" title="Aktivasi artikel"><span class="icon-lock icon-large"></span></a>
+	<a href="<?php echo site_url("web/artikel_lock/$cat/$data[id]")?>" class="uibutton tipsy south" title="Aktivasi artikel"><span class="fa fa-lock"></span></a>
 		<?php elseif($data['enabled'] == '1'): ?>
-	<a href="<?php echo site_url("web/artikel_unlock/$cat/$data[id]")?>" class="uibutton tipsy south" title="Non-aktifkan artikel"><span class="icon-unlock icon-large"></span></a>
-	<a href="<?php echo site_url("web/headline/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Klik untuk Jadikan Headline"><span class="<?php if($data['headline']==1){?>icon-star-empty icon-large" title="Headline Saat Ini"<?php }else{?> icon-star icon-large" <?php }?>target="confirm" message="Jadikan Artikel ini sebagai Headline News?" header="Headline"></span></a>
-	<a href="<?php echo site_url("web/slide/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Klik untuk Jadikan Slide" message="Masukkan ke dalam slide?"><span class="<?php if($data['headline']==3){?>icon-pause icon-large" title="Keluarkan dari slide" message="Keluarkan dari slide?"<?php }else{?> icon-play icon-large" <?php }?>target="confirm" header="Slide"></span></a>
+	<a href="<?php echo site_url("web/artikel_unlock/$cat/$data[id]")?>" class="uibutton tipsy south" title="Non-aktifkan artikel"><span class="fa fa-unlock"></span></a>
+	<a href="<?php echo site_url("web/headline/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Klik untuk Jadikan Headline"><span class="<?php if($data['headline']==1){?>fa fa-star-o" title="Headline Saat Ini"<?php }else{?>fa fa-star" <?php }?>target="confirm" message="Jadikan Artikel ini sebagai Headline News?" header="Headline"></span></a>
+	<a href="<?php echo site_url("web/slide/$cat/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Klik untuk Jadikan Slide" message="Masukkan ke dalam slide?"><span class="<?php if($data['headline']==3){?>icon-pause icon-large" title="Keluarkan dari slide" message="Keluarkan dari slide?"<?php }else{?>fa fa-play" <?php }?>target="confirm" header="Slide"></span></a>
 	<?php endif?>
 	<?php } ?>
 </div>
@@ -153,7 +153,7 @@ source: keyword
 </div>
 </form>
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
+<div class="left">
 <div class="table-info">
 <form id="paging" action="<?php echo site_url("web/pager/$cat")?>" method="post">
 <label>Tampilkan</label>

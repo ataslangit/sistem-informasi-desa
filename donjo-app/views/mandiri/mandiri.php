@@ -1,12 +1,12 @@
 <div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-		<td style="background:#fff;padding:5px;"> 
+		<td style="background:#fff;padding:5px;">
 			<div id="contentpane">
 			<div class="ui-layout-north panel">
 				<div class="left">
 					<div class="uibutton-group">
-						<a href="<?php echo site_url('mandiri/ajax_pin')?>" target="ajax-modal" rel="window" header="PIN Warga" class="uibutton tipsy south" title="PIN Warga" ><span class="icon-plus icon-large">&nbsp;</span>Hasilkan PIN</a>
+						<a href="<?php echo site_url('mandiri/ajax_pin')?>" target="ajax-modal" rel="window" header="PIN Warga" class="uibutton tipsy south" title="PIN Warga" ><span class="fa fa-plus">&nbsp;</span>Hasilkan PIN</a>
 					</div>
 				</div>
 			</div>
@@ -30,14 +30,14 @@
 								<td><?php echo tgl_indo2($data['tanggal_buat'])?></td>
 								<td><?php echo tgl_indo2($data['last_login'])?></td>
 							</tr>
-						<?php 
-						endforeach; 
+						<?php
+						endforeach;
 						?>
 					</tbody>
 				</table>
 			</div>
 			<div class="ui-layout-south panel bottom">
-				<div class="left"> 
+				<div class="left">
 					<div class="table-info">
 					<form id="paging" action="<?php echo site_url('mandiri')?>" method="post">
 						<label>Tampilkan</label>
@@ -85,7 +85,7 @@
 	<?php if($_SESSION['pin']){ ?>
 		modalpin('pin','PIN WARGA','Berikut adalah kode PIN Anda. Sila catat atau ingat dengan baik. Kode PIN ini bersifat rahasia dan hanya bisa dilihat satu kali ini. Jika lupa PIN, lapor kepada perangkat desa untuk dilakukan reset. <br> <h4>Kode PIN : <?php echo $_SESSION['pin']; ?></h4>');
 	<?php }?>
-		
+
 	function modalpin(id,title,message,width,height){
 	 if (width==null || height==null){
 		width='500';
@@ -100,10 +100,10 @@
 		 height:height,
 		 autoOpen: true,
 			modal: false,
-		 dragStart: function(event, ui) { 
+		 dragStart: function(event, ui) {
 			$(this).parent().addClass('drag');
 		 },
-		 dragStop: function(event, ui) { 
+		 dragStop: function(event, ui) {
 			$(this).parent().removeClass('drag');
 		 },buttons: {
 					"OK": function() {

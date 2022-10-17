@@ -20,20 +20,20 @@
 				</ul>
 			</div>
 		</fieldset>
-		
+
 	</td>
 		</td>
-		<td style="background:#fff;padding:5px;"> 
+		<td style="background:#fff;padding:5px;">
 <div class="content-header">
  <h3>Kotak Masuk</h3>
 </div>
-<div id="contentpane"> 
+<div id="contentpane">
 	<form id="mainform" name="mainform" action="" method="post">
  <div class="ui-layout-north panel">
  <div class="left">
  <div class="uibutton-group">
- <a href="<?php echo site_url('sms/form/0/0/1')?>" class="uibutton tipsy south" title="Tulis Pesan Baru" target="ajax-modalx" rel="window" header="Tulis Pesan Baru"><span class="icon-comment icon-large">&nbsp;</span>Tulis Pesan Baru</a>
- <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("sms/delete_all/$p/$o/1")?>')" class="uibutton tipsy south"><span class="icon-trash icon-large">&nbsp;</span>Hapus Data
+ <a href="<?php echo site_url('sms/form/0/0/1')?>" class="uibutton tipsy south" title="Tulis Pesan Baru" target="ajax-modalx" rel="window" header="Tulis Pesan Baru"><span class="fa fa-comment">&nbsp;</span>Tulis Pesan Baru</a>
+ <button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("sms/delete_all/$p/$o/1")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Data
  </div>
  </div>
  </div>
@@ -52,10 +52,10 @@
 			<?php else: ?>
 				<th align="left" width='100'><a href="<?php echo site_url("sms/index/$p/1")?>">Nomor HP<span class="ui-icon ui-icon-triangle-2-n-s"></span></a></th>
 			<?php endif; ?>
-			
+
 			<th align="left">Isi Pesan</th>
-			
-			
+
+
 			<?php if($o==6): ?>
 				<th align="left" width='160'><a href="<?php echo site_url("sms/index/$p/5")?>">Diterima<span class="ui-icon ui-icon-triangle-1-n">&nbsp;</span></a></th>
 			<?php elseif($o==5): ?>
@@ -73,13 +73,13 @@
 				<input type="checkbox" name="id_cb[]" value="<?php echo $data['ID']?>">
 			</td>
  <td><div class="uibutton-group">
- <a href="<?php echo site_url("sms/form/$p/$o/1/$data[ID]")?>" class="uibutton tipsy south" title="Tampilkan dan Balas" target="ajax-modal" rel="window" header="Lihat Pesan"><span class="icon-mail-reply icon-large"> Balas </span></a><a href="<?php echo site_url("sms/delete/$p/$o/1/$data[ID]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a>
+ <a href="<?php echo site_url("sms/form/$p/$o/1/$data[ID]")?>" class="uibutton tipsy south" title="Tampilkan dan Balas" target="ajax-modal" rel="window" header="Lihat Pesan"><span class="fa fa-reply"> Balas </span></a><a href="<?php echo site_url("sms/delete/$p/$o/1/$data[ID]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
 	</div>
  </td>
  <td><?php echo unpenetration($data['nama'])?></td>
  <td><?php echo $data['SenderNumber']?></td>
  <td><?php echo $data['TextDecoded']?></td>
- 
+
  <td><?php echo tgl_indo2($data['ReceivingDateTime'])?></td>
 		 </tr>
  <?php endforeach; ?>
@@ -88,7 +88,7 @@
  </div>
 	</form>
  <div class="ui-layout-south panel bottom">
- <div class="left"> 
+ <div class="left">
 		<div class="table-info">
  <form id="paging" action="<?php echo site_url('sms')?>" method="post">
 		 <label>Tampilkan</label>
@@ -113,7 +113,7 @@
 			<?php endif; ?>
  </div>
  <div class="uibutton-group">
- 
+
 				<?php for($i=$paging->start_link;$i<=$paging->end_link;$i++): ?>
 				<a href="<?php echo site_url("sms/index/$i/$o")?>" <?php jecho($p,$i,"class='uibutton special'")?> class="uibutton"><?php echo $i?></a>
 				<?php endfor; ?>

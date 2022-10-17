@@ -15,7 +15,7 @@ $(function(){
 		} else {
 			$(this).parent().css({'background':'#fafafa','border':'1px solid #ddd'});
 		}
-	});	
+	});
 	$('#op_item label').click(function(){
 		$(this).prev().trigger('click');
 	})
@@ -89,15 +89,15 @@ $(function(){
 		?>
 			<tr>
 				<td><?php echo $i?></td>
-				
+
 				<?php if($analisis_master['id_child']!=0){?>
 				<td>
 					<div class="uibutton-group">
-						<a href="<?php echo site_url("analisis_respon/kuisioner_child/$p/$o/$id/$idc")?>" class="uibutton south" target="ajax-modal-respon" rel="window" header="<?php echo $ang['nik']?> <?php echo $ang['nama']?>"><span class="icon-list icon-large"> Input Data</span></a>
+						<a href="<?php echo site_url("analisis_respon/kuisioner_child/$p/$o/$id/$idc")?>" class="uibutton south" target="ajax-modal-respon" rel="window" header="<?php echo $ang['nik']?> <?php echo $ang['nama']?>"><span class="fa fa-list"> Input Data</span></a>
 					</div>
 				</td>
 				<?php } ?>
-				
+
 				<td><?php echo $ang['nik']?></td>
 				<td><?php echo $ang['nama']?></td>
 				<td><?php echo tgl_indo($ang['tanggallahir'])?></td>
@@ -118,25 +118,25 @@ $(function(){
 			<tr><td colspan="2"><hr></td></tr>
 			<tr style="background-color:#acff98;"><td colspan="2"><h3><?php echo $data['kategori']?></h3></td></tr>
 			<tr><td colspan="2"><hr></td></tr>
-		<?php 
+		<?php
 			$new=0;
 			$last = $data['id_kategori'];
 			}
 		?>
 			<tr><td width="30%"><label class='tanya'><?php echo $data['nomor']?> ) <?php echo $data['pertanyaan']?></label></td>
 			<?php if($data['id_tipe']==1){?>
-			
-			
-			
+
+
+
 				<td id="op_item">
 				<select name="rb[<?php echo $data['id']?>]">
 				<option value="">--- Pilih Jawaban ---</option>
 				<?php foreach($data['parameter_respon'] AS $data2){?>
-					<option value="<?php echo $data['id']?>.<?php echo $data2['id_parameter']?>" <?php if($data2['cek']){echo " selected";}?>><?php echo $data2['kode_jawaban']?>. <?php echo $data2['jawaban']?></option>	
+					<option value="<?php echo $data['id']?>.<?php echo $data2['id_parameter']?>" <?php if($data2['cek']){echo " selected";}?>><?php echo $data2['kode_jawaban']?>. <?php echo $data2['jawaban']?></option>
 				<?php }?>
 				</select>
 			<?php }elseif($data['id_tipe']==2){?>
-			
+
 				<?php foreach($data['parameter_respon'] AS $data2){?>
 				<td id="op_item">
 				<div>
@@ -144,9 +144,9 @@ $(function(){
 					<label><?php echo $data2['kode_jawaban']?>. <?php echo $data2['jawaban']?></label>
 				</div>
 				<?php }?>
-			
+
 			<?php }elseif($data['id_tipe']==3){?>
-			
+
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<td id="">
@@ -155,9 +155,9 @@ $(function(){
 				<td id="">
 				<div style="display:inline-block;"><input name="ia[<?php echo $data['id']?>]" type="text" class="inputbox number" size="10" value=""></div>
 				<?php }?>
-				
+
 			<?php }elseif($data['id_tipe']==4){?>
-			
+
 				<?php if($data['parameter_respon']){?>
 				<?php $data2=$data['parameter_respon'];?>
 				<td id="">
@@ -166,11 +166,11 @@ $(function(){
 				<td id="">
 				<div style="display:inline-block;"><input name="it[<?php echo $data['id']?>]" type="text" class="inputbox" size="100" value=""></div>
 				<?php }?>
-				
+
 			<?php }?>
 			</tr>
-		<?php 
-		
+		<?php
+
 		}?>
 		<tr><td><hr></td></tr>
 		</table>
@@ -198,7 +198,7 @@ $(function(){
 		</table>
 	</div>
 	<div class="ui-layout-south panel bottom" id="bawah">
-		<div class="left"> 
+		<div class="left">
 			<a href="<?php echo site_url()?>analisis_respon" class="uibutton icon prev">Kembali</a>
 			<?php if(isset($_SESSION['fullscreen'])){?>
 			<a href="<?php echo current_url()?>/2" class="uibutton">Normal</a>

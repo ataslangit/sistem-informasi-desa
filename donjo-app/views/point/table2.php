@@ -9,9 +9,9 @@ source: keyword
 <div id="pageC">
 <table class="inner">
 <tr style="vertical-align:top">
-<?php 
+<?php
 ?>
-<td style="background:#fff;padding:0px;"> 
+<td style="background:#fff;padding:0px;">
 <div class="content-header">
 <h3>Manajemen Kategori Point</h3>
 </div>
@@ -72,7 +72,7 @@ source: keyword
 </td>
 <td>
 <div class="uibutton-group">
-<a href="<?php echo site_url("point/form/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Edit Data"><span class="icon-edit icon-large"></span></a><a href="<?php echo site_url("point/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="icon-trash icon-large"></span></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url('point/point_lock/'.$data['id'])?>" class="uibutton tipsy south" title="Enable point"><span class="icon-lock icon-large"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url('point/point_unlock/'.$data['id'])?>" class="uibutton tipsy south" title="Disable point"><span class="icon-unlock icon-large"></span></a><a href="<?php echo site_url("point/sub_point/$data[id]")?>" class="uibutton tipsy south" title="Rincian Sub point"><span class="icon-list icon-large"> Rincian </span></a><a href="<?php echo site_url("point/ajax_add_sub_point/$data[id]")?>" target="ajax-modal" rel="window" header="Tambah Sub point <?php echo $data['nama']?>" class="uibutton tipsy south" title="Tambah Sub point"><span class="icon-plus icon-large"></span></a>
+<a href="<?php echo site_url("point/form/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Edit Data"><span class="fa fa-pencil"></span></a><a href="<?php echo site_url("point/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url('point/point_lock/'.$data['id'])?>" class="uibutton tipsy south" title="Enable point"><span class="fa fa-lock"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url('point/point_unlock/'.$data['id'])?>" class="uibutton tipsy south" title="Disable point"><span class="fa fa-unlock"></span></a><a href="<?php echo site_url("point/sub_point/$data[id]")?>" class="uibutton tipsy south" title="Rincian Sub point"><span class="fa fa-list"> Rincian </span></a><a href="<?php echo site_url("point/ajax_add_sub_point/$data[id]")?>" target="ajax-modal" rel="window" header="Tambah Sub point <?php echo $data['nama']?>" class="uibutton tipsy south" title="Tambah Sub point"><span class="fa fa-plus"></span></a>
 <?php endif?>
 </div>
 </td>
@@ -87,7 +87,7 @@ source: keyword
 </div>
 </form>
 <div class="ui-layout-south panel bottom">
-<div class="left"> 
+<div class="left">
 <div class="table-info">
 <form id="paging" action="<?php echo site_url('point')?>" method="post">
 <label>Tampilkan</label>

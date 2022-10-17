@@ -20,11 +20,11 @@
 			<legend>Daftar Data Persil <?php echo $desa["nama_desa"];?></legend>
 			<div id="contentpane">
 				<div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
-				
+
 					<form id="mainform" name="mainform" action="" method="post">
 							<div class="left">
 								<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();}">
-								<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="icon-search icon-large">&nbsp;</span>Cari</button>
+								<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
 							</div>
 					</form>
 			<?php
@@ -34,8 +34,8 @@
 				$_SESSION["pesan"]="";
 			}
 			?>
-			
-<?php 
+
+<?php
 if($persil){
 	if(count($persil)>0){
 		echo "
@@ -55,9 +55,9 @@ if($persil){
 			echo "<tr>
 			<td class=\"angka\">".$nomer."</td>
 			<td><div class=\"uibutton-group\">
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/detail/".$item["id"])."\" title=\"Detail\"><span class=\"icon-list icon-large\"></span> Detail</a>
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/create/".$item["id"])."\" title=\"Ubah\"><span class=\"icon-pencil icon-large\"></span></a>
-					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/hapus/".$item["id"])."\" title=\"Hapus Data\" target=\"confirm\" message=\"Apakah Anda Yakin?\" header=\"Hapus Data\"><span class=\"icon-trash icon-large\"></span></a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/detail/".$item["id"])."\" title=\"Detail\"><span class=\"fa fa-list\"></span> Detail</a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/create/".$item["id"])."\" title=\"Ubah\"><span class=\"fa fa-pencil\"></span></a>
+					<a class=\"uibutton tipsy south\" href=\"". site_url("data_persil/hapus/".$item["id"])."\" title=\"Hapus Data\" target=\"confirm\" message=\"Apakah Anda Yakin?\" header=\"Hapus Data\"><span class=\"fa fa-trash-o\"></span></a>
 				</div></td>
 			<td>".$item["namapemilik"]."</td>
 			<td>".$item["nik"]."</td>
