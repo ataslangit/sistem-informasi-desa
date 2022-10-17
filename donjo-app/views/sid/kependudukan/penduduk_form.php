@@ -174,7 +174,6 @@
                                         <th>Dokumen KITAS</th>
                                         <td><input name="dokumen_kitas" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['dokumen_kitas']) ?>"></td>
                                     </tr>
-
                                     <tr>
                                         <th>Akta Perkawinan</th>
                                         <td><input name="akta_perkawinan" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perkawinan']) ?>"></td>
@@ -183,8 +182,6 @@
                                         <th>Tanggal Perkawinan</th>
                                         <td><input name="tanggalperkawinan" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperkawinan'] ?>"></td>
                                     </tr>
-
-
                                     <tr>
                                         <th>Akta Perceraian</th>
                                         <td><input name="akta_perceraian" type="text" class="inputbox" size="20" value="<?php echo ($penduduk['akta_perceraian']) ?>"></td>
@@ -193,9 +190,6 @@
                                         <th>Tanggal Perceraian</th>
                                         <td><input name="tanggalperceraian" type="text" class="inputbox datepicker" size="20" value="<?php echo $penduduk['tanggalperceraian'] ?>"></td>
                                     </tr>
-
-
-
                                     <tr>
                                         <th>NIK Ayah</th>
                                         <td><input name="ayah_nik" type="text" class="inputbox" size="30" value="<?php echo $penduduk['ayah_nik'] ?>"></td>
@@ -261,36 +255,38 @@
                                         <th>Status Kehamilan/ Ibu Menyusui</th>
                                         <td>
                                             <div class="uiradio">
-                                                <input type="radio" id="sh2" name="hamil" value="0" /<?php if ($penduduk['hamil'] == '0' or $penduduk['hamil'] == '') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>><label for="sh2">Tidak Hamil</label>
-                                                <input type="radio" id="sh1" name="hamil" value="1" /<?php if ($penduduk['hamil'] == '1') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>><label for="sh1">Hamil Tua</label>
-                                                <input type="radio" id="sh3" name="hamil" value="2" /<?php if ($penduduk['hamil'] == '2') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>><label for="sh3">Hamil Muda</label>
-                                                <input type="radio" id="sh4" name="hamil" value="3" /<?php if ($penduduk['hamil'] == '3') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>><label for="sh4">Ibu Menyusui</label>
+                                                <input type="radio" id="sh2" name="hamil" value="0" <?php if ($penduduk['hamil'] == '0' or $penduduk['hamil'] == '') {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>><label for="sh2">Tidak Hamil</label>
+                                                <input type="radio" id="sh1" name="hamil" value="1" <?php if ($penduduk['hamil'] == '1') {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>><label for="sh1">Hamil Tua</label>
+                                                <input type="radio" id="sh3" name="hamil" value="2" <?php if ($penduduk['hamil'] == '2') {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>><label for="sh3">Hamil Muda</label>
+                                                <input type="radio" id="sh4" name="hamil" value="3" <?php if ($penduduk['hamil'] == '3') {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>><label for="sh4">Ibu Menyusui</label>
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php /*
-<tr>
-	<th>JAMKESMAS</th>
-	<td>
-	<div class="uiradio">
-	<input type="radio" id="jkm1" name="jamkesmas" value="1"/<?php if($penduduk['jamkesmas'] == '1'){echo 'checked';}?>>
-	<label for="jkm1">Ya</label>
-	<input type="radio" id="jkm3" name="jamkesmas" value="3"/<?php if($penduduk['jamkesmas'] == '3'){echo 'checked';}?>>
-	<label for="jkm3">Lainnya</label>
-	<input type="radio" id="jkm2" name="jamkesmas" value="2"/<?php if($penduduk['jamkesmas'] == '2' OR $penduduk['jamkesmas'] == ''){echo 'checked';}?>>
-	<label for="jkm2">Tidak</label>
-	</div>
-	</td>
-</tr>
-*/ ?>
+                                    <?php
+                                    /*
+                                    <tr>
+                                        <th>JAMKESMAS</th>
+                                        <td>
+                                        <div class="uiradio">
+                                        <input type="radio" id="jkm1" name="jamkesmas" value="1"/<?php if($penduduk['jamkesmas'] == '1'){echo 'checked';}?>>
+                                        <label for="jkm1">Ya</label>
+                                        <input type="radio" id="jkm3" name="jamkesmas" value="3"/<?php if($penduduk['jamkesmas'] == '3'){echo 'checked';}?>>
+                                        <label for="jkm3">Lainnya</label>
+                                        <input type="radio" id="jkm2" name="jamkesmas" value="2"/<?php if($penduduk['jamkesmas'] == '2' OR $penduduk['jamkesmas'] == ''){echo 'checked';}?>>
+                                        <label for="jkm2">Tidak</label>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    */
+                                    ?>
                                     <tr>
                                         <th>Lokasi Penduduk</th>
                                         <td>
@@ -322,7 +318,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($list_dokumen as $data) { ?>
+                                    <?php
+                                    if($list_dokumen !== null) {
+                                    foreach ($list_dokumen as $data) { ?>
                                         <tr>
                                             <td align="center" width="2"><?php echo $data['no'] ?></td>
                                             <td><?php echo $data['nama'] ?></td>
@@ -330,7 +328,8 @@
                                             <td><?php echo tgl_indo2($data['tgl_upload']) ?></td>
                                             <td></td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -344,10 +343,9 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
-</div>
-</td>
-</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>
