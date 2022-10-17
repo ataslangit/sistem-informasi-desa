@@ -10,15 +10,15 @@
 		<link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css">
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
 	<style>
 	body{
 	 background: url(<?php echo base_url()?>assets/files/bg.jpg) no-repeat center center fixed;
@@ -41,7 +41,7 @@ box-shadow:0px 0px 15px #777;
 	</style>
 	</head>
 <body>
-<script type="text/javascript">
+<script>
 	$(function(){
 	<?php if($pass != NULL){ ?>
 		modalpin('pin','PENTING! Informasi Username dan Password.','Silakan catat/ingat username dan password ini sebelum login. Username dan password ini hanya akan tampil sekali di tahap instalasi aplikasi SID untuk alasan keamanan. <br>Setelah berhasil masuk aplikasi harap untuk segera mengganti Password yang sekiranya mudah diingat.<br>Username dan password dapat diganti setelah Anda berhasil login ke aplikasi SID.<table class="list"><td width="150">Username</td><td width="5"> : </td><td>admin</td></tr><tr><td>Pssword</td><td width="5"> : </td><td><?php echo $pass; ?></td></tr></table>');

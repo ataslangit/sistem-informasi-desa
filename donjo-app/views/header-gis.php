@@ -15,23 +15,23 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css"></noscript>
 
 
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
+<script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
+<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
+<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
+<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/validasi.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>
 <?php $ipend = $this->header_model->init_penduduk(); ?>
 </head>
 <body>
@@ -69,23 +69,23 @@
 
 
 <!-- NOTIFICATION
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>--><?php if($_SESSION['success']==1): ?>
-<script type="text/javascript">
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>--><?php if($_SESSION['success']==1): ?>
+<script>
 $('document').ready(function(){
 notification('success','Data Berhasil Disimpan')();
 });
 </script><?php elseif($_SESSION['success']==-1): ?>
-<script type="text/javascript">
+<script>
 $('document').ready(function(){
 notification('error','Data Gagal Disimpan')();
 });
 </script><?php elseif($_SESSION['success']==-2): ?>
-<script type="text/javascript">
+<script>
 $('document').ready(function(){
 notification('error','Simpan data gagal, nama id sudah ada!')();
 });
 </script><?php elseif($_SESSION['success']==-3): ?>
-<script type="text/javascript">
+<script>
 $('document').ready(function(){
 notification('error','Simpan data gagal, nama id sudah ada!')();
 });

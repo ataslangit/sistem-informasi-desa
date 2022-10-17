@@ -1,5 +1,5 @@
 <div id="scroller">
-<script type="text/javascript">
+<script>
 jQuery.fn.liScroll = function(settings) {
 settings = jQuery.extend({
 travelocity: 0.03

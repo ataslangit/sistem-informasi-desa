@@ -1,5 +1,5 @@
 <?php if($tipe==1){?>
-<script type="text/javascript">
+<script>
 $(function () {
  var chart;
  $(document).ready(function () {
@@ -44,7 +44,7 @@ $(function () {
 });
 </script>
 <?php }else{?>
-<script type="text/javascript">
+<script>
 $(function () {
  var chart;
  

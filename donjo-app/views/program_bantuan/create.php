@@ -103,8 +103,8 @@ $(document).ready(function () {
  }
  });
 });</script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
+<script>
 tinyMCE.init({
  
 		mode : "textareas",

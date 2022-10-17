@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script>
 			var chart;
 			$(document).ready(function() {
 				chart = new Highcharts.Chart({

@@ -23,7 +23,7 @@ if($data_config['lat']!= "0"){
 			<div id=\"map_canvas\" style=\"height:200px;\"></div>
 			<script type=\"text/javascript\" src=\"//maps.google.com/maps/api/js?key=".$data_config['gapi_key']."&sensor=false\"></script>";
 			?>
-			<script type="text/javascript">								
+			<script>								
 				var map;
 				var marker;
 				var location;

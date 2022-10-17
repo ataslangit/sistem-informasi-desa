@@ -18,4 +18,4 @@
  </div>
 </div>
 </form>
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>
+<script src="<?php echo base_url()?>assets/js/jscolor/jscolor.js"></script>

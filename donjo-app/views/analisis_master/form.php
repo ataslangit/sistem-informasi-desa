@@ -1,6 +1,6 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/tiny_mce/jquery.tinymce.min.js"></script>
+<script src="<?php echo base_url()?>assets/tiny_mce/tinymce.min.js"></script>
+<script>
 tinymce.init({
 selector: 'textarea',
 height: 600,

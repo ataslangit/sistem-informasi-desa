@@ -3,7 +3,7 @@
 	<tr style="vertical-align:top">
 <td style="background:#fff;padding:0px;"> 
 <div class="content-header">
-<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
+<script src="//maps.google.com/maps/api/js?sensor=false"></script>
 </div>
 <div id="contentpane">
 <div class="ui-layout-north panel"><h3>Pengaturan</h3>

@@ -14,21 +14,21 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css"></noscript>
 
 
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url()?>assets/js/validasi.js"></script><script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=4&sensor=false"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.layout.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.mainmenu.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+		<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.attribut.js"></script>
+		<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
+		<script src="<?php echo base_url()?>assets/js/validasi.js"></script><script src="http://maps.googleapis.com/maps/api/js?v=4&sensor=false"></script>
 <!---->
 <!--[if lte IE 6]>
 <style>

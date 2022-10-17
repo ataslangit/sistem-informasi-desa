@@ -1,6 +1,6 @@
 <link rel="stylesheet" id="rps-style-css" href="<?php echo base_url()?>assets/front/css/slide.css" media="all">
-<script type="text/javascript" src="<?php echo base_url()?>assets/front/js/jquery_003.js"></script>
-<script type="text/javascript">
+<script src="<?php echo base_url()?>assets/front/js/jquery_003.js"></script>
+<script>
 $j = jQuery.noConflict();
 $j(document).ready(function() {$j("#rps .paging").show();$j("#rps .paging a:first").addClass("active");
 $j(".slide").css({"width" : 925});

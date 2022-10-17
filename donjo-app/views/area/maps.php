@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
 <script>
 	function PolygonCreator(map){
 		this.map=map;this.pen=new Pen(this.map);
