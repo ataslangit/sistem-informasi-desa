@@ -1,6 +1,7 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="id">
+
 <head>
 <title>SID - Desa <?php echo $desa['nama_desa'] ?></title>
 
@@ -11,7 +12,7 @@
 <link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style-gis.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" /></noscript> 
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/noJS.css" /></noscript>
 
 
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
@@ -53,7 +54,7 @@
 
 <ul class="dropdown" tabindex="1">
 	<li><a href="<?php echo site_url()?>hom_desa"><i class="icon-home icon-large"></i>SID Home</a></li>
-	<li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="icon-user icon-large"></i>Setting User</a></li>	
+	<li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="icon-user icon-large"></i>Setting User</a></li>
 	<?php if($_SESSION['grup']==1){?>
 	<li><a href="<?php echo site_url()?>modul/clear"><i class="icon-gear icon-large"></i>Pengaturan</a></li>
 	<?php }?>
@@ -67,7 +68,7 @@
 <div class="ui-layout-center" id="wrapper">
 
 
-<!-- NOTIFICATION 
+<!-- NOTIFICATION
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>--><?php if($_SESSION['success']==1): ?>
 <script type="text/javascript">
 $('document').ready(function(){

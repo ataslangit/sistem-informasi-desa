@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Cetak Laporan Kelompok Rentan</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
@@ -8,48 +9,48 @@
 <div id="container">
 <!-- Print Body -->
 <div id="body">
-	 <table width="100%"><?php foreach($config as $data){?>	
-				<tbody><tr>			
+	 <table width="100%"><?php foreach($config as $data){?>
+				<tbody><tr>
 				<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA <?php echo $data['nama_kabupaten']?></h4></td>
-																	
-				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>	
-				<tr>				
+
+				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>
+				<tr>
 					<td></td>
 					<td width="100%"><h3>LAPORAN BULANAN KELURAHAN</h3></td>
-					
-									
+
+
 				</tr>
 				</tbody></table>
 				<br>
 				<table>
-				<tbody><tr>						
+				<tbody><tr>
 					<td>Kelurahan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo $data['nama_desa']?></h4></td>
-					<td></td>	
+					<td></td>
 				</tr>
-				<tr>					
+				<tr>
 					<td>Kecamatan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo $data['nama_kecamatan']?></td>
-					<td></td>	
-			<?php }?>	
+					<td></td>
+			<?php }?>
 				</tr>
-				<tr>						
+				<tr>
 					<td>Laporan Bulan</td>
 					<td width="3%">:</td>
 			<?php $bln = date("m");?>
 					<td><?php echo $bln?> </td>
-					<td width="40%"></td>	
+					<td width="40%"></td>
 				</tr>
 				<?php if($dusun){?>
-				<tr>						
+				<tr>
 					<td>Dusun</td>
 					<td width="3%">:</td>
 					<td>
 					<?php echo $dusun?>
 					</td>
-					<td width="40%"></td>	
+					<td width="40%"></td>
 				</tr>
 				<?php }?>
 		</tbody></table>
@@ -96,7 +97,7 @@
  </table></div>
  </th>
 <th colspan="2" scope="col"><div align="center">
-<table width="100%"> 
+<table width="100%">
  <tr>
 <th colspan="2" scope="col"><div align="center">Sakit Menahun</div> </th>
  </tr>
@@ -129,7 +130,7 @@
 </tr>
  <?php }?>
  </tbody>
-</table> 
+</table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

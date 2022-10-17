@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Data Keluarga</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
@@ -26,7 +27,7 @@
 			<th width="100">Tanggal Terdaftar</th>
 		</tr>
 		</thead>
-		
+
 		<tbody>
  <?php foreach($main as $data): ?>
 		<tr>
@@ -45,7 +46,7 @@
 	</tbody>
 </table>
 </div>
- 
+
  <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
 </div>
 </body></html>

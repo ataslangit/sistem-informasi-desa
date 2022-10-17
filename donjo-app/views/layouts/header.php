@@ -1,10 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="id">
+
 	<head>
 		<title><?php if(@$single_artikel){echo $single_artikel['judul']." - ";}?>Website Desa <?php echo unpenetration($desa['nama_desa']);?></title>
-		<meta content="utf-8" http-equiv="encoding">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		
+
 		<?php if(isset($single_artikel)) { ?>
 			<?php
 			if(isset($single_artikel['gambar'])){
@@ -21,9 +21,9 @@
 			<meta property="og:image:width" content="300">
 			<meta property="og:image:height" content="180">
 			<meta property="og:url" content="<?php echo urlencode(current_url()); ?>">
-			<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>"> 
+			<meta property="og:title" content="<?php echo $single_artikel['judul']; ?>">
 		<?php } ?>
-		
+
 		<meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>"/>
 		<link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" />
 		<link type='text/css' href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
@@ -82,14 +82,14 @@
 						</div>
 						<br class="clearboth"/>
 					</div>
-					
+
 					<?php if(count($teks_berjalan)>0){
 						$this->load->view('layouts/teks_berjalan.php');
 					} ?>
-						
+
 					<div id="mainmenu">
 						<?php $this->load->view('partials/menu.left.php');?>
 					</div>
-					
+
 				</div>
 			</div>

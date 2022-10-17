@@ -1,12 +1,13 @@
-<?php 
+<?php
 $tgl =  date('d_m_Y');
 header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=statistik_penduduk_$tgl.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Laporan Statistik</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
@@ -19,7 +20,7 @@ header("Expires: 0");
  <tbody>
  <tr>
  <td style="padding: 5px 20px;">
- 
+
 		<br>
 		<table class="border thick data">
 		<thead>
@@ -43,14 +44,14 @@ header("Expires: 0");
  <?php endforeach; ?>
 		</tbody>
  </table>
-		
- 
+
+
  <br>
- 
- 
+
+
  </td>
  </tr>
-</tbody></table> 
+</tbody></table>
 </div>
  <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
 </div>

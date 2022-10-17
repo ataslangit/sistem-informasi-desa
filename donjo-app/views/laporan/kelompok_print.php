@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Cetak Laporan Kelompok Rentan</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
@@ -8,39 +9,39 @@
 <div id="container">
 <!-- Print Body -->
 <div id="body">
-	 <table width="100%"><?php foreach($config as $data){?>	
-				<tbody><tr>			
+	 <table width="100%"><?php foreach($config as $data){?>
+				<tbody><tr>
 				<td width="37%"><h4>PEMERINTAH KABUPATEN/KOTA <?php echo unpenetration($data['nama_kabupaten'])?></h4></td>
-																	
-				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>	
-				<tr>				
+
+				<td align= "right" width="17%"><h4>LAMPIRAN A - 9</h4></td>		</tr>
+				<tr>
 					<td></td>
 					<td width="100%"><h3>DATA PILAH KEPENDUDUKAN MENURUT UMUR DAN FAKTOR KERENTANAN</h3></td>
-					
-									
+
+
 				</tr>
 				</tbody></table>
 				<br>
 				<table>
-				<tbody><tr>						
+				<tbody><tr>
 					<td>Desa/Kelurahan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo unpenetration($data['nama_desa'])?></h4></td>
-					<td></td>	
+					<td></td>
 				</tr>
-				<tr>					
+				<tr>
 					<td>Kecamatan</td>
 					<td width="3%">:</td>
 					<td width="38.5%"><?php echo unpenetration($data['nama_kecamatan'])?></td>
-					<td></td>	
-			<?php }?>	
+					<td></td>
+			<?php }?>
 				</tr>
-				<tr>						
+				<tr>
 					<td>Periode</td>
 					<td width="3%">:</td>
 <?php $bln = date("m");$thn=date("Y");?>
 					<td><?php echo $bln."/".$thn?> </td>
-					<td width="40%"></td>	
+					<td width="40%"></td>
 				</tr>
 		</tbody></table>
 		<br>
@@ -78,7 +79,7 @@
 </tr>
 </thead>
 <tbody>
-<?php 
+<?php
 	$bayi=0;
 	$balita=0;
 	$sd=0;
@@ -112,7 +113,7 @@
 <td align="right"><?php echo $data['susu']?></td>
 <td align="right"><?php echo $data['cacat']?></td>
 <td align="right"><?php echo $data['cacat2']?></td>
-<?php 
+<?php
 	$bayi=$bayi+$data['bayi'];
 	$balita=$balita+$data['balita'];
 	$sd=$sd+$data['sd'];
@@ -148,7 +149,7 @@
 		<th><div align="right"><?php echo $cacat2;?></div></th>
 	</tr>
 </thead>
-</table> 
+</table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

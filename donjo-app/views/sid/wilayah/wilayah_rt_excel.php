@@ -5,8 +5,9 @@ header("Content-Disposition: attachment; filename=wilayah_rt_$tgl.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Data Wilayah</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
@@ -15,7 +16,7 @@ header("Expires: 0");
 <div id="container">
 <!-- Print Body --><div id="body"><div class="header" align="center"><label align="left"><?php echo get_identitas()?></label>
 <h3> DATA RT DAN JUMLAH PENDUDUK </h3>
-<h4> DUSUN <?php echo strtoupper(unpenetration(ununderscore($dusun)))?> RW <?php echo unpenetration(ununderscore($rw))?></h4> 
+<h4> DUSUN <?php echo strtoupper(unpenetration(ununderscore($dusun)))?> RW <?php echo unpenetration(ununderscore($rw))?></h4>
 </div>
 <br>
  <table class="border thick">
@@ -55,7 +56,7 @@ header("Expires: 0");
 	</tbody>
 </table>
 </div>
- 
+
  <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
 </div>
 </body></html>

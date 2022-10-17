@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <title>Data Wilayah</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<?php echo base_url()?>assets/css/surat.css" rel="stylesheet" type="text/css" />
@@ -42,9 +43,9 @@
  <?php foreach($main as $data): ?>
 		<tr>
  <td align="center" width="2"><?php echo $data['no']?></td>
-			
+
 			<td><?php echo strtoupper(unpenetration(ununderscore($data['dusun'])))?></td>
-			<td><?php echo $data['nama_kadus']?></td> 
+			<td><?php echo $data['nama_kadus']?></td>
 			<td align="right"><?php echo $data['jumlah_rw']?></td>
 			<td align="right"><?php echo $data['jumlah_rt']?></td>
 			<td align="right"><?php echo $data['jumlah_kk']?></td>
@@ -54,7 +55,7 @@
 		</tr>
  <?php endforeach; ?>
 		</tbody>
-		
+
  <tr style="background-color:#BDD498;font-weight:bold;">
  <td colspan="3" align="left"><label>TOTAL</label></td>
 				<td align="right"><?php echo $total['total_rw']?></td>
