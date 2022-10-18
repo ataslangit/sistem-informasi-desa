@@ -124,9 +124,3 @@ https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
 
 Pedoman Dampak Komunitas terinsipirasi dari [Tahapan Pelaksanaan Kode Etik
 Mozilla](https://github.com/mozilla/diversity).
-
-[homepage]: https://www.contributor-covenant.org
-
-Untuk jawaban atas pertanyaan umum tentang kode etik ini, lihat FAQ di
-https://www.contributor-covenant.org/faq. Terjemahan dari Kode Etik ini tersedia
-di https://www.contributor-covenant.org/translations.
