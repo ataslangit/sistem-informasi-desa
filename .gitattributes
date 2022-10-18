@@ -2,3 +2,4 @@
 .gitignore export-ignore
 .github/ export-ignore
 .editorconfig export-ignore
+code_of_conduct.md export-ignore
