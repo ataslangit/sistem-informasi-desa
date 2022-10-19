@@ -72,7 +72,7 @@ source: keyword
 <a href="<?php echo site_url("menu/form/$tip/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"></span></a>
 <a href="<?php echo site_url("menu/delete/$tip/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a><?php if($data['enabled'] == '2'):?>
 <a href="<?php echo site_url("menu/menu_lock/$tip/".$data['id'])?>" title="Aktivasi menu"><span class="fa fa-lock"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("menu/menu_unlock/$tip/".$data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan menu"><span class="fa fa-unlock"></span></a>
-<a href="<?php echo site_url("menu/ajax_add_sub_menu/$tip/$data[id]")?>" class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Tambah Sub Menu <?php echo $data['nama']?>" class="uibutton tipsy south" title="Tambah Sub Menu"><span class="icon-plus-sign-alt icon-large"></span></a>
+<a href="<?php echo site_url("menu/ajax_add_sub_menu/$tip/$data[id]")?>" class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Tambah Sub Menu <?php echo $data['nama']?>" class="uibutton tipsy south" title="Tambah Sub Menu"><span class="fa fa-plus"></span></a>
 <?php endif?></div>
 </td>
 <td><?php echo $data['nama']?></td>
