@@ -2,7 +2,7 @@
 class Siteman extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('header_model');
 		$this->load->model('user_model');
 		$this->load->model('config_model');
@@ -10,8 +10,8 @@ class Siteman extends CI_Controller {
 	function index(){
 		$this->user_model->logout();
 		$header = $this->header_model->get_config();
-		
-		
+
+
 		if(!isset($_SESSION['siteman']))
 		$_SESSION['siteman']=0;
 		$_SESSION['success']  = 0;
@@ -20,7 +20,7 @@ class Siteman extends CI_Controller {
 		$_SESSION['pengumuman'] = 0;
 		$_SESSION['sesi'] = "kosong";
 		$_SESSION['timeout'] = 0;
-		
+
 		$this->load->view('siteman',$header);
 		$_SESSION['siteman']=0;
 	}

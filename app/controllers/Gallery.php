@@ -2,7 +2,7 @@
 class gallery extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3 AND $grup!=4) redirect('siteman');
@@ -17,24 +17,24 @@ class gallery extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->web_gallery_model->paging($p,$o);
 		$data['main']    = $this->web_gallery_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->web_gallery_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$nav['act']=3;
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);
 		$this->load->view('gallery/table',$data);
@@ -43,7 +43,7 @@ class gallery extends CI_Controller{
 	function form($p=1,$o=0,$id=''){
 		$data['p'] = $p;
 		$data['o'] = $o;
-		
+
 		if($id){
 			$data['gallery']        = $this->web_gallery_model->get_gallery($id);
 			$data['form_action'] = site_url("gallery/update/$id/$p/$o");
@@ -52,9 +52,9 @@ class gallery extends CI_Controller{
 			$data['gallery']        = null;
 			$data['form_action'] = site_url("gallery/insert");
 		}
-		
+
 		$header = $this->header_model->get_data();
-		
+
 		$nav['act']=3;
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);
@@ -102,26 +102,26 @@ class gallery extends CI_Controller{
 	function sub_gallery($gal=0,$p=1){
 		$data['p']        = 1;
 		$data['o']        = 0;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->web_gallery_model->paging2($gal,$p);
-		
+
 		$data['sub_gallery']    = $this->web_gallery_model->list_sub_gallery($gal,$data['paging']->offset, $data['paging']->per_page);
-		$data['gallery'] = $gal; 
+		$data['gallery'] = $gal;
 		$data['sub']  = $this->web_gallery_model->get_gallery($gal);
 		$header = $this->header_model->get_data();
 		$nav['act']=3;
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);
 		$this->load->view('gallery/sub_gallery_table',$data);
@@ -137,10 +137,10 @@ class gallery extends CI_Controller{
 			$data['form_action'] = site_url("gallery/insert_sub_gallery/$gallery");
 		}
 		$data['album']=$gallery;
-		
-		
+
+
 		$header = $this->header_model->get_data();
-		
+
 		$nav['act']=3;
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);

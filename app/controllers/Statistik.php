@@ -2,8 +2,8 @@
 class Statistik extends CI_Controller{
 function __construct(){
 		parent::__construct();
-		session_start();
-		
+
+
 		$_SESSION['filter'] = 77;
 		unset($_SESSION['log']);
 		$_SESSION['status_dasar']=1;
@@ -14,7 +14,7 @@ function __construct(){
 		unset($_SESSION['cacat']);
 		unset($_SESSION['menahun']);
 		unset($_SESSION['cacatx']);
-		unset($_SESSION['menahunx']);		
+		unset($_SESSION['menahunx']);
 		unset($_SESSION['golongan_darah']);
 		unset($_SESSION['dusun']);
 		unset($_SESSION['rw']);
@@ -32,19 +32,19 @@ function __construct(){
 		unset($_SESSION['status_penduduk']);
 		unset($_SESSION['judul_statistik']);
 		unset($_SESSION['hamil']);
-		
+
 		$this->load->model('user_model');
 		$this->load->model('laporan_penduduk_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3) redirect('siteman');
 		$this->load->model('header_model');
 		$_SESSION['per_page']= 500;
-	}	
+	}
 	function index($lap=0,$o=0){
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap,$o);
 		$data['lap']=$lap;
 		$data['o']=$o;
-		
+
 		switch($lap){
 			case 0: $data['stat'] = "Pendidikan dalam KK"; break;
 			case 1: $data['stat'] = "Pekerjaan"; break;
@@ -69,7 +69,7 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -77,7 +77,7 @@ function __construct(){
 		$this->load->view('statistik/penduduk',$data);
 		$this->load->view('footer');
 	}
-		
+
 	function clear(){
 		unset($_SESSION['log']);
 		unset($_SESSION['cari']);
@@ -102,8 +102,8 @@ function __construct(){
    function graph($lap=0){
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap);
 		$data['lap']=$lap;
-		
-		
+
+
 		switch($lap){
 			case 1: $data['stat'] = "Pekerjaan"; break;
 			case 2: $data['stat'] = "Status Perkawinan"; break;
@@ -128,7 +128,7 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -136,12 +136,12 @@ function __construct(){
 		$this->load->view('statistik/penduduk_graph',$data);
 		$this->load->view('footer');
 	}
-		
+
    function pie($lap=0){
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap);
 		$data['lap']=$lap;
-		
-		
+
+
 		switch($lap){
 			case 0: $data['stat'] = "Pendidikan Telah Ditempuh"; break;
 			case 1: $data['stat'] = "Pekerjaan"; break;
@@ -167,7 +167,7 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -175,7 +175,7 @@ function __construct(){
 		$this->load->view('statistik/penduduk_pie',$data);
 		$this->load->view('footer');
 	}
-	      
+
     function cetak($lap=0){
 		$data['lap']=$lap;
 		switch($lap){
@@ -202,7 +202,7 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$data['config']  = $this->laporan_penduduk_model->get_config();
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap);
 		$this->load->view('statistik/penduduk_print',$data);
@@ -233,7 +233,7 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$data['config']  = $this->laporan_penduduk_model->get_config();
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap);
 		$this->load->view('statistik/penduduk_excel',$data);
@@ -264,10 +264,10 @@ function __construct(){
 			case 27: $data['stat'] = "Penerima Bedah Rumah"; break;
 			default:$data['stat'] = "Pendidikan";
 		}
-		
+
 		$data['config']  = $this->laporan_penduduk_model->get_config();
 		$data['main']    = $this->laporan_penduduk_model->list_data($lap);
-		
+
 		$_SESSION['per_page'] = 100;
 		$_SESSION['data'] = $data;
 		redirect("sid_penduduk/index/");
@@ -277,7 +277,7 @@ function __construct(){
 		$data['main']    = $this->laporan_penduduk_model->list_data_rentang();
 		$header = $this->header_model->get_data();
 		$menu['act']='2';
-		
+
 		$this->load->view('header', $header);
 		//$this->load->view('statistik/menu');
 		$this->load->view('statistik/nav',$menu);
@@ -293,10 +293,10 @@ function __construct(){
 		}
 		else{
 			$data['form_action'] = site_url("statistik/rentang_update/$id");
-			$data['rentang']     = $this->laporan_penduduk_model->get_rentang($id);			
+			$data['rentang']     = $this->laporan_penduduk_model->get_rentang($id);
 		}
 		$this->load->view('statistik/ajax_rentang_form',$data);
-		
+
 	}
 	function rentang_insert(){
 		$data['insert'] = $this->laporan_penduduk_model->insert_rentang();
@@ -309,9 +309,9 @@ function __construct(){
 	function rentang_delete($id=0){
 		$this->laporan_penduduk_model->delete_rentang($id);
 		redirect('statistik/rentang_umur');
-	}	
+	}
 	function delete_all_rentang(){
 		$this->laporan_penduduk_model->delete_all_rentang();
 		redirect('statistik/rentang_umur');
-	}		
+	}
 }

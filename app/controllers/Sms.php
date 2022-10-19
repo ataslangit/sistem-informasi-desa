@@ -2,7 +2,7 @@
 class SMS extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$this->load->model('sms_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
@@ -14,15 +14,15 @@ class SMS extends CI_Controller{
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
 		unset($_SESSION['cari1']);
-		unset($_SESSION['sex1']);		
-		unset($_SESSION['dusun1']);			
-		unset($_SESSION['rw1']);						
+		unset($_SESSION['sex1']);
+		unset($_SESSION['dusun1']);
+		unset($_SESSION['rw1']);
 		unset($_SESSION['rt1']);
 		unset($_SESSION['agama1']);
 		unset($_SESSION['pekerjaan1']);
 		unset($_SESSION['status1']);
 		unset($_SESSION['pendidikan1']);
-		unset($_SESSION['status_penduduk1']);		
+		unset($_SESSION['status_penduduk1']);
 		unset($_SESSION['TextDecoded1']);
 		unset($_SESSION['grup1']);
 		redirect('sms');
@@ -30,24 +30,24 @@ class SMS extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging($p,$o);
 		$data['main']    = $this->sms_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='0';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/manajemen_sms_table',$data);
@@ -55,15 +55,15 @@ class SMS extends CI_Controller{
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
 		unset($_SESSION['cari1']);
-		unset($_SESSION['sex1']);		
-		unset($_SESSION['dusun1']);			
-		unset($_SESSION['rw1']);						
+		unset($_SESSION['sex1']);
+		unset($_SESSION['dusun1']);
+		unset($_SESSION['rw1']);
 		unset($_SESSION['rt1']);
 		unset($_SESSION['agama1']);
 		unset($_SESSION['pekerjaan1']);
 		unset($_SESSION['status1']);
 		unset($_SESSION['pendidikan1']);
-		unset($_SESSION['status_penduduk1']);		
+		unset($_SESSION['status_penduduk1']);
 		unset($_SESSION['TextDecoded1']);
 		unset($_SESSION['grup1']);
 	}
@@ -72,7 +72,7 @@ class SMS extends CI_Controller{
 		$data['form_action'] = site_url("sms/insert_autoreply");
 		$header = $this->header_model->get_data();
 		$menu['act']='1';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/setting',$data);
@@ -85,21 +85,21 @@ class SMS extends CI_Controller{
 	function polling($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari_polling']))
 			$data['cari_polling'] = $_SESSION['cari_polling'];
 		else $data['cari_polling'] = '';
-		
-		if(isset($_POST['per_page'])) 
+
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_polling($p,$o);
 		$data['main']    = $this->sms_model->list_data_polling($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='3';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/polling',$data);
@@ -108,24 +108,24 @@ class SMS extends CI_Controller{
 	function outbox($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_terkirim($p,$o);
 		$data['main']    = $this->sms_model->list_data_terkirim($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='0';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/create_sms',$data);
@@ -133,39 +133,39 @@ class SMS extends CI_Controller{
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
 		unset($_SESSION['cari1']);
-		unset($_SESSION['sex1']);		
-		unset($_SESSION['dusun1']);			
-		unset($_SESSION['rw1']);						
+		unset($_SESSION['sex1']);
+		unset($_SESSION['dusun1']);
+		unset($_SESSION['rw1']);
 		unset($_SESSION['rt1']);
 		unset($_SESSION['agama1']);
 		unset($_SESSION['pekerjaan1']);
 		unset($_SESSION['status1']);
 		unset($_SESSION['pendidikan1']);
-		unset($_SESSION['status_penduduk1']);		
+		unset($_SESSION['status_penduduk1']);
 		unset($_SESSION['TextDecoded1']);
 		unset($_SESSION['grup1']);
 	}
 	function sentitem($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_terkirim($p,$o);
 		$data['main']    = $this->sms_model->list_data_terkirim($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='0';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/berita_terkirim',$data);
@@ -173,39 +173,39 @@ class SMS extends CI_Controller{
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
 		unset($_SESSION['cari1']);
-		unset($_SESSION['sex1']);		
-		unset($_SESSION['dusun1']);			
-		unset($_SESSION['rw1']);						
+		unset($_SESSION['sex1']);
+		unset($_SESSION['dusun1']);
+		unset($_SESSION['rw1']);
 		unset($_SESSION['rt1']);
 		unset($_SESSION['agama1']);
 		unset($_SESSION['pekerjaan1']);
 		unset($_SESSION['status1']);
 		unset($_SESSION['pendidikan1']);
-		unset($_SESSION['status_penduduk1']);		
+		unset($_SESSION['status_penduduk1']);
 		unset($_SESSION['TextDecoded1']);
 		unset($_SESSION['grup1']);
 	}
 	function pending($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_tertunda($p,$o);
 		$data['main']    = $this->sms_model->list_data_tertunda($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='0';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/pesan_tertunda',$data);
@@ -213,22 +213,22 @@ class SMS extends CI_Controller{
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
 		unset($_SESSION['cari1']);
-		unset($_SESSION['sex1']);		
-		unset($_SESSION['dusun1']);			
-		unset($_SESSION['rw1']);						
+		unset($_SESSION['sex1']);
+		unset($_SESSION['dusun1']);
+		unset($_SESSION['rw1']);
 		unset($_SESSION['rt1']);
 		unset($_SESSION['agama1']);
 		unset($_SESSION['pekerjaan1']);
 		unset($_SESSION['status1']);
 		unset($_SESSION['pendidikan1']);
-		unset($_SESSION['status_penduduk1']);		
+		unset($_SESSION['status_penduduk1']);
 		unset($_SESSION['TextDecoded1']);
 		unset($_SESSION['grup1']);
 	}
 	function form($p=1,$o=0,$tipe=0,$id=0){
 		$data['p'] = $p;
 		$data['o'] = $o;
-		
+
 		if($id){
 			$data['sms']        = $this->sms_model->get_sms($tipe,$id);
 			$data['form_action'] = site_url("sms/insert/$tipe");
@@ -247,12 +247,12 @@ class SMS extends CI_Controller{
 		}
 	}
 	function carikontak($tipe=0){
-		if(isset($_POST['TextDecoded'])) 
+		if(isset($_POST['TextDecoded']))
 			$data['text']['TextDecoded']=$_POST['TextDecoded'];
 		$data['text']['TextDecoded'] = null;
-		
+
 		$data['form_action'] = site_url("sms/formaftercari/0/0/$tipe");
-		
+
 		$data['kontak'] = $this->sms_model->list_kontak();
 		$this->load->view('sms/ajax_sms_form_cari',$data);
 	}
@@ -272,23 +272,23 @@ class SMS extends CI_Controller{
 		if(isset($_SESSION['sex1']))
 			$data['sex1'] = $_SESSION['sex1'];
 		else $data['sex1'] = '';
-		
+
 		if(isset($_SESSION['dusun1'])){
 			$data['dusun1'] = $_SESSION['dusun1'];
 			$data['list_rw1'] = $this->penduduk_model->list_rw($data['dusun1']);
-			
+
 		if(isset($_SESSION['rw1'])){
 			$data['rw1'] = $_SESSION['rw1'];
 			$data['list_rt1'] = $this->penduduk_model->list_rt($data['dusun1'],$data['rw11']);
-						
+
 		if(isset($_SESSION['rt1']))
 			$data['rt1'] = $_SESSION['rt1'];
 			else $data['rt1'] = '';
-				
+
 			}else $data['rw1'] = '';
-			
+
 		}else $data['dusun1'] = '';
-		
+
 		if(isset($_SESSION['agama1']))
 			$data['agama1'] = $_SESSION['agama1'];
 		else $data['agama1'] = '';
@@ -304,7 +304,7 @@ class SMS extends CI_Controller{
 		if(isset($_SESSION['status_penduduk1']))
 			$data['status_penduduk1'] = $_SESSION['status_penduduk1'];
 		else $data['status_penduduk1'] = '';
-		
+
 		if(isset($_SESSION['TextDecoded1']))
 			$data['TextDecoded1'] = $_SESSION['TextDecoded1'];
 		else $data['TextDecoded1'] = '';
@@ -328,7 +328,7 @@ class SMS extends CI_Controller{
 			else
 				$_SESSION[$col[$i]]=$adv_search[$col[$i]];
 		}
-		
+
 		redirect('sms/send_broadcast');
 	}
 	function broadcast(){
@@ -373,7 +373,7 @@ class SMS extends CI_Controller{
 			$_SESSION['cari_kontak']=$cari;
 		else unset($_SESSION['cari_kontak']);
 		redirect('sms/kontak');
-		
+
 	}
 	function search_grup(){
 		$cari = $this->input->post('cari_grup');
@@ -432,24 +432,24 @@ class SMS extends CI_Controller{
 	function kontak($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari_kontak']))
 			$data['cari_kontak'] = $_SESSION['cari_kontak'];
 		else $data['cari_kontak'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_kontak($p,$o);
 		$data['main']    = $this->sms_model->list_data_kontak($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='2';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/kontak',$data);
@@ -483,28 +483,28 @@ class SMS extends CI_Controller{
 	function group($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari_grup']))
 			$data['cari_grup'] = $_SESSION['cari_grup'];
 		else $data['cari_grup'] = '';
-		
-		if(isset($_POST['per_page'])) 
+
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_grup($p,$o);
 		$data['main']    = $this->sms_model->list_data_grup($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='2';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/group',$data);
 		$this->load->view('footer');
 		unset($_SESSION['cari_grup']);
 	}
-	function form_grup($id=0){		
+	function form_grup($id=0){
 		if($id=="0"){
 			$data['form_action'] = site_url("sms/grup_insert");
 			$data['grup']['nama_grup']       = "";
@@ -535,29 +535,29 @@ class SMS extends CI_Controller{
 	function anggota($id=0,$p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari_anggota']))
 			$data['cari_anggota'] = $_SESSION['cari_anggota'];
 		else $data['cari_anggota'] = '';
-		
-		if(isset($_POST['per_page'])) 
+
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_anggota($id,$p,$o);
 		$data['main']    = $this->sms_model->list_data_anggota($id,$o, $data['paging']->offset, $data['paging']->per_page);
 		$data['grup']['nama_grup']=$id;
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='2';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/group_detail',$data);
 		$this->load->view('footer');
 		unset($_SESSION['cari_anggota']);
 	}
-	function form_anggota($id=0){		
+	function form_anggota($id=0){
 		$data['form_action'] = site_url("sms/anggota_insert/$id");
 		$data['main']    = $this->sms_model->list_data_nama($id);
 		$this->load->view('sms/ajax_anggota_form',$data);
@@ -574,14 +574,14 @@ class SMS extends CI_Controller{
 		$this->sms_model->delete_all_anggota($grup);
 		redirect("sms/anggota/$grup");
 	}
-	function form_polling($id=0){	
-		
+	function form_polling($id=0){
+
 			$data['main']    = $this->sms_model->get_data_polling($id);
-		
+
 		$data['form_action'] = site_url("sms/insert_polling/$id");
 		$this->load->view('sms/ajax_polling_form',$data);
 	}
-	function insert_polling($id=0){	
+	function insert_polling($id=0){
 		$data['insert'] = $this->sms_model->insert_polling($id);
 		redirect("sms/polling");
 	}
@@ -596,24 +596,24 @@ class SMS extends CI_Controller{
 	function pertanyaan($id=0,$p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
-		if(isset($_POST['per_page'])) 
+
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->sms_model->paging_pertanyaan($id,$p,$o);
 		$data['main']    = $this->sms_model->list_data_pertanyaan($id,$o, $data['paging']->offset, $data['paging']->per_page);
 		$data['polling']['id_polling']=$id;
 		$data['keyword'] = $this->sms_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$menu['act']='2';
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sms/nav',$menu);
 		$this->load->view('sms/pertanyaan',$data);
 		$this->load->view('footer');
 	}
-	function form_pertanyaan($id=0){		
+	function form_pertanyaan($id=0){
 		$data['form_action'] = site_url("sms/pertanyaan_insert/$id");
 		$this->load->view('sms/ajax_pertanyaan_form',$data);
 	}

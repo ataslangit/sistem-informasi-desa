@@ -2,13 +2,13 @@
 class polygon extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
-		
+
 		$this->load->model('header_model');
 		$this->load->model('plan_polygon_model');
-		
-		
+
+
 		$this->load->database();
 	}
 	function clear(){
@@ -19,38 +19,38 @@ class polygon extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->plan_polygon_model->paging($p,$o);
 		$data['main']    = $this->plan_polygon_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->plan_polygon_model->autocomplete();
 		$header= $this->header_model->get_data();
 		$nav['act']=5;
-		
+
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('polygon/table',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function form($p=1,$o=0,$id=''){
-      
+
 		$data['p'] = $p;
 		$data['o'] = $o;
-			
-		
-		
+
+
+
 		if($id){
 			$data['polygon']        = $this->plan_polygon_model->get_polygon($id);
 			$data['form_action'] = site_url("polygon/update/$id/$p/$o");
@@ -60,28 +60,28 @@ class polygon extends CI_Controller{
 			$data['form_action'] = site_url("polygon/insert");
 		}
 		$header= $this->header_model->get_data();
-		
+
 		$nav['act']=5;
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('polygon/form',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function sub_polygon($polygon=1){
-  
+
 		$data['subpolygon']    = $this->plan_polygon_model->list_sub_polygon($polygon);
-		$data['polygon'] = $polygon; 
+		$data['polygon'] = $polygon;
 		$header= $this->header_model->get_data();
 		$nav['act']=5;
-		
+
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('polygon/sub_polygon_table',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function ajax_add_sub_polygon($polygon=0,$id=0){
 		if($id){
@@ -93,13 +93,13 @@ class polygon extends CI_Controller{
 			$data['form_action'] = site_url("polygon/insert_sub_polygon/$polygon");
 		}
 		$header= $this->header_model->get_data();
-		
+
 		$nav['act']=5;
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view("polygon/ajax_add_sub_polygon_form",$data);
-		
+
 	}
 	function search(){
 		$cari = $this->input->post('cari');
@@ -138,7 +138,7 @@ class polygon extends CI_Controller{
 	function polygon_unlock($id=''){
 		$this->plan_polygon_model->polygon_lock($id,2);
 		redirect("polygon/index/$p/$o");
-	}	
+	}
 	function insert_sub_polygon($polygon=''){
 		$this->plan_polygon_model->insert_sub_polygon($polygon);
 		redirect("polygon/sub_polygon/$polygon");

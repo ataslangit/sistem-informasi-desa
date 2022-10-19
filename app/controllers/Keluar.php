@@ -2,14 +2,14 @@
 class Keluar extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$this->load->model('surat_keluar_model');
 		$this->load->model('surat_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3) redirect('siteman');
 		$this->load->model('header_model');
-		
+
 	}
 	function clear(){
 		unset($_SESSION['cari']);
@@ -34,7 +34,7 @@ class Keluar extends CI_Controller{
 		$header = $this->header_model->get_data();
 		$nav['act']= 2;
 		$this->load->view('header', $header);
-		
+
 		$this->load->view('surat/nav',$nav);
 		$this->load->view('surat/surat_keluar',$data);
 		$this->load->view('footer');
@@ -48,7 +48,7 @@ class Keluar extends CI_Controller{
 	}
 	function perorangan($nik=0,$p=1,$o=0){
 		if(isset($_POST['nik'])){
-			
+
 			$nik=$_POST['nik'];
 		}
 		if($nik<>0){
@@ -69,7 +69,7 @@ class Keluar extends CI_Controller{
 		$nav['act']= 2;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
-		
+
 		$this->load->view('surat/nav',$nav);
 		$this->load->view('surat/surat_keluar_perorangan',$data);
 		$this->load->view('footer');
@@ -80,7 +80,7 @@ class Keluar extends CI_Controller{
 		$header = $this->header_model->get_data();
 		$data['stat']  = $this->surat_keluar_model->grafik();
 		$this->load->view('header',$header);
-		
+
 		$this->load->view('surat/nav',$nav);
 		$this->load->view('surat/surat_keluar_graph',$data);
 		$this->load->view('footer');

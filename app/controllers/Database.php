@@ -2,7 +2,7 @@
 class Database extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$this->load->dbforge();
 		//$this->load->model('wilayah_model');
@@ -11,7 +11,7 @@ class Database extends CI_Controller{
 		$this->load->model('header_model');
 		$this->load->model('import_model');
 		$this->load->model('export_model');
-		
+
 	}
 	function clear(){
 		unset($_SESSION['cari']);
@@ -80,7 +80,7 @@ class Database extends CI_Controller{
 		$this->load->view('export/nav',$nav);
 		$this->load->view('export/imp',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function pre_migrate(){
 		$nav['act']= 3;
@@ -102,22 +102,22 @@ class Database extends CI_Controller{
 	function import_dasar(){
 		$this->import_model->import_excel();
 		redirect('database/import/1');
-		
+
 	}
 	function ppls_kuisioner(){
 		$this->import_model->ppls_kuisioner();
 		redirect('database/import_ppls/1');
-		
+
 	}
 	function ppls_individu(){
 		$this->import_model->pbdt_individu();
 		//redirect('database/import_ppls');
-		
+
 	}
 	function ppls_rumahtangga(){
 		$this->import_model->pbdt_rumahtangga();
 		redirect('database/import_ppls/1');
-		
+
 	}
 	function import_siak(){
 		$data["siak"] = $this->import_model->import_siak();

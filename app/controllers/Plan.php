@@ -2,21 +2,21 @@
 class plan extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
-		
+
 		$this->load->model('header_model');
 		$this->load->model('plan_lokasi_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1) redirect('siteman');
-		
-		
+
+
 		//$this->load->library('ion_auth');
-		
+
 		//$this->config->item('ion_auth') ;
 		$this->load->database();
-		
-		
+
+
 	}
 	function clear(){
 		unset($_SESSION['cari']);
@@ -28,11 +28,11 @@ class plan extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
@@ -42,33 +42,33 @@ class plan extends CI_Controller{
 		if(isset($_SESSION['subpoint']))
 			$data['subpoint'] = $_SESSION['subpoint'];
 		else $data['subpoint'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->plan_lokasi_model->paging($p,$o);
 		$data['main']    = $this->plan_lokasi_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->plan_lokasi_model->autocomplete();
 		$data['list_point']        = $this->plan_lokasi_model->list_point();
 		$data['list_subpoint']        = $this->plan_lokasi_model->list_subpoint();
-		
+
 		$header = $this->header_model->get_data();
 		$nav['act']=3;
-		
+
 		$this->load->view('header-gis', $header);
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('lokasi/table',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function form($p=1,$o=0,$id=''){
 		$data['p'] = $p;
 		$data['o'] = $o;
-			
+
 		$data['desa'] = $this->plan_lokasi_model->get_desa();
 		$data['list_point']        = $this->plan_lokasi_model->list_point();
 		$data['dusun'] = $this->plan_lokasi_model->list_dusun();
-		
+
 		if($id){
 			$data['lokasi']        = $this->plan_lokasi_model->get_lokasi($id);
 			$data['form_action'] = site_url("plan/update/$id/$p/$o");
@@ -78,14 +78,14 @@ class plan extends CI_Controller{
 			$data['form_action'] = site_url("plan/insert");
 		}
 		$header= $this->header_model->get_data();
-		
+
 		$nav['act']=3;
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('lokasi/form',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function ajax_lokasi_maps($p=1,$o=0,$id=''){
 		$data['p'] = $p;
@@ -94,12 +94,12 @@ class plan extends CI_Controller{
 			$data['lokasi'] = $this->plan_lokasi_model->get_lokasi($id);
 		else
 			$data['lokasi'] = null;
-		
+
 		$data['desa'] = $this->plan_lokasi_model->get_desa();
 		$data['form_action'] = site_url("plan/update_maps/$p/$o/$id");
 		$this->load->view("lokasi/maps", $data);
 	}
-			
+
 	function update_maps($p=1,$o=0,$id=''){
 		$this->plan_lokasi_model->update_position($id);
 		redirect("plan/index/$p/$o");

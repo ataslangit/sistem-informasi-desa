@@ -2,7 +2,7 @@
 class analisis_master extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('analisis_master_model');
 		$this->load->model('analisis_import_model');
 		$this->load->model('user_model');
@@ -24,28 +24,28 @@ class analisis_master extends CI_Controller{
 		$data['p']        = $p;
 		$data['o']        = $o;
 		$nav['act']= 1;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		
+
 		if(isset($_SESSION['state']))
 			$data['state'] = $_SESSION['state'];
 		else $data['state'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->analisis_master_model->paging($p,$o);
 		$data['main']    = $this->analisis_master_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->analisis_master_model->autocomplete();
 		$data['list_subjek'] = $this->analisis_master_model->list_subjek();
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav',$nav);
 		$this->load->view('analisis_master/table',$data);
@@ -55,21 +55,21 @@ class analisis_master extends CI_Controller{
 		$data['p'] = $p;
 		$data['o'] = $o;
 		$nav['act']= 1;
-		
+
 		if($id){
 			$data['analisis_master']        = $this->analisis_master_model->get_analisis_master($id);
 			$data['form_action'] = site_url("analisis_master/update/$p/$o/$id");
 		}
-		
+
 		else{
 			$data['analisis_master']        = null;
 			$data['form_action'] = site_url("analisis_master/insert");
 		}
-		
+
 		$data['list_kelompok'] = $this->analisis_master_model->list_kelompok();
 		$data['list_analisis'] = $this->analisis_master_model->list_analisis_child();
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav',$nav);
 		$this->load->view('analisis_master/form',$data);
@@ -78,7 +78,7 @@ class analisis_master extends CI_Controller{
 	function panduan(){
 		$nav['act']= 1;
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav',$nav);
 		$this->load->view('analisis_master/panduan');
@@ -86,7 +86,7 @@ class analisis_master extends CI_Controller{
 	}
 	function import_analisis(){
 		$header = $this->header_model->get_data();
-		
+
 		$nav['act']= 1;
 		$data['form_action'] = site_url("analisis_master/import");
 		$this->load->view('analisis_master/import', $data);
@@ -98,7 +98,7 @@ class analisis_master extends CI_Controller{
 		$da = $data['analisis_master'];
 		$subjek = $da['subjek_tipe'];
 		$_SESSION['subjek_tipe']=$subjek;
-		
+
 			switch($subjek){
 				case 1: $data['menu_respon'] = "analisis_respon_penduduk"; 	$data['menu_laporan'] = "analisis_laporan_penduduk"; break;
 				case 2: $data['menu_respon'] = "analisis_respon_keluarga"; 	$data['menu_laporan'] = "analisis_laporan_keluarga";break;
@@ -109,14 +109,14 @@ class analisis_master extends CI_Controller{
 		$data['menu_respon'] 	= "analisis_respon";
 		$data['menu_laporan'] 	= "analisis_laporan";
 		$header = $this->header_model->get_data();
-		
+
 		//PATCH
 		//if($p==1){
 			$this->load->model('analisis_respon_model');
 			$this->analisis_respon_model->pre_update();
 		//}
 		//----
-		
+
 		$nav['act']= 1;
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav',$nav);

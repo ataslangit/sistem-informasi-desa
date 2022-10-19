@@ -2,20 +2,20 @@
 class Gis extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
-		
-		
+
+
 		$this->load->model('penduduk_model');
 		$this->load->model('plan_lokasi_model');
 		$this->load->model('plan_area_model');
 		$this->load->model('plan_garis_model');
 		$this->load->model('header_model');
-		
+
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1) redirect('siteman');
-		
-		
+
+
 		$this->load->database();
 	}
 	function clear(){
@@ -52,28 +52,28 @@ function index(){
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
 		if(isset($_SESSION['sex']))
 			$data['sex'] = $_SESSION['sex'];
 		else $data['sex'] = '';
-		
+
 		if(isset($_SESSION['dusun'])){
 			$data['dusun'] = $_SESSION['dusun'];
 			$data['list_rw'] = $this->penduduk_model->list_rw($data['dusun']);
-			
+
 		if(isset($_SESSION['rw'])){
 			$data['rw'] = $_SESSION['rw'];
 			$data['list_rt'] = $this->penduduk_model->list_rt($data['dusun'],$data['rw']);
-						
+
 		if(isset($_SESSION['rt']))
 			$data['rt'] = $_SESSION['rt'];
 			else $data['rt'] = '';
-				
+
 			}else $data['rw'] = '';
-			
+
 		}else{
 			$data['dusun'] = '';
 			$data['rw'] = '';
@@ -82,33 +82,33 @@ function index(){
 		if(isset($_SESSION['agama']))
 			$data['agama'] = $_SESSION['agama'];
 		else $data['agama'] = '';
-		
+
 		if(isset($_SESSION['layer_penduduk']))
 			$data['layer_penduduk']=$_SESSION['layer_penduduk'];
 		else $data['layer_penduduk']= 0;
-		
+
 		if(isset($_SESSION['layer_keluarga']))
 			$data['layer_keluarga']=$_SESSION['layer_keluarga'];
 		else $data['layer_keluarga']= 0;
-		
+
 		if(isset($_SESSION['layer_desa']))
 			$data['layer_desa']=$_SESSION['layer_desa'];
 		else $data['layer_desa']=0;
-		
+
 		if(isset($_SESSION['layer_wilayah']))
 			$data['layer_wilayah']=$_SESSION['layer_wilayah'];
 		else $data['layer_wilayah']=0;
-		
+
 		if(isset($_SESSION['layer_area']))
 			$data['layer_area']=$_SESSION['layer_area'];
 		else $data['layer_area']= 0;
-		
+
 		if(isset($_SESSION['layer_line']))
 			$data['layer_line']=$_SESSION['layer_line'];
 		else $data['layer_line']=0;
-		
+
 		$data['layer_point']=@$_SESSION['layer_point'];
-		
+
 		$data['list_dusun'] = $this->penduduk_model->list_dusun();
 		$data['wilayah'] = $this->penduduk_model->list_wil();
 		$data['list_agama'] = $this->penduduk_model->list_agama();
@@ -120,11 +120,11 @@ function index(){
 		$data['penduduk'] = $this->penduduk_model->list_data_map();
 		$data['keyword'] = $this->penduduk_model->autocomplete();
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('gis/header', $header);
 		$this->load->view('gis/maps',$data);
 		$this->load->view('footer');
-        
+
 	}
 	function search(){
 		$cari = $this->input->post('cari');
@@ -252,7 +252,7 @@ function index(){
 			else
 				$_SESSION[$col[$i]]=$adv_search[$col[$i]];
 		}
-		
+
 		redirect('gis');
 	}
 }

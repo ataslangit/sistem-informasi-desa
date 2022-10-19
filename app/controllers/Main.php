@@ -2,7 +2,7 @@
 class Main extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('header_model');
 		$this->load->model('user_model');
 		$this->load->model('config_model');
@@ -33,11 +33,11 @@ class Main extends CI_Controller {
 		$this->load->view('install');
 	}
 	function install(){
-		$out = $this->config_model->initial();	
+		$out = $this->config_model->initial();
 		$this->load->view('init',$out);
 	}
 	function init($out=null){
-		$this->load->view('init',$out);		
+		$this->load->view('init',$out);
 	}
 	function auth(){
 		$this->user_model->login();

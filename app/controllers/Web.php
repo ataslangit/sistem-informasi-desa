@@ -2,7 +2,7 @@
 class web extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3 AND $grup!=4) redirect('siteman');
@@ -15,7 +15,7 @@ class web extends CI_Controller{
 		redirect('web');
 	}
 	function pager($cat=1){
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		redirect("web/index/$cat");
 	}
@@ -23,18 +23,18 @@ class web extends CI_Controller{
 		$data['p']        = $p;
 		$data['o']        = $o;
 		$data['cat']	  = $cat;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->web_artikel_model->paging($cat,$p,$o);
 		$data['main']    = $this->web_artikel_model->list_data($cat,$o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->web_artikel_model->autocomplete();
@@ -43,7 +43,7 @@ class web extends CI_Controller{
 		$data['cat'] = $cat;
 		$header = $this->header_model->get_data();
 		$nav['act']=0;
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);
 		$this->load->view('web/artikel/table',$data);
@@ -53,7 +53,7 @@ class web extends CI_Controller{
 		$data['p'] = $p;
 		$data['o'] = $o;
 		$data['cat'] = $cat;
-		
+
 		if($id){
 			$data['artikel']        = $this->web_artikel_model->get_artikel($id);
 			$data['form_action'] = site_url("web/update/$cat/$id/$p/$o");
@@ -62,11 +62,11 @@ class web extends CI_Controller{
 			$data['artikel']        = null;
 			$data['form_action'] = site_url("web/insert/$cat");
 		}
-			
+
 		$data['kategori'] = $this->web_artikel_model->get_kategori($cat);
-		
+
 		$header = $this->header_model->get_data();
-		
+
 		$nav['act']=0;
 		$this->load->view('header', $header);
 		//$this->load->view('web/spacer');
@@ -75,7 +75,7 @@ class web extends CI_Controller{
 			$this->load->view('web/artikel/form',$data);
 		else
 			$this->load->view('web/artikel/widget-form',$data);
-		
+
 		$this->load->view('footer');
 	}
 	function search($cat=1){
@@ -104,7 +104,7 @@ class web extends CI_Controller{
 		$this->web_artikel_model->delete($id);
 		redirect("web/index/$cat/$p/$o");
 	}
-		
+
 	function hapus($cat=1,$p=1,$o=0){
 		$this->web_artikel_model->hapus($cat);
 		redirect("web/index/1/$p/$o");

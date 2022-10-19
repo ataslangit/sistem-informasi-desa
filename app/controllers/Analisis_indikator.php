@@ -2,7 +2,7 @@
 class analisis_indikator extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('analisis_indikator_model');
 		$this->load->model('user_model');
 		$this->load->model('header_model');
@@ -27,11 +27,11 @@ class analisis_indikator extends CI_Controller{
 		unset($_SESSION['cari2']);
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
@@ -41,10 +41,10 @@ class analisis_indikator extends CI_Controller{
 		if(isset($_SESSION['kategori']))
 			$data['kategori'] = $_SESSION['kategori'];
 		else $data['kategori'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->analisis_indikator_model->paging($p,$o);
 		$data['main']    = $this->analisis_indikator_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->analisis_indikator_model->autocomplete();
@@ -52,7 +52,7 @@ class analisis_indikator extends CI_Controller{
 		$data['list_tipe'] = $this->analisis_indikator_model->list_tipe();
 		$data['list_kategori'] = $this->analisis_indikator_model->list_kategori();
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav');
 		$this->load->view('analisis_indikator/table',$data);
@@ -61,21 +61,21 @@ class analisis_indikator extends CI_Controller{
 	function form($p=1,$o=0,$id=''){
 		$data['p'] = $p;
 		$data['o'] = $o;
-		
+
 		if($id){
 			$data['analisis_indikator']        = $this->analisis_indikator_model->get_analisis_indikator($id);
 			$data['form_action'] = site_url("analisis_indikator/update/$p/$o/$id");
 		}
-		
+
 		else{
 			$data['analisis_indikator']        = null;
 			$data['form_action'] = site_url("analisis_indikator/insert");
 		}
-		
+
 		$data['list_kategori'] = $this->analisis_indikator_model->list_kategori();
 		$header = $this->header_model->get_data();
 		$data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav');
 		$this->load->view('analisis_indikator/form',$data);
@@ -85,13 +85,13 @@ class analisis_indikator extends CI_Controller{
 		$ai  = $this->analisis_indikator_model->get_analisis_indikator($id);
 		if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
 		redirect('analisis_indikator');
-		
+
 		$data['analisis_indikator']        = $this->analisis_indikator_model->get_analisis_indikator($id);
 		$data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
 		$data['main']        = $this->analisis_indikator_model->list_indikator($id);
-		
+
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav');
 		$this->load->view('analisis_indikator/parameter/table',$data);
@@ -102,15 +102,15 @@ class analisis_indikator extends CI_Controller{
 			$data['analisis_parameter']        = $this->analisis_indikator_model->get_analisis_parameter($id);
 			$data['form_action'] = site_url("analisis_indikator/p_update/$in/$id");
 		}
-		
+
 		else{
 			$data['analisis_parameter']        = null;
 			$data['form_action'] = site_url("analisis_indikator/p_insert/$in");
 		}
-		
+
 		$data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
 		$data['analisis_indikator']        = $this->analisis_indikator_model->get_analisis_indikator($in);
-		
+
 	//	$this->load->view('header', $header);
 	//	$this->load->view('analisis_master/nav');
 		$this->load->view('analisis_indikator/parameter/ajax_form',$data);
@@ -118,9 +118,9 @@ class analisis_indikator extends CI_Controller{
 	}
 	function menu($id=''){
 		$data['analisis_indikator']        = $this->analisis_indikator_model->get_analisis_indikator($id);
-		
+
 		$header = $this->header_model->get_data();
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('analisis_master/nav');
 		$this->load->view('analisis_indikator/menu',$data);

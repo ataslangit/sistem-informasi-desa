@@ -2,13 +2,13 @@
 class mandiri extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$this->load->model('mandiri_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2) redirect('siteman');
 		$this->load->model('header_model');
-		
+
 	}
 	function clear(){
 		unset($_SESSION['cari']);
@@ -30,12 +30,12 @@ class mandiri extends CI_Controller{
 		$data['paging']  = $this->mandiri_model->paging($p,$o);
 		$data['main']    = $this->mandiri_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->mandiri_model->autocomplete();
-		
-		
+
+
 		$header = $this->header_model->get_data();
 		$nav['act']= 1;
 		$this->load->view('header', $header);
-		
+
 		$this->load->view('lapor/nav',$nav);
 		$this->load->view('mandiri/mandiri',$data);
 		$this->load->view('footer');
@@ -44,7 +44,7 @@ class mandiri extends CI_Controller{
 		$data['penduduk'] = $this->mandiri_model->list_penduduk();
 		$data['form_action'] = site_url("mandiri/insert/$id");
 		$this->load->view('mandiri/ajax_pin',$data);
-		
+
 	}
 	function search(){
 		$cari = $this->input->post('cari');

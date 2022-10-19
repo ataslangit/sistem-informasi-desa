@@ -2,13 +2,13 @@
 class area extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
-		
+
 		$this->load->model('header_model');
 		$this->load->model('plan_area_model');
-		
-		
+
+
 		$this->load->database();
 	}
 	function clear(){
@@ -21,11 +21,11 @@ class area extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
@@ -35,10 +35,10 @@ class area extends CI_Controller{
 		if(isset($_SESSION['subpolygon']))
 			$data['subpolygon'] = $_SESSION['subpolygon'];
 		else $data['subpolygon'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->plan_area_model->paging($p,$o);
 		$data['main']    = $this->plan_area_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->plan_area_model->autocomplete();
@@ -46,22 +46,22 @@ class area extends CI_Controller{
 		$data['list_subpolygon']        = $this->plan_area_model->list_subpolygon();
 		$header= $this->header_model->get_data();
 		$nav['act']=4;
-		
+
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('area/table',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function form($p=1,$o=0,$id=''){
 		$data['p'] = $p;
 		$data['o'] = $o;
-			
+
 		$data['desa'] = $this->plan_area_model->get_desa();
 		$data['list_polygon']        = $this->plan_area_model->list_polygon();
 		$data['dusun'] = $this->plan_area_model->list_dusun();
-		
+
 		if($id){
 			$data['area']        = $this->plan_area_model->get_area($id);
 			$data['form_action'] = site_url("area/update/$id/$p/$o");
@@ -71,14 +71,14 @@ class area extends CI_Controller{
 			$data['form_action'] = site_url("area/insert");
 		}
 		$header= $this->header_model->get_data();
-		
+
 		$nav['act']=4;
 		$this->load->view('header-gis', $header);
-		
+
 		$this->load->view('plan/nav',$nav);
 		$this->load->view('area/form',$data);
 		$this->load->view('footer');
-		
+
 	}
 	function ajax_area_maps($p=1,$o=0,$id=''){
 		$data['p'] = $p;
@@ -87,12 +87,12 @@ class area extends CI_Controller{
 			$data['area'] = $this->plan_area_model->get_area($id);
 		else
 			$data['area'] = null;
-		
+
 		$data['desa'] = $this->plan_area_model->get_desa();
 		$data['form_action'] = site_url("area/update_maps/$p/$o/$id");
 		$this->load->view("area/maps", $data);
 	}
-			
+
 	function update_maps($p=1,$o=0,$id=''){
 		$this->plan_area_model->update_position($id);
 		redirect("area/index/$p/$o");

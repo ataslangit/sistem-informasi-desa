@@ -2,7 +2,7 @@
 class komentar extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3) redirect('siteman');
@@ -17,24 +17,24 @@ class komentar extends CI_Controller{
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->web_komentar_model->paging($p,$o);
 		$data['main']    = $this->web_komentar_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->web_komentar_model->autocomplete();
 		$header = $this->header_model->get_data();
 		$nav['act']=2;
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('web/nav',$nav);
 		$this->load->view('komentar/table',$data);
@@ -43,7 +43,7 @@ class komentar extends CI_Controller{
 	function form($p=1,$o=0,$id=''){
 		$data['p'] = $p;
 		$data['o'] = $o;
-		
+
 		if($id){
 			$data['komentar']        = $this->web_komentar_model->get_komentar($id);
 			$data['form_action'] = site_url("komentar/update/$id/$p/$o");
@@ -52,11 +52,11 @@ class komentar extends CI_Controller{
 			$data['komentar']        = null;
 			$data['form_action'] = site_url("komentar/insert");
 		}
-			
+
 		$data['list_kategori']     = $this->web_komentar_model->list_kategori(1);
-		
+
 		$header = $this->header_model->get_data();
-		
+
 		$nav['act']=2;
 		$this->load->view('header', $header);
 		$this->load->view('web/spacer');

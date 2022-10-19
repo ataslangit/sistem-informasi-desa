@@ -2,14 +2,14 @@
 class penduduk_log extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		session_start();
+
 		$this->load->model('user_model');
 		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
 		if($grup!=1 AND $grup!=2 AND $grup!=3) redirect('siteman');
-		
+
 		$this->load->model('penduduk_model');
 		$this->load->model('header_model');
-		
+
 	}
 	function clear(){
 		unset($_SESSION['cari']);
@@ -33,32 +33,32 @@ class penduduk_log extends CI_Controller{
 		$_SESSION['log'] = 1;
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
 		if(isset($_SESSION['sex']))
 			$data['sex'] = $_SESSION['sex'];
 		else $data['sex'] = '';
-		
+
 		if(isset($_SESSION['dusun'])){
 			$data['dusun'] = $_SESSION['dusun'];
 			$data['list_rw'] = $this->penduduk_model->list_rw($data['dusun']);
-			
+
 		if(isset($_SESSION['rw'])){
 			$data['rw'] = $_SESSION['rw'];
 			$data['list_rt'] = $this->penduduk_model->list_rt($data['dusun'],$data['rw']);
-						
+
 		if(isset($_SESSION['rt']))
 			$data['rt'] = $_SESSION['rt'];
 			else $data['rt'] = '';
-				
+
 			}else $data['rw'] = '';
-			
+
 		}else{
 			$data['dusun'] = '';
 			$data['rw'] = '';
@@ -79,20 +79,20 @@ class penduduk_log extends CI_Controller{
 		if(isset($_SESSION['status_penduduk']))
 			$data['status_penduduk'] = $_SESSION['status_penduduk'];
 		else $data['status_penduduk'] = '';
-		
-		if(isset($_POST['per_page'])) 
+
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
-		
+
 		$data['paging']  = $this->penduduk_model->paging($p,$o,1);
 		$data['main']    = $this->penduduk_model->list_data($o, $data['paging']->offset, $data['paging']->per_page,1);
 		$data['keyword'] = $this->penduduk_model->autocomplete();
 		$data['list_agama'] = $this->penduduk_model->list_agama();
 		$data['list_dusun'] = $this->penduduk_model->list_dusun();
-		
+
 		$header = $this->header_model->get_data();
 		$nav['act']= 2;
-		
+
 		$this->load->view('header', $header);
 		$this->load->view('sid/nav',$nav);
 		$this->load->view('sid/kependudukan/penduduk_log',$data);
@@ -152,12 +152,12 @@ class penduduk_log extends CI_Controller{
 		$data['form_action'] = site_url("penduduk_log/update_status_dasar/$p/$o/$id");
 		$this->load->view('sid/kependudukan/ajax_edit_status_dasar',$data);
 	}
-			
+
 	function update_status_dasar($p=1,$o=0,$id=''){
 		$this->penduduk_model->update_status_dasar($id);
 		redirect("penduduk_log/index/$p/$o");
 	}
-		
+
 	function cetak($o=0){
 		$data['main']    = $this->penduduk_model->list_data($o,0, 10000);
 		$this->load->view('sid/kependudukan/penduduk_print',$data);
@@ -165,5 +165,5 @@ class penduduk_log extends CI_Controller{
 	function delete_all($p=1,$o=0){
 	$this->penduduk_model->delete_all();
 		redirect("penduduk_log/index/$p/$o");
-	} 
+	}
 }

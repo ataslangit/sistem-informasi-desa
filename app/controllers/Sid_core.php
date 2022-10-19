@@ -2,9 +2,9 @@
 class Sid_Core extends CI_Controller{
 function __construct(){
 		parent::__construct();
-		session_start();
+
 		$_SESSION['filter'] = 77;
-		
+
 		unset($_SESSION['log']);
 		$_SESSION['status_dasar']=1;
 		unset($_SESSION['cari']);
@@ -14,7 +14,7 @@ function __construct(){
 		unset($_SESSION['cacat']);
 		unset($_SESSION['menahun']);
 		unset($_SESSION['cacatx']);
-		unset($_SESSION['menahunx']);		
+		unset($_SESSION['menahunx']);
 		unset($_SESSION['golongan_darah']);
 		unset($_SESSION['dusun']);
 		unset($_SESSION['rw']);
@@ -32,7 +32,7 @@ function __construct(){
 		unset($_SESSION['status_penduduk']);
 		unset($_SESSION['judul_statistik']);
 		unset($_SESSION['hamil']);
-		
+
 		$this->load->model('user_model');
 		$this->load->model('wilayah_model');
 		$this->load->model('config_model');
@@ -40,7 +40,7 @@ function __construct(){
 		if($grup!=1 AND $grup!=2) redirect('siteman');
 		$this->load->model('header_model');
 	}
-		
+
 	function clear(){
 		unset($_SESSION['cari']);
 		unset($_SESSION['filter']);
@@ -49,15 +49,15 @@ function __construct(){
 	function index($p=1,$o=0){
 		$data['p']        = $p;
 		$data['o']        = $o;
-		
+
 		if(isset($_SESSION['cari']))
 			$data['cari'] = $_SESSION['cari'];
 		else $data['cari'] = '';
-		
+
 		if(isset($_SESSION['filter']))
 			$data['filter'] = $_SESSION['filter'];
 		else $data['filter'] = '';
-		if(isset($_POST['per_page'])) 
+		if(isset($_POST['per_page']))
 			$_SESSION['per_page']=$_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
 		$data['grup']	= $this->user_model->sesi_grup($_SESSION['sesi']);
@@ -84,11 +84,11 @@ function __construct(){
 		$data['total'] = $this->wilayah_model->total();
 		$this->load->view('sid/wilayah/wilayah_excel',$data);
 	}
-		
+
 	function form($id=''){
-		
+
 		$data['penduduk'] = $this->wilayah_model->list_penduduk();
-		
+
 		if($id){
 			$temp = $this->wilayah_model->cluster_by_id($id);
 			$data['dusun']    = $temp['dusun'];
@@ -98,14 +98,14 @@ function __construct(){
 			else{
 				$ex = $data['individu'];
 				$data['penduduk'] = $this->wilayah_model->list_penduduk_ex($ex['id']);
-			}	
+			}
 			$data['form_action'] = site_url("sid_core/update/$id");
 		}
 		else{
 			$data['dusun']          = null;
 			$data['form_action'] = site_url("sid_core/insert");
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -135,7 +135,7 @@ function __construct(){
 	function delete_all(){
 		$this->wilayah_model->delete_all();
 		redirect('sid_core');
-	}	
+	}
 	function sub_rw($id_dusun=''){
 		$dusun = $this->wilayah_model->cluster_by_id($id_dusun);
 		$nama_dusun  = $dusun['dusun'];
@@ -150,7 +150,7 @@ function __construct(){
 		$this->load->view('sid/wilayah/wilayah_rw',$data);
 		$this->load->view('footer');
 	}
-		
+
 	function cetak_rw($id_dusun=''){
 		$dusun = $this->wilayah_model->cluster_by_id($id_dusun);
 		$nama_dusun  = $dusun['dusun'];
@@ -169,16 +169,16 @@ function __construct(){
 		$data['total']     = $this->wilayah_model->total_rw($nama_dusun );
 		$this->load->view('sid/wilayah/wilayah_rw_excel',$data);
 	}
-			
+
 	function form_rw($id_dusun='',$rw=''){
-		
+
 		$temp = $this->wilayah_model->cluster_by_id($id_dusun);
 		$dusun    = $temp['dusun'];
 		$data['dusun']    = $temp['dusun'];
 		$data['id_dusun']    = $id_dusun;
-		
+
 		$data['penduduk'] = $this->wilayah_model->list_penduduk();
-		
+
 		if($rw){
 			$data['rw']          = $rw;
 			$temp = $this->wilayah_model->get_rw($dusun,$rw);
@@ -188,14 +188,14 @@ function __construct(){
 			else{
 				$ex = $data['individu'];
 				$data['penduduk'] = $this->wilayah_model->list_penduduk_ex($ex['id']);
-			}	
+			}
 			$data['form_action'] = site_url("sid_core/update_rw/$id_dusun/$rw");
 		}
 		else{
 			$data['rw']          = null;
 			$data['form_action'] = site_url("sid_core/insert_rw/$id_dusun");
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -203,17 +203,17 @@ function __construct(){
 		$this->load->view('sid/wilayah/wilayah_form_rw',$data);
 		$this->load->view('footer');
 	}
-		
+
 	function insert_rw($dusun=''){
 		$this->wilayah_model->insert_rw($dusun);
 		redirect("sid_core/sub_rw/$dusun");
 	}
-			
+
 	function update_rw($dusun='',$rw=''){
 		$this->wilayah_model->update_rw($dusun,$rw);
 		redirect("sid_core/sub_rw/$dusun");
 	}
-		
+
 	function delete_rw($id_dusun='',$id=''){
 		$this->wilayah_model->delete_rw($id);
 		redirect("sid_core/sub_rw/$id_dusun");
@@ -221,14 +221,14 @@ function __construct(){
 	function delete_all_rw($dusun=''){
 		$this->wilayah_model->delete_all_rw();
 		redirect("sid_core/sub_rw/$dusun");
-	}	
-		
+	}
+
 	function sub_rt($id_dusun='',$rw=''){
 		$temp = $this->wilayah_model->cluster_by_id($id_dusun);
 		$dusun    				= $temp['dusun'];
 		$data['dusun']    		= $temp['dusun'];
 		$data['id_dusun']    	= $id_dusun;
-		
+
 		$data['rw']       = $rw;
 		$data['main']     = $this->wilayah_model->list_data_rt($dusun,$rw);
 		$data['total']     = $this->wilayah_model->total_rt($dusun,$rw);
@@ -239,13 +239,13 @@ function __construct(){
 		$this->load->view('sid/wilayah/wilayah_rt',$data);
 		$this->load->view('footer');
 	}
-			
+
 	function cetak_rt($id_dusun='',$rw=''){
 		$temp = $this->wilayah_model->cluster_by_id($id_dusun);
 		$dusun    = $temp['dusun'];
 		$data['dusun']    = $temp['dusun'];
 		$data['id_dusun']    = $id_dusun;
-		
+
 		$data['rw']       = $rw;
 		$data['main']     = $this->wilayah_model->list_data_rt($dusun,$rw);
 		$data['total']     = $this->wilayah_model->total_rt($dusun,$rw);
@@ -256,7 +256,7 @@ function __construct(){
 		$dusun    = $temp['dusun'];
 		$data['dusun']    = $temp['dusun'];
 		$data['id_dusun']    = $id_dusun;
-		
+
 		$data['rw']       = $rw;
 		$data['main']     = $this->wilayah_model->list_data_rt($dusun,$rw);
 		$data['total']     = $this->wilayah_model->total_rt($dusun,$rw);
@@ -273,17 +273,17 @@ function __construct(){
 		$this->load->view('sid/wilayah/list_dusun_rt',$data);
 		$this->load->view('footer');
 	}
-			
+
 	function form_rt($id_dusun='',$rw='',$rt=''){
-		
+
 		$temp = $this->wilayah_model->cluster_by_id($id_dusun);
 		$dusun    = $temp['dusun'];
 		$data['dusun']    = $temp['dusun'];
 		$data['id_dusun']    = $id_dusun;
-		
+
 		$data['rw']    = $rw;
 		$data['penduduk'] = $this->wilayah_model->list_penduduk();
-		
+
 		if($rt){
 			$temp2 = $this->wilayah_model->cluster_by_id($rt);
 			$id_cluster=$temp2['id'];
@@ -294,14 +294,14 @@ function __construct(){
 			else{
 				$ex = $data['individu'];
 				$data['penduduk'] = $this->wilayah_model->list_penduduk_ex($ex['id']);
-			}	
+			}
 			$data['form_action'] = site_url("sid_core/update_rt/$id_dusun/$rw/$id_cluster");
 		}
 		else{
 			$data['rt']          = null;
 			$data['form_action'] = site_url("sid_core/insert_rt/$id_dusun/$rw");
 		}
-		
+
 		$nav['act']= 0;
 		$header = $this->header_model->get_data();
 		$this->load->view('header',$header);
@@ -309,17 +309,17 @@ function __construct(){
 		$this->load->view('sid/wilayah/wilayah_form_rt',$data);
 		$this->load->view('footer');
 	}
-		
+
 	function insert_rt($dusun='',$rw=''){
 		$this->wilayah_model->insert_rt($dusun,$rw);
 		redirect("sid_core/sub_rt/$dusun/$rw");
 	}
-			
+
 	function update_rt($dusun='',$rw='',$id_cluster=0){
 		$this->wilayah_model->update_rt($id_cluster);
 		redirect("sid_core/sub_rt/$dusun/$rw");
 	}
-		
+
 	function delete_rt($id_cluster=''){
 		$temp = $this->wilayah_model->cluster_by_id($id_cluster);
 		$id_dusun=$temp['id'];
@@ -335,7 +335,7 @@ function __construct(){
 		$rw=$temp['rw'];
 		$this->wilayah_model->delete_all_rt();
 		redirect("sid_core");
-	}	
+	}
 	function cetakx(){
 		$data['input'] = $_POST;
 		$data['tanggal_sekarang'] = tgl_indo(date("Y m d"));
@@ -343,15 +343,15 @@ function __construct(){
 	        $this->surat_keluar_model->log_surat($f,$id,$g,$u);
 		$this->load->view('surat/print_surat_ket_pengantar',$data);
 	}
-		
+
 	function ajax_wil_maps($id=0){
 		$data['dusun'] = $this->wilayah_model->get_dusun_maps($id);
 		$data['desa'] = $this->config_model->get_data();
 		$data['form_action'] = site_url("sid_core/update_dusun_map/$id");
-		
+
 		$this->load->view("sid/wilayah/ajax_wil_dusun", $data);
 	}
-				
+
 	function update_dusun_map($id=0){
 		$this->wilayah_model->update_dusun_map($id);
 		redirect("sid_core");
@@ -360,33 +360,33 @@ function __construct(){
 		$data['dusun'] = $this->wilayah_model->get_rw($dus,$id);
 		$data['desa'] = $this->config_model->get_data();
 		$data['form_action'] = site_url("sid_core/update_rw_map/$dus/$id");
-		
+
 		$this->load->view("sid/wilayah/ajax_wil_dusun", $data);
 	}
-				
+
 	function update_rw_map($dus=0,$id=0){
 		$this->wilayah_model->update_rw_map($dus,$id);
 		redirect("sid_core/sub_rw/$dus");
 	}
-			
+
 	function ajax_rt_maps($dus=0,$rw=0,$id=0){
 		$data['dusun'] = $this->wilayah_model->get_rt($dus,$rw,$id);
 		$data['desa'] = $this->config_model->get_data();
 		$data['form_action'] = site_url("sid_core/update_rt_map/$dus/$rw/$id");
-		
+
 		$this->load->view("sid/wilayah/ajax_wil_dusun", $data);
 	}
-				
+
 	function update_rt_map($dus=0,$rw=0,$id=0){
 		$this->wilayah_model->update_rt_map($dus,$rw,$id);
 		redirect("sid_core/sub_rt/$dus/$rw");
 	}
-			
+
 	function warga($id=''){
 	        $temp = $this->wilayah_model->cluster_by_id($id);
 		$id_dusun=$temp['id'];
 		$dusun=$temp['dusun'];
-		
+
 		$_SESSION['per_page'] = 100;
 		$_SESSION['dusun'] = $dusun;
 		redirect("penduduk/index/1/0");
@@ -403,7 +403,7 @@ function __construct(){
 	        $temp = $this->wilayah_model->cluster_by_id($id);
 		$id_dusun=$temp['id'];
 		$dusun=$temp['dusun'];
-		
+
 		$_SESSION['per_page'] = 100;
 		$_SESSION['dusun'] = $dusun;
 		$_SESSION['sex'] = 1;
@@ -413,16 +413,16 @@ function __construct(){
 	        $temp = $this->wilayah_model->cluster_by_id($id);
 		$id_dusun=$temp['id'];
 		$dusun=$temp['dusun'];
-		
+
 		$_SESSION['per_page'] = 100;
 		$_SESSION['dusun'] = $dusun;
 		$_SESSION['sex'] = 2;
 		redirect("penduduk/index/1/0");
 	}
-			
+
 	function migrate(){
 		$this->wilayah_model->migrate();
-		
+
 		$this->dbforge->drop_table('tweb_dusun_x');
 		$this->dbforge->drop_table('tweb_rw_x');
 		$this->dbforge->drop_table('tweb_rt_x');
@@ -430,7 +430,7 @@ function __construct(){
 		$this->dbforge->drop_table('tweb_keluarga_x_pindah');
 		$this->dbforge->drop_table('tweb_penduduk_x');
 		$this->dbforge->drop_table('tweb_penduduk_x_pindah');
-		
+
 		redirect("penduduk/clear");
 	}
 	function pre_migrate(){
@@ -441,5 +441,5 @@ function __construct(){
 		$this->load->view('sid/wilayah/mig');
 		$this->load->view('footer');
 	}
-			
+
 }
