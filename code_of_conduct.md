@@ -118,7 +118,7 @@ komunitas.
 
 ## Atribusi
 
-Kode Etik ini diadaptasi dari [Contributor Covenant][homepage], versi 2.0,
+Kode Etik ini diadaptasi dari [Contributor Covenant](https://www.contributor-covenant.org/), versi 2.0,
 tersedia di
 https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
 
