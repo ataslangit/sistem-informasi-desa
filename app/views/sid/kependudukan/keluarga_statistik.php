@@ -121,7 +121,7 @@
 <a href="<?php echo site_url("keluarga/anggota/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Rincian Anggota Keluarga"><span class="fa fa-list"> Rincian </span></a>
  <a href="<?php echo site_url("keluarga/edit_nokk/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data" target="ajax-modalx" rel="window" header="Ubah Nomor KK"><span class="fa fa-pencil"></span></a>
 
-			<a href="<?php echo site_url("keluarga/kartu_keluarga/$p/$o/$data[id]")?>" header="Tambah Anggota Keluarga" class="uibutton tipsy south" title="Tambah Anggota Keluarga"><span class="icon-plus-sign-alt icon-large"></span></a>
+			<a href="<?php echo site_url("keluarga/kartu_keluarga/$p/$o/$data[id]")?>" header="Tambah Anggota Keluarga" class="uibutton tipsy south" title="Tambah Anggota Keluarga"><span class="fa fa-plus"></span></a>
 			<a href="<?php echo site_url("keluarga/ajax_penduduk_pindah/$data[id]")?>" class="uibutton tipsy south" title="Pindah Keluarga dalam Desa" target="ajax-modal" rel="window" header="Pindah Keluarga"><span class="fa fa-share"></span></a>
  <?php if($grup==1){?><a href="<?php echo site_url("keluarga/delete/$p/$o/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span> </a><?php } ?>
  </div> </td>

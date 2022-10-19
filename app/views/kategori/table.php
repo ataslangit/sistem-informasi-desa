@@ -74,7 +74,7 @@ source: keyword
 <a href="<?php echo site_url("kategori/form/$data[id]")?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"></span></a>
 <a href="<?php echo site_url("kategori/delete/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a><?php if($data['enabled'] == '2'):?>
 <a href="<?php echo site_url("kategori/kategori_lock/".$data['id'])?>" title="Aktivasi kategori"><span class="fa fa-lock"></span></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("kategori/kategori_unlock/".$data['id'])?>" class="uibutton tipsy south" title="Non-aktifkan kategori"><span class="fa fa-unlock"></span></a>
-<a href="<?php echo site_url("kategori/ajax_add_sub_kategori/$data[id]")?>" class="uibutton tipsy south" target="ajax-modal" rel="window" header="Tambah Sub kategori <?php echo $data['kategori']?>" class="uibutton tipsy south" title="Tambah Sub kategori"><span class="icon-plus-sign-alt icon-large"></span></a>
+<a href="<?php echo site_url("kategori/ajax_add_sub_kategori/$data[id]")?>" class="uibutton tipsy south" target="ajax-modal" rel="window" header="Tambah Sub kategori <?php echo $data['kategori']?>" class="uibutton tipsy south" title="Tambah Sub kategori"><span class="fa fa-plus"></span></a>
 <?php endif?></div>
 </td>
 <td><?php echo $data['kategori']?></td>
