@@ -1,1 +1,12 @@
 .vscode/
+
+# abaikan semua yang ada dalam vendor
+vendor/*
+# jangan abaikan system dari codeigniter
+!vendor/codeigniter/
+vendor/codeigniter/framework
+!vendor/codeigniter/framework
+vendor/codeigniter/framework/*
+!vendor/codeigniter/framework/system
+
+composer.lock

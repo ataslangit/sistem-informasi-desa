@@ -1,0 +1,11 @@
+{
+    "name": "ataslangit/sistem-informasi-desa",
+    "require": {
+		"php": ">=7.3",
+        "codeigniter/framework": "^3"
+	},
+    "require-dev": {
+        "mikey179/vfsstream": "1.6.*",
+        "phpunit/phpunit": "4.* || 5.* || 9.*"
+    }
+}
