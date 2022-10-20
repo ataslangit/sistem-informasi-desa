@@ -2,7 +2,8 @@
     "name": "ataslangit/sistem-informasi-desa",
     "require": {
 		"php": ">=7.3",
-        "codeigniter/framework": "^3"
+        "codeigniter/framework": "^3",
+        "vlucas/phpdotenv": "^5.5"
 	},
     "require-dev": {
         "mikey179/vfsstream": "1.6.*",

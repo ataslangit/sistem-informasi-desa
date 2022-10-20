@@ -2,10 +2,17 @@
 
 # abaikan semua yang ada dalam vendor
 vendor/*
+
+# jangan abaikan autoload
+!vendor/autoload.php
+
+# jangan abaikan vendor/vlucas/phpdotenv
+!vendor/vlucas/
+vendor/vlucas/phpdotenv/*
+!vendor/vlucas/phpdotenv/src
+
 # jangan abaikan system dari codeigniter
-!vendor/codeigniter/
-vendor/codeigniter/framework
-!vendor/codeigniter/framework
+!vendor/codeigniter
 vendor/codeigniter/framework/*
 !vendor/codeigniter/framework/system
 
