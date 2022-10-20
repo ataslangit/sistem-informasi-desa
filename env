@@ -1,0 +1,14 @@
+#--------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------
+
+# CI_ENVIRONMENT = production
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+
+# database.default.hostname = localhost
+# database.default.database = db_ataslangit_sid
+# database.default.username = root
+# database.default.password = root
