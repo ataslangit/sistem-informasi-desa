@@ -1,3 +1,16 @@
 .vscode/
 .env
 composer.lock
+
+# abaikan pada vendor
+vendor/**/LICENSE
+vendor/**/license.txt
+vendor/**/readme*
+vendor/**/README*
+vendor/**/composer.json
+
+vendor/codeigniter/framework/*
+!vendor/codeigniter/framework/system
+
+vendor/vlucas/phpdotenv/*
+!vendor/vlucas/phpdotenv/src
