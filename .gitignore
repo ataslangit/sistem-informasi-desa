@@ -4,7 +4,8 @@
 vendor/*
 composer.lock
 
-# jangan abaikan autoload
+# jangan abaikan composer autoload
+!vendor/composer
 !vendor/autoload.php
 
 # jangan abaikan vendor/vlucas/phpdotenv
