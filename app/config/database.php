@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'hostname' => $_ENV['database.default.hostname'] ?? 'localhost',
+	'username' => $_ENV['database.default.username'] ?? 'root',
+	'password' => $_ENV['database.default.password'] ?? 'root',
+	'database' => $_ENV['database.default.database'] ?? 'db_ataslangit_sid',
+	'dbdriver' => $_ENV['database.default.DBDriver'] ?? 'mysqli',
+	'dbprefix' => $_ENV['database.default.DBPrefi'] ?? '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

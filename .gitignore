@@ -1,12 +1,20 @@
 .vscode/
 
-# abaikan semua yang ada dalam vendor
+# abaikan yang dihasilkan dari composer
 vendor/*
+composer.lock
+
+# jangan abaikan autoload
+!vendor/autoload.php
+
+# jangan abaikan vendor/vlucas/phpdotenv
+!vendor/vlucas/
+vendor/vlucas/phpdotenv/*
+!vendor/vlucas/phpdotenv/src
+
 # jangan abaikan system dari codeigniter
-!vendor/codeigniter/
-vendor/codeigniter/framework
-!vendor/codeigniter/framework
+!vendor/codeigniter
 vendor/codeigniter/framework/*
 !vendor/codeigniter/framework/system
 
-composer.lock
+.env
