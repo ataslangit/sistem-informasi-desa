@@ -33,4 +33,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
           publish_branch: gh_pages
+          user_name: 'github-actions'
+          user_email: '41898282+github-actions[bot]@users.noreply.github.com'
 
