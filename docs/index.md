@@ -8,10 +8,10 @@ hero:
   tagline: Menuju desa terbuka
   actions:
     - theme: brand
-      text: Mulai
-      link: /panduan/index
+      text: Panduan
+      link: /panduan/
     - theme: alt
-      text: Lihat di GitHub
+      text: Buka GitHub
       link: https://github.com/ataslangit/sistem-informasi-desa
 
 features:
