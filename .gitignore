@@ -16,6 +16,5 @@ donjo-sys/vlucas/phpdotenv/*
 !donjo-sys/vlucas/phpdotenv/src
 
 /node_modules
-package-lock.json
 
 docs/.vitepress/dist

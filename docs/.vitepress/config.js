@@ -1,6 +1,7 @@
 export default {
     title: 'Sistem Informasi Desa',
-    description: 'Just playing around.',
+    description: 'Menuju desa digital',
+    base: '/sistem-informasi-desa/',
     themeConfig: {
         socialLinks: [
             { icon: 'github', link: 'https://github.com/ataslangit/sistem-informasi-desa' }
