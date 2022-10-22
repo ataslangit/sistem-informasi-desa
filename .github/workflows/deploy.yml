@@ -7,20 +7,27 @@ on:
       - dev
     paths:
       - 'docs/**'
-
+    
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
 
-    - name: Build and Deploy
-      uses: jenkey2011/vuepress-deploy@v2.0.0
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: ataslangit/sistem-informasi-desa
-        TARGET_BRANCH: gh_pages
-        BUILD_SCRIPT: npm run docs:build
-        BUILD_DIR: blog/.vuepress/dist/
-        COMMIT_MESSAGE:  Auto deploy by the Vuepress-deploy
+      - name: Build
+        run: npm run docs:build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+          publish_branch: gh_pages
+
