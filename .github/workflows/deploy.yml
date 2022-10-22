@@ -1,6 +1,13 @@
 
-name: A-TO-B:CUSTOM_BRANCH
-on: [push]
+name: Deploy
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'docs/**'
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
