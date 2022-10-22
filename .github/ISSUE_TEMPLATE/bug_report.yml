@@ -1,0 +1,54 @@
+name: Laporan Bug
+description: Bug telah ditemukan, siap dilaporkan
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Terimakasih telah meluangkan waktu untuk melaporkan bug.
+  - type: textarea
+    id: yang-terjadi
+    attributes:
+      label: Apa yang telah terjadi?
+      description: Jelaskan pula, semestinya bagaimana.
+      placeholder: Beritahu kami apa yang terjadi.
+    validations:
+      required: true
+  - type: dropdown
+    id: versi
+    attributes:
+      label: Versi
+      description: Versi SID yang digunakan?
+      options:
+        - 3.10-CRI
+        - 3.11.x
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Browser apa yang digunakan?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Lainnya
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS apa yang digunakan?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+        - Lainnya
+  - type: textarea
+    id: logs
+    attributes:
+      label: Tangkapan Log (jika ada)
+      description: Cukup copy-paste saja tanpa berikan format apapun.
+      render: shell
