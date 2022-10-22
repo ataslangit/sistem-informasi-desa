@@ -2,11 +2,12 @@
 title: Tentang SID
 ---
 
-# Selamat Datang
+# Tentang Sistem Informai Desa
 
-Selamat datang di situs informasi pengembangan Sistem Informasi Desa. Sistem Informasi Desa (SID) (2009 - 2016) ini sebelumnya dikembangkan oleh CRI (Combine Resource Institution). Kini kami mencoba untuk meneruskan pengembangan SID tersebut agar dapat terus digunakan agar Desa semakin unggul.
+SID ini merupakan pengembangan lanjutan dari SID v3.10 oleh CRI. Merupakan sebuah sistem informasi desa menuju sistem yang terbuka, terarah dan mudah.
 
-Dalam pengembangan, kami menggunakan GitHub sebagai wadah, dan siapa saja dapat berkontribusi tanpa dipungut biaya apapun. Anda dapat mengunjungi [ataslangit/sistem-informasi-desa](https://github.com/ataslangit/sistem-informasi-desa) untuk melihat setiap perubahan atau berkontribusi secara langsung.
+2009 - 2016 Combine Resource Institution\
+2022 AtasLangit
 
 ## Informasi
 Informasi yang diolah dalam SID, antara lain: informasi desa sesuai ketentuan Undang-Undang Republik Indonesia Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik (KIP); berita (tulis & foto) yang berbasis desa yang bersangkutan.

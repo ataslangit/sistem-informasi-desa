@@ -2,16 +2,20 @@ export default {
     title: 'Sistem Informasi Desa',
     description: 'Just playing around.',
     themeConfig: {
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/ataslangit/sistem-informasi-desa' }
+        ],
         nav: [
-          { text: 'Tentang SID', link: '/tentang' },
-          {
-            text: 'Dropdown Menu',
-            items: [
-              { text: 'Item A', link: '/item-1' },
-              { text: 'Item B', link: '/item-2' },
-              { text: 'Item C', link: '/item-3' }
-            ]
-          }
-        ]
+            { text: 'Tentang SID', link: '/tentang' },
+            { text: 'Panduan', link: '/panduan/index' },
+        ],
+        footer: {
+            copyright: 'Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 Atas Langit'
+        },
+        editLink: {
+            pattern: 'https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path',
+            text: "Ubah laman ini"
+        },
+        lastUpdatedText: 'Updated Date'
     }
 }
