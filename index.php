@@ -40,7 +40,7 @@
  * Composer auto-loading
  * --------------------------------------------------------------------------
  */
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/donjo-sys/autoload.php';
 
 /*
  * --------------------------------------------------------------------------
@@ -111,7 +111,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'vendor/codeigniter/framework/system';
+$system_path = 'donjo-sys/codeigniter/framework/system';
 
 /*
  *---------------------------------------------------------------
@@ -128,7 +128,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'app';
+$application_folder = 'donjo-app';
 
 /*
  *---------------------------------------------------------------
