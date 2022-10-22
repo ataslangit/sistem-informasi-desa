@@ -12,6 +12,11 @@
     "config": {
         "platform": {
             "php": "7.3"
-        }
+        },
+        "vendor-dir": "donjo-sys",
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "lock": false
     }
 }

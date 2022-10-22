@@ -2,15 +2,15 @@
 .env
 composer.lock
 
-# abaikan pada vendor
-vendor/**/LICENSE
-vendor/**/license.txt
-vendor/**/readme*
-vendor/**/README*
-vendor/**/composer.json
+# abaikan pada donjo-sys
+donjo-sys/**/LICENSE
+donjo-sys/**/license.txt
+donjo-sys/**/readme*
+donjo-sys/**/README*
+donjo-sys/**/composer.json
 
-vendor/codeigniter/framework/*
-!vendor/codeigniter/framework/system
+donjo-sys/codeigniter/framework/*
+!donjo-sys/codeigniter/framework/system
 
-vendor/vlucas/phpdotenv/*
-!vendor/vlucas/phpdotenv/src
+donjo-sys/vlucas/phpdotenv/*
+!donjo-sys/vlucas/phpdotenv/src
