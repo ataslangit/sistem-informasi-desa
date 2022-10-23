@@ -43,10 +43,7 @@ function sidebarGuide() {
             text: 'Migrasi/Upgrade',
             collapsible: true,
             items: [
-                {
-                    text: 'Migrasi dari v3.10-CRI',
-                    link: '/panduan/migrasi-dari-v310-cri'
-                }
+                { text: 'v3.10-CRI ke v3.11.0', link: '/panduan/migrasi-dari-v310-cri' }
             ]
         }
     ]
@@ -58,6 +55,7 @@ function sidebarChangelog() {
             text: 'Log Perubahan',
             collapsible: false,
             items: [
+                { text: 'dev (pengambangan)', link: '/changelog/dev' },
                 { text: 'v3.11.0 (terbaru)', link: '/changelog/3-11-0' },
                 { text: 'v3.10-CRI', link: '/changelog/3-10-cri' },
             ]
