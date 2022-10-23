@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => $_ENV['database.default.password'] ?? 'root',
 	'database' => $_ENV['database.default.database'] ?? 'db_ataslangit_sid',
 	'dbdriver' => $_ENV['database.default.DBDriver'] ?? 'mysqli',
-	'dbprefix' => $_ENV['database.default.DBPrefi'] ?? '',
+	'dbprefix' => $_ENV['database.default.DBPrefix'] ?? '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
