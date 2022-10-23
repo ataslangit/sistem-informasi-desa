@@ -22,8 +22,9 @@ export default {
             pattern: 'https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path',
             text: "Ubah laman ini"
         },
-        lastUpdated: true,
-    }
+        lastUpdatedText: 'Diperbarui pada:'
+    },
+    lastUpdated: true,
 }
 
 function sidebarGuide() {
