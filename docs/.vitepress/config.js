@@ -4,14 +4,16 @@ export default {
     base: '/sistem-informasi-desa/',
     lang: 'id-ID',
     themeConfig: {
+        nav: [
+            { text: 'Panduan', link: '/panduan/' },
+            { text: 'Changelog', link: '/changelog/' },
+        ],
         socialLinks: [
             { icon: 'github', link: 'https://github.com/ataslangit/sistem-informasi-desa' }
         ],
-        nav: [
-            { text: 'Panduan', link: '/panduan/' },
-        ],
         sidebar: {
-            '/panduan/': sidebarGuide()
+            '/panduan/': sidebarGuide(),
+            '/changelog/': sidebarChangelog()
         },
         footer: {
             copyright: 'Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 Atas Langit'
@@ -33,6 +35,7 @@ function sidebarGuide() {
                 { text: 'Tentang SID', link: '/panduan/' },
                 { text: 'Persyaratan Server', link: '/panduan/persyaratan-server' },
                 { text: 'Memulai SID', link: '/panduan/mulai' },
+                { text: 'Changelog', link: '/changelog/' },
             ]
         },
         {
@@ -45,5 +48,18 @@ function sidebarGuide() {
                 }
             ]
         }
+    ]
+}
+
+function sidebarChangelog() {
+    return [
+        {
+            text: 'Log Perubahan',
+            collapsible: false,
+            items: [
+                { text: 'v3.11.0 (terbaru)', link: '/changelog/3-11-0' },
+                { text: 'v3.10-CRI', link: '/changelog/3-10-cri' },
+            ]
+        },
     ]
 }
