@@ -1,9 +1,9 @@
 ---
-title: Panduan
+title: Migrasi / Upgrade dari v3.10-CRI ke v3.11.0
 layout: doc
 ---
 
-# Migrasi / Upgrade dari v3.10-CRI
+# Migrasi / Upgrade dari v3.10-CRI ke v3.11.0
 ::: tip WAJIB
 Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan migrasi.
 :::
