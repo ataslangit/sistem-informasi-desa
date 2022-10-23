@@ -5,3 +5,5 @@
 code_of_conduct.md export-ignore
 composer.json export-ignore
 docs export-ignore
+package.json export-ignore
+package-lock.json export-ignore
