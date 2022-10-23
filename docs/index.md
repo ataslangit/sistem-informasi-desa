@@ -5,7 +5,7 @@ title: SID
 hero:
   name: SID
   text: Sistem Informasi Desa Terbuka
-  tagline: Menuju desa terbuka
+  tagline: Menuju desa digital
   actions:
     - theme: brand
       text: Panduan
