@@ -23,6 +23,7 @@ body:
       options:
         - 3.10-CRI
         - 3.11.x
+        - dev
     validations:
       required: true
   - type: dropdown
