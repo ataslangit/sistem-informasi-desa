@@ -40,7 +40,7 @@ export default {
     transformHtml: (_, id, { pageData }) => {
         if (!/[\\/]404\.html$/.test(id))
             links.push({
-                url: pageData.relativePath.replace(/\.md$/, '.html'),
+                url: pageData.relativePath.replace(/\.md$/, ".html"),
                 lastmod: pageData.lastUpdated,
             });
     },
