@@ -21,5 +21,6 @@ Ikuti beberapa langkah berikut:
   ::: warning
   Saat ini, pengaturan database `dbprefix` belum didukung.
   :::
-- Jika sudah silakan simpan dan akses halaman awal situs, misal: http://example.com/
-  Akan ditujukan pada halaman awal instalasi database.
+- Silakan simpan dan akses halaman awal situs, misal: http://example.com/
+  Akan ditujukan pada halaman awal instalasi database.\
+  Catat & simpan username maupun password yang diberikan, bila perlu dapat diubah lewat halaman siteman
