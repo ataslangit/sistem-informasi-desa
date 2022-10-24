@@ -40,15 +40,14 @@ export default {
     transformHtml: (_, id, { pageData }) => {
         if (!/[\\/]404\.html$/.test(id))
             links.push({
-                // you might need to change this if not using clean urls mode
-                url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, "$2"),
+                url: pageData.relativePath.replace(/\.md$/, '.html'),
                 lastmod: pageData.lastUpdated,
             });
     },
 
     buildEnd: ({ outDir }) => {
         const sitemap = new SitemapStream({
-            hostname: "https://ataslangit.github.io/sistem-informasi-desa/",
+            hostname: "https://ataslangit.github.io/",
         });
         const writeStream = createWriteStream(resolve(outDir, "sitemap.xml"));
         sitemap.pipe(writeStream);
