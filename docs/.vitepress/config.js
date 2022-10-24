@@ -7,7 +7,7 @@ const links = [];
 export default {
     title: "Sistem Informasi Desa",
     description: "Menuju desa digital",
-    base: "/sistem-informasi-desa/",
+    // base: "/sistem-informasi-desa/",
     lang: "id-ID",
     themeConfig: {
         nav: [
@@ -31,7 +31,7 @@ export default {
         editLink: {
             pattern:
                 "https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path",
-            text: "Ubah laman ini",
+            text: "Perbarui laman ini",
         },
         lastUpdatedText: "Diperbarui pada:",
     },
