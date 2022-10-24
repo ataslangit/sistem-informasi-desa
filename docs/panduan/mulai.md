@@ -19,7 +19,7 @@ Ikuti beberapa langkah berikut:
   $db['default']['dbprefix'] = '';
   ```
   ::: warning
-  Pengaturan database `dbprefix` belum didukung.
+  Saat ini, pengaturan database `dbprefix` belum didukung.
   :::
 - Jika sudah silakan simpan dan akses halaman awal situs, misal: http://example.com/
   Akan ditujukan pada halaman awal instalasi database.
