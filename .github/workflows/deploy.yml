@@ -7,7 +7,7 @@ on:
       - dev
     paths:
       - 'docs/**'
-    
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,9 +30,10 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: username/external-repository
           publish_dir: docs/.vitepress/dist
-          publish_branch: gh_pages
+          publish_branch: main
           force_orphan: true
           user_name: 'github-actions'
           user_email: '41898282+github-actions[bot]@users.noreply.github.com'
