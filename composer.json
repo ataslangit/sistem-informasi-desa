@@ -7,16 +7,15 @@
     },
     "require-dev": {
         "mikey179/vfsstream": "1.6.*",
-        "phpunit/phpunit": "4.* || 5.* || 9.*"
     },
     "config": {
+        "lock": false,
+        "optimize-autoloader": true,
         "platform": {
             "php": "7.3"
         },
-        "vendor-dir": "donjo-sys",
-        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "lock": false
+        "vendor-dir": "donjo-sys"
     }
 }
