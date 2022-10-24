@@ -23,5 +23,5 @@ features:
     details: Akan ada fitur dan penyempurnaan selanjutnya
   - icon: 🖖
     title: Tidak ribet dan selalu gratis
-    details: Cukup unduh dan pasang, tidak perlu bayar
+    details: Cukup unduh, instal dan tidak perlu bayar
 ---
