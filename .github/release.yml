@@ -4,6 +4,7 @@ changelog:
   exclude:
     labels:
       - abaikan-rilis
+      - dokumentasi
     authors:
       - octocat
   categories:
