@@ -1,0 +1,22 @@
+name: Style PHP-CS-Fixer
+
+on:
+  pull_request:
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Install composer packages
+        run: composer install
+
+      - name: Run PHP-CS-Fixer Lint
+        run: composer csfix
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply PHP-CS-Fixer changes
