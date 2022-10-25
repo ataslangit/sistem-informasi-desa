@@ -9,6 +9,7 @@ donjo-sys/**/readme*
 donjo-sys/**/README*
 donjo-sys/**/composer.json
 
+donjo-sys/codeigniter/coding-standard
 donjo-sys/codeigniter/framework/*
 !donjo-sys/codeigniter/framework/system
 
