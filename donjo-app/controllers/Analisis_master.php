@@ -18,7 +18,6 @@ class Analisis_master extends CI_Controller
             redirect('siteman');
         }
         unset($_SESSION['submenu'], $_SESSION['asubmenu']);
-
     }
 
     public function clear()

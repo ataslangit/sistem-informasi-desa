@@ -3,7 +3,7 @@
         'name' => 'ataslangit/sistem-informasi-desa',
         'pretty_version' => 'dev-csfixer',
         'version' => 'dev-csfixer',
-        'reference' => '3a2555db362fcb47ff080e659b450fa1b6b5e2e6',
+        'reference' => 'b2cb9fdc8f1b205adf66103202c29968b86cb7c0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ataslangit/sistem-informasi-desa' => array(
             'pretty_version' => 'dev-csfixer',
             'version' => 'dev-csfixer',
-            'reference' => '3a2555db362fcb47ff080e659b450fa1b6b5e2e6',
+            'reference' => 'b2cb9fdc8f1b205adf66103202c29968b86cb7c0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

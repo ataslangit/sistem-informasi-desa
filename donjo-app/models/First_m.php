@@ -76,7 +76,6 @@ class First_m extends CI_Model
         }
 
         unset($_SESSION['mandiri'], $_SESSION['id'], $_SESSION['nik'], $_SESSION['nama']);
-
     }
 
     public function ganti()

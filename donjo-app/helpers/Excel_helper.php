@@ -1673,11 +1673,11 @@ class Spreadsheet_Excel_Reader
         $mantissa     = (0x100000 | ($rknumhigh & 0x000FFFFF));
         $mantissalow1 = ($rknumlow & 0x80000000) >> 31;
         $mantissalow2 = ($rknumlow & 0x7FFFFFFF);
-        $value        = $mantissa /  2 ** (20 - ($exp - 1023));
+        $value        = $mantissa / 2 ** (20 - ($exp - 1023));
         if ($mantissalow1 !== 0) {
-            $value += 1 /  2 ** (21 - ($exp - 1023));
+            $value += 1 / 2 ** (21 - ($exp - 1023));
         }
-        $value += $mantissalow2 /  2 ** (52 - ($exp - 1023));
+        $value += $mantissalow2 / 2 ** (52 - ($exp - 1023));
         if ($sign) {
             $value = -1 * $value;
         }
@@ -1708,7 +1708,7 @@ class Spreadsheet_Excel_Reader
             $sign     = ($rknum & 0x80000000) >> 31;
             $exp      = ($rknum & 0x7FF00000) >> 20;
             $mantissa = (0x100000 | ($rknum & 0x000FFFFC));
-            $value    = $mantissa /  2 ** (20 - ($exp - 1023));
+            $value    = $mantissa / 2 ** (20 - ($exp - 1023));
             if ($sign) {
                 $value = -1 * $value;
             }

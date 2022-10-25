@@ -120,7 +120,6 @@ class User_model extends CI_Model
         }
 
         unset($_SESSION['user'], $_SESSION['sesi'], $_SESSION['cari'], $_SESSION['filter']);
-
     }
 
     public function autocomplete()

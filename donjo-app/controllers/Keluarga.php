@@ -507,7 +507,6 @@ class Keluarga extends CI_Controller
             $_SESSION['dusun'] = $dusun;
         } else {
             unset($_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
-
         }
         redirect('keluarga');
     }
