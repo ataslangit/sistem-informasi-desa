@@ -6,7 +6,9 @@
         "vlucas/phpdotenv": "^5.5"
     },
     "require-dev": {
-        "mikey179/vfsstream": "1.6.*",
+        "codeigniter/coding-standard": "^1.1",
+        "friendsofphp/php-cs-fixer": "^3",
+        "mikey179/vfsstream": "1.6.*"
     },
     "config": {
         "lock": false,
@@ -17,5 +19,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "vendor-dir": "donjo-sys"
+    },
+    "scripts": {
+        "csfix": "./donjo-sys/bin/php-cs-fixer fix"
     }
 }

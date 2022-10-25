@@ -1,5 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+defined('BASEPATH') || exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -70,27 +71,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
-$query_builder = TRUE;
+$active_group  = 'default';
+$query_builder = true;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => $_ENV['database.default.hostname'] ?? 'localhost',
-	'username' => $_ENV['database.default.username'] ?? 'root',
-	'password' => $_ENV['database.default.password'] ?? 'root',
-	'database' => $_ENV['database.default.database'] ?? 'db_ataslangit_sid',
-	'dbdriver' => $_ENV['database.default.DBDriver'] ?? 'mysqli',
-	'dbprefix' => $_ENV['database.default.DBPrefix'] ?? '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
+$db['default'] = [
+    'dsn'          => '',
+    'hostname'     => $_ENV['database.default.hostname'] ?? 'localhost',
+    'username'     => $_ENV['database.default.username'] ?? 'root',
+    'password'     => $_ENV['database.default.password'] ?? 'root',
+    'database'     => $_ENV['database.default.database'] ?? 'db_ataslangit_sid',
+    'dbdriver'     => $_ENV['database.default.DBDriver'] ?? 'mysqli',
+    'dbprefix'     => $_ENV['database.default.DBPrefix'] ?? '',
+    'pconnect'     => false,
+    'db_debug'     => (ENVIRONMENT !== 'production'),
+    'cache_on'     => false,
+    'cachedir'     => '',
+    'char_set'     => 'utf8',
+    'dbcollat'     => 'utf8_general_ci',
+    'swap_pre'     => '',
+    'encrypt'      => false,
+    'compress'     => false,
+    'stricton'     => false,
+    'failover'     => [],
+    'save_queries' => true,
+];
