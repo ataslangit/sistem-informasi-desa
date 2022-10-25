@@ -9,5 +9,6 @@ class Apis extends CI_Model{
 		
 		echo $page;
 	}
+    }
 }
 ?>
