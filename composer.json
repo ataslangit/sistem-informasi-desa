@@ -12,7 +12,7 @@
     },
     "config": {
         "lock": false,
-        "optimize-autoloader": true,
+        "optimize-autoloader": false,
         "platform": {
             "php": "7.3"
         },
