@@ -9,8 +9,7 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
-    ->exclude('donjo-sys')
-    ->exclude('donjo-app/views');
+    ->exclude(['donjo-app/views', 'donjo-sys']);
 
 $overrides = [];
 

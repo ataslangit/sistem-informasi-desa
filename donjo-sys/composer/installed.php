@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ataslangit/sistem-informasi-desa',
-        'pretty_version' => 'dev-csfixer',
-        'version' => 'dev-csfixer',
-        'reference' => 'b2cb9fdc8f1b205adf66103202c29968b86cb7c0',
+        'pretty_version' => 'dev-ignore-dev',
+        'version' => 'dev-ignore-dev',
+        'reference' => 'dbc6d8121c77994efc7780baaf6a753acedaa977',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ataslangit/sistem-informasi-desa' => array(
-            'pretty_version' => 'dev-csfixer',
-            'version' => 'dev-csfixer',
-            'reference' => 'b2cb9fdc8f1b205adf66103202c29968b86cb7c0',
+            'pretty_version' => 'dev-ignore-dev',
+            'version' => 'dev-ignore-dev',
+            'reference' => 'dbc6d8121c77994efc7780baaf6a753acedaa977',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
