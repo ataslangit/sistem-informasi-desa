@@ -1,89 +1,118 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
-class Pengurus extends CI_Controller{
-	function __construct(){
-		parent::__construct();
+<?php
 
-		$this->load->model('user_model');
-		$this->load->model('pamong_model');
-		$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
-		if($grup!=1 AND $grup!=2) redirect('siteman');
-		$this->load->model('header_model');
-	}
+if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+class Pengurus extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
 
-	function clear(){
-		unset($_SESSION['cari']);
-		unset($_SESSION['filter']);
-		redirect('pengurus');
-	}
-	function index(){
+        $this->load->model('user_model');
+        $this->load->model('pamong_model');
+        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+        if ($grup !== 1 && $grup !== 2) {
+            redirect('siteman');
+        }
+        $this->load->model('header_model');
+    }
 
-		if(isset($_SESSION['cari']))
-			$data['cari'] = $_SESSION['cari'];
-		else $data['cari'] = '';
+    public function clear()
+    {
+        unset($_SESSION['cari'], $_SESSION['filter']);
 
-		if(isset($_SESSION['filter']))
-			$data['filter'] = $_SESSION['filter'];
-		else $data['filter'] = '';
-		$data['main'] = $this->pamong_model->list_data();
-		$data['keyword'] = $this->pamong_model->autocomplete();
-		$nav['act']= 1;
-		$header = $this->header_model->get_data();
+        redirect('pengurus');
+    }
 
-		$this->load->view('header',$header);
+    public function index()
+    {
+        if (isset($_SESSION['cari'])) {
+            $data['cari'] = $_SESSION['cari'];
+        } else {
+            $data['cari'] = '';
+        }
 
-		$this->load->view('home/nav',$nav);
-		$this->load->view('home/pengurus',$data);
-		$this->load->view('footer');
-	}
+        if (isset($_SESSION['filter'])) {
+            $data['filter'] = $_SESSION['filter'];
+        } else {
+            $data['filter'] = '';
+        }
+        $data['main']    = $this->pamong_model->list_data();
+        $data['keyword'] = $this->pamong_model->autocomplete();
+        $nav['act']      = 1;
+        $header          = $this->header_model->get_data();
 
-	function form($id=''){
+        $this->load->view('header', $header);
 
-		if($id){
-			$data['pamong']          = $this->pamong_model->get_data($id);
-			$data['form_action'] = site_url("pengurus/update/$id");
-		}
-		else{
-			$data['pamong']          = null;
-			$data['form_action'] = site_url("pengurus/insert");
-		}
+        $this->load->view('home/nav', $nav);
+        $this->load->view('home/pengurus', $data);
+        $this->load->view('footer');
+    }
 
-		$header = $this->header_model->get_data();
+    public function form($id = '')
+    {
+        if ($id) {
+            $data['pamong']      = $this->pamong_model->get_data($id);
+            $data['form_action'] = site_url("pengurus/update/{$id}");
+        } else {
+            $data['pamong']      = null;
+            $data['form_action'] = site_url('pengurus/insert');
+        }
 
-		$this->load->view('header',$header);
+        $header = $this->header_model->get_data();
 
-		$nav['act']= 1;
-		$this->load->view('home/nav',$nav);
-		$this->load->view('home/pengurus_form',$data);
-		$this->load->view('footer');
-	}
-	function filter(){
-		$filter = $this->input->post('filter');
-		if($filter!="")
-			$_SESSION['filter']=$filter;
-		else unset($_SESSION['filter']);
-		redirect('pengurus');
-	}
-	function search(){
-		$cari = $this->input->post('cari');
-		if($cari!='')
-			$_SESSION['cari']=$cari;
-		else unset($_SESSION['cari']);
-		redirect('pengurus');
-	}
-	function insert(){
-		$this->pamong_model->insert();
-		redirect('pengurus');
-	}
-	function update($id=''){
-		$this->pamong_model->update($id);
-		redirect('pengurus');
-	}
-	function delete($id=''){
-		$this->pamong_model->delete($id);
-		redirect('pengurus');
-	}
-	function delete_all(){
-		$this->pamong_model->delete_all();
-		redirect('pengurus');
-	}
+        $this->load->view('header', $header);
+
+        $nav['act'] = 1;
+        $this->load->view('home/nav', $nav);
+        $this->load->view('home/pengurus_form', $data);
+        $this->load->view('footer');
+    }
+
+    public function filter()
+    {
+        $filter = $this->input->post('filter');
+        if ($filter !== '') {
+            $_SESSION['filter'] = $filter;
+        } else {
+            unset($_SESSION['filter']);
+        }
+        redirect('pengurus');
+    }
+
+    public function search()
+    {
+        $cari = $this->input->post('cari');
+        if ($cari !== '') {
+            $_SESSION['cari'] = $cari;
+        } else {
+            unset($_SESSION['cari']);
+        }
+        redirect('pengurus');
+    }
+
+    public function insert()
+    {
+        $this->pamong_model->insert();
+        redirect('pengurus');
+    }
+
+    public function update($id = '')
+    {
+        $this->pamong_model->update($id);
+        redirect('pengurus');
+    }
+
+    public function delete($id = '')
+    {
+        $this->pamong_model->delete($id);
+        redirect('pengurus');
+    }
+
+    public function delete_all()
+    {
+        $this->pamong_model->delete_all();
+        redirect('pengurus');
+    }
 }
