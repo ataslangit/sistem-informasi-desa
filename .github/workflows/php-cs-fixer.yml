@@ -20,3 +20,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply PHP-CS-Fixer changes
+          file_pattern: 'donjo-app/*'
