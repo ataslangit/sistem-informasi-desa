@@ -3,7 +3,7 @@
         'name' => 'ataslangit/sistem-informasi-desa',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '48d21b094bba3bcd76bdc85404dd2315293e8a47',
+        'reference' => '12d77227596dd5f295a6b15c7723f401dc22184b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ataslangit/sistem-informasi-desa' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '48d21b094bba3bcd76bdc85404dd2315293e8a47',
+            'reference' => '12d77227596dd5f295a6b15c7723f401dc22184b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
