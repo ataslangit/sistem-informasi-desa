@@ -21,3 +21,11 @@ jobs:
         with:
           commit_message: Apply PHP-CS-Fixer changes
           file_pattern: 'donjo-app/*'
+
+      - name: composer --no-dev
+        run: composer update --no-dev
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply PHP-CS-Fixer changes
+          file_pattern: 'donjo-app/*'
