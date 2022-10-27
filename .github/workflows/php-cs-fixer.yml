@@ -19,11 +19,11 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply PHP-CS-Fixer changes
+          commit_message: Apply style
 
-      - name: composer --no-dev
+      - name: Remove dev dependency
         run: composer update --no-dev
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply PHP-CS-Fixer changes
+          commit_message: Optimize composer
