@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ataslangit/sistem-informasi-desa',
-        'pretty_version' => 'dev-ignore-dev',
-        'version' => 'dev-ignore-dev',
-        'reference' => 'dbc6d8121c77994efc7780baaf6a753acedaa977',
+        'pretty_version' => 'dev-totoprayogo1916-patch-1',
+        'version' => 'dev-totoprayogo1916-patch-1',
+        'reference' => 'a29f25054fcbe3cbc8e7186dbcf0e5282a2fa836',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ataslangit/sistem-informasi-desa' => array(
-            'pretty_version' => 'dev-ignore-dev',
-            'version' => 'dev-ignore-dev',
-            'reference' => 'dbc6d8121c77994efc7780baaf6a753acedaa977',
+            'pretty_version' => 'dev-totoprayogo1916-patch-1',
+            'version' => 'dev-totoprayogo1916-patch-1',
+            'reference' => 'a29f25054fcbe3cbc8e7186dbcf0e5282a2fa836',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
