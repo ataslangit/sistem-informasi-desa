@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+Disallow: /sistem-informasi-desa/
+Sitemap: https://ataslangit.github.io/sitemap.xml
