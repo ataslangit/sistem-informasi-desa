@@ -12,20 +12,22 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-
-      - name: Install composer packages
-        run: composer install
-
-      - name: Run PHP-CS-Fixer Lint
-        run: composer csfix
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - run: composer install
+      - run: composer csfix
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply style
+          commit_message: Fixed by `php-cs-fixer`
 
-      - name: Remove dev dependency
-        run: composer update --no-dev
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
+  update-dependency:
+    needs: php-cs-fixer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
         with:
-          commit_message: Optimize composer
+          ref: ${{ github.head_ref }}
+      - run: composer update --no-dev
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update dependency & optimize composer
