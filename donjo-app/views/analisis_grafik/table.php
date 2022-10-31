@@ -16,11 +16,11 @@
                                 defaultSeriesType: 'column'
                             },
                             title: {
-                                text: 'Statistik 
+                                text: 'Statistik'
                             },
                             xAxis: {
                                 title: {
-                                    text: '
+                                    text: ''
                                 },
                                 categories: [
                                     <?php $i=0;foreach($main as $data){$i++;?>
