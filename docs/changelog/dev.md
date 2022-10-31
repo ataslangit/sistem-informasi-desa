@@ -13,6 +13,7 @@ Rilis: _Belum rilis, versi dev_
 - Meningkatakan versi CodeIgniter menjadi v3.1.13, sebelumnya v2.2.6
 - Menambahkan berkas env untuk mempermudah pengaturan
 - Merapikan kode dengan bantuan *php-cs-fixer* kecuali dibagian view
+- Perbaikan berkas `.htaccess`
 
 ## :hammer_and_wrench: Perbaikan
 - Beberapa error pada halaman siteman telah diperbaiki
