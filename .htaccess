@@ -1,6 +1,22 @@
-DirectoryIndex index.php
-RewriteEngine on
-RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+# Disable directory browsing
+Options All -Indexes
+
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	RewriteEngine on
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(index\.php|images|css|js|robots\.txt|favicon\.ico) - [L]
+	RewriteRule ^(.*)$ /index.php/$1 [L,QSA,NC]
+
+	RewriteCond %{HTTP:Authorization} .
+	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+<IfModule !mod_rewrite.c>
+	# If we don't have mod_rewrite installed, all 404's
+	# can be sent to index.php, and everything works as normal.
+	ErrorDocument 404 index.php
+</IfModule>
+
+ServerSignature Off
