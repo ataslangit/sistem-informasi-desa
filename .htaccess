@@ -2,13 +2,13 @@
 Options All -Indexes
 
 <IfModule mod_rewrite.c>
-  Options +FollowSymlinks
-  RewriteEngine on
-  
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(index\.php|images|css|js|robots\.txt|favicon\.ico) - [L]
-  RewriteRule ^(.*)$ /index.php/$1 [L,QSA,NC]
+	Options +FollowSymlinks
+	RewriteEngine on
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(index\.php|images|css|js|robots\.txt|favicon\.ico) - [L]
+	RewriteRule ^(.*)$ /index.php/$1 [L,QSA,NC]
 
 	RewriteCond %{HTTP:Authorization} .
 	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
