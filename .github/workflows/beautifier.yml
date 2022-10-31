@@ -1,0 +1,32 @@
+name: Format Kode
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  beautifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - run: npm ci
+      - name: Finding files and store to output
+        id: pl
+        uses: Rishabh510/Path-lister-action@master
+        with:
+          path: "donjo-app/views/"
+          type: ".php"
+
+      - name: Processing my found files from output
+        run: |
+          echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
+          for i in ${{ steps.pl.outputs.paths }}; do
+          npm run format $i
+          done
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Formating
