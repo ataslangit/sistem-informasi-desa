@@ -42,6 +42,7 @@
         $(function() {
             $("ul#ticker01").liScroll();
         });
+
     </script>
     <style>
         .tickercontainer {
@@ -76,12 +77,13 @@
             padding: 0 10px;
             color: #fefe77;
         }
+
     </style>
     <ul id="ticker01" style="display:none;">
         <?php $tb = 0;
         foreach ($teks_berjalan as $data) { ?>
-            <li> <?php echo fixTag($data['isi']); ?> </li>
-            <li> | </li>
+        <li> <?php echo fixTag($data['isi']); ?> </li>
+        <li> | </li>
         <?php $tb++;
         } ?>
     </ul>

@@ -1,14 +1,14 @@
 <?php
 ?>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('program_bantuan/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane"><?php
+            </td>
+            <td class="contentpane"><?php
 		if(validation_errors()){
 			echo "
 			<div class=\"error\" style=\"border:solid 2px #c00;color:#c00;margin:1em 0;\">
@@ -23,12 +23,12 @@
 		}
 		
 		 ?>
-		</td>
-		<td style="width:250px;" class="contentpane">
-		<?php
+            </td>
+            <td style="width:250px;" class="contentpane">
+                <?php
 		$this->load->view('program_bantuan/panduan.php')
 		?>
-		</td>
-	</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>

@@ -1,15 +1,15 @@
 <!-- widget SocMed -->
 <div class="box box-default">
-	<div class="box-header">
-		<h3 class="box-title"><i class="fa fa-globe"></i> Info Media Sosial</h3>
-	</div>
-	<div class="box-body">
-<?php 
+    <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-globe"></i> Info Media Sosial</h3>
+    </div>
+    <div class="box-body">
+        <?php 
 foreach($sosmed As $data){
 	echo "<a href=\"".$data["link"]."\" target=\"_blank\"><img src=\"".base_url()."assets/front/".$data["gambar"]."\" alt=\"".$data["nama"]."\" style=\"width:50px;height:50px;\"></a>";
 }
-?>	
-	</div>
+?>
+    </div>
 </div>
 <!-- widget Google Map -->
 <?php
@@ -23,43 +23,43 @@ if($data_config['lat']!= "0"){
 			<div id=\"map_canvas\" style=\"height:200px;\"></div>
 			<script src=\"//maps.google.com/maps/api/js?key=".$data_config['gapi_key']."&sensor=false\"></script>";
 			?>
-			<script>								
-				var map;
-				var marker;
-				var location;
-				
-				function initialize(){
-					var myLatlng = new google.maps.LatLng(<?php echo $data_config['lat'].",".$data_config['lng']; ?>);
-					var myOptions = {
-						zoom: <?php echo $data_config["zoom"];?>,
-						center: myLatlng,
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						overviewMapControl: true
-					}
-					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-					
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(<?php echo $data_config['lat'].",".$data_config['lng']; ?>),
-							map: map,
-							draggable:false
-							});								}
-				
-				function addEvent(obj, evType, fn){ 
-				 if (obj.addEventListener){ 
-					 obj.addEventListener(evType, fn, false); 
-					 return true; 
-				 } else if (obj.attachEvent){ 
-					 var r = obj.attachEvent("on"+evType, fn); 
-					 return r; 
-				 } else { 
-					 return false; 
-				 } 
-				}						
-				addEvent(window, 'load',initialize);
-				
-				
-			</script>		
-		<?php
+<script>
+    var map;
+    var marker;
+    var location;
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(<?php echo $data_config['lat'].",".$data_config['lng']; ?>);
+        var myOptions = {
+            zoom: <?php echo $data_config["zoom"];?>,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            overviewMapControl: true
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(<?php echo $data_config['lat'].",".$data_config['lng']; ?>),
+            map: map,
+            draggable: false
+        });
+    }
+
+    function addEvent(obj, evType, fn) {
+        if (obj.addEventListener) {
+            obj.addEventListener(evType, fn, false);
+            return true;
+        } else if (obj.attachEvent) {
+            var r = obj.attachEvent("on" + evType, fn);
+            return r;
+        } else {
+            return false;
+        }
+    }
+    addEvent(window, 'load', initialize);
+
+</script>
+<?php
 		echo "
 			<a href=\"//www.google.co.id/maps/@".$data_config['lat'].",".$data_config['lng']."z?hl=id\" target=\"_blank\">tampilkan dalam peta lebih besar</a><br>
 		</div>
@@ -68,11 +68,11 @@ if($data_config['lat']!= "0"){
 }
 ?>
 <div class="box box-success">
-	<div class="box-header">
-		<h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Statistik Pengunjung</h3>
-	</div>
-	<div class="box-body">
-	<?php 
+    <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Statistik Pengunjung</h3>
+    </div>
+    <div class="box-body">
+        <?php 
 	$ip = $_SERVER['REMOTE_ADDR']."{}";
 	if(!isset($_SESSION['MemberOnline'])){
 		$cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='".date("Y-m-d")."'");
@@ -126,36 +126,36 @@ if($data_config['lat']!= "0"){
 		return $num;
 	}
 	?>
-		<div id="container" align="center">
-			<table cellpadding="0" cellspacing="0" class="counter">
-			<tr>
-				<td> Hari ini</td>
-				<td><?php echo num_toimage($today,5); ?></td>
-			</tr>
-			<tr>
-				<td valign="middle" height="20">Kemarin </td>
-				<td valign="middle"><?php echo num_toimage($yesterday,5); ?></td>
-			</tr>
-			<tr>
-				<td valign="middle" height="20">Jumlah pengunjung</td>
-				<td valign="middle"><?php echo num_toimage($total,5); ?></td>
-			</tr>
-			</table>
-		</div>	
-	</div>
+        <div id="container" align="center">
+            <table cellpadding="0" cellspacing="0" class="counter">
+                <tr>
+                    <td> Hari ini</td>
+                    <td><?php echo num_toimage($today,5); ?></td>
+                </tr>
+                <tr>
+                    <td valign="middle" height="20">Kemarin </td>
+                    <td valign="middle"><?php echo num_toimage($yesterday,5); ?></td>
+                </tr>
+                <tr>
+                    <td valign="middle" height="20">Jumlah pengunjung</td>
+                    <td valign="middle"><?php echo num_toimage($total,5); ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 <!-- widget Arsip Artikel -->
 <div class="box box-primary box-solid">
-	<div class="box-header">
-		<h3 class="box-title"><a href="<?php echo site_url("first/arsip")?>"><i class="fa fa-archive"></i> Arsip Artikel</a></h3>
-	</div>
-	<div class="box-body">
-		<ul>
-		<?php foreach ($arsip as $l){?>
-		<li><a href="<?php echo site_url("first/artikel/$l[id]")?>"><?php echo $l['judul']?></a></li>
-		<?php }?>
-		</ul>
-	</div>
+    <div class="box-header">
+        <h3 class="box-title"><a href="<?php echo site_url("first/arsip")?>"><i class="fa fa-archive"></i> Arsip Artikel</a></h3>
+    </div>
+    <div class="box-body">
+        <ul>
+            <?php foreach ($arsip as $l){?>
+            <li><a href="<?php echo site_url("first/artikel/$l[id]")?>"><?php echo $l['judul']?></a></li>
+            <?php }?>
+        </ul>
+    </div>
 </div>
 <!--widget Manual-->
 <?php

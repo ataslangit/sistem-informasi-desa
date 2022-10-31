@@ -17,30 +17,33 @@ header("Pragma: no-cache");
 header("Expires: 0");
 ?>
 <style>
-td{
-	mso-number-format:"\@";
-	vertical-align:top;
-}
-td,th{
-	font-size:9pt;
-	line-height:9px;
-	border:0.5px solid #555;
-	cell-padding:-2px;
-	margin:0px;
-}
+    td {
+        mso-number-format: "\@";
+        vertical-align: top;
+    }
+
+    td,
+    th {
+        font-size: 9pt;
+        line-height: 9px;
+        border: 0.5px solid #555;
+        cell-padding: -2px;
+        margin: 0px;
+    }
+
 </style>
 <div id="body">
- <table>
-	<tr>
-		<th>No</th>
-		<th><?php echo $nomor ?></th>
-		<th><?php echo $nama ?></th>
-		<th>L/P</th>
-		<th>Dusun</th>
-		<th>RW</th>
-		<th>RT</th>
-		<th style="background-color:#fefe00">Batas</th>
-		<?php
+    <table>
+        <tr>
+            <th>No</th>
+            <th><?php echo $nomor ?></th>
+            <th><?php echo $nama ?></th>
+            <th>L/P</th>
+            <th>Dusun</th>
+            <th>RW</th>
+            <th>RT</th>
+            <th style="background-color:#fefe00">Batas</th>
+            <?php
 		$tot = count($indikator);
 		foreach($indikator as $pt){
 			if($pt['par']){
@@ -87,11 +90,11 @@ td,th{
 			}
 		}
 		?>
-	</tr>
-	<tr>
-		<th colspan='7' style="background-color:#fefe00"></th>
-		<th style="background-color:#fefe00"><?php echo $key?></th>
-		<?php
+        </tr>
+        <tr>
+            <th colspan='7' style="background-color:#fefe00"></th>
+            <th style="background-color:#fefe00"><?php echo $key?></th>
+            <?php
 		$tot = count($indikator);
 		foreach($indikator as $pt){
 			echo "<td style='background-color:#fefe00'>";
@@ -99,18 +102,18 @@ td,th{
 			echo "</td>";
 		}
 		?>
-	</tr>
-	<?php foreach($main as $data): ?>
-	<tr>
-		<td><?php echo $data['no']?></td>
-		<td><?php echo $data['nid']?></td>
-		<td><?php echo $data['nama']?></td>
-		<td><?php echo $data['jk']?></td>
-		<td><?php echo $data['dusun']?></td>
-		<td><?php echo $data['rw']?></td>
-		<td><?php echo $data['rt']?></td>
-		<td style="background-color:#fefe00"><?php echo $data['id']?></td>
-		<?php
+        </tr>
+        <?php foreach($main as $data): ?>
+        <tr>
+            <td><?php echo $data['no']?></td>
+            <td><?php echo $data['nid']?></td>
+            <td><?php echo $data['nama']?></td>
+            <td><?php echo $data['jk']?></td>
+            <td><?php echo $data['dusun']?></td>
+            <td><?php echo $data['rw']?></td>
+            <td><?php echo $data['rt']?></td>
+            <td style="background-color:#fefe00"><?php echo $data['id']?></td>
+            <?php
 		if($data['par']==null){
 			for($j=0;$j<$tot;$j++){
 				echo "<td></td>";
@@ -193,7 +196,7 @@ td,th{
 			
 		}
 		?>
-	</tr>
-	<?php endforeach; ?>
-</table>
+        </tr>
+        <?php endforeach; ?>
+    </table>
 </div>

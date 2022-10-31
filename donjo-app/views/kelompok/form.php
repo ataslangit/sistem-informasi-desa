@@ -6,10 +6,10 @@
         var nik = {};
         nik.results = [
             <?php foreach ($list_penduduk as $data) { ?> {
-                    id: '<?php echo $data['id'] ?>',
-                    name: "<?php echo $data['nik'] . " - " . ($data['nama']) ?>",
-                    info: "<?php echo ($data['alamat']) ?>"
-                },
+                id: '<?php echo $data['id'] ?>',
+                name: "<?php echo $data['nik'] . " - " . ($data['nama']) ?>",
+                info: "<?php echo ($data['alamat']) ?>"
+            },
             <?php } ?>
         ];
         nik.total = nik.results.length;
@@ -24,6 +24,7 @@
         });
         $("#nik_detail").show();
     });
+
 </script>
 <div id="pageC">
     <table class="inner">
@@ -51,7 +52,7 @@
                                         <select name="id_master" onchange="formAction('mainform','<?php echo site_url('kelompok/filter') ?>')" class="required">
                                             <option value="">-- Kategori Kelompok --</option>
                                             <?php foreach ($list_master as $data) { ?>
-                                                <option value="<?php echo $data['id'] ?>" <?php if ($kelompok !== null && $kelompok['id_master'] == $data['id']) : ?>selected<?php endif ?>><?php echo $data['kelompok'] ?></option>
+                                            <option value="<?php echo $data['id'] ?>" <?php if ($kelompok !== null && $kelompok['id_master'] == $data['id']) : ?>selected<?php endif ?>><?php echo $data['kelompok'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </td>

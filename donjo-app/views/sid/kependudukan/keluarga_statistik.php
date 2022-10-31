@@ -1,39 +1,40 @@
 <script>
-	$(function() {
-		var keyword = <?php echo $keyword?> ;
-		$( "#cari" ).autocomplete({
-			source: keyword
-		});
-	});
+    $(function() {
+        var keyword = <?php echo $keyword?>;
+        $("#cari").autocomplete({
+            source: keyword
+        });
+    });
+
 </script>
 <div id="pageC">
-<!-- Start of Space Admin -->
-	<table class="inner">
-	<tr style="vertical-align:top">
-<td style="background:#fff;padding:0px;">
-<div class="content-header">
- <h3>Data Keluarga</h3>
-</div>
-<div id="contentpane">
-	<form id="mainform" name="mainform" action="" method="post">
- <div class="ui-layout-north panel">
- <div class="left">
- <div class="uibutton-group">
- <a href="<?php echo site_url('keluarga/form')?>" class="uibutton tipsy south" title="Tambah Data" ><span class="fa fa-plus">&nbsp;</span>Tambah Data Baru</a>
+    <!-- Start of Space Admin -->
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td style="background:#fff;padding:0px;">
+                <div class="content-header">
+                    <h3>Data Keluarga</h3>
+                </div>
+                <div id="contentpane">
+                    <form id="mainform" name="mainform" action="" method="post">
+                        <div class="ui-layout-north panel">
+                            <div class="left">
+                                <div class="uibutton-group">
+                                    <a href="<?php echo site_url('keluarga/form')?>" class="uibutton tipsy south" title="Tambah Data"><span class="fa fa-plus">&nbsp;</span>Tambah Data Baru</a>
 
- <a href="<?php echo site_url('keluarga/form_old')?>" target="ajax-modal" rel="window" header="Tambah Data Keluarga" class="uibutton tipsy south" title="Tambah Data dari penduduk yang sudah ter-input" ><span class="fa fa-plus">&nbsp;</span>Tambah Data</a>
+                                    <a href="<?php echo site_url('keluarga/form_old')?>" target="ajax-modal" rel="window" header="Tambah Data Keluarga" class="uibutton tipsy south" title="Tambah Data dari penduduk yang sudah ter-input"><span class="fa fa-plus">&nbsp;</span>Tambah Data</a>
 
- <?php if($grup==1){?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("keluarga/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Data</button><?php }?>
+                                    <?php if($grup==1){?><button type="button" title="Hapus Data" onclick="deleteAllBox('mainform','<?php echo site_url("keluarga/delete_all/$p/$o")?>')" class="uibutton tipsy south"><span class="fa fa-trash-o">&nbsp;</span>Hapus Data</button><?php }?>
 
-				<a href="<?php echo site_url("keluarga/cetak_statistik/$tipe")?>" target="_blank" class="uibutton tipsy south" title="Cetak" ><span class="fa fa-print">&nbsp;</span>Cetak</a>
-		<a href="<?php echo site_url("keluarga/excel/$o")?>" target="_blank" class="uibutton tipsy south" title="Unduh" ><span class="fa fa-download">&nbsp;</span>Unduh</a>
+                                    <a href="<?php echo site_url("keluarga/cetak_statistik/$tipe")?>" target="_blank" class="uibutton tipsy south" title="Cetak"><span class="fa fa-print">&nbsp;</span>Cetak</a>
+                                    <a href="<?php echo site_url("keluarga/excel/$o")?>" target="_blank" class="uibutton tipsy south" title="Unduh"><span class="fa fa-download">&nbsp;</span>Unduh</a>
 
- </div>
- </div>
- <div class="right">
- <div class="uibutton-group">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="uibutton-group">
 
-<!--				<a href="<?php
+                                    <!--				<a href="<?php
 
 				<a href="<?php
 

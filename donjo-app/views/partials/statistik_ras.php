@@ -1,78 +1,80 @@
 <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
 <script>
-			var chart;
-			$(document).ready(function() {
-				chart = new Highcharts.Chart({
-					chart: {
-						renderTo: 'container',
-						defaultSeriesType: 'column'
-					},
-					title: {
-						text: 'Diagram Batang Jumlah Kepala Keluarga Penerima Raskin'
-					},
-					xAxis: {
-						title: {
-							text: 'Kelompok Penerima Raskin'
-						},
- categories: [
-						<?php $i=0;foreach($main as $data){$i++;?>
-						 <?php echo "'$data[nama]',";?>
-						<?php }?>
-						]
-					},
-					yAxis: {
-						title: {
-							text: 'Jumlah Kepala Keluarga'
-						}
-					},
-					legend: {
-						layout: 'vertical',
-						backgroundColor: '#FFFFFF',
-						align: 'left',
-						verticalAlign: 'top',
-						x: 100,
-						y: 70,
-						floating: true,
-						shadow: true,
- enabled:false
-					},
-					tooltip: {
-						formatter: function() {
-							return ''+
-								this.x +': '+ this.y +'';
-						}
-					},
-					plotOptions: {
-						series: {
- colorByPoint: true
- },
- column: {
-							pointPadding: 0.2,
-							borderWidth: 0
-						}
-					},
-				 series: [{
-						name: 'Populasi',
-						data: [
-						<?php foreach($main as $data){?>
-						 <?php echo $data['jumlah'].",";?>
-						<?php }?>]
-				
-					},{
-						name: 'Memperoleh Raskin',
-						colorByPoint: false,
-						color:'#80699B',
-						data: [
-						<?php foreach($main as $data){?>
-						 <?php echo $data['raskin'].",";?>
-						<?php }?>]
-				
-					}]
-				});
-				
-				
-			});
-				
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                defaultSeriesType: 'column'
+            },
+            title: {
+                text: 'Diagram Batang Jumlah Kepala Keluarga Penerima Raskin'
+            },
+            xAxis: {
+                title: {
+                    text: 'Kelompok Penerima Raskin'
+                },
+                categories: [
+                    <?php $i=0;foreach($main as $data){$i++;?>
+                    <?php echo "'$data[nama]',";?>
+                    <?php }?>
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'Jumlah Kepala Keluarga'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true,
+                enabled: false
+            },
+            tooltip: {
+                formatter: function() {
+                    return '' +
+                        this.x + ': ' + this.y + '';
+                }
+            },
+            plotOptions: {
+                series: {
+                    colorByPoint: true
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Populasi',
+                data: [
+                    <?php foreach($main as $data){?>
+                    <?php echo $data['jumlah'].",";?>
+                    <?php }?>
+                ]
+
+            }, {
+                name: 'Memperoleh Raskin',
+                colorByPoint: false,
+                color: '#80699B',
+                data: [
+                    <?php foreach($main as $data){?>
+                    <?php echo $data['raskin'].",";?>
+                    <?php }?>
+                ]
+
+            }]
+        });
+
+
+    });
+
 </script>
 <?php
 	echo "

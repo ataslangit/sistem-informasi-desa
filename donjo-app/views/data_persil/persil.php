@@ -1,33 +1,34 @@
 <?php
 ?>
 <script>
-	$(function() {
-		var keyword = <?php echo $keyword?> ;
-		$( "#cari" ).autocomplete({
-			source: keyword
-		});
-	});
+    $(function() {
+        var keyword = <?php echo $keyword?>;
+        $("#cari").autocomplete({
+            source: keyword
+        });
+    });
+
 </script>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('data_persil/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane">
-			<legend>Daftar Data Persil <?php echo $desa["nama_desa"];?></legend>
-			<div id="contentpane">
-				<div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
+            </td>
+            <td class="contentpane">
+                <legend>Daftar Data Persil <?php echo $desa["nama_desa"];?></legend>
+                <div id="contentpane">
+                    <div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
 
-					<form id="mainform" name="mainform" action="" method="post">
-							<div class="left">
-								<input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();}">
-								<button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
-							</div>
-					</form>
-			<?php
+                        <form id="mainform" name="mainform" action="" method="post">
+                            <div class="left">
+                                <input name="cari" id="cari" type="text" class="inputbox help tipped" size="20" value="<?php echo $cari?>" title="Cari.." onkeypress="if (event.keyCode == 13) {$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();}">
+                                <button type="button" onclick="$('#'+'mainform').attr('action','<?php echo site_url('data_persil/search')?>');$('#'+'mainform').submit();" class="uibutton tipsy south" title="Cari Data"><span class="fa fa-search">&nbsp;</span>Cari</button>
+                            </div>
+                        </form>
+                        <?php
 			if($_SESSION["success"]==1){
 				echo "<div>".$_SESSION["pesan"]."</div>";
 				$_SESSION["success"]=0;
@@ -35,7 +36,7 @@
 			}
 			?>
 
-<?php
+                        <?php
 if($persil){
 	if(count($persil)>0){
 		echo "
@@ -81,15 +82,15 @@ if($persil){
 	";
 }
 ?>
-				<div style="height:10em;"></div>
-				</div>
-			</div>
-		</td>
-		<td style="width:250px;" class="contentpane">
-		<?php
+                        <div style="height:10em;"></div>
+                    </div>
+                </div>
+            </td>
+            <td style="width:250px;" class="contentpane">
+                <?php
 		$this->load->view('data_persil/panduan.php');
 		?>
-		</td>
-	</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>

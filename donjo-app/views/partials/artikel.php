@@ -42,8 +42,8 @@ if($single_artikel["id"]){
 		<div class=\"form-group\" style=\"clear:both;\">
 			<ul id=\"pageshare\" title=\"bagikan ke teman anda\" class=\"pagination\">
 			"; ?>
-			
-		<?php
+
+<?php
 		if(isset($single_artikel['gambar'])){
 			$gambar = $single_artikel['gambar'];
 		}elseif(isset($single_artikel['gambar1'])){
@@ -54,13 +54,13 @@ if($single_artikel["id"]){
 			$gambar = $single_artikel['gambar4'];
 		}
 		?>
-			<li class="sbutton" id="FB.Share" name="FB.Share"><a target="_blank" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode($single_artikel["judul"]);?>&amp;p[summary]=<?php echo urlencode($single_artikel["judul"]) ?>&amp;p[url]=<?php echo urlencode(current_url()); ?>&amp;p[images][0]=<?php echo urlencode(base_url()."assets/files/artikel/kecil_".$gambar);?>">share on FB</a></li>
-				<?php echo "
+<li class="sbutton" id="FB.Share" name="FB.Share"><a target="_blank" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode($single_artikel["judul"]);?>&amp;p[summary]=<?php echo urlencode($single_artikel["judul"]) ?>&amp;p[url]=<?php echo urlencode(current_url()); ?>&amp;p[images][0]=<?php echo urlencode(base_url()."assets/files/artikel/kecil_".$gambar);?>">share on FB</a></li>
+<?php echo "
 				<li class=\"sbutton\" id=\"rt\"><a target=\"_blank\" href= \"http://twitter.com/share\" class=\"twitter-share-button\">Tweet</a></li>
 			</ul>
 			"; ?>
 
-		<?php echo "	
+<?php echo "	
 		</div>
 		<div class=\"form-group\">
 		";
