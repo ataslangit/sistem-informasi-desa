@@ -11,22 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - run: npm ci
-      - name: Finding files and store to output
-        id: pl
-        uses: Rishabh510/Path-lister-action@master
+      - name: Cek perubahan file
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v34
         with:
-          path: "donjo-app/views/"
-          type: ".php"
-
-      - name: Processing my found files from output
+          files: donjo-app/views/**
+      - name: Jalankan beautifier
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
-          for i in ${{ steps.pl.outputs.paths }}; do
+          for i in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
           npm run format $i
           done
-      - name: Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Formating

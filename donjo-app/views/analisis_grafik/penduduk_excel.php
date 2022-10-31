@@ -46,11 +46,7 @@ header("Expires: 0");
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-
-
                             <br>
-
-
                         </td>
                     </tr>
                 </tbody>
