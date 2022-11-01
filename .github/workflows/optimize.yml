@@ -11,6 +11,9 @@ jobs:
   php-cs-fixer:
     if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
     uses: ./.github/workflows/phpcsfix.yml
+  format-view:
+    needs: php-cs-fixer
+    uses: ./.github/workflows/beautifier.yml
   composer-optimize:
     needs: php-cs-fixer
     uses: ./.github/workflows/optimize-composer.yml
