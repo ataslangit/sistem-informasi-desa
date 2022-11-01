@@ -3,7 +3,7 @@
         'name' => 'ataslangit/sistem-informasi-desa',
         'pretty_version' => 'dev-wrkfl',
         'version' => 'dev-wrkfl',
-        'reference' => '0cefacc1063bccef1c163559da8063b710a55233',
+        'reference' => '8ed850e99a26e9a99d6cf9fdfec0c9566c4b7361',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ataslangit/sistem-informasi-desa' => array(
             'pretty_version' => 'dev-wrkfl',
             'version' => 'dev-wrkfl',
-            'reference' => '0cefacc1063bccef1c163559da8063b710a55233',
+            'reference' => '8ed850e99a26e9a99d6cf9fdfec0c9566c4b7361',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
