@@ -21,7 +21,7 @@
     <script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
     <style>
         body {
-            background: url(<?php echo base_url()?>assets/files/bg.jpg) no-repeat center center fixed;
+            background: url("<?php echo base_url('assets/files/bg.jpg')?>") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -46,8 +46,8 @@
 <body>
     <script>
         $(function() {
-            <?php if($pass != NULL){ ?>
-            modalpin('pin', 'PENTING! Informasi Username dan Password.', 'Silakan catat/ingat username dan password ini sebelum login. Username dan password ini hanya akan tampil sekali di tahap instalasi aplikasi SID untuk alasan keamanan. <br>Setelah berhasil masuk aplikasi harap untuk segera mengganti Password yang sekiranya mudah diingat.<br>Username dan password dapat diganti setelah Anda berhasil login ke aplikasi SID.<table class="list"><td width="150">Username</td><td width="5"> : </td><td>admin</td></tr><tr><td>Pssword</td><td width="5"> : </td><td><?php echo $pass; ?></td></tr></table>');
+            <?php if($pass !== NULL){ ?>
+            modalpin('pin', 'PENTING! Informasi Username dan Password.', 'Silakan catat/ingat username dan password ini sebelum login. Username dan password ini hanya akan tampil sekali di tahap instalasi aplikasi SID untuk alasan keamanan. <br>Setelah berhasil masuk aplikasi harap untuk segera mengganti Password yang sekiranya mudah diingat.<br>Username dan password dapat diganti setelah Anda berhasil login ke aplikasi SID.<table class="list"><td width="150">Username</td><td width="5"> : </td><td>admin</td></tr><tr><td>Pssword</td><td width="5"> : </td><td><?= $pass ?></td></tr></table>');
             <?php }?>
 
             function modalpin(id, title, message, width, height) {
@@ -77,9 +77,9 @@
 
     </script>
     <div id="full">
-        <h1>BERHASIL!<h1>
-                <h2>Anda baru saja menginstall aplikasi SID <?= VERSI_SID ?> dengan lancar.<h2>
-                        <a href="<?php echo site_url();?>siteman" class="uibutton special">Mulai SID </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h1>BERHASIL!</h1>
+        <h2>Anda baru saja menginstall aplikasi SID <?= VERSI_SID ?> dengan lancar.</h2>
+        <a href="<?= site_url('siteman') ?>" class="uibutton special">Mulai SID </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
 </body>
 
