@@ -11,7 +11,7 @@ jobs:
     outputs:
       ismember: ${{ steps.cekmember.outputs.ismember }}
     steps:
-      - uses: jamessingleton/is-organization-member@v1
+      - uses: jamessingleton/is-organization-member@main
         id: is_organization_member
         with:
           organization: ataslangit
