@@ -1,4 +1,4 @@
-name: Member
+name: Style & Optimize
 
 on:
   pull_request:
@@ -13,4 +13,4 @@ jobs:
     uses: ./.github/workflows/phpcsfix.yml
   composer-optimize:
     needs: php-cs-fixer
-    uses: ./.github/workflows/opetimize-composer.yml
+    uses: ./.github/workflows/optimize-composer.yml
