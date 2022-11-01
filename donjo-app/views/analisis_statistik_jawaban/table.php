@@ -209,7 +209,4 @@ endforeach; ?>
             </div>
         </div>
     </div>
-    </td>
-    </tr>
-    </table>
 </div>

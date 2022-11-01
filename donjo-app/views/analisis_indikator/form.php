@@ -108,7 +108,4 @@
             </div>
         </form>
     </div>
-    </td>
-    </tr>
-    </table>
 </div>
