@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ataslangit/sistem-informasi-desa',
-        'pretty_version' => 'dev-wrkfl',
-        'version' => 'dev-wrkfl',
-        'reference' => 'fb011dadadaae1c4837525142ab0362794d5c295',
+        'pretty_version' => 'dev-totoprayogo1916/issue162',
+        'version' => 'dev-totoprayogo1916/issue162',
+        'reference' => 'b4465e8447bc5048c65d8beb3dc54ed43973a056',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ataslangit/sistem-informasi-desa' => array(
-            'pretty_version' => 'dev-wrkfl',
-            'version' => 'dev-wrkfl',
-            'reference' => 'fb011dadadaae1c4837525142ab0362794d5c295',
+            'pretty_version' => 'dev-totoprayogo1916/issue162',
+            'version' => 'dev-totoprayogo1916/issue162',
+            'reference' => 'b4465e8447bc5048c65d8beb3dc54ed43973a056',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

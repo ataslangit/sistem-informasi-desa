@@ -12,7 +12,7 @@ class Laporan extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== 1 && $grup !== 2 && $grup !== 3) {
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
         $this->load->model('header_model');
