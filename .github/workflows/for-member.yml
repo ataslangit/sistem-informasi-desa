@@ -1,0 +1,23 @@
+name: Member
+
+on:
+  pull_request:
+    branches:
+    - 'dev'
+
+jobs:
+  php-cs-fixer:
+    uses: ./.github/workflows/phpcsfix.yml
+
+#   update-dependency:
+#     needs: php-cs-fixer
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           ref: ${{ github.head_ref }}
+#       - run: composer update --no-dev
+#       - name: Commit
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: Update dependency & optimize composer
