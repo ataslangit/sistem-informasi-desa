@@ -11,18 +11,11 @@ jobs:
     outputs:
       ismember: ${{ steps.cekmember.outputs.ismember }}
     steps:
-      - uses: jamessingleton/is-organization-member@main
-        id: is_organization_member
-        with:
-          organization: ataslangit
-          username: ${{ github.event.issue.user.login }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - id: cekmember
-        run: echo "ismember=$(steps.is_organization_member.outputs.result)" >> $GITHUB_OUTPUT
+      - run: |
+          echo ${{ toJSON(github.repository_owner) }}
           
   php-cs-fixer:
     needs: is-member
-    if: ${{needs.is-member.outputs.ismember}}
     uses: ./.github/workflows/phpcsfix.yml
   composer-optimize:
     needs: php-cs-fixer
