@@ -36,6 +36,7 @@ class Siteman extends CI_Controller
     public function auth()
     {
         $this->user_model->siteman();
+
         return redirect('main');
     }
 
