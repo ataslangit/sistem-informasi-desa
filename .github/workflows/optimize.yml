@@ -1,0 +1,19 @@
+name: Style & Optimize
+
+on:
+  pull_request:
+    branches:
+    - 'dev'
+  pull_request_review:
+    types: [submitted]
+
+jobs:          
+  php-cs-fixer:
+    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
+    uses: ./.github/workflows/phpcsfix.yml
+  format-view:
+    needs: php-cs-fixer
+    uses: ./.github/workflows/beautifier.yml
+  composer-optimize:
+    needs: format-view
+    uses: ./.github/workflows/optimize-composer.yml
