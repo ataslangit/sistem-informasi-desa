@@ -4,18 +4,12 @@ on:
   pull_request:
     branches:
     - 'dev'
+  pull_request_review:
+    types: [submitted]
 
-jobs:
-  is-member:
-    runs-on: ubuntu-latest
-    outputs:
-      ismember: ${{ steps.cekmember.outputs.ismember }}
-    steps:
-      - run: |
-          echo ${{ toJSON(github) }}
-          
+jobs:          
   php-cs-fixer:
-    needs: is-member
+    if: github.repository_owner == 'ataslangit' or github.event.review.state == 'approved'
     uses: ./.github/workflows/phpcsfix.yml
   composer-optimize:
     needs: php-cs-fixer
