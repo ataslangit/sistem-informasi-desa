@@ -12,7 +12,7 @@ jobs:
       ismember: ${{ steps.cekmember.outputs.ismember }}
     steps:
       - run: |
-          echo ${{ toJSON(github.repository_owner) }}
+          echo ${{ toJSON(github) }}
           
   php-cs-fixer:
     needs: is-member
