@@ -75,44 +75,6 @@ class Config_model extends CI_Model
         return null;
     }
 
-    public function do_reg()
-    {
-        $url = 'http://register.sid.web.id/doreg/index.php';
-
-        $sql   = 'SELECT * FROM config WHERE id=1';
-        $query = $this->db->query($sql);
-        $data  = $query->row_array();
-
-        $fields = [
-
-            'desa'         => urlencode($data['nama_desa']),
-            'kecamatan'    => urlencode($data['nama_kecamatan']),
-            'kabupaten'    => urlencode($data['nama_kabupaten']),
-            'propinsi'     => urlencode($data['nama_propinsi']),
-            'geo'          => urlencode($data['lat'] . ',' . $data['lng']),
-            'kode_wilayah' => urlencode($data['kode_propinsi'] . '-' . $data['kode_kabupaten'] . '-' . $data['kode_kecamatan'] . '-' . $data['kode_desa']),
-            'regid'        => urlencode($data['regid']),
-            'macid'        => urlencode($data['macid']),
-            'email'        => urlencode($data['email_desa']),
-        ];
-        $fields_string = '';
-
-        foreach ($fields as $key => $value) {
-            $fields_string .= $key . '=' . $value . '&';
-        }
-        rtrim($fields_string, '&');
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, count($fields));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        //curl_setopt($ch,CURLOPT_MUTE, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-        curl_exec($ch);
-        curl_close($ch);
-    }
-
     public function gawe_surat()
     {
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';
