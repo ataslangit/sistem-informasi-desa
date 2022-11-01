@@ -9,4 +9,5 @@ jobs:
   php-cs-fixer:
     uses: ./.github/workflows/phpcsfix.yml
   composer-optimize:
+    needs: php-cs-fixer
     uses: ./.github/workflows/opetimize-composer.yml
