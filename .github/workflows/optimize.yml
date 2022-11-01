@@ -15,5 +15,5 @@ jobs:
     needs: php-cs-fixer
     uses: ./.github/workflows/beautifier.yml
   composer-optimize:
-    needs: php-cs-fixer
+    needs: format-view
     uses: ./.github/workflows/optimize-composer.yml
