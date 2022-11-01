@@ -1,104 +1,108 @@
 <?php if($tipe==1){?>
 <script>
-$(function () {
- var chart;
- $(document).ready(function () {
- chart = new Highcharts.Chart({
- chart: { renderTo: 'container'},
- title:0,
-					xAxis: {
- categories: [
-						<?php $i=0;foreach($stat as $data){$i++;?>
-						 <?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){echo "'$i',";}?>
-						<?php }?>
-						]
-					},
-				plotOptions: {
-					series: {
-						colorByPoint: true
-					},
-					column: {
-						pointPadding: -0.1,
-						borderWidth: 0
-					}
-				},
-					legend: {
- enabled:false
-					},
- series: [{
- type: 'column',
- name: 'Jumlah',
-				shadow:1,
-				border:1,
- data: [
-						<?php foreach($stat as $data){?>
-							<?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){?>
-								['<?php echo $data['nama']?>',<?php echo $data['jumlah']?>],
-							<?php }?>
-						<?php }?>
- ]
- }]
- });
- });
- 
-});
+    $(function() {
+        var chart;
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container'
+                },
+                title: 0,
+                xAxis: {
+                    categories: [
+                        <?php $i=0;foreach($stat as $data){$i++;?>
+                        <?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){echo "'$i',";}?>
+                        <?php }?>
+                    ]
+                },
+                plotOptions: {
+                    series: {
+                        colorByPoint: true
+                    },
+                    column: {
+                        pointPadding: -0.1,
+                        borderWidth: 0
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Jumlah',
+                    shadow: 1,
+                    border: 1,
+                    data: [
+                        <?php foreach($stat as $data){?>
+                        <?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){?>['<?php echo $data['nama']?>', <?php echo $data['jumlah']?>],
+                        <?php }?>
+                        <?php }?>
+                    ]
+                }]
+            });
+        });
+
+    });
+
 </script>
 <?php }else{?>
 <script>
-$(function () {
- var chart;
- 
- $(document).ready(function () {
- 	
- chart = new Highcharts.Chart({
- chart: {
- renderTo: 'container'
- },
- title:0,
- plotOptions: {
- pie: {
- allowPointSelect: true,
- cursor: 'pointer',
- showInLegend: true
- }
- },
-legend: {
-	maxHeight: 100,
-},
- series: [{
- type: 'pie',
- name: 'Jumlah',
-				shadow:1,
-				border:1,
- data: [
-	<?php foreach($stat as $data){?>
-		<?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){?>
-			['<?php echo ucwords(($data['nama']))?>',<?php echo $data['jumlah']?>],
-		<?php }?>
-	<?php }?>
- ]
- }]
- });
- });
- 
-});
+    $(function() {
+        var chart;
+
+        $(document).ready(function() {
+
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container'
+                },
+                title: 0,
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        showInLegend: true
+                    }
+                },
+                legend: {
+                    maxHeight: 100,
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Jumlah',
+                    shadow: 1,
+                    border: 1,
+                    data: [
+                        <?php foreach($stat as $data){?>
+                        <?php if($data['jumlah'] != "-" AND $data['nama']!= "TOTAL"){?>['<?php echo ucwords(($data['nama']))?>', <?php echo $data['jumlah']?>],
+                        <?php }?>
+                        <?php }?>
+                    ]
+                }]
+            });
+        });
+
+    });
+
 </script>
 <?php }?>
 <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
 <script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
 <script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
 <style>
-	tr.hide{
-		display:none;
-	}
+    tr.hide {
+        display: none;
+    }
+
 </style>
 <script>
-$(function(){
-	$('#showData').click(function(){ 
-		$('tr.hide').show();
-		$('#showData').hide();	
-	});
-});
+    $(function() {
+        $('#showData').click(function() {
+            $('tr.hide').show();
+            $('#showData').hide();
+        });
+    });
+
 </script>
 <?php
 	echo "

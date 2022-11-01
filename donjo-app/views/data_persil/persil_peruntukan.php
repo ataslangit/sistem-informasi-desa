@@ -1,18 +1,18 @@
 <?php
 ?>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('data_persil/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane">
-			<legend>Pengelolaan Data Peruntukan Persil</legend>
-			<div id="contentpane">
-				<div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
-<?php
+            </td>
+            <td class="contentpane">
+                <legend>Pengelolaan Data Peruntukan Persil</legend>
+                <div id="contentpane">
+                    <div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
+                        <?php
 if($persil_peruntukan_detail){
 	$nama = $persil_peruntukan_detail[$id]["nama"];
 	$ndesc = $persil_peruntukan_detail[$id]["ndesc"];
@@ -46,7 +46,7 @@ echo "
 echo "</form>
 </fieldset>";
 ?>
-<?php
+                        <?php
 if($persil_peruntukan){
 	if(count($persil_peruntukan)>0){
 		echo "
@@ -86,15 +86,15 @@ if($persil_peruntukan){
 	";
 }
 ?>
-				<div style="height:10em;"></div>
-				</div>
-			</div>
-		</td>
-		<td style="width:250px;" class="contentpane">
-		<?php
+                        <div style="height:10em;"></div>
+                    </div>
+                </div>
+            </td>
+            <td style="width:250px;" class="contentpane">
+                <?php
 		$this->load->view('data_persil/panduan.php');
 		?>
-		</td>
-	</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>

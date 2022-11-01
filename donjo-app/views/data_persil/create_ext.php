@@ -1,19 +1,19 @@
 <?php
 ?>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('data_persil/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane">
-			<legend>Pengelolaan Data Persil <?php echo $desa['nama_desa'];?></legend>
-			<div id="contentpane">
-				<div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
-			
-			<?php
+            </td>
+            <td class="contentpane">
+                <legend>Pengelolaan Data Persil <?php echo $desa['nama_desa'];?></legend>
+                <div id="contentpane">
+                    <div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
+
+                        <?php
 			if($_SESSION["success"]==1){
 				echo "
 				<div>
@@ -23,8 +23,8 @@
 			}
 			
 			?>
-			
-<?php
+
+                        <?php
 if($persil_detail>0){
 	if(isset($persil_detail["id"])){
 		$nik = $persil_detail["nik"];
@@ -121,15 +121,15 @@ echo "<div class=\"form-group\">
 echo "</form>
 </fieldset>";
 ?>
-				<div style="height:10em;"></div>
-				</div>
-			</div>
-		</td>
-		<td style="width:250px;" class="contentpane">
-		<?php
+                        <div style="height:10em;"></div>
+                    </div>
+                </div>
+            </td>
+            <td style="width:250px;" class="contentpane">
+                <?php
 		$this->load->view('data_persil/panduan.php');
 		?>
-		</td>
-	</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>

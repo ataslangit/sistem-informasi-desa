@@ -1,0 +1,30 @@
+name: Format Kode
+
+on:
+  pull_request_target:
+    paths:
+      - "donjo-app/views/**"
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  beautifier:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: npm ci
+      - id: changed-files-specific
+        uses: tj-actions/changed-files@v34
+        with:
+          files: donjo-app/views/**
+      - if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          for i in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+          npm run format $i
+          done
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Format View

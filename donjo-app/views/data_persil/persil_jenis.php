@@ -1,20 +1,20 @@
 <?php
 ?>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('data_persil/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane">
-			<legend>Pengelolaan Data Jenis Persil</legend>
-			<div id="contentpane">
-				<div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
+            </td>
+            <td class="contentpane">
+                <legend>Pengelolaan Data Jenis Persil</legend>
+                <div id="contentpane">
+                    <div id="maincontent" class="ui-layout-center" style="padding:0 3em 0 0;">
 
 
-<?php
+                        <?php
 if($persil_jenis_detail){
 	$nama = $persil_jenis_detail[$id]["nama"];
 	$ndesc = $persil_jenis_detail[$id]["ndesc"];
@@ -43,7 +43,7 @@ echo "
 ";
 echo "</form>";
 ?>
-<?php
+                        <?php
 if($persil_jenis){
 	if(count($persil_jenis)>0){
 		echo "
@@ -83,15 +83,15 @@ if($persil_jenis){
 	";
 }
 ?>
-				<div style="height:10em;"></div>
-				</div>
-			</div>
-		</td>
-		<td style="width:250px;" class="contentpane">
-		<?php
+                        <div style="height:10em;"></div>
+                    </div>
+                </div>
+            </td>
+            <td style="width:250px;" class="contentpane">
+                <?php
 		$this->load->view('data_persil/panduan.php');
 		?>
-		</td>
-	</tr>
-</table>
+            </td>
+        </tr>
+    </table>
 </div>

@@ -1,19 +1,19 @@
 <?php
 ?>
 <div id="pageC">
-<table class="inner">
-	<tr style="vertical-align:top">
-		<td class="side-menu">
-		<?php
+    <table class="inner">
+        <tr style="vertical-align:top">
+            <td class="side-menu">
+                <?php
 		$this->load->view('program_bantuan/menu_kiri.php')
 		?>
-		</td>
-		<td class="contentpane">
-			<div id="contentpane">
-				<div class="ui-layout-center" id="maincontent">
-					<legend>Detail Program</legend>
-					<div>
-						<?php
+            </td>
+            <td class="contentpane">
+                <div id="contentpane">
+                    <div class="ui-layout-center" id="maincontent">
+                        <legend>Detail Program</legend>
+                        <div>
+                            <?php
 						if($_SESSION["success"]==1){
 							echo "
 							Data Pembaruan telah tersimpan
@@ -73,34 +73,40 @@
 						}
 						$peserta = $program[1];
 						?>
-						<legend>Daftar Peserta Program</legend>
-						<table class="list">
-							<thead><tr><th>#</th><th>Nama Peserta</th><th>Keterangan</th></tr></thead>
-							<tbody>
-							<?php 
+                            <legend>Daftar Peserta Program</legend>
+                            <table class="list">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama Peserta</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
 							$nomer = 0;
 							if(is_array($peserta)){
 								foreach ($peserta as $key=>$item){
 									$nomer++;
 								?>
-									<tr>
-										<td><?php echo $nomer; ?></td>
-										<td><a href="<?php echo site_url('program_bantuan/peserta/'.$program[0]["sasaran"].'/'.$item["nik"].'/')?>"><?php echo $item["nama"] ?></a></td>
-										<td><?php echo $item["info"];?></td>
-									</tr>
-								<?php 
+                                    <tr>
+                                        <td><?php echo $nomer; ?></td>
+                                        <td><a href="<?php echo site_url('program_bantuan/peserta/'.$program[0]["sasaran"].'/'.$item["nik"].'/')?>"><?php echo $item["nama"] ?></a></td>
+                                        <td><?php echo $item["info"];?></td>
+                                    </tr>
+                                    <?php 
 								}
 							}
 							?>
-							</tbody>
-						</table>
-						<div style="padding:1em 0;">
-							<a class="uibutton" href="<?php echo site_url('program_bantuan/unduhsheet/'.$program[0]["id"].'/')?>"><i class="icon icon-download"></i> Unduh dlm format .xls</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</td>
-	</tr>
-</table>
+                                </tbody>
+                            </table>
+                            <div style="padding:1em 0;">
+                                <a class="uibutton" href="<?php echo site_url('program_bantuan/unduhsheet/'.$program[0]["id"].'/')?>"><i class="icon icon-download"></i> Unduh dlm format .xls</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>

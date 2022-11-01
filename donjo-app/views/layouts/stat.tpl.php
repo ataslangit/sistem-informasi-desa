@@ -1,8 +1,8 @@
 <?php $this->load->view('layouts/header.php');?>
-			<div id="contentwrapper">
-				<div id="contentcolumn">
-					<div class="innertube">
-						<?php
+<div id="contentwrapper">
+    <div id="contentcolumn">
+        <div class="innertube">
+            <?php
 						if($tipe == 2){
 							if($tipex==1){
 								$this->load->view('partials/statistik_sos.php');
@@ -17,20 +17,21 @@
 							$this->load->view('partials/statistik.php');
 						}
 						?>
-					</div>
-				</div>
-			</div>
-			<div id="rightcolumn">
-				<div class="innertube">
-					<?php $this->load->view('partials/side.right.stat.php');?>
-				</div>
-			</div>
-			
-			<div id="footer">
-				<?php 
+        </div>
+    </div>
+</div>
+<div id="rightcolumn">
+    <div class="innertube">
+        <?php $this->load->view('partials/side.right.stat.php');?>
+    </div>
+</div>
+
+<div id="footer">
+    <?php 
 				$this->load->view('partials/copywright.tpl.php');
 				?>
-			</div>
-		</div>
-	</body>
+</div>
+</div>
+</body>
+
 </html>
