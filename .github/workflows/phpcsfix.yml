@@ -1,11 +1,8 @@
 name: PHP-CS-FIXER
 
 on:
-  workflow_run:
-    workflows: ["byUser"]
-    types: [requested]
-    branches:
-      - 'dev'
+  workflow_dispatch:
+
 jobs:    
   php-cs-fixer:
     runs-on: ubuntu-latest
