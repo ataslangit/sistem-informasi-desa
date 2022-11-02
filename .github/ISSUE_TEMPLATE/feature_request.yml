@@ -1,0 +1,32 @@
+name: Permintaan Fitur Baru
+description: Kirim ide pengembangan fitur SID
+title: "Permintaan Fitur: "
+labels: ["fitur"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Terimakasih telah meluangkan waktu untuk memberikan ide pengembangan fitur SID
+  - type: textarea
+    id: masalah
+    attributes:
+      label: Kendala apa yang dialami?
+      description: Ungkapkan secara detail kenapa Anda menginginkan fitur ini.
+      placeholder: Beritahu kami, kendala apa yang Anda alami
+    validations:
+      required: true
+  
+  - type: textarea
+    id: solusi
+    attributes:
+      label: Solusi yang diinginkan
+      description: Jelaskan pula solusi atau alternatif lain. Jika ada sumber, mohon disertakan.
+      placeholder: Beritahu kami, solusi apa yang Anda inginkan.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tambahan
+    attributes:
+      label: Tambahan
+      description: Tambahan lain 
