@@ -1,8 +1,13 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Diskusi terkait SID
+  - name: Kirim Pertanyaan
+    url: https://github.com/ataslangit/sistem-informasi-desa/discussions/new
+    about: Silakan ajukan pertanyaan terkait SID
+
+  - name: Kolom Tanya-Jawab
     url: https://github.com/ataslangit/sistem-informasi-desa/discussions
-    about: Silakan ajukan pertanyaan dan jawab jika berkenan
+    about: Tanya-Jawab seputar SID
+
   - name: Panduan SID
     url: https://ataslangit.github.io/
-    about: Panduan terkait SID
+    about: Panduan Sistem Informasi Desa
