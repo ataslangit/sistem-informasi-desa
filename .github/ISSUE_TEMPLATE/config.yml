@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: Kirim Pertanyaan
     url: https://github.com/ataslangit/sistem-informasi-desa/discussions/new
-    about: Silakan ajukan pertanyaan terkait SID
+    about: Ajukan pertanyaan terkait SID
 
   - name: Kolom Tanya-Jawab
     url: https://github.com/ataslangit/sistem-informasi-desa/discussions
