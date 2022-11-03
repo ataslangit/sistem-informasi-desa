@@ -13,13 +13,13 @@ Aplikasi SID dirancang sejak awal oleh CRI untuk mengelola data dasar desa dan i
 ### Tingkat user (pengguna) dalam SID:
 
 1. Administrator : adalah orang/tim yang bertanggung jawab penuh atas olah data dan informasi dalam SID dan website desa. Orang/tim ini ditunjuk oleh pemerintah desa disahkan dengan surat keputusan kepala desa.
-  - Peran olah data : entry, edit, delete data dasar
-  - Peran olah informasi : tulis, edit, publish artikel website
+   - Peran olah data : entry, edit, delete data dasar
+   - Peran olah informasi : tulis, edit, publish artikel website
 2. Operator: adalah orang/tim yang bertugas membantu administrator mengelola data dan informasi, tetapi dengan kewenangan yang lebih terbatas.
-  - Peran olah data : entry, edit data dasar
-  - Peran olah informasi : tulis, edit artikel website
+   - Peran olah data : entry, edit data dasar
+   - Peran olah informasi : tulis, edit artikel website
 3. Redaksi: adalah orang/tim yang bertugas sebagai redaksi media website desa dan hanya dapat melakukan olah informasi berupa artikel website.
-  - Peran olah informasi : tulis, edit artikel
+   - Peran olah informasi : tulis, edit artikel
 
 ## HAK CIPTA DAN LISENSI
 Aplikasi Sistem Informasi Desa (SID) dibangun dan dikembangkan oleh **COMBINE Resource Institution** sejak tahun 2009 hingga 2016.
