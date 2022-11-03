@@ -48,7 +48,7 @@
                             <table class="form">
                                 <tr>
                                     <th>Nama Kategori</th>
-                                    <td><input class="inputbox" type="text" name="kategori" value="<?php echo $kategori['kategori']?>" size="40"></td>
+                                    <td><input class="inputbox" type="text" name="kategori" value="<?php echo @$kategori['kategori']?>" size="40"></td>
                                 </tr>
                             </table>
                         </div>
