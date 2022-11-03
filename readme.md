@@ -23,10 +23,10 @@ Aplikasi SID dirancang sejak awal oleh CRI untuk mengelola data dasar desa dan i
 
 ## HAK CIPTA DAN LISENSI
 
-| Aplikasi Sistem Informasi Desa (SID) dibangun dan dikembangkan oleh **COMBINE Resource Institution** sejak tahun 2009 hingga 2016.
-| Mulai tahun 2022 **Atas Langit** meneruskan pengembangan dari v3.10.
-| Sistem ini dikelola dengan merujuk pada lisensi [GNU General Public License Version 3](https://github.com/ataslangit/sistem-informasi-desa/blob/dev/LICENSE).
+Aplikasi Sistem Informasi Desa (SID) dibangun dan dikembangkan oleh **COMBINE Resource Institution** sejak tahun 2009 hingga 2016.  
+Mulai tahun 2022 **Atas Langit** meneruskan pengembangan dari v3.10.  
+Sistem ini dikelola dengan merujuk pada lisensi [GNU General Public License Version 3](https://github.com/ataslangit/sistem-informasi-desa/blob/dev/LICENSE).
 
 ## LINK
-- (Panduan SID)[https://ataslangit.github.io]
-- (Forum Diskusi SID)[https://github.com/ataslangit/sistem-informasi-desa/discussions]
+- [Panduan SID](https://ataslangit.github.io)
+- [Forum Diskusi SID](https://github.com/ataslangit/sistem-informasi-desa/discussions)
