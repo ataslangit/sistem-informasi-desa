@@ -96,7 +96,7 @@ class Web_menu_model extends CI_Model
         while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
-            if ($data[$i]['enabled'] === 1) {
+            if (isset($data[$i]['enabled']) && $data[$i]['enabled'] === 1) {
                 $data[$i]['aktif'] = 'Yes';
             } else {
                 $data[$i]['aktif'] = 'No';

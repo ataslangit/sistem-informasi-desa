@@ -48,7 +48,7 @@
                             <table class="form">
                                 <tr>
                                     <th>Nama Menu</th>
-                                    <td><input class="inputbox" type="text" name="nama" value="<?php echo $menu['nama']?>" size="40"></td>
+                                    <td><input class="inputbox" type="text" name="nama" value="<?php echo @$menu['nama']?>" size="40"></td>
                                 </tr>
                                 <?php if($menu){?>
                                 <tr>
