@@ -1,11 +1,17 @@
 name: Format Kode
 
 on:
-  workflow_dispatch:
-  workflow_call:
+  pull_request:
+    branches:
+    - 'dev'
+    paths:
+      - 'donjo-app/Views/**'
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   beautifier:
+    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
