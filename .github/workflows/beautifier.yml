@@ -15,7 +15,7 @@ jobs:
       - id: changed-files-specific
         uses: tj-actions/changed-files@v34
         with:
-          files: donjo-app/views/**
+          files: donjo-app/Views/**
       - if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           for i in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
