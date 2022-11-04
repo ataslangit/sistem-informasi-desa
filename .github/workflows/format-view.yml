@@ -12,7 +12,7 @@ on:
 jobs:
   beautifier:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
+    if: ${{ github.repository == 'ataslangit/sistem-informasi-desa' && github.event.review.state == 'approved' }}
     steps:
       - uses: actions/checkout@v3
         with:

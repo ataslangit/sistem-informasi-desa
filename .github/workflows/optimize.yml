@@ -12,7 +12,7 @@ on:
 
 jobs:          
   php-cs-fixer:
-    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
+    if: ${{ github.repository == 'ataslangit/sistem-informasi-desa' && github.event.review.state == 'approved' }}
     uses: ./.github/workflows/phpcsfix.yml
   composer-optimize:
     needs: php-cs-fixer
