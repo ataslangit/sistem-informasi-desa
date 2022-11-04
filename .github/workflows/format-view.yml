@@ -6,6 +6,8 @@ on:
     - 'dev'
     paths:
       - 'donjo-app/Views/**'
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   beautifier:
