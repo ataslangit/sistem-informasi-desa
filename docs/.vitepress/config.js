@@ -88,7 +88,7 @@ function sidebarChangelog() {
             text: "Log Perubahan",
             collapsible: false,
             items: [
-                { text: "dev (pengambangan)", link: "/changelog/dev" },
+                { text: "dev (pengembangan)", link: "/changelog/dev" },
                 { text: "v4.0.0 (terbaru)", link: "/changelog/4-0-0" },
                 { text: "v3.11.0", link: "/changelog/3-11-0" },
                 { text: "v3.10-CRI", link: "/changelog/3-10-cri" },
