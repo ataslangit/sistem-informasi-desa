@@ -75,10 +75,8 @@ function sidebarGuide() {
             text: "Migrasi/Upgrade",
             collapsible: true,
             items: [
-                {
-                    text: "v3.10-CRI ke v3.11.0",
-                    link: "/panduan/migrasi-dari-v310-cri",
-                },
+                {text: "v3.11.0 ke v3.11.0", link: "/panduan/migrasi-dari-v3110",},
+                {text: "v3.10-CRI ke v3.11.0", link: "/panduan/migrasi-dari-v310-cri",},
             ],
         },
     ];
