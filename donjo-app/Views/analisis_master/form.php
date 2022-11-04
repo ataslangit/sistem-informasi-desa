@@ -55,17 +55,17 @@
                             <table class="form">
                                 <tr>
                                     <th>Nama Analisis</th>
-                                    <td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo $analisis_master['nama']?>"></td>
+                                    <td><input name="nama" type="text" class="inputbox" size="80" value="<?php echo @$analisis_master['nama']?>"></td>
                                 </tr>
                                 <tr>
                                     <th width="100">Subjek/Unit Analisis</th>
                                     <td>
                                         <div class="uiradio">
                                             <?php $ch='checked';?>
-                                            <input type="radio" id="group3" name="subjek_tipe" value="1" /<?php if($analisis_master['subjek_tipe'] == '1' OR $analisis_master['subjek_tipe'] == ''){echo $ch;}?>><label for="group3">Penduduk</label>
-                                            <input type="radio" id="group2" name="subjek_tipe" value="2" /<?php if($analisis_master['subjek_tipe'] == '2'){echo $ch;}?>><label for="group2">Keluarga / KK</label>
-                                            <input type="radio" id="group1" name="subjek_tipe" value="3" /<?php if($analisis_master['subjek_tipe'] == '3'){echo $ch;}?>><label for="group1">Rumah Tangga</label>
-                                            <input type="radio" id="group4" name="subjek_tipe" value="4" /<?php if($analisis_master['subjek_tipe'] == '4'){echo $ch;}?>><label for="group4">Kelompok</label>
+                                            <input type="radio" id="group3" name="subjek_tipe" value="1" <?php if(isset($analisis_master['subjek_tipe']) && ($analisis_master['subjek_tipe'] == '1' OR $analisis_master['subjek_tipe'] == '')){echo $ch;}?>><label for="group3">Penduduk</label>
+                                            <input type="radio" id="group2" name="subjek_tipe" value="2" <?php if(isset($analisis_master['subjek_tipe']) && $analisis_master['subjek_tipe'] == '2'){echo $ch;}?>><label for="group2">Keluarga / KK</label>
+                                            <input type="radio" id="group1" name="subjek_tipe" value="3" <?php if(isset($analisis_master['subjek_tipe']) && $analisis_master['subjek_tipe'] == '3'){echo $ch;}?>><label for="group1">Rumah Tangga</label>
+                                            <input type="radio" id="group4" name="subjek_tipe" value="4" <?php if(isset($analisis_master['subjek_tipe']) && $analisis_master['subjek_tipe'] == '4'){echo $ch;}?>><label for="group4">Kelompok</label>
                                         </div>
                                     </td>
                                 </tr>
@@ -85,8 +85,8 @@
                                     <td>
                                         <div class="uiradio">
                                             <?php $ch='checked';?>
-                                            <input type="radio" id="g1" name="lock" value="1" /<?php if($analisis_master['lock'] == '1' OR $analisis_master['lock'] == ''){echo $ch;}?>><label for="g1">Tidak Terkunci</label>
-                                            <input type="radio" id="g2" name="lock" value="2" /<?php if($analisis_master['lock'] == '2'){echo $ch;}?>><label for="g2">Terkunci</label>
+                                            <input type="radio" id="g1" name="lock" value="1" <?php if(isset($analisis_master['lock']) && ($analisis_master['lock'] == '1' OR $analisis_master['lock'] == '')){echo $ch;}?>><label for="g1">Tidak Terkunci</label>
+                                            <input type="radio" id="g2" name="lock" value="2" <?php if(isset($analisis_master['lock']) && $analisis_master['lock'] == '2'){echo $ch;}?>><label for="g2">Terkunci</label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,7 +94,7 @@
                                 </tr>
                                 <tr>
                                     <th>Bilangan Pembagi</th>
-                                    <td><input name="pembagi" type="text" class="inputbox number" size="20" value="<?php echo $analisis_master['pembagi']?>"> *) untuk tanda koma "," gunakan tanda titik "." sebagai substitusinya.</td>
+                                    <td><input name="pembagi" type="text" class="inputbox number" size="20" value="<?php echo @$analisis_master['pembagi']?>"> *) untuk tanda koma "," gunakan tanda titik "." sebagai substitusinya.</td>
                                 </tr>
                                 <th>Analisis Terhubung</th>
                                 <td>
@@ -111,9 +111,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <textarea name="deskripsi" style="width: 800px; height: 500px;">
-<?php echo $analisis_master['deskripsi']?>
-</textarea>
+                                        <textarea name="deskripsi" style="width: 800px; height: 500px;"><?php echo @$analisis_master['deskripsi']?></textarea>
                                     </td>
                                 </tr>
                             </table>

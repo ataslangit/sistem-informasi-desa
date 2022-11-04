@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ataslangit/sistem-informasi-desa',
-        'pretty_version' => 'dev-rename-dir',
-        'version' => 'dev-rename-dir',
-        'reference' => '6a1c62a9723319de7c47e364f0a56276c3ca80f7',
+        'pretty_version' => 'dev-fix/analisis_master/form',
+        'version' => 'dev-fix/analisis_master/form',
+        'reference' => 'd19d7e4d59d1bd426b61bc8321ceff4fa8f6fc77',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ataslangit/sistem-informasi-desa' => array(
-            'pretty_version' => 'dev-rename-dir',
-            'version' => 'dev-rename-dir',
-            'reference' => '6a1c62a9723319de7c47e364f0a56276c3ca80f7',
+            'pretty_version' => 'dev-fix/analisis_master/form',
+            'version' => 'dev-fix/analisis_master/form',
+            'reference' => 'd19d7e4d59d1bd426b61bc8321ceff4fa8f6fc77',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
