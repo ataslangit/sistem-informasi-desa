@@ -11,8 +11,8 @@ on:
 
 jobs:
   beautifier:
-    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
     steps:
       - uses: actions/checkout@v3
         with:
