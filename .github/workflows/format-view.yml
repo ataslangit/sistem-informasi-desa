@@ -9,6 +9,7 @@ on:
 
 jobs:
   beautifier:
+    if: github.repository_owner == 'ataslangit' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
