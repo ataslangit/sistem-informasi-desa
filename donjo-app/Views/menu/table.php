@@ -5,6 +5,7 @@
             source: keyword
         });
     });
+
 </script>
 <div id="pageC">
     <table class="inner">
@@ -44,54 +45,54 @@
                                         <th><input type="checkbox" class="checkall"></th>
                                         <th width="160">Aksi</th>
                                         <?php if ($o == 2) : ?>
-                                            <th align="left"><a href="<?php echo site_url("menu/index/$p/1") ?>">Nama<span class="ui-icon ui-icon-triangle-1-n">
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/1") ?>">Nama<span class="ui-icon ui-icon-triangle-1-n">
                                                     <?php elseif ($o == 1) : ?>
-                                            <th align="left"><a href="<?php echo site_url("menu/index/$p/2") ?>">Nama<span class="ui-icon ui-icon-triangle-1-s">
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/2") ?>">Nama<span class="ui-icon ui-icon-triangle-1-s">
                                                     <?php else : ?>
-                                            <th align="left"><a href="<?php echo site_url("menu/index/$p/1") ?>">Nama<span class="ui-icon ui-icon-triangle-2-n-s">
-                                                        <?php endif; ?>&nbsp;</span></a></th>
-                                            <?php if ($o == 4) : ?>
-                                                <th align="left"><a href="<?php echo site_url("menu/index/$p/3") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-n">
-                                                        <?php elseif ($o == 3) : ?>
-                                                <th align="left"><a href="<?php echo site_url("menu/index/$p/4") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-s">
-                                                        <?php else : ?>
-                                                <th align="left"><a href="<?php echo site_url("menu/index/$p/3") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-2-n-s">
-                                                            <?php endif; ?>&nbsp;</span></a></th>
-                                                <th>Link</th>
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/1") ?>">Nama<span class="ui-icon ui-icon-triangle-2-n-s">
+                                                    <?php endif; ?>&nbsp;</span></a></th>
+                                        <?php if ($o == 4) : ?>
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/3") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-n">
+                                                    <?php elseif ($o == 3) : ?>
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/4") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-1-s">
+                                                    <?php else : ?>
+                                        <th align="left"><a href="<?php echo site_url("menu/index/$p/3") ?>">Enabled / Disabled<span class="ui-icon ui-icon-triangle-2-n-s">
+                                                    <?php endif; ?>&nbsp;</span></a></th>
+                                        <th>Link</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($main as $data) { ?>
-                                        <tr>
-                                            <td align="center" width="2"><?php echo $data['no'] ?></td>
-                                            <td align="center" width="5">
-                                                <input type="checkbox" name="id_cb[]" value="<?php echo $data['id'] ?>">
-                                            </td>
-                                            <td>
-                                                <div class="uibutton-group">
-                                                    <a href="<?php echo site_url("menu/sub_menu/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Rincian Sub Menu"><span class="fa fa-list"> Rincian</span></a>
-                                                    <a href="<?php echo site_url("menu/form/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"></span></a>
-                                                    <a href="<?php echo site_url("menu/delete/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
-                                                    <?php if (isset($data['enabled'])) : ?>
-                                                        <?php if ($data['enabled'] == '2') : ?>
-                                                            <a href="<?php echo site_url("menu/menu_lock/$tip/" . $data['id']) ?>" title="Aktivasi menu">
-                                                                <span class="fa fa-lock"></span>
-                                                            </a>
-                                                        <?php elseif ($data['enabled'] == '1') : ?>
-                                                            <a href="<?php echo site_url("menu/menu_unlock/$tip/" . $data['id']) ?>" class="uibutton tipsy south" title="Non-aktifkan menu">
-                                                                <span class="fa fa-unlock"></span>
-                                                            </a>
-                                                            <a href="<?php echo site_url("menu/ajax_add_sub_menu/$tip/$data[id]") ?>" class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Tambah Sub Menu <?php echo $data['nama'] ?>" class="uibutton tipsy south" title="Tambah Sub Menu">
-                                                                <span class="fa fa-plus"></span>
-                                                            </a>
-                                                        <?php endif ?>
-                                                    <?php endif ?>
-                                                </div>
-                                            </td>
-                                            <td><?php echo $data['nama'] ?></td>
-                                            <td><?php echo $data['aktif'] ?></td>
-                                            <td><?= site_url('first/kategori/' . $data['id']) ?></td>
-                                        </tr>
+                                    <tr>
+                                        <td align="center" width="2"><?php echo $data['no'] ?></td>
+                                        <td align="center" width="5">
+                                            <input type="checkbox" name="id_cb[]" value="<?php echo $data['id'] ?>">
+                                        </td>
+                                        <td>
+                                            <div class="uibutton-group">
+                                                <a href="<?php echo site_url("menu/sub_menu/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Rincian Sub Menu"><span class="fa fa-list"> Rincian</span></a>
+                                                <a href="<?php echo site_url("menu/form/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Ubah Data"><span class="fa fa-pencil"></span></a>
+                                                <a href="<?php echo site_url("menu/delete/$tip/$data[id]") ?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"></span></a>
+                                                <?php if (isset($data['enabled'])) : ?>
+                                                <?php if ($data['enabled'] == '2') : ?>
+                                                <a href="<?php echo site_url("menu/menu_lock/$tip/" . $data['id']) ?>" title="Aktivasi menu">
+                                                    <span class="fa fa-lock"></span>
+                                                </a>
+                                                <?php elseif ($data['enabled'] == '1') : ?>
+                                                <a href="<?php echo site_url("menu/menu_unlock/$tip/" . $data['id']) ?>" class="uibutton tipsy south" title="Non-aktifkan menu">
+                                                    <span class="fa fa-unlock"></span>
+                                                </a>
+                                                <a href="<?php echo site_url("menu/ajax_add_sub_menu/$tip/$data[id]") ?>" class="uibutton tipsy south" target="ajax-modalx" rel="window" header="Tambah Sub Menu <?php echo $data['nama'] ?>" class="uibutton tipsy south" title="Tambah Sub Menu">
+                                                    <span class="fa fa-plus"></span>
+                                                </a>
+                                                <?php endif ?>
+                                                <?php endif ?>
+                                            </div>
+                                        </td>
+                                        <td><?php echo $data['nama'] ?></td>
+                                        <td><?php echo $data['aktif'] ?></td>
+                                        <td><?= site_url('first/kategori/' . $data['id']) ?></td>
+                                    </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
@@ -116,23 +117,23 @@
                         <div class="right">
                             <div class="uibutton-group">
                                 <?php if ($paging->start_link) : ?>
-                                    <a href="<?php echo site_url("menu/index/$paging->start_link/$o") ?>" class="uibutton">Awal</a>
+                                <a href="<?php echo site_url("menu/index/$paging->start_link/$o") ?>" class="uibutton">Awal</a>
                                 <?php endif; ?>
                                 <?php if ($paging->prev) : ?>
-                                    <a href="<?php echo site_url("menu/index/$paging->prev/$o") ?>" class="uibutton">Prev</a>
+                                <a href="<?php echo site_url("menu/index/$paging->prev/$o") ?>" class="uibutton">Prev</a>
                                 <?php endif; ?>
                             </div>
                             <div class="uibutton-group">
                                 <?php for ($i = $paging->start_link; $i <= $paging->end_link; $i++) : ?>
-                                    <a href="<?php echo site_url("menu/index/$i/$o") ?>" <?php jecho($p, $i, "class='uibutton special'") ?> class="uibutton"><?php echo $i ?></a>
+                                <a href="<?php echo site_url("menu/index/$i/$o") ?>" <?php jecho($p, $i, "class='uibutton special'") ?> class="uibutton"><?php echo $i ?></a>
                                 <?php endfor; ?>
                             </div>
                             <div class="uibutton-group">
                                 <?php if ($paging->next) : ?>
-                                    <a href="<?php echo site_url("menu/index/$paging->next/$o") ?>" class="uibutton">Next</a>
+                                <a href="<?php echo site_url("menu/index/$paging->next/$o") ?>" class="uibutton">Next</a>
                                 <?php endif; ?>
                                 <?php if ($paging->end_link) : ?>
-                                    <a href="<?php echo site_url("menu/index/$paging->end_link/$o") ?>" class="uibutton">Akhir</a>
+                                <a href="<?php echo site_url("menu/index/$paging->end_link/$o") ?>" class="uibutton">Akhir</a>
                                 <?php endif; ?>
                             </div>
                         </div>
