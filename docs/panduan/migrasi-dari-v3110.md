@@ -1,9 +1,9 @@
 ---
-title: Migrasi / Upgrade dari v3.x ke dev
+title: Migrasi / Upgrade dari v3.x ke v4.x
 layout: doc
 ---
 
-# Migrasi / Upgrade dari v3.x ke dev
+# Migrasi / Upgrade dari v3.x ke v4.x
 ::: tip WAJIB
 Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan migrasi.
 :::
