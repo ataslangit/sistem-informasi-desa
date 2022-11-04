@@ -27,7 +27,7 @@
                             <table class="form">
                                 <tr>
                                     <th width="120">Judul Artikel</th>
-                                    <td><input class="inputbox" type="text" name="judul" value="<?php echo $artikel['judul']?>" size="60"></td>
+                                    <td><input class="inputbox" type="text" name="judul" value="<?php echo @$artikel['judul'] ?>" size="60"></td>
                                 </tr>
                                 <tr>
                                 <tr>
@@ -36,9 +36,7 @@
                                 <tr>
                                 <tr>
                                     <td colspan="2">
-                                        <textarea name="isi" style="width: 800px; height: 500px;">
-<?php echo $artikel['isi']?>
-</textarea>
+                                        <textarea name="isi" style="width: 800px; height: 500px;"><?php echo @$artikel['isi'] ?></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,29 +48,29 @@
                                     <th>Dokumen Lampiran</th>
                                     <td><input type="file" name="dokumen"> <span style="color: #aaa;"></span></td>
                                 </tr>
-                                <?php if($artikel['dokumen']){?>
+                                <?php if(isset($artikel['dokumen'])){?>
                                 <tr>
                                     <th class="top">Dokumen</th>
                                     <td>
-                                        <a href="<?php echo base_url()?>assets/files/dokumen/<?php echo $artikel['dokumen']?>">Download</a>
+                                        <a href="<?php echo base_url('assets/files/dokumen/' . $artikel['dokumen']) ?>">Download</a>
                                     </td>
                                 </tr>
                                 <?php }?>
                                 <tr>
                                     <th>Nama Dokumen (Nantinya akan menjadi link unduh/download)</th>
-                                    <td><input size="30" type="text" name="link_dokumen" value="<?php echo $artikel['link_dokumen']?>"></td>
+                                    <td><input size="30" type="text" name="link_dokumen" value="<?php echo @$artikel['link_dokumen'] ?>"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="background-color:#ffddcc;">
                                         &nbsp;
                                     </td>
                                 </tr>
-                                <?php if($artikel['gambar']){?>
+                                <?php if(isset($artikel['gambar'])){?>
                                 <tr>
                                     <th class="top">Gambar</th>
                                     <td>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar']?>" alt="" width="200">
+                                            <img src="<?php echo base_url('assets/files/artikel/kecil_' . $artikel['gambar']) ?>" alt="" width="200">
                                         </div><input type="checkbox" name="gambar_hapus" value="<?php echo $artikel['gambar']?>"> Hapus Gambar
                                     </td>
                                 </tr>
@@ -84,9 +82,9 @@
                                 <tr>
                                     <th class="top">Gambar</th>
                                     <td>
-                                        <?php if($artikel['gambar1']){?>
+                                        <?php if(isset($artikel['gambar1'])){?>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar1']?>" alt="" width="200">
+                                            <img src="<?php echo base_url('assets/files/artikel/kecil_' . $artikel['gambar1']) ?>" alt="" width="200">
                                         </div> <input type="checkbox" name="gambar1_hapus" value="<?php echo $artikel['gambar1']?>"> Hapus Gambar
                                     </td>
                                 </tr>
@@ -98,9 +96,9 @@
                                 <tr>
                                     <th class="top">Gambar</th>
                                     <td>
-                                        <?php if($artikel['gambar2']){?>
+                                        <?php if(isset($artikel['gambar2'])){?>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar2']?>" alt="" width="200">
+                                            <img src="<?php echo base_url('assets/files/artikel/kecil_' . $artikel['gambar2']) ?>" alt="" width="200">
                                         </div> <input type="checkbox" name="gambar2_hapus" value="<?php echo $artikel['gambar2']?>"> Hapus Gambar
                                     </td>
                                 </tr>
@@ -112,9 +110,9 @@
                                 <tr>
                                     <th class="top">Gambar</th>
                                     <td>
-                                        <?php if($artikel['gambar3']){?>
+                                        <?php if(isset($artikel['gambar3'])){?>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/artikel/kecil_<?php echo $artikel['gambar3']?>" alt="" width="200">
+                                            <img src="<?php echo base_url('assets/files/artikel/kecil_' . $artikel['gambar3']) ?>" alt="" width="200">
                                         </div> <input type="checkbox" name="gambar3_hapus" value="<?php echo $artikel['gambar3']?>"> Hapus Gambar
                                     </td>
                                 </tr>
