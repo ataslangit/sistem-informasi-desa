@@ -11,14 +11,14 @@
                             <table class="form">
                                 <tr>
                                     <th>Nama Album</th>
-                                    <td><input name="nama" type="text" class="inputbox" size="60" value="<?php echo $gallery['nama']?>"></td>
+                                    <td><input name="nama" type="text" class="inputbox" size="60" value="<?php echo @$gallery['nama']?>"></td>
                                 </tr>
-                                <?php if($gallery['gambar']){?>
+                                <?php if(isset($gallery['gambar'])){?>
                                 <tr>
                                     <th class="top">Gambar</th>
                                     <td>
                                         <div>
-                                            <img width="440" height="300" src="<?php echo base_url()?>assets/files/galeri/sedang_<?php echo $gallery['gambar']?>" alt="">
+                                            <img width="440" height="300" src="<?php echo base_url('assets/files/galeri/sedang_' . $gallery['gambar'])?>" alt="">
                                         </div>
                                     </td>
                                     <input type="hidden" name="old_gambar" value="<?php echo $gallery['gambar']?>">
