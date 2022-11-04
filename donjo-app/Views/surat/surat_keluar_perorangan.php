@@ -65,7 +65,9 @@
                                     </form>
                             </tr>
                             <form id="validasi" action="<?php echo $form_action?>" method="POST" target="_blank">
-                                <input type="hidden" name="nik" value="<?php echo $individu['id']?>">
+                                <?php if(isset($individu['id'])) : ?>
+                                    <input type="hidden" name="nik" value="<?php echo $individu['id']?>">
+                                <?php endif ?>
                                 <?php if($individu){ ?>
                                 <tr>
                                     <th>Tempat/ Tanggal Lahir (Umur)</th>
