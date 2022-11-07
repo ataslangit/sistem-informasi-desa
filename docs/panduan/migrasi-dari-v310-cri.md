@@ -4,7 +4,7 @@ layout: doc
 ---
 
 # Migrasi / Upgrade dari v3.10-CRI ke v3.11.0
-::: tip WAJIB
+::: danger WAJIB
 Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan migrasi.
 :::
 Cukup dengan me-replace berkas berikut:

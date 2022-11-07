@@ -4,7 +4,7 @@ layout: doc
 ---
 
 # Migrasi / Upgrade dari v3.11.x ke v4.5.x
-::: tip WAJIB
+::: danger WAJIB
 Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan migrasi.
 :::
 
@@ -44,3 +44,7 @@ Berikut menggunakan contoh jika direktori `public` diganti dengan `public_html`
 └-- env
 └-- sid.install
 ```
+::: tip SARAN
+Anda juga dapat memasukkan direktori `donjo-app`, `donjo-sys`, `env`, dan `sid.install` kedalam direktori khusus.  
+Jangan lupa untuk perbaiki path-nya didalam file `index.php` pada direktori `public`.
+:::

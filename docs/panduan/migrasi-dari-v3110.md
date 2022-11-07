@@ -4,7 +4,7 @@ layout: doc
 ---
 
 # Migrasi / Upgrade dari v3.x ke v4.x
-::: tip WAJIB
+::: danger WAJIB
 Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan migrasi.
 :::
 
