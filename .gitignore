@@ -52,3 +52,4 @@ donjo-sys/composer/pcre
 docs/.vitepress/dist
 
 .php-cs-fixer.cache
+/install.sid
