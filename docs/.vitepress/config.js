@@ -75,7 +75,8 @@ function sidebarGuide() {
             text: "Migrasi/Upgrade",
             collapsible: true,
             items: [
-                {text: "v3.11.0 ke v3.11.0", link: "/panduan/migrasi-dari-v3110",},
+                {text: "v4.0.0 ke v4.5.0", link: "/panduan/migrasi-400-450",},
+                {text: "v3.11.0 ke v4.0.0", link: "/panduan/migrasi-dari-v3110",},
                 {text: "v3.10-CRI ke v3.11.0", link: "/panduan/migrasi-dari-v310-cri",},
             ],
         },
@@ -88,8 +89,9 @@ function sidebarChangelog() {
             text: "Log Perubahan",
             collapsible: false,
             items: [
-                { text: "dev (pengembangan)", link: "/changelog/dev" },
-                { text: "v4.0.0 (terbaru)", link: "/changelog/4-0-0" },
+                // { text: "dev (pengembangan)", link: "/changelog/dev" },
+                { text: "v4.5.0 (terbaru)", link: "/changelog/450" },
+                { text: "v4.0.0", link: "/changelog/4-0-0" },
                 { text: "v3.11.0", link: "/changelog/3-11-0" },
                 { text: "v3.10-CRI", link: "/changelog/3-10-cri" },
             ],

@@ -18,9 +18,15 @@ Ikuti beberapa langkah berikut:
   $db['default']['dbdriver'] = 'mysqli';
   $db['default']['dbprefix'] = '';
   ```
+
+  ::: info
+  Untuk v3.11.0 Anda dapat meletakkan pengaturan ini pada file `.env`, silakan lihat contoh file `env`.  
+  Dengan menghapus tanda pagar ( `#` ) untuk mengaktifkannya.
+  :::
+
   ::: warning
   Saat ini, pengaturan database `dbprefix` belum didukung.
   :::
-- Silakan simpan dan akses halaman awal situs, misal: http://example.com/
-  Akan ditujukan pada halaman awal instalasi database.\
+- Silakan simpan dan akses halaman awal situs, misal: http://example.com/  
+  Akan ditujukan pada halaman awal instalasi database.  
   Catat & simpan username maupun password yang diberikan, bila perlu dapat diubah lewat halaman siteman

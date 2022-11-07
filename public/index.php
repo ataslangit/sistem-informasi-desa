@@ -39,14 +39,14 @@
  * Composer auto-loading
  * --------------------------------------------------------------------------
  */
-require __DIR__ . '/donjo-sys/autoload.php';
+require __DIR__ . '/../donjo-sys/autoload.php';
 
 /*
  * --------------------------------------------------------------------------
  * Load phpdotenv
  * --------------------------------------------------------------------------
  */
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->safeLoad();
 
 /*
@@ -107,7 +107,7 @@ switch (ENVIRONMENT) {
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-$system_path = 'donjo-sys/codeigniter/framework/system';
+$system_path = '../donjo-sys/codeigniter/framework/system';
 
 /*
  *---------------------------------------------------------------
@@ -124,7 +124,7 @@ $system_path = 'donjo-sys/codeigniter/framework/system';
  *
  * NO TRAILING SLASH!
  */
-$application_folder = 'donjo-app';
+$application_folder = '../donjo-app';
 
 /*
  *---------------------------------------------------------------
@@ -139,7 +139,7 @@ $application_folder = 'donjo-app';
  *
  * NO TRAILING SLASH!
  */
-    $view_folder = 'donjo-app/Views';
+    $view_folder = '../donjo-app/Views';
 
 /*
  * --------------------------------------------------------------------
