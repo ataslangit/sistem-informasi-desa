@@ -33,7 +33,7 @@ class Config_model extends CI_Model
         $query = $this->db->query($sql, $db);
         $data  = $query->result_array();
         if (count($data) !== 77) {
-            $filename = 'sid.install';
+            $filename = '../sid.install';
             $templine = '';
             $lines    = file($filename);
 
