@@ -8,6 +8,7 @@ on:
       - '**.php'
       - '!donjo-app/Views/**'
       - '!.github/**'
+      - '!donjo-sys/**'
   pull_request_review:
     types: [submitted]
 
