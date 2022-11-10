@@ -33,7 +33,6 @@ jobs:
           external_repository: ataslangit/ataslangit.github.io
           publish_dir: docs/.vitepress/dist
           publish_branch: main
-          force_orphan: true
           user_name: "github-actions"
           user_email: "41898282+github-actions[bot]@users.noreply.github.com"
           full_commit_message: ${{ github.event.head_commit.message }}
