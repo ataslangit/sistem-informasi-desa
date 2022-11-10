@@ -139,7 +139,7 @@ $application_folder = '../donjo-app';
  *
  * NO TRAILING SLASH!
  */
-    $view_folder = '../donjo-app/Views';
+$view_folder = '../donjo-app/Views';
 
 /*
  * --------------------------------------------------------------------
