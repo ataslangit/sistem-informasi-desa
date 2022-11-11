@@ -9,10 +9,12 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo A comment on PR $NUMBER
-        env:
-          NUMBER: ${{ github.event.issue.number }}
+      - if: contains(github.event.comment.body, '@ataslangit merge') 
+        run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
+#       - run: |
+#           echo A comment on PR $NUMBER
+#         env:
+#           NUMBER: ${{ github.event.issue.number }}
 
   issue_commented:
     # This job only runs for issue comments
