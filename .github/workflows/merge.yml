@@ -11,7 +11,7 @@ jobs:
   cek:
     runs-on: ubuntu-latest
     steps: 
-      - run: echo "$({{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
+      - run: echo "(${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
 #   automerge:
 #     runs-on: ubuntu-latest
 #     if: ${{ github.event.review.state == 'approved' }}
