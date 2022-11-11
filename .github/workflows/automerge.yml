@@ -22,8 +22,8 @@ jobs:
     needs: squash_merge
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ toJSON(needs.squash_merge.outputs) }}
       - name: lock PR
-        if: ${{ needs.squash_merge.outputs.merged == "merged" }}
         uses: sudo-bot/action-pull-request-lock@v1.1.0
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
