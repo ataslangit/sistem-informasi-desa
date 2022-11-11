@@ -7,7 +7,7 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     outputs:
-      merged: ${{ steps.squashmerge.outputs.mergeResult }}
+      merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}
     steps:
       - name: Squash & Merge
         id: squashmerge
@@ -22,7 +22,7 @@ jobs:
     needs: squash_merge
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJSON(needs.squash_merge.outputs) }}
+      - run: echo ${{ toJSON(needs.squash_merge.outputs.merged) }}
       - name: lock PR
         uses: sudo-bot/action-pull-request-lock@v1.1.0
         with:
