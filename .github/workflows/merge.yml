@@ -10,12 +10,21 @@ on:
 #     types: [submitted]
 
 jobs:
-  cek:
+  comment:
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
-    steps: 
-      - run: echo ${{ toJSON(github.event.comment) }}
-      - if: contains(github.event.comment.body, '@ataslangit merge') 
-        run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
+    steps:
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+  # cek:
+    # runs-on: ubuntu-latest
+    # steps: 
+      # - run: echo ${{ toJSON(github.event.comment) }}
+      # - if: contains(github.event.comment.body, '@ataslangit merge') 
+        # run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
         
 #   automerge:
 #     runs-on: ubuntu-latest
