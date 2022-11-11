@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Squash & Merge
-        if: contains(github.event.comment.body, '/merge') 
         id: squashmerge
+        if: contains(github.event.comment.body, '/merge') 
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
