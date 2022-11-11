@@ -6,6 +6,8 @@ jobs:
   squash_merge:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
+    outputs:
+      merged: ${{ steps.squashmerge.outputs.mergeResult }}
     steps:
       - name: Squash & Merge
         id: squashmerge
@@ -16,9 +18,13 @@ jobs:
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
           MERGE_REMOVE_LABELS: "automerge"
-      - run: echo ${{ toJSON(steps.squashmerge.outputs.mergeResult == "merged") }}
-      - name: lock PR
-        uses: sudo-bot/action-pull-request-lock@v1.1.0
-        with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+  lock_PR:
+    needs: squash_merge
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(needs.squash_merge.outputs.merged) }}
+#       - name: lock PR
+#         uses: sudo-bot/action-pull-request-lock@v1.1.0
+#         with:
+#             github-token: ${{ secrets.GITHUB_TOKEN }}
   
