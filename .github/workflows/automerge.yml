@@ -1,0 +1,26 @@
+name: Squash & Merge
+
+on: issue_comment
+
+jobs:
+  squash_merge:
+    # This job only runs for pull request comments
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Squash & Merge
+        if: contains(github.event.comment.body, '/merge') 
+        id: squashmerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
+          
+      - name: lock PR
+        if: steps.squashmerge.outputs.mergeResult == "merged"
+        uses: sudo-bot/action-pull-request-lock@v1.1.0
+        with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+  
