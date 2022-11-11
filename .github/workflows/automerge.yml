@@ -18,6 +18,11 @@ jobs:
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
           MERGE_REMOVE_LABELS: "automerge"
+  actors:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(github.event.comment) }}
+      
   lock_PR:
     needs: squash_merge
     runs-on: ubuntu-latest
