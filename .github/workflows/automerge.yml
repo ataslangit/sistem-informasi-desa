@@ -4,7 +4,7 @@ on: issue_comment
 
 jobs:
   squash_merge:
-    if: ${{ github.event.issue.pull_request && github.event.comment.user.id == 2387514}}
+    if: ${{ github.event.issue.pull_request && github.event.comment.author_association == 'OWNER' }}
     runs-on: ubuntu-latest
     outputs:
       merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}
