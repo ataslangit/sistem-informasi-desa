@@ -8,7 +8,7 @@ Pihak Pemerintah Desa dapat melakukan custom secara mandiri sesuai kebutuhan Des
 pengembangan SID dengan mengirimkan *Pull Request* ataupun *issue*.
 
 ## MANAJEMEN AKSES SID
-Aplikasi SID dirancang sejak awal oleh CRI untuk mengelola data dasar desa dan informasi desa. Data dasar yang dikelola meliputi data dasar kependudukan dan data dasar aset/sumber daya desa. Data dasar ini menjadi tanggung jawab pemerintah desa dalam pengelolaannya. Hanya pengguna (user) dari pemerintah desa dan tim yang dikoordinasikan oleh pemerintah desa saja yang akan memiliki kewenangan dan hak akses kedalam sistem. Sementara, user diluar pemerintah desa hanya akan memiliki akses terbatas pada fungsi olah informasi untuk website desa.
+Aplikasi SID dirancang sejak awal oleh CRI untuk mengelola data dasar desa dan informasi desa. Data dasar yang dikelola meliputi data dasar kependudukan dan data dasar aset/sumber daya desa. Data dasar ini menjadi tanggung jawab pemerintah desa dalam pengelolaannya. Hanya pengguna (user) dari pemerintah desa dan tim yang dikoordinasikan oleh pemerintah desa saja yang akan memiliki kewenangan dan hak akses ke dalam sistem. Sementara, user di luar pemerintah desa hanya akan memiliki akses terbatas pada fungsi olah informasi untuk website desa.
 
 ### Tingkat user (pengguna) dalam SID:
 
