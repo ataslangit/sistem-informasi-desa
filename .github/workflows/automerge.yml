@@ -18,9 +18,9 @@ jobs:
           MERGE_REMOVE_LABELS: "automerge"
           
       - name: lock PR
-#         run: echo "${{ toJSON(steps.squashmerge.outputs.mergeResult) }}"
-        if: ${{ steps.squashmerge.outputs.mergeResult == "merged" }}
-        uses: sudo-bot/action-pull-request-lock@v1.1.0
-        with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "${{ toJSON(steps.squashmerge.outputs.mergeResult) }}"
+#         if: ${{ steps.squashmerge.outputs.mergeResult == "merged" }}
+#         uses: sudo-bot/action-pull-request-lock@v1.1.0
+#         with:
+#             github-token: ${{ secrets.GITHUB_TOKEN }}
   
