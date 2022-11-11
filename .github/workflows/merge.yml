@@ -1,12 +1,10 @@
 name: Deploy
 
-on: issue_comment
+on:
+  workflow_dispatch:
 
 jobs:
   pr_commented:
-    # This job only runs for pull request comments
-    name: PR comment
-    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
