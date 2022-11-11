@@ -7,11 +7,11 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     outputs:
-      merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}
+      merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' && github.event.comment.user.id == '2387514' }}
     steps:
       - name: Squash & Merge
         id: squashmerge
-        if: contains(github.event.comment.body, '/merge') && github.event.comment.user.id == '2387514'
+        if: ${{ contains(github.event.comment.body, '/merge') }}
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
