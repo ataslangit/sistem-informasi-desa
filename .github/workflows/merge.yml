@@ -1,13 +1,24 @@
-on: issue_comment
+name: Some workflow
+
+on:
+  issue_comment:
+    types: [created]
 
 jobs:
-  pr_commented:
-    # This job only runs for pull request comments
-    name: PR comment
-    if: ${{ github.event.issue.pull_request }}
+  comment:
+    if: contains(github.event.comment.body, '@ataslangit')
+
     runs-on: ubuntu-latest
+
     steps:
-      - run: |
-          echo A comment on PR $NUMBER
+      - name: Add comment to PR
         env:
-          NUMBER: ${{ github.event.issue.number }}
+          URL: ${{ github.event.issue.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data '{ "body": "blah blah" }'
