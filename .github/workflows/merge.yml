@@ -1,17 +1,18 @@
-# .github/workflows/comment-run.yml
-name: "Comment run"
 on:
+  pull_request:
   issue_comment:
-    types: [created, edited]
-
+    types: [created]
+    
 jobs:
-  comment-run:
-    runs-on: ubuntu-18.04
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # 0 indicates all history
-        fetch-depth: 0
-    - uses: nwtgck/actions-comment-run@v1.1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: khan/pull-request-comment-trigger@v1.1.0
+        id: check
+        with:
+          trigger: '@deploy'
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check.outputs.triggered == 'true'
+        run: 'echo Found it!'
