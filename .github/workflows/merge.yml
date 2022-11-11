@@ -6,8 +6,18 @@ on:
     - created
 
 jobs:
-  deploy:
+  build:
+    name: build
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/deploy'}}
     steps:
+      - name: Build
+        run: echo building
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
       - run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
