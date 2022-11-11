@@ -1,9 +1,7 @@
 name: Deploy
 
 on:
-  issue_comment:
-    types:
-    - created
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,4 +18,5 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
+          approvers: totoprayogo1916
       - run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
