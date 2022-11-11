@@ -19,7 +19,7 @@ jobs:
           MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
           
       - name: lock PR
-        if: steps.squashmerge.outputs.mergeResult == "merged"
+        if: ${{ steps.squashmerge.outputs.mergeResult == "merged" }}
         uses: sudo-bot/action-pull-request-lock@v1.1.0
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
