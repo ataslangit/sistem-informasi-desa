@@ -16,9 +16,8 @@ jobs:
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
           MERGE_REMOVE_LABELS: "automerge"
-          
+      - run: echo ${{ toJSON(steps.squashmerge.outputs.mergeResult == "merged") }}
       - name: lock PR
-        if: ${{ steps.squashmerge.outputs.mergeResult == "merged" }}
         uses: sudo-bot/action-pull-request-lock@v1.1.0
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
