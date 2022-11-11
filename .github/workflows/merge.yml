@@ -1,24 +1,19 @@
-name: Some workflow
-
+# .github/workflows/comment-run.yml
+name: "Comment run"
 on:
   issue_comment:
-    types: [created]
+    types: [created, edited]
 
 jobs:
-  comment:
-    if: contains(github.event.comment.body, '@ataslangit')
-
+  comment-run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Add comment to PR
-        env:
-          URL: ${{ github.event.issue.comments_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          curl \
-            -X POST \
-            $URL \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": "blah blah" }'
+    - uses: actions/checkout@v3
+      with:
+        # 0 indicates all history
+        fetch-depth: 0
+    - uses: nwtgck/actions-comment-run@v1.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        allowed-associations: '["OWNER"]'
+    - run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
