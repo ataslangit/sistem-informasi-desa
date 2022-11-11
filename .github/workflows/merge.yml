@@ -1,18 +1,13 @@
+name: Deploy
+
 on:
-  pull_request:
   issue_comment:
-    types: [created]
-    
+    types:
+    - created
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/deploy'}}
     steps:
-      - uses: khan/pull-request-comment-trigger@v1.1.0
-        id: check
-        with:
-          trigger: '@deploy'
-          reaction: rocket
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - if: steps.check.outputs.triggered == 'true'
-        run: 'echo Found it!'
+      - run: echo "(#${{ github.event.pull_request.number }})  ${{ github.event.pull_request.title }}"
