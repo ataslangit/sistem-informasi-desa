@@ -139,448 +139,448 @@ function Rpt($str = 0)
     return "{$outp}";
 }
 
-    function currents_url()
-    {
-        $CI = &get_instance();
+function currents_url()
+{
+    $CI = &get_instance();
 
-        $url = $CI->config->site_url($CI->uri->uri_string());
+    $url = $CI->config->site_url($CI->uri->uri_string());
 
-        return $_SERVER['QUERY_STRING'] ? $url . '?' . $_SERVER['QUERY_STRING'] : $url;
-    }
-    function Parse_Data($data, $p1, $p2)
-    {
-        $data  = ' ' . $data;
-        $hasil = '';
-        $awal  = strpos($data, $p1);
-        if ($awal !== '') {
-            $akhir = strpos(strstr($data, $p1), $p2);
-            if ($akhir !== '') {
-                $hasil = substr($data, $awal + strlen($p1), $akhir - strlen($p1));
-            }
-        }
-
-        return $hasil;
-    }
-    function Rupiah($nil = 0)
-    {
-        $nil = $nil + 0;
-        if (($nil * 100) % 100 === 0) {
-            $nil = $nil . '.00';
-        } elseif (($nil * 100) % 10 === 0) {
-            $nil = $nil . '0';
-        }
-        $nil  = str_replace('.', ',', $nil);
-        $str1 = $nil;
-        $str2 = '';
-        $dot  = '';
-        $str  = strrev($str1);
-        $arr  = str_split($str, 3);
-        $i    = 0;
-
-        foreach ($arr as $str) {
-            $str2 = $str2 . $dot . $str;
-            if (strlen($str) === 3 && $i > 0) {
-                $dot = '.';
-            }
-            $i++;
-        }
-        $rp = strrev($str2);
-        if ($rp !== '' && $rp > 0) {
-            return "Rp. {$rp}";
-        }
-
-        return 'Rp. 0,00';
-    }
-    function Rupiah2($nil = 0)
-    {
-        $nil = $nil + 0;
-        if (($nil * 100) % 100 === 0) {
-            $nil = $nil . '.00';
-        } elseif (($nil * 100) % 10 === 0) {
-            $nil = $nil . '0';
-        }
-        $nil  = str_replace('.', ',', $nil);
-        $str1 = $nil;
-        $str2 = '';
-        $dot  = '';
-        $str  = strrev($str1);
-        $arr  = str_split($str, 3);
-        $i    = 0;
-
-        foreach ($arr as $str) {
-            $str2 = $str2 . $dot . $str;
-            if (strlen($str) === 3 && $i > 0) {
-                $dot = '.';
-            }
-            $i++;
-        }
-        $rp = strrev($str2);
-        if ($rp !== '' && $rp > 0) {
-            return "Rp.{$rp}";
-        }
-
-        return '-';
-    }
-    function Rupiah3($nil = 0)
-    {
-        $nil = $nil + 0;
-        if (($nil * 100) % 100 === 0) {
-            $nil = $nil . '.00';
-        } elseif (($nil * 100) % 10 === 0) {
-            $nil = $nil . '0';
-        }
-        $nil  = str_replace('.', ',', $nil);
-        $str1 = $nil;
-        $str2 = '';
-        $dot  = '';
-        $str  = strrev($str1);
-        $arr  = str_split($str, 3);
-        $i    = 0;
-
-        foreach ($arr as $str) {
-            $str2 = $str2 . $dot . $str;
-            if (strlen($str) === 3 && $i > 0) {
-                $dot = '.';
-            }
-            $i++;
-        }
-        $rp = strrev($str2);
-        if ($rp !== 0) {
-            return "{$rp}";
-        }
-
-        return '-';
-    }
-    function jecho($a, $b, $str)
-    {
-        if ($a === $b) {
-            echo $str;
+    return $_SERVER['QUERY_STRING'] ? $url . '?' . $_SERVER['QUERY_STRING'] : $url;
+}
+function Parse_Data($data, $p1, $p2)
+{
+    $data  = ' ' . $data;
+    $hasil = '';
+    $awal  = strpos($data, $p1);
+    if ($awal !== '') {
+        $akhir = strpos(strstr($data, $p1), $p2);
+        if ($akhir !== '') {
+            $hasil = substr($data, $awal + strlen($p1), $akhir - strlen($p1));
         }
     }
-    function selected($a, $b, $opt = 0)
-    {
-        if ($a === $b) {
-            if ($opt) {
-                echo "checked='checked'";
-            } else {
-                echo "selected='selected'";
-            }
+
+    return $hasil;
+}
+function Rupiah($nil = 0)
+{
+    $nil = $nil + 0;
+    if (($nil * 100) % 100 === 0) {
+        $nil = $nil . '.00';
+    } elseif (($nil * 100) % 10 === 0) {
+        $nil = $nil . '0';
+    }
+    $nil  = str_replace('.', ',', $nil);
+    $str1 = $nil;
+    $str2 = '';
+    $dot  = '';
+    $str  = strrev($str1);
+    $arr  = str_split($str, 3);
+    $i    = 0;
+
+    foreach ($arr as $str) {
+        $str2 = $str2 . $dot . $str;
+        if (strlen($str) === 3 && $i > 0) {
+            $dot = '.';
         }
+        $i++;
     }
-    function rev_tgl($tgl)
-    {
-        $ar = explode('-', $tgl);
-
-        return $ar[2] . '-' . $ar[1] . '-' . $ar[0];
+    $rp = strrev($str2);
+    if ($rp !== '' && $rp > 0) {
+        return "Rp. {$rp}";
     }
-    function penetration($str)
-    {
-        return str_replace("'", '-', $str);
+
+    return 'Rp. 0,00';
+}
+function Rupiah2($nil = 0)
+{
+    $nil = $nil + 0;
+    if (($nil * 100) % 100 === 0) {
+        $nil = $nil . '.00';
+    } elseif (($nil * 100) % 10 === 0) {
+        $nil = $nil . '0';
     }
-    function penetration1($str)
-    {
-        return str_replace("'", ' ', $str);
-    }
-    function unpenetration($str)
-    {
-        return str_replace('-', "'", $str);
-    }
-    function spaceunpenetration($str)
-    {
-        return str_replace('-', ' ', $str);
-    }
-    function underscore($str)
-    {
-        return str_replace(' ', '_', $str);
-    }
-    function ununderscore($str)
-    {
-        return str_replace('_', ' ', $str);
-    }
-    function bulan($bln)
-    {
-        $nm = '';
+    $nil  = str_replace('.', ',', $nil);
+    $str1 = $nil;
+    $str2 = '';
+    $dot  = '';
+    $str  = strrev($str1);
+    $arr  = str_split($str, 3);
+    $i    = 0;
 
-        switch ($bln) {
-            case '1':
-                $nm = 'Januari';
-                break;
-
-            case '2':
-                $nm = 'Februari';
-                break;
-
-            case '3':
-                $nm = 'Maret';
-                break;
-
-            case '4':
-                $nm = 'April';
-                break;
-
-            case '5':
-                $nm = 'Mei';
-                break;
-
-            case '6':
-                $nm = 'Juni';
-                break;
-
-            case '7':
-                $nm = 'Juli';
-                break;
-
-            case '8':
-                $nm = 'Agustus';
-                break;
-
-            case '9':
-                $nm = 'September';
-                break;
-
-            case '10':
-                $nm = 'Oktober';
-                break;
-
-            case '11':
-                $nm = 'November';
-                break;
-
-            case '12':
-                $nm = 'Desember';
-                break;
-
-            default:
-                $nm = '';
-                break;
+    foreach ($arr as $str) {
+        $str2 = $str2 . $dot . $str;
+        if (strlen($str) === 3 && $i > 0) {
+            $dot = '.';
         }
-
-        return $nm;
+        $i++;
     }
-    function nama_bulan($tgl)
-    {
-        $ar = explode('-', $tgl);
+    $rp = strrev($str2);
+    if ($rp !== '' && $rp > 0) {
+        return "Rp.{$rp}";
+    }
 
-        $nm = '';
+    return '-';
+}
+function Rupiah3($nil = 0)
+{
+    $nil = $nil + 0;
+    if (($nil * 100) % 100 === 0) {
+        $nil = $nil . '.00';
+    } elseif (($nil * 100) % 10 === 0) {
+        $nil = $nil . '0';
+    }
+    $nil  = str_replace('.', ',', $nil);
+    $str1 = $nil;
+    $str2 = '';
+    $dot  = '';
+    $str  = strrev($str1);
+    $arr  = str_split($str, 3);
+    $i    = 0;
 
-        switch ($ar[1]) {
-            case '01':
-                $nm = 'Januari';
-                break;
-
-            case '02':
-                $nm = 'Februari';
-                break;
-
-            case '03':
-                $nm = 'Maret';
-                break;
-
-            case '04':
-                $nm = 'April';
-                break;
-
-            case '05':
-                $nm = 'Mei';
-                break;
-
-            case '06':
-                $nm = 'Juni';
-                break;
-
-            case '07':
-                $nm = 'Juli';
-                break;
-
-            case '08':
-                $nm = 'Agustus';
-                break;
-
-            case '09':
-                $nm = 'September';
-                break;
-
-            case '10':
-                $nm = 'Oktober';
-                break;
-
-            case '11':
-                $nm = 'November';
-                break;
-
-            case '12':
-                $nm = 'Desember';
-                break;
+    foreach ($arr as $str) {
+        $str2 = $str2 . $dot . $str;
+        if (strlen($str) === 3 && $i > 0) {
+            $dot = '.';
         }
-
-        return $ar[0] . ' ' . $nm . ' ' . $ar[2];
+        $i++;
     }
-    function dua_digit($i)
-    {
-        if ($i < 10) {
-            $o = '0' . $i;
+    $rp = strrev($str2);
+    if ($rp !== 0) {
+        return "{$rp}";
+    }
+
+    return '-';
+}
+function jecho($a, $b, $str)
+{
+    if ($a === $b) {
+        echo $str;
+    }
+}
+function selected($a, $b, $opt = 0)
+{
+    if ($a === $b) {
+        if ($opt) {
+            echo "checked='checked'";
         } else {
-            $o = $i;
+            echo "selected='selected'";
         }
-
-        return $o;
     }
-    function tiga_digit($i)
-    {
-        if ($i < 10) {
-            $o = '00' . $i;
-        } elseif ($i < 100) {
-            $o = '0' . $i;
-        } else {
-            $o = $i;
-        }
+}
+function rev_tgl($tgl)
+{
+    $ar = explode('-', $tgl);
 
-        return $o;
-    }
-    function to_rupiah($inp = '')
-    {
-        $outp = str_replace('.', '', $inp);
+    return $ar[2] . '-' . $ar[1] . '-' . $ar[0];
+}
+function penetration($str)
+{
+    return str_replace("'", '-', $str);
+}
+function penetration1($str)
+{
+    return str_replace("'", ' ', $str);
+}
+function unpenetration($str)
+{
+    return str_replace('-', "'", $str);
+}
+function spaceunpenetration($str)
+{
+    return str_replace('-', ' ', $str);
+}
+function underscore($str)
+{
+    return str_replace(' ', '_', $str);
+}
+function ununderscore($str)
+{
+    return str_replace('_', ' ', $str);
+}
+function bulan($bln)
+{
+    $nm = '';
 
-        return str_replace(',', '.', $outp);
-    }
-    function rp($inp = 0)
-    {
-        return number_format($inp, 2, ',', '.');
-    }
-    function pertumbuhan($a = 1, $b = 1, $c = 1, $d = 1)
-    {
-        $x = 0;
-        $y = 0;
-        $z = 0;
-        if ($a > 1) {
-            $x = (($b - $a) / $a);
-        }
-        if ($b > 1) {
-            $y = (($c - $b) / $b);
-        }
-        if ($c > 1) {
-            $z = (($d - $c) / $c);
-        }
-        $outp = (($x + $y + $z) / 3) * 100;
-        $outp = round($outp, 2);
+    switch ($bln) {
+        case '1':
+            $nm = 'Januari';
+            break;
 
-        return str_replace('.', ',', $outp) . ' %';
-    }
-    function koma($a = 1)
-    {
-        if (substr_count($a, '.')) {
-            $a = str_replace('.', ',', $a);
-        } else {
-            $a = number_format($a, 0, ',', '.');
-        }
+        case '2':
+            $nm = 'Februari';
+            break;
 
-        return $a;
-    }
-    function tgl_indo2($tgl)
-    {
-        $tanggal = substr($tgl, 8, 2);
-        $jam     = substr($tgl, 11, 8);
-        $bulan   = getBulan(substr($tgl, 5, 2));
-        $tahun   = substr($tgl, 0, 4);
+        case '3':
+            $nm = 'Maret';
+            break;
 
-        return $tanggal . ' ' . $bulan . ' ' . $tahun . ' ' . $jam . ' WIB';
-    }
-    function tgl_indo($tgl)
-    {
-        $tanggal = substr($tgl, 8, 2);
-        $bulan   = getBulan(substr($tgl, 5, 2));
-        $tahun   = substr($tgl, 0, 4);
+        case '4':
+            $nm = 'April';
+            break;
 
-        return $tanggal . ' ' . $bulan . ' ' . $tahun;
-    }
-    function tgl_indo_out($tgl)
-    {
-        $tanggal = substr($tgl, 8, 2);
-        $bulan   = substr($tgl, 5, 2);
-        $tahun   = substr($tgl, 0, 4);
+        case '5':
+            $nm = 'Mei';
+            break;
 
-        return $tanggal . '-' . $bulan . '-' . $tahun;
-    }
-    function tgl_indo_in($tgl)
-    {
-        $tanggal = substr($tgl, 0, 2);
-        $bulan   = substr($tgl, 3, 2);
-        $tahun   = substr($tgl, 6, 4);
+        case '6':
+            $nm = 'Juni';
+            break;
 
-        return $tahun . '-' . $bulan . '-' . $tanggal;
-    }
+        case '7':
+            $nm = 'Juli';
+            break;
 
-    function waktu_ind($time)
-    {
-        $str = '';
-        if (($time / 360) > 1) {
-            $jam = ($time / 360);
-            $jam = explode('.', $jam);
-            $str .= $jam . ' Jam ';
-        }
-        if (($time / 60) > 1) {
-            $menit = ($time / 60);
-            $menit = explode('.', $menit);
-            $str .= $menit[0] . ' Menit ';
-        }
-        $detik = $time % 60;
-        $str .= $detik;
+        case '8':
+            $nm = 'Agustus';
+            break;
 
-        return $str . ' Detik';
+        case '9':
+            $nm = 'September';
+            break;
+
+        case '10':
+            $nm = 'Oktober';
+            break;
+
+        case '11':
+            $nm = 'November';
+            break;
+
+        case '12':
+            $nm = 'Desember';
+            break;
+
+        default:
+            $nm = '';
+            break;
     }
 
-    function getBulan($bln)
-    {
-        switch ($bln) {
-                    case 1:
-                        return 'Januari';
-                        break;
+    return $nm;
+}
+function nama_bulan($tgl)
+{
+    $ar = explode('-', $tgl);
 
-                    case 2:
-                        return 'Februari';
-                        break;
+    $nm = '';
 
-                    case 3:
-                        return 'Maret';
-                        break;
+    switch ($ar[1]) {
+        case '01':
+            $nm = 'Januari';
+            break;
 
-                    case 4:
-                        return 'April';
-                        break;
+        case '02':
+            $nm = 'Februari';
+            break;
 
-                    case 5:
-                        return 'Mei';
-                        break;
+        case '03':
+            $nm = 'Maret';
+            break;
 
-                    case 6:
-                        return 'Juni';
-                        break;
+        case '04':
+            $nm = 'April';
+            break;
 
-                    case 7:
-                        return 'Juli';
-                        break;
+        case '05':
+            $nm = 'Mei';
+            break;
 
-                    case 8:
-                        return 'Agustus';
-                        break;
+        case '06':
+            $nm = 'Juni';
+            break;
 
-                    case 9:
-                        return 'September';
-                        break;
+        case '07':
+            $nm = 'Juli';
+            break;
 
-                    case 10:
-                        return 'Oktober';
-                        break;
+        case '08':
+            $nm = 'Agustus';
+            break;
 
-                    case 11:
-                        return 'November';
-                        break;
+        case '09':
+            $nm = 'September';
+            break;
 
-                    case 12:
-                        return 'Desember';
-                        break;
-                }
+        case '10':
+            $nm = 'Oktober';
+            break;
+
+        case '11':
+            $nm = 'November';
+            break;
+
+        case '12':
+            $nm = 'Desember';
+            break;
     }
+
+    return $ar[0] . ' ' . $nm . ' ' . $ar[2];
+}
+function dua_digit($i)
+{
+    if ($i < 10) {
+        $o = '0' . $i;
+    } else {
+        $o = $i;
+    }
+
+    return $o;
+}
+function tiga_digit($i)
+{
+    if ($i < 10) {
+        $o = '00' . $i;
+    } elseif ($i < 100) {
+        $o = '0' . $i;
+    } else {
+        $o = $i;
+    }
+
+    return $o;
+}
+function to_rupiah($inp = '')
+{
+    $outp = str_replace('.', '', $inp);
+
+    return str_replace(',', '.', $outp);
+}
+function rp($inp = 0)
+{
+    return number_format($inp, 2, ',', '.');
+}
+function pertumbuhan($a = 1, $b = 1, $c = 1, $d = 1)
+{
+    $x = 0;
+    $y = 0;
+    $z = 0;
+    if ($a > 1) {
+        $x = (($b - $a) / $a);
+    }
+    if ($b > 1) {
+        $y = (($c - $b) / $b);
+    }
+    if ($c > 1) {
+        $z = (($d - $c) / $c);
+    }
+    $outp = (($x + $y + $z) / 3) * 100;
+    $outp = round($outp, 2);
+
+    return str_replace('.', ',', $outp) . ' %';
+}
+function koma($a = 1)
+{
+    if (substr_count($a, '.')) {
+        $a = str_replace('.', ',', $a);
+    } else {
+        $a = number_format($a, 0, ',', '.');
+    }
+
+    return $a;
+}
+function tgl_indo2($tgl)
+{
+    $tanggal = substr($tgl, 8, 2);
+    $jam     = substr($tgl, 11, 8);
+    $bulan   = getBulan(substr($tgl, 5, 2));
+    $tahun   = substr($tgl, 0, 4);
+
+    return $tanggal . ' ' . $bulan . ' ' . $tahun . ' ' . $jam . ' WIB';
+}
+function tgl_indo($tgl)
+{
+    $tanggal = substr($tgl, 8, 2);
+    $bulan   = getBulan(substr($tgl, 5, 2));
+    $tahun   = substr($tgl, 0, 4);
+
+    return $tanggal . ' ' . $bulan . ' ' . $tahun;
+}
+function tgl_indo_out($tgl)
+{
+    $tanggal = substr($tgl, 8, 2);
+    $bulan   = substr($tgl, 5, 2);
+    $tahun   = substr($tgl, 0, 4);
+
+    return $tanggal . '-' . $bulan . '-' . $tahun;
+}
+function tgl_indo_in($tgl)
+{
+    $tanggal = substr($tgl, 0, 2);
+    $bulan   = substr($tgl, 3, 2);
+    $tahun   = substr($tgl, 6, 4);
+
+    return $tahun . '-' . $bulan . '-' . $tanggal;
+}
+
+function waktu_ind($time)
+{
+    $str = '';
+    if (($time / 360) > 1) {
+        $jam = ($time / 360);
+        $jam = explode('.', $jam);
+        $str .= $jam . ' Jam ';
+    }
+    if (($time / 60) > 1) {
+        $menit = ($time / 60);
+        $menit = explode('.', $menit);
+        $str .= $menit[0] . ' Menit ';
+    }
+    $detik = $time % 60;
+    $str .= $detik;
+
+    return $str . ' Detik';
+}
+
+function getBulan($bln)
+{
+    switch ($bln) {
+        case 1:
+            return 'Januari';
+            break;
+
+        case 2:
+            return 'Februari';
+            break;
+
+        case 3:
+            return 'Maret';
+            break;
+
+        case 4:
+            return 'April';
+            break;
+
+        case 5:
+            return 'Mei';
+            break;
+
+        case 6:
+            return 'Juni';
+            break;
+
+        case 7:
+            return 'Juli';
+            break;
+
+        case 8:
+            return 'Agustus';
+            break;
+
+        case 9:
+            return 'September';
+            break;
+
+        case 10:
+            return 'Oktober';
+            break;
+
+        case 11:
+            return 'November';
+            break;
+
+        case 12:
+            return 'Desember';
+            break;
+    }
+}
 
 function timer()
 {
@@ -715,11 +715,11 @@ function fTampilTgl($sdate, $edate)
 
     return $tgl;
 }
-    function hash_pin($pin = '')
-    {
-        $pin = strrev($pin);
-        $pin = $pin * 77;
-        $pin .= '!#@$#%';
+function hash_pin($pin = '')
+{
+    $pin = strrev($pin);
+    $pin = $pin * 77;
+    $pin .= '!#@$#%';
 
-        return md5($pin);
-    }
+    return md5($pin);
+}
