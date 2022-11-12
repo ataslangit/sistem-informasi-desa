@@ -9,6 +9,10 @@ permissions:
   pull-requests: write
 
 jobs:
+  cek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(github.event) }}
   php-cs-fixer:
     runs-on: ubuntu-latest
     if: >-
