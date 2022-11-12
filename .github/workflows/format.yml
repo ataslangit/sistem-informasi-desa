@@ -3,11 +3,13 @@ name: Fixer, Styling & Optimizer
 on:
   issue_comment:
 
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
 jobs:
   php-cs-fixer:
-    permissions:
-      contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
     if: >-
       github.event.issue.pull_request &&
@@ -25,9 +27,6 @@ jobs:
 
   format-view:
     needs: [php-cs-fixer, composer-update-optimize]
-    permissions:
-      contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -50,9 +49,6 @@ jobs:
 
   composer-update-optimize:
     needs: php-cs-fixer
-    permissions:
-      contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

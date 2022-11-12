@@ -3,6 +3,11 @@ name: Labeling, Merging & Locking
 on:
   issue_comment:
 
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
 jobs:
   labeling:
     runs-on: ubuntu-latest
