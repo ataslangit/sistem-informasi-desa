@@ -19,7 +19,7 @@ jobs:
           labels: automerge
 
   squash_merge:
-    needs: labeler
+    needs: labeling
     runs-on: ubuntu-latest
     outputs:
       merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}

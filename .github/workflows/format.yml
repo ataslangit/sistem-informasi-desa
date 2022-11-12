@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       github.event.issue.pull_request &&
-      startsWith(github.event.comment.body, '/fix') &&
+      startsWith(github.event.comment.body, '/format') &&
       github.event.comment.user.id == 2387514
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - run: composer install
       - run: composer run csfix
       - uses: stefanzweifel/git-auto-commit-action@v4
@@ -22,7 +24,7 @@ jobs:
           commit_message: Fixed by `php-cs-fixer`
 
   format-view:
-    needs: php-cs-fixer
+    needs: [php-cs-fixer, composer-update-optimize]
     permissions:
       contents: read
       pull-requests: write
@@ -30,6 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - run: npm ci
       - id: changed-files-specific
