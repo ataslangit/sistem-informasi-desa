@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          git remote -v
+      - run: |
           echo ${{ toJSON(github.event) }}
-          echo ${{ toJSON(github.event.pull_request.head.repo.full_name) }}
-          echo ${{ toJSON(github.event.pull_request.head.ref) }}
+      
   php-cs-fixer:
     needs: cek
     runs-on: ubuntu-latest
