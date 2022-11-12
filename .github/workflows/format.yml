@@ -21,9 +21,14 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - run: composer install
       - run: composer run csfix
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Fixed by `php-cs-fixer`"
+      - uses: ad-m/github-push-action@master
         with:
-          commit_message: Fixed by `php-cs-fixer`
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
   format-view:
     needs: [php-cs-fixer, composer-update-optimize]
@@ -43,9 +48,14 @@ jobs:
           for i in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
           npm run format $i
           done
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Format view"
+      - uses: ad-m/github-push-action@master
         with:
-          commit_message: Format View
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
   composer-update-optimize:
     needs: php-cs-fixer
@@ -55,7 +65,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - run: composer update --no-dev
-      - name: Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Composer optimize"
+      - uses: ad-m/github-push-action@master
         with:
-          commit_message: Update dependency & optimize composer
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
