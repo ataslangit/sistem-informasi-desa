@@ -1,14 +1,14 @@
-name: Labeling, Squash & Lock
+name: Run Workflows by comments
 
 on:
   issue_comment:
-    
+
 jobs:
-  labeler:
+  labeling:
     permissions:
       contents: read
       pull-requests: write
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     if: >-
       github.event.issue.pull_request &&
       startsWith(github.event.comment.body, '/merge') &&
@@ -17,7 +17,7 @@ jobs:
       - uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: automerge
-          
+
   squash_merge:
     needs: labeler
     runs-on: ubuntu-latest
@@ -38,14 +38,13 @@ jobs:
           MERGE_REMOVE_LABELS: "automerge"
       - id: callback
         run: echo "check=${{ steps.squashmerge.outputs.mergeResult == 'merged' }}" >> $GITHUB_OUTPUT
-      
+
   locking:
     needs: squash_merge
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - if: ${{ needs.squash_merge.outputs.merged }}
         uses: sudo-bot/action-pull-request-lock@v1.1.0
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             number: ${{ github.event.issue.number }}
-  
