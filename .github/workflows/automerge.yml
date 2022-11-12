@@ -1,21 +1,33 @@
-name: Squash, Merge & Lock
+name: Labeling, Squash & Lock
 
-on: issue_comment
-
+on:
+  issue_comment:
+    
 jobs:
-  squash_merge:
-    runs-on: ubuntu-latest
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest 
     if: >-
-          github.event.issue.pull_request &&
-          startsWith(github.event.comment.body, '/merge') &&
-          github.event.comment.user.id == 2387514
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/merge') &&
+      github.event.comment.user.id == 2387514
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: automerge
+          
+  squash_merge:
+    needs: labeler
+    runs-on: ubuntu-latest
     outputs:
       merged: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}
     steps:
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
-            :ok_hand: **merging**
+            :ok_hand: **merging ...**
       - name: Squash & Merge
         id: squashmerge
         uses: "pascalgn/automerge-action@v0.15.5"
