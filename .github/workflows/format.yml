@@ -14,8 +14,8 @@ jobs:
     steps:
       - run: |
           echo ${{ toJSON(github.event) }}
-          echo ${{ toJSON(github.event.pull_request.head.repo.full_name) ))
-          echo ${{ toJSON(github.event.pull_request.head.ref) ))
+          echo ${{ toJSON(github.event.pull_request.head.repo.full_name) }}
+          echo ${{ toJSON(github.event.pull_request.head.ref) }}
   php-cs-fixer:
     needs: cek
     runs-on: ubuntu-latest
