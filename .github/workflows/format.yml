@@ -14,9 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          git remote -v
-      - run: |
-          echo ${{ toJSON(github.event) }}
+          echo ${{ toJSON(github) }}
       
   php-cs-fixer:
     needs: cek
