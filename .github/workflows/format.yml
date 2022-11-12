@@ -2,6 +2,7 @@ name: Fixer, Styling & Optimizer
 
 on:
   issue_comment:
+  pull_request:
 
 permissions:
   actions: write
