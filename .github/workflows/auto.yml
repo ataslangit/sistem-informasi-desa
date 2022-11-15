@@ -1,0 +1,44 @@
+name: Labeling, Merging & Locking
+
+on:
+  issue_comment:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  labeling:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/merge') &&
+      github.event.comment.user.id == 2387514
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: automerge
+
+  squash_merge:
+    needs: labeling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            :ok_hand: **merging ...**
+      - name: Squash & Merge
+        id: squashmerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "(#${{ github.event.issue.number }})  ${{ github.event.issue.title }}"
+          MERGE_REMOVE_LABELS: "automerge"
+      - name: Lock PR
+        if: ${{ steps.squashmerge.outputs.mergeResult == 'merged' }}
+        uses: sudo-bot/action-pull-request-lock@v1.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.issue.number }}
