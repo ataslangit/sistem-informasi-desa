@@ -1,8 +1,6 @@
 name: Fixer, Styling & Optimizer
 
-on:
-  issue_comment:
-  pull_request:
+on: [workflow_dispatch]
 
 permissions:
   actions: write
@@ -12,10 +10,6 @@ permissions:
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
-    if: >-
-      github.event.issue.pull_request &&
-      startsWith(github.event.comment.body, '/format') &&
-      github.event.comment.user.id == 2387514
     steps:
       - uses: actions/checkout@v3
       - run: composer install
