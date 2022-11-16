@@ -2,11 +2,6 @@
 
 class Web_kategori_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT kategori FROM kategori WHERE parrent =0';

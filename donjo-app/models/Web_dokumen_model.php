@@ -2,11 +2,6 @@
 
 class Web_dokumen_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql = 'SELECT satuan FROM dokumen WHERE id_pend = 0

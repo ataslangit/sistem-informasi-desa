@@ -2,11 +2,6 @@
 
 class Analisis_indikator_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT pertanyaan FROM analisis_indikator';

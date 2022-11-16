@@ -2,11 +2,6 @@
 
 class Pamong_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function list_data()
     {
         $sql = 'SELECT u.* FROM tweb_desa_pamong u WHERE 1';
