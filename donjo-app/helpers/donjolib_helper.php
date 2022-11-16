@@ -4,11 +4,11 @@ if (! function_exists('view')) {
     /**
      * fungsi view() untuk menggantikan $this->load->view()
      */
-    function view(string $name, array $data = [], bool $return = false)
+    function view(string $view, array $data = [], bool $return = false)
     {
         $CI = &get_instance();
 
-        $CI->load->view($name, $data, $return);
+        $CI->load->view($view, $data, $return);
     }
 }
 
