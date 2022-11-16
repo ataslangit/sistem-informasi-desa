@@ -50,11 +50,11 @@ class Point extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 0;
 
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('point/table', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('point/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -73,11 +73,11 @@ class Point extends CI_Controller
         $header         = $this->header_model->get_data();
 
         $nav['act'] = 0;
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('point/form', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('point/form', $data);
+        view('footer');
     }
 
     public function sub_point($point = 1)
@@ -87,11 +87,11 @@ class Point extends CI_Controller
         $header           = $this->header_model->get_data();
         $nav['act']       = 0;
 
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('point/sub_point_table', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('point/sub_point_table', $data);
+        view('footer');
     }
 
     public function ajax_add_sub_point($point = 0, $id = 0)
@@ -104,7 +104,7 @@ class Point extends CI_Controller
             $data['form_action'] = site_url("point/insert_sub_point/{$point}");
         }
         $data['simbol'] = $this->plan_point_model->list_simbol();
-        $this->load->view('point/ajax_add_sub_point_form', $data);
+        view('point/ajax_add_sub_point_form', $data);
     }
 
     public function search()

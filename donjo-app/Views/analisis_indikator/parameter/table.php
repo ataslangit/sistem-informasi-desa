@@ -8,7 +8,7 @@
 
 </script>
 <div id="pageC">
-    <?php $this->load->view('analisis_master/left',$data);?>
+    <?php view('analisis_master/left',$data);?>
     <div class="content-header">
     </div>
     <div id="contentpane">

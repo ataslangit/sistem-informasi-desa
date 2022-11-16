@@ -26,10 +26,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('sosmed/facebook', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('sosmed/facebook', $data);
+        view('footer');
     }
 
     public function twitter()
@@ -40,10 +40,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('sosmed/twitter', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('sosmed/twitter', $data);
+        view('footer');
     }
 
     public function instagram()
@@ -53,10 +53,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('sosmed/google', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('sosmed/google', $data);
+        view('footer');
     }
 
     public function google()
@@ -66,10 +66,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('sosmed/instagram', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('sosmed/instagram', $data);
+        view('footer');
     }
 
     public function youtube()
@@ -79,10 +79,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('sosmed/youtube', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('sosmed/youtube', $data);
+        view('footer');
     }
 
     public function update($id = '')

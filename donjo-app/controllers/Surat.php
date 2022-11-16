@@ -29,23 +29,23 @@ class Surat extends CI_Controller
         $data['menu_surat2']   = $this->surat_model->list_surat2();
         $data['surat_favorit'] = $this->surat_model->list_surat_fav();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 1;
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/format_surat', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat/format_surat', $data);
+        view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/panduan');
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat/panduan');
+        view('footer');
     }
 
     public function form($url = '')
@@ -83,11 +83,11 @@ class Surat extends CI_Controller
         $data['form_action2'] = site_url("surat/doc/{$url}");
         $nav['act']           = 1;
         $header               = $this->header_model->get_data();
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
+        view('surat/nav', $nav);
         $this->load->view("surat/form/{$url}", $data);
-        $this->load->view('footer');
+        view('footer');
     }
 
     public function cetak($url = '')
@@ -112,7 +112,7 @@ class Surat extends CI_Controller
 
         $data['pengikut'] = $this->surat_model->pengikut();
         $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z);
-        $this->load->view('surat/print/print_' . $url . '', $data);
+        view('surat/print/print_' . $url . '', $data);
     }
 
     public function doc($url = '')

@@ -64,10 +64,10 @@ class Web extends CI_Controller
         $header                = $this->header_model->get_data();
         $nav['act']            = 0;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('web/artikel/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('web/artikel/table', $data);
+        view('footer');
     }
 
     public function form($cat = 1, $p = 1, $o = 0, $id = '')
@@ -89,16 +89,16 @@ class Web extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 0;
-        $this->load->view('header', $header);
-        //$this->load->view('web/spacer');
-        $this->load->view('web/nav', $nav);
+        view('header', $header);
+        //view('web/spacer');
+        view('web/nav', $nav);
         if ($cat !== 1003) {
-            $this->load->view('web/artikel/form', $data);
+            view('web/artikel/form', $data);
         } else {
-            $this->load->view('web/artikel/widget-form', $data);
+            view('web/artikel/widget-form', $data);
         }
 
-        $this->load->view('footer');
+        view('footer');
     }
 
     public function search($cat = 1)
@@ -168,7 +168,7 @@ class Web extends CI_Controller
     public function ajax_add_kategori($cat = 1, $p = 1, $o = 0)
     {
         $data['form_action'] = site_url("web/insert_kategori/{$cat}/{$p}/{$o}");
-        $this->load->view('web/artikel/ajax_add_kategori_form', $data);
+        view('web/artikel/ajax_add_kategori_form', $data);
     }
 
     public function insert_kategori($cat = 1, $p = 1, $o = 0)

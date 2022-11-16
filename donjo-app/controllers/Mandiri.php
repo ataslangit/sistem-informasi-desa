@@ -49,18 +49,18 @@ class Mandiri extends CI_Controller
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 1;
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('lapor/nav', $nav);
-        $this->load->view('mandiri/mandiri', $data);
-        $this->load->view('footer');
+        view('lapor/nav', $nav);
+        view('mandiri/mandiri', $data);
+        view('footer');
     }
 
     public function ajax_pin($p = 1, $o = 0, $id = 0)
     {
         $data['penduduk']    = $this->mandiri_model->list_penduduk();
         $data['form_action'] = site_url("mandiri/insert/{$id}");
-        $this->load->view('mandiri/ajax_pin', $data);
+        view('mandiri/ajax_pin', $data);
     }
 
     public function search()

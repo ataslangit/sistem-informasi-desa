@@ -8,7 +8,7 @@
 
 </script>
 <div id="pageC">
-    <?php $this->load->view('analisis_master/left',$data);?>
+    <?php view('analisis_master/left',$data);?>
     <div id="contentpane">
         <form id="mainform" name="mainform" action="" method="post">
             <div class="ui-layout-north panel">

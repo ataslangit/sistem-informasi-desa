@@ -1,10 +1,10 @@
-<?php $this->load->view('layouts/header.php');?>
+<?php view('layouts/header.php');?>
 <div id="contentwrapper">
     <div id="contentcolumn">
         <div class="innertube" style="padding-left:10px;">
             <?php
 						if($list_jawab){
-							$this->load->view('partials/analisis.php');
+							view('partials/analisis.php');
 						}else{ ?>
             <h2 class="judul">DAFTAR DATA STATISTIK ANALISIS DI TINGKAT DESA</h2>
             <h3>Klik judul Analisis untuk melihat tampilan detail data statistik</h3><br>
@@ -44,13 +44,13 @@
 </div>
 <div id="rightcolumn">
     <div class="innertube">
-        <?php $this->load->view('partials/side.right.stat.php');?>
+        <?php view('partials/side.right.stat.php');?>
     </div>
 </div>
 
 <div id="footer">
     <?php 
-				$this->load->view('partials/copywright.tpl.php');
+				view('partials/copywright.tpl.php');
 				?>
 </div>
 </div>

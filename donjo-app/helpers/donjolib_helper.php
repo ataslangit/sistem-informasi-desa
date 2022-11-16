@@ -1,5 +1,19 @@
 <?php
 
+if (! function_exists('view')) {
+    /**
+     * fungsi view() untuk menggantikan $this->load->view()
+     */
+    function view(string $view, array $data = [], bool $return = false)
+    {
+        $CI = &get_instance();
+
+        $CI->load->view($view, $data, $return);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];

@@ -52,10 +52,10 @@ class Komentar extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('komentar/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('komentar/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -76,11 +76,11 @@ class Komentar extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        $this->load->view('header', $header);
-        $this->load->view('web/spacer');
-        $this->load->view('web/nav', $nav);
-        $this->load->view('komentar/form', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/spacer');
+        view('web/nav', $nav);
+        view('komentar/form', $data);
+        view('footer');
     }
 
     public function search()

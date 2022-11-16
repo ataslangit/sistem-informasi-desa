@@ -51,11 +51,11 @@ class Polygon extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 5;
 
-        $this->load->view('header-gis', $header);
+        view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('polygon/table', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('polygon/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -73,11 +73,11 @@ class Polygon extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        $this->load->view('header-gis', $header);
+        view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('polygon/form', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('polygon/form', $data);
+        view('footer');
     }
 
     public function sub_polygon($polygon = 1)
@@ -87,11 +87,11 @@ class Polygon extends CI_Controller
         $header             = $this->header_model->get_data();
         $nav['act']         = 5;
 
-        $this->load->view('header-gis', $header);
+        view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('polygon/sub_polygon_table', $data);
-        $this->load->view('footer');
+        view('plan/nav', $nav);
+        view('polygon/sub_polygon_table', $data);
+        view('footer');
     }
 
     public function ajax_add_sub_polygon($polygon = 0, $id = 0)
@@ -106,10 +106,10 @@ class Polygon extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        $this->load->view('header-gis', $header);
+        view('header-gis', $header);
 
-        $this->load->view('plan/nav', $nav);
-        $this->load->view('polygon/ajax_add_sub_polygon_form', $data);
+        view('plan/nav', $nav);
+        view('polygon/ajax_add_sub_polygon_form', $data);
     }
 
     public function search()

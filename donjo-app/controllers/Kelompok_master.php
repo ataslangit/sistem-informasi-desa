@@ -58,12 +58,12 @@ class Kelompok_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok_master/table', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok_master/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -81,12 +81,12 @@ class Kelompok_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok_master/form', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok_master/form', $data);
+        view('footer');
     }
 
     public function search()

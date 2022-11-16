@@ -56,10 +56,10 @@ class Analisis_klasifikasi extends CI_Controller
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav');
-        $this->load->view('analisis_klasifikasi/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('analisis_master/nav');
+        view('analisis_klasifikasi/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -76,7 +76,7 @@ class Analisis_klasifikasi extends CI_Controller
         }
 
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
-        $this->load->view('analisis_klasifikasi/ajax_form', $data);
+        view('analisis_klasifikasi/ajax_form', $data);
     }
 
     public function search()

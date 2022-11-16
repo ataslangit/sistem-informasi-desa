@@ -52,10 +52,10 @@ class Gallery extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 3;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('gallery/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('gallery/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -74,10 +74,10 @@ class Gallery extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('gallery/form', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('gallery/form', $data);
+        view('footer');
     }
 
     public function search()
@@ -167,10 +167,10 @@ class Gallery extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 3;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('gallery/sub_gallery_table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('gallery/sub_gallery_table', $data);
+        view('footer');
     }
 
     public function form_sub_gallery($gallery = 0, $id = 0)
@@ -187,10 +187,10 @@ class Gallery extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('gallery/form_sub_gallery', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('gallery/form_sub_gallery', $data);
+        view('footer');
     }
 
     public function insert_sub_gallery($gallery = '')

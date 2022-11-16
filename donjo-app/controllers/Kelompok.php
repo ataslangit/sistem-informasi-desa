@@ -58,12 +58,12 @@ class Kelompok extends CI_Controller
         $data['list_master'] = $this->kelompok_model->list_master();
         $header              = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/table', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok/table', $data);
+        view('footer');
     }
 
     public function anggota($id = 0)
@@ -73,12 +73,12 @@ class Kelompok extends CI_Controller
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $header           = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/anggota/table', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok/anggota/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -98,12 +98,12 @@ class Kelompok extends CI_Controller
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/form', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok/form', $data);
+        view('footer');
     }
 
     public function form_anggota($id = 0, $id_a = 0)
@@ -121,22 +121,22 @@ class Kelompok extends CI_Controller
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 4;
 
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('kelompok/anggota/form', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('kelompok/anggota/form', $data);
+        view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('kelompok/nav2');
-        $this->load->view('kelompok/panduan');
-        $this->load->view('footer');
+        view('header', $header);
+        view('kelompok/nav2');
+        view('kelompok/panduan');
+        view('footer');
     }
 
     public function cetak()
@@ -144,7 +144,7 @@ class Kelompok extends CI_Controller
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        $this->load->view('kelompok/cetak', $data);
+        view('kelompok/cetak', $data);
     }
 
     public function excel()
@@ -152,7 +152,7 @@ class Kelompok extends CI_Controller
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        $this->load->view('kelompok/excel', $data);
+        view('kelompok/excel', $data);
     }
 
     public function cetak_a($id = 0)
@@ -161,7 +161,7 @@ class Kelompok extends CI_Controller
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        $this->load->view('kelompok/anggota/cetak', $data);
+        view('kelompok/anggota/cetak', $data);
     }
 
     public function excel_a($id = 0)
@@ -170,7 +170,7 @@ class Kelompok extends CI_Controller
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        $this->load->view('kelompok/anggota/excel', $data);
+        view('kelompok/anggota/excel', $data);
     }
 
     public function menu($id = '')
@@ -194,10 +194,10 @@ class Kelompok extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('kelompok/nav');
-        $this->load->view('kelompok/menu', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('kelompok/nav');
+        view('kelompok/menu', $data);
+        view('footer');
     }
 
     public function search()

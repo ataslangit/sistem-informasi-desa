@@ -5,7 +5,7 @@
         </div>
         <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
             <div class="teks">
-                <?php $this->load->view('surat/signature.php');?>
+                <?php view('surat/signature.php');?>
             </div>
         </div>
     </div>

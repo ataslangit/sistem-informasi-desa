@@ -48,11 +48,11 @@ class Surat_master extends CI_Controller
         $data['keyword'] = $this->surat_master_model->autocomplete();
         $header          = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/table', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat_master/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -70,17 +70,17 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/form', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat_master/form', $data);
+        view('footer');
     }
 
     public function form_upload($p = 1, $o = 0, $url = '')
     {
         $data['form_action'] = site_url("surat_master/upload/{$p}/{$o}/{$url}");
-        $this->load->view('surat_master/ajax-upload', $data);
+        view('surat_master/ajax-upload', $data);
     }
 
     public function atribut($id = '')
@@ -91,11 +91,11 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 3;
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat_master/atribut/table', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat_master/atribut/table', $data);
+        view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -111,10 +111,10 @@ class Surat_master extends CI_Controller
         $data['surat']        = $this->surat_master_model->get_surat();
         $data['surat_master'] = $this->surat_master_model->get_surat_master($in);
 
-        //	$this->load->view('header', $header);
-        //	$this->load->view('surat/nav');
-        $this->load->view('surat_master/atribut/ajax_form', $data);
-        //	$this->load->view('footer');
+        //	view('header', $header);
+        //	view('surat/nav');
+        view('surat_master/atribut/ajax_form', $data);
+        //	view('footer');
     }
 
     public function menu($id = '')
@@ -123,10 +123,10 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('surat/nav');
-        $this->load->view('surat_master/menu', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('surat/nav');
+        view('surat_master/menu', $data);
+        view('footer');
     }
 
     public function search()

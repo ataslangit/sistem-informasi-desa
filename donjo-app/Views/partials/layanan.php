@@ -27,7 +27,7 @@
 
 
 
-        <?php //$this->load->view('surat/signature.php');?>
+        <?php //view('surat/signature.php');?>
     </div>
     <div>
         <ol>
