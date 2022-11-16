@@ -2,11 +2,6 @@
 
 class Web_sosmed_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function get_sosmed($id = 0)
     {
         $sql   = 'SELECT * FROM media_sosial WHERE id = ?';

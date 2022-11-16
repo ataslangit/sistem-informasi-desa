@@ -2,11 +2,6 @@
 
 class Surat_keluar_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT no_surat FROM log_surat';

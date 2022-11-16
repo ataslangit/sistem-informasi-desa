@@ -2,11 +2,6 @@
 
 class Surat_master_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         $sql   = 'SELECT nama FROM tweb_surat_format';
