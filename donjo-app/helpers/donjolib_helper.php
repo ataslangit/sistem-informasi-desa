@@ -1,5 +1,13 @@
 <?php
 
+if(! function_exists('view')) {
+    function view(string $name , array $data = []): string
+    {
+        $CI = &get_instance();
+        return $CI->load->view($name, $data);
+    }
+}
+
 function Rpt($str = 0)
 {
     $satuan  = ['', ' satu', ' dua', ' tiga', ' empat', ' lima', ' enam', ' tujuh', ' delapan', ' sembilan'];
