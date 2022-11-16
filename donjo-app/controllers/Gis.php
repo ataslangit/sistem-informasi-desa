@@ -129,9 +129,9 @@ class Gis extends CI_Controller
         $data['keyword']         = $this->penduduk_model->autocomplete();
         $header                  = $this->header_model->get_data();
 
-        $this->load->view('gis/header', $header);
-        $this->load->view('gis/maps', $data);
-        $this->load->view('footer');
+        view('gis/header', $header);
+        view('gis/maps', $data);
+        view('footer');
     }
 
     public function search()
@@ -297,7 +297,7 @@ class Gis extends CI_Controller
         $data['pendidikan']  = $this->penduduk_model->list_pendidikan();
         $data['pekerjaan']   = $this->penduduk_model->list_pekerjaan();
         $data['form_action'] = site_url('gis/adv_search_proses');
-        $this->load->view('gis/ajax_adv_search_form', $data);
+        view('gis/ajax_adv_search_form', $data);
     }
 
     public function adv_search_proses()

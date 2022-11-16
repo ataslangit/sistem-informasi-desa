@@ -14,7 +14,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		$this->load->view('data_persil/menu_kiri.php')
+		view('data_persil/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane">
@@ -88,7 +88,7 @@ if($persil){
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		$this->load->view('data_persil/panduan.php');
+		view('data_persil/panduan.php');
 		?>
             </td>
         </tr>

@@ -4,13 +4,15 @@ if (! function_exists('view')) {
     /**
      * fungsi view() untuk menggantikan $this->load->view()
      */
-    function view(string $name, array $data = [], bool $return)
+    function view(string $name, array $data = [], bool $return = false)
     {
         $CI = &get_instance();
 
-        echo $CI->load->view($name, $data, $return);
+        $CI->load->view($name, $data, $return);
     }
 }
+
+/* -------------------------------------------------------------------------- */
 
 function Rpt($str = 0)
 {

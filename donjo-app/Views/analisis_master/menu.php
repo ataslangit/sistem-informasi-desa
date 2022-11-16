@@ -1,5 +1,5 @@
 <div id="pageC">
-    <?php $this->load->view('analisis_master/left',$data);?>
+    <?php view('analisis_master/left',$data);?>
     <div id="contentpane">
         <div class="ui-layout-north panel">
             <h3><a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></h3>

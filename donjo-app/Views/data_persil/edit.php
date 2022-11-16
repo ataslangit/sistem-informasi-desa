@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		$this->load->view('program_bantuan/menu_kiri.php')
+		view('program_bantuan/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane">
@@ -73,7 +73,7 @@
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		$this->load->view('program_bantuan/panduan.php')
+		view('program_bantuan/panduan.php')
 		?>
             </td>
         </tr>

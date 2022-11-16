@@ -43,11 +43,11 @@ class Modul extends CI_Controller
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('setting/nav', $nav);
-        $this->load->view('setting/modul/table', $data);
-        $this->load->view('footer');
+        view('setting/nav', $nav);
+        view('setting/modul/table', $data);
+        view('footer');
     }
 
     public function form($id = '')
@@ -62,12 +62,12 @@ class Modul extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
 
         $nav['act'] = 1;
-        $this->load->view('setting/nav', $nav);
-        $this->load->view('setting/modul/form', $data);
-        $this->load->view('footer');
+        view('setting/nav', $nav);
+        view('setting/modul/form', $data);
+        view('footer');
     }
 
     public function filter()

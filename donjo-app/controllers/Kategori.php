@@ -53,10 +53,10 @@ class Kategori extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 7;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('kategori/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('kategori/table', $data);
+        view('footer');
     }
 
     public function form($id = '')
@@ -72,10 +72,10 @@ class Kategori extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 7;
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('kategori/form', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('kategori/form', $data);
+        view('footer');
     }
 
     public function sub_kategori($kategori = 1)
@@ -86,10 +86,10 @@ class Kategori extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 7;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('kategori/sub_kategori_table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('kategori/sub_kategori_table', $data);
+        view('footer');
     }
 
     public function ajax_add_sub_kategori($kategori = '', $id = '')
@@ -105,7 +105,7 @@ class Kategori extends CI_Controller
             $data['subkategori'] = null;
             $data['form_action'] = site_url("kategori/insert_sub_kategori/{$kategori}");
         }
-        $this->load->view('kategori/ajax_add_sub_kategori_form', $data);
+        view('kategori/ajax_add_sub_kategori_form', $data);
     }
 
     public function search()

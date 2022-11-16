@@ -29,7 +29,7 @@ class Siteman extends CI_Controller
         $_SESSION['sesi']       = 'kosong';
         $_SESSION['timeout']    = 0;
 
-        $this->load->view('siteman', $header);
+        view('siteman', $header);
         $_SESSION['siteman'] = 0;
     }
 

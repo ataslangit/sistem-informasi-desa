@@ -26,10 +26,10 @@ class Widget extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 5;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('web/widget/facebook', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('web/widget/facebook', $data);
+        view('footer');
     }
 
     public function twitter()
@@ -40,10 +40,10 @@ class Widget extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 5;
 
-        $this->load->view('header', $header);
-        $this->load->view('web/nav', $nav);
-        $this->load->view('web/widget/twitter', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('web/nav', $nav);
+        view('web/widget/twitter', $data);
+        view('footer');
     }
 
     public function update($tipe = '', $id = '')

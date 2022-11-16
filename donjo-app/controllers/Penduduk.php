@@ -102,10 +102,10 @@ class Penduduk extends CI_Controller
 
         $data['info'] = $this->penduduk_model->get_filter();
 
-        $this->load->view('header', $header);
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('sid/kependudukan/penduduk', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('sid/nav', $nav);
+        view('sid/kependudukan/penduduk', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -156,11 +156,11 @@ class Penduduk extends CI_Controller
         $data['cacat']             = $this->penduduk_model->list_cacat();
         $data['sakit_menahun']     = $this->penduduk_model->list_sakit_menahun();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 2;
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('sid/kependudukan/penduduk_form', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('sid/kependudukan/penduduk_form', $data);
+        view('footer');
     }
 
     public function detail($p = 1, $o = 0, $id = '')
@@ -172,11 +172,11 @@ class Penduduk extends CI_Controller
         $data['penduduk']      = $this->penduduk_model->get_penduduk($id);
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 2;
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('sid/kependudukan/penduduk_detail', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('sid/kependudukan/penduduk_detail', $data);
+        view('footer');
     }
 
     public function dokumen($id = '')
@@ -185,25 +185,25 @@ class Penduduk extends CI_Controller
         $data['penduduk']     = $this->penduduk_model->get_penduduk($id);
         $header               = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
+        view('header', $header);
         $nav['act'] = 2;
-        $this->load->view('sid/nav', $nav);
-        $this->load->view('sid/kependudukan/penduduk_dokumen', $data);
-        $this->load->view('footer');
+        view('sid/nav', $nav);
+        view('sid/kependudukan/penduduk_dokumen', $data);
+        view('footer');
     }
 
     public function dokumen_form($id = 0)
     {
         $data['penduduk']    = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url('penduduk/dokumen_insert');
-        $this->load->view('sid/kependudukan/dokumen_form', $data);
+        view('sid/kependudukan/dokumen_form', $data);
     }
 
     public function dokumen_list($id = 0)
     {
         $data['list_dokumen'] = $this->penduduk_model->list_dokumen($id);
         $data['penduduk']     = $this->penduduk_model->get_penduduk($id);
-        $this->load->view('sid/kependudukan/dokumen_ajax', $data);
+        view('sid/kependudukan/dokumen_ajax', $data);
     }
 
     public function dokumen_insert()
@@ -229,7 +229,7 @@ class Penduduk extends CI_Controller
     {
         $data['desa']     = $this->header_model->get_data();
         $data['penduduk'] = $this->penduduk_model->get_penduduk($id);
-        $this->load->view('sid/kependudukan/cetak_biodata', $data);
+        view('sid/kependudukan/cetak_biodata', $data);
     }
 
     public function search()
@@ -375,7 +375,7 @@ class Penduduk extends CI_Controller
     public function delete_confirm($p = 1, $o = 0, $id = '')
     {
         $data['form_action'] = site_url("penduduk/index/{$p}/{$o}/{$id}");
-        $this->load->view('sid/kependudukan/ajax_delete', $data);
+        view('sid/kependudukan/ajax_delete', $data);
     }
 
     public function delete($p = 1, $o = 0, $id = '')
@@ -495,7 +495,7 @@ class Penduduk extends CI_Controller
         $data['pendidikan_kk']       = $this->penduduk_model->list_pendidikan_kk();
         $data['pekerjaan']           = $this->penduduk_model->list_pekerjaan();
         $data['form_action']         = site_url('penduduk/adv_search_proses');
-        $this->load->view('sid/kependudukan/ajax_adv_search_form', $data);
+        view('sid/kependudukan/ajax_adv_search_form', $data);
     }
 
     public function adv_search_proses()
@@ -525,7 +525,7 @@ class Penduduk extends CI_Controller
         $data['dusun'] = $this->penduduk_model->list_dusun();
 
         $data['form_action'] = site_url("penduduk/pindah_proses/{$id}");
-        $this->load->view('sid/kependudukan/ajax_pindah_form', $data);
+        view('sid/kependudukan/ajax_pindah_form', $data);
     }
 
     public function ajax_penduduk_pindah_rw($dusun = '')
@@ -607,7 +607,7 @@ class Penduduk extends CI_Controller
 
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 
-        $this->load->view('sid/kependudukan/maps', $data);
+        view('sid/kependudukan/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')
@@ -623,14 +623,14 @@ class Penduduk extends CI_Controller
 
         $data['form_action'] = site_url('penduduk');
 
-        $this->load->view('sid/kependudukan/maps', $data);
+        view('sid/kependudukan/maps', $data);
     }
 
     public function edit_status_dasar($p = 1, $o = 0, $id = 0)
     {
         $data['nik']         = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url("penduduk/update_status_dasar/{$p}/{$o}/{$id}");
-        $this->load->view('sid/kependudukan/ajax_edit_status_dasar', $data);
+        view('sid/kependudukan/ajax_edit_status_dasar', $data);
     }
 
     public function update_status_dasar($p = 1, $o = 0, $id = '')
@@ -643,14 +643,14 @@ class Penduduk extends CI_Controller
     {
         $data['info'] = $this->penduduk_model->get_filter();
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-        $this->load->view('sid/kependudukan/penduduk_print', $data);
+        view('sid/kependudukan/penduduk_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['info'] = $this->penduduk_model->get_filter();
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-        $this->load->view('sid/kependudukan/penduduk_excel', $data);
+        view('sid/kependudukan/penduduk_excel', $data);
     }
 
     public function statistik($tipe = '', $nomor = '', $sex = '')

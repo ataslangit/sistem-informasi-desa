@@ -63,10 +63,10 @@ class Analisis_master extends CI_Controller
         $data['list_subjek'] = $this->analisis_master_model->list_subjek();
         $header              = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav', $nav);
-        $this->load->view('analisis_master/table', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('analisis_master/nav', $nav);
+        view('analisis_master/table', $data);
+        view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -87,10 +87,10 @@ class Analisis_master extends CI_Controller
         $data['list_analisis'] = $this->analisis_master_model->list_analisis_child();
         $header                = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav', $nav);
-        $this->load->view('analisis_master/form', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('analisis_master/nav', $nav);
+        view('analisis_master/form', $data);
+        view('footer');
     }
 
     public function panduan()
@@ -98,10 +98,10 @@ class Analisis_master extends CI_Controller
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
 
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav', $nav);
-        $this->load->view('analisis_master/panduan');
-        $this->load->view('footer');
+        view('header', $header);
+        view('analisis_master/nav', $nav);
+        view('analisis_master/panduan');
+        view('footer');
     }
 
     public function import_analisis()
@@ -110,7 +110,7 @@ class Analisis_master extends CI_Controller
 
         $nav['act']          = 1;
         $data['form_action'] = site_url('analisis_master/import');
-        $this->load->view('analisis_master/import', $data);
+        view('analisis_master/import', $data);
     }
 
     public function menu($id = '', $p = 0)
@@ -145,10 +145,10 @@ class Analisis_master extends CI_Controller
         //----
 
         $nav['act'] = 1;
-        $this->load->view('header', $header);
-        $this->load->view('analisis_master/nav', $nav);
-        $this->load->view('analisis_master/menu', $data);
-        $this->load->view('footer');
+        view('header', $header);
+        view('analisis_master/nav', $nav);
+        view('analisis_master/menu', $data);
+        view('footer');
     }
 
     public function search()

@@ -46,25 +46,25 @@ class Main extends CI_Controller
 
     public function initial()
     {
-        $this->load->view('install');
+        view('install');
     }
 
     public function install()
     {
         $out = $this->config_model->initial();
-        $this->load->view('init', $out);
+        view('init', $out);
     }
 
     public function init($out = null)
     {
-        $this->load->view('init', $out);
+        view('init', $out);
     }
 
     public function auth()
     {
         $this->user_model->login();
         $header = $this->header_model->get_config();
-        $this->load->view('siteman', $header);
+        view('siteman', $header);
     }
 
     public function logout()
@@ -72,6 +72,6 @@ class Main extends CI_Controller
         $this->config_model->opt();
         $this->user_model->logout();
         $header = $this->header_model->get_config();
-        $this->load->view('siteman', $header);
+        view('siteman', $header);
     }
 }

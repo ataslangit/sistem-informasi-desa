@@ -49,11 +49,11 @@ class Keluar extends CI_Controller
         $data['keyword']  = $this->surat_keluar_model->autocomplete();
         $header           = $this->header_model->get_data();
         $nav['act']       = 2;
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat/surat_keluar', $data);
+        view('footer');
     }
 
     public function search()
@@ -90,11 +90,11 @@ class Keluar extends CI_Controller
         $data['nik']['no']   = $nik;
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar_perorangan', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat/surat_keluar_perorangan', $data);
+        view('footer');
     }
 
     public function graph()
@@ -103,11 +103,11 @@ class Keluar extends CI_Controller
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
         $data['stat']        = $this->surat_keluar_model->grafik();
-        $this->load->view('header', $header);
+        view('header', $header);
 
-        $this->load->view('surat/nav', $nav);
-        $this->load->view('surat/surat_keluar_graph', $data);
-        $this->load->view('footer');
+        view('surat/nav', $nav);
+        view('surat/surat_keluar_graph', $data);
+        view('footer');
     }
 
     public function filter()
