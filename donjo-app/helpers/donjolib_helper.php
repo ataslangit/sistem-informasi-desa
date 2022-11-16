@@ -1,10 +1,14 @@
 <?php
 
-if(! function_exists('view')) {
-    function view(string $name , array $data = []): string
+if (! function_exists('view')) {
+    /**
+     * fungsi view() untuk menggantikan $this->load->view()
+     */
+    function view(string $name, array $data = [], bool $return)
     {
         $CI = &get_instance();
-        return $CI->load->view($name, $data);
+
+        echo $CI->load->view($name, $data, $return);
     }
 }
 
