@@ -9,10 +9,10 @@ class Area extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-
+        $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('plan_area_model');
+        $this->load->model('user_model');
 
         $this->load->database();
     }
@@ -75,7 +75,7 @@ class Area extends CI_Controller
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']         = $this->plan_area_model->get_desa();
+        $data['desa']         = $this->config_model->get_data();
         $data['list_polygon'] = $this->plan_area_model->list_polygon();
         $data['dusun']        = $this->plan_area_model->list_dusun();
 
@@ -106,7 +106,7 @@ class Area extends CI_Controller
             $data['area'] = null;
         }
 
-        $data['desa']        = $this->plan_area_model->get_desa();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("area/update_maps/{$p}/{$o}/{$id}");
         view('area/maps', $data);
     }
