@@ -14,7 +14,9 @@ Rilis: __belum riilis__
 -
 
 ## :capital_abcd: Lain-lain
--
+- Menghapus konstruktor kosong
+- Menggabungkan pemanggilan config desa langsunglewat `config_model`
+- Menghapus `donjo-app/models/Apis.php` karena kemungkinan tidak digunakan
 
 ## :link: Link
 
