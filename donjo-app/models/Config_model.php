@@ -288,16 +288,6 @@ class Config_model extends CI_Model
         $this->db->query($a);
     }
 
-    public function kosong_web()
-    {
-        $a = 'TRUNCATE tweb_wil_clusterdesa';
-        $this->db->query($a);
-        $a = 'TRUNCATE tweb_keluarga';
-        $this->db->query($a);
-        $a = 'TRUNCATE tweb_penduduk';
-        $this->db->query($a);
-    }
-
     public function sysinfo()
     {
         exec('systeminfo', $ret);
