@@ -17,7 +17,9 @@ class Siteman extends CI_Controller
     public function index()
     {
         $this->user_model->logout();
-        $header = $this->header_model->get_config();
+        $header = [
+            'desa' => $this->config_model->get_data()
+        ];
 
         if (! isset($_SESSION['siteman'])) {
             $_SESSION['siteman'] = 0;
