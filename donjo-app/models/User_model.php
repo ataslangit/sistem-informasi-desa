@@ -461,23 +461,4 @@ class User_model extends CI_Model
         fwrite($handle, $string);
         fclose($handle);
     }
-
-    public function send_data()
-    {
-        $ip      = '127.0.0.1';
-        $Connect = fsockopen($ip, '80', $errno, $errstr, 1);
-        if ($Connect) {
-            $soap_request = "<GetAttLog><ArgComKey xsi:type=\"xsd:integer\">{$key}</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">{$p['id']}</PIN></Arg></GetAttLog>";
-            fwrite($Connect, 'POST /iWsService HTTP/1.0' . $newLine);
-            fwrite($Connect, 'Content-Type: text/xml' . $newLine);
-            fwrite($Connect, 'Content-Length: ' . strlen($soap_request) . $newLine . $newLine);
-            fwrite($Connect, $soap_request . $newLine);
-            $buffer = '';
-
-            while ($Response = fgets($Connect, 8192)) {
-                $buffer .= $Response;
-            }
-            echo $buffer;
-        }
-    }
 }
