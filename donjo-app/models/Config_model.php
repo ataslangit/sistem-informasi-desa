@@ -322,17 +322,6 @@ class Config_model extends CI_Model
         return $pd1;
     }
 
-    public function patch()
-    {
-        $a = 'UPDATE analisis_indikator SET act_analisis=0 WHERE id_tipe IN(2,3,4)';
-        $this->db->query($a);
-        $this->cls();
-
-        $b = "SELECT id FROM tweb_wil_clusterdesa WHERE rt <> '-' AND rt <> 0 AND rw <> 0 AND rw <> '-'";
-        //$query 	= $this->db->query($sql);
-        //$data	= $query->result_array();
-    }
-
     public function opt()
     {
         $a = 'OPTIMIZE TABLE analisis_indikator, analisis_kategori_indikator, analisis_klasifikasi, analisis_master, analisis_parameter, analisis_partisipasi, analisis_periode, analisis_ref_state, analisis_ref_subjek, analisis_respon, analisis_respon_hasil, analisis_tipe_indikator, area, artikel, config, data_persil, data_persil_jenis, data_persil_log, data_persil_peruntukan, detail_log_penduduk, dokumen, gambar_gallery, garis, gis_simbol, inbox, kategori, kelompok, kelompok_anggota, kelompok_master, komentar, kontak, kontak_grup, line, log_bulanan, log_penduduk, log_perubahan_penduduk, log_surat, lokasi, media_sosial, menu, outbox, point, polygon, program, program_peserta, recent_status, ref_bedah_rumah, ref_blt, ref_jamkesmas, ref_kelas_sosial, ref_pkh, ref_raskin, sentitems, setting_modul, setting_sms, sys_traffic, tweb_alamat_sekarang, tweb_desa_pamong, tweb_keluarga, tweb_penduduk, tweb_penduduk_mandiri, tweb_penduduk_map, tweb_penduduk_umur, tweb_rtm, tweb_surat_atribut, tweb_surat_format, tweb_wil_clusterdesa, user;';
