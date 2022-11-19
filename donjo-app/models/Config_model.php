@@ -298,47 +298,6 @@ class Config_model extends CI_Model
         $this->db->query($a);
     }
 
-    public function upgrade()
-    {
-        $a = 'DROP TABLE tweb_rtm';
-        $this->db->query($a);
-        $a = 'DROP TABLE hasil_analisis_keluarga';
-        $this->db->query($a);
-        $a = 'DROP TABLE analisis_keluarga';
-        $this->db->query($a);
-
-        $a = 'DROP TABLE klasifikasi_analisis_keluarga';
-        $this->db->query($a);
-
-        $a = 'DROP TABLE master_analisis_keluarga';
-        $this->db->query($a);
-
-        $a = 'DROP TABLE sub_analisis_keluarga';
-        $this->db->query($a);
-
-        $a = 'DROP TABLE tipe_analisis';
-        $this->db->query($a);
-
-        $a = 'DROP TABLE tweb_rtm_hubungan';
-        $this->db->query($a);
-
-        $a = 'UPDATE tweb_penduduk SET id_rtm = 0, rtm_level = 0 WHERE 1';
-        $this->db->query($a);
-
-        $a = 'TRUNCATE tweb_rtm';
-        $this->db->query($a);
-        $a = 'TRUNCATE hasil_analisis_keluarga';
-        $this->db->query($a);
-        $a = 'TRUNCATE analisis_keluarga';
-        $this->db->query($a);
-
-        if ($b) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function sysinfo()
     {
         exec('systeminfo', $ret);
