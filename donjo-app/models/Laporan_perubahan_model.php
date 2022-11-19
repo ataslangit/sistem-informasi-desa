@@ -45,14 +45,6 @@ class Laporan_perubahan_model extends CI_Model
         return $bulan;
     }
 
-    public function configku()
-    {
-        $sql   = 'SELECT * FROM config limit 1 ';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
     public function list_data()
     {
         $sql = "SELECT x.dusun,
