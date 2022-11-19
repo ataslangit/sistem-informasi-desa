@@ -9,10 +9,10 @@ class Plan extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-
+        $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('plan_lokasi_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -82,7 +82,7 @@ class Plan extends CI_Controller
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']       = $this->plan_lokasi_model->get_desa();
+        $data['desa']       = $this->config_model->get_data();
         $data['list_point'] = $this->plan_lokasi_model->list_point();
         $data['dusun']      = $this->plan_lokasi_model->list_dusun();
 
@@ -113,7 +113,7 @@ class Plan extends CI_Controller
             $data['lokasi'] = null;
         }
 
-        $data['desa']        = $this->plan_lokasi_model->get_desa();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
         view('lokasi/maps', $data);
     }
