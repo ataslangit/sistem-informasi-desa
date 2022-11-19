@@ -242,14 +242,6 @@ class Laporan_penduduk_model extends CI_Model
         return $data;
     }
 
-    public function get_config()
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        return $query->row_array();
-    }
-
     public function list_data_rentang()
     {
         $sql   = 'SELECT * FROM tweb_penduduk_umur WHERE status=1 order by dari ';
