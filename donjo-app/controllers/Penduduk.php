@@ -15,8 +15,9 @@ class Penduduk extends CI_Controller
             redirect('siteman');
         }
 
-        $this->load->model('penduduk_model');
+        $this->load->model('config_model');
         $this->load->model('header_model');
+        $this->load->model('penduduk_model');
     }
 
     public function clear()
@@ -603,7 +604,7 @@ class Penduduk extends CI_Controller
         $data['o'] = $o;
 
         $data['penduduk'] = $this->penduduk_model->get_penduduk_map($id);
-        $data['desa']     = $this->penduduk_model->get_desa();
+        $data['desa']     = $this->config_model->get_data();
 
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 
