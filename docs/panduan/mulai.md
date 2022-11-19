@@ -30,3 +30,7 @@ Ikuti beberapa langkah berikut:
 - Silakan simpan dan akses halaman awal situs, misal: http://example.com/  
   Akan ditujukan pada halaman awal instalasi database.  
   Catat & simpan username maupun password yang diberikan, bila perlu dapat diubah lewat halaman siteman
+
+  ::: warning PENTING
+  Mulai v4.5.0 folder `public` adalah yang diload pertama. Silakan baca [panduan](migrasi-400-450).
+  :::
