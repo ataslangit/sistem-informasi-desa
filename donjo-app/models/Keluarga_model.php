@@ -691,14 +691,6 @@ class Keluarga_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_desa()
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        return $query->row_array();
-    }
-
     public function list_hubungan()
     {
         $sql   = 'SELECT *,nama as hubungan FROM tweb_penduduk_hubungan WHERE 1';

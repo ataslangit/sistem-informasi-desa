@@ -9,9 +9,10 @@ class Keluarga extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
+        $this->load->model('config_model');
         $this->load->model('keluarga_model');
         $this->load->model('penduduk_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
@@ -744,7 +745,7 @@ class Keluarga extends CI_Controller
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']     = $this->keluarga_model->get_desa();
+        $data['desa']     = $this->config_model->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -768,7 +769,7 @@ class Keluarga extends CI_Controller
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']      = $this->keluarga_model->get_desa();
+        $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 1;
         $header            = $this->header_model->get_data();
@@ -777,7 +778,7 @@ class Keluarga extends CI_Controller
 
     public function doc_kk($id = 0)
     {
-        $data['desa'] = $this->keluarga_model->get_desa();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
