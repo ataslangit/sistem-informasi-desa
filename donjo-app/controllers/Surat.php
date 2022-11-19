@@ -14,10 +14,11 @@ class Surat extends CI_Controller
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
+        $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('penduduk_model');
-        $this->load->model('surat_model');
         $this->load->model('surat_keluar_model');
+        $this->load->model('surat_model');
     }
 
     public function index()
@@ -107,7 +108,7 @@ class Surat extends CI_Controller
         $data['pribadi'] = $this->surat_model->get_data_pribadi($id);
         $data['kk']      = $this->surat_model->get_data_kk($id);
 
-        $data['desa']   = $this->surat_model->get_data_desa();
+        $data['desa']   = $this->config_model->get_data();
         $data['pamong'] = $this->surat_model->get_pamong($_POST['pamong']);
 
         $data['pengikut'] = $this->surat_model->pengikut();
