@@ -18,7 +18,7 @@ class Siteman extends CI_Controller
     {
         $this->user_model->logout();
         $header = [
-            'desa' => $this->config_model->get_data()
+            'desa' => $this->config_model->get_data(),
         ];
 
         if (! isset($_SESSION['siteman'])) {

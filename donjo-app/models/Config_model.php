@@ -127,7 +127,7 @@ class Config_model extends CI_Model
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
 
-        if($return_array) {
+        if ($return_array) {
             return $query->result_array();
         }
 

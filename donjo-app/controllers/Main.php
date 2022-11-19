@@ -64,7 +64,7 @@ class Main extends CI_Controller
     {
         $this->user_model->login();
         $header = [
-            'desa' => $this->config_model->get_data()
+            'desa' => $this->config_model->get_data(),
         ];
         view('siteman', $header);
     }
@@ -74,7 +74,7 @@ class Main extends CI_Controller
         $this->config_model->opt();
         $this->user_model->logout();
         $header = [
-            'desa' => $this->config_model->get_data()
+            'desa' => $this->config_model->get_data(),
         ];
 
         view('siteman', $header);
