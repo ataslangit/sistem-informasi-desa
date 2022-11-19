@@ -17,6 +17,7 @@ class Rtm extends CI_Controller
             redirect('siteman');
         }
         $this->load->model('header_model');
+        $this->load->model('config_model');
     }
 
     public function clear()
@@ -344,7 +345,7 @@ class Rtm extends CI_Controller
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']     = $this->rtm_model->get_desa();
+        $data['desa']     = $this->config_model->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -368,7 +369,7 @@ class Rtm extends CI_Controller
         $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']      = $this->rtm_model->get_desa();
+        $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
         $header            = $this->header_model->get_data();

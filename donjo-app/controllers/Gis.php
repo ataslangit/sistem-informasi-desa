@@ -9,13 +9,13 @@ class Gis extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-
+        $this->load->model('config_model');
+        $this->load->model('header_model');
         $this->load->model('penduduk_model');
-        $this->load->model('plan_lokasi_model');
         $this->load->model('plan_area_model');
         $this->load->model('plan_garis_model');
-        $this->load->model('header_model');
+        $this->load->model('plan_lokasi_model');
+        $this->load->model('user_model');
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
@@ -121,7 +121,7 @@ class Gis extends CI_Controller
         $data['wilayah']         = $this->penduduk_model->list_wil();
         $data['list_agama']      = $this->penduduk_model->list_agama();
         $data['list_pendidikan'] = $this->penduduk_model->list_pendidikan();
-        $data['desa']            = $this->penduduk_model->get_desa();
+        $data['desa']            = $this->config_model->get_data();
         $data['lokasi']          = $this->plan_lokasi_model->list_data();
         $data['garis']           = $this->plan_garis_model->list_data();
         $data['area']            = $this->plan_area_model->list_data();

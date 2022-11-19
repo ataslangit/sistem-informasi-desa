@@ -10,7 +10,7 @@ class Garis extends CI_Controller
         parent::__construct();
 
         $this->load->model('user_model');
-
+        $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('plan_garis_model');
 
@@ -72,7 +72,7 @@ class Garis extends CI_Controller
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $data['desa']      = $this->plan_garis_model->get_desa();
+        $data['desa']      = $this->config_model->get_data();
         $data['list_line'] = $this->plan_garis_model->list_line();
         $data['dusun']     = $this->plan_garis_model->list_dusun();
 
@@ -103,7 +103,7 @@ class Garis extends CI_Controller
             $data['garis'] = null;
         }
 
-        $data['desa']        = $this->plan_garis_model->get_desa();
+        $data['desa']        = $this->config->get_data();
         $data['form_action'] = site_url("garis/update_maps/{$p}/{$o}/{$id}");
         view('garis/maps', $data);
     }

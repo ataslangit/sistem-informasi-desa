@@ -63,7 +63,9 @@ class Main extends CI_Controller
     public function auth()
     {
         $this->user_model->login();
-        $header = $this->header_model->get_config();
+        $header = [
+            'desa' => $this->config_model->get_data(),
+        ];
         view('siteman', $header);
     }
 
@@ -71,7 +73,10 @@ class Main extends CI_Controller
     {
         $this->config_model->opt();
         $this->user_model->logout();
-        $header = $this->header_model->get_config();
+        $header = [
+            'desa' => $this->config_model->get_data(),
+        ];
+
         view('siteman', $header);
     }
 }

@@ -1,5 +1,6 @@
 <?php
-?><?php class Plan_area_model extends CI_Model
+
+class Plan_area_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -281,13 +282,4 @@
 
         return $query->result_array();
     }
-
-    public function get_desa()
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        return $query->row_array();
-    }
 }
-?>

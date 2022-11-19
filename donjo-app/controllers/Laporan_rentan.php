@@ -15,6 +15,7 @@ class Laporan_rentan extends CI_Controller
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
+        $this->load->model('config_model');
         $this->load->model('header_model');
 
         $_SESSION['success']  = 0;
@@ -40,7 +41,7 @@ class Laporan_rentan extends CI_Controller
         }
 
         $data['list_dusun'] = $this->laporan_bulanan_model->list_dusun();
-        $data['config']     = $this->laporan_bulanan_model->configku();
+        $data['config']     = $this->config_model->get_data(true);
 
         $data['main'] = $this->laporan_bulanan_model->list_data();
 
@@ -54,14 +55,14 @@ class Laporan_rentan extends CI_Controller
 
     public function cetak()
     {
-        $data['config'] = $this->laporan_bulanan_model->configku();
+        $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
         view('laporan/kelompok_print', $data);
     }
 
     public function excel()
     {
-        $data['config'] = $this->laporan_bulanan_model->configku();
+        $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
         view('laporan/kelompok_excel', $data);
     }

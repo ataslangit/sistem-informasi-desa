@@ -178,14 +178,6 @@ class Surat_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_data_desa()
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        return $query->row_array();
-    }
-
     public function get_pamong($id = 0)
     {
         $sql   = 'SELECT u.* FROM tweb_desa_pamong u WHERE pamong_id=?';
@@ -284,6 +276,8 @@ class Surat_model extends CI_Model
 
     public function coba($url = '')
     {
+        $this->load->model('config_model');
+
         $g = $_POST['pamong'];
         $u = $_SESSION['user'];
         $z = $_POST['nomor'];
@@ -300,7 +294,7 @@ class Surat_model extends CI_Model
         $input  = $_POST;
         $tgl    = tgl_indo(date('Y m d'));
         $thn    = date('Y');
-        $config = $this->get_data_desa();
+        $config = $this->config_model->get_data();
         $surat  = $this->get_surat($url);
 
         $tgllhr                  = strtoupper(tgl_indo($individu['tanggallahir']));
