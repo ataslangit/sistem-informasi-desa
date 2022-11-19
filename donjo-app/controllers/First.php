@@ -57,7 +57,7 @@ class First extends CI_Controller
     public function index($p = 1)
     {
         $data['p']             = $p;
-        $data['desa']          = $this->first_m->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['headline']      = $this->first_artikel_m->get_headline();
@@ -93,7 +93,7 @@ class First extends CI_Controller
             redirect('first');
         } else {
             $data['p']             = $p;
-            $data['desa']          = $this->first_m->get_data();
+            $data['desa']          = $this->config_model->get_data();
             $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
             $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
             $data['headline']      = $this->first_artikel_m->get_headline();
@@ -131,7 +131,7 @@ class First extends CI_Controller
         $id           = explode('-', $id);
         $id           = $id[0];
         $data['p']    = $p;
-        $data['desa'] = $this->first_m->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['paging']  = $this->first_artikel_m->paging($p);
         $data['artikel'] = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
@@ -160,7 +160,7 @@ class First extends CI_Controller
         $data['paging'] = $this->first_artikel_m->paging_arsip($p);
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-        $data['desa']          = $this->first_m->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['sosmed']        = $this->first_artikel_m->list_sosmed();
@@ -181,7 +181,7 @@ class First extends CI_Controller
     {
         $data['p'] = $p;
 
-        $data['desa'] = $this->first_m->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['paging']        = $this->first_artikel_m->paging($p);
@@ -209,7 +209,7 @@ class First extends CI_Controller
     {
         $data['p']    = $p;
         $data['gal']  = $gal;
-        $data['desa'] = $this->first_m->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['paging']  = $this->first_gallery_m->paging($p);
         $data['gallery'] = $this->first_gallery_m->gallery_show($data['paging']->offset, $data['paging']->per_page);
@@ -264,7 +264,7 @@ class First extends CI_Controller
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $this->first_m->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['stat']          = $this->first_penduduk_m->list_data($stat);
@@ -284,7 +284,7 @@ class First extends CI_Controller
     {
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $this->first_m->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -311,7 +311,7 @@ class First extends CI_Controller
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['main']          = $this->first_penduduk_m->wilayah();
         $data['heading']       = 'Populasi Per Wilayah';
-        $data['desa']          = $this->first_m->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -333,7 +333,7 @@ class First extends CI_Controller
         $data['tipe']  = 2;
         $data['tipex'] = $tipex;
 
-        $data['desa'] = $this->first_m->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
@@ -352,7 +352,7 @@ class First extends CI_Controller
 
     public function agenda($stat = 0)
     {
-        $data['desa']        = $this->first_m->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['menu_atas']   = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']   = $this->first_menu_m->list_menu_kiri();
         $data['artikel']     = $this->first_artikel_m->agenda_show();
@@ -369,7 +369,7 @@ class First extends CI_Controller
     public function kategori($kat = 0, $p = 0)
     {
         $data['p']         = $p;
-        $data['desa']      = $this->first_m->get_data();
+        $data['desa']      = $this->config_model->get_data();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['headline']  = null;
