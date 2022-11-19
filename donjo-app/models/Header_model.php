@@ -2,15 +2,6 @@
 
 class Header_model extends CI_Model
 {
-    public function get_id_user($user = '')
-    {
-        $sql   = 'SELECT id FROM user WHERE username=?';
-        $query = $this->db->query($sql, $user);
-        $data  = $query->row_array();
-
-        return $data['id'];
-    }
-
     public function get_data()
     {
         // global variabel
