@@ -15,6 +15,7 @@ class Laporan extends CI_Controller
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
+        $this->load->model('config_model');
         $this->load->model('header_model');
 
         $_SESSION['success'] = 0;
@@ -56,7 +57,7 @@ class Laporan extends CI_Controller
 
         $data['bulan']          = $data['bulanku'];
         $data['tahun']          = $data['tahunku'];
-        $data['config']         = $this->laporan_bulanan_model->configku();
+        $data['config']         = $this->config_model->get_data(true);
         $data['penduduk_awal']  = $this->laporan_bulanan_model->penduduk_awal();
         $data['penduduk_akhir'] = $this->laporan_bulanan_model->penduduk_akhir();
         $data['kelahiran']      = $this->laporan_bulanan_model->kelahiran();
@@ -75,7 +76,7 @@ class Laporan extends CI_Controller
 
     public function cetak($lap = 0)
     {
-        $data['config']         = $this->laporan_bulanan_model->configku();
+        $data['config']         = $this->config_model->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
         $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);
@@ -92,7 +93,7 @@ class Laporan extends CI_Controller
 
     public function excel($lap = 0)
     {
-        $data['config']         = $this->laporan_bulanan_model->configku();
+        $data['config']         = $this->config_model->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
         $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);

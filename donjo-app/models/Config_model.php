@@ -122,10 +122,14 @@ class Config_model extends CI_Model
         }
     }
 
-    public function get_data()
+    public function get_data(bool $return_array = false)
     {
         $sql   = 'SELECT * FROM config WHERE 1';
         $query = $this->db->query($sql);
+
+        if($return_array) {
+            return $query->result_array();
+        }
 
         return $query->row_array();
     }

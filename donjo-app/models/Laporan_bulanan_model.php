@@ -225,14 +225,6 @@ from tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from
         return $query->result_array();
     }
 
-    public function configku()
-    {
-        $sql   = 'SELECT * FROM config limit 1 ';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
     public function penduduk_awal()
     {
         $bln = $_SESSION['bulanku'];
