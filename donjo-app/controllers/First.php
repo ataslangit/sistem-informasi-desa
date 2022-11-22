@@ -18,6 +18,7 @@ class First extends CI_Controller
         $this->load->model('first_m');
         $this->load->model('first_artikel_m');
         $this->load->model('first_gallery_m');
+        $this->load->model('KategoriModel', 'kategori_model');
         $this->load->model('first_menu_m');
         $this->load->model('first_penduduk_m');
         $this->load->model('penduduk_model');
@@ -387,7 +388,7 @@ class First extends CI_Controller
         $data['w_gal']  = $this->first_gallery_m->gallery_widget();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
-        $data['judul_kategori'] = $this->first_artikel_m->get_kategori($kat);
+        $data['judul_kategori'] = $this->kategori_model->get($kat);
 
         $data['data_config'] = $this->config_model->get_data();
         view('layouts/main.tpl.php', $data);

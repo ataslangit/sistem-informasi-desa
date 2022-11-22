@@ -238,19 +238,6 @@ class First_artikel_m extends CI_Model
         return $data;
     }
 
-    public function get_kategori($id = 0)
-    {
-        $sql   = 'SELECT a.kategori FROM kategori a WHERE a.id=?';
-        $query = $this->db->query($sql, $id);
-        if ($query->num_rows() > 0) {
-            $data = $query->row_array();
-        } else {
-            $data = false;
-        }
-
-        return $data;
-    }
-
     public function get_artikel($id = 0)
     {
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE a.id=?';
