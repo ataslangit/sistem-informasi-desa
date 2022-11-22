@@ -24,9 +24,28 @@ class KategoriModel extends CI_Model
         return false;
     }
 
+    /**
+     * Ambil data semua kategori dan diurutkan berdasarkan 'urut'
+     *
+     * @return array
+     */
     public function getList()
     {
         $query = $this->db->order_by('urut', 'ASC')->get($this->table);
+
+        return $query->result_array();
+    }
+
+    /**
+     * Ambil data kategori berdasarkan tipe
+     *
+     * @param int $tipe Tipe Kategori
+     *
+     * @return array
+     */
+    public function getByType(int $tipe = 1)
+    {
+        $query = $this->db->where('tipe', $tipe)->get($this->table);
 
         return $query->result_array();
     }

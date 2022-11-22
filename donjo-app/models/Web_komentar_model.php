@@ -109,14 +109,6 @@ class Web_komentar_model extends CI_Model
         return $data;
     }
 
-    public function list_kategori($tipe = 1)
-    {
-        $sql   = 'SELECT * FROM kategori WHERE tipe = ?';
-        $query = $this->db->query($sql, $tipe);
-
-        return $query->result_array();
-    }
-
     public function insert()
     {
         $data            = $_POST;
