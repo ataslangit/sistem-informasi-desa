@@ -4,16 +4,23 @@ class KategoriModel extends CI_Model
 {
     protected $table = 'kategori';
 
-    public function get($id = 0)
+    /**
+     * Ambil data kategori berdasarkan ID kategori
+     *
+     * @param int $id ID kategori
+     *
+     * @return array|false False jika tidak ditemukan
+     */
+    public function get(int $id)
     {
-        $sql   = "SELECT a.kategori FROM {$this->table} a WHERE a.id=?";
-        $query = $this->db->query($sql, $id);
+        $this->db->select('kategori');
+        $this->db->where('id', $id);
+
+        $query = $this->db->get($this->table);
         if ($query->num_rows() > 0) {
-            $data = $query->row_array();
-        } else {
-            $data = false;
+            return $query->row_array();
         }
 
-        return $data;
+        return false;
     }
 }
