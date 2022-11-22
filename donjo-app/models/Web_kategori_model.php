@@ -126,18 +126,6 @@ class Web_kategori_model extends CI_Model
         }
     }
 
-    public function delete($id = '')
-    {
-        $sql  = 'DELETE FROM kategori WHERE id=?';
-        $outp = $this->db->query($sql, [$id]);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function delete_all()
     {
         $id_cb = $_POST['id_cb'];
@@ -244,18 +232,6 @@ class Web_kategori_model extends CI_Model
         }
     }
 
-    public function delete_sub_kategori($id = '')
-    {
-        $sql  = 'DELETE FROM kategori WHERE id=?';
-        $outp = $this->db->query($sql, [$id]);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function delete_all_sub_kategori()
     {
         $id_cb = $_POST['id_cb'];
@@ -286,14 +262,6 @@ class Web_kategori_model extends CI_Model
         } else {
             $_SESSION['success'] = -1;
         }
-    }
-
-    public function get_kategori($id = 0)
-    {
-        $sql   = 'SELECT * FROM kategori WHERE id=?';
-        $query = $this->db->query($sql, $id);
-
-        return $query->row_array();
     }
 
     public function kategori_show()

@@ -16,6 +16,7 @@ class Lapor extends CI_Controller
         }
         $this->load->model('header_model');
         $this->load->model('web_komentar_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
@@ -71,7 +72,7 @@ class Lapor extends CI_Controller
             $data['form_action'] = site_url('komentar/insert');
         }
 
-        $data['list_kategori'] = $this->web_komentar_model->list_kategori(1);
+        $data['list_kategori'] = $this->kategori_model->getByType(1);
 
         $header = $this->header_model->get_data();
 

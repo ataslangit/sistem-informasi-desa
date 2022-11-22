@@ -16,6 +16,7 @@ class Web extends CI_Controller
         }
         $this->load->model('header_model');
         $this->load->model('web_artikel_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
@@ -58,8 +59,8 @@ class Web extends CI_Controller
         $data['paging']        = $this->web_artikel_model->paging($cat, $p, $o);
         $data['main']          = $this->web_artikel_model->list_data($cat, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']       = $this->web_artikel_model->autocomplete();
-        $data['list_kategori'] = $this->web_artikel_model->list_kategori();
-        $data['kategori']      = $this->web_artikel_model->get_kategori($cat);
+        $data['list_kategori'] = $this->kategori_model->getList();
+        $data['kategori']      = $this->kategori_model->get($cat);
         $data['cat']           = $cat;
         $header                = $this->header_model->get_data();
         $nav['act']            = 0;
@@ -84,7 +85,7 @@ class Web extends CI_Controller
             $data['form_action'] = site_url("web/insert/{$cat}");
         }
 
-        $data['kategori'] = $this->web_artikel_model->get_kategori($cat);
+        $data['kategori'] = $this->kategori_model->get($cat);
 
         $header = $this->header_model->get_data();
 
@@ -143,7 +144,7 @@ class Web extends CI_Controller
 
     public function hapus($cat = 1, $p = 1, $o = 0)
     {
-        $this->web_artikel_model->hapus($cat);
+        $this->kategori_model->hapus($cat);
         redirect("web/index/1/{$p}/{$o}");
     }
 

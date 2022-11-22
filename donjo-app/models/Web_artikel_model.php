@@ -120,22 +120,6 @@ class Web_artikel_model extends CI_Model
         return $data;
     }
 
-    public function list_kategori()
-    {
-        $sql   = 'SELECT * FROM kategori WHERE 1 order by urut';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
-    public function get_kategori($cat = 0)
-    {
-        $sql   = 'SELECT kategori FROM kategori WHERE id=?';
-        $query = $this->db->query($sql, $cat);
-
-        return $query->row_array();
-    }
-
     public function insert($cat = 1)
     {
         $fp          = time();
@@ -310,18 +294,6 @@ class Web_artikel_model extends CI_Model
     public function delete($id = '')
     {
         $sql  = 'DELETE FROM artikel WHERE id=?';
-        $outp = $this->db->query($sql, [$id]);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function hapus($id = '')
-    {
-        $sql  = 'DELETE FROM kategori WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
 
         if ($outp) {
