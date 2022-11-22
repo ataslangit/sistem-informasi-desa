@@ -23,4 +23,11 @@ class KategoriModel extends CI_Model
 
         return false;
     }
+
+    public function getList()
+    {
+        $query = $this->db->order_by('urut', 'ASC')->get($this->table);
+
+        return $query->result_array();
+    }
 }

@@ -59,7 +59,7 @@ class Web extends CI_Controller
         $data['paging']        = $this->web_artikel_model->paging($cat, $p, $o);
         $data['main']          = $this->web_artikel_model->list_data($cat, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']       = $this->web_artikel_model->autocomplete();
-        $data['list_kategori'] = $this->web_artikel_model->list_kategori();
+        $data['list_kategori'] = $this->kategori_model->getList();
         $data['kategori']      = $this->kategori_model->get($cat);
         $data['cat']           = $cat;
         $header                = $this->header_model->get_data();

@@ -120,14 +120,6 @@ class Web_artikel_model extends CI_Model
         return $data;
     }
 
-    public function list_kategori()
-    {
-        $sql   = 'SELECT * FROM kategori WHERE 1 order by urut';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
     public function insert($cat = 1)
     {
         $fp          = time();
