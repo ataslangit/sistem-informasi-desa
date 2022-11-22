@@ -303,18 +303,6 @@ class Web_artikel_model extends CI_Model
         }
     }
 
-    public function hapus($id = '')
-    {
-        $sql  = 'DELETE FROM kategori WHERE id=?';
-        $outp = $this->db->query($sql, [$id]);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function delete_all()
     {
         $id_cb = $_POST['id_cb'];

@@ -145,7 +145,7 @@ class Kategori extends CI_Controller
 
     public function delete($id = '')
     {
-        $this->web_kategori_model->delete($id);
+        $this->kategori_model->delete($id);
         redirect('kategori/index');
     }
 
@@ -181,7 +181,7 @@ class Kategori extends CI_Controller
 
     public function delete_sub_kategori($kategori = '', $id = 0)
     {
-        $this->web_kategori_model->delete($id);
+        $this->kategori_model->delete($id);
         redirect("kategori/sub_kategori/{$kategori}");
     }
 

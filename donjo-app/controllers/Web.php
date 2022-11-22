@@ -144,7 +144,7 @@ class Web extends CI_Controller
 
     public function hapus($cat = 1, $p = 1, $o = 0)
     {
-        $this->web_artikel_model->hapus($cat);
+        $this->kategori_model->hapus($cat);
         redirect("web/index/1/{$p}/{$o}");
     }
 
