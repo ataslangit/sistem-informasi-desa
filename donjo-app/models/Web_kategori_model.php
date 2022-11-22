@@ -288,14 +288,6 @@ class Web_kategori_model extends CI_Model
         }
     }
 
-    public function get_kategori($id = 0)
-    {
-        $sql   = 'SELECT * FROM kategori WHERE id=?';
-        $query = $this->db->query($sql, $id);
-
-        return $query->row_array();
-    }
-
     public function kategori_show()
     {
         $sql   = 'SELECT * FROM kategori WHERE enabled=?';

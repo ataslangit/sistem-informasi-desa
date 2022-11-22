@@ -16,6 +16,7 @@ class Kategori extends CI_Controller
         }
         $this->load->model('header_model');
         $this->load->model('web_kategori_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
@@ -63,7 +64,7 @@ class Kategori extends CI_Controller
     {
         $data['tip'] = 2;
         if ($id) {
-            $data['kategori']    = $this->web_kategori_model->get_kategori($id);
+            $data['kategori']    = $this->kategori_model->get($id);
             $data['form_action'] = site_url("kategori/update/{$id}");
         } else {
             $data['kategori']    = null;
@@ -99,7 +100,7 @@ class Kategori extends CI_Controller
         $data['link'] = $this->web_kategori_model->list_link();
 
         if ($id) {
-            $data['subkategori'] = $this->web_kategori_model->get_kategori($id);
+            $data['subkategori'] = $this->kategori_model->get($id);
             $data['form_action'] = site_url("kategori/update_sub_kategori/{$kategori}/{$id}");
         } else {
             $data['subkategori'] = null;
