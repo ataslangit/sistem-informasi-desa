@@ -128,14 +128,6 @@ class Web_artikel_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_kategori($cat = 0)
-    {
-        $sql   = 'SELECT kategori FROM kategori WHERE id=?';
-        $query = $this->db->query($sql, $cat);
-
-        return $query->row_array();
-    }
-
     public function insert($cat = 1)
     {
         $fp          = time();
