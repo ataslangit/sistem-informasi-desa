@@ -3,49 +3,7 @@
 composer.lock
 
 # abaikan pada donjo-sys
-donjo-sys/**/LICENSE
-donjo-sys/**/license.txt
-donjo-sys/**/readme*
-donjo-sys/**/README*
-donjo-sys/**/composer.json
-
-donjo-sys/codeigniter/coding-standard
-donjo-sys/codeigniter/framework/*
-!donjo-sys/codeigniter/framework/system
-
-donjo-sys/vlucas/phpdotenv/*
-!donjo-sys/vlucas/phpdotenv/src
-
-donjo-sys/bin
-
-donjo-sys/symfony/string
-donjo-sys/symfony/stopwatch
-donjo-sys/symfony/service-contracts
-donjo-sys/symfony/process
-donjo-sys/symfony/polyfill-php81
-donjo-sys/symfony/polyfill-php73
-donjo-sys/symfony/polyfill-intl-normalizer
-donjo-sys/symfony/polyfill-intl-grapheme
-donjo-sys/symfony/options-resolver
-donjo-sys/symfony/finder
-donjo-sys/symfony/filesystem
-donjo-sys/symfony/event-dispatcher-contracts
-donjo-sys/symfony/event-dispatcher
-donjo-sys/symfony/deprecation-contracts
-donjo-sys/symfony/console
-donjo-sys/psr/log
-donjo-sys/psr/event-dispatcher
-donjo-sys/psr/container
-donjo-sys/psr/cache
-donjo-sys/php-cs-fixer/diff
-donjo-sys/nexusphp/cs-config
-donjo-sys/mikey179/vfsstream
-donjo-sys/friendsofphp/php-cs-fixer
-donjo-sys/doctrine/lexer
-donjo-sys/doctrine/annotations
-donjo-sys/composer/xdebug-handler
-donjo-sys/composer/semver
-donjo-sys/composer/pcre
+/donjo-sys/
 
 /node_modules
 
