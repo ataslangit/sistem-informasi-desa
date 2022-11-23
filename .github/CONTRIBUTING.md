@@ -4,7 +4,7 @@ Untuk berkontribusi, Anda diwajibkan memiliki akun GitHub.
 Anda dapat membuat issue, permintaan fitur, berdiskusi maupun merubah kode secara bebas.
 
 ## Clone repositori
-Sebelum melakukan kontribusi, silakan *fork* repositori (ataslangit/sistem-informasi-desa)[https://github.com/ataslangit/sistem-informasi-desa/fork].
+Sebelum melakukan kontribusi, silakan *fork* repositori [ataslangit/sistem-informasi-desa](https://github.com/ataslangit/sistem-informasi-desa/fork).
 
 Selanjutnya dapat dilakukan *clone* dengan contoh perintah berikut:
 ```bash
@@ -20,4 +20,4 @@ maka harus dilakukan update dengan perintah:
 git submodule update --remote
 ```
 
-Halaman ini akan diperbarui kembali
+
