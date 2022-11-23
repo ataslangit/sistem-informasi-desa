@@ -8,16 +8,26 @@ Sebelum melakukan kontribusi, silakan *fork* repositori [ataslangit/sistem-infor
 
 Selanjutnya dapat dilakukan *clone* dengan contoh perintah berikut:
 ```bash
-git clone --recurse-submodules https://gitlab.com/namauser/sistem-informasi-desa.git
+# ubah namauser sesuai dengan milik Anda
+# atau ubah link git sesuai dengan repo hasil fork
+git clone --recurse-submodules https://github.com/namauser/sistem-informasi-desa.git
 ```
 
 Jika sebelumnya dilakukan clone dengan cara seperti berikut:
 ```bash
-git clone https://gitlab.com/namauser/sistem-informasi-desa.git
+
+# ubah namauser sesuai dengan milik Anda
+# atau ubah link git sesuai dengan repo hasil fork
+git clone https://github.com/namauser/sistem-informasi-desa.git
 ```
 maka harus dilakukan update dengan perintah:
 ```bash
 git submodule update --remote
 ```
 
+Jika sudah, bisa membuat *branch* baru untuk menambahkan fitur atau memperbaiki bug yang ditemukan.
 
+## Kirim *pull requests*
+
+Apabila telah dirasa telah selesai terkait penambahan fitur atau perbaikan bug,
+Anda dapat mengirimkan Pull Requests yang akan direview terlebih dahulu sebelum digabungkan.
