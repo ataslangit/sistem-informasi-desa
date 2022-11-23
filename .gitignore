@@ -5,9 +5,9 @@ composer.lock
 # abaikan pada donjo-sys
 /donjo-sys/
 
-/node_modules
+/node_modules/
 
-docs/.vitepress/dist
+/docs/.vitepress/dist
 
 .php-cs-fixer.cache
 /install.sid
