@@ -1,0 +1,3 @@
+[submodule "donjo-app"]
+	path = donjo-app
+	url = https://github.com/ataslangit/sid-app.git
