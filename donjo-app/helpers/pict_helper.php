@@ -85,41 +85,7 @@ function UploadGallery($fupload_name)
 
     return true;
 }
-function UploadSimbolx($fupload_name, $old_gambar)
-{
-    $vdir_upload = 'assets/gis/simbol';
-    if ($old_gambar !== '') {
-        unlink($vdir_upload . 'kecil_' . $old_gambar);
-        unlink($vdir_upload . $old_gambar);
-    }
-    $vfile_upload = $vdir_upload . $fupload_name;
-    move_uploaded_file($_FILES['gambar']['tmp_name'], $vfile_upload);
 
-    $im_src     = imagecreatefromjpeg($vfile_upload);
-    $src_width  = imagesx($im_src);
-    $src_height = imagesy($im_src);
-    if (($src_width * 20) < ($src_height * 44)) {
-        $dst_width  = 440;
-        $dst_height = ($dst_width / $src_width) * $src_height;
-        $cut_height = $dst_height - 300;
-
-        $im = imagecreatetruecolor(440, 300);
-        imagecopyresampled($im, $im_src, 0, 0, 0, $cut_height, $dst_width, $dst_height, $src_width, $src_height);
-    } else {
-        $dst_height = 300;
-        $dst_width  = ($dst_height / $src_height) * $src_width;
-        $cut_width  = $dst_width - 440;
-
-        $im = imagecreatetruecolor(440, 300);
-        imagecopyresampled($im, $im_src, 0, 0, $cut_width, 0, $dst_width, $dst_height, $src_width, $src_height);
-    }
-    imagejpeg($im, $vdir_upload . 'kecil_' . $fupload_name);
-
-    imagedestroy($im_src);
-    imagedestroy($im);
-
-    return true;
-}
 function UploadArtikel($fupload_name, $gambar, $fp)
 {
     $vdir_upload = 'assets/files/artikel/';
@@ -386,12 +352,7 @@ function UploadLogo($fupload_name, $old_foto, $tipe_file)
     }
     move_uploaded_file($_FILES['logo']['tmp_name'], $vfile_upload);
 }
-function UploadLogox($fupload_name)
-{
-    $vdir_upload  = 'assets/images/background/';
-    $vfile_upload = $vdir_upload . $fupload_name;
-    move_uploaded_file($_FILES['logo']['tmp_name'], $vfile_upload);
-}
+
 function UploadSimbol($fupload_name)
 {
     $vdir_upload  = 'assets/images/gis/point/';
