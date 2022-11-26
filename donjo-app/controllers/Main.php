@@ -15,7 +15,6 @@ class Main extends CI_Controller
     {
         if ($this->install->cek()) {
             if (isset($_SESSION['siteman'])) {
-                $this->load->model('user_model');
                 if (isset($_SESSION['sesi'])) {
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
