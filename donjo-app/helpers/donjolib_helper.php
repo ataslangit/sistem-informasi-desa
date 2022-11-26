@@ -12,6 +12,24 @@ if (! function_exists('view')) {
     }
 }
 
+if (! function_exists('dd')) {
+    /**
+     * Dump & die
+     *
+     * @param mixed ...$args
+     *
+     * @return void
+     */
+    function dd(...$args)
+    {
+        if (ENVIRONMENT === 'development') {
+            var_dump($args);
+
+            exit;
+        }
+    }
+}
+
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)
