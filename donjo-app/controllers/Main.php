@@ -13,8 +13,7 @@ class Main extends CI_Controller
 
     public function index()
     {
-        $out = $this->config_model->install();
-        if ($out === 1) {
+        if ($this->install->cek()) {
             if (isset($_SESSION['siteman'])) {
                 $this->load->model('user_model');
                 if (isset($_SESSION['sesi'])) {

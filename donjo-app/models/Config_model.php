@@ -2,22 +2,6 @@
 
 class Config_model extends CI_Model
 {
-    public function install()
-    {
-        $CI = get_instance();
-        $CI->load->database();
-        $db = $CI->db->database;
-
-        $sql   = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA=? AND TABLE_NAME <> 'impor'";
-        $query = $this->db->query($sql, $db);
-        $data  = $query->result_array();
-        if (count($data) !== 77) {
-            return 0;
-        }
-
-        return 1;
-    }
-
     public function initial()
     {
         $CI = get_instance();
