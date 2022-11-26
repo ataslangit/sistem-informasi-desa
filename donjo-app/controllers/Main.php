@@ -50,7 +50,7 @@ class Main extends CI_Controller
 
     public function install()
     {
-        $out = $this->config_model->initial();
+        $out = $this->install->run();
         view('init', $out);
     }
 
