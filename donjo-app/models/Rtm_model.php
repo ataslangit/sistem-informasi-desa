@@ -456,9 +456,8 @@ class Rtm_model extends CI_Model
 
     public function get_kode_wilayah()
     {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-        $d     = $query->row_array();
+        $this->load->model('config_model');
+        $d = $this->config_model->get_data();
 
         return $d['kode_kabupaten'] . $d['kode_kecamatan'] . $d['kode_desa'];
     }

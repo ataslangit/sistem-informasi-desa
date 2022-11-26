@@ -411,9 +411,8 @@ class User_model extends CI_Model
 
     public function create_xml()
     {
-        $sql    = 'SELECT * FROM config WHERE 1';
-        $query  = $this->db->query($sql);
-        $desa   = $query->row_array();
+        $this->load->model('config_model');
+        $desa   = $this->config_model->get_data();
         $nl     = "\r\n";
         $string = '';
 

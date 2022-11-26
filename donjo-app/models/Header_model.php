@@ -4,6 +4,8 @@ class Header_model extends CI_Model
 {
     public function get_data()
     {
+        $this->load->model('config_model');
+
         // global variabel
         $outp['sasaran'] = ['1' => 'Penduduk', '2' => 'Keluarga / KK', '3' => 'Rumah Tangga', '4' => 'Kelompok/Organisasi Kemasyarakatan'];
 
@@ -19,9 +21,7 @@ class Header_model extends CI_Model
             }
         }
 
-        $sql          = 'SELECT * FROM config WHERE 1';
-        $query        = $this->db->query($sql);
-        $outp['desa'] = $query->row_array();
+        $outp['desa'] = $this->config_model->get_data();
 
         $sql           = 'SELECT COUNT(id) AS jml FROM komentar WHERE id_artikel=775 AND enabled = 2;';
         $query         = $this->db->query($sql);
