@@ -2,11 +2,6 @@
 
 class Feed_model extends CI_Model
 {
-    public function __construct()
-    {
-        $this->load->database();
-    }
-
     public function list_feeds()
     {
         $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori

@@ -10,11 +10,8 @@ class Line extends CI_Controller
         parent::__construct();
 
         $this->load->model('user_model');
-
         $this->load->model('header_model');
         $this->load->model('plan_line_model');
-
-        $this->load->database();
     }
 
     public function clear()

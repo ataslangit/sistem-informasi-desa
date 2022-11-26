@@ -2,11 +2,6 @@
 
 class Program_bantuan_model extends CI_Model
 {
-    public function __construct()
-    {
-        $this->load->database();
-    }
-
     public function list_program($sasaran = 0)
     {
         if ($sasaran > 0) {

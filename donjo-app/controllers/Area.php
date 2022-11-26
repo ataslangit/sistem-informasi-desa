@@ -13,8 +13,6 @@ class Area extends CI_Controller
         $this->load->model('header_model');
         $this->load->model('plan_area_model');
         $this->load->model('user_model');
-
-        $this->load->database();
     }
 
     public function clear()
