@@ -13,8 +13,6 @@ class Garis extends CI_Controller
         $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('plan_garis_model');
-
-        $this->load->database();
     }
 
     public function clear()

@@ -2,11 +2,6 @@
 
 class Data_persil_model extends CI_Model
 {
-    public function __construct()
-    {
-        $this->load->database();
-    }
-
     public function autocomplete()
     {
         $sql = 'SELECT nik FROM data_persil
