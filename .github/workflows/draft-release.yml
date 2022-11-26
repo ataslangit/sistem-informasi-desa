@@ -1,0 +1,31 @@
+name: draft-release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: get_zipball_name
+        run: echo ::set-output name=ZIPBALL_NAME::${{ github.event.repository.name }}-${{ github.ref_name }}
+
+      - run: composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev
+      
+      - uses: thedoctor0/zip-release@main
+        with:
+          type: "zip"
+          filename: "${{ steps.get_zipball_name.outputs.ZIPBALL_NAME }}.zip"
+          exclusions: "*.git* docs .devcontainer .editorconfig .php-cs-fixer.php code_of_conduct.md composer.json package-lock.json package.json"
+
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ steps.get_zipball_name.outputs.ZIPBALL_NAME }}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          generateReleaseNotes: true
