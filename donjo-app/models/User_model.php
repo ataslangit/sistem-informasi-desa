@@ -334,14 +334,6 @@ class User_model extends CI_Model
         return $data;
     }
 
-    public function get_user2($user = '')
-    {
-        $sql   = 'SELECT id,nama,username FROM user WHERE username=?';
-        $query = $this->db->query($sql, $user);
-
-        return $query->row_array();
-    }
-
     public function update_setting($id = 0)
     {
         $password   = hash_password($this->input->post('pass_lama'));
@@ -397,67 +389,5 @@ class User_model extends CI_Model
         $query = $this->db->query($sql);
 
         return $query->result_array();
-    }
-
-    public function sid_online()
-    {
-        $q     = $_GET['q'];
-        $q     = 'sid.web.id';
-        $input = '';
-        exec("ping -n 1 -w 1 {$q}", $input, $result);
-
-        return (bool) ($result === 0);
-    }
-
-    public function create_xml()
-    {
-        $this->load->model('config_model');
-        $desa   = $this->config_model->get_data();
-        $nl     = "\r\n";
-        $string = '';
-
-        $string .= '<desa>' . $nl;
-        $string .= '<nama>' . $desa['nama_desa'] . '</nama>' . $nl;
-        $string .= '<kode>' . $desa['kode_kabupaten'] . $desa['kode_kecamatan'] . $desa['kode_desa'] . '</kode>' . $nl;
-        $string .= '<lat>' . $desa['lat'] . '</lat>' . $nl;
-        $string .= '<lng>' . $desa['lng'] . '</lng>' . $nl;
-
-        $string .= '</desa>' . $nl . $nl;
-
-        $sql     = 'SELECT DISTINCT(dusun) FROM tweb_wil_clusterdesa';
-        $query   = $this->db->query($sql);
-        $wilayah = $query->result_array();
-
-        $string .= '<wilayah>' . $nl;
-
-        foreach ($wilayah as $wil) {
-            $string .= '<dusun>' . $wil['dusun'] . '</dusun>' . $nl;
-        }
-
-        $string .= '</wilayah>' . $nl . $nl;
-
-        $sql      = 'SELECT * FROM data_surat';
-        $query    = $this->db->query($sql);
-        $penduduk = $query->result_array();
-
-        $string .= '<penduduk>' . $nl;
-
-        foreach ($penduduk as $pend) {
-            $string .= '<individu>' . $nl;
-            $string .= '<nik>' . $pend['nik'] . '</nik>' . $nl;
-            $string .= '<nama>' . $pend['nama'] . '</nama>' . $nl;
-            $string .= '<pekerjaan>' . $pend['pekerjaan'] . '</pekerjaan>' . $nl;
-            $string .= '</individu>' . $nl;
-        }
-
-        $string .= '</penduduk>' . $nl . $nl;
-
-        $mypath = 'assets\\sync\\';
-        $path   = '' . str_replace('\\', '/', $mypath) . '/';
-
-        $ccyymmdd = date('Y-m-d');
-        $handle   = fopen($path . 'sycn_data_' . $ccyymmdd . '.xml', 'w+b');
-        fwrite($handle, $string);
-        fclose($handle);
     }
 }
