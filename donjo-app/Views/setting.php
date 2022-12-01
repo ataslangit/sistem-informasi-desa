@@ -36,9 +36,9 @@
                 <td>
                     <div class="userbox-avatar">
                         <?if($main['foto']){?>
-                        <img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $main['foto']?>" alt="">
+                        <img src="<?php echo base_url('assets/files/user_pict/kecil_' . $main['foto']) ?>" alt="">
                         <?}else{?>
-                        <img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
+                        <img src="<?php echo base_url('assets/files/user_pict/kuser.png')?>" alt="">
                         <?}?>
                     </div>
                 </td>

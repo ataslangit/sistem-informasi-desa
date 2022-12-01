@@ -54,9 +54,9 @@
                 </div>
             </td>
             <td style="background:#fff;padding:0px;">
-                <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-                <script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-                <script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/exporting.js') ?>"></script>
                 <script>
                     var chart;
                     $(document).ready(function() {
@@ -73,8 +73,8 @@
                                     text: '<?php echo $stat?>'
                                 },
                                 categories: [
-                                    <?php $all = count($main); 
-			$i=0;						
+                                    <?php $all = count($main);
+			$i=0;
 			foreach($main as $data){
 				$i++;
 				//if($all <= 12){
@@ -124,7 +124,7 @@
                             series: [{
                                 name: 'Populasi',
                                 data: [
-                                    <?php 
+                                    <?php
 			foreach($main as $data){
 				if($data['nama'] != "TOTAL"){
 					if($all <= 12){

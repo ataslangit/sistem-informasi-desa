@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+<script src="<?php echo base_url('assets/js/donjoscript/donjo.ui.dialog.js')?>"></script>
 <table>
     <tr>
         <td colspan='2'>
@@ -21,7 +21,7 @@
 </table>
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
     <?php /*
-	Lanjut : 
+	Lanjut :
 		<a href="<?php echo site_url()?>analisis_respon/import/1" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
     */ ?>
     <a href="<?php echo site_url()?>analisis_respon/import" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>

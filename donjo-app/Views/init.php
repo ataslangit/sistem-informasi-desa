@@ -5,20 +5,22 @@
     <title>Sistem Informasi Desa (SID)</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url()?>rss.xml">
-    <link href="<?php echo base_url()?>assets/css/screen.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style2.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/noJS.css">
-    <script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery.formtips.1.2.2.packed.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery.tipsy.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery.elastic.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery.flexbox.min.js"></script>
-    <script src="<?php echo base_url()?>assets/js/jquery.easing-1.3.pack.js"></script>
-    <script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-    <script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+    <link rel="shortcut icon" href="<?php echo base_url('favicon.ico') ?>">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url('rss.xml') ?>">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/screen.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style2.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/noJS.css') ?>">
+
+    <script src="<?php echo base_url('assets/js/jquery-1.5.2.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-ui-1.8.16.custom.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.formtips.1.2.2.packed.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.tipsy.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.elastic.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.flexbox.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.easing-1.3.pack.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/donjoscript/donjoscript2.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/donjoscript/donjo.ui.dialog.js') ?>"></script>
     <style>
         body {
             background: url("<?php echo base_url('assets/files/bg.jpg')?>") no-repeat center center fixed;

@@ -1,8 +1,8 @@
-<script src="<?php echo base_url()?>assets/js/jquery-1.5.2.min.js"></script>
+<script src="<?php echo base_url('assets/js/jquery-1.5.2.min.js') ?>"></script>
 <script src="<?php echo base_url()?>assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery-layout.js"></script>
 <script src="<?php echo base_url()?>assets/js/donjoscript/donjoscript2.js"></script>
-<?php 
+<?php
 	$sekarang = date("d-m-Y");
 ?>
 <form action="<?php echo $form_action?>" method="post" id="validasi">

@@ -86,7 +86,7 @@
                                 </head>
 
                                 <body>
-                                    <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+                                    <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
                                     <div id="container" style="min-width: 500px; height: 500px; margin: 0 auto"></div>
                                 </body>
                         </table>

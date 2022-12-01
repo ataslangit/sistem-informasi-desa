@@ -18,7 +18,7 @@
                                     <th class="top">Judul Gambar</th>
                                     <td>
                                         <div class="gallerybox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/galeri/sedang_<?php echo $gallery['gambar']?>" alt="">
+                                            <img src="<?php echo base_url('assets/files/galeri/sedang_' . $gallery['gambar']) ?>?>" alt="">
                                         </div>
                                     </td>
                                     <input type="hidden" name="old_gambar" value="<?php echo $gallery['gambar']?>">

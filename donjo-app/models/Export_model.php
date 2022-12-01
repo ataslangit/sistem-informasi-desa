@@ -258,21 +258,25 @@ class Export_model extends CI_Model
     public function backup()
     {
         $this->load->dbutil();
+        $this->load->helper('download');
+        $this->load->helper('file');
+
         $prefs = [
             'format' => 'sql',
         ];
         $backup  = &$this->dbutil->backup($prefs);
         $db_name = 'backup-on-' . date('Y-m-d-H-i-s') . '.sql';
-        $save    = base_url() . $db_name;
-        $this->load->helper('file');
+        $save    = base_url($db_name);
+
         write_file($save, $backup);
         $backup .= "i'); #END;";
         $b1 = Parse_Data($backup, '# TABLE STRUCTURE FOR: analisis_indikator', '# TABLE STRUCTURE FOR: data_surat');
 
         $b2     = Parse_Data($backup, '# TABLE STRUCTURE FOR: detail_log_penduduk', '#END;');
         $backup = $b1 . $b2;
-        $this->load->helper('download');
+
         force_download($db_name, $backup);
+
         if ($backup) {
             $_SESSION['success'] = 1;
         } else {

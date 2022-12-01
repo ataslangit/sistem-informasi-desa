@@ -11,7 +11,7 @@
             <td class="contentpane">
                 <legend>Form Penulisan Program Bantuan</legend>
                 <div class="contentpane">
-                    <?php 
+                    <?php
 				if(validation_errors()){
 					echo "
 					<div class=\"error\" style=\"border:solid 2px #c00;color:#c00;margin:1em 0;\">
@@ -24,7 +24,7 @@
 					</div>
 					";
 				}
-				
+
 				if($_SESSION["success"] == 1){
 					echo "Simpan Berhasil";
 				}
@@ -107,7 +107,7 @@
         });
 
     </script>
-    <script src="<?php echo base_url()?>assets/tiny_mce/tiny_mce_src.js"></script>
+    <script src="<?php echo base_url('assets/tiny_mce/tiny_mce_src.js') ?>"></script>
     <script>
         tinyMCE.init({
 

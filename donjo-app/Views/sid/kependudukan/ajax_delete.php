@@ -1,5 +1,5 @@
-<script src="<?php echo base_url()?>assets/js/jquery.validate.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/validasi.js"></script>
+<script src="<?php echo base_url('assets/js/jquery.validate.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/validasi.js') ?>"></script>
 <table style="width:100%">
     <tr>
         <td colspan="2" align="left">Anda tidak berhak menghapus data ini. Hubungi administrator!</td>
