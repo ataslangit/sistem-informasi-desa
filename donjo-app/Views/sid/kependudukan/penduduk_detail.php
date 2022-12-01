@@ -16,9 +16,9 @@
                                 <td>
                                     <div class="userbox-avatar">
                                         <?php if($penduduk['foto']){?>
-                                        <img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $penduduk['foto']?>" alt="">
+                                        <img src="<?php echo base_url('assets/files/user_pict/kecil_' . $penduduk['foto']) ?>" alt="">
                                         <?php }else{?>
-                                        <img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
+                                        <img src="<?php echo base_url('assets/files/user_pict/kuser.png') ?>" alt="">
                                         <?php }?>
                                     </div>
                                 </td>
@@ -195,7 +195,7 @@
                                     <td><?php echo $kel['kategori']?></td>
                                     <td></td>
                                 </tr>
-                                <?php 
+                                <?php
  $no++;
  }?>
                             </tbody>
@@ -217,7 +217,7 @@
                                 <tr>
                                     <td align="center" width="2"><?php echo $data['no']?></td>
                                     <td><?php echo $data['nama']?></td>
-                                    <td><a href="<?php echo base_url()?>assets/files/dokumen/<?php echo urlencode($data['satuan'])?>"><?php echo $data['satuan']?></a></td>
+                                    <td><a href="<?php echo base_url('assets/files/dokumen/' . urlencode($data['satuan'])) ?>"><?php echo $data['satuan']?></a></td>
                                     <td><?php echo tgl_indo2($data['tgl_upload'])?></td>
                                     <td></td>
                                 </tr>

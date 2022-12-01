@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
 <script>
     var chart;
     $(document).ready(function() {
@@ -76,7 +76,7 @@
     });
 
 </script>
-<?php 
+<?php
 	echo "
 	<div class=\"box box-danger\">
 		<div class=\"box-header with-border\">
@@ -131,13 +131,13 @@
 						<td class=\"angka\">".$data['perempuan']."</td>
 						<td class=\"angka\">".$data['persen2']."</td>
 					</tr>";
-					$i=$i+$data['jumlah']; 
+					$i=$i+$data['jumlah'];
 					$l=$l+$data['laki']; $p=$p+$data['perempuan'];
 				}
 				echo "
 				</tbody>
 			</table>";
-		
+
 		echo "
 		</div>
 	</div>";
@@ -147,7 +147,7 @@
         <h2><a href="#">Grafik Statistik Penduduk</a></h2>
     </div>
     <div class='entry'>
-        <link href="<?php echo base_url()?>assets/front/general.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/front/general.css')?>" rel="stylesheet">
         <div id="container" style="min-width: 550px; height: 500px; margin: 0 auto"></div>
         <div id="contentpane">
             <div class="ui-layout-north panel top">

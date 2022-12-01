@@ -220,9 +220,9 @@ class Analisis_respon_model extends CI_Model
             //$this->update_hasil($data[$i]['id']);
 
             if ($data[$i]['cek']) {
-                $data[$i]['set'] = "<img src='" . base_url() . "assets/images/icon/ok.png'>";
+                $data[$i]['set'] = "<img src='" . base_url('assets/images/icon/ok.png') . "'>";
             } else {
-                $data[$i]['set'] = "<img src='" . base_url() . "assets/images/icon/nok.png'>";
+                $data[$i]['set'] = "<img src='" . base_url('assets/images/icon/nok.png') . "'>";
             }
 
             $data[$i]['jk'] = '-';

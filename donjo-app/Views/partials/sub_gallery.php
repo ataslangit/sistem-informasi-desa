@@ -11,8 +11,8 @@
 					echo "
 					<li>
 						<div class=\"entry\">
-						<a class=\"group2\" href=\"". base_url()."assets/files/galeri/sedang_". $data['gambar']."\" title=\"". $data['nama']."\">
-							<img src=\"". base_url()."assets/files/galeri/kecil_". $data['gambar']."\"></a>
+						<a class=\"group2\" href=\"". base_url("assets/files/galeri/sedang_". $data['gambar'])."\" title=\"". $data['nama']."\">
+							<img src=\"". base_url("assets/files/galeri/kecil_". $data['gambar'])."\"></a>
 						</div>
 						<div class=\"title\">". $data["nama"]."</div>
 					</li>";

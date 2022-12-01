@@ -4,9 +4,9 @@
         <h3 class="box-title"><i class="fa fa-globe"></i> Info Media Sosial</h3>
     </div>
     <div class="box-body">
-        <?php 
+        <?php
 foreach($sosmed As $data){
-	echo "<a href=\"".$data["link"]."\" target=\"_blank\"><img src=\"".base_url()."assets/front/".$data["gambar"]."\" alt=\"".$data["nama"]."\" style=\"width:50px;height:50px;\"></a>";
+	echo "<a href=\"".$data["link"]."\" target=\"_blank\"><img src=\"".base_url("assets/front/".$data["gambar"])."\" alt=\"".$data["nama"]."\" style=\"width:50px;height:50px;\"></a>";
 }
 ?>
     </div>
@@ -19,7 +19,7 @@ if($data_config['lat']!= "0"){
 		<div class=\"box-header\">
 			<h3 class=\"box-title\"><i class=\"fa fa-map-marker\"></i> Lokasi ". $desa["nama_desa"] ."</h3>
 		</div>
-		<div class=\"box-body\">	
+		<div class=\"box-body\">
 			<div id=\"map_canvas\" style=\"height:200px;\"></div>
 			<script src=\"//maps.google.com/maps/api/js?key=".$data_config['gapi_key']."&sensor=false\"></script>";
 			?>
@@ -72,7 +72,7 @@ if($data_config['lat']!= "0"){
         <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Statistik Pengunjung</h3>
     </div>
     <div class="box-body">
-        <?php 
+        <?php
 	$ip = $_SERVER['REMOTE_ADDR']."{}";
 	if(!isset($_SESSION['MemberOnline'])){
 		$cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='".date("Y-m-d")."'");
@@ -93,8 +93,8 @@ if($data_config['lat']!= "0"){
 	}else{
 		$today = 0;
 	}
-	$strSQL = "SELECT Jumlah AS Visitor FROM sys_traffic WHERE 
-	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1) 
+	$strSQL = "SELECT Jumlah AS Visitor FROM sys_traffic WHERE
+	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1)
 	LIMIT 1";
 	$rs = $this->db->query($strSQL);
 	if($rs->num_rows()>0){
@@ -115,7 +115,7 @@ if($data_config['lat']!= "0"){
 		$length = strlen($pattern)-$len;
 		$start = substr($pattern,0,$length).substr($tot,0,$len-1);
 		$last = substr($tot,$len-1,1);
-		$last_rpc= '<img src="_BASE_URL_/assets/images/counter/animasi/'.$last.'.gif" align="absmiddle">'; 
+		$last_rpc= '<img src="_BASE_URL_/assets/images/counter/animasi/'.$last.'.gif" align="absmiddle">';
 		$inc = str_replace($last,$last_rpc,$last);
 		for($i=0;$i<=9;$i++){
 			$rpc ='<img src="_BASE_URL_/assets/images/counter/'.$i.'.gif" align="absmiddle">';

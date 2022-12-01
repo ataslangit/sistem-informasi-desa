@@ -7,11 +7,11 @@
     });
 
 </script>
-<script src="<?php echo base_url()?>assets/js/chosen/chosen.jquery.js"></script>
+<script src="<?php echo base_url('assets/js/chosen/chosen.jquery.js') ?>"></script>
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
-            <?php 
+            <?php
 ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content">

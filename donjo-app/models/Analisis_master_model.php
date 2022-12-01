@@ -108,9 +108,9 @@ class Analisis_master_model extends CI_Model
         while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             if ($data[$i]['lock'] === 1) {
-                $data[$i]['lock'] = "<img src='" . base_url() . "assets/images/icon/unlock.png'>";
+                $data[$i]['lock'] = "<img src='" . base_url('assets/images/icon/unlock.png') . "'>";
             } else {
-                $data[$i]['lock'] = "<img src='" . base_url() . "assets/images/icon/lock.png'>";
+                $data[$i]['lock'] = "<img src='" . base_url('assets/images/icon/lock.png') . "'>";
             }
 
             $i++;

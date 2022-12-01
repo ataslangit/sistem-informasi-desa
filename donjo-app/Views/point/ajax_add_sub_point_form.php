@@ -10,9 +10,9 @@
                 <div id="simbol" style="float:left;padding-top:6px;"></div>
                 <div style="float:left;margin-left:10px;">
                     <?php if($point['simbol']!=""){?>
-                    <img src="<?php echo base_url(); ?>assets/images/gis/point/<?php echo $point['simbol']?>">
+                    <img src="<?php echo base_url('assets/images/gis/point/' . $point['simbol']) ?>">
                     <?php }else{?>
-                    <img src="<?php echo base_url(); ?>assets/images/gis/point/default.png">
+                    <img src="<?php echo base_url('assets/images/gis/point/default.png') ?>">
                     <?php }?>
                 </div>
             </td>
@@ -32,7 +32,7 @@
             <?php foreach($simbol as $data){?> {
                 id: '<?php echo $data['simbol']?>',
                 name: "<?php echo $data['simbol']?>",
-                info: '<img src="<?php echo base_url(); ?>assets/images/gis/point/<?php echo $data['simbol']?>">'
+                info: '<img src="<?php echo base_url('assets/images/gis/point/' . $data['simbol']) ?>">'
             },
             <?php }?>
         ];

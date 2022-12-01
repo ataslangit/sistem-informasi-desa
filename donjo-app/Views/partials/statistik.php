@@ -86,9 +86,9 @@
 
 </script>
 <?php }?>
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-<script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
+<script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/highcharts/exporting.js') ?>"></script>
 <style>
     tr.hide {
         display: none;
@@ -162,7 +162,7 @@
 						<td class=\"angka\">".$data['perempuan']."</td>
 						<td class=\"angka\">".$data['persen2']."</td>
 					</tr>";
-					$i=$i+$data['jumlah']; 
+					$i=$i+$data['jumlah'];
 					$l=$l+$data['laki']; $p=$p+$data['perempuan'];
 				}
 				echo "

@@ -13,7 +13,7 @@
             <tr>
                 <td width="150">Contoh Format Data</td>
                 <td>
-                    Contoh urutan format dapat dilihat pada <a href="<?php echo base_url()?>assets/import/data_persil.xls">tautan berikut</a><br>
+                    Contoh urutan format dapat dilihat pada <a href="<?php echo base_url('assets/import/data_persil.xls')?>">tautan berikut</a><br>
                 </td>
             </tr>
             <tr>

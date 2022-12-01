@@ -17,7 +17,7 @@
 				$gambar = $single_artikel['gambar4'];
 			}
 			?>
-    <meta property="og:image" content="<?= base_url() . 'assets/files/artikel/kecil_' . $gambar; ?>">
+    <meta property="og:image" content="<?= base_url('assets/files/artikel/kecil_' . $gambar) ?>">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="180">
     <meta property="og:url" content="<?php echo urlencode(current_url()); ?>">
@@ -25,15 +25,15 @@
     <?php } ?>
 
     <meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>">
-    <link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>">
     <link href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
-    <link href="<?php echo base_url()?>assets/front/css/first.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>assets/css/ui-buttons.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>assets/front/css/colorbox.css" rel="stylesheet">
-    <script src="<?php echo base_url()?>assets/front/js/stscode.js"></script>
-    <script src="<?php echo base_url()?>assets/front/js/jquery.js"></script>
-    <script src="<?php echo base_url()?>assets/front/js/layout.js"></script>
-    <script src="<?php echo base_url()?>assets/front/js/jquery.colorbox.js"></script>
+    <link href="<?php echo base_url('assets/front/css/first.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/ui-buttons.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/front/css/colorbox.css') ?>" rel="stylesheet">
+    <script src="<?php echo base_url('assets/front/js/stscode.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/jquery.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/layout.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/jquery.colorbox.js') ?>"></script>
     <script>
         $(document).ready(function() {
             $(".group2").colorbox({
@@ -84,7 +84,7 @@
                     <div id="divlogo-img">
                         <div class="intube">
                             <a href="<?php echo site_url(); ?>first/">
-                                <img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="<?php echo $desa['nama_desa']?>">
+                                <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="<?php echo $desa['nama_desa']?>">
                             </a>
                         </div>
                     </div>

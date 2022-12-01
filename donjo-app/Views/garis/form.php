@@ -29,7 +29,7 @@
                                     <th>Foto</th>
                                     <td>
                                         <div class="userbox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/gis/garis/kecil_<?php echo $garis['foto']?>">
+                                            <img src="<?php echo base_url('assets/files/gis/garis/kecil_' . $garis['foto']) ?>">
                                         </div>
                                     </td>
                                 </tr>
@@ -52,7 +52,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <?php 
+                                <?php
 ?>
                             </table>
                         </div>

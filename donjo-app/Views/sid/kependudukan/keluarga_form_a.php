@@ -48,7 +48,7 @@
                                     <th class="top">Foto</th>
                                     <td>
                                         <div class="userbox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
+                                            <img src="<?php echo base_url('assets/files/user_pict/kuser.png') ?>" alt="">
                                         </div>
                                     </td>
                                 </tr>

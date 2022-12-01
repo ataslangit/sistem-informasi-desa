@@ -2,7 +2,7 @@
 <table class="inner">
     <tr style="vertical-align:top">
         <td style="background:#fff;padding:0px;">
-            <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+            <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
             <script>
                 var chart;
                 $(document).ready(function() {

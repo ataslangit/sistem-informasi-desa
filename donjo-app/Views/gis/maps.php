@@ -76,13 +76,10 @@
                     '</div>' +
                     '<h1 id="firstHeading" class="firstHeading"><?php echo $area['nama']?></h1>' +
                     '<div id="bodyContent">' +
-                    '<img src="<?php echo base_url()?>assets/files/gis/area/sedang_<?php echo $area['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">' +
+                    '<img src="<?php echo base_url('assets/files/gis/area/sedang_' . $area['foto'])?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">' +
                     '<p><?php echo $area['desk']?></p>' +
                     '</div>' +
                     '</div>';
-
-
-
 
                 infoWindow.setContent(contentString);
                 infoWindow.setPosition(event.latLng);
@@ -114,14 +111,10 @@
                     '</div>' +
                     '<h1 id="firstHeading" class="firstHeading"><?php echo $garis['nama']?></h1>' +
                     '<div id="bodyContent">' +
-                    '<img src="<?php echo base_url()?>assets/files/gis/garis/sedang_<?php echo $garis['foto']?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">' +
+                    '<img src="<?php echo base_url('assets/files/gis/garis/sedang_' . $garis['foto']) ?>" style=" width:200px;height:140px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:2px solid #555555;">' +
                     '<p><?php echo $garis['desk']?></p>' +
                     '</div>' +
                     '</div>';
-
-
-
-
 
                 infoWindow.setContent(contentString);
                 infoWindow.setPosition(event.latLng);
@@ -131,14 +124,14 @@
             <?php }?>
             <?php if($layer_point==1){?>
             var shadow = new google.maps.MarkerImage(
-                '<?php echo base_url()?>assets/images/gis/point/shadow.png',
+                '<?php echo base_url('assets/images/gis/point/shadow.png')?>',
                 null,
                 null,
                 new google.maps.Point(16, 35)
             );
             <?php foreach($lokasi AS $data){if($data['lat'] != ""){?>
 
-            <?php $simbol = base_url()."assets/images/gis/point/".$data['simbol'];?>
+            <?php $simbol = base_url('assets/images/gis/point/' . $data['simbol']); ?>
             var cusicon_<?php echo $data['id']?> = new google.maps.MarkerImage("<?php echo $simbol?>");
 
             var prop_<?php echo $data['id']?> = new google.maps.Marker({
@@ -155,7 +148,7 @@
                 }
 
                 var content = '<table border=0 style="width:400px"><tr>' +
-                    <?php if($data['foto']!=""){?> '<td><img src="<?php echo base_url()?>assets/files/gis/lokasi/sedang_<?php echo $data['foto']?>" class="foto"></td>' +
+                    <?php if($data['foto']!=""){?> '<td><img src="<?php echo base_url('assets/files/gis/lokasi/sedang_' . $data['foto']) ?>" class="foto"></td>' +
                     <?php }?> '<td style="padding-left:3px"><font size="2.5" style="font-weight:bold;"><?php echo $data['nama']?></font>' +
                     '<p><?php echo $data['desk']?></p>' +
                     '</tr><tr><td></td></tr></table>';
@@ -164,7 +157,7 @@
             });
             <?php }}}?>
             <?php if($layer_penduduk==1 OR $layer_keluarga==1 ){?>
-            <?php $pendc = base_url()."assets/images/gis/point/pend.png";?>
+            <?php $pendc = base_url('assets/images/gis/point/pend.png'); ?>
             var pend_icon = new google.maps.MarkerImage("<?php echo $pendc?>");
             <?php foreach($penduduk AS $data){if($data['lat'] != ""){?>
             var marker_<?php echo $data['id']?> = new google.maps.Marker({
@@ -178,9 +171,9 @@
                     infoWindow = new google.maps.InfoWindow();
                 }
                 <?php if($data['foto']!=''){ ?>
-                var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $data['foto']?>" class="foto_pend"></td>';
+                var poto = '<td><img src="<?php echo base_url('assets/files/user_pict/kecil_' . $data['foto']) ?>" class="foto_pend"></td>';
                 <?php } else { ?>
-                var poto = '<td><img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" class="foto_pend"></td>';
+                var poto = '<td><img src="<?php echo base_url('assets/files/user_pict/kuser.png')?>" class="foto_pend"></td>';
                 <?php } ?>
 
                 var content = '<table border=0><tr>' + poto +

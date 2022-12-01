@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
 <script>
     var chart;
     $(document).ready(function() {
@@ -104,23 +104,23 @@
 					</tr>
 				</thead>
 				<tbody>";
-				
+
 				$i=0;$j=0;
-				
+
 				foreach($main as $data){
 					echo "<tr>
 						<td class=\"angka\">".$data['id']."</td>
 						<td>".$data['nama']."</td>
 						<td class=\"angka\">".$data['jumlah']."</td>
 					</tr>";
-					$i=$i+$data['jumlah']; 
+					$i=$i+$data['jumlah'];
 					$j=$j+$data['jamkesmas'];
 				}
 				echo "
 				</tbody>
 				<tfooter><tr><th colspan=\"2\" class=\"angka\">JUMLAH</th><th>".$i."</th></tr></tfooter>
 			</table>";
-		
+
 		echo "
 		</div>
 	</div>";

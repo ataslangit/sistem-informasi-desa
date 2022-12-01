@@ -14,7 +14,7 @@
 <head>
     <title>Data Analisis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/report.css') ?>" rel="stylesheet">
     <style>
         td {
             mso-number-format: "\@";

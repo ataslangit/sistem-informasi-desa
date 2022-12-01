@@ -2,7 +2,7 @@
 
 <body>
     <div id="container">
-        <link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/report.css') ?>" rel="stylesheet">
         <!-- Print Body -->
         <div id="body">
             <div align="center">

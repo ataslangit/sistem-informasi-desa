@@ -60,9 +60,9 @@
     </div>
     <div class="middin-center" style="padding: 5px;">
 
-        <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-        <script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-        <script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
+        <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/highcharts/exporting.js') ?>"></script>
         <script>
             $(document).ready(function() {
                 hiRes();

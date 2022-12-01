@@ -90,7 +90,7 @@
                                                 <?php }?>
                                             </div>
                                         </td>
-                                        <td><label class="tipsy west" title="<img width=200 height=134 src=<?php echo base_url()?>assets/files/galeri/kecil_<?php echo $data['gambar']?>>"><?php echo $data['nama']?></label></td>
+                                        <td><label class="tipsy west" title="<img width=200 height=134 src=<?php echo base_url('assets/files/galeri/kecil_' . $data['gambar']) ?>>"><?php echo $data['nama']?></label></td>
                                         <td><?php echo $data['aktif']?></td>
                                         <td><?php echo tgl_indo2($data['tgl_upload'])?></td>
                                     </tr>

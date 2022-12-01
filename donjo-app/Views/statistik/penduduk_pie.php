@@ -50,7 +50,7 @@
                             <li <?php if($lap==9){?>class="selected" <?php }?>>
                                 Cacat</li>
                         </a>
-                        <?php 
+                        <?php
 ?>
                         <a href="<?php echo site_url()?>statistik/pie/11">
                             <li <?php if($lap==11){?>class="selected" <?php }?>>
@@ -116,9 +116,9 @@
                     });
 
                 </script>
-                <script src="<?php echo base_url()?>assets/js/highcharts/highcharts.js"></script>
-                <script src="<?php echo base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-                <script src="<?php echo base_url()?>assets/js/highcharts/exporting.js"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
+                <script src="<?php echo base_url('assets/js/highcharts/exporting.js') ?>"></script>
                 <style>
                     tr#total {
                         background: #fffdc5;

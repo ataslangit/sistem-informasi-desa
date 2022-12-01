@@ -144,9 +144,9 @@
             <?php foreach ($w_gal as $data) { ?>
 
             <?php if (is_file("assets/files/galeri/sedang_" . $data['gambar'])) { ?>
-            <a class="group3" href="<?php echo base_url() ?>assets/files/galeri/sedang_<?php echo $data['gambar'] ?>">
+            <a class="group3" href="<?php echo base_url('assets/files/galeri/sedang_' . $data['gambar']) ?>">
 
-                <img src="<?php echo base_url() ?>assets/files/galeri/kecil_<?php echo $data['gambar'] ?>" width="130" alt="<?php echo $data['nama'] ?>">
+                <img src="<?php echo base_url('assets/files/galeri/kecil_' . $data['gambar']) ?>" width="130" alt="<?php echo $data['nama'] ?>">
 
             </a>
             <?php } ?>
@@ -182,7 +182,7 @@
     </div>
     <div class="box-body">
         <?php foreach ($sosmed as $data) {
-			echo "<a href=\"" . $data["link"] . "\" target=\"_blank\"><img src=\"" . base_url() . "assets/front/" . $data["gambar"] . "\" alt=\"" . $data["nama"] . "\" style=\"width:50px;height:50px;\"></a>";
+			echo "<a href=\"" . $data["link"] . "\" target=\"_blank\"><img src=\"" . base_url("assets/front/" . $data["gambar"]) . "\" alt=\"" . $data["nama"] . "\" style=\"width:50px;height:50px;\"></a>";
 		} ?>
     </div>
 </div>
@@ -213,8 +213,8 @@
 		} else {
 			$today = 0;
 		}
-		$strSQL = "SELECT Jumlah AS Visitor FROM sys_traffic WHERE 
-	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1) 
+		$strSQL = "SELECT Jumlah AS Visitor FROM sys_traffic WHERE
+	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1)
 	LIMIT 1";
 		$rs = $this->db->query($strSQL);
 		if ($rs->num_rows() > 0) {
@@ -305,7 +305,7 @@ if ($w_cos) {
 		<div class=\"box-header\">
 			<h3 class=\"box-title\"><i class=\"fa fa-map-marker\"></i> Lokasi " . $desa["nama_desa"] . "</h3>
 		</div>
-		<div class=\"box-body\">	
+		<div class=\"box-body\">
 			<div id=\"map_canvas\" style=\"height:200px;\"></div>
 			<script src=\"//maps.google.com/maps/api/js?key=" . $data_config['gapi_key'] . "&sensor=false\"></script>";
 	?>

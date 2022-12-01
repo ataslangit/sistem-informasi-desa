@@ -233,8 +233,8 @@
                     <tr>
                         <?php foreach ($list_bukti as $bukti) { ?>
                         <td>
-                            <a href="<?php echo base_url() ?>assets/files/pengesahan/<?php echo $bukti['pengesahan'] ?>" target="_blank">
-                                <img src="<?php echo base_url() ?>assets/files/pengesahan/<?php echo $bukti['pengesahan'] ?>" width='320'>
+                            <a href="<?php echo base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" target="_blank">
+                                <img src="<?php echo base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" width='320'>
                             </a>
                         </td>
                         <?php } ?>

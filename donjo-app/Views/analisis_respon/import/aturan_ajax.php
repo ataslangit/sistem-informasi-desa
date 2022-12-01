@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>assets/js/donjoscript/donjo.ui.dialog.js"></script>
+<script src="<?php echo base_url('assets/js/donjoscript/donjo.ui.dialog.js') ?>"></script>
 <table>
     <tr>
         <td>
