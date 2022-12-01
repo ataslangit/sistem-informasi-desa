@@ -125,9 +125,9 @@
                                     <td>
                                         <div class="userbox-avatar">
                                             <?php if($user['foto']){?>
-                                            <img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $user['foto']?>" alt="">
+                                            <img src="<?php echo base_url('assets/files/user_pict/kecil_' . $user['foto']) ?>" alt="">
                                             <?php }else{?>
-                                            <img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
+                                            <img src="<?php echo base_url('assets/files/user_pict/kuser.png') ?>" alt="">
                                             <?php }?>
                                         </div>
                                     </td>

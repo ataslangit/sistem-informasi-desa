@@ -35,7 +35,7 @@
 <style>
 img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 </style>
-<link href="=base_url()?>assets/css/ie6.css" rel="stylesheet">
+<link href="=base_url('assets/css/ie6.css') ?>" rel="stylesheet">
 <![endif]-->
 
     <style>
@@ -76,15 +76,15 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
 
 <body>
     <div class="ui-layout-north" id="header">
-        <div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt=""></a></div>
+        <div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url('assets/files/logo/' . $desa['logo'])?>" alt=""></a></div>
         <div id="sid-judul">SID Sistem Informasi Desa</div>
         <div id="sid-info"><?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>, <?php echo unpenetration($desa['nama_kabupaten'])?></div>
         <div id="userbox" class="wrapper-dropdown-3" tabindex="1">
             <div class="avatar">
                 <?php if($foto){?>
-                <img src="<?php echo base_url()?>assets/files/user_pict/kecil_<?php echo $foto?>" alt="">
+                <img src="<?php echo base_url('assets/files/user_pict/kecil_' . $foto) ?>" alt="">
                 <?php }else{?>
-                <img src="<?php echo base_url()?>assets/files/user_pict/kuser.png" alt="">
+                <img src="<?php echo base_url('assets/files/user_pict/kuser.png')?>" alt="">
                 <?php }?>
             </div>
             <div class="info">

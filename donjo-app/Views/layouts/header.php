@@ -25,7 +25,7 @@
     <?php } ?>
 
     <meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>">
-    <link rel="shortcut icon" href="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>">
     <link href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
     <link href="<?php echo base_url('assets/front/css/first.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/ui-buttons.css') ?>" rel="stylesheet">
@@ -84,7 +84,7 @@
                     <div id="divlogo-img">
                         <div class="intube">
                             <a href="<?php echo site_url(); ?>first/">
-                                <img src="<?php echo base_url()?>assets/files/logo/<?php echo $desa['logo']?>" alt="<?php echo $desa['nama_desa']?>">
+                                <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="<?php echo $desa['nama_desa']?>">
                             </a>
                         </div>
                     </div>

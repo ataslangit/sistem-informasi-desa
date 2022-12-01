@@ -147,7 +147,7 @@
         <h2><a href="#">Grafik Statistik Penduduk</a></h2>
     </div>
     <div class='entry'>
-        <link href="<?php echo base_url()?>assets/front/general.css" rel="stylesheet">
+        <link href="<?php echo base_url('assets/front/general.css')?>" rel="stylesheet">
         <div id="container" style="min-width: 550px; height: 500px; margin: 0 auto"></div>
         <div id="contentpane">
             <div class="ui-layout-north panel top">

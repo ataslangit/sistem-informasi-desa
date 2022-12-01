@@ -41,7 +41,7 @@
                                     <a href="<?php echo site_url("penduduk/delete_dokumen/$penduduk[id]/$data[id]")?>" class="uibutton tipsy south" title="Hapus Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"><span class="fa fa-trash-o"><span></a>
                             </td>
                             <td><?php echo $data['nama']?></td>
-                            <td><a href="<?php echo base_url()?>assets/files/dokumen/<?php echo urlencode($data['satuan'])?>"><?php echo $data['satuan']?></a></td>
+                            <td><a href="<?php echo base_url('assets/files/dokumen/' . urlencode($data['satuan'])) ?>"><?php echo $data['satuan']?></a></td>
                             <td><?php echo tgl_indo2($data['tgl_upload'])?></td>
                             <td></td>
                         </tr>

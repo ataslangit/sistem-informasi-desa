@@ -29,7 +29,7 @@
                                     <th>Foto</th>
                                     <td>
                                         <div class="userbox-avatar">
-                                            <img src="<?php echo base_url()?>assets/files/gis/lokasi/kecil_<?php echo $lokasi['foto']?>">
+                                            <img src="<?php echo base_url('assets/files/gis/lokasi/kecil_' . $lokasi['foto']) ?>">
                                         </div>
                                     </td>
                                 </tr>
@@ -56,7 +56,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <?php 
+                                <?php
 ?>
                             </table>
                         </div>

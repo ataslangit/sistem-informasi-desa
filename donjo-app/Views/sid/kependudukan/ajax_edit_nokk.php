@@ -13,9 +13,9 @@
 	<th align="left">Raskin</th>
 	<td>
 	<div class="uiradio">
-	<input type="radio" id="rs1" name="raskin" value="1"/<?php if($kk['raskin'] == '1'){echo 'checked';}?>>
+	<input type="radio" id="rs1" name="raskin" value="1" <?php if($kk['raskin'] == '1'){echo 'checked';}?>>
         <label for="rs1">Ya</label>
-        <input type="radio" id="rs2" name="raskin" value="2" /<?php if($kk['raskin'] == '2' OR $kk['raskin'] == ''){echo 'checked';}?>>
+        <input type="radio" id="rs2" name="raskin" value="2"  <?php if($kk['raskin'] == '2' OR $kk['raskin'] == ''){echo 'checked';}?>>
         <label for="rs2">Tidak</label>
         </div>
         </td>
@@ -24,9 +24,9 @@
             <th align="left">BLSM</th>
             <td>
                 <div class="uiradio">
-                    <input type="radio" id="rs1" name="id_blt" value="1" /<?php if($kk['id_blt'] == '1'){echo 'checked';}?>>
+                    <input type="radio" id="rs1" name="id_blt" value="1" <?php if($kk['id_blt'] == '1'){echo 'checked';}?>>
                     <label for="rs1">Ya</label>
-                    <input type="radio" id="rs2" name="id_blt" value="2" /<?php if($kk['id_blt'] == '2' OR $kk['id_blt'] == ''){echo 'checked';}?>>
+                    <input type="radio" id="rs2" name="id_blt" value="2" <?php if($kk['id_blt'] == '2' OR $kk['id_blt'] == ''){echo 'checked';}?>>
                     <label for="rs2">Tidak</label>
                 </div>
             </td>
@@ -35,9 +35,9 @@
             <th align="left">PKH</th>
             <td>
                 <div class="uiradio">
-                    <input type="radio" id="rs1" name="id_pkh" value="1" /<?php if($kk['id_pkh'] == '1'){echo 'checked';}?>>
+                    <input type="radio" id="rs1" name="id_pkh" value="1" <?php if($kk['id_pkh'] == '1'){echo 'checked';}?>>
                     <label for="rs1">Ya</label>
-                    <input type="radio" id="rs2" name="id_pkh" value="2" /<?php if($kk['id_pkh'] == '2' OR $kk['id_pkh'] == ''){echo 'checked';}?>>
+                    <input type="radio" id="rs2" name="id_pkh" value="2" <?php if($kk['id_pkh'] == '2' OR $kk['id_pkh'] == ''){echo 'checked';}?>>
                     <label for="rs2">Tidak</label>
                 </div>
             </td>
@@ -46,9 +46,9 @@
             <th align="left">Bedah Rumah</th>
             <td>
                 <div class="uiradio">
-                    <input type="radio" id="rs1" name="id_bedah_rumah" value="1" /<?php if($kk['id_bedah_rumah'] == '1'){echo 'checked';}?>>
+                    <input type="radio" id="rs1" name="id_bedah_rumah" value="1" <?php if($kk['id_bedah_rumah'] == '1'){echo 'checked';}?>>
                     <label for="rs1">Ya</label>
-                    <input type="radio" id="rs2" name="id_bedah_rumah" value="2" /<?php if($kk['id_bedah_rumah'] == '2' OR $kk['id_bedah_rumah'] == ''){echo 'checked';}?>>
+                    <input type="radio" id="rs2" name="id_bedah_rumah" value="2" <?php if($kk['id_bedah_rumah'] == '2' OR $kk['id_bedah_rumah'] == ''){echo 'checked';}?>>
                     <label for="rs2">Tidak</label>
                 </div>
             </td>

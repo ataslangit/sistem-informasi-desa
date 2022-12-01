@@ -41,10 +41,10 @@
                         <td>
                             <div class="uiradio">
                                 <?php $ch='checked';?>
-                                <input type="radio" id="group3" name="id_tipe" value="1" /<?php if($analisis_statistik_jawaban['id_tipe'] == '1' OR $analisis_statistik_jawaban['id_tipe'] == ''){echo $ch;}?>><label for="group3">Pilihan (Tunggal)</label>
-                                <input type="radio" id="group2" name="id_tipe" value="2" /<?php if($analisis_statistik_jawaban['id_tipe'] == '2'){echo $ch;}?>><label for="group2">Pilihan (Checkboxes)</label>
-                                <input type="radio" id="group1" name="id_tipe" value="3" /<?php if($analisis_statistik_jawaban['id_tipe'] == '3'){echo $ch;}?>><label for="group1">Isian Angka</label>
-                                <input type="radio" id="group4" name="id_tipe" value="4" /<?php if($analisis_statistik_jawaban['id_tipe'] == '4'){echo $ch;}?>><label for="group4">Isian Tulisan</label>
+                                <input type="radio" id="group3" name="id_tipe" value="1" <?php if($analisis_statistik_jawaban['id_tipe'] == '1' OR $analisis_statistik_jawaban['id_tipe'] == ''){echo $ch;}?>><label for="group3">Pilihan (Tunggal)</label>
+                                <input type="radio" id="group2" name="id_tipe" value="2" <?php if($analisis_statistik_jawaban['id_tipe'] == '2'){echo $ch;}?>><label for="group2">Pilihan (Checkboxes)</label>
+                                <input type="radio" id="group1" name="id_tipe" value="3" <?php if($analisis_statistik_jawaban['id_tipe'] == '3'){echo $ch;}?>><label for="group1">Isian Angka</label>
+                                <input type="radio" id="group4" name="id_tipe" value="4" <?php if($analisis_statistik_jawaban['id_tipe'] == '4'){echo $ch;}?>><label for="group4">Isian Tulisan</label>
                             </div>
                         </td>
                     </tr>
@@ -67,8 +67,8 @@
                         <td>
                             <div class="uiradio">
                                 <?php $ch='checked';?>
-                                <input type="radio" id="gp2" name="act_analisis" value="1" /<?php if($analisis_statistik_jawaban['act_analisis'] == '1'){echo $ch;}?>><label for="gp2">Ya</label>
-                                <input type="radio" id="gp1" name="act_analisis" value="2" /<?php if($analisis_statistik_jawaban['act_analisis'] == '2' OR $analisis_statistik_jawaban['act_analisis'] == ''){echo $ch;}?>><label for="gp1">Tidak</label>
+                                <input type="radio" id="gp2" name="act_analisis" value="1" <?php if($analisis_statistik_jawaban['act_analisis'] == '1'){echo $ch;}?>><label for="gp2">Ya</label>
+                                <input type="radio" id="gp1" name="act_analisis" value="2" <?php if($analisis_statistik_jawaban['act_analisis'] == '2' OR $analisis_statistik_jawaban['act_analisis'] == ''){echo $ch;}?>><label for="gp1">Tidak</label>
                             </div>
                         </td>
                     </tr>

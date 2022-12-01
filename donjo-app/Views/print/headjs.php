@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css/960.css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css/screen.css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css/print-preview.css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css/print.css" media="print">
-    <script src="<?php echo base_url()?>assets/css/css/jquery.tools.min.js"></script>
-    <script src="<?php echo base_url()?>assets/css/css/jquery.print-preview.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/css/960.css') ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/css/screen.css') ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/css/print-preview.css') ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/css/print.css') ?>" media="print">
+    <script src="<?php echo base_url('assets/css/css/jquery.tools.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/css/css/jquery.print-preview.js') ?>"></script>
 
     <script>
         $(function() {

@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>assets/js/polygon.min.js"></script>
+<script src="<?php echo base_url('assets/js/polygon.min.js') ?>"></script>
 <script>
     function PolygonCreator(map) {
         this.map = map;
@@ -38,7 +38,7 @@
         };
         var map = new google.maps.Map(document.getElementById('map'), options);
 
-        <?php 
+        <?php
 			$path = preg_split("/\;/", $desa['path']);
 			echo "var path = [";foreach($path AS $p){if($p!=""){echo"new google.maps.LatLng".$p.",";}}echo"];";?>
 

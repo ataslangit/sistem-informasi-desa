@@ -2,12 +2,12 @@
     $(function() {
         var nik = {};
         nik.results = [
-            <?php foreach($menu_surat2 as $data){?> {
-                id: '<?php echo $data['url_surat']?>',
-                name: "<?php echo strtoupper($data['nama'])?>",
-                info: "<?php echo ($data['url_surat']);?>"
-            },
-            <?php }?>
+            <?php foreach ($menu_surat2 as $data) { ?> {
+                    id: '<?php echo $data['url_surat'] ?>',
+                    name: "<?php echo strtoupper($data['nama']) ?>",
+                    info: "<?php echo ($data['url_surat']); ?>"
+                },
+            <?php } ?>
         ];
         $('#nik').flexbox(nik, {
             resultTemplate: '<div><label style="font-size:14px;">{name}</label></div><div style="font-size:12px;">{info}</div>',
@@ -19,7 +19,6 @@
             }
         });
     });
-
 </script>
 <div id="pageC">
     <div id="contentpane">
@@ -28,7 +27,7 @@
         <div class="ui-layout-center" id="maincontent" style="padding: 10px;">
             <div>
                 <h3>Menu Cepat Pencarian / Cetak Layanan Surat<h3>
-                        <form action="<?php echo site_url()?>surat/search" id="main" name="main" method="POST">
+                        <form action="<?php echo site_url() ?>surat/search" id="main" name="main" method="POST">
                             <div id="nik" name="nik"></div>
                         </form>
 
@@ -41,26 +40,26 @@
                     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
                         <div class="teks">
                             <p>Jenis-jenis surat dapat diubah, ditambah, atau dikurangi dengan menggunakan fungsi pengaturan di Menu Master Surat.<br></p>
-                            <?php foreach($surat_favorit AS $data){?>
-                            <a class="csurat" href="<?php echo site_url()?>surat/form/<?php echo $data['url_surat']?>">
-                                <img src="<?php echo base_url()?>assets/images/cpanel/edit-select-all-1.png">
-                                <span><?php echo strtoupper($data['nama'])?></span>
-                            </a>
-                            <?php }?>
+                            <?php foreach ($surat_favorit as $data) { ?>
+                                <a class="csurat" href="<?php echo site_url() ?>surat/form/<?php echo $data['url_surat'] ?>">
+                                    <img src="<?php echo base_url('assets/images/cpanel/edit-select-all-1.png') ?>">
+                                    <span><?php echo strtoupper($data['nama']) ?></span>
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <div style="clear: both;">
                         <hr>
                         <br>
                         <div>
-                            <?php foreach($menu_surat2 AS $data){
-					if($data['favorit']!=1){?>
-                            <a class="csurat" href="<?php echo site_url()?>surat/form/<?php echo $data['url_surat']?>">
-                                <img src="<?php echo base_url()?>assets/images/cpanel/edit-select-all-2.png">
-                                <span><?php echo strtoupper($data['nama'])?></span>
-                            </a>
+                            <?php foreach ($menu_surat2 as $data) {
+                                if ($data['favorit'] != 1) { ?>
+                                    <a class="csurat" href="<?php echo site_url() ?>surat/form/<?php echo $data['url_surat'] ?>">
+                                        <img src="<?php echo base_url('assets/images/cpanel/edit-select-all-2.png') ?>">
+                                        <span><?php echo strtoupper($data['nama']) ?></span>
+                                    </a>
                             <?php }
-				}?>
+                            } ?>
                         </div>
                     </div>
                 </div>

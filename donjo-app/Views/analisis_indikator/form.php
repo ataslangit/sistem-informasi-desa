@@ -38,10 +38,10 @@
                         <td>
                             <div class="uiradio">
                                 <?php $ch='checked';?>
-                                <input type="radio" id="group3" name="id_tipe" value="1" /<?php if($analisis_indikator['id_tipe'] == '1' OR $analisis_indikator['id_tipe'] == ''){echo $ch;}?>><label for="group3">Pilihan (Multiple Choice)</label>
-                                <input type="radio" id="group2" name="id_tipe" value="2" /<?php if($analisis_indikator['id_tipe'] == '2'){echo $ch;}?>><label for="group2">Pilihan (Checkboxes)</label>
-                                <input type="radio" id="group1" name="id_tipe" value="3" /<?php if($analisis_indikator['id_tipe'] == '3'){echo $ch;}?>><label for="group1">Isian Jumlah (Kuantitatif)</label>
-                                <input type="radio" id="group4" name="id_tipe" value="4" /<?php if($analisis_indikator['id_tipe'] == '4'){echo $ch;}?>><label for="group4">Isian Teks (Kualitatif) </label>
+                                <input type="radio" id="group3" name="id_tipe" value="1" <?php if($analisis_indikator['id_tipe'] == '1' OR $analisis_indikator['id_tipe'] == ''){echo $ch;}?>><label for="group3">Pilihan (Multiple Choice)</label>
+                                <input type="radio" id="group2" name="id_tipe" value="2" <?php if($analisis_indikator['id_tipe'] == '2'){echo $ch;}?>><label for="group2">Pilihan (Checkboxes)</label>
+                                <input type="radio" id="group1" name="id_tipe" value="3" <?php if($analisis_indikator['id_tipe'] == '3'){echo $ch;}?>><label for="group1">Isian Jumlah (Kuantitatif)</label>
+                                <input type="radio" id="group4" name="id_tipe" value="4" <?php if($analisis_indikator['id_tipe'] == '4'){echo $ch;}?>><label for="group4">Isian Teks (Kualitatif) </label>
                             </div>
                         </td>
                     </tr>
@@ -64,8 +64,8 @@
                         <td>
                             <div class="uiradio">
                                 <?php $ch='checked';?>
-                                <input type="radio" id="gp2" name="act_analisis" value="1" /<?php if($analisis_indikator['act_analisis'] == '1'){echo $ch;}?>><label for="gp2">Ya</label>
-                                <input type="radio" id="gp1" name="act_analisis" value="2" /<?php if($analisis_indikator['act_analisis'] == '2' OR $analisis_indikator['act_analisis'] == ''){echo $ch;}?>><label for="gp1">Tidak</label>
+                                <input type="radio" id="gp2" name="act_analisis" value="1" <?php if($analisis_indikator['act_analisis'] == '1'){echo $ch;}?>><label for="gp2">Ya</label>
+                                <input type="radio" id="gp1" name="act_analisis" value="2" <?php if($analisis_indikator['act_analisis'] == '2' OR $analisis_indikator['act_analisis'] == ''){echo $ch;}?>><label for="gp1">Tidak</label>
                             </div>
                         </td>
                     </tr>
@@ -86,8 +86,8 @@
                         <td>
                             <div class="uiradio">
                                 <?php $ch='checked';?>
-                                <input type="radio" id="agp2" name="is_publik" value="1" /<?php if($analisis_indikator['is_publik'] == '1'){echo $ch;}?>><label for="agp2">Ya</label>
-                                <input type="radio" id="agp1" name="is_publik" value="0" /<?php if($analisis_indikator['is_publik'] == '0' OR $analisis_indikator['is_publik'] == ''){echo $ch;}?>><label for="agp1">Tidak</label>
+                                <input type="radio" id="agp2" name="is_publik" value="1" <?php if($analisis_indikator['is_publik'] == '1'){echo $ch;}?>><label for="agp2">Ya</label>
+                                <input type="radio" id="agp1" name="is_publik" value="0" <?php if($analisis_indikator['is_publik'] == '0' OR $analisis_indikator['is_publik'] == ''){echo $ch;}?>><label for="agp1">Tidak</label>
                             </div>
                             *) Tampilkan data indikator di halaman depan website desa (Menu Data Desa -> Data Analisis).
                         </td>
