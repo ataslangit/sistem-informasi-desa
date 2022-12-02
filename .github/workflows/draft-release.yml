@@ -15,12 +15,12 @@ jobs:
         run: echo ::set-output name=ZIPBALL_NAME::${{ github.event.repository.name }}-${{ github.ref_name }}
 
       - run: composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev
-      
+
       - uses: thedoctor0/zip-release@main
         with:
           type: "zip"
           filename: "${{ steps.get_zipball_name.outputs.ZIPBALL_NAME }}.zip"
-          exclusions: "*.git* docs .devcontainer .editorconfig .php-cs-fixer.php code_of_conduct.md composer.json package-lock.json package.json"
+          exclusions: "*.git* docs* .devcontainer* .editorconfig .php-cs-fixer.php code_of_conduct.md composer.json package-lock.json package.json"
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
