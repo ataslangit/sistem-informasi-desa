@@ -7,8 +7,8 @@
                     <legend>Laporan : </legend>
                     <div class="lmenu">
                         <ul>
-                            <li><a href="<?php echo site_url()?>laporan">Laporan Bulanan</a></li>
-                            <li><a href="<?php echo site_url()?>laporan_rentan">Data Kelompok Rentan</a></li>
+                            <li><a href="<?php echo site_url('laporan') ?>">Laporan Bulanan</a></li>
+                            <li><a href="<?php echo site_url('laporan_rentan') ?>">Data Kelompok Rentan</a></li>
 
                         </ul>
                     </div>
@@ -259,7 +259,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no=1; 
+                                    <?php $no=1;
 	foreach($main as $data){?>
                                     <tr>
                                         <td>
@@ -321,7 +321,7 @@
                                             <div align="center"><?php echo $data['lalu_L']+$data['pecah_L']+$data['datang_L']-$data['pergi_L']-$data['mati_L']+$data['lalu_P']+$data['pecah_P']+$data['datang_P']-$data['pergi_P']-$data['mati_P']?></div>
                                         </td>
                                     </tr>
-                                    <?php $no++; 
+                                    <?php $no++;
 	} ?>
                                 </tbody>
                                 <thead>
@@ -394,7 +394,7 @@
                 </div>
                 <div class="ui-layout-south panel bottom">
                     <div class="left">
-                        <a href="<?php echo site_url()?>sid_wilayah" class="uibutton icon prev">Kembali</a>
+                        <a href="<?php echo site_url('sid_wilayah') ?>" class="uibutton icon prev">Kembali</a>
                     </div>
                     <div class="right">
                         <div class="uibutton-group">

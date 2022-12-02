@@ -124,7 +124,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
 		if($anggota!=NULL){
 			$i=0;?>
                                                     <?php foreach($anggota AS $data){ $i++;?>
@@ -237,7 +237,7 @@
 
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
-                            <a href="<?php echo site_url()?>surat" class="uibutton icon prev">Kembali</a>
+                            <a href="<?php echo site_url('surat') ?>" class="uibutton icon prev">Kembali</a>
                         </div>
                         <div class="right">
                             <div class="uibutton-group">

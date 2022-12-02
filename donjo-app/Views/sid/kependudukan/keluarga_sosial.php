@@ -107,7 +107,7 @@
                         </div>
                         <div class="right">
                             <div class="uibutton-group">
-                                <a href="<?php echo site_url()?>keluarga/clear" class="uibutton icon prev">Kembali</a>
+                                <a href="<?php echo site_url('keluarga/clear') ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                         </div>
                     </div>

@@ -12,7 +12,7 @@
                 <?php foreach($list_indikator AS $data){?>
                 <div class="box box-primary">
                     <div class="box-header">
-                        <a href="<?php echo site_url()?>first/data_analisis/<?php echo $data['id']?>/<?php echo $data['subjek_tipe']?>/<?php echo $data['id_periode']?>">
+                        <a href="<?php echo site_url('first/data_analisis/' . $data['id'] . '/' . $data['subjek_tipe'] . '/' . $data['id_periode']) ?>">
                             <h4><?php echo $data['indikator']?></h4>
                         </a>
                     </div>
@@ -36,7 +36,7 @@
                         </table>
                     </div>
                 </div>
-                <?php 
+                <?php
 							}
 						} ?>
         </div>
@@ -49,7 +49,7 @@
 </div>
 
 <div id="footer">
-    <?php 
+    <?php
 				view('partials/copywright.tpl.php');
 				?>
 </div>

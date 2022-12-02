@@ -77,7 +77,7 @@
                     <tr>
                         <td width="150">Form Pendataan</td>
                         <td> : </td>
-                        <td><a href="<?php echo site_url() ?>analisis_master/menu/<?php echo $_SESSION['analisis_master'] ?>"><?php echo $analisis_master['nama'] ?></a></td>
+                        <td><a href="<?php echo site_url('analisis_master/menu/' . $_SESSION['analisis_master']) ?>"><?php echo $analisis_master['nama'] ?></a></td>
                     </tr>
                     <tr>
                         <td>Nomor Identitas</td>
@@ -243,7 +243,7 @@
             </div>
             <div class="ui-layout-south panel bottom" id="bawah">
                 <div class="left">
-                    <a href="<?php echo site_url() ?>analisis_respon" class="uibutton icon prev">Kembali</a>
+                    <a href="<?php echo site_url('analisis_respon') ?>" class="uibutton icon prev">Kembali</a>
                     <?php if (isset($_SESSION['fullscreen'])) { ?>
                     <a href="<?php echo current_url() ?>/2" class="uibutton">Normal</a>
                     <?php } else { ?>

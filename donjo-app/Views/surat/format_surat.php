@@ -27,7 +27,7 @@
         <div class="ui-layout-center" id="maincontent" style="padding: 10px;">
             <div>
                 <h3>Menu Cepat Pencarian / Cetak Layanan Surat<h3>
-                        <form action="<?php echo site_url() ?>surat/search" id="main" name="main" method="POST">
+                        <form action="<?php echo site_url('surat/search') ?>" id="main" name="main" method="POST">
                             <div id="nik" name="nik"></div>
                         </form>
 
@@ -41,7 +41,7 @@
                         <div class="teks">
                             <p>Jenis-jenis surat dapat diubah, ditambah, atau dikurangi dengan menggunakan fungsi pengaturan di Menu Master Surat.<br></p>
                             <?php foreach ($surat_favorit as $data) { ?>
-                                <a class="csurat" href="<?php echo site_url() ?>surat/form/<?php echo $data['url_surat'] ?>">
+                                <a class="csurat" href="<?php echo site_url('surat/form/' . $data['url_surat']) ?>">
                                     <img src="<?php echo base_url('assets/images/cpanel/edit-select-all-1.png') ?>">
                                     <span><?php echo strtoupper($data['nama']) ?></span>
                                 </a>
@@ -54,7 +54,7 @@
                         <div>
                             <?php foreach ($menu_surat2 as $data) {
                                 if ($data['favorit'] != 1) { ?>
-                                    <a class="csurat" href="<?php echo site_url() ?>surat/form/<?php echo $data['url_surat'] ?>">
+                                    <a class="csurat" href="<?php echo site_url('surat/form/' . $data['url_surat']) ?>">
                                         <img src="<?php echo base_url('assets/images/cpanel/edit-select-all-2.png') ?>">
                                         <span><?php echo strtoupper($data['nama']) ?></span>
                                     </a>

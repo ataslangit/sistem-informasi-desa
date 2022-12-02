@@ -347,7 +347,7 @@ class Penduduk extends CI_Controller
 
         $i    = 0;
         $dp   = 0;
-        $link = site_url() . 'penduduk/form';
+        $link = site_url('penduduk/form');
 
         while ($i < count($data)) {
             if ($_POST['nik'] === $data[$i]['nik']) {

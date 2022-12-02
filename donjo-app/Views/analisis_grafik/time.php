@@ -3,9 +3,9 @@
     <table class="inner">
         <tr style="vertical-align:top">
             <td style="background:#fff;padding:0px;">
-                <script src="<?php echo base_url('assets/js/highcharts/highcharts.js') ?>"></script>
-                <script src="<?php echo base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
-                <script src="<?php echo base_url('assets/js/highcharts/exporting.js') ?>"></script>
+                <script src="<?= base_url('assets/js/highcharts/highcharts.js') ?>"></script>
+                <script src="<?= base_url('assets/js/highcharts/highcharts-more.js') ?>"></script>
+                <script src="<?= base_url('assets/js/highcharts/exporting.js') ?>"></script>
                 <script>
                     var chart;
                     $(document).ready(function() {
@@ -21,7 +21,11 @@
                                 title: {
                                     text: ''
                                 },
-                                categories: [<?php $i=0;foreach($periode as $data){$i++;?><?php echo "'$data[nama]'";?>, <?php }?>]
+                                categories: [<?php $i = 0;
+
+                                                foreach ($periode as $data) {
+                                                    $i++; ?><?= "'{$data['nama']}'"; ?>, <?php
+                                                } ?>]
                             },
                             yAxis: {
                                 title: {
@@ -47,13 +51,14 @@
                                     enableMouseTracking: false
                                 }
                             },
-                            series: [<?php foreach($main as $data){?> {
-                                name: '<?php echo $data['nama']?>',
-                                data: [<?php foreach($data['jumlah'] as $dx){echo $dx['jml']+0?>, <?php }?>]
-                            }, <?php }?>]
+                            series: [<?php foreach ($main as $data) { ?> {
+                                    name: '<?= $data['nama'] ?>',
+                                    data: [<?php foreach ($data['jumlah'] as $dx) {
+                                                echo $dx['jml'] + 0 ?>, <?php
+                                            } ?>]
+                                }, <?php } ?>]
                         });
                     });
-
                 </script>
                 <style>
                     tr#total {
@@ -62,7 +67,6 @@
                         white-space: nowrap;
                         font-weight: bold;
                     }
-
                 </style>
                 <div id="contentpane">
                     <div class="ui-layout-north panel top">
@@ -76,21 +80,25 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Statistik</th>
-                                    <?php $i=0;foreach($periode as $data){$i++;?><th><?php echo "$data[nama]";?></th><?php }?>
+                                    <?php $i = 0;
+
+                                    foreach ($periode as $data) {
+                                        $i++; ?><th><?= "{$data['nama']}"; ?></th><?php
+                                                } ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($main as $data): ?>
-                                <tr>
-                                    <td align="center" width="2"><?php echo $data['no']?></td>
-                                    <td><?php echo $data['nama']?></td>
-                                    <?php foreach($data['jumlah'] as $dx){?><td><?php echo $dx['jml'];?></td><?php }?>
-                                </tr>
+                                <?php foreach ($main as $data) : ?>
+                                    <tr>
+                                        <td align="center" width="2"><?= $data['no'] ?></td>
+                                        <td><?= $data['nama'] ?></td>
+                                        <?php foreach ($data['jumlah'] as $dx) { ?><td><?= $dx['jml']; ?></td><?php } ?>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                         <div class="left">
-                            <a href="<?php echo site_url()?>analisis_grafik/leave" class="uibutton icon prev">Kembali</a>
+                            <a href="<?= site_url('analisis_grafik/leave') ?>" class="uibutton icon prev">Kembali</a>
                         </div>
                     </div>
                 </div>

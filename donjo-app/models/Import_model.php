@@ -650,7 +650,7 @@ class Import_model extends CI_Model
         }
 
         echo "<br>JUMLAH GAGAL : {$gg}</br>";
-        echo "<a href='" . site_url() . "database/import_ppls'>LANJUT</a>";
+        echo "<a href='" . site_url('database/import_ppls') . "'>LANJUT</a>";
     }
 
     public function ppls_rumahtangga()

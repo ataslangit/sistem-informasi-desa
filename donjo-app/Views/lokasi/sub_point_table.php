@@ -1,7 +1,7 @@
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
-            <?php 
+            <?php
 ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content-header">
@@ -58,7 +58,7 @@
                     </form>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
-                            <a href="<?php echo site_url()?>plan/index/1" class="uibutton icon prev">Kembali</a>
+                            <a href="<?php echo site_url('plan/index/1') ?>" class="uibutton icon prev">Kembali</a>
                         </div>
                         <div class="right">
                         </div>

@@ -16,14 +16,14 @@
                                         <input class="color inputbox" size="7" value="<?php echo $line['color']?>" name="color">
                                     </td>
                                 </tr>
-                                <?php 
+                                <?php
 ?>
                             </table>
                         </div>
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?php echo site_url()?>line" class="uibutton icon prev">Kembali</a>
+                                <a href="<?php echo site_url('line') ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">

@@ -49,9 +49,9 @@
                                     <th>Status</th>
                                     <td>
                                         <div class="uiradio">
-                                            <input type="radio" id="sx1" name="enabled" value="1" /<?php if($lokasi['enabled'] == '1' OR $lokasi['enabled'] == ''){echo 'checked';}?>>
+                                            <input type="radio" id="sx1" name="enabled" value="1" <?php if($lokasi['enabled'] == '1' OR $lokasi['enabled'] == ''){echo 'checked';}?>>
                                             <label for="sx1">Aktif</label>
-                                            <input type="radio" id="sx2" name="enabled" value="2" /<?php if($lokasi['enabled'] == '2'){echo 'checked';}?>>
+                                            <input type="radio" id="sx2" name="enabled" value="2" <?php if($lokasi['enabled'] == '2'){echo 'checked';}?>>
                                             <label for="sx2">Tidak Aktif</label>
                                         </div>
                                     </td>
@@ -63,7 +63,7 @@
 
                         <div class="ui-layout-south panel bottom">
                             <div class="left">
-                                <a href="<?php echo site_url()?>plan" class="uibutton icon prev">Kembali</a>
+                                <a href="<?php echo site_url('plan') ?>" class="uibutton icon prev">Kembali</a>
                             </div>
                             <div class="right">
                                 <div class="uibutton-group">
