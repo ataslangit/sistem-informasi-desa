@@ -7,6 +7,8 @@ Berikut adalah log perubahan dari SID.
 
 - [dev](/changelog/dev)<br>
   <small>belum rilis</small>
+- [v4.5.1](/changelog/451)<br>
+  <small>Rilis 2 Desember 2022</small>
 - [v4.5.0](/changelog/450)<br>
   <small>Rilis 7 November 2022</small>
 - [v4.0.0](/changelog/4-0-0)<br>
