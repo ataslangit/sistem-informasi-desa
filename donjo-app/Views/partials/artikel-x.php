@@ -61,7 +61,7 @@
 
     </style>
     <div id='pageshare' title="bagikan ke teman anda">
-        <div class='sbutton' id='fb'><a name="fb_share" href="http://www.facebook.com/sharer.php?u='<?php echo site_url(); ?>first/artikel/<?php echo $single_artikel['id']?>'">Share</a>
+        <div class='sbutton' id='fb'><a name="fb_share" href="http://www.facebook.com/sharer.php?u='<?php echo site_url('first/artikel/' . $single_artikel['id']) ?>'">Share</a>
             <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
         </div>
         <div class='sbutton' id='rt'><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a>

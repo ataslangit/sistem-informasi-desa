@@ -96,7 +96,7 @@
             </tbody>
         </table>
         <div>
-            <a href="<?php echo site_url()?>first/data_analisis" class="uibutton icon prev">Kembali</a>
+            <a href="<?php echo site_url('first/data_analisis') ?>" class="uibutton icon prev">Kembali</a>
         </div>
     </div>
 </div>

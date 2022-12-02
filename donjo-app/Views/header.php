@@ -30,7 +30,7 @@
 
 <body>
     <div class="ui-layout-north" id="header">
-        <div id="sid-logo"><a href="<?php echo site_url()?>first" target="_blank"><img src="<?php echo base_url('assets/files/logo/' . $desa['logo']) ?>" alt=""></a></div>
+        <div id="sid-logo"><a href="<?php echo site_url('first') ?>" target="_blank"><img src="<?php echo base_url('assets/files/logo/' . $desa['logo']) ?>" alt=""></a></div>
         <div id="sid-judul">Sistem Informasi Desa</div>
         <div id="sid-info">Desa <?php echo $desa['nama_desa']?>, <?php echo $desa['nama_kecamatan']?>, <?php echo $desa['nama_kabupaten']?> </div>
         <div id="userbox" class="wrapper-dropdown-3" tabindex="1">
@@ -47,11 +47,11 @@
             </div>
 
             <ul class="dropdown" tabindex="1">
-                <li><a href="<?php echo site_url()?>user_setting" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="fa fa-user"></i>Setting User</a></li>
+                <li><a href="<?php echo site_url('user_setting') ?>" target="ajax-modalz" rel="window-lok" header="Pengaturan Pengguna" title="Pengaturan Pengguna"><i class="fa fa-user"></i>Setting User</a></li>
                 <?php if($_SESSION['grup']==1){?>
-                <li><a href="<?php echo site_url()?>modul/clear"><i class="fa fa-cogs"></i>Pengaturan</a></li>
+                <li><a href="<?php echo site_url('modul/clear')?>"><i class="fa fa-cogs"></i>Pengaturan</a></li>
                 <?php }?>
-                <li><a href="<?php echo site_url()?>siteman"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                <li><a href="<?php echo site_url('siteman') ?>"><i class="fa fa-sign-out"></i>Log Out</a></li>
             </ul>
 
         </div>
@@ -79,7 +79,7 @@
         <div class="module-panel">
             <div class="contentm" style="overflow: hidden;">
                 <?php foreach ($modul AS $mod){?>
-                <a class="cpanel" href="<?php echo site_url()?><?php echo $mod['url']?>">
+                <a class="cpanel" href="<?php echo site_url($mod['url']) ?>">
                     <img src="<?php echo base_url('assets/images/cpanel/' . $mod['ikon']) ?>" alt="">
                     <span><?php echo $mod['modul']?></span>
                 </a>

@@ -9,6 +9,6 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "format": "js-beautify --html -r --editorconfig --templating php -f"
+    "format": "js-beautify --html -r --editorconfig -b collapse  -I true -w 120 --templating php -f"
   }
 }

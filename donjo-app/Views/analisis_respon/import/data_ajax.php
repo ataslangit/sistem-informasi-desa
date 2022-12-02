@@ -1,4 +1,4 @@
-<script src="<?php echo base_url('assets/js/donjoscript/donjo.ui.dialog.js')?>"></script>
+<script src="<?= base_url('assets/js/donjoscript/donjo.ui.dialog.js') ?>"></script>
 <table>
     <tr>
         <td colspan='2'>
@@ -12,17 +12,17 @@
     </tr>
     <tr>
         <td width='90'>
-            <a href="<?php echo site_url()?>analisis_respon/data_unduh" class="uibutton confirm" target="_blank"> Form Excel </a>
+            <a href="<?= site_url('analisis_respon/data_unduh') ?>" class="uibutton confirm" target="_blank"> Form Excel </a>
         </td>
         <td>
-            <a href="<?php echo site_url()?>analisis_respon/data_unduh/1" class="uibutton confirm" target="_blank"> Form Excel + Isi Data</a>
+            <a href="<?= site_url('analisis_respon/data_unduh/1') ?>" class="uibutton confirm" target="_blank"> Form Excel + Isi Data</a>
         </td>
     </tr>
 </table>
 <div class="buttonpane" style="text-align: right; width:420px;position:absolute;bottom:0px;">
     <?php /*
-	Lanjut :
-		<a href="<?php echo site_url()?>analisis_respon/import/1" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
+    Lanjut :
+        <a href="<?php echo site_url('analisis_respon/import/1)?>" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import" >Format 1</a>
     */ ?>
-    <a href="<?php echo site_url()?>analisis_respon/import" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>
+    <a href="<?= site_url('analisis_respon/import') ?>" class="uibutton special" target="ajax-modal" rel="window" header="Unggah Format Import">Lanjut</a>
 </div>

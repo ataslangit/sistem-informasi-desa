@@ -13,7 +13,7 @@
         <form id="mainform" name="mainform" action="" method="post">
             <div class="ui-layout-north panel">
                 <div class="left">
-                    <h3>Analisis Statistik Jawaban - <a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><a href="<?php echo site_url()?>analisis_master/menu/<?php echo $_SESSION['analisis_master']?>"><?php echo $analisis_master['nama']?></a></a></h3>
+                    <h3>Analisis Statistik Jawaban - <a href="<?php echo site_url('analisis_master/menu/' .  $_SESSION['analisis_master']) ?><a href="<?php echo site_url('analisis_master/menu/' .  $_SESSION['analisis_master']) ?><?php echo $analisis_master['nama']?></a></a></h3>
                 </div>
             </div>
             <div class="ui-layout-center" id="maincontent" style="padding: 5px;">

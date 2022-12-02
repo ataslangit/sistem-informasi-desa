@@ -83,7 +83,7 @@
                     </div>
                     <div id="divlogo-img">
                         <div class="intube">
-                            <a href="<?php echo site_url(); ?>first/">
+                            <a href="<?php echo site_url('first') ?>">
                                 <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="<?php echo $desa['nama_desa']?>">
                             </a>
                         </div>

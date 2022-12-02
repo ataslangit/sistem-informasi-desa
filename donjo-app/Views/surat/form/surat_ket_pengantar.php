@@ -56,8 +56,8 @@
                 <form id="validasi" action="" method="POST" target="_blank">
                     <input type="hidden" name="nik" value="<?php echo $individu['id']?>" class="inputbox required">
                     <table class="form">
-                        <?php 
-						if($individu){ 
+                        <?php
+						if($individu){
 							?>
                         <tr>
                             <th width="40%">Tempat Tanggal Lahir (Umur)</th>
@@ -84,7 +84,7 @@
                                 <a header="Dokumen" target="ajax-modal" rel="dokumen" href="<?php echo site_url("penduduk/dokumen_list/$individu[id]")?>" class="uibutton special">Daftar Dokumen</a><a target="_blank" href="<?php echo site_url("penduduk/dokumen/$individu[id]")?>" class="uibutton confirm">Manajemen Dokumen</a> )* Atas Nama <?php echo $individu['nama']?> [<?php echo $individu['nik']?>]
                             </td>
                         </tr>
-                        <?php 
+                        <?php
 						}
 						?>
                         <tr>
@@ -130,7 +130,7 @@
         </div>
         <div class="ui-layout-south panel bottom">
             <div class="left">
-                <a href="<?php echo site_url()?>surat" class="uibutton icon prev">Kembali</a>
+                <a href="<?php echo site_url('surat') ?>" class="uibutton icon prev">Kembali</a>
             </div>
             <div class="right">
                 <div class="uibutton-group">

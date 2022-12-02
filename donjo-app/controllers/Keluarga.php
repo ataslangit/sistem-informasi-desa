@@ -613,7 +613,7 @@ class Keluarga extends CI_Controller
 
         $i    = 0;
         $dp   = 0;
-        $link = site_url() . 'keluarga';
+        $link = site_url('keluarga');
 
         while ($i < count($data)) {
             if ($_POST['nik'] === $data[$i]['nik']) {
@@ -639,7 +639,7 @@ class Keluarga extends CI_Controller
 
         $i    = 0;
         $dp   = 0;
-        $link = site_url() . 'keluarga/form/0/1';
+        $link = site_url('keluarga/form/0/1');
 
         while ($i < count($data)) {
             if ($_POST['no_kk'] === $data[$i]['no_kk']) {

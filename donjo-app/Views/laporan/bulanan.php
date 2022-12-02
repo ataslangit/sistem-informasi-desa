@@ -2,8 +2,8 @@
     <!-- Start of Space Admin 	<td class="side-menu"><legend>Laporan : </legend>
 			<div class="lmenu">
 				<ul>
-				<li class="selected"><a href="<?php echo site_url()?>laporan">Laporan Bulanan</a></li>
-				<li><a href="<?php echo site_url()?>laporan_rentan">Data Kelompok Rentan</a></li>
+				<li class="selected"><a href="<?php echo site_url('laporan')?>">Laporan Bulanan</a></li>
+				<li><a href="<?php echo site_url('laporan_rentan')?>">Data Kelompok Rentan</a></li>
 
 				</ul>
 			</div>
@@ -318,7 +318,7 @@
                 </div>
                 <div class="ui-layout-south panel bottom">
                     <div class="left">
-                        <a href="<?php echo site_url()?>sid_wilayah" class="uibutton icon prev">Kembali</a>
+                        <a href="<?php echo site_url('sid_wilayah')?>" class="uibutton icon prev">Kembali</a>
                     </div>
                     <div class="right">
                         <div class="uibutton-group">
