@@ -12,7 +12,7 @@ class First_menu_m extends CI_Model
         $i = 0;
 
         while ($i < count($data)) {
-            $data[$i]['menu'] = '<li><a href="' . site_url('first/' . $data[$i]['link']) . '">"' . $data[$i]['nama'] . '</a>';
+            $data[$i]['menu'] = '<li><a href="' . site_url('first/' . $data[$i]['link']) . '">' . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM menu s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
@@ -45,7 +45,7 @@ class First_menu_m extends CI_Model
         $i     = 0;
 
         while ($i < count($data)) {
-            $data[$i]['menu'] = '<li><a href="' . site_url('first/kategori/' . $data[$i]['id']) . '">"' . $data[$i]['nama'] . '</a>';
+            $data[$i]['menu'] = '<li><a href="' . site_url('first/kategori/' . $data[$i]['id']) . '">' . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.*,s.kategori AS nama FROM kategori s WHERE s.parrent = ? AND s.enabled = 1';
             $query = $this->db->query($sql2, $data[$i]['id']);
