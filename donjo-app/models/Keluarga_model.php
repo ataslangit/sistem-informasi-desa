@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Keluarga_model extends CI_Model
 {
     public function autocomplete()
@@ -193,6 +195,8 @@ class Keluarga_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $sql .= $this->search_sql();
         $sql .= $this->dusun_sql();
@@ -203,13 +207,13 @@ class Keluarga_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
@@ -270,6 +274,8 @@ class Keluarga_model extends CI_Model
 
     public function paging_statistik($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         if ($_SESSION['kelas']) {
             $sql = "SELECT COUNT(u.id) AS id FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE kelas_sosial = {$_SESSION['kelas']} ";
             $sql .= $this->search_sql();
@@ -289,13 +295,13 @@ class Keluarga_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_statistik($tipe = 21, $o = 0, $offset = 0, $limit = 500)

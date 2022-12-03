@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Surat_keluar_model extends CI_Model
 {
     public function autocomplete()
@@ -60,23 +62,27 @@ class Surat_keluar_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(id) AS id FROM log_surat u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function paging_perorangan($nik = 0, $p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT count(id_format_surat) as id FROM log_surat u LEFT JOIN tweb_penduduk n ON u.id_pend = n.id LEFT JOIN tweb_surat_format k ON u.id_format_surat = k.id LEFT JOIN tweb_desa_pamong s ON u.id_pamong = s.pamong_id WHERE 1 ';
         $sql .= $this->filterku_sql($nik);
 
@@ -84,13 +90,13 @@ class Surat_keluar_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_surat($nik = 0, $o = 0, $offset = 0, $limit = 500)

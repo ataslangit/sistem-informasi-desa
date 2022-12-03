@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Plan_area_model extends CI_Model
 {
     public function autocomplete()
@@ -64,6 +66,8 @@ class Plan_area_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(l.id) AS id FROM area l LEFT JOIN polygon p ON l.ref_polygon = p.id LEFT JOIN polygon m ON p.parrent = m.id WHERE 1 ';
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -73,13 +77,13 @@ class Plan_area_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500)

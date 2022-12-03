@@ -1,21 +1,25 @@
 <?php
 
+use App\Libraries\Paging;
+
 class First_gallery_m extends CI_Model
 {
     public function paging($p = 1)
     {
+        $paging = new Paging();
+
         $sql      = "SELECT COUNT(id) AS id FROM gambar_gallery WHERE enabled=1 AND tipe='0'";
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = 8;
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function gallery_show($offset = 0, $limit = 50)
@@ -32,18 +36,20 @@ class First_gallery_m extends CI_Model
 
     public function paging2($gal = 0, $p = 1)
     {
+        $paging = new Paging();
+
         $sql      = 'SELECT COUNT(id) AS id FROM gambar_gallery WHERE enabled=1 AND parrent=?';
         $query    = $this->db->query($sql, $gal);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = 8;
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function sub_gallery_show($gal = 0, $offset = 0, $limit = 50)

@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Analisis_grafik_model extends CI_Model
 {
     public function autocomplete()
@@ -74,6 +76,8 @@ class Analisis_grafik_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(id) AS id FROM analisis_klasifikasi u WHERE 1';
         $sql .= $this->search_sql();
         $sql .= $this->master_sql();
@@ -81,13 +85,13 @@ class Analisis_grafik_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500)

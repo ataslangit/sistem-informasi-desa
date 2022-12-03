@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Sms_model extends CI_Model
 {
     public function autocomplete()
@@ -44,19 +46,21 @@ class Sms_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(ID) AS id FROM inbox u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function insert_autoreply()
@@ -118,19 +122,21 @@ class Sms_model extends CI_Model
 
     public function paging_terkirim($p = 1, $o = 0)
     {
+        $paging =  new Paging();
+
         $sql = 'SELECT count(u.ID) as id FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_terkirim($o = 0, $offset = 0, $limit = 500)
@@ -170,19 +176,21 @@ class Sms_model extends CI_Model
 
     public function paging_tertunda($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT count(u.ID) as id FROM outbox u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_tertunda($o = 0, $offset = 0, $limit = 500)
@@ -525,19 +533,21 @@ class Sms_model extends CI_Model
 
     public function paging_kontak($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(a.id) as id FROM kontak a LEFT JOIN tweb_penduduk b ON a.id_pend=b.id WHERE 1';
         $sql .= $this->search_kontak_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_kontak($o = 0, $offset = 0, $limit = 500)
@@ -607,19 +617,21 @@ class Sms_model extends CI_Model
 
     public function paging_grup($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = "SELECT COUNT(nama_grup) as id FROM (SELECT nama_grup, (SELECT COUNT(id_kontak) FROM kontak_grup WHERE id_kontak<>'0') as jumlah_kontak FROM kontak_grup WHERE id_kontak='0' ) AS TB WHERE 1 ";
         $sql .= $this->search_grup_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_grup($o = 0, $offset = 0, $limit = 500)
@@ -709,19 +721,21 @@ class Sms_model extends CI_Model
 
     public function paging_anggota($id = 0, $p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = "SELECT COUNT(c.id) as id FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
         $sql .= $this->search_anggota_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_anggota($id = 0, $o = 0, $offset = 0, $limit = 500)
@@ -793,19 +807,21 @@ class Sms_model extends CI_Model
 
     public function paging_polling($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT count(id_polling) as id FROM polling ';
 
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_polling($o = 0, $offset = 0, $limit = 500)
@@ -874,19 +890,21 @@ class Sms_model extends CI_Model
 
     public function paging_pertanyaan($id = 0, $p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = "SELECT COUNT(c.id) as id FROM kontak_grup a LEFT JOIN kontak b ON a.id_kontak=b.id LEFT JOIN tweb_penduduk c ON b.id_pend=c.id WHERE a.id_kontak<>'0' AND nama_grup='{$id}' ";
         $sql .= $this->search_anggota_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data_pertanyaan($id = 0, $o = 0, $offset = 0, $limit = 500)

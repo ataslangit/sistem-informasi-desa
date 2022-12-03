@@ -7,6 +7,7 @@ title: "Changelog SID dev"
 Rilis: __belum riilis__
 
 ## :rocket: Peningkatan
+- Menambahkan `robots.txt`
 - Menambahkan namespace `App\Libraries`
 
 ## :hammer_and_wrench: Perbaikan

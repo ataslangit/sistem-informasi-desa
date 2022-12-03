@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class First_artikel_m extends CI_Model
 {
     public function get_headline()
@@ -34,6 +36,8 @@ class First_artikel_m extends CI_Model
 
     public function paging($p = 1)
     {
+        $paging = new Paging();
+
         $sql = "SELECT COUNT(a.id) AS id FROM artikel a
 			LEFT JOIN kategori k ON a.id_kategori = k.id
 			WHERE ((a.enabled=1) AND (headline <> 1) AND (k.tipe = 1)) AND k.kategori <> 'teks_berjalan'
@@ -42,17 +46,19 @@ class First_artikel_m extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
-        $cfg['per_page'] = 5;
+        $cfg['per_page'] = 1;
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function paging_kat($p = 1, $id = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(a.id) AS id FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE 1 ';
         if ($id !== 0) {
             $sql .= 'AND ((id_kategori = ' . $id . ') OR (parrent = ' . $id . '))';
@@ -61,13 +67,13 @@ class First_artikel_m extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = 8;
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function artikel_show(int $id = 0, int $offset = 0, int $limit = 0)
@@ -129,18 +135,20 @@ class First_artikel_m extends CI_Model
 
     public function paging_arsip($p = 1)
     {
+        $paging = new Paging();
+
         $sql      = 'SELECT COUNT(a.id) AS id FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1';
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = 20;
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function full_arsip($offset = 0, $limit = 50)

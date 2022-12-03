@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Web_gallery_model extends CI_Model
 {
     public function autocomplete()
@@ -45,19 +47,21 @@ class Web_gallery_model extends CI_Model
 
     public function paging($p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(id) AS id FROM gambar_gallery WHERE tipe = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
@@ -229,19 +233,21 @@ class Web_gallery_model extends CI_Model
 
     public function paging2($gal = 0, $p = 1)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(id) AS id FROM gambar_gallery WHERE parrent = ? AND tipe = 2 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql, $gal);
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_sub_gallery($gal = 1, $offset = 0, $limit = 500)
