@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Laporan_bulanan_model extends CI_Model
 {
     public function __construct()
@@ -142,6 +144,8 @@ class Laporan_bulanan_model extends CI_Model
 
     public function paging($lap = 0, $p = 1, $o = 0)
     {
+        $paging = new Paging();
+
         switch ($lap) {
             case 0: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
 
@@ -168,13 +172,13 @@ class Laporan_bulanan_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data()

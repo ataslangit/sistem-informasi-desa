@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Paging;
+
 class Penduduk_model extends CI_Model
 {
     public function autocomplete()
@@ -327,6 +329,8 @@ class Penduduk_model extends CI_Model
 
     public function paging($p = 1, $o = 0, $log = 0)
     {
+        $paging = new Paging();
+
         $sql = 'SELECT COUNT(u.id) AS id FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa a ON u.id_cluster = a.id LEFT JOIN tweb_keluarga d ON u.id_kk = d.id LEFT JOIN tweb_penduduk_pendidikan_kk n ON u.pendidikan_kk_id = n.id LEFT JOIN tweb_penduduk_pekerjaan p ON u.pekerjaan_id = p.id LEFT JOIN tweb_penduduk_kawin k ON u.status_kawin = k.id LEFT JOIN tweb_penduduk_sex x ON u.pendidikan_id = x.id LEFT JOIN tweb_penduduk_agama g ON u.agama_id = g.id LEFT JOIN tweb_penduduk_warganegara v ON u.warganegara_id = v.id LEFT JOIN tweb_golongan_darah m ON u.golongan_darah_id = m.id LEFT JOIN tweb_cacat f ON u.cacat_id = f.id LEFT JOIN tweb_sakit_menahun j ON u.sakit_menahun_id = j.id WHERe 1 ';
         $sql .= $this->search_sql();
         $sql .= $this->filter_sql();
@@ -358,13 +362,13 @@ class Penduduk_model extends CI_Model
         $row      = $query->row_array();
         $jml_data = $row['id'];
 
-        $this->load->library('paging');
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
         $cfg['num_rows'] = $jml_data;
-        $this->paging->init($cfg);
 
-        return $this->paging;
+        $paging->init($cfg);
+
+        return $paging;
     }
 
     public function list_data($o = 0, $offset = 0, $limit = 500, $log = 0)
