@@ -1,26 +1,31 @@
 {
-    "name": "ataslangit/sistem-informasi-desa",
-    "require": {
-        "php": ">=7.3",
-        "codeigniter/framework": "^3",
-        "vlucas/phpdotenv": "^5.5"
-    },
-    "require-dev": {
-        "codeigniter/coding-standard": "^1.1",
-        "friendsofphp/php-cs-fixer": "^3",
-        "mikey179/vfsstream": "1.6.*"
-    },
-    "config": {
-        "lock": false,
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "7.3"
-        },
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "vendor-dir": "donjo-sys"
-    },
-    "scripts": {
-        "csfix": "./donjo-sys/bin/php-cs-fixer fix"
+  "name": "ataslangit/sistem-informasi-desa",
+  "require": {
+    "php": ">=7.3",
+    "codeigniter/framework": "^3",
+    "vlucas/phpdotenv": "^5.5"
+  },
+  "require-dev": {
+    "codeigniter/coding-standard": "^1.1",
+    "friendsofphp/php-cs-fixer": "^3",
+    "mikey179/vfsstream": "1.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Libraries\\": "donjo-app/libraries/"
     }
+  },
+  "config": {
+    "lock": false,
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.3"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "vendor-dir": "donjo-sys"
+  },
+  "scripts": {
+    "csfix": "./donjo-sys/bin/php-cs-fixer fix"
+  }
 }

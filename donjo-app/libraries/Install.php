@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Libraries;
+
 class Install
 {
     protected $CI;
@@ -27,7 +29,7 @@ class Install
     /**
      * Proses install database
      *
-     * @return string|null Null jika sudah pernah install, string berupa password untuk admin
+     * @return array|null Null jika sudah pernah install, string berupa password untuk admin
      */
     public function run()
     {
@@ -44,7 +46,7 @@ class Install
                 }
                 $templine .= $line;
                 if (substr(trim($line), -1, 1) === ';') {
-                    $this->db->query($templine);
+                    $this->CI->db->query($templine);
                     $templine = '';
                 }
             }
@@ -61,11 +63,11 @@ class Install
 
             $reg['regid'] = $idsid;
             $reg['macid'] = $macid;
-            $this->db->where('id', '1');
-            $this->db->update('config', $reg);
+            $this->CI->db->where('id', '1');
+            $this->CI->db->update('config', $reg);
 
             $sql = "INSERT INTO user VALUES (1,'admin','{$idsid}',1,'admin@localhost','{$skrg}',1,'Administrator','ADMIN','0123456789','','{$idsid}');";
-            $this->db->query($sql);
+            $this->CI->db->query($sql);
 
             $this->CI->config_model->initsurat();
             $this->CI->config_model->gawe_surat();
