@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Install;
+
 class Main extends CI_Controller
 {
     public function __construct()
@@ -13,7 +15,9 @@ class Main extends CI_Controller
 
     public function index()
     {
-        if ($this->install->cek()) {
+        $install = new Install();
+
+        if ($install->cek()) {
             if (isset($_SESSION['siteman'])) {
                 if (isset($_SESSION['sesi'])) {
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
@@ -49,7 +53,9 @@ class Main extends CI_Controller
 
     public function install()
     {
-        $out = $this->install->run();
+        $install = new Install();
+        $out     = $install->run();
+
         view('init', $out);
     }
 
