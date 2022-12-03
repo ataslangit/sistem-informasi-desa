@@ -56,6 +56,10 @@ class Main extends CI_Controller
         $install = new Install();
         $out     = $install->run();
 
+        if(is_null($out)) {
+            redirect('/');
+        }
+
         view('init', $out);
     }
 
