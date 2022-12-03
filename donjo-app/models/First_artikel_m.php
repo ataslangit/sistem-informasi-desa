@@ -47,7 +47,7 @@ class First_artikel_m extends CI_Model
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
-        $cfg['per_page'] = 1;
+        $cfg['per_page'] = 5;
         $cfg['num_rows'] = $jml_data;
 
         $paging->init($cfg);
