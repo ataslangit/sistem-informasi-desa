@@ -1,7 +1,7 @@
 <?php if ($headline) : ?>
     <div class="box box-danger">
         <div class="box-header with-border">
-            <h3 class="box-title"><a href="<?= site_url("first/artikel/{$headline['id']}") ?>"><?= esc($headline['judul']) ?></a></h3>
+            <h3 class="box-title"><a href="<?= site_url("first/artikel/" . $headline['id'] . '/' . url_title($headline['judul'], '-', true)) ?>"><?= esc($headline['judul']) ?></a></h3>
             <div class="pull-right small"><?= esc($headline['owner'] . ', ' . tgl_indo2($headline['tgl_upload'])) ?></div>
         </div>
         <div class="box-body" style="text-align:justify;">
@@ -42,12 +42,11 @@ if (is_array($title)) {
                     <?php foreach ($artikel as $data) : ?>
                         <?php
                         $teks  = fixTag($data['isi']);
-                        $judul = str_replace(' ', '-', $data['judul']);
-                        $judul = preg_replace('/[^A-Za-z0-9\-]/', '-', $judul);
+                        $title_link = url_title($data['judul'], '-', true);
                         ?>
 
                         <li class="artikel">
-                            <h3 class="judul"><a href="<?= site_url("first/artikel/{$data['id']}-{$judul}") ?>"><?= esc($data['judul']) ?></a></h3>
+                            <h3 class="judul"><a href="<?= site_url("first/artikel/" . $data['id'] . '/' . $title_link) ?>"><?= esc($data['judul']) ?></a></h3>
 
                             <div class="teks" style="text-align:justify;">
                                 <div class="kecil"><i class="fa fa-clock-o"></i> <?= tgl_indo2($data['tgl_upload']) ?> <i class="fa fa-user"></i> <?= $data['owner'] ?></div>
@@ -62,7 +61,7 @@ if (is_array($title)) {
                                 </div>
 
                                 <?= esc(character_limiter($teks, 300)) ?>
-                                <a href="<?= site_url('first/artikel/' . $data['id']) ?>">..selengkapnya</a>
+                                <a href="<?= site_url('first/artikel/' . $data['id'] . '/' . $title_link) ?>">..selengkapnya</a>
                             </div>
                             <br class="clearboth gb">
                         </li>

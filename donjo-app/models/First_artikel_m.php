@@ -246,17 +246,27 @@ class First_artikel_m extends CI_Model
         return $data;
     }
 
-    public function get_artikel($id = 0)
+    /**
+     * Ambil data setail artikel
+     *
+     * @param int $id ID artikel
+     *
+     * @return array|false False jika artikel data tidak ditemukan
+     */
+    public function get_artikel(int $id)
     {
-        $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE a.id=?';
-        $query = $this->db->query($sql, $id);
-        if ($query->num_rows() > 0) {
-            $data = $query->row_array();
-        } else {
-            $data = false;
+        $artikel = $this->db
+            ->select('artikel.*, user.nama as owner')
+            ->where('artikel.id', $id)
+            ->from('artikel')
+            ->join('user', 'artikel.id_user = user.id', 'left')
+            ->get();
+
+        if ($artikel->num_rows() > 0) {
+            return $artikel->row_array();
         }
 
-        return $data;
+        return false;
     }
 
     public function list_artikel($offset = 0, $limit = 50, $id = 0)
