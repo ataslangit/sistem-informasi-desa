@@ -41,12 +41,7 @@ if (is_array($title)) {
                 <ul class="artikel-list artikel-list-in-box">
                     <?php foreach ($artikel as $data) : ?>
                         <?php
-                        $teks = fixTag($data['isi']);
-                        if (strlen($teks) > 310) {
-                            $abstrak = substr($teks, 0, strpos($teks, ' ', 300));
-                        } else {
-                            $abstrak = $teks;
-                        }
+                        $teks  = fixTag($data['isi']);
                         $judul = str_replace(' ', '-', $data['judul']);
                         $judul = preg_replace('/[^A-Za-z0-9\-]/', '-', $judul);
                         ?>
@@ -65,7 +60,8 @@ if (is_array($title)) {
                                         <?php endif ?>
                                     <?php endif ?>
                                 </div>
-                                <?= $abstrak ?>
+
+                                <?= esc(character_limiter($teks, 300)) ?>
                                 <a href="<?= site_url('first/artikel/' . $data['id']) ?>">..selengkapnya</a>
                             </div>
                             <br class="clearboth gb">

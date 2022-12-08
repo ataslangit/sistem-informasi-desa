@@ -90,7 +90,7 @@ $autoload['drivers'] = [];
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = ['url', 'donjolib', 'date', 'pict'];
+$autoload['helper'] = ['url', 'donjolib', 'date', 'pict', 'text'];
 
 /*
 | -------------------------------------------------------------------
