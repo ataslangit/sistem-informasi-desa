@@ -127,32 +127,48 @@ class First extends CI_Controller
         }
     }
 
-    public function artikel($id = '', $p = 1)
+    public function artikel($id, string $slug = '')
     {
-        $id           = explode('-', $id);
-        $id           = $id[0];
-        $data['p']    = $p;
-        $data['desa'] = $this->config_model->get_data();
+        if (! (bool) preg_match('/^\d*\-/', $id)) {
+            $id = explode('-', $id);
+            $id = (int) $id[0];
+        } else {
+            $id = 0;
+        }
 
-        $data['paging']  = $this->first_artikel_m->paging($p);
-        $data['artikel'] = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
+        $artikel = $this->first_artikel_m->get_artikel($id);
 
-        $data['teks_berjalan']  = $this->first_artikel_m->get_teks_berjalan();
-        $data['menu_atas']      = $this->first_menu_m->list_menu_atas();
-        $data['menu_kiri']      = $this->first_menu_m->list_menu_kiri();
+        $data['agenda']        = $this->first_artikel_m->agenda_show();
+        $data['arsip']         = $this->first_artikel_m->arsip_show();
+        $data['data_config']   = $this->config_model->get_data();
+        $data['desa']          = $this->config_model->get_data();
+        $data['komen']         = $this->first_artikel_m->komentar_show();
+        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
+        $data['slide']         = $this->first_artikel_m->slide_show();
+        $data['sosmed']        = $this->first_artikel_m->list_sosmed();
+        $data['stat']          = $this->first_penduduk_m->list_data(5);
+        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
+        $data['w_cos']         = $this->first_artikel_m->cos_widget();
+        $data['w_gal']         = $this->first_gallery_m->gallery_widget();
+
+        if ($artikel === false) {
+            return view('layouts/error404', $data);
+        }
+
+        $title_link = url_title($artikel['judul'], '-', true);
+        if ($slug === '' || $slug !== $title_link) {
+            return redirect('first/artikel/' . $artikel['id'] . '/' . $title_link, 301);
+        }
+
+        $p                      = 1;
+        $data['p']              = $p;
+        $data['paging']         = $this->first_artikel_m->paging($p);
+        $data['artikel']        = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
         $data['komentar']       = $this->first_artikel_m->list_komentar($id);
-        $data['sosmed']         = $this->first_artikel_m->list_sosmed();
-        $data['single_artikel'] = $this->first_artikel_m->get_artikel($id);
-        $data['arsip']          = $this->first_artikel_m->arsip_show();
-        $data['komen']          = $this->first_artikel_m->komentar_show();
-        $data['agenda']         = $this->first_artikel_m->agenda_show();
-        $data['slide']          = $this->first_artikel_m->slide_show();
-        $data['stat']           = $this->first_penduduk_m->list_data(5);
-        $data['w_gal']          = $this->first_gallery_m->gallery_widget();
-        $data['w_cos']          = $this->first_artikel_m->cos_widget();
+        $data['single_artikel'] = $artikel;
 
-        $data['data_config'] = $this->config_model->get_data();
-        view('layouts/artikel.tpl.php', $data);
+        return view('layouts/artikel.tpl.php', $data);
     }
 
     public function arsip($p = 1)
