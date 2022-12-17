@@ -6,7 +6,8 @@ code_of_conduct.md export-ignore
 composer.json export-ignore
 package-lock.json export-ignore
 package.json export-ignore
+spark export-ignore
 
-.devcontainer/ export-ignore
-.github/ export-ignore
-docs export-ignore
+/.devcontainer/ export-ignore
+/.github/ export-ignore
+/docs/ export-ignore
