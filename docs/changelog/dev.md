@@ -7,10 +7,10 @@ title: "Changelog SID dev"
 Rilis: __belum riilis__
 
 ## :rocket: Peningkatan
-- Tambahkan fungsi `esc()`.
+- Meningkatkan minimum penggunaan PHP menjadi versi 7.4 dari sebelumnya versi 7.3.
+- Meningkatkan system dengan CodeIgniter versi 4 dari sebelumnya versi 3.
 
 ## :hammer_and_wrench: Perbaikan
-- Perbaikan pada halaman "/first/..." dan merapikan kode.
 
 ## :capital_abcd: Lain-lain
 
