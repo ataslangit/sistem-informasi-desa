@@ -122,7 +122,7 @@ class Sms_model extends CI_Model
 
     public function paging_terkirim($p = 1, $o = 0)
     {
-        $paging =  new Paging();
+        $paging = new Paging();
 
         $sql = 'SELECT count(u.ID) as id FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 

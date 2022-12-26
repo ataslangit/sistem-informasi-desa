@@ -56,7 +56,7 @@ class Main extends CI_Controller
         $install = new Install();
         $out     = $install->run();
 
-        if(is_null($out)) {
+        if (null === $out) {
             redirect('/');
         }
 
