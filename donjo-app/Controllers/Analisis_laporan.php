@@ -131,7 +131,7 @@ class Analisis_laporan extends CI_Controller
 
     public function multi_jawab()
     {
-        //echo phpinfo();
+        // echo phpinfo();
         $data['form_action'] = site_url('analisis_laporan/multi_exec');
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
         view('analisis_laporan/ajax_multi', $data);
@@ -141,7 +141,7 @@ class Analisis_laporan extends CI_Controller
     {
         $idcb = $_POST['id_cb'];
         print_r($idcb);
-        //redirect('analisis_laporan');
+        // redirect('analisis_laporan');
     }
 
     public function ajax_multi_jawab()

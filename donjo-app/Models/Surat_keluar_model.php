@@ -133,9 +133,11 @@ class Surat_keluar_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.no_surat'; break;
+            case 1: $order_sql = ' ORDER BY u.no_surat';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.no_surat DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.no_surat DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.tanggal';
         }

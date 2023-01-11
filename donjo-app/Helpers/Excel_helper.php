@@ -270,6 +270,163 @@ class Spreadsheet_Excel_Reader
     public $colindexes       = [];
     public $standardColWidth = 0;
     public $defaultColWidth  = 0;
+    public $boundsheets      = [];
+    public $formatRecords    = [];
+    public $fontRecords      = [];
+    public $xfRecords        = [];
+    public $colInfo          = [];
+    public $rowInfo          = [];
+    public $sst              = [];
+    public $sheets           = [];
+    public $data;
+    public $_ole;
+    public $_defaultEncoding = 'UTF-8';
+    public $_defaultFormat   = SPREADSHEET_EXCEL_READER_DEF_NUM_FORMAT;
+    public $_columnsFormat   = [];
+    public $_rowoffset       = 1;
+    public $_coloffset       = 1;
+    public $dateFormats      = [
+        0xE  => 'm/d/Y',
+        0xF  => 'M-d-Y',
+        0x10 => 'd-M',
+        0x11 => 'M-Y',
+        0x12 => 'h:i a',
+        0x13 => 'h:i:s a',
+        0x14 => 'H:i',
+        0x15 => 'H:i:s',
+        0x16 => 'd/m/Y H:i',
+        0x2D => 'i:s',
+        0x2E => 'H:i:s',
+        0x2F => 'i:s.S',
+    ];
+    public $numberFormats = [
+        0x1  => '0',
+        0x2  => '0.00',
+        0x3  => '#,##0',
+        0x4  => '#,##0.00',
+        0x5  => '$#,##0;($#,##0)',
+        0x6  => '$#,##0;[Red]($#,##0)',
+        0x7  => '$#,##0.00;($#,##0.00)',
+        0x8  => '$#,##0.00;[Red]($#,##0.00)',
+        0x9  => '0%',
+        0xA  => '0.00%',
+        0xB  => '0.00E+00',
+        0x25 => '#,##0;(#,##0)',
+        0x26 => '#,##0;[Red](#,##0)',
+        0x27 => '#,##0.00;(#,##0.00)',
+        0x28 => '#,##0.00;[Red](#,##0.00)',
+        0x29 => '#,##0;(#,##0)',
+        0x2A => '$#,##0;($#,##0)',
+        0x2B => '#,##0.00;(#,##0.00)',
+        0x2C => '$#,##0.00;($#,##0.00)',
+        0x30 => '##0.0E+0',
+    ];
+    public $colors = [
+        0x00   => '#000000',
+        0x01   => '#FFFFFF',
+        0x02   => '#FF0000',
+        0x03   => '#00FF00',
+        0x04   => '#0000FF',
+        0x05   => '#FFFF00',
+        0x06   => '#FF00FF',
+        0x07   => '#00FFFF',
+        0x08   => '#000000',
+        0x09   => '#FFFFFF',
+        0x0A   => '#FF0000',
+        0x0B   => '#00FF00',
+        0x0C   => '#0000FF',
+        0x0D   => '#FFFF00',
+        0x0E   => '#FF00FF',
+        0x0F   => '#00FFFF',
+        0x10   => '#800000',
+        0x11   => '#008000',
+        0x12   => '#000080',
+        0x13   => '#808000',
+        0x14   => '#800080',
+        0x15   => '#008080',
+        0x16   => '#C0C0C0',
+        0x17   => '#808080',
+        0x18   => '#9999FF',
+        0x19   => '#993366',
+        0x1A   => '#FFFFCC',
+        0x1B   => '#CCFFFF',
+        0x1C   => '#660066',
+        0x1D   => '#FF8080',
+        0x1E   => '#0066CC',
+        0x1F   => '#CCCCFF',
+        0x20   => '#000080',
+        0x21   => '#FF00FF',
+        0x22   => '#FFFF00',
+        0x23   => '#00FFFF',
+        0x24   => '#800080',
+        0x25   => '#800000',
+        0x26   => '#008080',
+        0x27   => '#0000FF',
+        0x28   => '#00CCFF',
+        0x29   => '#CCFFFF',
+        0x2A   => '#CCFFCC',
+        0x2B   => '#FFFF99',
+        0x2C   => '#99CCFF',
+        0x2D   => '#FF99CC',
+        0x2E   => '#CC99FF',
+        0x2F   => '#FFCC99',
+        0x30   => '#3366FF',
+        0x31   => '#33CCCC',
+        0x32   => '#99CC00',
+        0x33   => '#FFCC00',
+        0x34   => '#FF9900',
+        0x35   => '#FF6600',
+        0x36   => '#666699',
+        0x37   => '#969696',
+        0x38   => '#003366',
+        0x39   => '#339966',
+        0x3A   => '#003300',
+        0x3B   => '#333300',
+        0x3C   => '#993300',
+        0x3D   => '#993366',
+        0x3E   => '#333399',
+        0x3F   => '#333333',
+        0x40   => '#000000',
+        0x41   => '#FFFFFF',
+        0x43   => '#000000',
+        0x4D   => '#000000',
+        0x4E   => '#FFFFFF',
+        0x4F   => '#000000',
+        0x50   => '#FFFFFF',
+        0x51   => '#000000',
+        0x7FFF => '#000000',
+    ];
+    public $lineStyles = [
+        0x00 => '',
+        0x01 => 'Thin',
+        0x02 => 'Medium',
+        0x03 => 'Dashed',
+        0x04 => 'Dotted',
+        0x05 => 'Thick',
+        0x06 => 'Double',
+        0x07 => 'Hair',
+        0x08 => 'Medium dashed',
+        0x09 => 'Thin dash-dotted',
+        0x0A => 'Medium dash-dotted',
+        0x0B => 'Thin dash-dot-dotted',
+        0x0C => 'Medium dash-dot-dotted',
+        0x0D => 'Slanted medium dash-dotted',
+    ];
+    public $lineStylesCss = [
+        'Thin'                      => '1px solid',
+        'Medium'                    => '2px solid',
+        'Dashed'                    => '1px dashed',
+        'Dotted'                    => '1px dotted',
+        'Thick'                     => '3px solid',
+        'Double'                    => 'double',
+        'Hair'                      => '1px solid',
+        'Medium dashed'             => '2px dashed',
+        'Thin dash-dotted'          => '1px dashed',
+        'Medium dash-dotted'        => '2px dashed',
+        'Thin dash-dot-dotted'      => '1px dashed',
+        'Medium dash-dot-dotted'    => '2px dashed',
+        'Slanted medium dash-dotte' => '2px dashed',
+    ];
 
     public function myHex($d)
     {
@@ -414,7 +571,7 @@ class Spreadsheet_Excel_Reader
         }
         $height = $this->height($row, $col, $sheet);
         if ($height !== '') {
-            $css .= "font-size:{$height}" . 'px;';
+            $css .= "font-size:{$height}px;";
         }
         $bgcolor = $this->bgColor($row, $col, $sheet);
         if ($bgcolor !== '') {
@@ -708,164 +865,6 @@ class Spreadsheet_Excel_Reader
         return $out;
     }
 
-    public $boundsheets   = [];
-    public $formatRecords = [];
-    public $fontRecords   = [];
-    public $xfRecords     = [];
-    public $colInfo       = [];
-    public $rowInfo       = [];
-    public $sst           = [];
-    public $sheets        = [];
-    public $data;
-    public $_ole;
-    public $_defaultEncoding = 'UTF-8';
-    public $_defaultFormat   = SPREADSHEET_EXCEL_READER_DEF_NUM_FORMAT;
-    public $_columnsFormat   = [];
-    public $_rowoffset       = 1;
-    public $_coloffset       = 1;
-    public $dateFormats      = [
-        0xE  => 'm/d/Y',
-        0xF  => 'M-d-Y',
-        0x10 => 'd-M',
-        0x11 => 'M-Y',
-        0x12 => 'h:i a',
-        0x13 => 'h:i:s a',
-        0x14 => 'H:i',
-        0x15 => 'H:i:s',
-        0x16 => 'd/m/Y H:i',
-        0x2D => 'i:s',
-        0x2E => 'H:i:s',
-        0x2F => 'i:s.S',
-    ];
-    public $numberFormats = [
-        0x1  => '0',
-        0x2  => '0.00',
-        0x3  => '#,##0',
-        0x4  => '#,##0.00',
-        0x5  => '$#,##0;($#,##0)',
-        0x6  => '$#,##0;[Red]($#,##0)',
-        0x7  => '$#,##0.00;($#,##0.00)',
-        0x8  => '$#,##0.00;[Red]($#,##0.00)',
-        0x9  => '0%',
-        0xA  => '0.00%',
-        0xB  => '0.00E+00',
-        0x25 => '#,##0;(#,##0)',
-        0x26 => '#,##0;[Red](#,##0)',
-        0x27 => '#,##0.00;(#,##0.00)',
-        0x28 => '#,##0.00;[Red](#,##0.00)',
-        0x29 => '#,##0;(#,##0)',
-        0x2A => '$#,##0;($#,##0)',
-        0x2B => '#,##0.00;(#,##0.00)',
-        0x2C => '$#,##0.00;($#,##0.00)',
-        0x30 => '##0.0E+0',
-    ];
-    public $colors = [
-        0x00   => '#000000',
-        0x01   => '#FFFFFF',
-        0x02   => '#FF0000',
-        0x03   => '#00FF00',
-        0x04   => '#0000FF',
-        0x05   => '#FFFF00',
-        0x06   => '#FF00FF',
-        0x07   => '#00FFFF',
-        0x08   => '#000000',
-        0x09   => '#FFFFFF',
-        0x0A   => '#FF0000',
-        0x0B   => '#00FF00',
-        0x0C   => '#0000FF',
-        0x0D   => '#FFFF00',
-        0x0E   => '#FF00FF',
-        0x0F   => '#00FFFF',
-        0x10   => '#800000',
-        0x11   => '#008000',
-        0x12   => '#000080',
-        0x13   => '#808000',
-        0x14   => '#800080',
-        0x15   => '#008080',
-        0x16   => '#C0C0C0',
-        0x17   => '#808080',
-        0x18   => '#9999FF',
-        0x19   => '#993366',
-        0x1A   => '#FFFFCC',
-        0x1B   => '#CCFFFF',
-        0x1C   => '#660066',
-        0x1D   => '#FF8080',
-        0x1E   => '#0066CC',
-        0x1F   => '#CCCCFF',
-        0x20   => '#000080',
-        0x21   => '#FF00FF',
-        0x22   => '#FFFF00',
-        0x23   => '#00FFFF',
-        0x24   => '#800080',
-        0x25   => '#800000',
-        0x26   => '#008080',
-        0x27   => '#0000FF',
-        0x28   => '#00CCFF',
-        0x29   => '#CCFFFF',
-        0x2A   => '#CCFFCC',
-        0x2B   => '#FFFF99',
-        0x2C   => '#99CCFF',
-        0x2D   => '#FF99CC',
-        0x2E   => '#CC99FF',
-        0x2F   => '#FFCC99',
-        0x30   => '#3366FF',
-        0x31   => '#33CCCC',
-        0x32   => '#99CC00',
-        0x33   => '#FFCC00',
-        0x34   => '#FF9900',
-        0x35   => '#FF6600',
-        0x36   => '#666699',
-        0x37   => '#969696',
-        0x38   => '#003366',
-        0x39   => '#339966',
-        0x3A   => '#003300',
-        0x3B   => '#333300',
-        0x3C   => '#993300',
-        0x3D   => '#993366',
-        0x3E   => '#333399',
-        0x3F   => '#333333',
-        0x40   => '#000000',
-        0x41   => '#FFFFFF',
-        0x43   => '#000000',
-        0x4D   => '#000000',
-        0x4E   => '#FFFFFF',
-        0x4F   => '#000000',
-        0x50   => '#FFFFFF',
-        0x51   => '#000000',
-        0x7FFF => '#000000',
-    ];
-    public $lineStyles = [
-        0x00 => '',
-        0x01 => 'Thin',
-        0x02 => 'Medium',
-        0x03 => 'Dashed',
-        0x04 => 'Dotted',
-        0x05 => 'Thick',
-        0x06 => 'Double',
-        0x07 => 'Hair',
-        0x08 => 'Medium dashed',
-        0x09 => 'Thin dash-dotted',
-        0x0A => 'Medium dash-dotted',
-        0x0B => 'Thin dash-dot-dotted',
-        0x0C => 'Medium dash-dot-dotted',
-        0x0D => 'Slanted medium dash-dotted',
-    ];
-    public $lineStylesCss = [
-        'Thin'                      => '1px solid',
-        'Medium'                    => '2px solid',
-        'Dashed'                    => '1px dashed',
-        'Dotted'                    => '1px dotted',
-        'Thick'                     => '3px solid',
-        'Double'                    => 'double',
-        'Hair'                      => '1px solid',
-        'Medium dashed'             => '2px dashed',
-        'Thin dash-dotted'          => '1px dashed',
-        'Medium dash-dotted'        => '2px dashed',
-        'Thin dash-dot-dotted'      => '1px dashed',
-        'Medium dash-dot-dotted'    => '2px dashed',
-        'Slanted medium dash-dotte' => '2px dashed',
-    ];
-
     public function read16bitstring($data, $start)
     {
         $len = 0;
@@ -879,7 +878,6 @@ class Spreadsheet_Excel_Reader
 
     public function _format_value($format, $num, $f)
     {
-
         // http://code.google.com/p/php-excel-reader/issues/detail?id=7
         if ((! $f && $format === '%s') || ($f === 49) || ($format === 'GENERAL')) {
             return ['string' => $num, 'formatColor' => null];
@@ -1148,139 +1146,139 @@ class Spreadsheet_Excel_Reader
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_FONT:
-                        $height = v($data, $pos + 4);
-                        $option = v($data, $pos + 6);
-                        $color  = v($data, $pos + 8);
-                        $weight = v($data, $pos + 10);
-                        $under  = ord($data[$pos + 14]);
-                        $font   = '';
+                    $height = v($data, $pos + 4);
+                    $option = v($data, $pos + 6);
+                    $color  = v($data, $pos + 8);
+                    $weight = v($data, $pos + 10);
+                    $under  = ord($data[$pos + 14]);
+                    $font   = '';
 
-                        $numchars = ord($data[$pos + 18]);
-                        if ((ord($data[$pos + 19]) & 1) === 0) {
-                            $font = substr($data, $pos + 20, $numchars);
-                        } else {
-                            $font = substr($data, $pos + 20, $numchars * 2);
-                            $font = $this->_encodeUTF16($font);
-                        }
-                        $this->fontRecords[] = [
-                            'height' => $height / 20,
-                            'italic' => (bool) ($option & 2),
-                            'color'  => $color,
-                            'under'  => ! ($under === 0),
-                            'bold'   => ($weight === 700),
-                            'font'   => $font,
-                            'raw'    => $this->dumpHexData($data, $pos + 3, $length),
-                        ];
-                     break;
+                    $numchars = ord($data[$pos + 18]);
+                    if ((ord($data[$pos + 19]) & 1) === 0) {
+                        $font = substr($data, $pos + 20, $numchars);
+                    } else {
+                        $font = substr($data, $pos + 20, $numchars * 2);
+                        $font = $this->_encodeUTF16($font);
+                    }
+                    $this->fontRecords[] = [
+                        'height' => $height / 20,
+                        'italic' => (bool) ($option & 2),
+                        'color'  => $color,
+                        'under'  => ! ($under === 0),
+                        'bold'   => ($weight === 700),
+                        'font'   => $font,
+                        'raw'    => $this->dumpHexData($data, $pos + 3, $length),
+                    ];
+                    break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_PALETTE:
-                        $colors = ord($data[$pos + 4]) | ord($data[$pos + 5]) << 8;
+                    $colors = ord($data[$pos + 4]) | ord($data[$pos + 5]) << 8;
 
-                        for ($coli = 0; $coli < $colors; $coli++) {
-                            $colOff                     = $pos + 2 + ($coli * 4);
-                            $colr                       = ord($data[$colOff]);
-                            $colg                       = ord($data[$colOff + 1]);
-                            $colb                       = ord($data[$colOff + 2]);
-                            $this->colors[0x07 + $coli] = '#' . $this->myhex($colr) . $this->myhex($colg) . $this->myhex($colb);
-                        }
-                     break;
+                    for ($coli = 0; $coli < $colors; $coli++) {
+                        $colOff                     = $pos + 2 + ($coli * 4);
+                        $colr                       = ord($data[$colOff]);
+                        $colg                       = ord($data[$colOff + 1]);
+                        $colb                       = ord($data[$colOff + 2]);
+                        $this->colors[0x07 + $coli] = '#' . $this->myhex($colr) . $this->myhex($colg) . $this->myhex($colb);
+                    }
+                    break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_XF:
-                        $fontIndexCode = (ord($data[$pos + 4]) | ord($data[$pos + 5]) << 8) - 1;
-                        $fontIndexCode = max(0, $fontIndexCode);
-                        $indexCode     = ord($data[$pos + 6]) | ord($data[$pos + 7]) << 8;
-                        $alignbit      = ord($data[$pos + 10]) & 3;
-                        $bgi           = (ord($data[$pos + 22]) | ord($data[$pos + 23]) << 8) & 0x3FFF;
-                        $bgcolor       = ($bgi & 0x7F);
-                        $align         = '';
-                        if ($alignbit === 3) {
-                            $align = 'right';
-                        }
-                        if ($alignbit === 2) {
-                            $align = 'center';
-                        }
-                        $fillPattern = (ord($data[$pos + 21]) & 0xFC) >> 2;
-                        if ($fillPattern === 0) {
-                            $bgcolor = '';
-                        }
-                        $xf                 = [];
-                        $xf['formatIndex']  = $indexCode;
-                        $xf['align']        = $align;
-                        $xf['fontIndex']    = $fontIndexCode;
-                        $xf['bgColor']      = $bgcolor;
-                        $xf['fillPattern']  = $fillPattern;
-                        $border             = ord($data[$pos + 14]) | (ord($data[$pos + 15]) << 8) | (ord($data[$pos + 16]) << 16) | (ord($data[$pos + 17]) << 24);
-                        $xf['borderLeft']   = $this->lineStyles[($border & 0xF)];
-                        $xf['borderRight']  = $this->lineStyles[($border & 0xF0) >> 4];
-                        $xf['borderTop']    = $this->lineStyles[($border & 0xF00) >> 8];
-                        $xf['borderBottom'] = $this->lineStyles[($border & 0xF000) >> 12];
+                    $fontIndexCode = (ord($data[$pos + 4]) | ord($data[$pos + 5]) << 8) - 1;
+                    $fontIndexCode = max(0, $fontIndexCode);
+                    $indexCode     = ord($data[$pos + 6]) | ord($data[$pos + 7]) << 8;
+                    $alignbit      = ord($data[$pos + 10]) & 3;
+                    $bgi           = (ord($data[$pos + 22]) | ord($data[$pos + 23]) << 8) & 0x3FFF;
+                    $bgcolor       = ($bgi & 0x7F);
+                    $align         = '';
+                    if ($alignbit === 3) {
+                        $align = 'right';
+                    }
+                    if ($alignbit === 2) {
+                        $align = 'center';
+                    }
+                    $fillPattern = (ord($data[$pos + 21]) & 0xFC) >> 2;
+                    if ($fillPattern === 0) {
+                        $bgcolor = '';
+                    }
+                    $xf                 = [];
+                    $xf['formatIndex']  = $indexCode;
+                    $xf['align']        = $align;
+                    $xf['fontIndex']    = $fontIndexCode;
+                    $xf['bgColor']      = $bgcolor;
+                    $xf['fillPattern']  = $fillPattern;
+                    $border             = ord($data[$pos + 14]) | (ord($data[$pos + 15]) << 8) | (ord($data[$pos + 16]) << 16) | (ord($data[$pos + 17]) << 24);
+                    $xf['borderLeft']   = $this->lineStyles[($border & 0xF)];
+                    $xf['borderRight']  = $this->lineStyles[($border & 0xF0) >> 4];
+                    $xf['borderTop']    = $this->lineStyles[($border & 0xF00) >> 8];
+                    $xf['borderBottom'] = $this->lineStyles[($border & 0xF000) >> 12];
 
-                        $xf['borderLeftColor']   = ($border & 0x7F0000) >> 16;
-                        $xf['borderRightColor']  = ($border & 0x3F800000) >> 23;
-                        $border                  = (ord($data[$pos + 18]) | ord($data[$pos + 19]) << 8);
-                        $xf['borderTopColor']    = ($border & 0x7F);
-                        $xf['borderBottomColor'] = ($border & 0x3F80) >> 7;
+                    $xf['borderLeftColor']   = ($border & 0x7F0000) >> 16;
+                    $xf['borderRightColor']  = ($border & 0x3F800000) >> 23;
+                    $border                  = (ord($data[$pos + 18]) | ord($data[$pos + 19]) << 8);
+                    $xf['borderTopColor']    = ($border & 0x7F);
+                    $xf['borderBottomColor'] = ($border & 0x3F80) >> 7;
 
-                        if (array_key_exists($indexCode, $this->dateFormats)) {
-                            $xf['type']   = 'date';
-                            $xf['format'] = $this->dateFormats[$indexCode];
-                            if ($align === '') {
-                                $xf['align'] = 'right';
+                    if (array_key_exists($indexCode, $this->dateFormats)) {
+                        $xf['type']   = 'date';
+                        $xf['format'] = $this->dateFormats[$indexCode];
+                        if ($align === '') {
+                            $xf['align'] = 'right';
+                        }
+                    } elseif (array_key_exists($indexCode, $this->numberFormats)) {
+                        $xf['type']   = 'number';
+                        $xf['format'] = $this->numberFormats[$indexCode];
+                        if ($align === '') {
+                            $xf['align'] = 'right';
+                        }
+                    } else {
+                        $isdate    = false;
+                        $formatstr = '';
+                        if ($indexCode > 0) {
+                            if (isset($this->formatRecords[$indexCode])) {
+                                $formatstr = $this->formatRecords[$indexCode];
                             }
-                        } elseif (array_key_exists($indexCode, $this->numberFormats)) {
-                            $xf['type']   = 'number';
-                            $xf['format'] = $this->numberFormats[$indexCode];
+                            if ($formatstr !== '') {
+                                $tmp = preg_replace('/^\\[[^\\]]*\\]/', '', $formatstr);
+                                if (preg_match('/[^hmsday\\/\\-:\\s\\\\,AMP]/i', $tmp) === 0) {
+                                    $isdate    = true;
+                                    $formatstr = $tmp;
+                                    $formatstr = str_replace(['AM/PM', 'mmmm', 'mmm'], ['a', 'F', 'M'], $formatstr);
+
+                                    $formatstr = preg_replace('/(h:?)mm?/', '$1i', $formatstr);
+                                    $formatstr = preg_replace('/mm?(:?s)/', 'i$1', $formatstr);
+
+                                    $formatstr = preg_replace('/(^|[^m])m([^m]|$)/', '$1n$2', $formatstr);
+                                    $formatstr = preg_replace('/(^|[^m])m([^m]|$)/', '$1n$2', $formatstr);
+
+                                    $formatstr = str_replace('mm', 'm', $formatstr);
+
+                                    $formatstr = preg_replace('/(^|[^d])d([^d]|$)/', '$1j$2', $formatstr);
+                                    $formatstr = str_replace(['dddd', 'ddd', 'dd', 'yyyy', 'yy', 'hh', 'h'], ['l', 'D', 'd', 'Y', 'y', 'H', 'g'], $formatstr);
+                                    $formatstr = preg_replace('/ss?/', 's', $formatstr);
+                                }
+                            }
+                        }
+                        if ($isdate) {
+                            $xf['type']   = 'date';
+                            $xf['format'] = $formatstr;
                             if ($align === '') {
                                 $xf['align'] = 'right';
                             }
                         } else {
-                            $isdate    = false;
-                            $formatstr = '';
-                            if ($indexCode > 0) {
-                                if (isset($this->formatRecords[$indexCode])) {
-                                    $formatstr = $this->formatRecords[$indexCode];
-                                }
-                                if ($formatstr !== '') {
-                                    $tmp = preg_replace('/^\\[[^\\]]*\\]/', '', $formatstr);
-                                    if (preg_match('/[^hmsday\\/\\-:\\s\\\\,AMP]/i', $tmp) === 0) {
-                                        $isdate    = true;
-                                        $formatstr = $tmp;
-                                        $formatstr = str_replace(['AM/PM', 'mmmm', 'mmm'], ['a', 'F', 'M'], $formatstr);
-
-                                        $formatstr = preg_replace('/(h:?)mm?/', '$1i', $formatstr);
-                                        $formatstr = preg_replace('/mm?(:?s)/', 'i$1', $formatstr);
-
-                                        $formatstr = preg_replace('/(^|[^m])m([^m]|$)/', '$1n$2', $formatstr);
-                                        $formatstr = preg_replace('/(^|[^m])m([^m]|$)/', '$1n$2', $formatstr);
-
-                                        $formatstr = str_replace('mm', 'm', $formatstr);
-
-                                        $formatstr = preg_replace('/(^|[^d])d([^d]|$)/', '$1j$2', $formatstr);
-                                        $formatstr = str_replace(['dddd', 'ddd', 'dd', 'yyyy', 'yy', 'hh', 'h'], ['l', 'D', 'd', 'Y', 'y', 'H', 'g'], $formatstr);
-                                        $formatstr = preg_replace('/ss?/', 's', $formatstr);
-                                    }
-                                }
-                            }
-                            if ($isdate) {
-                                $xf['type']   = 'date';
-                                $xf['format'] = $formatstr;
+                            if (preg_match('/[0#]/', $formatstr)) {
+                                $xf['type'] = 'number';
                                 if ($align === '') {
                                     $xf['align'] = 'right';
                                 }
                             } else {
-                                if (preg_match('/[0#]/', $formatstr)) {
-                                    $xf['type'] = 'number';
-                                    if ($align === '') {
-                                        $xf['align'] = 'right';
-                                    }
-                                } else {
-                                    $xf['type'] = 'other';
-                                }
-                                $xf['format'] = $formatstr;
-                                $xf['code']   = $indexCode;
+                                $xf['type'] = 'other';
                             }
+                            $xf['format'] = $formatstr;
+                            $xf['code']   = $indexCode;
                         }
-                        $this->xfRecords[] = $xf;
+                    }
+                    $this->xfRecords[] = $xf;
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_NINETEENFOUR:
@@ -1288,20 +1286,20 @@ class Spreadsheet_Excel_Reader
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_BOUNDSHEET:
-                        $rec_offset         = $this->_GetInt4d($data, $pos + 4);
-                        $rec_typeFlag       = ord($data[$pos + 8]);
-                        $rec_visibilityFlag = ord($data[$pos + 9]);
-                        $rec_length         = ord($data[$pos + 10]);
-                        if ($version === SPREADSHEET_EXCEL_READER_BIFF8) {
-                            $chartype = ord($data[$pos + 11]);
-                            if ($chartype === 0) {
-                                $rec_name = substr($data, $pos + 12, $rec_length);
-                            } else {
-                                $rec_name = $this->_encodeUTF16(substr($data, $pos + 12, $rec_length * 2));
-                            }
-                        } elseif ($version === SPREADSHEET_EXCEL_READER_BIFF7) {
-                            $rec_name = substr($data, $pos + 11, $rec_length);
+                    $rec_offset         = $this->_GetInt4d($data, $pos + 4);
+                    $rec_typeFlag       = ord($data[$pos + 8]);
+                    $rec_visibilityFlag = ord($data[$pos + 9]);
+                    $rec_length         = ord($data[$pos + 10]);
+                    if ($version === SPREADSHEET_EXCEL_READER_BIFF8) {
+                        $chartype = ord($data[$pos + 11]);
+                        if ($chartype === 0) {
+                            $rec_name = substr($data, $pos + 12, $rec_length);
+                        } else {
+                            $rec_name = $this->_encodeUTF16(substr($data, $pos + 12, $rec_length * 2));
                         }
+                    } elseif ($version === SPREADSHEET_EXCEL_READER_BIFF7) {
+                        $rec_name = substr($data, $pos + 11, $rec_length);
+                    }
                     $this->boundsheets[] = ['name' => $rec_name, 'offset' => $rec_offset];
                     break;
             }
@@ -1428,12 +1426,10 @@ class Spreadsheet_Excel_Reader
                     $row    = ord($data[$spos]) | ord($data[$spos + 1]) << 8;
                     $column = ord($data[$spos + 2]) | ord($data[$spos + 3]) << 8;
                     if ((ord($data[$spos + 6]) === 0) && (ord($data[$spos + 12]) === 255) && (ord($data[$spos + 13]) === 255)) {
-
                         // http://code.google.com/p/php-excel-reader/issues/detail?id=4
                         $previousRow = $row;
                         $previousCol = $column;
                     } elseif ((ord($data[$spos + 6]) === 1) && (ord($data[$spos + 12]) === 255) && (ord($data[$spos + 13]) === 255)) {
-
                         // http://code.google.com/p/php-excel-reader/issues/detail?id=4
                         if (ord($this->data[$spos + 8]) === 1) {
                             $this->addcell($row, $column, 'TRUE');
@@ -1462,7 +1458,7 @@ class Spreadsheet_Excel_Reader
                     $this->addcell($row, $column, $string);
                     break;
 
- case SPREADSHEET_EXCEL_READER_TYPE_STRING:
+                case SPREADSHEET_EXCEL_READER_TYPE_STRING:
                     // http://code.google.com/p/php-excel-reader/issues/detail?id=4
                     if ($version === SPREADSHEET_EXCEL_READER_BIFF8) {
                         $xpos     = $spos;
@@ -1702,7 +1698,6 @@ class Spreadsheet_Excel_Reader
         if (($rknum & 0x02) !== 0) {
             $value = $rknum >> 2;
         } else {
-
             // http://research.microsoft.com/~hollasch/cgindex/coding/ieeefloat.html
 
             $sign     = ($rknum & 0x80000000) >> 31;
@@ -1726,10 +1721,10 @@ class Spreadsheet_Excel_Reader
         if ($this->_defaultEncoding) {
             switch ($this->_encoderFunction) {
                 case 'iconv':	 $result = iconv('UTF-16LE', $this->_defaultEncoding, $string);
-                                break;
+                    break;
 
                 case 'mb_convert_encoding':	 $result = mb_convert_encoding($string, $this->_defaultEncoding, 'UTF-16LE');
-                                break;
+                    break;
             }
         }
 

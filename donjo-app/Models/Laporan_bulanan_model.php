@@ -102,42 +102,42 @@ class Laporan_bulanan_model extends CI_Model
     public function bulan($bulan)
     {
         switch ($bulan) {
-         case 1: $bulan = 'Januari';
-            break;
+            case 1: $bulan = 'Januari';
+                break;
 
-         case 2: $bulan = 'Februari';
-            break;
+            case 2: $bulan = 'Februari';
+                break;
 
-         case 3: $bulan = 'Maret';
-            break;
+            case 3: $bulan = 'Maret';
+                break;
 
-         case 4: $bulan = 'April';
-            break;
+            case 4: $bulan = 'April';
+                break;
 
-         case 5: $bulan = 'Mei';
-            break;
+            case 5: $bulan = 'Mei';
+                break;
 
-         case 6: $bulan = 'Juni';
-            break;
+            case 6: $bulan = 'Juni';
+                break;
 
-         case 7: $bulan = 'Juli';
-            break;
+            case 7: $bulan = 'Juli';
+                break;
 
-         case 8: $bulan = 'Agustus';
-            break;
+            case 8: $bulan = 'Agustus';
+                break;
 
-         case 9: $bulan = 'September';
-            break;
+            case 9: $bulan = 'September';
+                break;
 
-         case 10: $bulan = 'Oktober';
-            break;
+            case 10: $bulan = 'Oktober';
+                break;
 
-         case 11: $bulan = 'November';
-            break;
+            case 11: $bulan = 'November';
+                break;
 
-         case 12: $bulan = 'Desember';
-            break;
-         }
+            case 12: $bulan = 'Desember';
+                break;
+        }
 
         return $bulan;
     }
@@ -147,23 +147,32 @@ class Laporan_bulanan_model extends CI_Model
         $paging = new Paging();
 
         switch ($lap) {
-            case 0: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 0: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 1: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 '; break;
+            case 1: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 ';
+                break;
 
-            case 2: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 2: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 3: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 3: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 4: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 4: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 5: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 5: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 6: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 6: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 7: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 7: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
-            case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 '; break;
+            case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
 
             default:$sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
         }

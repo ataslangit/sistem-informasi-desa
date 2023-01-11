@@ -219,17 +219,23 @@ class Keluarga_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.no_kk'; break;
+            case 1: $order_sql = ' ORDER BY u.no_kk';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.no_kk DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.no_kk DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY kepala_kk'; break;
+            case 3: $order_sql = ' ORDER BY kepala_kk';
+                break;
 
-            case 4: $order_sql = ' ORDER BY kepala_kk DESC'; break;
+            case 4: $order_sql = ' ORDER BY kepala_kk DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.nama'; break;
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.tgl_daftar DESC';
         }
@@ -307,17 +313,23 @@ class Keluarga_model extends CI_Model
     public function list_data_statistik($tipe = 21, $o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.no_kk'; break;
+            case 1: $order_sql = ' ORDER BY u.no_kk';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.no_kk DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.no_kk DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY kepala_kk'; break;
+            case 3: $order_sql = ' ORDER BY kepala_kk';
+                break;
 
-            case 4: $order_sql = ' ORDER BY kepala_kk DESC'; break;
+            case 4: $order_sql = ' ORDER BY kepala_kk DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.nama'; break;
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.tgl_daftar DESC';
         }
@@ -845,19 +857,26 @@ class Keluarga_model extends CI_Model
     public function get_judul_statistik($tipe = 0, $nomor = 1)
     {
         switch ($tipe) {
-            case 21: $sql = "SELECT * FROM klasifikasi_analisis_keluarga WHERE id=? and jenis='1' "; break;
+            case 21: $sql = "SELECT * FROM klasifikasi_analisis_keluarga WHERE id=? and jenis='1' ";
+                break;
 
-            case 22: $sql = 'SELECT * FROM ref_raskin WHERE id=?'; break;
+            case 22: $sql = 'SELECT * FROM ref_raskin WHERE id=?';
+                break;
 
-            case 23: $sql = 'SELECT * FROM ref_blt WHERE id=?'; break;
+            case 23: $sql = 'SELECT * FROM ref_blt WHERE id=?';
+                break;
 
-            case 24: $sql = 'SELECT * FROM ref_bos WHERE id=?'; break;
+            case 24: $sql = 'SELECT * FROM ref_bos WHERE id=?';
+                break;
 
-            case 25: $sql = 'SELECT * FROM ref_pkh WHERE id=?'; break;
+            case 25: $sql = 'SELECT * FROM ref_pkh WHERE id=?';
+                break;
 
-            case 26: $sql = 'SELECT * FROM ref_jampersal WHERE id=?'; break;
+            case 26: $sql = 'SELECT * FROM ref_jampersal WHERE id=?';
+                break;
 
-            case 27: $sql = 'SELECT * FROM ref_bedah_rumah WHERE id=?'; break;
+            case 27: $sql = 'SELECT * FROM ref_bedah_rumah WHERE id=?';
+                break;
         }
         $query = $this->db->query($sql, $nomor);
 

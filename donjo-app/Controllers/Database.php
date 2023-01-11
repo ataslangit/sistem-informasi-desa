@@ -11,7 +11,7 @@ class Database extends CI_Controller
 
         $this->load->model('user_model');
         $this->load->dbforge();
-        //$this->load->model('wilayah_model');
+        // $this->load->model('wilayah_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -66,7 +66,7 @@ class Database extends CI_Controller
         $nav['act']           = 4;
         $data['form_action3'] = site_url('database/ppls_individu');
         $data['form_action2'] = site_url('database/ppls_rumahtangga');
-        //$data['form_action'] = site_url("database/ppls_kuisioner");
+        // $data['form_action'] = site_url("database/ppls_kuisioner");
         $header = $this->header_model->get_data();
         view('header', $header);
         view('nav', $nav);
@@ -143,7 +143,7 @@ class Database extends CI_Controller
     public function ppls_individu()
     {
         $this->import_model->pbdt_individu();
-        //redirect('database/import_ppls');
+        // redirect('database/import_ppls');
     }
 
     public function ppls_rumahtangga()
@@ -198,7 +198,7 @@ class Database extends CI_Controller
     public function surat()
     {
         $this->export_model->gawe_surat();
-        //redirect('database/import');
+        // redirect('database/import');
     }
 
     public function export_excel()

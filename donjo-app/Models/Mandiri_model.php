@@ -84,9 +84,11 @@ class Mandiri_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.last_login'; break;
+            case 1: $order_sql = ' ORDER BY u.last_login';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.last_login DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.last_login DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.tanggal_buat';
         }

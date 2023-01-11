@@ -100,8 +100,8 @@ class First extends CI_Controller
             $data['headline']      = $this->first_artikel_m->get_headline();
             $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
 
-            //$data['paging']  = $this->first_artikel_m->paging($p);
-            //$data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
+            // $data['paging']  = $this->first_artikel_m->paging($p);
+            // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
 
             $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
             $data['arsip']    = $this->first_artikel_m->arsip_show();
@@ -118,10 +118,10 @@ class First extends CI_Controller
             $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
             $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
 
-            //if($m == 2)
+            // if($m == 2)
             $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
 
-            //$data['menu_surat2'] = $this->surat_model->list_surat2();
+            // $data['menu_surat2'] = $this->surat_model->list_surat2();
             $data['m'] = $m;
             view('layouts/mandiri.php', $data);
         }
@@ -256,27 +256,39 @@ class First extends CI_Controller
     public function statistik($stat = '', $tipe = 0)
     {
         switch ($stat) {
-            case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan'; break;
+            case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan';
+                break;
 
-            case 'pekerjaan':$data['heading'] = 'Pekerjaan'; break;
+            case 'pekerjaan':$data['heading'] = 'Pekerjaan';
+                break;
 
-            case 'status-perkawinan':$data['heading'] = 'Status Perkawinan'; break;
+            case 'status-perkawinan':$data['heading'] = 'Status Perkawinan';
+                break;
 
-            case 'agama':$data['heading'] = 'Agama'; break;
+            case 'agama':$data['heading'] = 'Agama';
+                break;
 
-            case 'jenis-kelamin':$data['heading'] = 'Jenis Kelamin'; break;
+            case 'jenis-kelamin':$data['heading'] = 'Jenis Kelamin';
+                break;
 
-            case 'golongan-darah':$data['heading'] = 'Golongan Darah'; break;
+            case 'golongan-darah':$data['heading'] = 'Golongan Darah';
+                break;
 
-            case 'kelompok-umur':$data['heading'] = 'Kelompok Umur'; break;
+            case 'kelompok-umur':$data['heading'] = 'Kelompok Umur';
+                break;
 
-            case 'warga-negara':$data['heading'] = 'Warga Negara'; break;
+            case 'warga-negara':$data['heading'] = 'Warga Negara';
+                break;
 
-            case 'wilayah':redirect('first/wilayah'); break;
+            case 'wilayah':redirect('first/wilayah');
+                break;
 
-            case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh'; break;
+            case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
+                break;
 
-            default:$data['heading'] = ''; redirect('first'); break;
+            default:$data['heading'] = '';
+                redirect('first');
+                break;
         }
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
