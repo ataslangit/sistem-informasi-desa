@@ -48,12 +48,12 @@ class Header_model extends CI_Model
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_keluarga WHERE 1';
         $query = $this->db->query($sql);
         $data  = $query->row_array();
-        //$i = $i*$data['jml'];
+        // $i = $i*$data['jml'];
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_wil_clusterdesa WHERE 1';
         $query = $this->db->query($sql);
         $data  = $query->row_array();
-        //$i = $i*$data['jml'];
+        // $i = $i*$data['jml'];
 
         if ($i > 0) {
             return 1;

@@ -101,17 +101,23 @@ class Analisis_grafik_model extends CI_Model
         $pembagi = $pembagi['pembagi'] + 0;
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.minval'; break;
+            case 1: $order_sql = ' ORDER BY u.minval';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.minval DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.minval DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.minval'; break;
+            case 3: $order_sql = ' ORDER BY u.minval';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.minval DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.minval DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.minval'; break;
+            case 5: $order_sql = ' ORDER BY g.minval';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.minval DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.minval DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.minval';
         }
@@ -151,17 +157,23 @@ class Analisis_grafik_model extends CI_Model
         $pembagi = $pembagi['pembagi'] + 0;
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.minval'; break;
+            case 1: $order_sql = ' ORDER BY u.minval';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.minval DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.minval DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.minval'; break;
+            case 3: $order_sql = ' ORDER BY u.minval';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.minval DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.minval DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.minval'; break;
+            case 5: $order_sql = ' ORDER BY g.minval';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.minval DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.minval DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.minval';
         }

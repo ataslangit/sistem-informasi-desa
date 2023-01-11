@@ -323,7 +323,7 @@ class Penduduk_model extends CI_Model
             return $log_sql;
         }
         $log_sql = '';
-        //$log_sql= " AND u.status_dasar = 1 ";
+        // $log_sql= " AND u.status_dasar = 1 ";
         return $log_sql;
     }
 
@@ -374,21 +374,29 @@ class Penduduk_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500, $log = 0)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.nik'; break;
+            case 1: $order_sql = ' ORDER BY u.nik';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.nik DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.nik DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.nama'; break;
+            case 3: $order_sql = ' ORDER BY u.nama';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.nama DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.nama DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY d.no_kk'; break;
+            case 5: $order_sql = ' ORDER BY d.no_kk';
+                break;
 
-            case 6: $order_sql = ' ORDER BY d.no_kk DESC'; break;
+            case 6: $order_sql = ' ORDER BY d.no_kk DESC';
+                break;
 
-            case 7: $order_sql = ' ORDER BY umur'; break;
+            case 7: $order_sql = ' ORDER BY umur';
+                break;
 
-            case 8: $order_sql = ' ORDER BY umur DESC'; break;
+            case 8: $order_sql = ' ORDER BY umur DESC';
+                break;
 
             default:$order_sql = '';
         }
@@ -680,7 +688,7 @@ class Penduduk_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('tweb_penduduk', $data);
 
-        //pindah luar desa
+        // pindah luar desa
         if ($data['status_dasar'] === 3) {
             $out['id_kk']    = '';
             $out['kk_level'] = '';
@@ -981,62 +989,73 @@ class Penduduk_model extends CI_Model
             $head = '';
 
             switch ($id) {
-                case 1: $table = 'tweb_penduduk_hubungan'; if (isset($_SESSION['hubungan'])) {
-                    $head      = 'STATUS HUBUNGAN DALAM KELUARGA';
-                    $kf        = $_SESSION['hubungan'];
-                } break;
+                case 1: $table = 'tweb_penduduk_hubungan';
+                    if (isset($_SESSION['hubungan'])) {
+                        $head = 'STATUS HUBUNGAN DALAM KELUARGA';
+                        $kf   = $_SESSION['hubungan'];
+                    } break;
 
-                case 2: $table = 'tweb_penduduk_agama'; if (isset($_SESSION['agama'])) {
-                    $head      = 'AGAMA';
-                    $kf        = $_SESSION['agama'];
-                } break;
+                case 2: $table = 'tweb_penduduk_agama';
+                    if (isset($_SESSION['agama'])) {
+                        $head = 'AGAMA';
+                        $kf   = $_SESSION['agama'];
+                    } break;
 
-                case 3: $table = 'tweb_penduduk_pendidikan_kk'; if (isset($_SESSION['pendidikan_kk_id'])) {
-                    $head      = 'PENDIDIKAN DALAM KK';
-                    $kf        = $_SESSION['pendidikan_kk_id'];
-                } break;
+                case 3: $table = 'tweb_penduduk_pendidikan_kk';
+                    if (isset($_SESSION['pendidikan_kk_id'])) {
+                        $head = 'PENDIDIKAN DALAM KK';
+                        $kf   = $_SESSION['pendidikan_kk_id'];
+                    } break;
 
-                case 4: $table = 'tweb_penduduk_pendidikan'; if (isset($_SESSION['pendidikan_sedang_id'])) {
-                    $head      = 'PENDIDIKAN SEDANG DITEMPUH';
-                    $kf        = $_SESSION['pendidikan_sedang_id'];
-                } break;
+                case 4: $table = 'tweb_penduduk_pendidikan';
+                    if (isset($_SESSION['pendidikan_sedang_id'])) {
+                        $head = 'PENDIDIKAN SEDANG DITEMPUH';
+                        $kf   = $_SESSION['pendidikan_sedang_id'];
+                    } break;
 
-                case 5: $table = 'tweb_penduduk_pekerjaan'; if (isset($_SESSION['pekerjaan_id'])) {
-                    $head      = 'PEKERJAAN';
-                    $kf        = $_SESSION['pekerjaan_id'];
-                } break;
+                case 5: $table = 'tweb_penduduk_pekerjaan';
+                    if (isset($_SESSION['pekerjaan_id'])) {
+                        $head = 'PEKERJAAN';
+                        $kf   = $_SESSION['pekerjaan_id'];
+                    } break;
 
-                case 6: $table = 'tweb_penduduk_kawin'; if (isset($_SESSION['status'])) {
-                    $head      = 'STATUS PERKAWINAN';
-                    $kf        = $_SESSION['status'];
-                } break;
+                case 6: $table = 'tweb_penduduk_kawin';
+                    if (isset($_SESSION['status'])) {
+                        $head = 'STATUS PERKAWINAN';
+                        $kf   = $_SESSION['status'];
+                    } break;
 
-                case 7: $table = 'tweb_penduduk_warganegara'; if (isset($_SESSION['warganegara'])) {
-                    $head      = 'KEWARGANEGARAAN';
-                    $kf        = $_SESSION['warganegara'];
-                } break;
+                case 7: $table = 'tweb_penduduk_warganegara';
+                    if (isset($_SESSION['warganegara'])) {
+                        $head = 'KEWARGANEGARAAN';
+                        $kf   = $_SESSION['warganegara'];
+                    } break;
 
-                case 8: $table = 'tweb_golongan_darah'; if (isset($_SESSION['golongan_darah'])) {
-                    $head      = 'GOLONGAN DARAH';
-                    $kf        = $_SESSION['golongan_darah'];
-                } break;
+                case 8: $table = 'tweb_golongan_darah';
+                    if (isset($_SESSION['golongan_darah'])) {
+                        $head = 'GOLONGAN DARAH';
+                        $kf   = $_SESSION['golongan_darah'];
+                    } break;
 
-                case 9: $table = 'tweb_penduduk_sex'; if (isset($_SESSION['sex'])) {
-                    $head      = 'JENIS KELAMIN';
-                    $kf        = $_SESSION['sex'];
-                } break;
+                case 9: $table = 'tweb_penduduk_sex';
+                    if (isset($_SESSION['sex'])) {
+                        $head = 'JENIS KELAMIN';
+                        $kf   = $_SESSION['sex'];
+                    } break;
 
-                case 10: $table = 'tweb_penduduk_status'; if (isset($_SESSION['filter'])) {
-                    $head       = 'STATUS PENDUDUK';
-                    $kf         = $_SESSION['filter'];
-                } break;
+                case 10: $table = 'tweb_penduduk_status';
+                    if (isset($_SESSION['filter'])) {
+                        $head = 'STATUS PENDUDUK';
+                        $kf   = $_SESSION['filter'];
+                    } break;
 
-                case 11: /*$table = 'tweb_status_dasar'; 			if(isset($_SESSION['status_dasar'])){$head = "STATUS DASAR";$kf = $_SESSION['status_dasar'];}*/ break;
+                case 11: /* $table = 'tweb_status_dasar'; 			if(isset($_SESSION['status_dasar'])){$head = "STATUS DASAR";$kf = $_SESSION['status_dasar'];} */ break;
 
-                case 12: $table = 'tweb_cacat'; if (isset($_SESSION['cacat'])) {
-                    $head       = 'DIFABLE';
-                    $kf         = $_SESSION['cacat'];
-                } break;
+                case 12: $table = 'tweb_cacat';
+                    if (isset($_SESSION['cacat'])) {
+                        $head = 'DIFABLE';
+                        $kf   = $_SESSION['cacat'];
+                    } break;
 
                 default: $table = '';
             }
@@ -1048,7 +1067,7 @@ class Penduduk_model extends CI_Model
                 if (count($data) > 0) {
                     $br = ' ';
                     $rn = "\r\n";
-                    //$out = "| ".$head.":";
+                    // $out = "| ".$head.":";
                     $out = ' _ ';
 
                     $i = 0;
@@ -1108,33 +1127,47 @@ class Penduduk_model extends CI_Model
     public function get_judul_statistik($tipe = 0, $nomor = 1)
     {
         switch ($tipe) {
-            case 0: $sql = 'SELECT * FROM tweb_penduduk_pendidikan WHERE id=?'; break;
+            case 0: $sql = 'SELECT * FROM tweb_penduduk_pendidikan WHERE id=?';
+                break;
 
-            case 1: $sql = 'SELECT * FROM tweb_penduduk_pekerjaan WHERE id=?'; break;
+            case 1: $sql = 'SELECT * FROM tweb_penduduk_pekerjaan WHERE id=?';
+                break;
 
-            case 2: $sql = 'SELECT * FROM tweb_penduduk_kawin WHERE id=?'; break;
+            case 2: $sql = 'SELECT * FROM tweb_penduduk_kawin WHERE id=?';
+                break;
 
-            case 3: $sql = 'SELECT * FROM tweb_penduduk_agama WHERE id=?'; break;
+            case 3: $sql = 'SELECT * FROM tweb_penduduk_agama WHERE id=?';
+                break;
 
-            case 4: $sql = 'SELECT * FROM tweb_penduduk_sex WHERE id=?'; break;
+            case 4: $sql = 'SELECT * FROM tweb_penduduk_sex WHERE id=?';
+                break;
 
-            case 5: $sql = 'SELECT * FROM tweb_penduduk_warganegara WHERE id=?'; break;
+            case 5: $sql = 'SELECT * FROM tweb_penduduk_warganegara WHERE id=?';
+                break;
 
-            case 6: $sql = 'SELECT * FROM tweb_penduduk_status WHERE id=?'; break;
+            case 6: $sql = 'SELECT * FROM tweb_penduduk_status WHERE id=?';
+                break;
 
-            case 7: $sql = 'SELECT * FROM tweb_golongan_darah WHERE id=?'; break;
+            case 7: $sql = 'SELECT * FROM tweb_golongan_darah WHERE id=?';
+                break;
 
-            case 9: $sql = 'SELECT * FROM tweb_cacat WHERE id=?'; break;
+            case 9: $sql = 'SELECT * FROM tweb_cacat WHERE id=?';
+                break;
 
-            case 10: $sql = 'SELECT * FROM tweb_sakit_menahun WHERE id=?'; break;
+            case 10: $sql = 'SELECT * FROM tweb_sakit_menahun WHERE id=?';
+                break;
 
-            case 11: $sql = 'SELECT * FROM ref_jamkesmas WHERE id=?'; break;
+            case 11: $sql = 'SELECT * FROM ref_jamkesmas WHERE id=?';
+                break;
 
-            case 12: $sql = 'SELECT * FROM tweb_penduduk_pendidikan_kk WHERE id=?'; break;
+            case 12: $sql = 'SELECT * FROM tweb_penduduk_pendidikan_kk WHERE id=?';
+                break;
 
-            case 13: $sql = 'SELECT * FROM tweb_penduduk_umur WHERE id=?'; break;
+            case 13: $sql = 'SELECT * FROM tweb_penduduk_umur WHERE id=?';
+                break;
 
-            case 14: $sql = 'SELECT * FROM tweb_penduduk_pendidikan WHERE id=?'; break;
+            case 14: $sql = 'SELECT * FROM tweb_penduduk_pendidikan WHERE id=?';
+                break;
         }
         $query = $this->db->query($sql, $nomor);
 

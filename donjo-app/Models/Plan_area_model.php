@@ -89,13 +89,17 @@ class Plan_area_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY nama'; break;
+            case 1: $order_sql = ' ORDER BY nama';
+                break;
 
-            case 2: $order_sql = ' ORDER BY nama DESC'; break;
+            case 2: $order_sql = ' ORDER BY nama DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY enabled'; break;
+            case 3: $order_sql = ' ORDER BY enabled';
+                break;
 
-            case 4: $order_sql = ' ORDER BY enabled DESC'; break;
+            case 4: $order_sql = ' ORDER BY enabled DESC';
+                break;
 
             default:$order_sql = ' ORDER BY id';
         }

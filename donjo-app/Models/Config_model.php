@@ -7,7 +7,7 @@ class Config_model extends CI_Model
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';
         $query = $this->db->query($sql);
 
-        //if(!$query){
+        // if(!$query){
         $sql   = 'SELECT * FROM tweb_surat_format WHERE 1';
         $query = $this->db->query($sql);
         $data  = $query->result_array();
@@ -35,7 +35,7 @@ class Config_model extends CI_Model
             fwrite($handle, $buffer);
             fclose($handle);
         }
-        //}
+        // }
     }
 
     public function initsurat()
