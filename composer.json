@@ -2,7 +2,8 @@
   "name": "ataslangit/sistem-informasi-desa",
   "require": {
     "php": "^7.4 || ^8.0",
-    "codeigniter4/framework": "~4.3"
+    "codeigniter4/framework": "~4.3",
+    "codeigniter4/settings": "^2.1"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
@@ -14,7 +15,6 @@
     ]
   },
   "config": {
-    "lock": false,
     "optimize-autoloader": true,
     "platform": {
       "php": "7.4"
