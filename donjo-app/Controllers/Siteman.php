@@ -31,7 +31,7 @@ class Siteman extends BaseController
         $_SESSION['sesi']       = 'kosong';
         $_SESSION['timeout']    = 0;
 
-        view('siteman', $header);
+        echo view('siteman', $header);
         $_SESSION['siteman'] = 0;
     }
 

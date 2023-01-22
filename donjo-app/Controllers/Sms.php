@@ -54,10 +54,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '0';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/manajemen_sms_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/manajemen_sms_table', $data);
+        echo view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
     }
 
@@ -68,10 +68,10 @@ class Sms extends BaseController
         $header              = $this->header_model->get_data();
         $menu['act']         = '1';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/setting', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/setting', $data);
+        echo view('footer');
     }
 
     public function insert_autoreply()
@@ -102,10 +102,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '3';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/polling', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/polling', $data);
+        echo view('footer');
     }
 
     public function outbox($p = 1, $o = 0)
@@ -135,10 +135,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '0';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/create_sms', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/create_sms', $data);
+        echo view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
     }
 
@@ -169,10 +169,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '0';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/berita_terkirim', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/berita_terkirim', $data);
+        echo view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
     }
 
@@ -203,10 +203,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '0';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/pesan_tertunda', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/pesan_tertunda', $data);
+        echo view('footer');
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
     }
 
@@ -221,14 +221,14 @@ class Sms extends BaseController
             $data['tipe']['tipe'] = $tipe;
             $data['grup']         = $this->sms_model->list_grup();
             $data['kontak']       = $this->sms_model->list_kontak();
-            view('sms/ajax_sms_form', $data);
+            echo view('sms/ajax_sms_form', $data);
         } else {
             $data['sms']          = null;
             $data['form_action']  = site_url("sms/insert/{$tipe}");
             $data['tipe']['tipe'] = $tipe;
             $data['grup']         = $this->sms_model->list_grup();
             $data['kontak']       = $this->sms_model->list_kontak();
-            view('sms/ajax_sms_form_kirim', $data);
+            echo view('sms/ajax_sms_form_kirim', $data);
         }
     }
 
@@ -242,7 +242,7 @@ class Sms extends BaseController
         $data['form_action'] = site_url("sms/formaftercari/0/0/{$tipe}");
 
         $data['kontak'] = $this->sms_model->list_kontak();
-        view('sms/ajax_sms_form_cari', $data);
+        echo view('sms/ajax_sms_form_cari', $data);
     }
 
     public function formaftercari($tipe = 0)
@@ -252,7 +252,7 @@ class Sms extends BaseController
         $data['form_action']              = site_url("sms/insert/{$tipe}");
         $data['tipe']['tipe']             = $tipe;
         $data['grup']                     = $this->sms_model->list_grup();
-        view('sms/ajax_sms_form', $data);
+        echo view('sms/ajax_sms_form', $data);
     }
 
     public function send_broadcast()
@@ -359,7 +359,7 @@ class Sms extends BaseController
         $data['pekerjaan']   = $this->penduduk_model->list_pekerjaan();
         $data['grup']        = $this->sms_model->list_grup_kontak();
         $data['form_action'] = site_url('sms/broadcast_proses');
-        view('sms/ajax_broadcast_form', $data);
+        echo view('sms/ajax_broadcast_form', $data);
     }
 
     public function ajax_penduduk_rw($dusun = '')
@@ -532,10 +532,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '2';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/kontak', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/kontak', $data);
+        echo view('footer');
         unset($_SESSION['cari_kontak']);
     }
 
@@ -545,9 +545,9 @@ class Sms extends BaseController
         $data['form_action'] = site_url('sms/kontak_insert');
         $data['kontak']      = $this->sms_model->get_kontak($id);
         if ($id === 0) {
-            view('sms/ajax_kontak_form', $data);
+            echo view('sms/ajax_kontak_form', $data);
         } else {
-            view('sms/ajax_kontak_form_edit', $data);
+            echo view('sms/ajax_kontak_form_edit', $data);
         }
     }
 
@@ -592,10 +592,10 @@ class Sms extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = '2';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/group', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/group', $data);
+        echo view('footer');
         unset($_SESSION['cari_grup']);
     }
 
@@ -608,7 +608,7 @@ class Sms extends BaseController
             $data['form_action'] = site_url('sms/grup_update');
             $data['grup']        = $this->sms_model->get_grup($id);
         }
-        view('sms/ajax_grup_form', $data);
+        echo view('sms/ajax_grup_form', $data);
     }
 
     public function grup_insert()
@@ -660,10 +660,10 @@ class Sms extends BaseController
         $header                    = $this->header_model->get_data();
         $menu['act']               = '2';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/group_detail', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/group_detail', $data);
+        echo view('footer');
         unset($_SESSION['cari_anggota']);
     }
 
@@ -671,7 +671,7 @@ class Sms extends BaseController
     {
         $data['form_action'] = site_url("sms/anggota_insert/{$id}");
         $data['main']        = $this->sms_model->list_data_nama($id);
-        view('sms/ajax_anggota_form', $data);
+        echo view('sms/ajax_anggota_form', $data);
     }
 
     public function anggota_insert($id = 0)
@@ -697,7 +697,7 @@ class Sms extends BaseController
         $data['main'] = $this->sms_model->get_data_polling($id);
 
         $data['form_action'] = site_url("sms/insert_polling/{$id}");
-        view('sms/ajax_polling_form', $data);
+        echo view('sms/ajax_polling_form', $data);
     }
 
     public function insert_polling($id = 0)
@@ -735,16 +735,16 @@ class Sms extends BaseController
         $header                        = $this->header_model->get_data();
         $menu['act']                   = '2';
 
-        view('header', $header);
-        view('sms/nav', $menu);
-        view('sms/pertanyaan', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sms/nav', $menu);
+        echo view('sms/pertanyaan', $data);
+        echo view('footer');
     }
 
     public function form_pertanyaan($id = 0)
     {
         $data['form_action'] = site_url("sms/pertanyaan_insert/{$id}");
-        view('sms/ajax_pertanyaan_form', $data);
+        echo view('sms/ajax_pertanyaan_form', $data);
     }
 
     public function pertanyaan_insert($id = 0)

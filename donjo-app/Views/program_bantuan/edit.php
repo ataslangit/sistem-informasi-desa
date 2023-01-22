@@ -1,12 +1,10 @@
-<?php
-?>
+
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
             <td class="side-menu">
-                <?php
-		view('program_bantuan/menu_kiri.php')
-		?>
+                <?= view('program_bantuan/menu_kiri.php')
+        ?>
             </td>
             <td class="contentpane">
                 <div id="contentpane">
@@ -15,54 +13,54 @@
                         <legend>Form Penulisan Program Bantuan</legend>
                         <div style="width:96%">
                             <?php
-						if(validation_errors()){
-							echo "
-							<div class=\"error\" style=\"border:solid 2px #c00;color:#c00;margin:1em 0;\">
-								<div style=\"background:#c00;color:#fff;padding:1em;font-weight:bolder;\">
+                        if (validation_errors()) {
+                            echo '
+							<div class="error" style="border:solid 2px #c00;color:#c00;margin:1em 0;">
+								<div style="background:#c00;color:#fff;padding:1em;font-weight:bolder;">
 								Ada Kesalahan
 								</div>
-								<div style=\"padding:1em 2em;\">
-							".validation_errors()."
+								<div style="padding:1em 2em;">
+							' . validation_errors() . '
 								</div>
 							</div>
-							";
-						}
+							';
+                        }
 
-						if($_SESSION["success"] == 1){
-							echo "Simpan Berhasil";
-						}
-						$data= $program[0];
-						$cid = $data["sasaran"];
-						 ?>
-                            <?php echo form_open("program_bantuan/update/".$data["id"])."\n"; ?>
+                        if ($_SESSION['success'] === 1) {
+                            echo 'Simpan Berhasil';
+                        }
+                        $data = $program[0];
+                        $cid  = $data['sasaran'];
+                         ?>
+                            <?= form_open('program_bantuan/update/' . $data['id']) . "\n"; ?>
                             <div class="form-group">
                                 <label>Sasaran Program</label>
                                 <select class="form-control" name="cid" id="cid">
-                                    <option value="">Pilih Sasaran Program <?php echo $cid;?></option>
+                                    <option value="">Pilih Sasaran Program <?= $cid; ?></option>
                                     <?php
-									$strC = ($cid == 1)?"selected=\"selected\"":"";
-									echo "<option value=\"1\" ".$strC.">Penduduk Perorangan</option>";
-									$strC = ($cid == 2)?"selected=\"selected\"":"";
-									echo "<option value=\"2\" ".$strC.">Keluarga - KK</option>";
-									$strC = ($cid == 3)?"selected=\"selected\"":"";
-									echo "<option value=\"3\" ".$strC.">Rumah Tangga</option>";
-									$strC = ($cid == 4)?"selected=\"selected\"":"";
-									echo "<option value=\"4\" ".$strC.">Kelompok / Organisasi</option>";
-									?>
+                                    $strC = ($cid === 1) ? 'selected="selected"' : '';
+                                    echo '<option value="1" ' . $strC . '>Penduduk Perorangan</option>';
+                                    $strC = ($cid === 2) ? 'selected="selected"' : '';
+                                    echo '<option value="2" ' . $strC . '>Keluarga - KK</option>';
+                                    $strC = ($cid === 3) ? 'selected="selected"' : '';
+                                    echo '<option value="3" ' . $strC . '>Rumah Tangga</option>';
+                                    $strC = ($cid === 4) ? 'selected="selected"' : '';
+                                    echo '<option value="4" ' . $strC . '>Kelompok / Organisasi</option>';
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Nama Program</label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan nama program" value="<?php echo $data["nama"]; ?>">
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Tuliskan nama program" value="<?= $data['nama']; ?>">
                             </div>
                             <div class="form-group">
                                 <label>Keterangan</label>
-                                <textarea class="form-control" name="ndesc" id="ndesc"><?php echo $data["ndesc"]; ?></textarea>
+                                <textarea class="form-control" name="ndesc" id="ndesc"><?= $data['ndesc']; ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Rentang Waktu Program</label>
-                                Mulai <input type="text" class="inputbox required" style="width:200px" name="sdate" id="sdate" placeholder="" value="<?php echo date("m/d/Y",strtotime($data["sdate"])); ?>">
-                                s.d <input type="text" class="inputbox required" style="width:200px" name="edate" id="edate" placeholder="" value="<?php echo date("m/d/Y",strtotime($data["edate"])); ?>">
+                                Mulai <input type="text" class="inputbox required" style="width:200px" name="sdate" id="sdate" placeholder="" value="<?= date('m/d/Y', strtotime($data['sdate'])); ?>">
+                                s.d <input type="text" class="inputbox required" style="width:200px" name="edate" id="edate" placeholder="" value="<?= date('m/d/Y', strtotime($data['edate'])); ?>">
                             </div>
 
                             <div class="form-group">
@@ -77,9 +75,8 @@
                 </div>
             </td>
             <td style="width:250px;" class="contentpane">
-                <?php
-		view('program_bantuan/panduan.php')
-		?>
+                <?= view('program_bantuan/panduan.php')
+        ?>
             </td>
         </tr>
     </table>
@@ -112,7 +109,7 @@
         });
 
     </script>
-    <script src="<?php echo base_url('assets/tiny_mce/tiny_mce_src.js') ?>"></script>
+    <script src="<?= base_url('assets/tiny_mce/tiny_mce_src.js') ?>"></script>
     <script>
         tinyMCE.init({
 

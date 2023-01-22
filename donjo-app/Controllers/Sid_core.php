@@ -60,10 +60,11 @@ class Sid_core extends BaseController
         $data['total']    = $this->wilayah_model->total();
         $nav['act']       = 0;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah', $data);
-        view('footer');
+
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah', $data);
+        echo view('footer');
     }
 
     public function cetak()
@@ -71,7 +72,7 @@ class Sid_core extends BaseController
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-        view('sid/wilayah/wilayah_print', $data);
+        echo view('sid/wilayah/wilayah_print', $data);
     }
 
     public function excel()
@@ -79,7 +80,7 @@ class Sid_core extends BaseController
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-        view('sid/wilayah/wilayah_excel', $data);
+        echo view('sid/wilayah/wilayah_excel', $data);
     }
 
     public function form($id = '')
@@ -104,10 +105,10 @@ class Sid_core extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -155,10 +156,10 @@ class Sid_core extends BaseController
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
         $nav['act']       = 0;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_rw', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_rw', $data);
+        echo view('footer');
     }
 
     public function cetak_rw($id_dusun = '')
@@ -169,7 +170,7 @@ class Sid_core extends BaseController
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-        view('sid/wilayah/wilayah_rw_print', $data);
+        echo view('sid/wilayah/wilayah_rw_print', $data);
     }
 
     public function excel_rw($id_dusun = '')
@@ -180,7 +181,7 @@ class Sid_core extends BaseController
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-        view('sid/wilayah/wilayah_rw_excel', $data);
+        echo view('sid/wilayah/wilayah_rw_excel', $data);
     }
 
     public function form_rw($id_dusun = '', $rw = '')
@@ -210,10 +211,10 @@ class Sid_core extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form_rw', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form_rw', $data);
+        echo view('footer');
     }
 
     public function insert_rw($dusun = '')
@@ -252,10 +253,10 @@ class Sid_core extends BaseController
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
         $nav['act']    = 0;
         $header        = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_rt', $data);
+        echo view('footer');
     }
 
     public function cetak_rt($id_dusun = '', $rw = '')
@@ -268,7 +269,7 @@ class Sid_core extends BaseController
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-        view('sid/wilayah/wilayah_rt_print', $data);
+        echo view('sid/wilayah/wilayah_rt_print', $data);
     }
 
     public function excel_rt($id_dusun = '', $rw = '')
@@ -281,7 +282,7 @@ class Sid_core extends BaseController
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-        view('sid/wilayah/wilayah_rt_excel', $data);
+        echo view('sid/wilayah/wilayah_rt_excel', $data);
     }
 
     public function list_dusun_rt($dusun = '', $rw = '')
@@ -291,10 +292,10 @@ class Sid_core extends BaseController
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $nav['act']    = 0;
         $header        = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/list_dusun_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/list_dusun_rt', $data);
+        echo view('footer');
     }
 
     public function form_rt($id_dusun = '', $rw = '', $rt = '')
@@ -326,10 +327,10 @@ class Sid_core extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form_rt', $data);
+        echo view('footer');
     }
 
     public function insert_rt($dusun = '', $rw = '')
@@ -370,7 +371,7 @@ class Sid_core extends BaseController
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
         $this->surat_keluar_model->log_surat($f, $id, $g, $u);
-        view('surat/print_surat_ket_pengantar', $data);
+        echo view('surat/print_surat_ket_pengantar', $data);
     }
 
     public function ajax_wil_maps($id = 0)
@@ -379,7 +380,7 @@ class Sid_core extends BaseController
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_dusun_map/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_dusun_map($id = 0)
@@ -394,7 +395,7 @@ class Sid_core extends BaseController
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rw_map/{$dus}/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_rw_map($dus = 0, $id = 0)
@@ -409,7 +410,7 @@ class Sid_core extends BaseController
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rt_map/{$dus}/{$rw}/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_rt_map($dus = 0, $rw = 0, $id = 0)
@@ -482,9 +483,9 @@ class Sid_core extends BaseController
     {
         $nav['act'] = 3;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/mig');
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/mig');
+        echo view('footer');
     }
 }

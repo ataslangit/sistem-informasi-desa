@@ -111,22 +111,22 @@ class Rtm extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 3;
         $header             = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/rtm', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/rtm', $data);
+        echo view('footer');
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-        view('sid/kependudukan/rtm_print', $data);
+        echo view('sid/kependudukan/rtm_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-        view('sid/kependudukan/rtm_excel', $data);
+        echo view('sid/kependudukan/rtm_excel', $data);
     }
 
     public function excel_pbdt($o = 0)
@@ -134,21 +134,21 @@ class Rtm extends BaseController
         $this->load->model('config_model');
         $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
-        view('sid/kependudukan/rtm_excel_pbdt', $data);
+        echo view('sid/kependudukan/rtm_excel_pbdt', $data);
     }
 
     public function edit_nokk($p = 1, $o = 0, $id = 0)
     {
         $data['kk']          = $this->rtm_model->get_rtm($id);
         $data['form_action'] = site_url("rtm/update_nokk/{$id}");
-        view('sid/kependudukan/ajax_edit_no_rtm', $data);
+        echo view('sid/kependudukan/ajax_edit_no_rtm', $data);
     }
 
     public function form_old($p = 1, $o = 0, $id = 0)
     {
         $data['penduduk']    = $this->rtm_model->list_penduduk_lepas();
         $data['form_action'] = site_url("rtm/insert/{$id}");
-        view('sid/kependudukan/ajax_add_rtm', $data);
+        echo view('sid/kependudukan/ajax_add_rtm', $data);
     }
 
     public function dusun($s = 0)
@@ -304,10 +304,10 @@ class Rtm extends BaseController
         $data['kepala_kk'] = $this->rtm_model->get_kepala_kk($id);
         $nav['act']        = 3;
         $header            = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/rtm_anggota', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/rtm_anggota', $data);
+        echo view('footer');
     }
 
     public function ajax_add_anggota($p = 1, $o = 0, $id = 0)
@@ -325,7 +325,7 @@ class Rtm extends BaseController
 
         $data['form_action'] = site_url("rtm/add_anggota/{$p}/{$o}/{$id}");
 
-        view('sid/kependudukan/ajax_add_anggota_rtm_form', $data);
+        echo view('sid/kependudukan/ajax_add_anggota_rtm_form', $data);
     }
 
     public function edit_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
@@ -335,7 +335,7 @@ class Rtm extends BaseController
         $data['hubungan']    = $this->rtm_model->list_hubungan();
         $data['main']        = $this->rtm_model->get_anggota($id);
         $data['form_action'] = site_url("rtm/update_anggota/{$p}/{$o}/{$id_kk}/{$id}");
-        view('sid/kependudukan/ajax_edit_anggota_rtm', $data);
+        echo view('sid/kependudukan/ajax_edit_anggota_rtm', $data);
     }
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
@@ -357,12 +357,12 @@ class Rtm extends BaseController
         $data['penduduk'] = $this->rtm_model->list_penduduk_lepas();
         $nav['act']       = 3;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
         $data['form_action'] = site_url('rtm/print');
 
-        view('sid/kependudukan/kartu_rtm', $data);
-        view('footer');
+        echo view('sid/kependudukan/kartu_rtm', $data);
+        echo view('footer');
     }
 
     public function cetak_kk($id = 0)
@@ -374,7 +374,7 @@ class Rtm extends BaseController
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
         $header            = $this->header_model->get_data();
-        view('sid/kependudukan/cetak_rtm', $data);
+        echo view('sid/kependudukan/cetak_rtm', $data);
     }
 
     public function add_anggota($p = 1, $o = 0, $id = 0)
@@ -404,6 +404,6 @@ class Rtm extends BaseController
     public function cetak_statistik($tipe = 0)
     {
         $data['main'] = $this->rtm_model->list_data_statistik($tipe);
-        view('sid/kependudukan/rtm_print', $data);
+        echo view('sid/kependudukan/rtm_print', $data);
     }
 }

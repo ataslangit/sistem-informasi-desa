@@ -50,11 +50,10 @@ class Polygon extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 5;
 
-        view('header-gis', $header);
-
-        view('plan/nav', $nav);
-        view('polygon/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('polygon/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -72,11 +71,11 @@ class Polygon extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('polygon/form', $data);
+        echo view('footer');
     }
 
     public function sub_polygon($polygon = 1)
@@ -86,11 +85,11 @@ class Polygon extends BaseController
         $header             = $this->header_model->get_data();
         $nav['act']         = 5;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/sub_polygon_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('polygon/sub_polygon_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_polygon($polygon = 0, $id = 0)
@@ -105,10 +104,10 @@ class Polygon extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/ajax_add_sub_polygon_form', $data);
+        echo view('plan/nav', $nav);
+        echo view('polygon/ajax_add_sub_polygon_form', $data);
     }
 
     public function search()

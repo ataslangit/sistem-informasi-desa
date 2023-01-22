@@ -1,17 +1,17 @@
-<?php view('print/headjs.php');?>
+<?= view('print/headjs.php'); ?>
 
 <body>
     <div id="content" class="container_12 clearfix">
         <div id="content-main" class="grid_7">
-            <link href="<?php echo base_url('assets/css/surat.css') ?>" rel="stylesheet">
+            <link href="<?= base_url('assets/css/surat.css') ?>" rel="stylesheet">
             <div>
                 <table width="100%">
-                    <tr> <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="" class="logo"></tr>
+                    <tr> <img src="<?= base_url('assets/files/logo/' . $desa['logo']) ?>" alt="" class="logo"></tr>
                     <div class="header">
-                        <h4 class="kop">PEMERINTAH KABUPATEN <?php echo strtoupper(unpenetration($desa['nama_kabupaten']))?> </h4>
-                        <h4 class="kop">KECAMATAN <?php echo strtoupper(unpenetration($desa['nama_kecamatan']))?> </h4>
-                        <h4 class="kop">DESA <?php echo strtoupper(unpenetration($desa['nama_desa']))?></h4>
-                        <h5 class="kop2"><?php echo (unpenetration($desa['alamat_kantor']))?> </h5>
+                        <h4 class="kop">PEMERINTAH KABUPATEN <?= strtoupper(unpenetration($desa['nama_kabupaten']))?> </h4>
+                        <h4 class="kop">KECAMATAN <?= strtoupper(unpenetration($desa['nama_kecamatan']))?> </h4>
+                        <h4 class="kop">DESA <?= strtoupper(unpenetration($desa['nama_desa']))?></h4>
+                        <h5 class="kop2"><?= unpenetration($desa['alamat_kantor'])?> </h5>
                         <div style="text-align: center;">
                             <hr>
                         </div>
@@ -20,13 +20,13 @@
                             <h4 class="kop">SURAT KETERANGAN KELAHIRAN</h4>
                         </u></div>
                     <div align="center">
-                        <h4 class="kop-nomor">No: <?php echo $input['nomor']?></h4>
+                        <h4 class="kop-nomor">No: <?= $input['nomor']?></h4>
                     </div>
                 </table>
                 <div class="clear"></div>
                 <table width="100%">
-                    <td class="indentasi">Yang bertanda tangan dibawah ini <?php echo unpenetration($input['jabatan'])?> <?php echo unpenetration($desa['nama_desa'])?>, Kecamatan <?php echo unpenetration($desa['nama_kecamatan'])?>, Kabupaten
-                        <?php echo unpenetration($desa['nama_kabupaten'])?>, Provinsi <?php echo unpenetration($desa['nama_propinsi'])?> menerangkan bahwa pada: </td>
+                    <td class="indentasi">Yang bertanda tangan dibawah ini <?= unpenetration($input['jabatan'])?> <?= unpenetration($desa['nama_desa'])?>, Kecamatan <?= unpenetration($desa['nama_kecamatan'])?>, Kabupaten
+                        <?= unpenetration($desa['nama_kabupaten'])?>, Provinsi <?= unpenetration($desa['nama_propinsi'])?> menerangkan bahwa pada: </td>
                     </tr>
                 </table>
                 <div id="isi">
@@ -34,28 +34,28 @@
                         <tr>
                             <td width="35%">Hari</td>
                             <td width="3%">:</td>
-                            <td width="64%"><?php echo $input['hari']?></td>
+                            <td width="64%"><?= $input['hari']?></td>
                         </tr>
                         <tr>
                             <td width="35%">Tanggal</td>
                             <td width="3%">:</td>
-                            <td width="64%"><?php echo tgl_indo(tgl_indo_in($input['tanggal']))?></td>
+                            <td width="64%"><?= tgl_indo(tgl_indo_in($input['tanggal']))?></td>
                         </tr>
                         <tr>
                             <td>Pukul </td>
                             <td>:</td>
-                            <td><?php echo $input['jam']?></td>
+                            <td><?= $input['jam']?></td>
                         </tr>
                         <tr>
                             <td>Tempat Kelahiran</td>
                             <td>:</td>
-                            <td><?php echo $input['tempat_lahir_bayi']?></td>
+                            <td><?= $input['tempat_lahir_bayi']?></td>
                         </tr>
                         <tr></tr>
                         <tr></tr>
                         <tr></tr>
                         <tr>
-                            <td colspan="3">Telah lahir seorang anak <?php echo $input['sex_bayi']?> bernama : <?php echo unpenetration($input['nama_bayi'])?></td>
+                            <td colspan="3">Telah lahir seorang anak <?= $input['sex_bayi']?> bernama : <?= unpenetration($input['nama_bayi'])?></td>
                         </tr>
                         <tr></tr>
                         <tr></tr>
@@ -65,27 +65,27 @@
                         </tr>
                         tr><td>Nama Lengkap</td>
                         <td>:</td>
-                        <td><?php echo unpenetration($data['nama'])?></td>
+                        <td><?= unpenetration($data['nama'])?></td>
                         </tr>
                         <tr>
                             <td>NIK</td>
                             <td>:</td>
-                            <td><?php echo $data['nik']?></td>
+                            <td><?= $data['nik']?></td>
                         </tr>
                         <tr>
                             <td>Umur</td>
                             <td>:</td>
-                            <td><?php echo $data['umur']?> tahun</td>
+                            <td><?= $data['umur']?> tahun</td>
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td><?php echo $data['pekerjaan']?></td>
+                            <td><?= $data['pekerjaan']?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td>RT. <?php echo $data['rt']?>, RW. <?php echo $data['rw']?>, Dusun <?php echo unpenetration(ununderscore($data['dusun']))?>, Desa <?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>, Kab. <?php echo unpenetration($desa['nama_kabupaten'])?></td>
+                            <td>RT. <?= $data['rt']?>, RW. <?= $data['rw']?>, Dusun <?= unpenetration(ununderscore($data['dusun']))?>, Desa <?= unpenetration($desa['nama_desa'])?>, Kec. <?= unpenetration($desa['nama_kecamatan'])?>, Kab. <?= unpenetration($desa['nama_kabupaten'])?></td>
                         </tr>
                         <tr></tr>
                         <tr></tr>
@@ -96,32 +96,32 @@
                         <tr>
                             <td>Nama Lengkap</td>
                             <td>:</td>
-                            <td><?php echo unpenetration($ayah['nama'])?></td>
+                            <td><?= unpenetration($ayah['nama'])?></td>
                         </tr>
                         <tr>
                             <td>NIK</td>
                             <td>:</td>
-                            <td><?php echo $ayah['nik']?></td>
+                            <td><?= $ayah['nik']?></td>
                         </tr>
                         <tr>
                             <td>Umur</td>
                             <td>:</td>
-                            <td><?php echo $ayah['umur']?> tahun</td>
+                            <td><?= $ayah['umur']?> tahun</td>
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td><?php echo $ayah['pek']?></td>
+                            <td><?= $ayah['pek']?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td>RT. <?php echo $ayah['rt']?>, RW. <?php echo $ayah['rw']?>, Dusun <?php echo unpenetration(ununderscore($ayah['dusun']))?>, Desa <?php echo unpenetration($desa['nama_desa'])?>, Kec. <?php echo unpenetration($desa['nama_kecamatan'])?>, Kab. <?php echo unpenetration($desa['nama_kabupaten'])?></td>
+                            <td>RT. <?= $ayah['rt']?>, RW. <?= $ayah['rw']?>, Dusun <?= unpenetration(ununderscore($ayah['dusun']))?>, Desa <?= unpenetration($desa['nama_desa'])?>, Kec. <?= unpenetration($desa['nama_kecamatan'])?>, Kab. <?= unpenetration($desa['nama_kabupaten'])?></td>
                         </tr>
                         <tr>
                             <td>Hubungan pelapor dengan bayi :</td>
                             <td>:</td>
-                            <td><?php echo $input['hubungan']?></td>
+                            <td><?= $input['hubungan']?></td>
                         </tr>
                         <tr></tr>
                         <tr></tr>
@@ -132,32 +132,32 @@
                         <tr>
                             <td>Nama Lengkap</td>
                             <td>:</td>
-                            <td><?php echo unpenetration($input['nama_pelapor'])?></td>
+                            <td><?= unpenetration($input['nama_pelapor'])?></td>
                         </tr>
                         <tr>
                             <td>NIK</td>
                             <td>:</td>
-                            <td><?php echo $input['nik_pelapor']?></td>
+                            <td><?= $input['nik_pelapor']?></td>
                         </tr>
                         <tr>
                             <td>Umur</td>
                             <td>:</td>
-                            <td><?php echo $input['umur_pelapor']?> tahun</td>
+                            <td><?= $input['umur_pelapor']?> tahun</td>
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td><?php echo $input['pek_pelapor']?></td>
+                            <td><?= $input['pek_pelapor']?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td><?php echo $input['alamat_pelapor']?></td>
+                            <td><?= $input['alamat_pelapor']?></td>
                         </tr>
                         <tr>
                             <td>Hubungan pelapor dengan bayi </td>
                             <td>:</td>
-                            <td><?php echo $input['hubungan']?></td>
+                            <td><?= $input['hubungan']?></td>
                         </tr>
                     </table>
                     <table width="100%">
@@ -179,12 +179,12 @@
                     <tr>
                         <td width="10%"></td>
                         <td width="30%"></td>
-                        <td align="center"><?php echo unpenetration($desa['nama_desa'])?>, <?php echo $tanggal_sekarang?></td>
+                        <td align="center"><?= unpenetration($desa['nama_desa'])?>, <?= $tanggal_sekarang?></td>
                     </tr>
                     <tr>
                         <td width="10%"></td>
                         <td width="30%"></td>
-                        <td align="center"><?php echo unpenetration($input['jabatan'])?> <?php echo unpenetration($desa['nama_desa'])?></td>
+                        <td align="center"><?= unpenetration($input['jabatan'])?> <?= unpenetration($desa['nama_desa'])?></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
@@ -221,7 +221,7 @@
                     <tr>
                         <td>
                         <td></td>
-                        <td align="center">( <?php echo unpenetration($input['pamong'])?> )</td>
+                        <td align="center">( <?= unpenetration($input['pamong'])?> )</td>
                     </tr>
                 </table>
             </div>

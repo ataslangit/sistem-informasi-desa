@@ -1,18 +1,16 @@
-<?php
-?>
+
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
             <td class="side-menu">
-                <?php
-		view('program_bantuan/menu_kiri.php')
-		?>
+                <?= view('program_bantuan/menu_kiri.php')
+        ?>
             </td>
             <td class="contentpane">
                 <legend>Form Penulisan Program Bantuan</legend>
                 <div class="contentpane">
-                    <?php echo validation_errors(); ?>
-                    <?php echo form_open('program_bantuan/form') ?>
+                    <?= validation_errors(); ?>
+                    <?= form_open('program_bantuan/form') ?>
                     <div class="form-group">
                         <label>Sasaran Program</label>
                         <select class="form-control" name="cid" id="cid">
@@ -95,7 +93,7 @@
         });
 
     </script>
-    <script src="<?php echo base_url('assets/tiny_mce/tiny_mce_src.js') ?>"></script>
+    <script src="<?= base_url('assets/tiny_mce/tiny_mce_src.js') ?>"></script>
     <script>
         tinyMCE.init({
 

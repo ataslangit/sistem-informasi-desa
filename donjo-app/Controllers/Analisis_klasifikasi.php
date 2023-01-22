@@ -57,10 +57,10 @@ class Analisis_klasifikasi extends BaseController
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_klasifikasi/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_klasifikasi/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')

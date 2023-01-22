@@ -85,7 +85,7 @@ class First extends BaseController
     {
         $data['desa']     = $this->header_model->get_data();
         $data['penduduk'] = $this->penduduk_model->get_penduduk($id);
-        view('sid/kependudukan/cetak_biodata', $data);
+        echo view('sid/kependudukan/cetak_biodata', $data);
     }
 
     public function mandiri($p = 1, $m = 0)
@@ -123,7 +123,7 @@ class First extends BaseController
 
             // $data['menu_surat2'] = $this->surat_model->list_surat2();
             $data['m'] = $m;
-            view('layouts/mandiri.php', $data);
+            echo view('layouts/mandiri.php', $data);
         }
     }
 
@@ -191,7 +191,7 @@ class First extends BaseController
         $data['w_cos']         = $this->first_artikel_m->cos_widget();
         $data['data_config']   = $this->config_model->get_data();
 
-        view('layouts/arsip.tpl.php', $data);
+        echo view('layouts/arsip.tpl.php', $data);
     }
 
     public function gallery($p = 1)
@@ -219,7 +219,7 @@ class First extends BaseController
         $data['w_gal']       = $this->first_gallery_m->gallery_widget();
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/gallery.tpl.php', $data);
+        echo view('layouts/gallery.tpl.php', $data);
     }
 
     public function sub_gallery($gal = 0, $p = 1)
@@ -250,7 +250,7 @@ class First extends BaseController
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
         $data['mode']        = 1;
-        view('layouts/sub_gallery.tpl.php', $data);
+        echo view('layouts/sub_gallery.tpl.php', $data);
     }
 
     public function statistik($stat = '', $tipe = 0)
@@ -306,7 +306,7 @@ class First extends BaseController
         $data['data_config'] = $this->config_model->get_data();
         $data['st']          = $stat;
 
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
@@ -332,7 +332,7 @@ class First extends BaseController
 
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/analisis.tpl.php', $data);
+        echo view('layouts/analisis.tpl.php', $data);
     }
 
     public function wilayah()
@@ -354,7 +354,7 @@ class First extends BaseController
         $data['total']       = $this->first_penduduk_m->total();
         $data['st']          = 1;
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function statistik_k($tipex = 0)
@@ -376,7 +376,7 @@ class First extends BaseController
 
         $data['main']        = $this->first_keluarga_m->list_raskin($tipex);
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function agenda($stat = 0)
@@ -392,7 +392,7 @@ class First extends BaseController
         $data['stat']        = $this->first_penduduk_m->list_data(4);
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function kategori($kat = 0, $p = 0)
@@ -419,7 +419,7 @@ class First extends BaseController
         $data['judul_kategori'] = $this->kategori_model->get($kat);
 
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function add_comment($id = 0)

@@ -22,13 +22,13 @@ class User_setting extends BaseController
     {
         $id     = $_SESSION['user'];
         $header = $this->header_model->get_data();
-        // view('header', $header);
+        // echo view('header', $header);
 
         $header       = $this->header_model->get_data();
         $data['main'] = $this->user_model->get_user($id);
 
-        view('setting', $data);
-        // view('footer');
+        echo view('setting', $data);
+        // echo view('footer');
     }
 
     public function update($id = '')

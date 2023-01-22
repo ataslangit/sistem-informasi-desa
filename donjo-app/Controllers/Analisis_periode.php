@@ -64,10 +64,10 @@ class Analisis_periode extends BaseController
         $data['list_state']      = $this->analisis_periode_model->list_state();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_periode/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_periode/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -86,10 +86,10 @@ class Analisis_periode extends BaseController
         $header                  = $this->header_model->get_data();
         $data['analisis_master'] = $this->analisis_periode_model->get_analisis_master();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_periode/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_periode/form', $data);
+        echo view('footer');
     }
 
     public function search()

@@ -53,10 +53,10 @@ class Gallery extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 3;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('gallery/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('gallery/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -75,10 +75,10 @@ class Gallery extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('gallery/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('gallery/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -168,10 +168,10 @@ class Gallery extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 3;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('gallery/sub_gallery_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('gallery/sub_gallery_table', $data);
+        echo view('footer');
     }
 
     public function form_sub_gallery($gallery = 0, $id = 0)
@@ -188,10 +188,10 @@ class Gallery extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('gallery/form_sub_gallery', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('gallery/form_sub_gallery', $data);
+        echo view('footer');
     }
 
     public function insert_sub_gallery($gallery = '')

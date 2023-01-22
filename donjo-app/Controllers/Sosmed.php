@@ -27,10 +27,10 @@ class Sosmed extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/facebook', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/facebook', $data);
+        echo view('footer');
     }
 
     public function twitter()
@@ -41,10 +41,10 @@ class Sosmed extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/twitter', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/twitter', $data);
+        echo view('footer');
     }
 
     public function instagram()
@@ -54,10 +54,10 @@ class Sosmed extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/google', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/google', $data);
+        echo view('footer');
     }
 
     public function google()
@@ -67,10 +67,10 @@ class Sosmed extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/instagram', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/instagram', $data);
+        echo view('footer');
     }
 
     public function youtube()
@@ -80,10 +80,10 @@ class Sosmed extends BaseController
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/youtube', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/youtube', $data);
+        echo view('footer');
     }
 
     public function update($id = '')

@@ -1,5 +1,4 @@
-<?php
-?>
+
 <h4>Keterangan</h4>
 <p><strong>Modul Data Persil</strong> adalah modul untuk pengelolaan data dokumen tentang kepemilikan lahan.</p>
 <h4>Panduan</h4>

@@ -49,11 +49,10 @@ class Point extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 0;
 
-        view('header', $header);
-
-        view('plan/nav', $nav);
-        view('point/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('plan/nav', $nav);
+        echo view('point/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -72,11 +71,11 @@ class Point extends BaseController
         $header         = $this->header_model->get_data();
 
         $nav['act'] = 0;
-        view('header', $header);
+        echo view('header', $header);
 
-        view('plan/nav', $nav);
-        view('point/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('point/form', $data);
+        echo view('footer');
     }
 
     public function sub_point($point = 1)
@@ -86,11 +85,11 @@ class Point extends BaseController
         $header           = $this->header_model->get_data();
         $nav['act']       = 0;
 
-        view('header', $header);
+        echo view('header', $header);
 
-        view('plan/nav', $nav);
-        view('point/sub_point_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('point/sub_point_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_point($point = 0, $id = 0)
@@ -103,7 +102,7 @@ class Point extends BaseController
             $data['form_action'] = site_url("point/insert_sub_point/{$point}");
         }
         $data['simbol'] = $this->plan_point_model->list_simbol();
-        view('point/ajax_add_sub_point_form', $data);
+        echo view('point/ajax_add_sub_point_form', $data);
     }
 
     public function search()

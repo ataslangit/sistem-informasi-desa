@@ -1,4 +1,4 @@
-<script src="<?php echo base_url('assets/js/polygon.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/polygon.min.js') ?>"></script>
 <script>
     function PolygonCreator(map) {
         this.map = map;
@@ -32,11 +32,11 @@
     }
     $(function() {
         var options = {
-            <?php if($desa['lat']!=""){?>
-            center: new google.maps.LatLng(<?php echo $desa['lat']?>, <?php echo $desa['lng']?>),
-            zoom: <?php echo $desa['zoom']?>,
-            mapTypeId: google.maps.MapTypeId.<?php echo strtoupper($desa['map_tipe'])?>
-            <?php }else{?>
+            <?php if ($desa['lat'] !== '') {?>
+            center: new google.maps.LatLng(<?= $desa['lat']?>, <?= $desa['lng']?>),
+            zoom: <?= $desa['zoom']?>,
+            mapTypeId: google.maps.MapTypeId.<?= strtoupper($desa['map_tipe'])?>
+            <?php } else {?>
             center: new google.maps.LatLng(-7.885619783139936, 110.39893195996092),
             zoom: 14,
             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -44,8 +44,14 @@
         };
         var map = new google.maps.Map(document.getElementById('map'), options);
         <?php
-			$path = preg_split("/\;/", $garis['path']);
-			echo "var path = [";foreach($path AS $p){if($p!=""){echo"new google.maps.LatLng".$p.",";}}echo"];";?>
+            $path = preg_split('/\\;/', $garis['path']);
+            echo 'var path = [';
+
+foreach ($path as $p) {
+                if ($p !== '') {
+                    echo 'new google.maps.LatLng' . $p . ',';
+                }
+            }echo '];'; ?>
 
 
         var polyline = new google.maps.Polyline({
@@ -59,8 +65,7 @@
         polyline.setMap(map);
 
 
-        <?php
-?>
+
         google.maps.event.addListener(polyline, 'mouseover', function(e) {
             polyline.setOptions({
                 fillColor: '#0000ff',
@@ -105,8 +110,8 @@
 
 </style>
 <div id="map"></div>
-<form action="<?php echo $form_action?>" method="post">
-    <input type="hidden" id="dataPanel" name="path" value="<?php echo $garis['path']?>">
+<form action="<?= $form_action?>" method="post">
+    <input type="hidden" id="dataPanel" name="path" value="<?= $garis['path']?>">
     <div class="buttonpane" style="text-align: right; width:400px;position:absolute;bottom:0px;">
         <div class="uibutton-group">
             <button class="uibutton" type="button" onclick="$('#window').dialog('close');">Close</button>

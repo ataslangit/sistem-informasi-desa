@@ -13,12 +13,12 @@
                         </div>
                     </div>
                     <div class="ui-layout-center" id="maincontent" style="padding: 5px;">
-                        <?php view('home/about.php');?>
+                        <?= view('home/about.php'); ?>
                     </div>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
                             <div class="uibutton-group">
-                                <a href="<?php echo site_url('')?>" class="uibutton">Kembali</a>
+                                <a href="<?= site_url('')?>" class="uibutton">Kembali</a>
                             </div>
                         </div>
                         <div class="right">

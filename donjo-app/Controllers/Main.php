@@ -52,7 +52,7 @@ class Main extends BaseController
 
     public function initial()
     {
-        view('install');
+        echo view('install');
     }
 
     public function install()
@@ -64,12 +64,12 @@ class Main extends BaseController
             redirect('/');
         }
 
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function init($out = null)
     {
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function auth()
@@ -78,7 +78,7 @@ class Main extends BaseController
         $header = [
             'desa' => $this->config_model->get_data(),
         ];
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 
     public function logout()
@@ -89,6 +89,6 @@ class Main extends BaseController
             'desa' => $this->config_model->get_data(),
         ];
 
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 }
