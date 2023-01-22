@@ -346,7 +346,7 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function dusun2($id = '', $par = '')
     {
-        session()->remove('rw'], $_SESSION['rt');
+        session()->remove('rw', 'rt');
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
@@ -382,7 +382,7 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function dusun3($id = '')
     {
-        session()->remove('rw'], $_SESSION['rt');
+        session()->remove('rw', 'rt');
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {

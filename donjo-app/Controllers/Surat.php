@@ -24,7 +24,7 @@ class Surat extends BaseController
 
     public function index()
     {
-        session()->remove(['nik','nik_ayah','nik_ibu']);
+        session()->remove(['nik', 'nik_ayah', 'nik_ibu']);
 
         $header                = $this->header_model->get_data();
         $data['menu_surat']    = $this->surat_model->list_surat();
@@ -88,7 +88,7 @@ class Surat extends BaseController
         echo view('header', $header);
 
         echo view('surat/nav', $nav);
-        $this->load->echo view("surat/form/{$url}", $data);
+        echo view("surat/form/{$url}", $data);
         echo view('footer');
     }
 
