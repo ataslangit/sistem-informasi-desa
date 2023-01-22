@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Kategori extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Kategori extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Kategori extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_kategori_model');
@@ -21,9 +22,9 @@ class Kategori extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('kategori');
+        return redirect()->to('kategori');
     }
 
     public function index($p = 1, $o = 0)
@@ -54,10 +55,10 @@ class Kategori extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 7;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('kategori/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('kategori/table', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -73,10 +74,10 @@ class Kategori extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 7;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('kategori/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('kategori/form', $data);
+        echo view('footer');
     }
 
     public function sub_kategori($kategori = 1)
@@ -87,10 +88,10 @@ class Kategori extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 7;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('kategori/sub_kategori_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('kategori/sub_kategori_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_kategori($kategori = '', $id = '')
@@ -106,7 +107,7 @@ class Kategori extends CI_Controller
             $data['subkategori'] = null;
             $data['form_action'] = site_url("kategori/insert_sub_kategori/{$kategori}");
         }
-        view('kategori/ajax_add_sub_kategori_form', $data);
+        echo view('kategori/ajax_add_sub_kategori_form', $data);
     }
 
     public function search()
@@ -115,9 +116,10 @@ class Kategori extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function filter()
@@ -126,27 +128,31 @@ class Kategori extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('kategori');
+
+        return redirect()->to('kategori');
     }
 
     public function insert()
     {
         $this->web_kategori_model->insert($tip);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function update($id = '')
     {
         $this->web_kategori_model->update($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete($id = '')
     {
         $this->kategori_model->delete($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete_all($p = 1, $o = 0)

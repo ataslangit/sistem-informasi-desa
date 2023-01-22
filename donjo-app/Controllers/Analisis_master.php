@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_master extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Analisis_master extends BaseController
 {
     public function __construct()
     {
@@ -15,21 +16,21 @@ class Analisis_master extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
-        unset($_SESSION['submenu'], $_SESSION['asubmenu']);
+        session()->remove(['submenu', 'asubmenu']);
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
+        session()->remove(['cari', 'filter', 'state']);
 
-        redirect('analisis_master');
+        return redirect()->to('analisis_master');
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['analisis_master'], $_SESSION['analisis_nama']);
+        session()->remove(['analisis_master', 'analisis_nama']);
 
         $data['p']  = $p;
         $data['o']  = $o;
@@ -63,10 +64,10 @@ class Analisis_master extends CI_Controller
         $data['list_subjek'] = $this->analisis_master_model->list_subjek();
         $header              = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav', $nav);
-        view('analisis_master/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav', $nav);
+        echo view('analisis_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -87,10 +88,10 @@ class Analisis_master extends CI_Controller
         $data['list_analisis'] = $this->analisis_master_model->list_analisis_child();
         $header                = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav', $nav);
-        view('analisis_master/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav', $nav);
+        echo view('analisis_master/form', $data);
+        echo view('footer');
     }
 
     public function panduan()
@@ -98,10 +99,10 @@ class Analisis_master extends CI_Controller
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav', $nav);
-        view('analisis_master/panduan');
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav', $nav);
+        echo view('analisis_master/panduan');
+        echo view('footer');
     }
 
     public function import_analisis()
@@ -110,7 +111,7 @@ class Analisis_master extends CI_Controller
 
         $nav['act']          = 1;
         $data['form_action'] = site_url('analisis_master/import');
-        view('analisis_master/import', $data);
+        echo view('analisis_master/import', $data);
     }
 
     public function menu($id = '', $p = 0)
@@ -139,7 +140,7 @@ class Analisis_master extends CI_Controller
                 $data['menu_laporan']    = 'analisis_laporan_kelompok';
                 break;
 
-            default:redirect('analisis_master');
+            default:return redirect()->to('analisis_master');
         }
         $data['menu_respon']  = 'analisis_respon';
         $data['menu_laporan'] = 'analisis_laporan';
@@ -153,10 +154,10 @@ class Analisis_master extends CI_Controller
         // ----
 
         $nav['act'] = 1;
-        view('header', $header);
-        view('analisis_master/nav', $nav);
-        view('analisis_master/menu', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav', $nav);
+        echo view('analisis_master/menu', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -165,9 +166,10 @@ class Analisis_master extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function filter()
@@ -176,9 +178,10 @@ class Analisis_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function state()
@@ -187,21 +190,24 @@ class Analisis_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
-            unset($_SESSION['state']);
+            session()->remove('state');
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function insert()
     {
         $this->analisis_master_model->insert();
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function import()
     {
         $this->analisis_import_model->import_excel();
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')

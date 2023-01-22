@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Models;
+
 use App\Libraries\Paging;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
 class Plan_lokasi_model extends CI_Model
 {

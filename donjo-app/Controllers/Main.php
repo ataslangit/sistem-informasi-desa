@@ -23,36 +23,37 @@ class Main extends BaseController
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1: redirect('hom_desa');
+                        case 1: return redirect()->to('hom_desa');
                             break;
 
-                        case 2: redirect('hom_desa');
+                        case 2: return redirect()->to('hom_desa');
                             break;
 
-                        case 3: redirect('web');
+                        case 3: return redirect()->to('web');
                             break;
 
-                        case 4: redirect('web');
+                        case 4: return redirect()->to('web');
                             break;
 
                         default: if (isset($_SESSION['siteman'])) {
-                            redirect('siteman');
-                        } else {
-                            redirect('first');
+                            return redirect()->to('siteman');
                         }
+
+                            return redirect()->to('first');
+
                     }
                 }
             } else {
-                redirect('first');
+                return redirect()->to('first');
             }
         } else {
-            redirect('main/initial');
+            return redirect()->to('main/initial');
         }
     }
 
     public function initial()
     {
-        view('install');
+        echo view('install');
     }
 
     public function install()
@@ -61,15 +62,15 @@ class Main extends BaseController
         $out     = $install->run();
 
         if (null === $out) {
-            redirect('/');
+            return redirect()->to('/');
         }
 
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function init($out = null)
     {
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function auth()
@@ -78,7 +79,7 @@ class Main extends BaseController
         $header = [
             'desa' => $this->config_model->get_data(),
         ];
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 
     public function logout()
@@ -89,6 +90,6 @@ class Main extends BaseController
             'desa' => $this->config_model->get_data(),
         ];
 
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 }

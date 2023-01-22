@@ -1,4 +1,4 @@
-        <?php view('layouts/header') ?>
+        <?= view('layouts/header') ?>
         <div id="contentwrapper">
                 <div class="innertube">
                     <div class="artikel">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div id="footer">
-            <?php view('partials/copywright.tpl.php') ?>
+            <?= view('partials/copywright.tpl.php') ?>
         </div>
     </div>
 </body>

@@ -3,7 +3,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "codeigniter4/framework": "~4.3",
-    "codeigniter4/settings": "^2.1"
+    "kenjis/ci3-to-4-upgrade-helper": "^0.3.0"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",

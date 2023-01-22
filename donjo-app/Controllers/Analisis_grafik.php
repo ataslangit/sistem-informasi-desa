@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_grafik extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Analisis_grafik extends BaseController
 {
     public function __construct()
     {
@@ -15,27 +16,28 @@ class Analisis_grafik extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
     public function clear($id = 0)
     {
         $_SESSION['analisis_master'] = $id;
-        unset($_SESSION['cari']);
-        redirect('analisis_grafik');
+        session()->remove('cari');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -79,15 +81,15 @@ class Analisis_grafik extends CI_Controller
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_grafik/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_grafik/table', $data);
+        echo view('footer');
     }
 
     public function time($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -109,35 +111,37 @@ class Analisis_grafik extends CI_Controller
         $data['periode']         = $this->analisis_grafik_model->list_periode();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_grafik/time', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_grafik/time', $data);
+        echo view('footer');
     }
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function rt()
@@ -146,9 +150,10 @@ class Analisis_grafik extends CI_Controller
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 
     public function search()
@@ -157,8 +162,9 @@ class Analisis_grafik extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('analisis_grafik');
+
+        return redirect()->to('analisis_grafik');
     }
 }

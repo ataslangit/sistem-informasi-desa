@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Models;
+
 use App\Libraries\Paging;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
 class User_model extends CI_Model
 {
@@ -116,7 +119,7 @@ class User_model extends CI_Model
             $this->db->query($sql);
         }
 
-        unset($_SESSION['user'], $_SESSION['sesi'], $_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['user', 'sesi', 'cari', 'filter']);
     }
 
     public function autocomplete()

@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Widget extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Widget extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Widget extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_widget_model');
@@ -26,10 +27,10 @@ class Widget extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 5;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('web/widget/facebook', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('web/widget/facebook', $data);
+        echo view('footer');
     }
 
     public function twitter()
@@ -40,19 +41,19 @@ class Widget extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 5;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('web/widget/twitter', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('web/widget/twitter', $data);
+        echo view('footer');
     }
 
     public function update($tipe = '', $id = '')
     {
         $this->web_widget_model->update($id);
         if ($tipe === '1') {
-            redirect('web/widget');
-        } else {
-            redirect('web/widget/twitter');
+            return redirect()->to('web/widget');
         }
+
+        return redirect()->to('web/widget/twitter');
     }
 }

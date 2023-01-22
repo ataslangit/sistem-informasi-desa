@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Laporan extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Laporan extends BaseController
 {
     public function __construct()
     {
@@ -13,7 +14,7 @@ class Laporan extends CI_Controller
         $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('config_model');
         $this->load->model('header_model');
@@ -26,12 +27,13 @@ class Laporan extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
+        session()->remove(['cari', 'filter', 'sex', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk']);
 
         $_SESSION['bulanku']  = date('n');
         $_SESSION['tahunku']  = date('Y');
         $_SESSION['per_page'] = 200;
-        redirect('laporan');
+
+        return redirect()->to('laporan');
     }
 
     public function index($lap = 0, $p = 1, $o = 0)
@@ -68,10 +70,11 @@ class Laporan extends CI_Controller
         $data['lap']            = $lap;
         $nav['act']             = 3;
         $header                 = $this->header_model->get_data();
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('laporan/bulanan', $data);
-        view('footer');
+
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('laporan/bulanan', $data);
+        echo view('footer');
     }
 
     public function cetak($lap = 0)
@@ -88,7 +91,7 @@ class Laporan extends CI_Controller
         $data['pindah']         = $this->laporan_bulanan_model->pindah();
         $data['hilang']         = $this->laporan_bulanan_model->hilang();
         $data['lap']            = $lap;
-        view('laporan/bulanan_print', $data);
+        echo view('laporan/bulanan_print', $data);
     }
 
     public function excel($lap = 0)
@@ -105,7 +108,7 @@ class Laporan extends CI_Controller
         $data['pindah']         = $this->laporan_bulanan_model->pindah();
         $data['hilang']         = $this->laporan_bulanan_model->hilang();
         $data['lap']            = $lap;
-        view('statistik/laporan/bulanan_excel', $data);
+        echo view('statistik/laporan/bulanan_excel', $data);
     }
 
     public function bulan()
@@ -114,15 +117,16 @@ class Laporan extends CI_Controller
         if ($bulanku !== '') {
             $_SESSION['bulanku'] = $bulanku;
         } else {
-            unset($_SESSION['bulanku']);
+            session()->remove('bulanku');
         }
 
         $tahunku = $this->input->post('tahun');
         if ($tahunku !== '') {
             $_SESSION['tahunku'] = $tahunku;
         } else {
-            unset($_SESSION['tahunku']);
+            session()->remove('tahunku');
         }
-        redirect('laporan');
+
+        return redirect()->to('laporan');
     }
 }

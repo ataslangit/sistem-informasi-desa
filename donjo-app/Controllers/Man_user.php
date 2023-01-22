@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Man_user extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Man_user extends BaseController
 {
     public function __construct()
     {
@@ -13,15 +14,15 @@ class Man_user extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('man_user');
+        return redirect()->to('man_user');
     }
 
     public function index($p = 1, $o = 0)
@@ -51,10 +52,10 @@ class Man_user extends CI_Controller
         $header          = $this->header_model->get_data();
         $menu['act']     = 'man_user';
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -73,10 +74,10 @@ class Man_user extends CI_Controller
         $data['grup'] = $this->user_model->list_grup();
         $header       = $this->header_model->get_data();
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -85,9 +86,10 @@ class Man_user extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function filter()
@@ -96,15 +98,17 @@ class Man_user extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function insert()
     {
         $this->user_model->insert();
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function update($p = 1, $o = 0, $id = '')

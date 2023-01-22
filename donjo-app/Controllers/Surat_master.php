@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Surat_master extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Surat_master extends BaseController
 {
     public function __construct()
     {
@@ -14,7 +15,7 @@ class Surat_master extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -22,9 +23,9 @@ class Surat_master extends CI_Controller
     {
         $_SESSION['per_page'] = 20;
         $_SESSION['surat']    = $id;
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
+        session()->remove(['cari', 'filter', 'tipe', 'kategori']);
 
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -48,11 +49,11 @@ class Surat_master extends CI_Controller
         $data['keyword'] = $this->surat_master_model->autocomplete();
         $header          = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        view('surat/nav', $nav);
-        view('surat_master/table', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -70,17 +71,17 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        view('surat/nav', $nav);
-        view('surat_master/form', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/form', $data);
+        echo view('footer');
     }
 
     public function form_upload($p = 1, $o = 0, $url = '')
     {
         $data['form_action'] = site_url("surat_master/upload/{$p}/{$o}/{$url}");
-        view('surat_master/ajax-upload', $data);
+        echo view('surat_master/ajax-upload', $data);
     }
 
     public function atribut($id = '')
@@ -91,11 +92,11 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 3;
-        view('surat/nav', $nav);
-        view('surat_master/atribut/table', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat_master/atribut/table', $data);
+        echo view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -111,10 +112,10 @@ class Surat_master extends CI_Controller
         $data['surat']        = $this->surat_master_model->get_surat();
         $data['surat_master'] = $this->surat_master_model->get_surat_master($in);
 
-        //	view('header', $header);
-        //	view('surat/nav');
-        view('surat_master/atribut/ajax_form', $data);
-        //	view('footer');
+        //	echo view('header', $header);
+        //	echo view('surat/nav');
+        echo view('surat_master/atribut/ajax_form', $data);
+        //	echo view('footer');
     }
 
     public function menu($id = '')
@@ -123,10 +124,10 @@ class Surat_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('surat/nav');
-        view('surat_master/menu', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('surat/nav');
+        echo view('surat_master/menu', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -135,9 +136,10 @@ class Surat_master extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function filter()
@@ -146,9 +148,10 @@ class Surat_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function tipe()
@@ -157,9 +160,10 @@ class Surat_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['tipe'] = $filter;
         } else {
-            unset($_SESSION['tipe']);
+            session()->remove('tipe');
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function kategori()
@@ -168,15 +172,17 @@ class Surat_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['kategori'] = $filter;
         } else {
-            unset($_SESSION['kategori']);
+            session()->remove('kategori');
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function insert()
     {
         $this->surat_master_model->insert();
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
@@ -230,12 +236,14 @@ class Surat_master extends CI_Controller
     public function lock($id = 0, $k = 0)
     {
         $this->surat_master_model->lock($id, $k);
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function favorit($id = 0, $k = 0)
     {
         $this->surat_master_model->favorit($id, $k);
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 }

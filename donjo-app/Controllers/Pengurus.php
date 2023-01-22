@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Pengurus extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Pengurus extends BaseController
 {
     public function __construct()
     {
@@ -13,16 +14,16 @@ class Pengurus extends CI_Controller
         $this->load->model('pamong_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('pengurus');
+        return redirect()->to('pengurus');
     }
 
     public function index()
@@ -43,11 +44,10 @@ class Pengurus extends CI_Controller
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        view('header', $header);
-
-        view('home/nav', $nav);
-        view('home/pengurus', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('home/nav', $nav);
+        echo view('home/pengurus', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -62,12 +62,12 @@ class Pengurus extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        view('home/nav', $nav);
-        view('home/pengurus_form', $data);
-        view('footer');
+        echo view('home/nav', $nav);
+        echo view('home/pengurus_form', $data);
+        echo view('footer');
     }
 
     public function filter()
@@ -76,9 +76,10 @@ class Pengurus extends CI_Controller
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function search()
@@ -87,32 +88,37 @@ class Pengurus extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function insert()
     {
         $this->pamong_model->insert();
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function update($id = '')
     {
         $this->pamong_model->update($id);
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function delete($id = '')
     {
         $this->pamong_model->delete($id);
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function delete_all()
     {
         $this->pamong_model->delete_all();
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 }

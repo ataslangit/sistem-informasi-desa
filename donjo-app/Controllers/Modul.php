@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Modul extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Modul extends BaseController
 {
     public function __construct()
     {
@@ -13,16 +14,16 @@ class Modul extends CI_Controller
         $this->load->model('modul_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('modul');
+        return redirect()->to('modul');
     }
 
     public function index()
@@ -43,11 +44,10 @@ class Modul extends CI_Controller
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        view('header', $header);
-
-        view('setting/nav', $nav);
-        view('setting/modul/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/table', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -62,12 +62,12 @@ class Modul extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        view('setting/nav', $nav);
-        view('setting/modul/form', $data);
-        view('footer');
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/form', $data);
+        echo view('footer');
     }
 
     public function filter()
@@ -76,9 +76,10 @@ class Modul extends CI_Controller
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function search()
@@ -87,32 +88,37 @@ class Modul extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function insert()
     {
         $this->modul_model->insert();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function update($id = '')
     {
         $this->modul_model->update($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete($id = '')
     {
         $this->modul_model->delete($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete_all()
     {
         $this->modul_model->delete_all();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 }

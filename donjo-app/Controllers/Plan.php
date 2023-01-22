@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Plan extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Plan extends BaseController
 {
     public function __construct()
     {
@@ -15,15 +16,15 @@ class Plan extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['point'], $_SESSION['subpoint']);
+        session()->remove(['cari', 'filter', 'point', 'subpoint']);
 
-        redirect('plan');
+        return redirect()->to('plan');
     }
 
     public function index($p = 1, $o = 0)
@@ -66,10 +67,10 @@ class Plan extends CI_Controller
         $header     = $this->header_model->get_data();
         $nav['act'] = 3;
 
-        view('header-gis', $header);
-        view('plan/nav', $nav);
-        view('lokasi/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('lokasi/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -91,11 +92,11 @@ class Plan extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('lokasi/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('lokasi/form', $data);
+        echo view('footer');
     }
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
@@ -110,7 +111,7 @@ class Plan extends CI_Controller
 
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
-        view('lokasi/maps', $data);
+        echo view('lokasi/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')
@@ -125,9 +126,10 @@ class Plan extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function filter()
@@ -136,9 +138,10 @@ class Plan extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function point()
@@ -147,21 +150,23 @@ class Plan extends CI_Controller
         if ($point !== 0) {
             $_SESSION['point'] = $point;
         } else {
-            unset($_SESSION['point']);
+            session()->remove('point');
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function subpoint()
     {
-        unset($_SESSION['point']);
+        session()->remove('point');
         $subpoint = $this->input->post('subpoint');
         if ($subpoint !== 0) {
             $_SESSION['subpoint'] = $subpoint;
         } else {
-            unset($_SESSION['subpoint']);
+            session()->remove('subpoint');
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function insert($tip = 1)

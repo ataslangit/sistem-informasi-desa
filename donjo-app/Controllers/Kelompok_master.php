@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Kelompok_master extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Kelompok_master extends BaseController
 {
     public function __construct()
     {
@@ -14,20 +15,20 @@ class Kelompok_master extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
+        session()->remove(['cari', 'filter', 'state']);
 
-        redirect('kelompok_master');
+        return redirect()->to('kelompok_master');
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['kelompok_master']);
+        session()->remove('kelompok_master');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -58,12 +59,12 @@ class Kelompok_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok_master/table', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -81,12 +82,12 @@ class Kelompok_master extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok_master/form', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -95,9 +96,10 @@ class Kelompok_master extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function filter()
@@ -106,9 +108,10 @@ class Kelompok_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function state()
@@ -117,15 +120,17 @@ class Kelompok_master extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
-            unset($_SESSION['state']);
+            session()->remove('state');
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function insert()
     {
         $this->kelompok_master_model->insert();
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')

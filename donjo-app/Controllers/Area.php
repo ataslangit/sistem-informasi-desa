@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Area extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Area extends BaseController
 {
     public function __construct()
     {
@@ -17,9 +18,9 @@ class Area extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);
+        session()->remove(['cari', 'filter', 'polygon', 'subpolygon']);
 
-        redirect('area');
+        return redirect()->to('area');
     }
 
     public function index($p = 1, $o = 0)
@@ -61,11 +62,10 @@ class Area extends CI_Controller
         $header                  = $this->header_model->get_data();
         $nav['act']              = 4;
 
-        view('header-gis', $header);
-
-        view('plan/nav', $nav);
-        view('area/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('area/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -87,11 +87,11 @@ class Area extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('area/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('area/form', $data);
+        echo view('footer');
     }
 
     public function ajax_area_maps($p = 1, $o = 0, $id = '')
@@ -106,7 +106,7 @@ class Area extends CI_Controller
 
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("area/update_maps/{$p}/{$o}/{$id}");
-        view('area/maps', $data);
+        echo view('area/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')
@@ -121,9 +121,10 @@ class Area extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function filter()
@@ -132,9 +133,10 @@ class Area extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function polygon()
@@ -143,21 +145,23 @@ class Area extends CI_Controller
         if ($polygon !== 0) {
             $_SESSION['polygon'] = $polygon;
         } else {
-            unset($_SESSION['polygon']);
+            session()->remove('polygon');
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function subpolygon()
     {
-        unset($_SESSION['polygon']);
+        session()->remove('polygon');
         $subpolygon = $this->input->post('subpolygon');
         if ($subpolygon !== 0) {
             $_SESSION['subpolygon'] = $subpolygon;
         } else {
-            unset($_SESSION['subpolygon']);
+            session()->remove('subpolygon');
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function insert($tip = 1)

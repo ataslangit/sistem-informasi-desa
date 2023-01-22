@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Laporan_rentan extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Laporan_rentan extends BaseController
 {
     public function __construct()
     {
@@ -13,7 +14,7 @@ class Laporan_rentan extends CI_Controller
         $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('config_model');
         $this->load->model('header_model');
@@ -27,9 +28,9 @@ class Laporan_rentan extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['cari', 'filter', 'dusun', 'rw', 'rt']);
 
-        redirect('laporan_rentan');
+        return redirect()->to('laporan_rentan');
     }
 
     public function index()
@@ -47,24 +48,24 @@ class Laporan_rentan extends CI_Controller
 
         $nav['act'] = 2;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('laporan/kelompok', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('laporan/kelompok', $data);
+        echo view('footer');
     }
 
     public function cetak()
     {
         $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        view('laporan/kelompok_print', $data);
+        echo view('laporan/kelompok_print', $data);
     }
 
     public function excel()
     {
         $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        view('laporan/kelompok_excel', $data);
+        echo view('laporan/kelompok_excel', $data);
     }
 
     public function dusun()
@@ -73,8 +74,9 @@ class Laporan_rentan extends CI_Controller
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('laporan_rentan');
+
+        return redirect()->to('laporan_rentan');
     }
 }

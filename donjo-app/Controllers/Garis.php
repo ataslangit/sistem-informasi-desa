@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Garis extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Garis extends BaseController
 {
     public function __construct()
     {
@@ -17,9 +18,9 @@ class Garis extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['line'], $_SESSION['subline']);
+        session()->remove(['cari', 'filter', 'line', 'subline']);
 
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function index($p = 1, $o = 0)
@@ -61,11 +62,10 @@ class Garis extends CI_Controller
         $header               = $this->header_model->get_data();
         $nav['act']           = 1;
 
-        view('header-gis', $header);
-
-        view('plan/nav', $nav);
-        view('garis/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('garis/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -84,11 +84,11 @@ class Garis extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 1;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('garis/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('garis/form', $data);
+        echo view('footer');
     }
 
     public function ajax_garis_maps($p = 1, $o = 0, $id = '')
@@ -103,7 +103,7 @@ class Garis extends CI_Controller
 
         $data['desa']        = $this->config->get_data();
         $data['form_action'] = site_url("garis/update_maps/{$p}/{$o}/{$id}");
-        view('garis/maps', $data);
+        echo view('garis/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')
@@ -118,9 +118,10 @@ class Garis extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function filter()
@@ -129,9 +130,10 @@ class Garis extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function line()
@@ -140,21 +142,23 @@ class Garis extends CI_Controller
         if ($line !== 0) {
             $_SESSION['line'] = $line;
         } else {
-            unset($_SESSION['line']);
+            session()->remove('line');
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function subline()
     {
-        unset($_SESSION['line']);
+        session()->remove('line');
         $subline = $this->input->post('subline');
         if ($subline !== 0) {
             $_SESSION['subline'] = $subline;
         } else {
-            unset($_SESSION['subline']);
+            session()->remove('subline');
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function insert($tip = 1)

@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Mandiri extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Mandiri extends BaseController
 {
     public function __construct()
     {
@@ -13,16 +14,16 @@ class Mandiri extends CI_Controller
         $this->load->model('mandiri_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('mandiri');
+        return redirect()->to('mandiri');
     }
 
     public function index($p = 1, $o = 0)
@@ -49,18 +50,18 @@ class Mandiri extends CI_Controller
 
         $header     = $this->header_model->get_data();
         $nav['act'] = 1;
-        view('header', $header);
 
-        view('lapor/nav', $nav);
-        view('mandiri/mandiri', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('lapor/nav', $nav);
+        echo view('mandiri/mandiri', $data);
+        echo view('footer');
     }
 
     public function ajax_pin($p = 1, $o = 0, $id = 0)
     {
         $data['penduduk']    = $this->mandiri_model->list_penduduk();
         $data['form_action'] = site_url("mandiri/insert/{$id}");
-        view('mandiri/ajax_pin', $data);
+        echo view('mandiri/ajax_pin', $data);
     }
 
     public function search()
@@ -69,9 +70,10 @@ class Mandiri extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('mandiri');
+
+        return redirect()->to('mandiri');
     }
 
     public function filter()
@@ -80,9 +82,10 @@ class Mandiri extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('mandiri/perorangan');
+
+        return redirect()->to('mandiri/perorangan');
     }
 
     public function nik()
@@ -91,20 +94,22 @@ class Mandiri extends CI_Controller
         if ($nik !== 0) {
             $_SESSION['nik'] = $_POST['nik'];
         } else {
-            unset($_SESSION['nik']);
+            session()->remove('nik');
         }
-        redirect('mandiri/perorangan');
+
+        return redirect()->to('mandiri/perorangan');
     }
 
     public function insert()
     {
         $pin             = $this->mandiri_model->insert();
         $_SESSION['pin'] = $pin;
-        redirect('mandiri');
+
+        return redirect()->to('mandiri');
     }
 
     public function ajax_pin_show($pin = '')
     {
-        redirect('mandiri');
+        return redirect()->to('mandiri');
     }
 }

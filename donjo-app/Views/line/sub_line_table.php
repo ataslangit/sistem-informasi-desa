@@ -1,8 +1,7 @@
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
-            <?php
-?>
+
             <td style="background:#fff;padding:0px;">
                 <div class="content-header">
                     <h3>Manajemen Sub line</h3>
@@ -12,8 +11,8 @@
                         <div class="ui-layout-north panel">
                             <div class="left">
                                 <div class="uibutton-group">
-                                    <a href="<?php echo site_url("line/ajax_add_sub_line/$line")?>" target="ajax-modal" rel="window" header="Tambah Sub line" class="uibutton tipsy south" title="Tambah Sub line"><span class="ui-icon ui-icon-plus">&nbsp;</span>Tambah line Baru</a>
-                                    <button type="button" title="Delete Data" onclick="deleteAllBox('mainform','<?php echo site_url("line/delete_all/")?>')" class="uibutton tipsy south"><span class="ui-icon ui-icon-trash">&nbsp;</span>Delete Data
+                                    <a href="<?= site_url("line/ajax_add_sub_line/{$line}")?>" target="ajax-modal" rel="window" header="Tambah Sub line" class="uibutton tipsy south" title="Tambah Sub line"><span class="ui-icon ui-icon-plus">&nbsp;</span>Tambah line Baru</a>
+                                    <button type="button" title="Delete Data" onclick="deleteAllBox('mainform','<?= site_url('line/delete_all/')?>')" class="uibutton tipsy south"><span class="ui-icon ui-icon-trash">&nbsp;</span>Delete Data
                                 </div>
                             </div>
                         </div>
@@ -36,17 +35,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($subline as $data){?>
+                                    <?php foreach ($subline as $data) {?>
                                     <tr>
-                                        <td align="center" width="2"><?php echo $data['no']?></td>
+                                        <td align="center" width="2"><?= $data['no']?></td>
                                         <td align="center" width="5">
-                                            <input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
+                                            <input type="checkbox" name="id_cb[]" value="<?= $data['id']?>">
                                         </td>
                                         <td>
-                                            <a href="<?php echo site_url("line/ajax_add_sub_line/$line/$data[id]")?>" class="ui-icons icon-edit tipsy south" target="ajax-modal" rel="window" header="Edit line" title="Edit Data"></a><a href="<?php echo site_url("line/delete_sub_line/$line/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php if($data['enabled'] == '2'):?><a href="<?php echo site_url("line/line_lock_sub_line/$line/$data[id]")?>" class="ui-icons icon-lock tipsy south" title="Enable line"></a><?php elseif($data['enabled'] == '1'): ?><a href="<?php echo site_url("line/line_unlock_sub_line/$line/$data[id]")?>" class="ui-icons icon-unlock tipsy south" title="Disable line"></a><?php endif;?>
+                                            <a href="<?= site_url("line/ajax_add_sub_line/{$line}/{$data['id']}")?>" class="ui-icons icon-edit tipsy south" target="ajax-modal" rel="window" header="Edit line" title="Edit Data"></a><a href="<?= site_url("line/delete_sub_line/{$line}/{$data['id']}")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php if ($data['enabled'] === '2'):?><a href="<?= site_url("line/line_lock_sub_line/{$line}/{$data['id']}")?>" class="ui-icons icon-lock tipsy south" title="Enable line"></a><?php elseif ($data['enabled'] === '1'): ?><a href="<?= site_url("line/line_unlock_sub_line/{$line}/{$data['id']}")?>" class="ui-icons icon-unlock tipsy south" title="Disable line"></a><?php endif; ?>
                                         </td>
-                                        <td width="150"><?php echo $data['nama']?></td>
-                                        <td width="50"><?php echo $data['aktif']?></td>
+                                        <td width="150"><?= $data['nama']?></td>
+                                        <td width="50"><?= $data['aktif']?></td>
                                         <td></td>
                                         <?php }?>
                                 </tbody>
@@ -55,7 +54,7 @@
                     </form>
                     <div class="ui-layout-south panel bottom">
                         <div class="left">
-                            <a href="<?php echo site_url('line/index/1') ?>" class="uibutton icon prev">Kembali</a>
+                            <a href="<?= site_url('line/index/1') ?>" class="uibutton icon prev">Kembali</a>
                         </div>
                         <div class="right">
                         </div>

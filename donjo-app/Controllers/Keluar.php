@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Keluar extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Keluar extends BaseController
 {
     public function __construct()
     {
@@ -14,16 +15,16 @@ class Keluar extends CI_Controller
         $this->load->model('surat_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('keluar');
+        return redirect()->to('keluar');
     }
 
     public function index($p = 1, $o = 0)
@@ -49,11 +50,11 @@ class Keluar extends CI_Controller
         $data['keyword']  = $this->surat_keluar_model->autocomplete();
         $header           = $this->header_model->get_data();
         $nav['act']       = 2;
-        view('header', $header);
 
-        view('surat/nav', $nav);
-        view('surat/surat_keluar', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -62,9 +63,10 @@ class Keluar extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('keluar');
+
+        return redirect()->to('keluar');
     }
 
     public function perorangan($nik = 0, $p = 1, $o = 0)
@@ -90,11 +92,11 @@ class Keluar extends CI_Controller
         $data['nik']['no']   = $nik;
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
-        view('header', $header);
+        echo view('header', $header);
 
-        view('surat/nav', $nav);
-        view('surat/surat_keluar_perorangan', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar_perorangan', $data);
+        echo view('footer');
     }
 
     public function graph()
@@ -103,11 +105,11 @@ class Keluar extends CI_Controller
         $nav['act']          = 2;
         $header              = $this->header_model->get_data();
         $data['stat']        = $this->surat_keluar_model->grafik();
-        view('header', $header);
+        echo view('header', $header);
 
-        view('surat/nav', $nav);
-        view('surat/surat_keluar_graph', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/surat_keluar_graph', $data);
+        echo view('footer');
     }
 
     public function filter()
@@ -116,9 +118,10 @@ class Keluar extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 
     public function nik()
@@ -127,8 +130,9 @@ class Keluar extends CI_Controller
         if ($nik !== 0) {
             $_SESSION['nik'] = $_POST['nik'];
         } else {
-            unset($_SESSION['nik']);
+            session()->remove('nik');
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 }

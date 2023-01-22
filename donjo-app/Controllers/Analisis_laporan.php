@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_laporan extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Analisis_laporan extends BaseController
 {
     public function __construct()
     {
@@ -14,7 +15,7 @@ class Analisis_laporan extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Laporan Analisis';
         $_SESSION['asubmenu'] = 'analisis_laporan';
@@ -22,22 +23,23 @@ class Analisis_laporan extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['klasifikasi'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['jawab']);
+        session()->remove(['cari', 'klasifikasi', 'dusun', 'rw', 'rt', 'jawab']);
 
         $_SESSION['per_page'] = 50;
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -89,10 +91,10 @@ class Analisis_laporan extends CI_Controller
         $data['analisis_periode'] = $this->analisis_laporan_model->get_periode();
         $header                   = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_laporan/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_laporan/table', $data);
+        echo view('footer');
     }
 
     public function kuisioner($p = 1, $o = 0, $id = '')
@@ -111,22 +113,22 @@ class Analisis_laporan extends CI_Controller
         $data['form_action']  = site_url("analisis_laporan/update_kuisioner/{$p}/{$o}/{$id}");
 
         $header = $this->header_model->get_data();
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_laporan/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_laporan/form', $data);
+        echo view('footer');
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->analisis_laporan_model->list_data($o, 0, 10000);
-        view('analisis_laporan/table_print', $data);
+        echo view('analisis_laporan/table_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->analisis_laporan_model->list_data($o, 0, 10000);
-        view('analisis_laporan/table_excel', $data);
+        echo view('analisis_laporan/table_excel', $data);
     }
 
     public function multi_jawab()
@@ -134,14 +136,14 @@ class Analisis_laporan extends CI_Controller
         // echo phpinfo();
         $data['form_action'] = site_url('analisis_laporan/multi_exec');
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
-        view('analisis_laporan/ajax_multi', $data);
+        echo view('analisis_laporan/ajax_multi', $data);
     }
 
     public function multi_exec()
     {
         $idcb = $_POST['id_cb'];
         print_r($idcb);
-        // redirect('analisis_laporan');
+        // return redirect()->to('analisis_laporan');
     }
 
     public function ajax_multi_jawab()
@@ -153,13 +155,13 @@ class Analisis_laporan extends CI_Controller
         }
         $data['main']        = $this->analisis_laporan_model->multi_jawab(1, 1);
         $data['form_action'] = site_url('analisis_laporan/multi_jawab_proses');
-        view('analisis_laporan/ajax_multi', $data);
+        echo view('analisis_laporan/ajax_multi', $data);
     }
 
     public function multi_jawab_proses()
     {
         if (isset($_POST['id_cb'])) {
-            unset($_SESSION['jawab'], $_SESSION['jmkf']);
+            session()->remove(['jawab', 'jmkf']);
 
             $id_cb = $_POST['id_cb'];
             $cb    = '';
@@ -173,32 +175,35 @@ class Analisis_laporan extends CI_Controller
             $jmkf             = $this->analisis_laporan_model->group_parameter();
             $_SESSION['jmkf'] = count($jmkf);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rt()
@@ -207,9 +212,10 @@ class Analisis_laporan extends CI_Controller
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function klasifikasi()
@@ -218,9 +224,10 @@ class Analisis_laporan extends CI_Controller
         if ($klasifikasi !== '') {
             $_SESSION['klasifikasi'] = $klasifikasi;
         } else {
-            unset($_SESSION['klasifikasi']);
+            session()->remove('klasifikasi');
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function search()
@@ -229,8 +236,9 @@ class Analisis_laporan extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 }

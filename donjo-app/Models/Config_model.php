@@ -1,7 +1,18 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class Config_model extends CI_Model
 {
+    public function __construct()
+    {
+        // parent::__construct();
+
+        $this->load->database('default');
+    }
+
     public function gawe_surat()
     {
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';

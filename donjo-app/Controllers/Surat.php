@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Surat extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Surat extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Surat extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('config_model');
         $this->load->model('header_model');
@@ -23,30 +24,30 @@ class Surat extends CI_Controller
 
     public function index()
     {
-        unset($_SESSION['nik'], $_SESSION['nik_ayah'], $_SESSION['nik_ibu']);
+        session()->remove(['nik','nik_ayah','nik_ibu']);
 
         $header                = $this->header_model->get_data();
         $data['menu_surat']    = $this->surat_model->list_surat();
         $data['menu_surat2']   = $this->surat_model->list_surat2();
         $data['surat_favorit'] = $this->surat_model->list_surat_fav();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 1;
 
-        view('surat/nav', $nav);
-        view('surat/format_surat', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/format_surat', $data);
+        echo view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('surat/nav', $nav);
-        view('surat/panduan');
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/panduan');
+        echo view('footer');
     }
 
     public function form($url = '')
@@ -84,11 +85,11 @@ class Surat extends CI_Controller
         $data['form_action2'] = site_url("surat/doc/{$url}");
         $nav['act']           = 1;
         $header               = $this->header_model->get_data();
-        view('header', $header);
+        echo view('header', $header);
 
-        view('surat/nav', $nav);
-        $this->load->view("surat/form/{$url}", $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        $this->load->echo view("surat/form/{$url}", $data);
+        echo view('footer');
     }
 
     public function cetak($url = '')
@@ -113,7 +114,7 @@ class Surat extends CI_Controller
 
         $data['pengikut'] = $this->surat_model->pengikut();
         $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z);
-        view('surat/print/print_' . $url . '', $data);
+        echo view('surat/print/print_' . $url . '', $data);
     }
 
     public function doc($url = '')
@@ -136,7 +137,7 @@ class Surat extends CI_Controller
         if ($cari !== '') {
             redirect("surat/form/{$cari}");
         } else {
-            redirect('surat');
+            return redirect()->to('surat');
         }
     }
 }

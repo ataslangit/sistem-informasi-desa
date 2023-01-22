@@ -1,21 +1,22 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_respon extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Analisis_respon extends BaseController
 {
     public function __construct()
     {
         parent::__construct();
 
-        unset($_SESSION['delik']);
+        session()->remove('delik');
         $this->load->model('analisis_respon_model');
         $this->load->model('user_model');
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Input Data';
         $_SESSION['asubmenu'] = 'analisis_respon';
@@ -23,22 +24,23 @@ class Analisis_respon extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['isi']);
+        session()->remove(['cari', 'dusun', 'rw', 'rt', 'isi']);
 
         $_SESSION['per_page'] = 50;
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -90,10 +92,10 @@ class Analisis_respon extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_respon/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_respon/table', $data);
+        echo view('footer');
     }
 
     public function kuisioner($p = 1, $o = 0, $id = '', $fs = 0)
@@ -103,7 +105,7 @@ class Analisis_respon extends CI_Controller
         }
 
         if ($fs === 2) {
-            unset($_SESSION['fullscreen']);
+            session()->remove('fullscreen');
         }
 
         if ($fs !== 0) {
@@ -123,15 +125,15 @@ class Analisis_respon extends CI_Controller
 
         $header = $this->header_model->get_data();
         if (isset($_SESSION['fullscreen'])) {
-            view('header-min', $header);
+            echo view('header-min', $header);
         } else {
-            view('header', $header);
-            view('analisis_master/nav');
+            echo view('header', $header);
+            echo view('analisis_master/nav');
         }
 
-        view('analisis_respon/form', $data);
+        echo view('analisis_respon/form', $data);
 
-        view('footer');
+        echo view('footer');
     }
 
     public function update_kuisioner($p = 1, $o = 0, $id = '')
@@ -149,7 +151,7 @@ class Analisis_respon extends CI_Controller
         $data['list_jawab']  = $this->analisis_respon_model->list_indikator_child($idc);
         $data['form_action'] = site_url("analisis_respon/update_kuisioner_child/{$p}/{$o}/{$id}/{$idc}");
 
-        view('analisis_respon/form_ajax', $data);
+        echo view('analisis_respon/form_ajax', $data);
     }
 
     public function update_kuisioner_child($p = 1, $o = 0, $id = '', $idc = '')
@@ -161,18 +163,18 @@ class Analisis_respon extends CI_Controller
 
     public function aturan_ajax()
     {
-        view('analisis_respon/import/aturan_ajax');
+        echo view('analisis_respon/import/aturan_ajax');
     }
 
     public function aturan_unduh()
     {
         $data['main'] = $this->analisis_respon_model->aturan_unduh();
-        view('analisis_respon/import/aturan_unduh', $data);
+        echo view('analisis_respon/import/aturan_unduh', $data);
     }
 
     public function data_ajax()
     {
-        view('analisis_respon/import/data_ajax');
+        echo view('analisis_respon/import/data_ajax');
     }
 
     public function data_unduh($p = 0, $o = 0)
@@ -180,31 +182,34 @@ class Analisis_respon extends CI_Controller
         $data['main']      = $this->analisis_respon_model->data_unduh($p, $o);
         $data['periode']   = $this->analisis_respon_model->get_aktif_periode();
         $data['indikator'] = $this->analisis_respon_model->indikator_unduh($p, $o);
-        view('analisis_respon/import/data_unduh', $data);
+        echo view('analisis_respon/import/data_unduh', $data);
     }
 
     public function import($op = 0)
     {
         $data['form_action'] = site_url("analisis_respon/import_proses/{$op}");
-        view('analisis_respon/import/import', $data);
+        echo view('analisis_respon/import/import', $data);
     }
 
     public function satu_jiwa($op = 0)
     {
         $this->analisis_respon_model->satu_jiwa($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function dua_dunia($op = 0)
     {
         $this->analisis_respon_model->dua_dunia($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function import_proses($op = 0)
     {
         $this->analisis_respon_model->import_respon($op);
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function search()
@@ -213,9 +218,10 @@ class Analisis_respon extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function isi()
@@ -224,34 +230,37 @@ class Analisis_respon extends CI_Controller
         if ($isi !== '') {
             $_SESSION['isi'] = $isi;
         } else {
-            unset($_SESSION['isi']);
+            session()->remove('isi');
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 
     public function rt()
@@ -260,8 +269,9 @@ class Analisis_respon extends CI_Controller
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
-        redirect('analisis_respon');
+
+        return redirect()->to('analisis_respon');
     }
 }

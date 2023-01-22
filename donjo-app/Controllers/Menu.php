@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Menu extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Menu extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Menu extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_menu_model');
@@ -20,9 +21,9 @@ class Menu extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('menu');
+        return redirect()->to('menu');
     }
 
     public function index($tip = 1, $p = 1, $o = 0)
@@ -53,10 +54,10 @@ class Menu extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 1;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/table', $data);
+        echo view('footer');
     }
 
     public function form($tip = 1, $id = '')
@@ -77,10 +78,10 @@ class Menu extends CI_Controller
         $data['tip'] = $tip;
 
         $nav['act'] = 1;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/form', $data);
+        echo view('footer');
     }
 
     public function sub_menu($tip = 1, $menu = 1)
@@ -91,10 +92,10 @@ class Menu extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 1;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/sub_menu_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/sub_menu_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_menu($tip = 1, $menu = '', $id = '')
@@ -111,7 +112,7 @@ class Menu extends CI_Controller
             $data['submenu']     = null;
             $data['form_action'] = site_url("menu/insert_sub_menu/{$tip}/{$menu}");
         }
-        view('menu/ajax_add_sub_menu_form', $data);
+        echo view('menu/ajax_add_sub_menu_form', $data);
     }
 
     public function search($tip = 1)
@@ -120,7 +121,7 @@ class Menu extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
         redirect("menu/index/{$tip}");
     }
@@ -131,9 +132,10 @@ class Menu extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('menu');
+
+        return redirect()->to('menu');
     }
 
     public function insert($tip = 1)

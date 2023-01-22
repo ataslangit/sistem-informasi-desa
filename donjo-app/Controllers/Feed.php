@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Feed extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Feed extends BaseController
 {
     public function __construct()
     {
@@ -19,6 +20,6 @@ class Feed extends CI_Controller
         $header              = $this->header_model->get_data();
         $data['data_config'] = $this->config_model->get_data();
         $data['feeds']       = $this->feed_model->list_feeds();
-        view('feed', $data);
+        echo view('feed', $data);
     }
 }

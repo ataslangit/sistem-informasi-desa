@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_indikator extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Analisis_indikator extends BaseController
 {
     public function __construct()
     {
@@ -14,7 +15,7 @@ class Analisis_indikator extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Indikator';
         $_SESSION['asubmenu'] = 'analisis_indikator';
@@ -22,21 +23,21 @@ class Analisis_indikator extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
+        session()->remove(['cari', 'filter', 'tipe', 'kategori']);
 
-        redirect('analisis_indikator');
+        return redirect()->to('analisis_indikator');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -74,10 +75,10 @@ class Analisis_indikator extends CI_Controller
         $data['list_kategori']   = $this->analisis_indikator_model->list_kategori();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -97,17 +98,17 @@ class Analisis_indikator extends CI_Controller
         $header                  = $this->header_model->get_data();
         $data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/form', $data);
+        echo view('footer');
     }
 
     public function parameter($id = '')
     {
         $ai = $this->analisis_indikator_model->get_analisis_indikator($id);
         if ($ai['id_tipe'] === 3 || $ai['id_tipe'] === 4) {
-            redirect('analisis_indikator');
+            return redirect()->to('analisis_indikator');
         }
 
         $data['analisis_indikator'] = $this->analisis_indikator_model->get_analisis_indikator($id);
@@ -116,10 +117,10 @@ class Analisis_indikator extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/parameter/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/parameter/table', $data);
+        echo view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -137,7 +138,7 @@ class Analisis_indikator extends CI_Controller
 
         //	view('header', $header);
         //	view('analisis_master/nav');
-        view('analisis_indikator/parameter/ajax_form', $data);
+        echo view('analisis_indikator/parameter/ajax_form', $data);
         //	view('footer');
     }
 
@@ -147,10 +148,10 @@ class Analisis_indikator extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/menu', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/menu', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -159,9 +160,10 @@ class Analisis_indikator extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function filter()
@@ -170,9 +172,10 @@ class Analisis_indikator extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function tipe()
@@ -181,9 +184,10 @@ class Analisis_indikator extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['tipe'] = $filter;
         } else {
-            unset($_SESSION['tipe']);
+            session()->remove('tipe');
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function kategori()
@@ -192,15 +196,17 @@ class Analisis_indikator extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['kategori'] = $filter;
         } else {
-            unset($_SESSION['kategori']);
+            session()->remove('kategori');
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function insert()
     {
         $this->analisis_indikator_model->insert();
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function update($p = 1, $o = 0, $id = '')

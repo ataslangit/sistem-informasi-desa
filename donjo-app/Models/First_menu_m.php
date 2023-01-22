@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class First_menu_m extends CI_Model
 {
     public function list_menu_atas()

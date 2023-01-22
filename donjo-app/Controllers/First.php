@@ -1,10 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class First extends CI_Controller
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class First extends BaseController
 {
     public function __construct()
     {
@@ -32,9 +32,9 @@ class First extends CI_Controller
             $this->first_m->siteman();
         }
         if ($_SESSION['mandiri'] === 1) {
-            redirect('first/mandiri/1/1');
+            return redirect()->to('first/mandiri/1/1');
         } else {
-            redirect('first');
+            return redirect()->to('first');
         }
     }
 
@@ -46,13 +46,13 @@ class First extends CI_Controller
     public function logout()
     {
         $this->first_m->logout();
-        redirect('first');
+        return redirect()->to('first');
     }
 
     public function ganti()
     {
         $this->first_m->ganti();
-        redirect('first');
+        return redirect()->to('first');
     }
 
     public function index($p = 1)
@@ -78,20 +78,20 @@ class First extends CI_Controller
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/main.tpl.php', $data);
+        return view('layouts/main.tpl.php', $data);
     }
 
     public function cetak_biodata($id = '')
     {
         $data['desa']     = $this->header_model->get_data();
         $data['penduduk'] = $this->penduduk_model->get_penduduk($id);
-        view('sid/kependudukan/cetak_biodata', $data);
+        echo view('sid/kependudukan/cetak_biodata', $data);
     }
 
     public function mandiri($p = 1, $m = 0)
     {
         if ($_SESSION['mandiri'] !== 1) {
-            redirect('first');
+            return redirect()->to('first');
         } else {
             $data['p']             = $p;
             $data['desa']          = $this->config_model->get_data();
@@ -123,7 +123,7 @@ class First extends CI_Controller
 
             // $data['menu_surat2'] = $this->surat_model->list_surat2();
             $data['m'] = $m;
-            view('layouts/mandiri.php', $data);
+            echo view('layouts/mandiri.php', $data);
         }
     }
 
@@ -158,7 +158,7 @@ class First extends CI_Controller
 
         $title_link = url_title($artikel['judul'], '-', true);
         if ($slug === '' || $slug !== $title_link) {
-            return redirect('first/artikel/' . $artikel['id'] . '/' . $title_link, 301);
+            return redirect()->to('first/artikel/' . $artikel['id'] . '/' . $title_link, 301);
         }
 
         $p                      = 1;
@@ -191,7 +191,7 @@ class First extends CI_Controller
         $data['w_cos']         = $this->first_artikel_m->cos_widget();
         $data['data_config']   = $this->config_model->get_data();
 
-        view('layouts/arsip.tpl.php', $data);
+        echo view('layouts/arsip.tpl.php', $data);
     }
 
     public function gallery($p = 1)
@@ -219,7 +219,7 @@ class First extends CI_Controller
         $data['w_gal']       = $this->first_gallery_m->gallery_widget();
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/gallery.tpl.php', $data);
+        echo view('layouts/gallery.tpl.php', $data);
     }
 
     public function sub_gallery($gal = 0, $p = 1)
@@ -250,7 +250,7 @@ class First extends CI_Controller
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
         $data['mode']        = 1;
-        view('layouts/sub_gallery.tpl.php', $data);
+        echo view('layouts/sub_gallery.tpl.php', $data);
     }
 
     public function statistik($stat = '', $tipe = 0)
@@ -280,14 +280,14 @@ class First extends CI_Controller
             case 'warga-negara':$data['heading'] = 'Warga Negara';
                 break;
 
-            case 'wilayah':redirect('first/wilayah');
+            case 'wilayah':return redirect()->to('first/wilayah');
                 break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
                 break;
 
             default:$data['heading'] = '';
-                redirect('first');
+                return redirect()->to('first');
                 break;
         }
 
@@ -306,7 +306,7 @@ class First extends CI_Controller
         $data['data_config'] = $this->config_model->get_data();
         $data['st']          = $stat;
 
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
@@ -332,7 +332,7 @@ class First extends CI_Controller
 
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/analisis.tpl.php', $data);
+        echo view('layouts/analisis.tpl.php', $data);
     }
 
     public function wilayah()
@@ -354,7 +354,7 @@ class First extends CI_Controller
         $data['total']       = $this->first_penduduk_m->total();
         $data['st']          = 1;
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function statistik_k($tipex = 0)
@@ -376,7 +376,7 @@ class First extends CI_Controller
 
         $data['main']        = $this->first_keluarga_m->list_raskin($tipex);
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/stat.tpl.php', $data);
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function agenda($stat = 0)
@@ -392,7 +392,7 @@ class First extends CI_Controller
         $data['stat']        = $this->first_penduduk_m->list_data(4);
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function kategori($kat = 0, $p = 0)
@@ -419,7 +419,7 @@ class First extends CI_Controller
         $data['judul_kategori'] = $this->kategori_model->get($kat);
 
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function add_comment($id = 0)
@@ -430,7 +430,7 @@ class First extends CI_Controller
             redirect("first/artikel/{$id}");
         } else {
             $_SESSION['sukses'] = 1;
-            redirect('first/mandiri/1/3');
+            return redirect()->to('first/mandiri/1/3');
         }
     }
 

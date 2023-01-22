@@ -1,12 +1,12 @@
-<script src="<?php echo base_url('assets/js/jquery.validate.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/js/validasi.js') ?>"></script>
+<script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/validasi.js') ?>"></script>
 <script>
     $(function() {
         var nik = {};
         nik.results = [
-            <?php foreach($penduduk as $data){?> {
-                id: '<?php echo $data['id']?>',
-                name: "<?php echo $data['nik']." - ".$data['nama']?>"
+            <?php foreach ($penduduk as $data) {?> {
+                id: '<?= $data['id']?>',
+                name: "<?= $data['nik'] . ' - ' . $data['nama']?>"
             },
             <?php }?>
         ];
@@ -20,7 +20,7 @@
     });
 
 </script>
-<form action="<?php echo $form_action?>" method="post" id="validasi">
+<form action="<?= $form_action?>" method="post" id="validasi">
     <table class="list">
         <tr>
             <td align="left">NIK Kepala Rumah Tangga</td>
@@ -48,5 +48,4 @@
     </div>
 </form>
 <tr>
-    <?php
-?>
+

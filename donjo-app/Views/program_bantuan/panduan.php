@@ -1,5 +1,4 @@
-<?php
-?>
+
 <h4>Keterangan</h4>
 <p><strong>Program Bantuan</strong> adalah modul untuk pengelolaan data aktivitas program kerja dan keterlibatan warga, baik secara personal, keluarga, rumah tangga, maupun kelompok/organisasi.</p>
 <h4>Panduan</h4>

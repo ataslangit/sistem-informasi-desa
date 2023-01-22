@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Sid_core extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Sid_core extends BaseController
 {
     public function __construct()
     {
@@ -11,25 +12,25 @@ class Sid_core extends CI_Controller
 
         $_SESSION['filter'] = 77;
 
-        unset($_SESSION['log']);
+        session()->remove('log');
         $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
+        session()->remove(['cari', 'duplikat', 'sex', 'warganegara', 'cacat', 'menahun', 'cacatx', 'menahunx', 'golongan_darah', 'dusun', 'rw', 'rt', 'hubungan', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'pendidikan_sedang_id', 'pendidikan_kk_id', 'umurx', 'status_penduduk', 'judul_statistik', 'hamil']);
 
         $this->load->model('user_model');
         $this->load->model('wilayah_model');
         $this->load->model('config_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('sid_core');
+        return redirect()->to('sid_core');
     }
 
     public function index($p = 1, $o = 0)
@@ -59,10 +60,11 @@ class Sid_core extends CI_Controller
         $data['total']    = $this->wilayah_model->total();
         $nav['act']       = 0;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah', $data);
-        view('footer');
+
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah', $data);
+        echo view('footer');
     }
 
     public function cetak()
@@ -70,7 +72,7 @@ class Sid_core extends CI_Controller
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-        view('sid/wilayah/wilayah_print', $data);
+        echo view('sid/wilayah/wilayah_print', $data);
     }
 
     public function excel()
@@ -78,7 +80,7 @@ class Sid_core extends CI_Controller
         $data['desa']  = $this->header_model->get_data();
         $data['main']  = $this->wilayah_model->list_data(0, 0, 1000);
         $data['total'] = $this->wilayah_model->total();
-        view('sid/wilayah/wilayah_excel', $data);
+        echo view('sid/wilayah/wilayah_excel', $data);
     }
 
     public function form($id = '')
@@ -103,10 +105,10 @@ class Sid_core extends CI_Controller
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -115,33 +117,38 @@ class Sid_core extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function insert($dusun = '')
     {
         $this->wilayah_model->insert();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function update($id = '')
     {
         $this->wilayah_model->update($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete($id = '')
     {
         $this->wilayah_model->delete($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete_all()
     {
         $this->wilayah_model->delete_all();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function sub_rw($id_dusun = '')
@@ -154,10 +161,10 @@ class Sid_core extends CI_Controller
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
         $nav['act']       = 0;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_rw', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_rw', $data);
+        echo view('footer');
     }
 
     public function cetak_rw($id_dusun = '')
@@ -168,7 +175,7 @@ class Sid_core extends CI_Controller
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-        view('sid/wilayah/wilayah_rw_print', $data);
+        echo view('sid/wilayah/wilayah_rw_print', $data);
     }
 
     public function excel_rw($id_dusun = '')
@@ -179,7 +186,7 @@ class Sid_core extends CI_Controller
         $data['id_dusun'] = $id_dusun;
         $data['main']     = $this->wilayah_model->list_data_rw($id_dusun);
         $data['total']    = $this->wilayah_model->total_rw($nama_dusun);
-        view('sid/wilayah/wilayah_rw_excel', $data);
+        echo view('sid/wilayah/wilayah_rw_excel', $data);
     }
 
     public function form_rw($id_dusun = '', $rw = '')
@@ -209,10 +216,10 @@ class Sid_core extends CI_Controller
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form_rw', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form_rw', $data);
+        echo view('footer');
     }
 
     public function insert_rw($dusun = '')
@@ -251,10 +258,10 @@ class Sid_core extends CI_Controller
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
         $nav['act']    = 0;
         $header        = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_rt', $data);
+        echo view('footer');
     }
 
     public function cetak_rt($id_dusun = '', $rw = '')
@@ -267,7 +274,7 @@ class Sid_core extends CI_Controller
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-        view('sid/wilayah/wilayah_rt_print', $data);
+        echo view('sid/wilayah/wilayah_rt_print', $data);
     }
 
     public function excel_rt($id_dusun = '', $rw = '')
@@ -280,7 +287,7 @@ class Sid_core extends CI_Controller
         $data['rw']    = $rw;
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $data['total'] = $this->wilayah_model->total_rt($dusun, $rw);
-        view('sid/wilayah/wilayah_rt_excel', $data);
+        echo view('sid/wilayah/wilayah_rt_excel', $data);
     }
 
     public function list_dusun_rt($dusun = '', $rw = '')
@@ -290,10 +297,10 @@ class Sid_core extends CI_Controller
         $data['main']  = $this->wilayah_model->list_data_rt($dusun, $rw);
         $nav['act']    = 0;
         $header        = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/list_dusun_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/list_dusun_rt', $data);
+        echo view('footer');
     }
 
     public function form_rt($id_dusun = '', $rw = '', $rt = '')
@@ -325,10 +332,10 @@ class Sid_core extends CI_Controller
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/wilayah_form_rt', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/wilayah_form_rt', $data);
+        echo view('footer');
     }
 
     public function insert_rt($dusun = '', $rw = '')
@@ -360,7 +367,8 @@ class Sid_core extends CI_Controller
         $dusun    = $temp['dusun'];
         $rw       = $temp['rw'];
         $this->wilayah_model->delete_all_rt();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function cetakx()
@@ -369,7 +377,7 @@ class Sid_core extends CI_Controller
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
         $this->surat_keluar_model->log_surat($f, $id, $g, $u);
-        view('surat/print_surat_ket_pengantar', $data);
+        echo view('surat/print_surat_ket_pengantar', $data);
     }
 
     public function ajax_wil_maps($id = 0)
@@ -378,13 +386,14 @@ class Sid_core extends CI_Controller
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_dusun_map/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_dusun_map($id = 0)
     {
         $this->wilayah_model->update_dusun_map($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function ajax_rw_maps($dus = 0, $id = 0)
@@ -393,7 +402,7 @@ class Sid_core extends CI_Controller
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rw_map/{$dus}/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_rw_map($dus = 0, $id = 0)
@@ -408,7 +417,7 @@ class Sid_core extends CI_Controller
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rt_map/{$dus}/{$rw}/{$id}");
 
-        view('sid/wilayah/ajax_wil_dusun', $data);
+        echo view('sid/wilayah/ajax_wil_dusun', $data);
     }
 
     public function update_rt_map($dus = 0, $rw = 0, $id = 0)
@@ -425,7 +434,8 @@ class Sid_core extends CI_Controller
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_kk($id = '')
@@ -435,7 +445,8 @@ class Sid_core extends CI_Controller
         $dusun                = $temp['dusun'];
         $_SESSION['per_page'] = 50;
         $_SESSION['dusun']    = $dusun;
-        redirect('keluarga/index/1/0');
+
+        return redirect()->to('keluarga/index/1/0');
     }
 
     public function warga_l($id = '')
@@ -447,7 +458,8 @@ class Sid_core extends CI_Controller
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 1;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_p($id = '')
@@ -459,7 +471,8 @@ class Sid_core extends CI_Controller
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 2;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function migrate()
@@ -474,16 +487,16 @@ class Sid_core extends CI_Controller
         $this->dbforge->drop_table('tweb_penduduk_x');
         $this->dbforge->drop_table('tweb_penduduk_x_pindah');
 
-        redirect('penduduk/clear');
+        return redirect()->to('penduduk/clear');
     }
 
     public function pre_migrate()
     {
         $nav['act'] = 3;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/wilayah/mig');
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/wilayah/mig');
+        echo view('footer');
     }
 }

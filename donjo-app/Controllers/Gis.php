@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Gis extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Gis extends BaseController
 {
     public function __construct()
     {
@@ -19,16 +20,17 @@ class Gis extends CI_Controller
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
     public function clear()
     {
-        unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['fisik'], $_SESSION['mental'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk'], $_SESSION['layer_penduduk'], $_SESSION['layer_keluarga'], $_SESSION['layer_desa'], $_SESSION['layer_wilayah'], $_SESSION['layer_area'], $_SESSION['layer_line'], $_SESSION['layer_point']);
+        session()->remove(['log', 'cari', 'filter', 'sex', 'warganegara', 'fisik', 'mental', 'menahun', 'golongan_darah', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk', 'layer_penduduk', 'layer_keluarga', 'layer_desa', 'layer_wilayah', 'layer_area', 'layer_line', 'layer_point']);
 
         $_SESSION['layer_keluarga'] === 0;
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function index()
@@ -127,9 +129,9 @@ class Gis extends CI_Controller
         $data['keyword']         = $this->penduduk_model->autocomplete();
         $header                  = $this->header_model->get_data();
 
-        view('gis/header', $header);
-        view('gis/maps', $data);
-        view('footer');
+        echo view('gis/header', $header);
+        echo view('gis/maps', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -138,9 +140,10 @@ class Gis extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function filter()
@@ -149,9 +152,10 @@ class Gis extends CI_Controller
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_penduduk()
@@ -163,7 +167,8 @@ class Gis extends CI_Controller
             $_SESSION['layer_penduduk'] = 1;
             $_SESSION['layer_keluarga'] = 0;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_wilayah()
@@ -174,7 +179,8 @@ class Gis extends CI_Controller
         } else {
             $_SESSION['layer_wilayah'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_area()
@@ -185,7 +191,8 @@ class Gis extends CI_Controller
         } else {
             $_SESSION['layer_area'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_line()
@@ -196,7 +203,8 @@ class Gis extends CI_Controller
         } else {
             $_SESSION['layer_line'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_point()
@@ -207,7 +215,8 @@ class Gis extends CI_Controller
         } else {
             $_SESSION['layer_point'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_keluarga()
@@ -219,7 +228,8 @@ class Gis extends CI_Controller
             $_SESSION['layer_keluarga'] = 1;
             $_SESSION['layer_penduduk'] = 0;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function layer_desa()
@@ -230,7 +240,8 @@ class Gis extends CI_Controller
         } else {
             $_SESSION['layer_desa'] = 1;
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function sex()
@@ -239,9 +250,10 @@ class Gis extends CI_Controller
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function dusun()
@@ -250,9 +262,10 @@ class Gis extends CI_Controller
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function rw()
@@ -261,9 +274,10 @@ class Gis extends CI_Controller
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function rt()
@@ -272,9 +286,10 @@ class Gis extends CI_Controller
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function agama()
@@ -283,9 +298,10 @@ class Gis extends CI_Controller
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
-            unset($_SESSION['agama']);
+            session()->remove('agama');
         }
-        redirect('gis');
+
+        return redirect()->to('gis');
     }
 
     public function ajax_adv_search()
@@ -295,7 +311,7 @@ class Gis extends CI_Controller
         $data['pendidikan']  = $this->penduduk_model->list_pendidikan();
         $data['pekerjaan']   = $this->penduduk_model->list_pekerjaan();
         $data['form_action'] = site_url('gis/adv_search_proses');
-        view('gis/ajax_adv_search_form', $data);
+        echo view('gis/ajax_adv_search_form', $data);
     }
 
     public function adv_search_proses()
@@ -317,6 +333,6 @@ class Gis extends CI_Controller
             }
         }
 
-        redirect('gis');
+        return redirect()->to('gis');
     }
 }

@@ -63,31 +63,31 @@
 
 </style>
 <div id="pageC">
-    <?php if (!isset($_SESSION['fullscreen'])) { ?>
-    <?php view('analisis_master/left', $data); ?>
+    <?php if (! isset($_SESSION['fullscreen'])) { ?>
+    <?= view('analisis_master/left', $data); ?>
     <?php } ?>
     <div class="content-header">
     </div>
     <div id="contentpane">
         <div class="ui-layout-north panel">
         </div>
-        <form id="validasi" action="<?php echo $form_action ?>" method="POST" enctype="multipart/form-data">
+        <form id="validasi" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
             <div class="ui-layout-center" id="maincontent">
                 <table class="head">
                     <tr>
                         <td width="150">Form Pendataan</td>
                         <td> : </td>
-                        <td><a href="<?php echo site_url('analisis_master/menu/' . $_SESSION['analisis_master']) ?>"><?php echo $analisis_master['nama'] ?></a></td>
+                        <td><a href="<?= site_url('analisis_master/menu/' . $_SESSION['analisis_master']) ?>"><?= $analisis_master['nama'] ?></a></td>
                     </tr>
                     <tr>
                         <td>Nomor Identitas</td>
                         <td> : </td>
-                        <td><?php echo $subjek['nid'] ?></td>
+                        <td><?= $subjek['nid'] ?></td>
                     </tr>
                     <tr>
                         <td>Nama Subjek</td>
                         <td> : </td>
-                        <td><?php echo $subjek['nama'] ?></td>
+                        <td><?= $subjek['nama'] ?></td>
                     </tr>
                 </table>
                 <?php if ($list_anggota) { ?>
@@ -95,7 +95,7 @@
                 <table class="list data">
                     <tr>
                         <th width="10">NO</th>
-                        <?php if ($analisis_master['id_child'] != 0) { ?>
+                        <?php if ($analisis_master['id_child'] !== 0) { ?>
                         <th width="70">AKSI</th>
                         <?php } ?>
                         <th width="100">NIK</th>
@@ -105,24 +105,28 @@
                         <th>&nbsp;</th>
                     </tr>
                     <?php $i = 1;
-                        foreach ($list_anggota as $ang) {
-                            $idc = $ang['id'];
-                        ?>
-                    <tr>
-                        <td><?php echo $i ?></td>
 
-                        <?php if ($analisis_master['id_child'] != 0) { ?>
+                        foreach ($list_anggota as $ang) {
+                            $idc = $ang['id']; ?>
+                    <tr>
+                        <td><?= $i ?></td>
+
+                        <?php if ($analisis_master['id_child'] !== 0) { ?>
                         <td>
                             <div class="uibutton-group">
-                                <a href="<?php echo site_url("analisis_respon/kuisioner_child/$p/$o/$id/$idc") ?>" class="uibutton south" target="ajax-modal-respon" rel="window" header="<?php echo $ang['nik'] ?> <?php echo $ang['nama'] ?>"><span class="fa fa-list"> Input Data</span></a>
+                                <a href="<?= site_url("analisis_respon/kuisioner_child/{$p}/{$o}/{$id}/{$idc}") ?>" class="uibutton south" target="ajax-modal-respon" rel="window" header="<?= $ang['nik'] ?> <?= $ang['nama'] ?>"><span class="fa fa-list"> Input Data</span></a>
                             </div>
                         </td>
                         <?php } ?>
 
-                        <td><?php echo $ang['nik'] ?></td>
-                        <td><?php echo $ang['nama'] ?></td>
-                        <td><?php echo tgl_indo($ang['tanggallahir']) ?></td>
-                        <td><?php if ($ang['sex'] == 1) echo "LAKI-LAKI"; ?><?php if ($ang['sex'] == 2) echo "PEREMPUAN"; ?></td>
+                        <td><?= $ang['nik'] ?></td>
+                        <td><?= $ang['nama'] ?></td>
+                        <td><?= tgl_indo($ang['tanggallahir']) ?></td>
+                        <td><?php if ($ang['sex'] === 1) {
+                                echo 'LAKI-LAKI';
+                            } ?><?php if ($ang['sex'] === 2) {
+                                echo 'PEREMPUAN';
+                            } ?></td>
                         <td>&nbsp;</td>
                     </tr>
                     <?php $i++;
@@ -131,13 +135,14 @@
                 <?php } ?>
                 <table width="100%" class="form data">
                     <?php $new = 1;
-                    $last = 0;
+                    $last      = 0;
+
                     foreach ($list_jawab as $data) {
-                        $data['no'] = ""; ?>
-                    <?php if ($data['id_kategori'] != $last or $last == 0) {
+                        $data['no'] = ''; ?>
+                    <?php if ($data['id_kategori'] !== $last || $last === 0) {
                             $new = 1;
                         }
-                        if ($new == 1) { ?>
+                        if ($new === 1) { ?>
                     <tr>
                         <td colspan="2">
                             <hr>
@@ -145,7 +150,7 @@
                     </tr>
                     <tr style="background-color:#acff98;">
                         <td colspan="2">
-                            <h3><?php echo $data['kategori'] ?></h3>
+                            <h3><?= $data['kategori'] ?></h3>
                         </td>
                     </tr>
                     <tr>
@@ -154,63 +159,61 @@
                         </td>
                     </tr>
                     <?php
-                            $new = 0;
+                            $new  = 0;
                             $last = $data['id_kategori'];
-                        }
-                        ?>
+                        } ?>
                     <tr>
-                        <td width="30%"><label class='tanya'><?php echo $data['nomor'] ?> ) <?php echo $data['pertanyaan'] ?></label></td>
-                        <?php if ($data['id_tipe'] == 1) { ?>
+                        <td width="30%"><label class='tanya'><?= $data['nomor'] ?> ) <?= $data['pertanyaan'] ?></label></td>
+                        <?php if ($data['id_tipe'] === 1) { ?>
 
 
 
                         <td id="op_item">
-                            <select name="rb[<?php echo $data['id'] ?>]">
+                            <select name="rb[<?= $data['id'] ?>]">
                                 <option value="">--- Pilih Jawaban ---</option>
                                 <?php foreach ($data['parameter_respon'] as $data2) { ?>
-                                <option value="<?php echo $data['id'] ?>.<?php echo $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                                                                                                                                echo " selected";
-                                                                                                                            } ?>><?php echo $data2['kode_jawaban'] ?>. <?php echo $data2['jawaban'] ?></option>
+                                <option value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
+                            echo ' selected';
+                        } ?>><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></option>
                                 <?php } ?>
                             </select>
-                            <?php } elseif ($data['id_tipe'] == 2) { ?>
+                            <?php } elseif ($data['id_tipe'] === 2) { ?>
 
                             <?php foreach ($data['parameter_respon'] as $data2) { ?>
                         <td id="op_item">
                             <div>
-                                <input type="checkbox" name="cb[<?php echo $data2['id_parameter'] ?>_<?php echo $data['id'] ?>]" value="<?php echo $data['id'] ?>.<?php echo $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
-                                                                                                                                                                                                                echo " checked";
-                                                                                                                                                                                                            } ?>>
-                                <label><?php echo $data2['kode_jawaban'] ?>. <?php echo $data2['jawaban'] ?></label>
+                                <input type="checkbox" name="cb[<?= $data2['id_parameter'] ?>_<?= $data['id'] ?>]" value="<?= $data['id'] ?>.<?= $data2['id_parameter'] ?>" <?php if ($data2['cek']) {
+                            echo ' checked';
+                        } ?>>
+                                <label><?= $data2['kode_jawaban'] ?>. <?= $data2['jawaban'] ?></label>
                             </div>
                             <?php } ?>
 
-                            <?php } elseif ($data['id_tipe'] == 3) { ?>
+                            <?php } elseif ($data['id_tipe'] === 3) { ?>
 
                             <?php if ($data['parameter_respon']) { ?>
                             <?php $data2 = $data['parameter_respon']; ?>
                         <td id="">
-                            <div style="display:inline-block;"><input name="ia[<?php echo $data['id'] ?>]" type="text" class="inputbox number" size="10" value="<?php echo $data2['jawaban'] ?>"></div>
+                            <div style="display:inline-block;"><input name="ia[<?= $data['id'] ?>]" type="text" class="inputbox number" size="10" value="<?= $data2['jawaban'] ?>"></div>
                             <?php } else { ?>
                         <td id="">
-                            <div style="display:inline-block;"><input name="ia[<?php echo $data['id'] ?>]" type="text" class="inputbox number" size="10" value=""></div>
+                            <div style="display:inline-block;"><input name="ia[<?= $data['id'] ?>]" type="text" class="inputbox number" size="10" value=""></div>
                             <?php } ?>
 
-                            <?php } elseif ($data['id_tipe'] == 4) { ?>
+                            <?php } elseif ($data['id_tipe'] === 4) { ?>
 
                             <?php if ($data['parameter_respon']) { ?>
                             <?php $data2 = $data['parameter_respon']; ?>
                         <td id="">
-                            <div style="display:inline-block;"><input name="it[<?php echo $data['id'] ?>]" type="text" class="inputbox" size="100" value="<?php echo $data2['jawaban'] ?>"></div>
+                            <div style="display:inline-block;"><input name="it[<?= $data['id'] ?>]" type="text" class="inputbox" size="100" value="<?= $data2['jawaban'] ?>"></div>
                             <?php } else { ?>
                         <td id="">
-                            <div style="display:inline-block;"><input name="it[<?php echo $data['id'] ?>]" type="text" class="inputbox" size="100" value=""></div>
+                            <div style="display:inline-block;"><input name="it[<?= $data['id'] ?>]" type="text" class="inputbox" size="100" value=""></div>
                             <?php } ?>
 
                             <?php } ?>
                     </tr>
                     <?php
-
                     } ?>
                     <tr>
                         <td>
@@ -233,8 +236,8 @@
                     <tr>
                         <?php foreach ($list_bukti as $bukti) { ?>
                         <td>
-                            <a href="<?php echo base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" target="_blank">
-                                <img src="<?php echo base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" width='320'>
+                            <a href="<?= base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" target="_blank">
+                                <img src="<?= base_url('assets/files/pengesahan/' . $bukti['pengesahan']) ?>" width='320'>
                             </a>
                         </td>
                         <?php } ?>
@@ -243,11 +246,11 @@
             </div>
             <div class="ui-layout-south panel bottom" id="bawah">
                 <div class="left">
-                    <a href="<?php echo site_url('analisis_respon') ?>" class="uibutton icon prev">Kembali</a>
+                    <a href="<?= site_url('analisis_respon') ?>" class="uibutton icon prev">Kembali</a>
                     <?php if (isset($_SESSION['fullscreen'])) { ?>
-                    <a href="<?php echo current_url() ?>/2" class="uibutton">Normal</a>
+                    <a href="<?= current_url() ?>/2" class="uibutton">Normal</a>
                     <?php } else { ?>
-                    <a href="<?php echo current_url() ?>/1" class="uibutton special">Full Screen</a>
+                    <a href="<?= current_url() ?>/1" class="uibutton special">Full Screen</a>
                     <?php } ?>
                 </div>
                 <div class="right">
@@ -258,14 +261,14 @@
             </div>
         </form>
 
-        <?php if (@$_SESSION['sukses'] == 1) : ?>
+        <?php if (@$_SESSION['sukses'] === 1) : ?>
         <script>
             $(function() {
                 notification('success', 'Data Berhasil Disimpan')();
             });
 
         </script>
-        <?php elseif (@$_SESSION['sukses'] == -1) : ?>
+        <?php elseif (@$_SESSION['sukses'] === -1) : ?>
         <script>
             $(function() {
                 notification('error', 'Data Gagal Disimpan')();

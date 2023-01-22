@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Sosmed extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Sosmed extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Sosmed extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_sosmed_model');
@@ -26,10 +27,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/facebook', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/facebook', $data);
+        echo view('footer');
     }
 
     public function twitter()
@@ -40,10 +41,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/twitter', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/twitter', $data);
+        echo view('footer');
     }
 
     public function instagram()
@@ -53,10 +54,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/google', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/google', $data);
+        echo view('footer');
     }
 
     public function google()
@@ -66,10 +67,10 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/instagram', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/instagram', $data);
+        echo view('footer');
     }
 
     public function youtube()
@@ -79,25 +80,28 @@ class Sosmed extends CI_Controller
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('sosmed/youtube', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('sosmed/youtube', $data);
+        echo view('footer');
     }
 
     public function update($id = '')
     {
         $this->web_sosmed_model->update($id);
         if ($id === '1') {
-            redirect('sosmed');
-        } elseif ($id === '2') {
-            redirect('sosmed/twitter');
-        } elseif ($id === '3') {
-            redirect('sosmed/google');
-        } elseif ($id === '4') {
-            redirect('sosmed/youtube');
-        } else {
-            redirect('sosmed/instagram');
+            return redirect()->to('sosmed');
         }
+        if ($id === '2') {
+            return redirect()->to('sosmed/twitter');
+        }
+        if ($id === '3') {
+            return redirect()->to('sosmed/google');
+        }
+        if ($id === '4') {
+            return redirect()->to('sosmed/youtube');
+        }
+
+        return redirect()->to('sosmed/instagram');
     }
 }

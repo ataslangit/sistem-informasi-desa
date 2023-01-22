@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Dokumen extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Dokumen extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Dokumen extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_dokumen_model');
@@ -20,9 +21,9 @@ class Dokumen extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('dokumen');
+        return redirect()->to('dokumen');
     }
 
     public function index($p = 1, $o = 0)
@@ -52,10 +53,10 @@ class Dokumen extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 4;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -74,10 +75,10 @@ class Dokumen extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -86,9 +87,10 @@ class Dokumen extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function filter()
@@ -97,15 +99,17 @@ class Dokumen extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function insert()
     {
         $this->web_dokumen_model->insert();
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function update($id = '', $p = 1, $o = 0)

@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Point extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Point extends BaseController
 {
     public function __construct()
     {
@@ -16,9 +17,9 @@ class Point extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
-        redirect('point');
+        return redirect()->to('point');
     }
 
     public function index($p = 1, $o = 0)
@@ -48,11 +49,10 @@ class Point extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 0;
 
-        view('header', $header);
-
-        view('plan/nav', $nav);
-        view('point/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('plan/nav', $nav);
+        echo view('point/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -71,11 +71,11 @@ class Point extends CI_Controller
         $header         = $this->header_model->get_data();
 
         $nav['act'] = 0;
-        view('header', $header);
+        echo view('header', $header);
 
-        view('plan/nav', $nav);
-        view('point/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('point/form', $data);
+        echo view('footer');
     }
 
     public function sub_point($point = 1)
@@ -85,11 +85,11 @@ class Point extends CI_Controller
         $header           = $this->header_model->get_data();
         $nav['act']       = 0;
 
-        view('header', $header);
+        echo view('header', $header);
 
-        view('plan/nav', $nav);
-        view('point/sub_point_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('point/sub_point_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_point($point = 0, $id = 0)
@@ -102,7 +102,7 @@ class Point extends CI_Controller
             $data['form_action'] = site_url("point/insert_sub_point/{$point}");
         }
         $data['simbol'] = $this->plan_point_model->list_simbol();
-        view('point/ajax_add_sub_point_form', $data);
+        echo view('point/ajax_add_sub_point_form', $data);
     }
 
     public function search()
@@ -111,9 +111,10 @@ class Point extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function filter()
@@ -122,9 +123,10 @@ class Point extends CI_Controller
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function insert($tip = 1)

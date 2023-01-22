@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Penduduk_log extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Penduduk_log extends BaseController
 {
     public function __construct()
     {
@@ -12,7 +13,7 @@ class Penduduk_log extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
 
         $this->load->model('penduduk_model');
@@ -21,11 +22,12 @@ class Penduduk_log extends CI_Controller
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
+        session()->remove(['cari', 'filter', 'sex', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk']);
 
         $_SESSION['per_page'] = 200;
         $_SESSION['log']      = 1;
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function index($p = 1, $o = 0)
@@ -112,10 +114,10 @@ class Penduduk_log extends CI_Controller
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;
 
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/penduduk_log', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/penduduk_log', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -124,9 +126,10 @@ class Penduduk_log extends CI_Controller
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function filter()
@@ -135,9 +138,10 @@ class Penduduk_log extends CI_Controller
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function sex()
@@ -146,9 +150,10 @@ class Penduduk_log extends CI_Controller
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function agama()
@@ -157,9 +162,10 @@ class Penduduk_log extends CI_Controller
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
-            unset($_SESSION['agama']);
+            session()->remove('agama');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function dusun()
@@ -168,9 +174,10 @@ class Penduduk_log extends CI_Controller
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rw()
@@ -179,9 +186,10 @@ class Penduduk_log extends CI_Controller
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rt()
@@ -190,16 +198,17 @@ class Penduduk_log extends CI_Controller
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function edit_status_dasar($p = 1, $o = 0, $id = 0)
     {
         $data['nik']         = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url("penduduk_log/update_status_dasar/{$p}/{$o}/{$id}");
-        view('sid/kependudukan/ajax_edit_status_dasar', $data);
+        echo view('sid/kependudukan/ajax_edit_status_dasar', $data);
     }
 
     public function update_status_dasar($p = 1, $o = 0, $id = '')
@@ -211,7 +220,7 @@ class Penduduk_log extends CI_Controller
     public function cetak($o = 0)
     {
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-        view('sid/kependudukan/penduduk_print', $data);
+        echo view('sid/kependudukan/penduduk_print', $data);
     }
 
     public function delete_all($p = 1, $o = 0)

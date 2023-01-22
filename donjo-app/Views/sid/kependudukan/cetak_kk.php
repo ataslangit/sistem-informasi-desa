@@ -1,40 +1,40 @@
-<?php view('print/headjs.php');?>
+<?= view('print/headjs.php'); ?>
 
 <body>
     <div id="container">
-        <link href="<?php echo base_url('assets/css/report.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('assets/css/report.css') ?>" rel="stylesheet">
         <!-- Print Body -->
         <div id="body">
             <div align="center">
                 <h3>KARTU KELUARGA</h3>
                 <h4>SALINAN</h4>
-                <h5>No. <?php echo $kepala_kk['no_kk']?> </h4>
+                <h5>No. <?= $kepala_kk['no_kk']?> </h4>
             </div>
             <br>
             <table width="100%" cellpadding="3" cellspacing="4">
                 <tr>
                     <td width="100">Nama KK</td>
-                    <td width="600">: <?php echo strtoupper($kepala_kk['nama']) ?></td>
+                    <td width="600">: <?= strtoupper($kepala_kk['nama']) ?></td>
                     <td width="160">Kecamatan</td>
-                    <td width="150">: <?php echo strtoupper($desa['nama_kecamatan']) ?></td>
+                    <td width="150">: <?= strtoupper($desa['nama_kecamatan']) ?></td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
-                    <td>: <?php echo strtoupper($kepala_kk['dusun']) ?> </td>
+                    <td>: <?= strtoupper($kepala_kk['dusun']) ?> </td>
                     <td>Kabupaten/Kota</td>
-                    <td>: <?php echo $desa['nama_kabupaten'] ?></td>
+                    <td>: <?= $desa['nama_kabupaten'] ?></td>
                 </tr>
                 <tr>
                     <td>RT / RW</td>
-                    <td>: <?php echo $kepala_kk['rt'] ?> / <?php echo $kepala_kk['rw'] ?></td>
+                    <td>: <?= $kepala_kk['rt'] ?> / <?= $kepala_kk['rw'] ?></td>
                     <td>Kode Pos</td>
-                    <td>: <?php echo strtoupper($desa['kode_pos']) ?></td>
+                    <td>: <?= strtoupper($desa['kode_pos']) ?></td>
                 </tr>
                 <tr>
                     <td>Kelurahan/Desa</td>
-                    <td>: <?php echo strtoupper($desa['nama_desa']) ?></td>
+                    <td>: <?= strtoupper($desa['nama_desa']) ?></td>
                     <td>Provinsi</td>
-                    <td>: <?php echo strtoupper($desa['nama_propinsi']) ?></td>
+                    <td>: <?= strtoupper($desa['nama_propinsi']) ?></td>
                 </tr>
             </table>
             <br>
@@ -53,17 +53,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($main as $data): ?>
+                    <?php foreach ($main as $data): ?>
                     <tr class="data">
-                        <td align="center" width="2"><?php echo $data['no']?></td>
-                        <td><?php echo strtoupper($data['nama'])?></td>
-                        <td><?php echo $data['nik']?></td>
-                        <td><?php echo $data['sex']?></td>
-                        <td><?php echo $data['tempatlahir']?></td>
-                        <td><?php echo $data['tanggallahir']?></td>
-                        <td><?php echo $data['agama']?></td>
-                        <td><?php echo $data['pendidikan']?></td>
-                        <td><?php echo $data['pekerjaan']?></td>
+                        <td align="center" width="2"><?= $data['no']?></td>
+                        <td><?= strtoupper($data['nama'])?></td>
+                        <td><?= $data['nik']?></td>
+                        <td><?= $data['sex']?></td>
+                        <td><?= $data['tempatlahir']?></td>
+                        <td><?= $data['tanggallahir']?></td>
+                        <td><?= $data['agama']?></td>
+                        <td><?= $data['pendidikan']?></td>
+                        <td><?= $data['pekerjaan']?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -84,17 +84,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($main as $data): ?>
+                    <?php foreach ($main as $data): ?>
                     <tr class="data">
-                        <td align="center" width="2"><?php echo $data['no']?></td>
-                        <td><?php echo $data['status_kawin']?></td>
-                        <td><?php echo $data['hubungan']?></td>
-                        <td><?php echo $data['warganegara']?></td>
-                        <td><?php echo $data['dokumen_pasport']?></td>
-                        <td><?php echo $data['dokumen_kitas']?></td>
-                        <td><?php echo strtoupper($data['nama_ayah'])?></td>
-                        <td><?php echo strtoupper($data['nama_ibu'])?></td>
-                        <td align="center"><?php echo $data['golongan_darah']?></td>
+                        <td align="center" width="2"><?= $data['no']?></td>
+                        <td><?= $data['status_kawin']?></td>
+                        <td><?= $data['hubungan']?></td>
+                        <td><?= $data['warganegara']?></td>
+                        <td><?= $data['dokumen_pasport']?></td>
+                        <td><?= $data['dokumen_kitas']?></td>
+                        <td><?= strtoupper($data['nama_ayah'])?></td>
+                        <td><?= strtoupper($data['nama_ibu'])?></td>
+                        <td align="center"><?= $data['golongan_darah']?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -104,7 +104,7 @@
                 <tr>
                     <td width="25%"></td>
                     <td width="50%"></td>
-                    <td width="25%" align="center"><?php echo $desa['nama_desa'] ?>, <?php echo tgl_indo(date("Y m d"))?></td>
+                    <td width="25%" align="center"><?= $desa['nama_desa'] ?>, <?= tgl_indo(date('Y m d'))?></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -112,7 +112,7 @@
                 <tr>
                     <td width="25%" align="center">KEPALA KELUARGA</td>
                     <td width="50%"></td>
-                    <td align="center" width="150">KEPALA DESA <?php echo strtoupper($desa['nama_desa']) ?></td>
+                    <td align="center" width="150">KEPALA DESA <?= strtoupper($desa['nama_desa']) ?></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -127,13 +127,13 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td width="25%" align="center"><?php echo strtoupper($kepala_kk['nama'])?></td>
+                    <td width="25%" align="center"><?= strtoupper($kepala_kk['nama'])?></td>
                     <td width="50%"></td>
-                    <td width="25%" align="center" width="150"><?php echo strtoupper($desa['nama_kepala_desa']) ?></td>
+                    <td width="25%" align="center" width="150"><?= strtoupper($desa['nama_kepala_desa']) ?></td>
                 </tr>
             </table>
         </div>
-        <label>Tanggal cetak : &nbsp; </label><?php echo tgl_indo(date("Y m d"))?>
+        <label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
     </div>
     <div id="aside">
     </div>
