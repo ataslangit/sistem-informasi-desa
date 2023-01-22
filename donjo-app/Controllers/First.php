@@ -1,10 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class First extends CI_Controller
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class First extends BaseController
 {
     public function __construct()
     {
@@ -78,7 +78,7 @@ class First extends CI_Controller
         $data['w_cos']       = $this->first_artikel_m->cos_widget();
         $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/main.tpl.php', $data);
+        return view('layouts/main.tpl.php', $data);
     }
 
     public function cetak_biodata($id = '')

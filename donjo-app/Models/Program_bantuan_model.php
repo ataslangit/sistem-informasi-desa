@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class Program_bantuan_model extends CI_Model
 {
     public function list_program($sasaran = 0)

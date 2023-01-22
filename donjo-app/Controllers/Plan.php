@@ -1,9 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Plan extends CI_Controller
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Plan extends BaseController
 {
     public function __construct()
     {

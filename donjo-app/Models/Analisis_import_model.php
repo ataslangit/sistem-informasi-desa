@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class Analisis_import_model extends CI_Model
 {
     public function __construct()

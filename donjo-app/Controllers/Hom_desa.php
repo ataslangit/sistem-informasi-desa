@@ -1,10 +1,10 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class Hom_desa extends CI_Controller
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
+class Hom_desa extends BaseController
 {
     public function __construct()
     {

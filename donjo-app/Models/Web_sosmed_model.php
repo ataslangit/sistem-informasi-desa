@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class Web_sosmed_model extends CI_Model
 {
     public function get_sosmed($id = 0)

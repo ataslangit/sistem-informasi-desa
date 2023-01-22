@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
 use App\Libraries\Paging;
 
 class Penduduk_model extends CI_Model

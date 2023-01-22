@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class Export_model extends CI_Model
 {
     public function export_dasar()

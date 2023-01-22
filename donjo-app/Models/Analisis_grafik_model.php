@@ -1,9 +1,19 @@
 <?php
 
+namespace App\Models;
+
 use App\Libraries\Paging;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
 class Analisis_grafik_model extends CI_Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->database();
+    }
+
     public function autocomplete()
     {
         $sql   = 'SELECT nama FROM analisis_klasifikasi';

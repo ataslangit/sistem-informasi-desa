@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Kenjis\CI3Compatible\Core\CI_Controller as BaseController;
+
 class Install extends BaseController
 {
     public function index()

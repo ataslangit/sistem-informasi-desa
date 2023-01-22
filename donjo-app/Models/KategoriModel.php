@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 class KategoriModel extends CI_Model
 {
     protected $table = 'kategori';
