@@ -26,7 +26,7 @@ class Gis extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['fisik'], $_SESSION['mental'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk'], $_SESSION['layer_penduduk'], $_SESSION['layer_keluarga'], $_SESSION['layer_desa'], $_SESSION['layer_wilayah'], $_SESSION['layer_area'], $_SESSION['layer_line'], $_SESSION['layer_point']);
+        session()->remove(['log', 'cari', 'filter', 'sex', 'warganegara', 'fisik', 'mental', 'menahun', 'golongan_darah', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk', 'layer_penduduk', 'layer_keluarga', 'layer_desa', 'layer_wilayah', 'layer_area', 'layer_line', 'layer_point']);
 
         $_SESSION['layer_keluarga'] === 0;
 
@@ -140,7 +140,7 @@ class Gis extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('gis');
@@ -152,7 +152,7 @@ class Gis extends BaseController
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('gis');
@@ -250,7 +250,7 @@ class Gis extends BaseController
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
 
         return redirect()->to('gis');
@@ -262,7 +262,7 @@ class Gis extends BaseController
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('gis');
@@ -274,7 +274,7 @@ class Gis extends BaseController
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('gis');
@@ -286,7 +286,7 @@ class Gis extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('gis');
@@ -298,7 +298,7 @@ class Gis extends BaseController
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
-            unset($_SESSION['agama']);
+            session()->remove('agama');
         }
 
         return redirect()->to('gis');

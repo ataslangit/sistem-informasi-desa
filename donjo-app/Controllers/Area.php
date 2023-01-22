@@ -18,7 +18,7 @@ class Area extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);
+        session()->remove(['cari', 'filter', 'polygon', 'subpolygon']);
 
         return redirect()->to('area');
     }
@@ -121,7 +121,7 @@ class Area extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('area');
@@ -133,7 +133,7 @@ class Area extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('area');
@@ -145,7 +145,7 @@ class Area extends BaseController
         if ($polygon !== 0) {
             $_SESSION['polygon'] = $polygon;
         } else {
-            unset($_SESSION['polygon']);
+            session()->remove('polygon');
         }
 
         return redirect()->to('area');
@@ -153,12 +153,12 @@ class Area extends BaseController
 
     public function subpolygon()
     {
-        unset($_SESSION['polygon']);
+        session()->remove('polygon');
         $subpolygon = $this->input->post('subpolygon');
         if ($subpolygon !== 0) {
             $_SESSION['subpolygon'] = $subpolygon;
         } else {
-            unset($_SESSION['subpolygon']);
+            session()->remove('subpolygon');
         }
 
         return redirect()->to('area');

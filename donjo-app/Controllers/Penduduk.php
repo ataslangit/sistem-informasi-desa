@@ -23,9 +23,9 @@ class Penduduk extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['log']);
+        session()->remove('log');
         $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['judul_statistik'], $_SESSION['judul_statistik_cetak'], $_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['status_penduduk'], $_SESSION['hamil'], $_SESSION['status'], $_SESSION['umurx'], $_SESSION['cacatx'], $_SESSION['menahunx']);
+        session()->remove(['judul_statistik', 'judul_statistik_cetak', 'cari', 'duplikat', 'filter', 'sex', 'warganegara', 'cacat', 'menahun', 'golongan_darah', 'dusun', 'rw', 'rt', 'hubungan', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'pendidikan_sedang_id', 'pendidikan_kk_id', 'status_penduduk', 'hamil', 'status', 'umurx', 'cacatx', 'menahunx']);
 
         $_SESSION['per_page'] = 50;
 
@@ -34,7 +34,7 @@ class Penduduk extends BaseController
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['log']);
+        session()->remove('log');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -241,7 +241,7 @@ class Penduduk extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('penduduk');
@@ -253,7 +253,7 @@ class Penduduk extends BaseController
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('penduduk');
@@ -272,7 +272,7 @@ class Penduduk extends BaseController
         if ($status_dasar !== '') {
             $_SESSION['status_dasar'] = $status_dasar;
         } else {
-            unset($_SESSION['status_dasar']);
+            session()->remove('status_dasar');
         }
 
         return redirect()->to('penduduk');
@@ -284,7 +284,7 @@ class Penduduk extends BaseController
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
 
         return redirect()->to('penduduk');
@@ -296,7 +296,7 @@ class Penduduk extends BaseController
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
-            unset($_SESSION['agama']);
+            session()->remove('agama');
         }
 
         return redirect()->to('penduduk');
@@ -308,7 +308,7 @@ class Penduduk extends BaseController
         if ($warganegara !== '') {
             $_SESSION['warganegara'] = $warganegara;
         } else {
-            unset($_SESSION['warganegara']);
+            session()->remove('warganegara');
         }
 
         return redirect()->to('penduduk');
@@ -316,13 +316,13 @@ class Penduduk extends BaseController
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('penduduk');
@@ -330,12 +330,12 @@ class Penduduk extends BaseController
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('penduduk');
@@ -347,7 +347,7 @@ class Penduduk extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('penduduk');
@@ -525,7 +525,7 @@ class Penduduk extends BaseController
 
         while ($i++ < count($col)) {
             if ($adv_search[$col[$i]] === '') {
-                unset($adv_search[$col[$i]], $_SESSION[$col[$i]]);
+                session()->remove($col[$i]], $_SESSION[$col[$i]);
             } else {
                 $_SESSION[$col[$i]] = $adv_search[$col[$i]];
             }
@@ -671,10 +671,10 @@ class Penduduk extends BaseController
     public function statistik($tipe = '', $nomor = '', $sex = '')
     {
         $_SESSION['per_page'] = 50;
-        unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['status_penduduk'], $_SESSION['umurx']);
+        session()->remove(['log', 'cari', 'warganegara', 'cacat', 'menahun', 'golongan_darah', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_sedang_id', 'pendidikan_kk_id', 'status_penduduk', 'umurx']);
 
         if ($sex === 0) {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         } else {
             $_SESSION['sex'] = $sex;
         }
@@ -738,7 +738,7 @@ class Penduduk extends BaseController
                 $_SESSION['judul_statistik']       = 'TABEL DATA KEPENDUDUKAN MENURUT ' . $pre . $judul['nama'];
                 $_SESSION['judul_statistik_cetak'] = 'TABEL DATA KEPENDUDUKAN MENURUT ' . $pre . $judul['nama'];
             } else {
-                unset($_SESSION['judul_statistik']);
+                session()->remove('judul_statistik');
             }
 
             return redirect()->to('penduduk');
@@ -749,7 +749,7 @@ class Penduduk extends BaseController
 
     public function lap_statistik($id_cluster = 0, $tipe = 0, $nomor = 0)
     {
-        unset($_SESSION['sex'], $_SESSION['cacatx'], $_SESSION['menahun'], $_SESSION['menahunx'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['hamil'], $_SESSION['status']);
+        session()->remove(['sex', 'cacatx', 'menahun', 'menahunx', 'dusun', 'rw', 'rt', 'umur_min', 'umur_max', 'hamil', 'status']);
 
         $cluster = $this->penduduk_model->get_cluster($id_cluster);
 
@@ -861,7 +861,7 @@ class Penduduk extends BaseController
         if ($pre) {
             $_SESSION['judul_statistik'] = $pre;
         } else {
-            unset($_SESSION['judul_statistik']);
+            session()->remove('judul_statistik');
         }
 
         return redirect()->to('penduduk');

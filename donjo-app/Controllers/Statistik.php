@@ -11,9 +11,9 @@ class Statistik extends BaseController
         parent::__construct();
 
         $_SESSION['filter'] = 77;
-        unset($_SESSION['log']);
+        session()->remove('log');
         $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
+        session()->remove(['cari', 'duplikat', 'sex', 'warganegara', 'cacat', 'menahun', 'cacatx', 'menahunx', 'golongan_darah', 'dusun', 'rw', 'rt', 'hubungan', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'pendidikan_sedang_id', 'pendidikan_kk_id', 'umurx', 'status_penduduk', 'judul_statistik', 'hamil']);
 
         $this->load->model('config_model');
         $this->load->model('laporan_penduduk_model');
@@ -109,7 +109,7 @@ class Statistik extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
+        session()->remove(['log', 'cari', 'filter', 'sex', 'warganegara', 'cacat', 'menahun', 'golongan_darah', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk']);
 
         return redirect()->to('statistik');
     }

@@ -24,7 +24,7 @@ class Surat extends BaseController
 
     public function index()
     {
-        unset($_SESSION['nik'], $_SESSION['nik_ayah'], $_SESSION['nik_ibu']);
+        session()->remove(['nik','nik_ayah','nik_ibu']);
 
         $header                = $this->header_model->get_data();
         $data['menu_surat']    = $this->surat_model->list_surat();

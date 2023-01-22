@@ -23,7 +23,7 @@ class Analisis_laporan extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['klasifikasi'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['jawab']);
+        session()->remove(['cari', 'klasifikasi', 'dusun', 'rw', 'rt', 'jawab']);
 
         $_SESSION['per_page'] = 50;
 
@@ -33,13 +33,13 @@ class Analisis_laporan extends BaseController
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -161,7 +161,7 @@ class Analisis_laporan extends BaseController
     public function multi_jawab_proses()
     {
         if (isset($_POST['id_cb'])) {
-            unset($_SESSION['jawab'], $_SESSION['jmkf']);
+            session()->remove(['jawab', 'jmkf']);
 
             $id_cb = $_POST['id_cb'];
             $cb    = '';
@@ -181,13 +181,13 @@ class Analisis_laporan extends BaseController
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('analisis_laporan');
@@ -195,12 +195,12 @@ class Analisis_laporan extends BaseController
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('analisis_laporan');
@@ -212,7 +212,7 @@ class Analisis_laporan extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('analisis_laporan');
@@ -224,7 +224,7 @@ class Analisis_laporan extends BaseController
         if ($klasifikasi !== '') {
             $_SESSION['klasifikasi'] = $klasifikasi;
         } else {
-            unset($_SESSION['klasifikasi']);
+            session()->remove('klasifikasi');
         }
 
         return redirect()->to('analisis_laporan');
@@ -236,7 +236,7 @@ class Analisis_laporan extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('analisis_laporan');

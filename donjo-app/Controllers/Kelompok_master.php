@@ -21,14 +21,14 @@ class Kelompok_master extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
+        session()->remove(['cari', 'filter', 'state']);
 
         return redirect()->to('kelompok_master');
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['kelompok_master']);
+        session()->remove('kelompok_master');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -96,7 +96,7 @@ class Kelompok_master extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('kelompok_master');
@@ -108,7 +108,7 @@ class Kelompok_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('kelompok_master');
@@ -120,7 +120,7 @@ class Kelompok_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
-            unset($_SESSION['state']);
+            session()->remove('state');
         }
 
         return redirect()->to('kelompok_master');

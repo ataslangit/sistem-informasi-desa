@@ -22,7 +22,7 @@ class Web extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
         return redirect()->to('web');
     }
@@ -109,7 +109,7 @@ class Web extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
         redirect("web/index/{$cat}");
     }
@@ -120,7 +120,7 @@ class Web extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
         redirect("web/index/{$cat}");
     }

@@ -22,7 +22,7 @@ class Penduduk_log extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
+        session()->remove(['cari', 'filter', 'sex', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk']);
 
         $_SESSION['per_page'] = 200;
         $_SESSION['log']      = 1;
@@ -126,7 +126,7 @@ class Penduduk_log extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('penduduk_log');
@@ -138,7 +138,7 @@ class Penduduk_log extends BaseController
         if ($filter !== '') {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('penduduk_log');
@@ -150,7 +150,7 @@ class Penduduk_log extends BaseController
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
 
         return redirect()->to('penduduk_log');
@@ -162,7 +162,7 @@ class Penduduk_log extends BaseController
         if ($agama !== '') {
             $_SESSION['agama'] = $agama;
         } else {
-            unset($_SESSION['agama']);
+            session()->remove('agama');
         }
 
         return redirect()->to('penduduk_log');
@@ -174,7 +174,7 @@ class Penduduk_log extends BaseController
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('penduduk_log');
@@ -186,7 +186,7 @@ class Penduduk_log extends BaseController
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('penduduk_log');
@@ -198,7 +198,7 @@ class Penduduk_log extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('penduduk_log');

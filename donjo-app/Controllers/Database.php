@@ -24,7 +24,7 @@ class Database extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
         return redirect()->to('export');
     }

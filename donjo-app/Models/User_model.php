@@ -119,7 +119,7 @@ class User_model extends CI_Model
             $this->db->query($sql);
         }
 
-        unset($_SESSION['user'], $_SESSION['sesi'], $_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['user', 'sesi', 'cari', 'filter']);
     }
 
     public function autocomplete()

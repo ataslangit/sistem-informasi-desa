@@ -23,7 +23,7 @@ class Analisis_klasifikasi extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari']);
+        session()->remove('cari');
 
         return redirect()->to('analisis_klasifikasi');
     }
@@ -31,13 +31,13 @@ class Analisis_klasifikasi extends BaseController
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -87,7 +87,7 @@ class Analisis_klasifikasi extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('analisis_klasifikasi');

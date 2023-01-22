@@ -23,7 +23,7 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['cari', 'filter', 'tipe', 'kategori', 'dusun', 'rw', 'rt']);
 
         return redirect()->to('analisis_statistik_jawaban');
     }
@@ -31,13 +31,13 @@ class Analisis_statistik_jawaban extends BaseController
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -263,7 +263,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -275,7 +275,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -287,7 +287,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($filter !== 0) {
             $_SESSION['tipe'] = $filter;
         } else {
-            unset($_SESSION['tipe']);
+            session()->remove('tipe');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -299,7 +299,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($filter !== 0) {
             $_SESSION['kategori'] = $filter;
         } else {
-            unset($_SESSION['kategori']);
+            session()->remove('kategori');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -307,13 +307,13 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -321,12 +321,12 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -338,7 +338,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('analisis_statistik_jawaban');
@@ -346,25 +346,25 @@ class Analisis_statistik_jawaban extends BaseController
 
     public function dusun2($id = '', $par = '')
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove('rw'], $_SESSION['rt');
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
         redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function rw2($id = '', $par = '')
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
         redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
@@ -375,32 +375,32 @@ class Analisis_statistik_jawaban extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
         redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function dusun3($id = '')
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove('rw'], $_SESSION['rt');
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
         redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function rw3($id = '')
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
         redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
@@ -411,7 +411,7 @@ class Analisis_statistik_jawaban extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
         redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }

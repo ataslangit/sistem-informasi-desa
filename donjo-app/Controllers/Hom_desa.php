@@ -93,7 +93,7 @@ class Hom_desa extends BaseController
     public function undelik()
     {
         if (isset($_SESSION['delik'])) {
-            unset($_SESSION['delik']);
+            session()->remove('delik');
         }
 
         return redirect()->to('analisis_master/clear');

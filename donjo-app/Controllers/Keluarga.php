@@ -23,7 +23,7 @@ class Keluarga extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['sex'], $_SESSION['raskin'], $_SESSION['id_blt'], $_SESSION['id_bos'], $_SESSION['id_pkh'], $_SESSION['id_jampersal'], $_SESSION['id_bedah_rumah']);
+        session()->remove(['cari', 'filter', 'dusun', 'rw', 'rt', 'sex', 'raskin', 'id_blt', 'id_bos', 'id_pkh', 'id_jampersal', 'id_bedah_rumah']);
 
         $_SESSION['per_page'] = 100;
 
@@ -509,7 +509,7 @@ class Keluarga extends BaseController
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
+            session()->remove(['dusun', 'rw', 'rt']);
         }
 
         return redirect()->to('keluarga');
@@ -521,7 +521,7 @@ class Keluarga extends BaseController
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
         if ($s === 1) {
             return redirect()->to('keluarga/sosial');
@@ -539,7 +539,7 @@ class Keluarga extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
         if ($s === 1) {
             return redirect()->to('keluarga/sosial');
@@ -557,7 +557,7 @@ class Keluarga extends BaseController
         if ($raskin !== '') {
             $_SESSION['raskin'] = $raskin;
         } else {
-            unset($_SESSION['raskin']);
+            session()->remove('raskin');
         }
 
         return redirect()->to('keluarga');
@@ -569,7 +569,7 @@ class Keluarga extends BaseController
         if ($sex !== '') {
             $_SESSION['sex'] = $sex;
         } else {
-            unset($_SESSION['sex']);
+            session()->remove('sex');
         }
 
         return redirect()->to('keluarga');
@@ -581,7 +581,7 @@ class Keluarga extends BaseController
         if ($id_blt !== '') {
             $_SESSION['id_blt'] = $id_blt;
         } else {
-            unset($_SESSION['id_blt']);
+            session()->remove('id_blt');
         }
 
         return redirect()->to('keluarga');
@@ -593,7 +593,7 @@ class Keluarga extends BaseController
         if ($id_bos !== '') {
             $_SESSION['id_bos'] = $id_bos;
         } else {
-            unset($_SESSION['id_bos']);
+            session()->remove('id_bos');
         }
 
         return redirect()->to('keluarga');
@@ -605,7 +605,7 @@ class Keluarga extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('keluarga');
@@ -993,7 +993,7 @@ class Keluarga extends BaseController
         if ($judul['nama']) {
             $_SESSION['judul_statistik'] = $pre . $judul['nama'];
         } else {
-            unset($_SESSION['judul_statistik']);
+            session()->remove('judul_statistik');
         }
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();

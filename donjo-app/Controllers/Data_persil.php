@@ -24,7 +24,7 @@ class Data_persil extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari']);
+        session()->remove('cari');
 
         return redirect()->to('data_persil');
     }
@@ -61,7 +61,7 @@ class Data_persil extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('data_persil');

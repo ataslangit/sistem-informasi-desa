@@ -18,19 +18,19 @@ class Analisis_master extends BaseController
         if ($grup !== '1') {
             return redirect()->to('siteman');
         }
-        unset($_SESSION['submenu'], $_SESSION['asubmenu']);
+        session()->remove(['submenu', 'asubmenu']);
     }
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
+        session()->remove(['cari', 'filter', 'state']);
 
         return redirect()->to('analisis_master');
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['analisis_master'], $_SESSION['analisis_nama']);
+        session()->remove(['analisis_master', 'analisis_nama']);
 
         $data['p']  = $p;
         $data['o']  = $o;
@@ -166,7 +166,7 @@ class Analisis_master extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('analisis_master');
@@ -178,7 +178,7 @@ class Analisis_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('analisis_master');
@@ -190,7 +190,7 @@ class Analisis_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['state'] = $filter;
         } else {
-            unset($_SESSION['state']);
+            session()->remove('state');
         }
 
         return redirect()->to('analisis_master');

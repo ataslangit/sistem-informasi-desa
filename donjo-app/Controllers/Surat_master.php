@@ -23,7 +23,7 @@ class Surat_master extends BaseController
     {
         $_SESSION['per_page'] = 20;
         $_SESSION['surat']    = $id;
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
+        session()->remove(['cari', 'filter', 'tipe', 'kategori']);
 
         return redirect()->to('surat_master');
     }
@@ -136,7 +136,7 @@ class Surat_master extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('surat_master');
@@ -148,7 +148,7 @@ class Surat_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('surat_master');
@@ -160,7 +160,7 @@ class Surat_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['tipe'] = $filter;
         } else {
-            unset($_SESSION['tipe']);
+            session()->remove('tipe');
         }
 
         return redirect()->to('surat_master');
@@ -172,7 +172,7 @@ class Surat_master extends BaseController
         if ($filter !== 0) {
             $_SESSION['kategori'] = $filter;
         } else {
-            unset($_SESSION['kategori']);
+            session()->remove('kategori');
         }
 
         return redirect()->to('surat_master');

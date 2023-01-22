@@ -28,7 +28,7 @@ class Laporan_rentan extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['cari', 'filter', 'dusun', 'rw', 'rt']);
 
         return redirect()->to('laporan_rentan');
     }
@@ -74,7 +74,7 @@ class Laporan_rentan extends BaseController
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('laporan_rentan');

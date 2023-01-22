@@ -27,7 +27,7 @@ class Laporan extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
+        session()->remove(['cari', 'filter', 'sex', 'dusun', 'rw', 'rt', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'status_penduduk']);
 
         $_SESSION['bulanku']  = date('n');
         $_SESSION['tahunku']  = date('Y');
@@ -117,14 +117,14 @@ class Laporan extends BaseController
         if ($bulanku !== '') {
             $_SESSION['bulanku'] = $bulanku;
         } else {
-            unset($_SESSION['bulanku']);
+            session()->remove('bulanku');
         }
 
         $tahunku = $this->input->post('tahun');
         if ($tahunku !== '') {
             $_SESSION['tahunku'] = $tahunku;
         } else {
-            unset($_SESSION['tahunku']);
+            session()->remove('tahunku');
         }
 
         return redirect()->to('laporan');

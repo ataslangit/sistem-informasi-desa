@@ -22,7 +22,7 @@ class Sms extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
+        session()->remove(['cari', 'filter', 'cari1', 'sex1', 'dusun1', 'rw1', 'rt1', 'agama1', 'pekerjaan1', 'status1', 'pendidikan1', 'status_penduduk1', 'TextDecoded1', 'grup1']);
 
         return redirect()->to('sms');
     }
@@ -58,7 +58,8 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/manajemen_sms_table', $data);
         echo view('footer');
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
+
+        session()->remove(['cari', 'filter', 'cari1', 'sex1', 'dusun1', 'rw1', 'rt1', 'agama1', 'pekerjaan1', 'status1', 'pendidikan1', 'status_penduduk1', 'TextDecoded1', 'grup1']);
     }
 
     public function setting($p = 1, $o = 0)
@@ -140,7 +141,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/create_sms', $data);
         echo view('footer');
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
+        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
     }
 
     public function sentitem($p = 1, $o = 0)
@@ -174,7 +175,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/berita_terkirim', $data);
         echo view('footer');
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
+        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
     }
 
     public function pending($p = 1, $o = 0)
@@ -208,7 +209,8 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/pesan_tertunda', $data);
         echo view('footer');
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
+
+        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
     }
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)
@@ -398,7 +400,7 @@ class Sms extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('sms');
@@ -410,7 +412,7 @@ class Sms extends BaseController
         if ($cari !== '') {
             $_SESSION['cari_kontak'] = $cari;
         } else {
-            unset($_SESSION['cari_kontak']);
+            session()->remove('cari_kontak');
         }
 
         return redirect()->to('sms/kontak');
@@ -422,7 +424,7 @@ class Sms extends BaseController
         if ($cari !== '') {
             $_SESSION['cari_grup'] = $cari;
         } else {
-            unset($_SESSION['cari_grup']);
+            session()->remove('cari_grup');
         }
 
         return redirect()->to('sms/group');
@@ -434,7 +436,7 @@ class Sms extends BaseController
         if ($cari !== '') {
             $_SESSION['cari_anggota'] = $cari;
         } else {
-            unset($_SESSION['cari_anggota']);
+            session()->remove('cari_anggota');
         }
         redirect("sms/anggota/{$id}");
     }
@@ -445,7 +447,7 @@ class Sms extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('sms');
@@ -548,7 +550,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/kontak', $data);
         echo view('footer');
-        unset($_SESSION['cari_kontak']);
+        session()->remove('cari_kontak');
     }
 
     public function form_kontak($id = 0)
@@ -611,7 +613,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/group', $data);
         echo view('footer');
-        unset($_SESSION['cari_grup']);
+        session()->remove('cari_grup');
     }
 
     public function form_grup($id = 0)
@@ -683,7 +685,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/group_detail', $data);
         echo view('footer');
-        unset($_SESSION['cari_anggota']);
+        session()->remove('cari_anggota');
     }
 
     public function form_anggota($id = 0)

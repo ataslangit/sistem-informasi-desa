@@ -12,9 +12,9 @@ class Sid_core extends BaseController
 
         $_SESSION['filter'] = 77;
 
-        unset($_SESSION['log']);
+        session()->remove('log');
         $_SESSION['status_dasar'] = 1;
-        unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
+        session()->remove(['cari', 'duplikat', 'sex', 'warganegara', 'cacat', 'menahun', 'cacatx', 'menahunx', 'golongan_darah', 'dusun', 'rw', 'rt', 'hubungan', 'agama', 'umur_min', 'umur_max', 'pekerjaan_id', 'status', 'pendidikan_id', 'pendidikan_sedang_id', 'pendidikan_kk_id', 'umurx', 'status_penduduk', 'judul_statistik', 'hamil']);
 
         $this->load->model('user_model');
         $this->load->model('wilayah_model');
@@ -28,7 +28,7 @@ class Sid_core extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
         return redirect()->to('sid_core');
     }
@@ -117,7 +117,7 @@ class Sid_core extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('sid_core');

@@ -22,7 +22,7 @@ class Plan extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['point'], $_SESSION['subpoint']);
+        session()->remove(['cari', 'filter', 'point', 'subpoint']);
 
         return redirect()->to('plan');
     }
@@ -126,7 +126,7 @@ class Plan extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('plan');
@@ -138,7 +138,7 @@ class Plan extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('plan');
@@ -150,7 +150,7 @@ class Plan extends BaseController
         if ($point !== 0) {
             $_SESSION['point'] = $point;
         } else {
-            unset($_SESSION['point']);
+            session()->remove('point');
         }
 
         return redirect()->to('plan');
@@ -158,12 +158,12 @@ class Plan extends BaseController
 
     public function subpoint()
     {
-        unset($_SESSION['point']);
+        session()->remove('point');
         $subpoint = $this->input->post('subpoint');
         if ($subpoint !== 0) {
             $_SESSION['subpoint'] = $subpoint;
         } else {
-            unset($_SESSION['subpoint']);
+            session()->remove('subpoint');
         }
 
         return redirect()->to('plan');

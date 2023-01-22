@@ -10,7 +10,7 @@ class Analisis_respon extends BaseController
     {
         parent::__construct();
 
-        unset($_SESSION['delik']);
+        session()->remove('delik');
         $this->load->model('analisis_respon_model');
         $this->load->model('user_model');
         $this->load->model('header_model');
@@ -24,7 +24,7 @@ class Analisis_respon extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['isi']);
+        session()->remove(['cari', 'dusun', 'rw', 'rt', 'isi']);
 
         $_SESSION['per_page'] = 50;
 
@@ -34,13 +34,13 @@ class Analisis_respon extends BaseController
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
-        unset($_SESSION['analisis_master']);
+        session()->remove('analisis_master');
         redirect("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['cari2']);
+        session()->remove('cari2');
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -105,7 +105,7 @@ class Analisis_respon extends BaseController
         }
 
         if ($fs === 2) {
-            unset($_SESSION['fullscreen']);
+            session()->remove('fullscreen');
         }
 
         if ($fs !== 0) {
@@ -218,7 +218,7 @@ class Analisis_respon extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('analisis_respon');
@@ -230,7 +230,7 @@ class Analisis_respon extends BaseController
         if ($isi !== '') {
             $_SESSION['isi'] = $isi;
         } else {
-            unset($_SESSION['isi']);
+            session()->remove('isi');
         }
 
         return redirect()->to('analisis_respon');
@@ -238,13 +238,13 @@ class Analisis_respon extends BaseController
 
     public function dusun()
     {
-        unset($_SESSION['rw'], $_SESSION['rt']);
+        session()->remove(['rw', 'rt']);
 
         $dusun = $this->input->post('dusun');
         if ($dusun !== '') {
             $_SESSION['dusun'] = $dusun;
         } else {
-            unset($_SESSION['dusun']);
+            session()->remove('dusun');
         }
 
         return redirect()->to('analisis_respon');
@@ -252,12 +252,12 @@ class Analisis_respon extends BaseController
 
     public function rw()
     {
-        unset($_SESSION['rt']);
+        session()->remove('rt');
         $rw = $this->input->post('rw');
         if ($rw !== '') {
             $_SESSION['rw'] = $rw;
         } else {
-            unset($_SESSION['rw']);
+            session()->remove('rw');
         }
 
         return redirect()->to('analisis_respon');
@@ -269,7 +269,7 @@ class Analisis_respon extends BaseController
         if ($rt !== '') {
             $_SESSION['rt'] = $rt;
         } else {
-            unset($_SESSION['rt']);
+            session()->remove('rt');
         }
 
         return redirect()->to('analisis_respon');

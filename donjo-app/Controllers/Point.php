@@ -17,7 +17,7 @@ class Point extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter']);
+        session()->remove(['cari', 'filter']);
 
         return redirect()->to('point');
     }
@@ -111,7 +111,7 @@ class Point extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('point');
@@ -123,7 +123,7 @@ class Point extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('point');

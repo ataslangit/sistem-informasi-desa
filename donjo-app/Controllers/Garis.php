@@ -18,7 +18,7 @@ class Garis extends BaseController
 
     public function clear()
     {
-        unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['line'], $_SESSION['subline']);
+        session()->remove(['cari', 'filter', 'line', 'subline']);
 
         return redirect()->to('garis');
     }
@@ -118,7 +118,7 @@ class Garis extends BaseController
         if ($cari !== '') {
             $_SESSION['cari'] = $cari;
         } else {
-            unset($_SESSION['cari']);
+            session()->remove('cari');
         }
 
         return redirect()->to('garis');
@@ -130,7 +130,7 @@ class Garis extends BaseController
         if ($filter !== 0) {
             $_SESSION['filter'] = $filter;
         } else {
-            unset($_SESSION['filter']);
+            session()->remove('filter');
         }
 
         return redirect()->to('garis');
@@ -142,7 +142,7 @@ class Garis extends BaseController
         if ($line !== 0) {
             $_SESSION['line'] = $line;
         } else {
-            unset($_SESSION['line']);
+            session()->remove('line');
         }
 
         return redirect()->to('garis');
@@ -150,12 +150,12 @@ class Garis extends BaseController
 
     public function subline()
     {
-        unset($_SESSION['line']);
+        session()->remove('line');
         $subline = $this->input->post('subline');
         if ($subline !== 0) {
             $_SESSION['subline'] = $subline;
         } else {
-            unset($_SESSION['subline']);
+            session()->remove('subline');
         }
 
         return redirect()->to('garis');
