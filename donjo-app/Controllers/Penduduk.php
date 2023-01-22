@@ -525,7 +525,7 @@ class Penduduk extends BaseController
 
         while ($i++ < count($col)) {
             if ($adv_search[$col[$i]] === '') {
-                session()->remove($col[$i]], $_SESSION[$col[$i]);
+                session()->remove($col[$i], $col[$i]);
             } else {
                 $_SESSION[$col[$i]] = $adv_search[$col[$i]];
             }
