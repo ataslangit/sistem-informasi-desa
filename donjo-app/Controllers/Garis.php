@@ -20,7 +20,7 @@ class Garis extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['line'], $_SESSION['subline']);
 
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function index($p = 1, $o = 0)
@@ -120,7 +120,8 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function filter()
@@ -131,7 +132,8 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function line()
@@ -142,7 +144,8 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['line']);
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function subline()
@@ -154,7 +157,8 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['subline']);
         }
-        redirect('garis');
+
+        return redirect()->to('garis');
     }
 
     public function insert($tip = 1)

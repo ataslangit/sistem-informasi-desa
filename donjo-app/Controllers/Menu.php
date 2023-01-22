@@ -13,7 +13,7 @@ class Menu extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_menu_model');
@@ -23,7 +23,7 @@ class Menu extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('menu');
+        return redirect()->to('menu');
     }
 
     public function index($tip = 1, $p = 1, $o = 0)
@@ -134,7 +134,8 @@ class Menu extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('menu');
+
+        return redirect()->to('menu');
     }
 
     public function insert($tip = 1)

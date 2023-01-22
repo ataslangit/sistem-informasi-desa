@@ -15,7 +15,7 @@ class Rtm extends BaseController
         $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('config_model');
@@ -26,7 +26,8 @@ class Rtm extends BaseController
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['raskin'], $_SESSION['id_blt'], $_SESSION['id_bos'], $_SESSION['id_pkh'], $_SESSION['id_jampersal'], $_SESSION['id_bedah_rumah']);
 
         $_SESSION['per_page'] = 100;
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function index($p = 1, $o = 0)
@@ -160,12 +161,13 @@ class Rtm extends BaseController
             unset($_SESSION['dusun']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function rw($s = 0)
@@ -177,12 +179,13 @@ class Rtm extends BaseController
             unset($_SESSION['rw']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function rt($s = 0)
@@ -194,12 +197,13 @@ class Rtm extends BaseController
             unset($_SESSION['rt']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function raskin()
@@ -210,7 +214,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['raskin']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function blt()
@@ -221,7 +226,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['id_blt']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function bos()
@@ -232,7 +238,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['id_bos']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function search()
@@ -243,55 +250,64 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert()
     {
         $this->rtm_model->insert();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_by_kk()
     {
         $this->rtm_model->insert_by_kk();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_a()
     {
         $this->rtm_model->insert_a();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_new()
     {
         $this->rtm_model->insert_new();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function update($id = '')
     {
         $this->rtm_model->update($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function update_nokk($id = '')
     {
         $this->rtm_model->update_nokk($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->rtm_model->delete($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->rtm_model->delete_all();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function anggota($p = 1, $o = 0, $id = 0)

@@ -20,7 +20,7 @@ class Polygon extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('polygon');
+        return redirect()->to('polygon');
     }
 
     public function index($p = 1, $o = 0)
@@ -118,7 +118,8 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('polygon');
+
+        return redirect()->to('polygon');
     }
 
     public function filter()
@@ -129,7 +130,8 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('polygon');
+
+        return redirect()->to('polygon');
     }
 
     public function insert($tip = 1)

@@ -13,7 +13,7 @@ class Web extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_artikel_model');
@@ -24,7 +24,7 @@ class Web extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('web');
+        return redirect()->to('web');
     }
 
     public function pager($cat = 1)

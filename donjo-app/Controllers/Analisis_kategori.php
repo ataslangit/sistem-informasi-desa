@@ -15,7 +15,7 @@ class Analisis_kategori extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Kategori';
         $_SESSION['asubmenu'] = 'analisis_kategori';
@@ -24,7 +24,8 @@ class Analisis_kategori extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function leave()
@@ -90,13 +91,15 @@ class Analisis_kategori extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function insert()
     {
         $this->analisis_kategori_model->insert();
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function update($p = 1, $o = 0, $id = '')

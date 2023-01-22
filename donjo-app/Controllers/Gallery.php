@@ -13,7 +13,7 @@ class Gallery extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_gallery_model');
@@ -23,7 +23,7 @@ class Gallery extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('gallery');
+        return redirect()->to('gallery');
     }
 
     public function index($p = 1, $o = 0)
@@ -89,7 +89,8 @@ class Gallery extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function filter()
@@ -100,13 +101,15 @@ class Gallery extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function insert()
     {
         $this->web_gallery_model->insert();
-        redirect('gallery');
+
+        return redirect()->to('gallery');
     }
 
     public function update($id = '', $p = 1, $o = 0)

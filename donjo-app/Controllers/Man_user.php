@@ -14,7 +14,7 @@ class Man_user extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -22,7 +22,7 @@ class Man_user extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('man_user');
+        return redirect()->to('man_user');
     }
 
     public function index($p = 1, $o = 0)
@@ -88,7 +88,8 @@ class Man_user extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function filter()
@@ -99,13 +100,15 @@ class Man_user extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function insert()
     {
         $this->user_model->insert();
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function update($p = 1, $o = 0, $id = '')

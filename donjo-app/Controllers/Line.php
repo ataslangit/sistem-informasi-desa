@@ -19,7 +19,7 @@ class Line extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('line');
+        return redirect()->to('line');
     }
 
     public function index($p = 1, $o = 0)
@@ -111,7 +111,8 @@ class Line extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function filter()
@@ -122,7 +123,8 @@ class Line extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function insert($tip = 1)

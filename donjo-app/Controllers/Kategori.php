@@ -13,7 +13,7 @@ class Kategori extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_kategori_model');
@@ -24,7 +24,7 @@ class Kategori extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('kategori');
+        return redirect()->to('kategori');
     }
 
     public function index($p = 1, $o = 0)
@@ -118,7 +118,8 @@ class Kategori extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function filter()
@@ -129,25 +130,29 @@ class Kategori extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kategori');
+
+        return redirect()->to('kategori');
     }
 
     public function insert()
     {
         $this->web_kategori_model->insert($tip);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function update($id = '')
     {
         $this->web_kategori_model->update($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete($id = '')
     {
         $this->kategori_model->delete($id);
-        redirect('kategori/index');
+
+        return redirect()->to('kategori/index');
     }
 
     public function delete_all($p = 1, $o = 0)

@@ -15,7 +15,7 @@ class Surat_master extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -25,7 +25,7 @@ class Surat_master extends BaseController
         $_SESSION['surat']    = $id;
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
 
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -138,7 +138,8 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function filter()
@@ -149,7 +150,8 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function tipe()
@@ -160,7 +162,8 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['tipe']);
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function kategori()
@@ -171,13 +174,15 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['kategori']);
         }
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function insert()
     {
         $this->surat_master_model->insert();
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
@@ -231,12 +236,14 @@ class Surat_master extends BaseController
     public function lock($id = 0, $k = 0)
     {
         $this->surat_master_model->lock($id, $k);
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 
     public function favorit($id = 0, $k = 0)
     {
         $this->surat_master_model->favorit($id, $k);
-        redirect('surat_master');
+
+        return redirect()->to('surat_master');
     }
 }

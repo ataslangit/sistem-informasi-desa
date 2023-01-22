@@ -15,7 +15,7 @@ class Analisis_laporan extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Laporan Analisis';
         $_SESSION['asubmenu'] = 'analisis_laporan';
@@ -26,7 +26,8 @@ class Analisis_laporan extends BaseController
         unset($_SESSION['cari'], $_SESSION['klasifikasi'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['jawab']);
 
         $_SESSION['per_page'] = 50;
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function leave()
@@ -142,7 +143,7 @@ class Analisis_laporan extends BaseController
     {
         $idcb = $_POST['id_cb'];
         print_r($idcb);
-        // redirect('analisis_laporan');
+        // return redirect()->to('analisis_laporan');
     }
 
     public function ajax_multi_jawab()
@@ -174,7 +175,8 @@ class Analisis_laporan extends BaseController
             $jmkf             = $this->analisis_laporan_model->group_parameter();
             $_SESSION['jmkf'] = count($jmkf);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function dusun()
@@ -187,7 +189,8 @@ class Analisis_laporan extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rw()
@@ -199,7 +202,8 @@ class Analisis_laporan extends BaseController
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function rt()
@@ -210,7 +214,8 @@ class Analisis_laporan extends BaseController
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function klasifikasi()
@@ -221,7 +226,8 @@ class Analisis_laporan extends BaseController
         } else {
             unset($_SESSION['klasifikasi']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 
     public function search()
@@ -232,6 +238,7 @@ class Analisis_laporan extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_laporan');
+
+        return redirect()->to('analisis_laporan');
     }
 }

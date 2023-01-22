@@ -16,7 +16,7 @@ class Plan extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -24,7 +24,7 @@ class Plan extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['point'], $_SESSION['subpoint']);
 
-        redirect('plan');
+        return redirect()->to('plan');
     }
 
     public function index($p = 1, $o = 0)
@@ -128,7 +128,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function filter()
@@ -139,7 +140,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function point()
@@ -150,7 +152,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['point']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function subpoint()
@@ -162,7 +165,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['subpoint']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function insert($tip = 1)

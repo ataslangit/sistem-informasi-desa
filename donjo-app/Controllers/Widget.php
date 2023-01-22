@@ -13,7 +13,7 @@ class Widget extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_widget_model');
@@ -51,9 +51,9 @@ class Widget extends BaseController
     {
         $this->web_widget_model->update($id);
         if ($tipe === '1') {
-            redirect('web/widget');
-        } else {
-            redirect('web/widget/twitter');
+            return redirect()->to('web/widget');
         }
+
+        return redirect()->to('web/widget/twitter');
     }
 }

@@ -13,7 +13,7 @@ class Hom_desa extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('config_model');
@@ -44,13 +44,15 @@ class Hom_desa extends BaseController
     public function insert()
     {
         $this->config_model->insert();
-        redirect('hom_desa');
+
+        return redirect()->to('hom_desa');
     }
 
     public function update($id = '')
     {
         $this->config_model->update($id);
-        redirect('hom_desa');
+
+        return redirect()->to('hom_desa');
     }
 
     public function ajax_kantor_maps()
@@ -70,19 +72,22 @@ class Hom_desa extends BaseController
     public function update_kantor_maps()
     {
         $this->config_model->update_kantor();
-        redirect('hom_desa');
+
+        return redirect()->to('hom_desa');
     }
 
     public function update_wilayah_maps()
     {
         $this->config_model->update_wilayah();
-        redirect('hom_desa');
+
+        return redirect()->to('hom_desa');
     }
 
     public function kosong_pend()
     {
         $this->config_model->kosong_pend();
-        redirect('hom_desa');
+
+        return redirect()->to('hom_desa');
     }
 
     public function undelik()
@@ -90,6 +95,7 @@ class Hom_desa extends BaseController
         if (isset($_SESSION['delik'])) {
             unset($_SESSION['delik']);
         }
-        redirect('analisis_master/clear');
+
+        return redirect()->to('analisis_master/clear');
     }
 }

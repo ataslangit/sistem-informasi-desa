@@ -16,7 +16,7 @@ class Keluarga extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
@@ -26,7 +26,8 @@ class Keluarga extends BaseController
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['sex'], $_SESSION['raskin'], $_SESSION['id_blt'], $_SESSION['id_bos'], $_SESSION['id_pkh'], $_SESSION['id_jampersal'], $_SESSION['id_bedah_rumah']);
 
         $_SESSION['per_page'] = 100;
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function index($p = 1, $o = 0)
@@ -510,7 +511,8 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function rw($s = 0)
@@ -522,12 +524,13 @@ class Keluarga extends BaseController
             unset($_SESSION['rw']);
         }
         if ($s === 1) {
-            redirect('keluarga/sosial');
-        } elseif ($s === 2) {
-            redirect('keluarga/raskin_graph');
-        } else {
-            redirect('keluarga');
+            return redirect()->to('keluarga/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('keluarga/raskin_graph');
+        }
+
+        return redirect()->to('keluarga');
     }
 
     public function rt($s = 0)
@@ -539,12 +542,13 @@ class Keluarga extends BaseController
             unset($_SESSION['rt']);
         }
         if ($s === 1) {
-            redirect('keluarga/sosial');
-        } elseif ($s === 2) {
-            redirect('keluarga/raskin_graph');
-        } else {
-            redirect('keluarga');
+            return redirect()->to('keluarga/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('keluarga/raskin_graph');
+        }
+
+        return redirect()->to('keluarga');
     }
 
     public function raskin()
@@ -555,7 +559,8 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['raskin']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function sex()
@@ -566,7 +571,8 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['sex']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function blt()
@@ -577,7 +583,8 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['id_blt']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function bos()
@@ -588,7 +595,8 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['id_bos']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function search()
@@ -599,13 +607,15 @@ class Keluarga extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function insert()
     {
         $this->keluarga_model->insert();
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function insert_a()
@@ -630,7 +640,8 @@ class Keluarga extends BaseController
 			Klik disini untuk <a href='{$link}'> Kembali</a>";
         } else {
             $this->keluarga_model->insert_a();
-            redirect('keluarga');
+
+            return redirect()->to('keluarga');
         }
     }
 
@@ -656,32 +667,37 @@ class Keluarga extends BaseController
 			Klik disini untuk <a href='{$link}'> Kembali</a>";
         } else {
             $this->keluarga_model->insert_new();
-            redirect('keluarga');
+
+            return redirect()->to('keluarga');
         }
     }
 
     public function update($id = '')
     {
         $this->keluarga_model->update($id);
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function update_nokk($id = '')
     {
         $this->keluarga_model->update_nokk($id);
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->keluarga_model->delete($id);
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->keluarga_model->delete_all();
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function anggota($p = 1, $o = 0, $id = 0)
@@ -821,7 +837,8 @@ class Keluarga extends BaseController
     {
         $id_cluster = $_POST['id_cluster'];
         $this->keluarga_model->pindah_proses($id, $id_cluster);
-        redirect('keluarga');
+
+        return redirect()->to('keluarga');
     }
 
     public function ajax_penduduk_pindah($id = 0)
@@ -984,7 +1001,7 @@ class Keluarga extends BaseController
         echo view('sid/nav', $nav);
         echo view('sid/kependudukan/keluarga_statistik', $data);
         echo view('footer');
-        // redirect('keluarga');
+        // return redirect()->to('keluarga');
     }
 
     public function cetak_statistik($tipe = 0)

@@ -15,7 +15,7 @@ class Database extends BaseController
         // $this->load->model('wilayah_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('import_model');
@@ -26,7 +26,7 @@ class Database extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('export');
+        return redirect()->to('export');
     }
 
     public function index()
@@ -132,74 +132,82 @@ class Database extends BaseController
     public function import_dasar()
     {
         $this->import_model->import_excel();
-        redirect('database/import/1');
+
+        return redirect()->to('database/import/1');
     }
 
     public function ppls_kuisioner()
     {
         $this->import_model->ppls_kuisioner();
-        redirect('database/import_ppls/1');
+
+        return redirect()->to('database/import_ppls/1');
     }
 
     public function ppls_individu()
     {
         $this->import_model->pbdt_individu();
-        // redirect('database/import_ppls');
+        // return redirect()->to('database/import_ppls');
     }
 
     public function ppls_rumahtangga()
     {
         $this->import_model->pbdt_rumahtangga();
-        redirect('database/import_ppls/1');
+
+        return redirect()->to('database/import_ppls/1');
     }
 
     public function import_siak()
     {
         $data['siak']     = $this->import_model->import_siak();
         $_SESSION['SIAK'] = $data['siak'];
-        redirect('database/import/3');
+
+        return redirect()->to('database/import/3');
     }
 
     public function import_akp()
     {
         $this->import_model->import_akp();
-        redirect('database/import');
+
+        return redirect()->to('database/import');
     }
 
     public function jos()
     {
         $this->export_model->analisis();
-        redirect('database/import');
+
+        return redirect()->to('database/import');
     }
 
     public function jos2()
     {
         $this->export_model->analisis2();
-        redirect('database/import');
+
+        return redirect()->to('database/import');
     }
 
     public function exec_backup()
     {
         echo view('database/export');
-        //	redirect('database/backup');
+        //	return redirect()->to('database/backup');
     }
 
     public function restore()
     {
         $this->export_model->restore();
-        //	redirect('database/backup');
+        //	return redirect()->to('database/backup');
     }
 
     public function ces()
     {
         $this->export_model->lombok();
-        redirect('database/import');
+
+        return redirect()->to('database/import');
     }
 
     public function surat()
     {
         $this->export_model->gawe_surat();
-        // redirect('database/import');
+        // return redirect()->to('database/import');
     }
 
     public function export_excel()

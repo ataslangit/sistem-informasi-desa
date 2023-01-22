@@ -15,7 +15,7 @@ class Analisis_periode extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Periode';
         $_SESSION['asubmenu'] = 'analisis_periode';
@@ -25,7 +25,7 @@ class Analisis_periode extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['state']);
 
-        redirect('analisis_periode');
+        return redirect()->to('analisis_periode');
     }
 
     public function leave()
@@ -100,7 +100,8 @@ class Analisis_periode extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function state()
@@ -111,13 +112,15 @@ class Analisis_periode extends BaseController
         } else {
             unset($_SESSION['state']);
         }
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function insert()
     {
         $this->analisis_periode_model->insert();
-        redirect('analisis_periode');
+
+        return redirect()->to('analisis_periode');
     }
 
     public function update($p = 1, $o = 0, $id = '')

@@ -21,7 +21,7 @@ class Sid_core extends BaseController
         $this->load->model('config_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
@@ -30,7 +30,7 @@ class Sid_core extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('sid_core');
+        return redirect()->to('sid_core');
     }
 
     public function index($p = 1, $o = 0)
@@ -119,31 +119,36 @@ class Sid_core extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function insert($dusun = '')
     {
         $this->wilayah_model->insert();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function update($id = '')
     {
         $this->wilayah_model->update($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete($id = '')
     {
         $this->wilayah_model->delete($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function delete_all()
     {
         $this->wilayah_model->delete_all();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function sub_rw($id_dusun = '')
@@ -362,7 +367,8 @@ class Sid_core extends BaseController
         $dusun    = $temp['dusun'];
         $rw       = $temp['rw'];
         $this->wilayah_model->delete_all_rt();
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function cetakx()
@@ -386,7 +392,8 @@ class Sid_core extends BaseController
     public function update_dusun_map($id = 0)
     {
         $this->wilayah_model->update_dusun_map($id);
-        redirect('sid_core');
+
+        return redirect()->to('sid_core');
     }
 
     public function ajax_rw_maps($dus = 0, $id = 0)
@@ -427,7 +434,8 @@ class Sid_core extends BaseController
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_kk($id = '')
@@ -437,7 +445,8 @@ class Sid_core extends BaseController
         $dusun                = $temp['dusun'];
         $_SESSION['per_page'] = 50;
         $_SESSION['dusun']    = $dusun;
-        redirect('keluarga/index/1/0');
+
+        return redirect()->to('keluarga/index/1/0');
     }
 
     public function warga_l($id = '')
@@ -449,7 +458,8 @@ class Sid_core extends BaseController
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 1;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function warga_p($id = '')
@@ -461,7 +471,8 @@ class Sid_core extends BaseController
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
         $_SESSION['sex']      = 2;
-        redirect('penduduk/index/1/0');
+
+        return redirect()->to('penduduk/index/1/0');
     }
 
     public function migrate()
@@ -476,7 +487,7 @@ class Sid_core extends BaseController
         $this->dbforge->drop_table('tweb_penduduk_x');
         $this->dbforge->drop_table('tweb_penduduk_x_pindah');
 
-        redirect('penduduk/clear');
+        return redirect()->to('penduduk/clear');
     }
 
     public function pre_migrate()

@@ -14,7 +14,7 @@ class Sms extends BaseController
         $this->load->model('sms_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('penduduk_model');
@@ -24,7 +24,7 @@ class Sms extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
 
-        redirect('sms');
+        return redirect()->to('sms');
     }
 
     public function index($p = 1, $o = 0)
@@ -77,7 +77,8 @@ class Sms extends BaseController
     public function insert_autoreply()
     {
         $this->sms_model->insert_autoreply();
-        redirect('sms/setting');
+
+        return redirect()->to('sms/setting');
     }
 
     public function polling($p = 1, $o = 0)
@@ -326,7 +327,8 @@ class Sms extends BaseController
             $data['grup1'] = '';
         }
         $data['insert'] = $this->sms_model->send_broadcast($data);
-        redirect('sms/outbox');
+
+        return redirect()->to('sms/outbox');
     }
 
     public function broadcast_proses()
@@ -348,7 +350,7 @@ class Sms extends BaseController
             }
         }
 
-        redirect('sms/send_broadcast');
+        return redirect()->to('sms/send_broadcast');
     }
 
     public function broadcast()
@@ -398,7 +400,8 @@ class Sms extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('sms');
+
+        return redirect()->to('sms');
     }
 
     public function search_kontak()
@@ -409,7 +412,8 @@ class Sms extends BaseController
         } else {
             unset($_SESSION['cari_kontak']);
         }
-        redirect('sms/kontak');
+
+        return redirect()->to('sms/kontak');
     }
 
     public function search_grup()
@@ -420,7 +424,8 @@ class Sms extends BaseController
         } else {
             unset($_SESSION['cari_grup']);
         }
-        redirect('sms/group');
+
+        return redirect()->to('sms/group');
     }
 
     public function search_anggota($id = 0)
@@ -442,21 +447,24 @@ class Sms extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('sms');
+
+        return redirect()->to('sms');
     }
 
     public function insert($tipe = 0)
     {
         $this->sms_model->insert();
         if ($tipe === 1) {
-            redirect('sms');
-        } elseif ($tipe === 2) {
-            redirect('sms/sentitem');
-        } elseif ($tipe === 3) {
-            redirect('sms/pending');
-        } else {
-            redirect('sms/outbox');
+            return redirect()->to('sms');
         }
+        if ($tipe === 2) {
+            return redirect()->to('sms/sentitem');
+        }
+        if ($tipe === 3) {
+            return redirect()->to('sms/pending');
+        }
+
+        return redirect()->to('sms/outbox');
     }
 
     public function update($id = '', $p = 1, $o = 0)
@@ -469,28 +477,32 @@ class Sms extends BaseController
     {
         $this->sms_model->delete($tipe, $id);
         if ($tipe === 1) {
-            redirect('sms');
-        } elseif ($tipe === 2) {
-            redirect('sms/sentitem');
-        } elseif ($tipe === 3) {
-            redirect('sms/pending');
-        } else {
-            redirect('sms/outbox');
+            return redirect()->to('sms');
         }
+        if ($tipe === 2) {
+            return redirect()->to('sms/sentitem');
+        }
+        if ($tipe === 3) {
+            return redirect()->to('sms/pending');
+        }
+
+        return redirect()->to('sms/outbox');
     }
 
     public function delete_all($p = 1, $o = 0, $tipe = 0)
     {
         $this->sms_model->delete_all($tipe);
         if ($tipe === 1) {
-            redirect('sms');
-        } elseif ($tipe === 2) {
-            redirect('sms/sentitem');
-        } elseif ($tipe === 3) {
-            redirect('sms/pending');
-        } else {
-            redirect('sms/outbox');
+            return redirect()->to('sms');
         }
+        if ($tipe === 2) {
+            return redirect()->to('sms/sentitem');
+        }
+        if ($tipe === 3) {
+            return redirect()->to('sms/pending');
+        }
+
+        return redirect()->to('sms/outbox');
     }
 
     public function sms_lock($id = '')
@@ -555,19 +567,22 @@ class Sms extends BaseController
     {
         $data['input']  = $_POST;
         $data['insert'] = $this->sms_model->insert_kontak($data);
-        redirect('sms/kontak');
+
+        return redirect()->to('sms/kontak');
     }
 
     public function kontak_delete($id = 0)
     {
         $data['hapus'] = $this->sms_model->delete_kontak($id);
-        redirect('sms/kontak');
+
+        return redirect()->to('sms/kontak');
     }
 
     public function delete_all_kontak()
     {
         $this->sms_model->delete_all_kontak();
-        redirect('sms/kontak');
+
+        return redirect()->to('sms/kontak');
     }
 
     public function group($p = 1, $o = 0)
@@ -615,26 +630,30 @@ class Sms extends BaseController
     {
         $data['input']  = $_POST;
         $data['insert'] = $this->sms_model->insert_grup($data);
-        redirect('sms/group');
+
+        return redirect()->to('sms/group');
     }
 
     public function grup_update()
     {
         $data['input']  = $_POST;
         $data['update'] = $this->sms_model->update_grup($data);
-        redirect('sms/group');
+
+        return redirect()->to('sms/group');
     }
 
     public function grup_delete($id = 0)
     {
         $data['hapus'] = $this->sms_model->delete_grup($id);
-        redirect('sms/group');
+
+        return redirect()->to('sms/group');
     }
 
     public function delete_all_grup()
     {
         $this->sms_model->delete_all_grup();
-        redirect('sms/group');
+
+        return redirect()->to('sms/group');
     }
 
     public function anggota($id = 0, $p = 1, $o = 0)
@@ -703,19 +722,22 @@ class Sms extends BaseController
     public function insert_polling($id = 0)
     {
         $data['insert'] = $this->sms_model->insert_polling($id);
-        redirect('sms/polling');
+
+        return redirect()->to('sms/polling');
     }
 
     public function polling_delete($id = 0)
     {
         $data['hapus'] = $this->sms_model->delete_polling($id);
-        redirect('sms/polling');
+
+        return redirect()->to('sms/polling');
     }
 
     public function delete_all_polling()
     {
         $this->sms_model->delete_all_polling();
-        redirect('sms/polling');
+
+        return redirect()->to('sms/polling');
     }
 
     public function pertanyaan($id = 0, $p = 1, $o = 0)

@@ -14,7 +14,7 @@ class Data_persil extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('config_model');
@@ -25,7 +25,8 @@ class Data_persil extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('data_persil');
+
+        return redirect()->to('data_persil');
     }
 
     public function index($page = 1)
@@ -62,7 +63,8 @@ class Data_persil extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('data_persil');
+
+        return redirect()->to('data_persil');
     }
 
     public function detail($id = 0)
@@ -142,7 +144,8 @@ class Data_persil extends BaseController
 
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
-        redirect('data_persil/clear');
+
+        return redirect()->to('data_persil/clear');
         echo view('data_persil/persil', $data);
         echo view('footer');
     }
@@ -198,7 +201,8 @@ class Data_persil extends BaseController
     public function hapus_persil_jenis($id)
     {
         $this->data_persil_model->hapus_jenis($id);
-        redirect('data_persil/persil_jenis');
+
+        return redirect()->to('data_persil/persil_jenis');
     }
 
     public function persil_peruntukan($id = 0)
@@ -229,19 +233,22 @@ class Data_persil extends BaseController
     public function hapus_persil_peruntukan($id)
     {
         $this->data_persil_model->hapus_peruntukan($id);
-        redirect('data_persil/persil_peruntukan');
+
+        return redirect()->to('data_persil/persil_peruntukan');
     }
 
     public function hapus($id)
     {
         $this->data_persil_model->hapus_persil($id);
-        redirect('data_persil');
+
+        return redirect()->to('data_persil');
     }
 
     public function import_proses()
     {
         $this->load->model('import_model');
         $this->import_model->persil();
-        redirect('data_persil');
+
+        return redirect()->to('data_persil');
     }
 }

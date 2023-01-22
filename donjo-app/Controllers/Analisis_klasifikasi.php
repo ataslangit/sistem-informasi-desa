@@ -15,7 +15,7 @@ class Analisis_klasifikasi extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Klasifikasi';
         $_SESSION['asubmenu'] = 'analisis_klasifikasi';
@@ -24,7 +24,8 @@ class Analisis_klasifikasi extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function leave()
@@ -88,13 +89,15 @@ class Analisis_klasifikasi extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function insert()
     {
         $this->analisis_klasifikasi_model->insert();
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function update($p = 1, $o = 0, $id = '')

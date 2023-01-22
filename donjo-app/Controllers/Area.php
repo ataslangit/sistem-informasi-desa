@@ -20,7 +20,7 @@ class Area extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);
 
-        redirect('area');
+        return redirect()->to('area');
     }
 
     public function index($p = 1, $o = 0)
@@ -123,7 +123,8 @@ class Area extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function filter()
@@ -134,7 +135,8 @@ class Area extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function polygon()
@@ -145,7 +147,8 @@ class Area extends BaseController
         } else {
             unset($_SESSION['polygon']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function subpolygon()
@@ -157,7 +160,8 @@ class Area extends BaseController
         } else {
             unset($_SESSION['subpolygon']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function insert($tip = 1)

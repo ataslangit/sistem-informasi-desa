@@ -19,7 +19,7 @@ class Point extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('point');
+        return redirect()->to('point');
     }
 
     public function index($p = 1, $o = 0)
@@ -113,7 +113,8 @@ class Point extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function filter()
@@ -124,7 +125,8 @@ class Point extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function insert($tip = 1)

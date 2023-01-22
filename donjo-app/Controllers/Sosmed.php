@@ -13,7 +13,7 @@ class Sosmed extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_sosmed_model');
@@ -90,15 +90,18 @@ class Sosmed extends BaseController
     {
         $this->web_sosmed_model->update($id);
         if ($id === '1') {
-            redirect('sosmed');
-        } elseif ($id === '2') {
-            redirect('sosmed/twitter');
-        } elseif ($id === '3') {
-            redirect('sosmed/google');
-        } elseif ($id === '4') {
-            redirect('sosmed/youtube');
-        } else {
-            redirect('sosmed/instagram');
+            return redirect()->to('sosmed');
         }
+        if ($id === '2') {
+            return redirect()->to('sosmed/twitter');
+        }
+        if ($id === '3') {
+            return redirect()->to('sosmed/google');
+        }
+        if ($id === '4') {
+            return redirect()->to('sosmed/youtube');
+        }
+
+        return redirect()->to('sosmed/instagram');
     }
 }

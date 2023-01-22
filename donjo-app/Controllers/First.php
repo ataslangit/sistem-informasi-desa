@@ -32,9 +32,9 @@ class First extends BaseController
             $this->first_m->siteman();
         }
         if ($_SESSION['mandiri'] === 1) {
-            redirect('first/mandiri/1/1');
+            return redirect()->to('first/mandiri/1/1');
         } else {
-            redirect('first');
+            return redirect()->to('first');
         }
     }
 
@@ -46,13 +46,13 @@ class First extends BaseController
     public function logout()
     {
         $this->first_m->logout();
-        redirect('first');
+        return redirect()->to('first');
     }
 
     public function ganti()
     {
         $this->first_m->ganti();
-        redirect('first');
+        return redirect()->to('first');
     }
 
     public function index($p = 1)
@@ -91,7 +91,7 @@ class First extends BaseController
     public function mandiri($p = 1, $m = 0)
     {
         if ($_SESSION['mandiri'] !== 1) {
-            redirect('first');
+            return redirect()->to('first');
         } else {
             $data['p']             = $p;
             $data['desa']          = $this->config_model->get_data();
@@ -158,7 +158,7 @@ class First extends BaseController
 
         $title_link = url_title($artikel['judul'], '-', true);
         if ($slug === '' || $slug !== $title_link) {
-            return redirect('first/artikel/' . $artikel['id'] . '/' . $title_link, 301);
+            return redirect()->to('first/artikel/' . $artikel['id'] . '/' . $title_link, 301);
         }
 
         $p                      = 1;
@@ -280,14 +280,14 @@ class First extends BaseController
             case 'warga-negara':$data['heading'] = 'Warga Negara';
                 break;
 
-            case 'wilayah':redirect('first/wilayah');
+            case 'wilayah':return redirect()->to('first/wilayah');
                 break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
                 break;
 
             default:$data['heading'] = '';
-                redirect('first');
+                return redirect()->to('first');
                 break;
         }
 
@@ -430,7 +430,7 @@ class First extends BaseController
             redirect("first/artikel/{$id}");
         } else {
             $_SESSION['sukses'] = 1;
-            redirect('first/mandiri/1/3');
+            return redirect()->to('first/mandiri/1/3');
         }
     }
 
