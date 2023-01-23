@@ -40,7 +40,6 @@ class Main extends BaseController
                         }
 
                             return redirect()->to('first');
-
                     }
                 }
             } else {
