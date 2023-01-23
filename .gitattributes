@@ -3,10 +3,10 @@
 .gitignore export-ignore
 .php-cs-fixer.php export-ignore
 code_of_conduct.md export-ignore
-composer.json export-ignore
 package-lock.json export-ignore
 package.json export-ignore
 spark export-ignore
+vite.config.js export-ignore
 
 /.devcontainer/ export-ignore
 /.github/ export-ignore
