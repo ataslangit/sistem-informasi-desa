@@ -33,9 +33,9 @@ class First extends BaseController
         }
         if ($_SESSION['mandiri'] === 1) {
             return redirect()->to('first/mandiri/1/1');
-        } else {
-            return redirect()->to('first');
         }
+
+        return redirect()->to('first');
     }
 
     public function mobile($user = '', $pass = '')
@@ -46,12 +46,14 @@ class First extends BaseController
     public function logout()
     {
         $this->first_m->logout();
+
         return redirect()->to('first');
     }
 
     public function ganti()
     {
         $this->first_m->ganti();
+
         return redirect()->to('first');
     }
 
@@ -92,39 +94,38 @@ class First extends BaseController
     {
         if ($_SESSION['mandiri'] !== 1) {
             return redirect()->to('first');
-        } else {
-            $data['p']             = $p;
-            $data['desa']          = $this->config_model->get_data();
-            $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
-            $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
-            $data['headline']      = $this->first_artikel_m->get_headline();
-            $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-
-            // $data['paging']  = $this->first_artikel_m->paging($p);
-            // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
-
-            $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
-            $data['arsip']    = $this->first_artikel_m->arsip_show();
-            $data['komen']    = $this->first_artikel_m->komentar_show();
-            $data['agenda']   = $this->first_artikel_m->agenda_show();
-            $data['slide']    = $this->first_artikel_m->slide_show();
-
-            $data['stat']        = $this->first_penduduk_m->list_data(4);
-            $data['sosmed']      = $this->first_artikel_m->list_sosmed();
-            $data['w_gal']       = $this->first_gallery_m->gallery_widget();
-            $data['w_cos']       = $this->first_artikel_m->cos_widget();
-            $data['data_config'] = $this->config_model->get_data();
-
-            $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
-            $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
-
-            // if($m == 2)
-            $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
-
-            // $data['menu_surat2'] = $this->surat_model->list_surat2();
-            $data['m'] = $m;
-            echo view('layouts/mandiri.php', $data);
         }
+        $data['p']             = $p;
+        $data['desa']          = $this->config_model->get_data();
+        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
+        $data['headline']      = $this->first_artikel_m->get_headline();
+        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
+
+        // $data['paging']  = $this->first_artikel_m->paging($p);
+        // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
+
+        $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
+        $data['arsip']    = $this->first_artikel_m->arsip_show();
+        $data['komen']    = $this->first_artikel_m->komentar_show();
+        $data['agenda']   = $this->first_artikel_m->agenda_show();
+        $data['slide']    = $this->first_artikel_m->slide_show();
+
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
+
+        $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
+        $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
+
+        // if($m == 2)
+        $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
+
+        // $data['menu_surat2'] = $this->surat_model->list_surat2();
+        $data['m'] = $m;
+        echo view('layouts/mandiri.php', $data);
     }
 
     public function artikel($id, string $slug = '')
@@ -287,6 +288,7 @@ class First extends BaseController
                 break;
 
             default:$data['heading'] = '';
+
                 return redirect()->to('first');
                 break;
         }
@@ -430,6 +432,7 @@ class First extends BaseController
             redirect("first/artikel/{$id}");
         } else {
             $_SESSION['sukses'] = 1;
+
             return redirect()->to('first/mandiri/1/3');
         }
     }

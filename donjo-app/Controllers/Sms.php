@@ -141,7 +141,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/create_sms', $data);
         echo view('footer');
-        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
+        session()->remove(['cari', 'filter', 'cari1', 'sex1', 'dusun1', 'rw1', 'rt1', 'agama1', 'pekerjaan1', 'status1', 'pendidikan1', 'status_penduduk1', 'TextDecoded1', 'grup1']);
     }
 
     public function sentitem($p = 1, $o = 0)
@@ -175,7 +175,7 @@ class Sms extends BaseController
         echo view('sms/nav', $menu);
         echo view('sms/berita_terkirim', $data);
         echo view('footer');
-        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
+        session()->remove(['cari', 'filter', 'cari1', 'sex1', 'dusun1', 'rw1', 'rt1', 'agama1', 'pekerjaan1', 'status1', 'pendidikan1', 'status_penduduk1', 'TextDecoded1', 'grup1']);
     }
 
     public function pending($p = 1, $o = 0)
@@ -210,7 +210,7 @@ class Sms extends BaseController
         echo view('sms/pesan_tertunda', $data);
         echo view('footer');
 
-        session()->remove(['cari','filter','cari1','sex1','dusun1','rw1','rt1','agama1','pekerjaan1','status1','pendidikan1','status_penduduk1','TextDecoded1','grup1']);
+        session()->remove(['cari', 'filter', 'cari1', 'sex1', 'dusun1', 'rw1', 'rt1', 'agama1', 'pekerjaan1', 'status1', 'pendidikan1', 'status_penduduk1', 'TextDecoded1', 'grup1']);
     }
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)
