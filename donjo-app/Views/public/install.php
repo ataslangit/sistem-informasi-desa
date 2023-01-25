@@ -47,66 +47,76 @@
 </head>
 
 <body class="bg-light mx-auto">
-    <div class="card blanko w-100 m-auto">
-        <div class="card-body">
-            <?php if ($step === '0') : ?>
-            <p>
-                Selamat datang dihalaman instalasi Sistem Informasi Desa. Sebelum memulai, Anda harus mengetahui hal-hal
-                berikut.
-            </p>
+    <div class="blanko w-100 m-auto">
+        <div class="logo mx-auto" style="width: 100px;">
+            <?= ATASLANGIT_LOGO ?>
 
-            <ol>
-                <li>Nama basis data</li>
-                <li>Nama pengguna basis data</li>
-                <li>Sandi basis data</li>
-                <li>Host basis data</li>
-                <li>Prefiks Tabel (opsional)</li>
-            </ol>
-            <p>
-                Informasi berikut dibutuhkan untuk membuat berkas <b>.env</b>. Tidak perlu khawatir jika proses
-                pembuatan file otomatis gagal disebabkan oleh hal tertentu. Proses ini hanya untuk mengisikan informasi
-                basis data ke dalam file konfigurasi. Anda juga bisa membuka file <b>env</b> dengan sebuah
-                editor teks, lengkapi informasi, kemudian simpan sebagai <b>.env</b>.
-            </p>
+        </div>
 
-            <a class="btn btn-sm btn-outline-primary" href="<?= site_url('install?step=1') ?>">Lanjut</a>
+        <div class="card">
+            <div class="card-body">
+                <?php if ($step === '0') : ?>
+                <p>
+                    Selamat datang dihalaman instalasi Sistem Informasi Desa. Sebelum memulai, Anda harus mengetahui
+                    hal-hal berikut.
+                </p>
 
-            <?php elseif ($step === '1'): // install database?>
-            <p>Anda harus mengisi informasi berikut untuk terhubung ke basis data Anda.</p>
+                <ol>
+                    <li>Nama basis data</li>
+                    <li>Nama pengguna basis data</li>
+                    <li>Sandi basis data</li>
+                    <li>Host basis data</li>
+                    <li>Prefiks Tabel (opsional)</li>
+                </ol>
+                <p>
+                    Informasi berikut dibutuhkan untuk membuat berkas <b>.env</b>. Tidak perlu khawatir jika proses
+                    pembuatan file otomatis gagal disebabkan oleh hal tertentu. Proses ini hanya untuk mengisikan
+                    informasi basis data ke dalam file konfigurasi. Anda juga bisa membuka file <b>env</b> dengan sebuah
+                    editor teks, lengkapi informasi, kemudian simpan sebagai <b>.env</b>.
+                </p>
 
-            <?= form_open() ?>
+                <a class="btn btn-sm btn-outline-primary" href="<?= site_url('install?step=1') ?>">Lanjut</a>
 
-            <div class="mb-3">
-                <label for="database" class="form-label">Nama Basis data</label>
-                <input name="database" class="form-control" id="database" type="text" placeholder="database" require>
+                <?php elseif ($step === '1'): // install database?>
+                <p>Anda harus mengisi informasi berikut untuk terhubung ke basis data Anda.</p>
+
+                <?= form_open() ?>
+
+                <div class="mb-3">
+                    <label for="database" class="form-label">Nama Basis data</label>
+                    <input name="database" class="form-control" id="database" type="text" placeholder="database"
+                        require>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nama Pengguna</label>
+                    <input name="username" class="form-control" id="username" type="text" placeholder="username"
+                        require>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Sandi</label>
+                    <input name="password" class="form-control" id="password" type="text" placeholder="password"
+                        require>
+                </div>
+                <div class="mb-3">
+                    <label for="host" class="form-label">Host Basis data</label>
+                    <input name="host" class="form-control" id="host" type="text" placeholder="host" require>
+                </div>
+                <div class="mb-3">
+                    <label for="prefix" class="form-label">Prefix</label>
+                    <input name="prefix" class="form-control" id="prefix" type="text" placeholder="prefix">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary">Simpan</button>
+                </div>
+
+                <?= form_close() ?>
+
+                <?php elseif ($step === '2'): // setting username & password login?>
+
+                <?php endif ?>
+
             </div>
-            <div class="mb-3">
-                <label for="username" class="form-label">Nama Pengguna</label>
-                <input name="username" class="form-control" id="username" type="text" placeholder="username" require>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Sandi</label>
-                <input name="password" class="form-control" id="password" type="text" placeholder="password" require>
-            </div>
-            <div class="mb-3">
-                <label for="host" class="form-label">Host Basis data</label>
-                <input name="host" class="form-control" id="host" type="text" placeholder="host" require>
-            </div>
-            <div class="mb-3">
-                <label for="prefix" class="form-label">Prefix</label>
-                <input name="prefix" class="form-control" id="prefix" type="text" placeholder="prefix">
-            </div>
-
-            <div class="d-grid gap-2">
-                <button class="btn btn-primary">Simpan</button>
-            </div>
-
-            <?= form_close() ?>
-
-            <?php elseif ($step === '2'): // setting username & password login?>
-
-            <?php endif ?>
-
         </div>
     </div>
 
