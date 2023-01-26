@@ -8,12 +8,14 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
+    ->name('*.php')
+    ->ignoreDotFiles(true)
     ->exclude(['donjo-app/Views', 'donjo-app/ThirdParty', 'donjo-sys']);
 
 $overrides = [];
 
 $options = [
-    'finder'       => $finder,
+    'finder' => $finder,
 ];
 
 return Factory::create(new CodeIgniter4(), $overrides, $options)->forProjects();
