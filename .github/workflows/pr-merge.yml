@@ -1,0 +1,31 @@
+name: Merge & Locking
+
+on:
+  issue_comment:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PR: ${{ github.event.issue.pull_request.html_url }}
+  ISSUE: "${{ github.event.repository.html_url }}/issues/${{ github.event.issue.number }}"
+  
+jobs:
+  squash_merge:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/merge') &&
+      github.event.comment.user.id == 2387514
+    steps:
+      - name: Squash & Merge
+        run: gh pr merge ${{ env.PR }} -t "${{ env.SQUASH_TITLE }}" -b "" -s
+        working-directory: ${{ github.workspace }}
+        env:
+          SQUASH_TITLE: "(#${{ github.event.issue.number }}) ${{ github.event.issue.title }}"
+          
+      - name: Lock
+        run: gh pr lock ${{ env.ISSUE }} -r "resolved"
+        working-directory: ${{ github.workspace }}
