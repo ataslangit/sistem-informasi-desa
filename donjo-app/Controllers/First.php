@@ -281,7 +281,8 @@ class First extends BaseController
             case 'warga-negara':$data['heading'] = 'Warga Negara';
                 break;
 
-            case 'wilayah':return redirect()->to('first/wilayah');
+            case 'wilayah':
+                return redirect()->to('first/wilayah');
                 break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';

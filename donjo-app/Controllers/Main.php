@@ -23,21 +23,26 @@ class Main extends BaseController
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1: return redirect()->to('hom_desa');
+                        case 1:
+                            return redirect()->to('hom_desa');
                             break;
 
-                        case 2: return redirect()->to('hom_desa');
+                        case 2:
+                            return redirect()->to('hom_desa');
                             break;
 
-                        case 3: return redirect()->to('web');
+                        case 3:
+                            return redirect()->to('web');
                             break;
 
-                        case 4: return redirect()->to('web');
+                        case 4:
+                            return redirect()->to('web');
                             break;
 
-                        default: if (isset($_SESSION['siteman'])) {
-                            return redirect()->to('siteman');
-                        }
+                        default:
+                            if (isset($_SESSION['siteman'])) {
+                                return redirect()->to('siteman');
+                            }
 
                             return redirect()->to('first');
                     }

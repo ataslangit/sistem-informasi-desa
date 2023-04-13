@@ -194,7 +194,8 @@ class Kelompok extends BaseController
             case 4: $data['menu_respon'] = 'kelompok_respon_kelompok';
                 break;
 
-            default:return redirect()->to('kelompok');
+            default:
+                return redirect()->to('kelompok');
         }
 
         $header = $this->header_model->get_data();

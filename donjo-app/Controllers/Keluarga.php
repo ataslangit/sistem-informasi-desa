@@ -997,6 +997,7 @@ class Keluarga extends BaseController
         }
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
+
         echo view('header', $header);
         echo view('sid/nav', $nav);
         echo view('sid/kependudukan/keluarga_statistik', $data);

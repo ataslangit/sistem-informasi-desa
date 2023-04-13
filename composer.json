@@ -1,9 +1,9 @@
 {
   "name": "ataslangit/sistem-informasi-desa",
   "require": {
-    "php": "^7.4 || ^8.0",
-    "codeigniter4/framework": "~4.3",
-    "kenjis/ci3-to-4-upgrade-helper": "^0.6.1"
+    "php": ">=7.4",
+    "codeigniter/framework": "^3",
+    "vlucas/phpdotenv": "^5.5"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
@@ -17,7 +17,7 @@
   "config": {
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.4"
+      "php": "7.4.33"
     },
     "preferred-install": "dist",
     "sort-packages": true,
