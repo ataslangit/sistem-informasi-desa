@@ -21,7 +21,7 @@ class User_model extends CI_Model
 
                 $_SESSION['siteman'] = 1;
                 $_SESSION['sesi']    = $data['session'];
-                //$_SESSION['sesi'] = $row->session;
+                // $_SESSION['sesi'] = $row->session;
                 $_SESSION['user']     = $row->id;
                 $_SESSION['grup']     = $row->id_grup;
                 $_SESSION['per_page'] = 10;
@@ -50,10 +50,10 @@ class User_model extends CI_Model
         }
     }
 
-    //time out
+    // time out
     public function reset_timer()
     {
-        $time                = 3600; //15menit
+        $time                = 3600; // 15menit
         $_SESSION['timeout'] = time() + $time;
     }
 
@@ -181,17 +181,23 @@ class User_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.username'; break;
+            case 1: $order_sql = ' ORDER BY u.username';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.username DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.username DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.nama'; break;
+            case 3: $order_sql = ' ORDER BY u.nama';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.nama DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.nama DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY g.nama'; break;
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
 
-            case 6: $order_sql = ' ORDER BY g.nama DESC'; break;
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.username';
         }

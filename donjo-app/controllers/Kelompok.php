@@ -116,7 +116,7 @@ class Kelompok extends CI_Controller
             $data['kelompok']    = $id;
             $data['pend']        = $this->kelompok_model->get_anggota($id, $id_a);
             $data['form_action'] = site_url("kelompok/update_a/{$id}/{$id_a}");
-            //echo $id.$id_a;
+            // echo $id.$id_a;
         }
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
@@ -181,16 +181,20 @@ class Kelompok extends CI_Controller
         $master               = $da['master_tipe'];
 
         switch ($master) {
-                case 1: $data['menu_respon'] = 'kelompok_respon_penduduk'; break;
+            case 1: $data['menu_respon'] = 'kelompok_respon_penduduk';
+                break;
 
-                case 2: $data['menu_respon'] = 'kelompok_respon_keluarga'; break;
+            case 2: $data['menu_respon'] = 'kelompok_respon_keluarga';
+                break;
 
-                case 3: $data['menu_respon'] = 'kelompok_respon_rtm'; break;
+            case 3: $data['menu_respon'] = 'kelompok_respon_rtm';
+                break;
 
-                case 4: $data['menu_respon'] = 'kelompok_respon_kelompok'; break;
+            case 4: $data['menu_respon'] = 'kelompok_respon_kelompok';
+                break;
 
-                default:redirect('kelompok');
-            }
+            default:redirect('kelompok');
+        }
 
         $header = $this->header_model->get_data();
 

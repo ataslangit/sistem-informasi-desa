@@ -56,17 +56,23 @@ class Surat_master_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.nomor'; break;
+            case 1: $order_sql = ' ORDER BY u.nomor';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.nomor DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.nomor DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.pertanyaan'; break;
+            case 3: $order_sql = ' ORDER BY u.pertanyaan';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.pertanyaan DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.pertanyaan DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY u.id_kategori'; break;
+            case 5: $order_sql = ' ORDER BY u.id_kategori';
+                break;
 
-            case 6: $order_sql = ' ORDER BY u.id_kategori DESC'; break;
+            case 6: $order_sql = ' ORDER BY u.id_kategori DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.id';
         }
@@ -116,7 +122,7 @@ class Surat_master_model extends CI_Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path.$data['url_surat'],'w+');
+        // $handle = fopen($path.$data['url_surat'],'w+');
 
         $berkas = $path . $data['url_surat'] . '.rtf';
         $handle = fopen($berkas, 'w+b');
@@ -132,7 +138,7 @@ class Surat_master_model extends CI_Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path_form.$data['url_surat'],'w+');
+        // $handle = fopen($path_form.$data['url_surat'],'w+');
 
         $berkas = $path_form . $data['url_surat'] . '.php';
         $handle = fopen($berkas, 'w+b');
@@ -149,7 +155,7 @@ class Surat_master_model extends CI_Model
         $handle   = fopen($file, 'rb');
 
         $buffer = stream_get_contents($handle);
-        //$handle = fopen($path_form.$data['url_surat'],'w+');
+        // $handle = fopen($path_form.$data['url_surat'],'w+');
 
         $berkas     = $path_form . 'print_' . $data['url_surat'] . '.php';
         $handle     = fopen($berkas, 'w+b');

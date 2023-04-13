@@ -403,7 +403,7 @@ class Surat_model extends CI_Model
             $buffer = str_replace('[no_kk]', "{$individu['no_kk']}", $buffer);
             $buffer = str_replace('[ttl]', "{$individu['tempatlahir']}/{$tgllhr}", $buffer);
 
-            //PENGIKUT
+            // PENGIKUT
             $pxnama     = '';
             $pxnik      = '';
             $pxhubungan = '';

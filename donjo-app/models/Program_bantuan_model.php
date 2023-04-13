@@ -27,211 +27,210 @@ class Program_bantuan_model extends CI_Model
         $hasil0 = $query->row_array();
 
         switch ($hasil0['sasaran']) {
-                case 1:
+            case 1:
 
-                    $strSQL = 'SELECT p.id,p.peserta,o.nama,w.rt,w.rw,w.dusun FROM program_peserta p
+                $strSQL = 'SELECT p.id,p.peserta,o.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_penduduk o ON p.peserta=o.nik
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
-                    $query  = $this->db->query($strSQL);
-                    $filter = [];
-                    if ($query->num_rows() > 0) {
-                        $data = $query->result_array();
-                        $i    = 0;
+                $query  = $this->db->query($strSQL);
+                $filter = [];
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    $i    = 0;
 
-                        while ($i < count($data)) {
-                            $data[$i]['id']   = $data[$i]['id'];
-                            $data[$i]['nik']  = $data[$i]['peserta'];
-                            $filter[]         = $data[$i]['peserta'];
-                            $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['peserta'] . ']';
-                            $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                            $i++;
-                        }
-                        $hasil1 = $data;
-                    } else {
-                        $hasil1 = false;
+                    while ($i < count($data)) {
+                        $data[$i]['id']   = $data[$i]['id'];
+                        $data[$i]['nik']  = $data[$i]['peserta'];
+                        $filter[]         = $data[$i]['peserta'];
+                        $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['peserta'] . ']';
+                        $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                        $i++;
                     }
+                    $hasil1 = $data;
+                } else {
+                    $hasil1 = false;
+                }
 
-                    $strSQL = 'SELECT p.nik,p.nama,w.rt,w.rw,w.dusun FROM tweb_penduduk p
+                $strSQL = 'SELECT p.nik,p.nama,w.rt,w.rw,w.dusun FROM tweb_penduduk p
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
 						WHERE 1 ORDER BY nama';
-                    $query = $this->db->query($strSQL);
-                    $data  = '';
-                    $data  = $query->result_array();
-                    if ($query->num_rows() > 0) {
-                        $i = 0;
-                        $j = 0;
+                $query = $this->db->query($strSQL);
+                $data  = '';
+                $data  = $query->result_array();
+                if ($query->num_rows() > 0) {
+                    $i = 0;
+                    $j = 0;
 
-                        while ($i < count($data)) {
-                            if (! in_array($data[$i]['nik'], $filter, true)) {
-                                if ($data[$i]['nik'] !== '') {
-                                    $data1[$j]['id']   = $data[$i]['nik'];
-                                    $data1[$j]['nik']  = $data[$i]['nik'];
-                                    $data1[$j]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['nik'] . ']';
-                                    $data1[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                                    $j++;
-                                }
+                    while ($i < count($data)) {
+                        if (! in_array($data[$i]['nik'], $filter, true)) {
+                            if ($data[$i]['nik'] !== '') {
+                                $data1[$j]['id']   = $data[$i]['nik'];
+                                $data1[$j]['nik']  = $data[$i]['nik'];
+                                $data1[$j]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['nik'] . ']';
+                                $data1[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                                $j++;
                             }
-                            $i++;
                         }
-                        $hasil2 = $data1;
-                    } else {
-                        $hasil2 = false;
+                        $i++;
                     }
-                    break;
+                    $hasil2 = $data1;
+                } else {
+                    $hasil2 = false;
+                }
+                break;
 
-                case 2:
+            case 2:
 
-                    $strSQL = 'SELECT p.id as id,p.peserta as nama,o.nik_kepala,o.no_kk,q.nama,w.rt,w.rw,w.dusun FROM program_peserta p
+                $strSQL = 'SELECT p.id as id,p.peserta as nama,o.nik_kepala,o.no_kk,q.nama,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_keluarga o ON p.peserta=o.no_kk
 						LEFT JOIN tweb_penduduk q ON o.nik_kepala=q.id
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=q.id_cluster
 						WHERE p.program_id=' . $slug;
-                    $query  = $this->db->query($strSQL);
-                    $filter = [];
-                    if ($query->num_rows() > 0) {
-                        $data = $query->result_array();
-                        $i    = 0;
+                $query  = $this->db->query($strSQL);
+                $filter = [];
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    $i    = 0;
 
-                        while ($i < count($data)) {
-                            $data[$i]['id']   = $data[$i]['id'];
-                            $data[$i]['nik']  = $data[$i]['no_kk'];
-                            $filter[]         = $data[$i]['id'];
-                            $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['no_kk'] . ']';
-                            $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                            $i++;
-                        }
-                        $hasil1 = $data;
-                    } else {
-                        $hasil1 = false;
+                    while ($i < count($data)) {
+                        $data[$i]['id']   = $data[$i]['id'];
+                        $data[$i]['nik']  = $data[$i]['no_kk'];
+                        $filter[]         = $data[$i]['id'];
+                        $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['no_kk'] . ']';
+                        $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                        $i++;
                     }
-                    $strSQL = 'SELECT k.no_kk as id,p.nama as nama,w.rt,w.rw,w.dusun FROM tweb_keluarga k
+                    $hasil1 = $data;
+                } else {
+                    $hasil1 = false;
+                }
+                $strSQL = 'SELECT k.no_kk as id,p.nama as nama,w.rt,w.rw,w.dusun FROM tweb_keluarga k
 						LEFT JOIN tweb_penduduk p ON p.id=k.nik_kepala
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
 					WHERE 1';
-                    $query = $this->db->query($strSQL);
-                    $data  = '';
-                    $data  = $query->result_array();
-                    if ($query->num_rows() > 0) {
-                        $i = 0;
-                        $j = 0;
+                $query = $this->db->query($strSQL);
+                $data  = '';
+                $data  = $query->result_array();
+                if ($query->num_rows() > 0) {
+                    $i = 0;
+                    $j = 0;
 
-                        while ($i < count($data)) {
-                            if (! in_array($data[$i]['id'], $filter, true)) {
-                                $data[$j]['id']   = $data[$i]['id'];
-                                $data[$j]['nik']  = $data[$i]['id'];
-                                $data[$j]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['id'] . ']';
-                                $data[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                                $j++;
-                            }
-                            $i++;
+                    while ($i < count($data)) {
+                        if (! in_array($data[$i]['id'], $filter, true)) {
+                            $data[$j]['id']   = $data[$i]['id'];
+                            $data[$j]['nik']  = $data[$i]['id'];
+                            $data[$j]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['id'] . ']';
+                            $data[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                            $j++;
                         }
-                        $hasil2 = $data;
-                    } else {
-                        $hasil2 = false;
+                        $i++;
                     }
-                    break;
+                    $hasil2 = $data;
+                } else {
+                    $hasil2 = false;
+                }
+                break;
 
-                case 3:
+            case 3:
 
-                    $strSQL = 'SELECT p.id,p.peserta,o.nama,o.nik,r.no_kk,w.rt,w.rw,w.dusun FROM program_peserta p
+                $strSQL = 'SELECT p.id,p.peserta,o.nama,o.nik,r.no_kk,w.rt,w.rw,w.dusun FROM program_peserta p
 						LEFT JOIN tweb_rtm r ON r.id = p.peserta
 						LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
-                    $query  = $this->db->query($strSQL);
-                    $filter = [];
-                    if ($query->num_rows() > 0) {
-                        $data = $query->result_array();
-                        $i    = 0;
+                $query  = $this->db->query($strSQL);
+                $filter = [];
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    $i    = 0;
 
-                        while ($i < count($data)) {
-                            $data[$i]['id']   = $data[$i]['id'];
-                            $data[$i]['nik']  = $data[$i]['peserta'];
-                            $filter[]         = $data[$i]['peserta'];
-                            $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['nik'] . ' - ' . $data[$i]['no_kk'] . ']';
-                            $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                            $i++;
-                        }
-                        $hasil1 = $data;
-                    } else {
-                        $hasil1 = false;
+                    while ($i < count($data)) {
+                        $data[$i]['id']   = $data[$i]['id'];
+                        $data[$i]['nik']  = $data[$i]['peserta'];
+                        $filter[]         = $data[$i]['peserta'];
+                        $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['nik'] . ' - ' . $data[$i]['no_kk'] . ']';
+                        $data[$i]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                        $i++;
                     }
+                    $hasil1 = $data;
+                } else {
+                    $hasil1 = false;
+                }
 
-                    $strSQL = 'SELECT r.id, r.no_kk, o.nama,w.rt,w.rw,w.dusun FROM tweb_rtm r
+                $strSQL = 'SELECT r.id, r.no_kk, o.nama,w.rt,w.rw,w.dusun FROM tweb_rtm r
 						LEFT JOIN tweb_penduduk o ON o.id=r.nik_kepala
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster
 						WHERE 1
 						';
-                    $query = $this->db->query($strSQL);
-                    $data  = '';
-                    $data  = $query->result_array();
-                    if ($query->num_rows() > 0) {
-                        $i = 0;
-                        $j = 0;
+                $query = $this->db->query($strSQL);
+                $data  = '';
+                $data  = $query->result_array();
+                if ($query->num_rows() > 0) {
+                    $i = 0;
+                    $j = 0;
 
-                        while ($i < count($data)) {
-                            if (! in_array($data[$i]['id'], $filter, true)) {
-                                $data[$j]['id']   = $data[$i]['id'];
-                                $data[$j]['nik']  = $data[$i]['id'];
-                                $data[$j]['nama'] = strtoupper($data[$i]['nama']);
-                                $data[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
-                                $j++;
-                            }
-                            $i++;
+                    while ($i < count($data)) {
+                        if (! in_array($data[$i]['id'], $filter, true)) {
+                            $data[$j]['id']   = $data[$i]['id'];
+                            $data[$j]['nik']  = $data[$i]['id'];
+                            $data[$j]['nama'] = strtoupper($data[$i]['nama']);
+                            $data[$j]['info'] = 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . strtoupper($data[$i]['dusun']);
+                            $j++;
                         }
-                        $hasil2 = $data;
-                    } else {
-                        $hasil2 = false;
+                        $i++;
                     }
-                    break;
+                    $hasil2 = $data;
+                } else {
+                    $hasil2 = false;
+                }
+                break;
 
-                case 4:
+            case 4:
 
-                    $strSQL = 'SELECT p.id as id, p.peserta as peserta, k.nama as nama FROM program_peserta p
+                $strSQL = 'SELECT p.id as id, p.peserta as peserta, k.nama as nama FROM program_peserta p
 						LEFT JOIN kelompok k ON k.id=p.peserta
 						WHERE p.program_id=' . $slug;
-                    $query  = $this->db->query($strSQL);
-                    $filter = [];
-                    if ($query->num_rows() > 0) {
-                        $data = $query->result_array();
-                        $i    = 0;
+                $query  = $this->db->query($strSQL);
+                $filter = [];
+                if ($query->num_rows() > 0) {
+                    $data = $query->result_array();
+                    $i    = 0;
 
-                        while ($i < count($data)) {
+                    while ($i < count($data)) {
+                        $data[$i]['id']   = $data[$i]['id'];
+                        $data[$i]['nik']  = $data[$i]['peserta'];
+                        $filter[]         = $data[$i]['id'];
+                        $data[$i]['nama'] = strtoupper($data[$i]['nama']);
+                        $data[$i]['info'] = '';
+                        $i++;
+                    }
+                    $hasil1 = $data;
+                } else {
+                    $hasil1 = false;
+                }
+                $strSQL = 'SELECT id,nama FROM kelompok WHERE 1';
+                $query  = $this->db->query($strSQL);
+                $data   = '';
+                $data   = $query->result_array();
+                if ($query->num_rows() > 0) {
+                    $i = 0;
+
+                    while ($i < count($data)) {
+                        if (! in_array($data[$i]['id'], $filter, true)) {
                             $data[$i]['id']   = $data[$i]['id'];
-                            $data[$i]['nik']  = $data[$i]['peserta'];
-                            $filter[]         = $data[$i]['id'];
+                            $data[$i]['nik']  = $data[$i]['id'];
                             $data[$i]['nama'] = strtoupper($data[$i]['nama']);
                             $data[$i]['info'] = '';
-                            $i++;
                         }
-                        $hasil1 = $data;
-                    } else {
-                        $hasil1 = false;
+                        $i++;
                     }
-                    $strSQL = 'SELECT id,nama FROM kelompok WHERE 1';
-                    $query  = $this->db->query($strSQL);
-                    $data   = '';
-                    $data   = $query->result_array();
-                    if ($query->num_rows() > 0) {
-                        $i = 0;
+                    $hasil2 = $data;
+                } else {
+                    $hasil2 = false;
+                }
+                break;
 
-                        while ($i < count($data)) {
-                            if (! in_array($data[$i]['id'], $filter, true)) {
-                                $data[$i]['id']   = $data[$i]['id'];
-                                $data[$i]['nik']  = $data[$i]['id'];
-                                $data[$i]['nama'] = strtoupper($data[$i]['nama']);
-                                $data[$i]['info'] = '';
-                            }
-                            $i++;
-                        }
-                        $hasil2 = $data;
-                    } else {
-                        $hasil2 = false;
-                    }
-                    break;
-
-                default:
-
-            }
+            default:
+        }
 
         return [$hasil0, $hasil1, $hasil2];
     }
@@ -323,7 +322,6 @@ class Program_bantuan_model extends CI_Model
                 break;
 
             default:
-
         }
         if (! $data_program === false) {
             return [$data_program, $data_profil];

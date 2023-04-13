@@ -87,17 +87,23 @@ class Sms_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.SenderNumber'; break;
+            case 1: $order_sql = ' ORDER BY u.SenderNumber';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.SenderNumber DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.SenderNumber DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.Class'; break;
+            case 3: $order_sql = ' ORDER BY u.Class';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.Class DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.Class DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY u.ReceivingDateTime'; break;
+            case 5: $order_sql = ' ORDER BY u.ReceivingDateTime';
+                break;
 
-            case 6: $order_sql = ' ORDER BY u.ReceivingDateTime DESC'; break;
+            case 6: $order_sql = ' ORDER BY u.ReceivingDateTime DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.ReceivingDateTime DESC';
         }
@@ -122,7 +128,7 @@ class Sms_model extends CI_Model
 
     public function paging_terkirim($p = 1, $o = 0)
     {
-        $paging =  new Paging();
+        $paging = new Paging();
 
         $sql = 'SELECT count(u.ID) as id FROM sentitems u LEFT JOIN kontak k on u.DestinationNumber=k.no_hp LEFT JOIN tweb_penduduk p on k.id_pend=p.id WHERE 1';
 
@@ -142,17 +148,23 @@ class Sms_model extends CI_Model
     public function list_data_terkirim($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.DestinationNumber'; break;
+            case 1: $order_sql = ' ORDER BY u.DestinationNumber';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.Class'; break;
+            case 3: $order_sql = ' ORDER BY u.Class';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.Class DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.Class DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY u.SendingDateTime'; break;
+            case 5: $order_sql = ' ORDER BY u.SendingDateTime';
+                break;
 
-            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC'; break;
+            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
         }
@@ -196,17 +208,23 @@ class Sms_model extends CI_Model
     public function list_data_tertunda($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.DestinationNumber'; break;
+            case 1: $order_sql = ' ORDER BY u.DestinationNumber';
+                break;
 
-            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC'; break;
+            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC';
+                break;
 
-            case 3: $order_sql = ' ORDER BY u.Class'; break;
+            case 3: $order_sql = ' ORDER BY u.Class';
+                break;
 
-            case 4: $order_sql = ' ORDER BY u.Class DESC'; break;
+            case 4: $order_sql = ' ORDER BY u.Class DESC';
+                break;
 
-            case 5: $order_sql = ' ORDER BY u.SendingDateTime'; break;
+            case 5: $order_sql = ' ORDER BY u.SendingDateTime';
+                break;
 
-            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC'; break;
+            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC';
+                break;
 
             default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
         }

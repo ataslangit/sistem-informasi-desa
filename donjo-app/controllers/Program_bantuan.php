@@ -116,7 +116,7 @@ class Program_bantuan extends CI_Controller
     public function hapus($id)
     {
         $this->program_bantuan_model->hapus_program($id);
-        //view('program_bantuan/formsuccess');
+        // view('program_bantuan/formsuccess');
         redirect('program_bantuan/');
     }
 

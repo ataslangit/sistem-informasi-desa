@@ -91,7 +91,7 @@ class Web extends CI_Controller
 
         $nav['act'] = 0;
         view('header', $header);
-        //view('web/spacer');
+        // view('web/spacer');
         view('web/nav', $nav);
         if ($cat !== 1003) {
             view('web/artikel/form', $data);

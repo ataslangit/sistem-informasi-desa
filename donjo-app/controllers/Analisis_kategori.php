@@ -75,10 +75,10 @@ class Analisis_kategori extends CI_Controller
             $data['form_action']       = site_url('analisis_kategori/insert');
         }
 
-        //view('header', $header);
-        //view('analisis_master/nav');
+        // view('header', $header);
+        // view('analisis_master/nav');
         view('analisis_kategori/ajax_form', $data);
-        //view('footer');
+        // view('footer');
     }
 
     public function search()
