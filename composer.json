@@ -2,8 +2,8 @@
   "name": "ataslangit/sistem-informasi-desa",
   "require": {
     "php": ">=7.4",
-    "codeigniter/framework": "^3",
-    "vlucas/phpdotenv": "^5.5"
+    "codeigniter4/framework": "4.3.3",
+    "kenjis/ci3-to-4-upgrade-helper": "^0.6.1"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
