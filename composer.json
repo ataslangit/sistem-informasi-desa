@@ -1,7 +1,7 @@
 {
   "name": "ataslangit/sistem-informasi-desa",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.4",
     "codeigniter/framework": "^3",
     "vlucas/phpdotenv": "^5.5"
   },
@@ -19,7 +19,7 @@
     "lock": false,
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.3"
+      "php": "7.4.33"
     },
     "preferred-install": "dist",
     "sort-packages": true,
