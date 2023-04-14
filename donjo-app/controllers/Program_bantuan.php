@@ -67,9 +67,6 @@ class Program_bantuan extends CI_Controller
 
     public function create()
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('cid', 'Sasaran', 'required');
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');
@@ -87,9 +84,6 @@ class Program_bantuan extends CI_Controller
 
     public function edit($id)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('cid', 'Sasaran', 'required');
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');

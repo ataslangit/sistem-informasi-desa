@@ -258,8 +258,6 @@ class Export_model extends CI_Model
     public function backup()
     {
         $this->load->dbutil();
-        $this->load->helper('download');
-        $this->load->helper('file');
 
         $prefs = [
             'format' => 'sql',

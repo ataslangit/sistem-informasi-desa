@@ -7,7 +7,6 @@ class Import_model extends CI_Model
         parent::__construct();
         ini_set('memory_limit', '512M');
         set_time_limit(3600);
-        $this->load->helper('excel');
     }
 
     public function import_siak()
