@@ -59,7 +59,11 @@ $autoload['packages'] = [];
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = ['session', 'database'];
+$autoload['libraries'] = [
+    'database',
+    'form_validation',
+    'session',
+];
 
 /*
 | -------------------------------------------------------------------
@@ -90,7 +94,16 @@ $autoload['drivers'] = [];
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = ['url', 'donjolib', 'date', 'pict'];
+$autoload['helper'] = [
+    'date',
+    'donjolib',
+    'download',
+    'excel',
+    'file',
+    'form',
+    'pict',
+    'url',
+];
 
 /*
 | -------------------------------------------------------------------

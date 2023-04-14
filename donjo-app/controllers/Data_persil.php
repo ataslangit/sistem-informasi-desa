@@ -84,9 +84,6 @@ class Data_persil extends CI_Controller
 
     public function create($id = 0)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
 
         $header = $this->header_model->get_data();
@@ -112,9 +109,6 @@ class Data_persil extends CI_Controller
 
     public function create_ext($id = 0)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
 
         $header = $this->header_model->get_data();
@@ -130,9 +124,6 @@ class Data_persil extends CI_Controller
 
     public function simpan_persil($page = 1)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -171,9 +162,6 @@ class Data_persil extends CI_Controller
 
     public function persil_jenis($id = 0)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -202,9 +190,6 @@ class Data_persil extends CI_Controller
 
     public function persil_peruntukan($id = 0)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
