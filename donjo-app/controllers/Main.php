@@ -46,10 +46,13 @@ class Main extends CI_Controller
                 redirect('first');
             }
         } else {
-            redirect('main/initial');
+            return $this->initial();
         }
     }
 
+    /**
+     * View halaman instalasi pertama
+     */
     public function initial()
     {
         view('install');
