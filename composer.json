@@ -2,18 +2,12 @@
   "name": "ataslangit/sistem-informasi-desa",
   "require": {
     "php": ">=7.4",
-    "codeigniter/framework": "^3",
-    "vlucas/phpdotenv": "^5.5"
+    "codeigniter4/framework": "4.3.3"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
     "friendsofphp/php-cs-fixer": "^3",
     "mikey179/vfsstream": "1.6.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\Libraries\\": "donjo-app/Libraries/"
-    }
   },
   "config": {
     "lock": false,
