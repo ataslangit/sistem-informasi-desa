@@ -25,26 +25,27 @@ class First extends BaseController
         $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
+        $p = $this->request->getGet('page');
+
         $data['p']             = $p;
-        $data['desa']          = $configModel->first();
+        $data['desa']          = $data['data_config'] = $configModel->first();
         $data['menu_atas']     = $menuModel->list_menu_atas();
         $data['menu_kiri']     = $menuModel->list_menu_kiri();
         $data['headline']      = $artikelModel->get_headline();
         $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
 
-        $data['paging']  = $artikelModel->paging($p);
-        $data['artikel'] = $artikelModel->artikel_show(0, $data['paging']->offset, $data['paging']->per_page);
+        $data['artikel'] = $artikelModel->select('artikel.*,user.nama as owner,kategori.kategori as kategori')->joinUser()->joinKategori()->getArtikel()->orderBy('artikel.tgl_upload DESC')->paginate(5);
+        $data['paging']  = $artikelModel->pager;
 
         $data['arsip']  = $artikelModel->arsip_show();
         $data['komen']  = $artikelModel->komentar_show();
         $data['agenda'] = $artikelModel->agenda_show();
         $data['slide']  = $artikelModel->slide_show();
 
-        $data['stat']        = $pendudukModel->list_data(4);
-        $data['sosmed']      = $artikelModel->list_sosmed();
-        $data['w_gal']       = $gambarGelleryModel->gallery_widget();
-        $data['w_cos']       = $artikelModel->cos_widget();
-        $data['data_config'] = $configModel->first();
+        $data['stat']   = $pendudukModel->list_data(4);
+        $data['sosmed'] = $artikelModel->list_sosmed();
+        $data['w_gal']  = $gambarGelleryModel->gallery_widget();
+        $data['w_cos']  = $artikelModel->cos_widget();
 
         return view('layouts/main.tpl.php', $data);
     }

@@ -30,6 +30,50 @@ class Artikel extends Model
         'link_dokumen',
     ];
 
+    /**
+     * Join dengan tabel 'user'
+     *
+     * @return $this
+     */
+    public function joinUser()
+    {
+        $this->builder()
+            ->join('user', 'artikel.id_user=user.id', 'left');
+
+        return $this;
+    }
+
+    /**
+     * Join dengan tabel 'kategori'
+     *
+     * @return $this
+     */
+    public function joinKategori()
+    {
+        $this->builder()
+            ->join('kategori', 'artikel.id_kategori=kategori.id', 'left');
+
+        return $this;
+    }
+
+    /**
+     * ambil data artikel, berhubungan dengan `joinKategori()`
+     *
+     * @return $this
+     */
+    public function getArtikel()
+    {
+        $this->builder()
+            ->where([
+                'artikel.enabled'      => '1',
+                'artikel.headline <>'  => '1',
+                'kategori.tipe'        => '1',
+                'kategori.kategori <>' => 'teks_berjalan',
+            ]);
+
+        return $this;
+    }
+
     public function get_headline()
     {
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE headline = 1 ORDER BY tgl_upload DESC LIMIT 1 ';
