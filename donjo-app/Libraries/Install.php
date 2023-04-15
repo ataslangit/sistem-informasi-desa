@@ -2,14 +2,11 @@
 
 namespace App\Libraries;
 
+use Config\Database;
+
 class Install
 {
     protected $CI;
-
-    public function __construct()
-    {
-        $this->CI = &get_instance();
-    }
 
     /**
      * Cek sudah install atau belum
@@ -18,10 +15,11 @@ class Install
      */
     public function cek(): bool
     {
-        $db    = $this->CI->db->dbprefix . $this->CI->db->database;
-        $sql   = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA=? AND TABLE_NAME <> 'impor'";
-        $query = $this->CI->db->query($sql, $db);
-        $data  = $query->result_array();
+        $db       = db_connect();
+        $dbConfig = config(Database::class);
+        $sql      = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA=? AND TABLE_NAME <> 'impor'";
+        $query    = $db->query($sql, $dbConfig->default['database']);
+        $data     = $query->getResultArray();
 
         return ! (count($data) !== 77);
     }

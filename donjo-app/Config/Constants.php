@@ -93,7 +93,6 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
-
 $host = '';
 if (! empty($_SERVER['HTTP_HOST'])) {
     $host = $_SERVER['HTTP_HOST'];

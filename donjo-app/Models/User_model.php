@@ -7,6 +7,27 @@ use CodeIgniter\Model;
 
 class User_model extends Model
 {
+    protected $table            = 'user';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'username',
+        'password',
+        'id_grup',
+        'email',
+        'last_login',
+        'active',
+        'nama',
+        'company',
+        'phone',
+        'foto',
+        'session',
+    ];
+
     public function siteman()
     {
         $username = $this->input->post('username');
@@ -227,7 +248,7 @@ class User_model extends Model
         return $data;
     }
 
-    public function insert()
+    public function insert_()
     {
         $data             = $_POST;
         $data['password'] = hash_password($data['password']);
@@ -257,7 +278,7 @@ class User_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update_($id = 0)
     {
         $data = $_POST;
         unset($data['old_foto'], $data['foto']);
@@ -292,7 +313,7 @@ class User_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete_($id = '')
     {
         $sql  = 'DELETE FROM user WHERE id=?';
         $outp = $this->db->query($sql, [$id]);

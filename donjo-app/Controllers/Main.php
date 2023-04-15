@@ -1,49 +1,50 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Libraries\Install;
+use App\Models\Config_model;
+use App\Models\User_model;
 
 class Main extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('header_model');
-        $this->load->model('user_model');
-        $this->load->model('config_model');
-    }
-
     public function index()
     {
-        $install = new Install();
+        $install   = new Install();
+        $userModel = new User_model();
 
         if ($install->cek()) {
             if (isset($_SESSION['siteman'])) {
                 if (isset($_SESSION['sesi'])) {
-                    $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+                    $grup = $userModel->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1: redirect('hom_desa');
+                        case 1:
+                            return redirect()->to('hom_desa');
                             break;
 
-                        case 2: redirect('hom_desa');
+                        case 2:
+                            return redirect()->to('hom_desa');
                             break;
 
-                        case 3: redirect('web');
+                        case 3:
+                            return redirect()->to('web');
                             break;
 
-                        case 4: redirect('web');
+                        case 4:
+                            return redirect()->to('web');
                             break;
 
-                        default: if (isset($_SESSION['siteman'])) {
-                            redirect('siteman');
-                        } else {
-                            redirect('first');
-                        }
+                        default:
+                            if (isset($_SESSION['siteman'])) {
+                                return redirect()->to('siteman');
+                            }
+
+                            return redirect()->to('first');
                     }
                 }
             } else {
-                redirect('first');
+                return redirect()->to('first');
             }
         } else {
             return $this->initial();
@@ -77,19 +78,25 @@ class Main extends BaseController
 
     public function auth()
     {
-        $this->user_model->login();
+        $userModel   = new User_model();
+        $configModel = new Config_model();
+
+        $userModel->login();
         $header = [
-            'desa' => $this->config_model->get_data(),
+            'desa' => $configModel->get_data(),
         ];
         view('siteman', $header);
     }
 
     public function logout()
     {
-        $this->config_model->opt();
-        $this->user_model->logout();
+        $userModel   = new User_model();
+        $configModel = new Config_model();
+
+        $configModel->opt();
+        $userModel->logout();
         $header = [
-            'desa' => $this->config_model->get_data(),
+            'desa' => $configModel->get_data(),
         ];
 
         view('siteman', $header);
