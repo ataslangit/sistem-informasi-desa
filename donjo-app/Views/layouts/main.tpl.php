@@ -1,21 +1,5 @@
-        <?php echo view('layouts/header.php'); ?>
+<?= $this->extend('layouts/default') ?>
 
-        <div id="contentwrapper">
-            <div id="contentcolumn">
-                <div class="innertube">
-                    <?php echo view('partials/content.php'); ?>
-                </div>
-            </div>
-        </div>
-        <div id="rightcolumn">
-            <div class="innertube">
-                <?php echo view('partials/side.right.php'); ?>
-            </div>
-        </div>
-        <div id="footer">
-            <?php echo view('partials/copywright.tpl.php'); ?>
-        </div>
-    </div>
-</body>
-
-</html>
+<?= $this->section('content') ?>
+    <?= $this->include('partials/content') ?>
+<?= $this->endSection() ?>
