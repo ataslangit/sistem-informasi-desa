@@ -61,7 +61,7 @@ class Artikel extends Model
      *
      * @return $this
      */
-    public function getArtikel()
+    public function artikelShow()
     {
         $this->builder()
             ->where([
@@ -144,41 +144,6 @@ class Artikel extends Model
         $paging->init($cfg);
 
         return $paging;
-    }
-
-    public function artikel_show(int $id = 0, int $offset = 0, int $limit = 0)
-    {
-        if ($id > 0) {
-            $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
-                LEFT JOIN user u ON a.id_user = u.id
-                LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1 AND k.kategori <> 'teks_berjalan' AND a.id=" . $id;
-        } else {
-            $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a
-                LEFT JOIN user u ON a.id_user = u.id
-                LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 AND headline <> 1 AND k.tipe = 1 AND k.kategori <> 'teks_berjalan'
-                ORDER BY a.tgl_upload DESC LIMIT " . $offset . ', ' . $limit;
-        }
-
-        $query = $this->db->query($sql);
-        if ($query->getNumRows() > 0) {
-            $data = $query->getResultArray();
-
-            $i = 0;
-
-            while ($i < count($data)) {
-                $id                    = $data[$i]['id'];
-                $teks                  = strip_tags($data[$i]['isi']);
-                $pendek                = (strlen($teks) > 120) ? substr($teks, 0, 120) : $teks;
-                $data[$i]['isi_short'] = $pendek;
-                $panjang               = (strlen($teks) > 300) ? substr($teks, 0, 300) : $teks;
-                $data[$i]['isi']       = '<label>' . $panjang . '...</label>';
-                $i++;
-            }
-        } else {
-            $data = false;
-        }
-
-        return $data;
     }
 
     public function arsip_show()

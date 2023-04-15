@@ -13,11 +13,9 @@ class First extends BaseController
     /**
      * Menampilkan halaman utama
      *
-     * @param int $p
-     *
      * @return string
      */
-    public function index($p = 1)
+    public function index()
     {
         $configModel        = new Config_model();
         $menuModel          = new Menu();
@@ -25,16 +23,13 @@ class First extends BaseController
         $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
-        $p = $this->request->getGet('page');
-
-        $data['p']             = $p;
         $data['desa']          = $data['data_config'] = $configModel->first();
         $data['menu_atas']     = $menuModel->list_menu_atas();
         $data['menu_kiri']     = $menuModel->list_menu_kiri();
         $data['headline']      = $artikelModel->get_headline();
         $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
 
-        $data['artikel'] = $artikelModel->select('artikel.*,user.nama as owner,kategori.kategori as kategori')->joinUser()->joinKategori()->getArtikel()->orderBy('artikel.tgl_upload DESC')->paginate(5);
+        $data['artikel'] = $artikelModel->select('artikel.*,user.nama as owner,kategori.kategori as kategori')->joinUser()->joinKategori()->artikelShow()->orderBy('artikel.tgl_upload DESC')->paginate(5);
         $data['paging']  = $artikelModel->pager;
 
         $data['arsip']  = $artikelModel->arsip_show();
