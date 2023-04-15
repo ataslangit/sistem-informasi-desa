@@ -1,6 +1,10 @@
 <?php
 
-class KategoriModel extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class KategoriModel extends Model
 {
     protected $table = 'kategori';
 

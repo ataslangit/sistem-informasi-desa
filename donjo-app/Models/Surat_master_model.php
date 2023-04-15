@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class Surat_master_model extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class Surat_master_model extends Model
 {
     public function autocomplete()
     {

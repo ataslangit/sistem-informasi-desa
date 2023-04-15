@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class Analisis_kategori_model extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class Analisis_kategori_model extends Model
 {
     public function autocomplete()
     {

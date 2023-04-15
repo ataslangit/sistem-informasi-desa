@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class First_artikel_m extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class First_artikel_m extends Model
 {
     public function get_headline()
     {

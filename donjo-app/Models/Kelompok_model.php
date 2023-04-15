@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class Kelompok_model extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class Kelompok_model extends Model
 {
     public function autocomplete()
     {

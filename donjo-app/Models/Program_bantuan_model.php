@@ -1,6 +1,10 @@
 <?php
 
-class Program_bantuan_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Program_bantuan_model extends Model
 {
     public function list_program($sasaran = 0)
     {

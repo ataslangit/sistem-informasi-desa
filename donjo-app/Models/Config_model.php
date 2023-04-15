@@ -1,6 +1,10 @@
 <?php
 
-class Config_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Config_model extends Model
 {
     public function gawe_surat()
     {

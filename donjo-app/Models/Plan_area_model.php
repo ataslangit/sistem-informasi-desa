@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class Plan_area_model extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class Plan_area_model extends Model
 {
     public function autocomplete()
     {

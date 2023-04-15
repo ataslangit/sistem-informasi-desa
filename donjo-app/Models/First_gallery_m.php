@@ -1,8 +1,11 @@
 <?php
 
-use App\Libraries\Paging;
+namespace App\Models;
 
-class First_gallery_m extends CI_Model
+use App\Libraries\Paging;
+use CodeIgniter\Model;
+
+class First_gallery_m extends Model
 {
     public function paging($p = 1)
     {
