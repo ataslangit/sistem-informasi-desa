@@ -10,20 +10,6 @@ use App\Models\Penduduk;
 
 class First extends BaseController
 {
-    public function __construct()
-    {
-
-        // mandiri_timeout();
-
-        // $this->load->model('header_model');
-        // $this->load->model('first_keluarga_m');
-        // $this->load->model('first_m');
-        // $this->load->model('KategoriModel', 'kategori_model');
-        // $this->load->model('penduduk_model');
-        // $this->load->model('surat_model');
-        // $this->load->model('surat_keluar_model');
-    }
-
     /**
      * Menampilkan halaman utama
      *
@@ -33,10 +19,10 @@ class First extends BaseController
      */
     public function index($p = 1)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $data['p']             = $p;
@@ -101,10 +87,10 @@ class First extends BaseController
 
     public function mandiri($p = 1, $m = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         if ($_SESSION['mandiri'] !== 1) {
@@ -146,10 +132,10 @@ class First extends BaseController
 
     public function artikel($id = '', $p = 1)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $id           = explode('-', $id);
@@ -180,10 +166,10 @@ class First extends BaseController
 
     public function arsip($p = 1)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $data['p']      = $p;
@@ -209,10 +195,10 @@ class First extends BaseController
 
     public function gallery($p = 1)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $data['p']    = $p;
@@ -242,10 +228,10 @@ class First extends BaseController
 
     public function sub_gallery($gal = 0, $p = 1)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $data['p']    = $p;
@@ -279,9 +265,9 @@ class First extends BaseController
 
     public function statistik($stat = '', $tipe = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
+        $configModel   = new Config_model();
+        $menuModel     = new Menu();
+        $artikelModel  = new Artikel();
         $pendudukModel = new Penduduk();
 
         switch ($stat) {
@@ -340,9 +326,9 @@ class First extends BaseController
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
+        $configModel   = new Config_model();
+        $menuModel     = new Menu();
+        $artikelModel  = new Artikel();
         $pendudukModel = new Penduduk();
 
         $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
@@ -371,9 +357,9 @@ class First extends BaseController
 
     public function wilayah()
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
+        $configModel   = new Config_model();
+        $menuModel     = new Menu();
+        $artikelModel  = new Artikel();
         $pendudukModel = new Penduduk();
 
         $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
@@ -398,9 +384,9 @@ class First extends BaseController
 
     public function statistik_k($tipex = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
+        $configModel   = new Config_model();
+        $menuModel     = new Menu();
+        $artikelModel  = new Artikel();
         $pendudukModel = new Penduduk();
 
         $data['tipe']  = 2;
@@ -425,9 +411,9 @@ class First extends BaseController
 
     public function agenda($stat = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
+        $configModel   = new Config_model();
+        $menuModel     = new Menu();
+        $artikelModel  = new Artikel();
         $pendudukModel = new Penduduk();
 
         $data['desa']        = $configModel->first();
@@ -446,10 +432,10 @@ class First extends BaseController
 
     public function kategori($kat = 0, $p = 0)
     {
-        $configModel = new Config_model();
-        $menuModel   = new Menu();
-        $artikelModel = new Artikel();
-        $pendudukModel = new Penduduk();
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
         $gambarGelleryModel = new GambarGallery();
 
         $data['p']         = $p;
@@ -479,7 +465,7 @@ class First extends BaseController
 
     public function add_comment($id = 0)
     {
-        $configModel = new Config_model();
+        $configModel  = new Config_model();
         $artikelModel = new Artikel();
 
         $artikelModel->insert_comment($id);
