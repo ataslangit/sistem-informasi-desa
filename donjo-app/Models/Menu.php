@@ -4,14 +4,30 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class First_menu_m extends Model
+class Menu extends Model
 {
+    protected $table            = 'menu';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'nama',
+        'link',
+        'tipe',
+        'parrent',
+        'link_tipe',
+        'enabled',
+    ];
+
     public function list_menu_atas()
     {
         $sql = 'SELECT m.* FROM menu m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1 order by id asc';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -20,7 +36,7 @@ class First_menu_m extends Model
 
             $sql2  = 'SELECT s.* FROM menu s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['menu'] = $data[$i]['menu'] . '<ul>';
@@ -45,7 +61,7 @@ class First_menu_m extends Model
         $sql = "SELECT m.*,m.kategori AS nama FROM kategori m WHERE m.parrent =0 AND m.enabled = 1 AND m.kategori <> 'teks_berjalan' ORDER BY id";
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
 
         while ($i < count($data)) {
@@ -53,7 +69,7 @@ class First_menu_m extends Model
 
             $sql2  = 'SELECT s.*,s.kategori AS nama FROM kategori s WHERE s.parrent = ? AND s.enabled = 1';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['menu'] = $data[$i]['menu'] . '<ul>';

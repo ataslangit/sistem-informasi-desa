@@ -1,35 +1,5 @@
 <?php
 
-if (! function_exists('view')) {
-    /**
-     * fungsi view() untuk menggantikan $this->load->view()
-     */
-    function view(string $view, array $data = [], bool $return = false)
-    {
-        $CI = &get_instance();
-
-        $CI->load->view($view, $data, $return);
-    }
-}
-
-if (! function_exists('dd')) {
-    /**
-     * Dump & die
-     *
-     * @param mixed ...$args
-     *
-     * @return void
-     */
-    function dd(...$args)
-    {
-        if (ENVIRONMENT === 'development') {
-            var_dump($args);
-
-            exit;
-        }
-    }
-}
-
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)
@@ -426,11 +396,11 @@ function getBulan($bln)
     }
 }
 
-function timer()
-{
-    $time                = 2000;
-    $_SESSION['timeout'] = time() + $time;
-}
+// function timer()
+// {
+//     $time                = 2000;
+//     $_SESSION['timeout'] = time() + $time;
+// }
 function generator($length = 7)
 {
     return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);

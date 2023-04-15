@@ -80,13 +80,13 @@ class Config_model extends Model
         $query = $this->db->query($sql);
 
         if ($return_array) {
-            return $query->result_array();
+            return $query->getResultArray();
         }
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
-    public function insert()
+    public function insert_()
     {
         $outp = $this->db->insert('config', $_POST);
         if ($outp) {
@@ -96,7 +96,7 @@ class Config_model extends Model
         }
     }
 
-    public function update($id = 0)
+    public function update_($id = 0)
     {
         $data        = $_POST;
         $lokasi_file = $_FILES['logo']['tmp_name'];
