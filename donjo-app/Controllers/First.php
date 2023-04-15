@@ -12,10 +12,8 @@ class First extends BaseController
 {
     /**
      * Menampilkan halaman utama
-     *
-     * @return string
      */
-    public function index()
+    public function index(): string
     {
         $configModel        = new Config_model();
         $menuModel          = new Menu();
@@ -43,6 +41,38 @@ class First extends BaseController
         $data['w_cos']  = $artikelModel->cos_widget();
 
         return view('layouts/main.tpl.php', $data);
+    }
+
+    /**
+     * Menampilkan detail artikel
+     */
+    public function artikel(string $id): string
+    {
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
+        $gambarGelleryModel = new GambarGallery();
+
+        $id = explode('-', $id);
+        $id = $id[0];
+
+        $data['desa']           = $data['data_config'] = $configModel->first();
+        $data['teks_berjalan']  = $artikelModel->get_teks_berjalan();
+        $data['menu_atas']      = $menuModel->list_menu_atas();
+        $data['menu_kiri']      = $menuModel->list_menu_kiri();
+        $data['komentar']       = $artikelModel->list_komentar($id);
+        $data['sosmed']         = $artikelModel->list_sosmed();
+        $data['single_artikel'] = $artikelModel->get_artikel($id);
+        $data['arsip']          = $artikelModel->arsip_show();
+        $data['komen']          = $artikelModel->komentar_show();
+        $data['agenda']         = $artikelModel->agenda_show();
+        $data['slide']          = $artikelModel->slide_show();
+        $data['stat']           = $pendudukModel->list_data(5);
+        $data['w_gal']          = $gambarGelleryModel->gallery_widget();
+        $data['w_cos']          = $artikelModel->cos_widget();
+
+        return view('layouts/artikel.tpl.php', $data);
     }
 
     public function auth()
@@ -124,40 +154,6 @@ class First extends BaseController
             $data['m'] = $m;
             view('layouts/mandiri.php', $data);
         }
-    }
-
-    public function artikel($id = '', $p = 1)
-    {
-        $configModel        = new Config_model();
-        $menuModel          = new Menu();
-        $artikelModel       = new Artikel();
-        $pendudukModel      = new Penduduk();
-        $gambarGelleryModel = new GambarGallery();
-
-        $id           = explode('-', $id);
-        $id           = $id[0];
-        $data['p']    = $p;
-        $data['desa'] = $configModel->first();
-
-        $data['paging']  = $artikelModel->paging($p);
-        $data['artikel'] = $artikelModel->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
-
-        $data['teks_berjalan']  = $artikelModel->get_teks_berjalan();
-        $data['menu_atas']      = $menuModel->list_menu_atas();
-        $data['menu_kiri']      = $menuModel->list_menu_kiri();
-        $data['komentar']       = $artikelModel->list_komentar($id);
-        $data['sosmed']         = $artikelModel->list_sosmed();
-        $data['single_artikel'] = $artikelModel->get_artikel($id);
-        $data['arsip']          = $artikelModel->arsip_show();
-        $data['komen']          = $artikelModel->komentar_show();
-        $data['agenda']         = $artikelModel->agenda_show();
-        $data['slide']          = $artikelModel->slide_show();
-        $data['stat']           = $pendudukModel->list_data(5);
-        $data['w_gal']          = $gambarGelleryModel->gallery_widget();
-        $data['w_cos']          = $artikelModel->cos_widget();
-
-        $data['data_config'] = $configModel->first();
-        view('layouts/artikel.tpl.php', $data);
     }
 
     public function arsip($p = 1)

@@ -35,6 +35,7 @@ $routes->set404Override();
 $routes->get('/', [Main::class, 'index']);
 
 $routes->get('first', [First::class, 'index']);
+$routes->get('first/artikel/(:segment)', [First::class, 'artikel']);
 
 /*
  * --------------------------------------------------------------------
