@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Widget extends CI_Controller
+namespace App\Controllers;
+
+class Widget extends BaseController
 {
     public function __construct()
     {

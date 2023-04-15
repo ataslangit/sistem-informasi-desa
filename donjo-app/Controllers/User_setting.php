@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class User_setting extends CI_Controller
+namespace App\Controllers;
+
+class User_setting extends BaseController
 {
     public function __construct()
     {

@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Kelompok_master extends CI_Controller
+namespace App\Controllers;
+
+class Kelompok_master extends BaseController
 {
     public function __construct()
     {

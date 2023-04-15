@@ -1,10 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class Hom_desa extends CI_Controller
+class Hom_desa extends BaseController
 {
     public function __construct()
     {

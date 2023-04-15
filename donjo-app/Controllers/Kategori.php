@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Kategori extends CI_Controller
+namespace App\Controllers;
+
+class Kategori extends BaseController
 {
     public function __construct()
     {

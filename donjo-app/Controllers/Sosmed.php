@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Sosmed extends CI_Controller
+namespace App\Controllers;
+
+class Sosmed extends BaseController
 {
     public function __construct()
     {

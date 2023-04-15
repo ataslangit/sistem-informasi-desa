@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Program_bantuan extends CI_Controller
+namespace App\Controllers;
+
+class Program_bantuan extends BaseController
 {
     public function __construct()
     {

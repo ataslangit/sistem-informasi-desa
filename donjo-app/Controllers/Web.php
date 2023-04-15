@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Web extends CI_Controller
+namespace App\Controllers;
+
+class Web extends BaseController
 {
     public function __construct()
     {

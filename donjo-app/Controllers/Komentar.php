@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Komentar extends CI_Controller
+namespace App\Controllers;
+
+class Komentar extends BaseController
 {
     public function __construct()
     {

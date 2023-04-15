@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Gis extends CI_Controller
+namespace App\Controllers;
+
+class Gis extends BaseController
 {
     public function __construct()
     {

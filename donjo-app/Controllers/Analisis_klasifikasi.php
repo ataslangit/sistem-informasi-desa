@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_klasifikasi extends CI_Controller
+namespace App\Controllers;
+
+class Analisis_klasifikasi extends BaseController
 {
     public function __construct()
     {
