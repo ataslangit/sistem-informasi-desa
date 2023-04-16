@@ -32,7 +32,7 @@ if (is_array($title)) {
 ?>
 <div class="box box-primary" style="margin-left:.2	5em;">
     <div class="box-header with-border">
-        <h3 class="box-title"><?= $title ?></h3>
+        <h3 class="box-title"><?= esc($title) ?></h3>
     </div>
     <div class="box-body">
         <?php if ($artikel) : ?>

@@ -36,6 +36,7 @@ $routes->get('/', [Main::class, 'index']);
 
 $routes->get('first', [First::class, 'index']);
 $routes->get('first/artikel/(:segment)', [First::class, 'artikel']);
+$routes->get('first/kategori/(:num)', [First::class, 'kategori']);
 
 /*
  * --------------------------------------------------------------------

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Artikel;
 use App\Models\Config_model;
 use App\Models\GambarGallery;
+use App\Models\Kategori;
 use App\Models\Menu;
 use App\Models\Penduduk;
 
@@ -73,6 +74,42 @@ class First extends BaseController
         $data['w_cos']          = $artikelModel->cos_widget();
 
         return view('layouts/artikel.tpl.php', $data);
+    }
+
+    /**
+     * Menampilkan halaman kategori
+     */
+    public function kategori(int $kat): string
+    {
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
+        $gambarGelleryModel = new GambarGallery();
+        $kategoriModel      = new Kategori();
+
+        $data['desa']      = $data['data_config'] = $configModel->first();
+        $data['menu_atas'] = $menuModel->list_menu_atas();
+        $data['menu_kiri'] = $menuModel->list_menu_kiri();
+        $data['headline']  = null;
+
+        $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
+
+        $data['artikel'] = $artikelModel->select('artikel.*,user.nama as owner,kategori.kategori as kategori')->joinUser()->joinKategori()->listArtikel($kat)->orderBy('artikel.tgl_upload DESC')->paginate(5);
+        $data['paging']  = $artikelModel->pager;
+
+        $data['arsip']  = $artikelModel->arsip_show();
+        $data['komen']  = $artikelModel->komentar_show();
+        $data['agenda'] = $artikelModel->agenda_show();
+        $data['slide']  = $artikelModel->slide_show();
+        $data['stat']   = $pendudukModel->list_data(4);
+        $data['sosmed'] = $artikelModel->list_sosmed();
+        $data['w_gal']  = $gambarGelleryModel->gallery_widget();
+        $data['w_cos']  = $artikelModel->cos_widget();
+
+        $data['judul_kategori'] = $kategoriModel->find($kat)['kategori'];
+
+        return view('layouts/main.tpl.php', $data);
     }
 
     public function auth()
@@ -419,39 +456,6 @@ class First extends BaseController
         $data['stat']        = $pendudukModel->list_data(4);
         $data['data_config'] = $configModel->first();
 
-        view('layouts/main.tpl.php', $data);
-    }
-
-    public function kategori($kat = 0, $p = 0)
-    {
-        $configModel        = new Config_model();
-        $menuModel          = new Menu();
-        $artikelModel       = new Artikel();
-        $pendudukModel      = new Penduduk();
-        $gambarGelleryModel = new GambarGallery();
-
-        $data['p']         = $p;
-        $data['desa']      = $configModel->first();
-        $data['menu_atas'] = $menuModel->list_menu_atas();
-        $data['menu_kiri'] = $menuModel->list_menu_kiri();
-        $data['headline']  = null;
-
-        $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
-        $data['paging']        = $artikelModel->paging_kat($p, $kat);
-        $data['artikel']       = $artikelModel->list_artikel($data['paging']->offset, $data['paging']->per_page, $kat);
-
-        $data['arsip']  = $artikelModel->arsip_show();
-        $data['komen']  = $artikelModel->komentar_show();
-        $data['agenda'] = $artikelModel->agenda_show();
-        $data['slide']  = $artikelModel->slide_show();
-        $data['stat']   = $pendudukModel->list_data(4);
-        $data['sosmed'] = $artikelModel->list_sosmed();
-        $data['w_gal']  = $gambarGelleryModel->gallery_widget();
-        $data['w_cos']  = $artikelModel->cos_widget();
-
-        $data['judul_kategori'] = $this->kategori_model->get($kat);
-
-        $data['data_config'] = $configModel->first();
         view('layouts/main.tpl.php', $data);
     }
 

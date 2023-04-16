@@ -57,7 +57,7 @@ class Artikel extends Model
     }
 
     /**
-     * ambil data artikel, berhubungan dengan `joinKategori()`
+     * ambil data artikel, wajib panggil `joinKategori()`
      *
      * @return $this
      */
@@ -69,6 +69,25 @@ class Artikel extends Model
                 'artikel.headline <>'  => '1',
                 'kategori.tipe'        => '1',
                 'kategori.kategori <>' => 'teks_berjalan',
+            ]);
+
+        return $this;
+    }
+
+    /**
+     * Ambil data artikel berdasarkan kategori, wajib panggil `joinKategori`
+     *
+     * @return $this
+     */
+    public function listArtikel(int $kategori_id)
+    {
+        $this->builder()
+            ->where([
+                'artikel.enabled'     => '1',
+                'artikel.id_kategori' => $kategori_id,
+            ])
+            ->orWhere([
+                'kategori.parrent' => $kategori_id,
             ]);
 
         return $this;
@@ -287,25 +306,6 @@ class Artikel extends Model
         $query = $this->db->query($sql, $id);
         if ($query->getNumRows() > 0) {
             $data = $query->getRowArray();
-        } else {
-            $data = false;
-        }
-
-        return $data;
-    }
-
-    public function list_artikel($offset = 0, $limit = 50, $id = 0)
-    {
-        $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-        $sql        = 'SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE a.enabled=1 ';
-        if ($id !== 0) {
-            $sql .= "AND id_kategori = {$id} OR parrent = {$id}";
-        }
-        $sql .= ' ORDER BY a.tgl_upload DESC ';
-        $sql .= $paging_sql;
-        $query = $this->db->query($sql);
-        if ($query->getNumRows() > 0) {
-            $data = $query->getResultArray();
         } else {
             $data = false;
         }
