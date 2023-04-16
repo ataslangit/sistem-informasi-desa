@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Controllers\First;
 use App\Controllers\Main;
+use App\Controllers\Siteman;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -43,6 +44,11 @@ $routes->group('first', static function ($routes) {
     $routes->get('statistik/(:segment)', [First::class, 'statistik']);
     $routes->get('statistik/(:segment)/(:num)', [First::class, 'statistik']);
     $routes->get('wilayah', [First::class, 'wilayah']);
+});
+
+$routes->group('siteman', static function ($routes) {
+    $routes->get('/', [Siteman::class, 'index'], ['as' => 'login.view']);
+    $routes->post('/', [Siteman::class, 'auth'], ['as' => 'login.auth']);
 });
 
 /*

@@ -61,7 +61,7 @@ class User_model extends Model
     {
         $sql   = "SELECT id_grup FROM user WHERE session=? AND session <> ''";
         $query = $this->db->query($sql, [$sesi]);
-        $row   = $query->row_array();
+        $row   = $query->getRowArray();
         if ($this->cek_login()) {
             if (isset($row['id_grup'])) {
                 return $row['id_grup'];
@@ -124,14 +124,14 @@ class User_model extends Model
 
         $sql   = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1) AS pend,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =1) AS lk,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =2) AS pr,(SELECT COUNT(id) FROM tweb_keluarga) AS kk';
         $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         $bln = date('m');
         $thn = date('Y');
 
         $sql   = "SELECT * FROM log_bulanan WHERE month(tgl) = {$bln} AND year(tgl) = {$thn}";
         $query = $this->db->query($sql);
-        $ada   = $query->result_array();
+        $ada   = $query->getResultArray();
 
         if (! $ada) {
             $this->db->insert('log_bulanan', $data);
@@ -148,7 +148,7 @@ class User_model extends Model
         $sql = 'SELECT username FROM user
 					UNION SELECT nama FROM user';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $outp  = '';
 
@@ -190,7 +190,7 @@ class User_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM user u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
@@ -235,7 +235,7 @@ class User_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
         $j     = $offset;
 
@@ -361,7 +361,7 @@ class User_model extends Model
     {
         $sql   = 'SELECT * FROM user WHERE id=?';
         $query = $this->db->query($sql, $id);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         $data['password'] = 'radiisi';
 
@@ -422,6 +422,6 @@ class User_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }
