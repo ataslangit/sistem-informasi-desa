@@ -38,6 +38,7 @@ $routes->get('first', [First::class, 'index']);
 $routes->get('first/artikel/(:segment)', [First::class, 'artikel']);
 $routes->get('first/kategori/(:num)', [First::class, 'kategori']);
 $routes->get('first/gallery', [First::class, 'gallery']);
+$routes->get('first/sub_gallery/(:num)', [First::class, 'sub_gallery']);
 
 /*
  * --------------------------------------------------------------------

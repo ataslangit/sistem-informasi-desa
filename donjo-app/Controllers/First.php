@@ -112,7 +112,10 @@ class First extends BaseController
         return view('layouts/main.tpl.php', $data);
     }
 
-    public function gallery()
+    /**
+     * Menampilkan halaman album gallery
+     */
+    public function gallery(): string
     {
         $configModel        = new Config_model();
         $menuModel          = new Menu();
@@ -140,6 +143,43 @@ class First extends BaseController
         $data['w_cos'] = $artikelModel->cos_widget();
 
         return view('layouts/gallery.tpl.php', $data);
+    }
+
+    /**
+     * Menampilkan isi album gallery
+     */
+    public function sub_gallery(int $gal = 0): string
+    {
+        $configModel        = new Config_model();
+        $menuModel          = new Menu();
+        $artikelModel       = new Artikel();
+        $pendudukModel      = new Penduduk();
+        $gambarGelleryModel = new GambarGallery();
+
+        $data['gal']  = $gal;
+        $data['desa'] = $configModel->first();
+
+        $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
+        $data['menu_atas']     = $menuModel->list_menu_atas();
+        $data['menu_kiri']     = $menuModel->list_menu_kiri();
+
+        $data['gallery'] = $gambarGelleryModel->subGalleryShow($gal)->paginate(50);
+        $data['paging']  = $gambarGelleryModel->pager;
+
+        $data['parrent'] = $gambarGelleryModel->get_parrent($gal);
+        $data['arsip']   = $artikelModel->arsip_show();
+        $data['komen']   = $artikelModel->komentar_show();
+        $data['agenda']  = $artikelModel->agenda_show();
+        $data['slide']   = $artikelModel->slide_show();
+        $data['sosmed']  = $artikelModel->list_sosmed();
+
+        $data['stat']        = $pendudukModel->list_data(4);
+        $data['w_gal']       = $gambarGelleryModel->gallery_widget();
+        $data['w_cos']       = $artikelModel->cos_widget();
+        $data['data_config'] = $configModel->first();
+        $data['mode']        = 1;
+
+        return view('layouts/sub_gallery.tpl.php', $data);
     }
 
     public function auth()
@@ -250,43 +290,6 @@ class First extends BaseController
         $data['data_config']   = $configModel->first();
 
         view('layouts/arsip.tpl.php', $data);
-    }
-
-    public function sub_gallery($gal = 0, $p = 1)
-    {
-        $configModel        = new Config_model();
-        $menuModel          = new Menu();
-        $artikelModel       = new Artikel();
-        $pendudukModel      = new Penduduk();
-        $gambarGelleryModel = new GambarGallery();
-
-        $data['p']    = $p;
-        $data['gal']  = $gal;
-        $data['desa'] = $configModel->first();
-
-        $data['paging']  = $gambarGelleryModel->paging($p);
-        $data['gallery'] = $gambarGelleryModel->gallery_show($data['paging']->offset, $data['paging']->per_page);
-
-        $data['teks_berjalan'] = $artikelModel->get_teks_berjalan();
-        $data['menu_atas']     = $menuModel->list_menu_atas();
-        $data['menu_kiri']     = $menuModel->list_menu_kiri();
-
-        $data['paging']  = $gambarGelleryModel->paging2($gal, $p);
-        $data['gallery'] = $gambarGelleryModel->sub_gallery_show($gal, $data['paging']->offset, $data['paging']->per_page);
-
-        $data['parrent'] = $gambarGelleryModel->get_parrent($gal);
-        $data['arsip']   = $artikelModel->arsip_show();
-        $data['komen']   = $artikelModel->komentar_show();
-        $data['agenda']  = $artikelModel->agenda_show();
-        $data['slide']   = $artikelModel->slide_show();
-        $data['sosmed']  = $artikelModel->list_sosmed();
-
-        $data['stat']        = $pendudukModel->list_data(4);
-        $data['w_gal']       = $gambarGelleryModel->gallery_widget();
-        $data['w_cos']       = $artikelModel->cos_widget();
-        $data['data_config'] = $configModel->first();
-        $data['mode']        = 1;
-        view('layouts/sub_gallery.tpl.php', $data);
     }
 
     public function statistik($stat = '', $tipe = 0)

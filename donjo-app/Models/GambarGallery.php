@@ -23,6 +23,25 @@ class GambarGallery extends Model
         'tipe',
     ];
 
+    /**
+     * Builder untuk menampilkan isi album gallery
+     *
+     * @return $this
+     */
+    public function subGalleryShow(int $albumGallery)
+    {
+        $this->builder()
+            ->groupStart()
+            ->where(['enabled' => '1'])
+            ->groupStart()
+            ->where('parrent', $albumGallery)
+            ->orWhere('id', $albumGallery)
+            ->groupEnd()
+            ->groupEnd();
+
+        return $this;
+    }
+
     public function paging($p = 1)
     {
         $paging = new Paging();
@@ -41,18 +60,6 @@ class GambarGallery extends Model
         return $paging;
     }
 
-    public function gallery_show($offset = 0, $limit = 50)
-    {
-        $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        $sql = "SELECT * FROM gambar_gallery WHERE enabled=1 AND tipe='0' ";
-        $sql .= $paging_sql;
-
-        $query = $this->db->query($sql);
-
-        return $query->getResultArray();
-    }
-
     public function paging2($gal = 0, $p = 1)
     {
         $paging = new Paging();
@@ -69,18 +76,6 @@ class GambarGallery extends Model
         $paging->init($cfg);
 
         return $paging;
-    }
-
-    public function sub_gallery_show($gal = 0, $offset = 0, $limit = 50)
-    {
-        $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
-
-        $sql = "SELECT * FROM gambar_gallery WHERE ((enabled='1') AND ((parrent='" . $gal . "') OR (id='" . $gal . "'))) ";
-        $sql .= $paging_sql;
-
-        $query = $this->db->query($sql);
-
-        return $query->getResultArray();
     }
 
     public function get_parrent($parrent)
