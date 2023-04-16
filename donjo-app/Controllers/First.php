@@ -292,7 +292,7 @@ class First extends BaseController
         view('layouts/arsip.tpl.php', $data);
     }
 
-    public function statistik($stat = '', $tipe = 0)
+    public function statistik(string $stat = '', int $tipe = 0)
     {
         $configModel   = new Config_model();
         $menuModel     = new Menu();
@@ -324,7 +324,8 @@ class First extends BaseController
             case 'warga-negara':$data['heading'] = 'Warga Negara';
                 break;
 
-            case 'wilayah':redirect('first/wilayah');
+            case 'wilayah':
+                return redirect()->to('first/wilayah');
                 break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';

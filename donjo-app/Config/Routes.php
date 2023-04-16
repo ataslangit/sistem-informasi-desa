@@ -34,11 +34,16 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', [Main::class, 'index']);
 
-$routes->get('first', [First::class, 'index']);
-$routes->get('first/artikel/(:segment)', [First::class, 'artikel']);
-$routes->get('first/kategori/(:num)', [First::class, 'kategori']);
-$routes->get('first/gallery', [First::class, 'gallery']);
-$routes->get('first/sub_gallery/(:num)', [First::class, 'sub_gallery']);
+$routes->group('first', static function ($routes) {
+    $routes->get('/', [First::class, 'index']);
+    $routes->get('artikel/(:segment)', [First::class, 'artikel']);
+    $routes->get('kategori/(:num)', [First::class, 'kategori']);
+    $routes->get('gallery', [First::class, 'gallery']);
+    $routes->get('sub_gallery/(:num)', [First::class, 'sub_gallery']);
+    $routes->get('statistik/(:segment)', [First::class, 'statistik']);
+    $routes->get('statistik/(:segment)/(:num)', [First::class, 'statistik']);
+    $routes->get('wilayah', [First::class, 'wilayah']);
+});
 
 /*
  * --------------------------------------------------------------------
