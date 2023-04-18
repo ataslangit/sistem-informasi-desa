@@ -39,19 +39,20 @@
                 'type'    => 'submit',
             ]) ?>
 
-            <?php /* if($_SESSION['siteman']==-1){?>
+            <?php if(session()->has('alert')) : ?>
                 <div id="note">
-                    Login Gagal. Username atau Password yang Anda masukkan salah!
+                    <?= esc(session()->get('alert')) ?>
                 </div>
-                <?php }elseif($_SESSION['siteman']== -2){?>
-                <div id="note">
-                    Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
-                </div>
-                <?php } unset($_SESSION['siteman']); */ ?>
+            <?php endif ?>
+
             <?= form_close() ?>
         </div>
         <div id="facebook2">
-            <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?php echo base_url('assets/images/logo-combine.png') ?>"></a></div>
+            <div id="kab2">
+                <a href="http://combine.or.id" target="_blank" rel="nofollow">
+                    <img align=center src="<?php echo base_url('assets/images/logo-combine.png') ?>" alt="">
+                </a>
+            </div>
         </div>
     </div>
 </body>

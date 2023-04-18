@@ -4,47 +4,67 @@ namespace App\Controllers;
 
 use App\Models\Config_model;
 use App\Models\User_model;
+use CodeIgniter\I18n\Time;
 
 class Siteman extends BaseController
 {
-    public function index()
+    /**
+     * Menampilkan halaman view login siteman
+     */
+    public function index(): string
     {
-        // $userModel = new User_model();
         $configModel = new Config_model();
-
-        // $userModel->logout();
-        $header = [
+        $header      = [
             'desa' => $configModel->get_data(),
         ];
-
-        // if (! isset($_SESSION['siteman'])) {
-        //     $_SESSION['siteman'] = 0;
-        // }
-        // $_SESSION['success']    = 0;
-        // $_SESSION['per_page']   = 10;
-        // $_SESSION['cari']       = '';
-        // $_SESSION['pengumuman'] = 0;
-        // $_SESSION['sesi']       = 'kosong';
-        // $_SESSION['timeout']    = 0;
-        // $_SESSION['siteman'] = 0;
 
         return view('siteman', $header);
     }
 
-    public function auth()
+    /**
+     * Memproses login dari halaman view siteman
+     */
+    public function auth(): \CodeIgniter\HTTP\RedirectResponse
     {
         $userModel = new User_model();
 
-        $userModel->siteman();
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        $message  = 'Login Gagal. Username atau Password yang Anda masukkan salah!';
 
-        return redirect('main');
-    }
+        $row = $userModel->select('id,password,session,id_grup')
+            ->where('username', $username)->first();
 
-    public function login()
-    {
-        $userModel = new User_model();
+        if ($row !== null) {
+            if (hash_password($password) === $row['password']) {
+                $sesi = hash_password(time() . $password);
 
-        $userModel->logout();
-        redirect('siteman');
+                session()->set([
+                    'loggedIn' => true,
+                    'sesi'     => $sesi,
+                    'userId'   => $row['id'],
+                    'grup'     => $row['id_grup'],
+                    'timeout'  => time() + 3600,
+                ]);
+
+                // update tabel user
+                $userModel->update($row['id'], [
+                    'session'    => $sesi,
+                    'last_login' => Time::now()->toDateTimeString(),
+                ]);
+
+                $message = 'Login Berhasil.';
+            } else {
+                session()->set([
+                    'loggedIn' => false,
+                ]);
+            }
+        } else {
+            session()->set([
+                'loggedIn' => false,
+            ]);
+        }
+
+        return redirect()->back()->with('alert', $message);
     }
 }

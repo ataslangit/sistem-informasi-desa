@@ -46,7 +46,7 @@ $routes->group('first', static function ($routes) {
     $routes->get('wilayah', [First::class, 'wilayah']);
 });
 
-$routes->group('siteman', static function ($routes) {
+$routes->group('siteman', ['filter' => 'login:view'], static function ($routes) {
     $routes->get('/', [Siteman::class, 'index'], ['as' => 'login.view']);
     $routes->post('/', [Siteman::class, 'auth'], ['as' => 'login.auth']);
 });
