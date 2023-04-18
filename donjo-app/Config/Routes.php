@@ -33,7 +33,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', [Main::class, 'index']);
+$routes->get('/', [First::class, 'index']);
 
 $routes->group('first', static function ($routes) {
     $routes->get('/', [First::class, 'index']);
