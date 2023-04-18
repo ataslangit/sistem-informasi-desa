@@ -35,7 +35,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', [First::class, 'index']);
 
-$routes->get('instal', [Main::class, 'initial'], ['filter' => 'instal:done']);
+$routes->get('instal', [Main::class, 'initial'], ['filter' => 'instal:done', 'as' => 'instal.view']);
 
 $routes->group('first', static function ($routes) {
     $routes->get('/', [First::class, 'index']);

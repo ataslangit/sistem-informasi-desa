@@ -28,7 +28,7 @@ class Instal implements FilterInterface
         $instal = new Install();
 
         if (! $instal->cek()) {
-            return redirect()->to('instal');
+            return redirect()->route('instal.view');
         }
 
         if ($arguments === ['done'] && $instal->cek()) {
