@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\Instal;
 use App\Filters\Login;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -23,6 +24,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'login'         => Login::class,
+        'instal'        => Instal::class,
     ];
 
     /**
@@ -34,6 +36,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            'instal',
         ],
         'after' => [
             'toolbar',

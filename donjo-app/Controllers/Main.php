@@ -8,55 +8,12 @@ use App\Models\User_model;
 
 class Main extends BaseController
 {
-    public function index()
-    {
-        $install   = new Install();
-        $userModel = new User_model();
-
-        if ($install->cek()) {
-            if (isset($_SESSION['siteman'])) {
-                if (isset($_SESSION['sesi'])) {
-                    $grup = $userModel->sesi_grup($_SESSION['sesi']);
-
-                    switch ($grup) {
-                        case 1:
-                            return redirect()->to('hom_desa');
-                            break;
-
-                        case 2:
-                            return redirect()->to('hom_desa');
-                            break;
-
-                        case 3:
-                            return redirect()->to('web');
-                            break;
-
-                        case 4:
-                            return redirect()->to('web');
-                            break;
-
-                        default:
-                            if (isset($_SESSION['siteman'])) {
-                                return redirect()->to('siteman');
-                            }
-
-                            return redirect()->to('first');
-                    }
-                }
-            } else {
-                return redirect()->to('first');
-            }
-        } else {
-            return $this->initial();
-        }
-    }
-
     /**
      * View halaman instalasi pertama
      */
     public function initial()
     {
-        view('install');
+        return view('install');
     }
 
     public function install()

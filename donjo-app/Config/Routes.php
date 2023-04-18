@@ -35,6 +35,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', [First::class, 'index']);
 
+$routes->get('instal', [Main::class, 'initial'], ['filter' => 'instal:done']);
+
 $routes->group('first', static function ($routes) {
     $routes->get('/', [First::class, 'index']);
     $routes->get('artikel/(:segment)', [First::class, 'artikel']);
