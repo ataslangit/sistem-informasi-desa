@@ -45,7 +45,7 @@ class Login implements FilterInterface
                             break;
                     }
                 } else {
-                    return ;
+                    return;
                 }
             }
 

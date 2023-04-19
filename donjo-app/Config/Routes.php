@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\Admin\Hom_desa;
+use App\Controllers\Admin\Pengurus;
 use App\Controllers\First;
 use App\Controllers\Main;
 use App\Controllers\Siteman;
@@ -56,11 +57,21 @@ $routes->group('siteman', ['filter' => 'login:view'], static function ($routes) 
 
 $routes->group('admin', ['filter' => 'login:admin'], static function ($routes) {
     $routes->get('hom_desa', [Hom_desa::class, 'index'], ['as' => 'admin.dashboard']);
+    $routes->group('pengurus', ['filter' => 'login:admin'], static function ($routes) {
+        $routes->get('/', [Pengurus::class, 'index'], ['as' => 'admin.pengurus.index']);
+        $routes->get('form', [Pengurus::class, 'create'], ['as' => 'admin.pengurus.create']);
+        $routes->post('form', [Pengurus::class, 'submit'], ['as' => 'admin.pengurus.submit']);
+        $routes->get('edit/(:num)', [Pengurus::class, 'edit'], ['as' => 'admin.pengurus.edit']);
+        $routes->post('edit', [Pengurus::class, 'update'], ['as' => 'admin.pengurus.update']);
+        $routes->get('delete/(:num)', [Pengurus::class, 'delete'], ['as' => 'admin.pengurus.delete']);
+        $routes->post('delete_all', [Pengurus::class, 'delete_all'], ['as' => 'admin.pengurus.deleteAll']);
+    });
 
     $routes->addRedirect('/', 'admin.dashboard', 301);
 });
 
 $routes->addRedirect('hom_desa', 'admin.dashboard', 301);
+$routes->addRedirect('pengurus', 'admin.pengurus.index', 301);
 
 /*
  * --------------------------------------------------------------------
