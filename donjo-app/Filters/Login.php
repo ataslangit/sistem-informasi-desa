@@ -26,22 +26,39 @@ class Login implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $userModel = new User_model();
+        if (session()->has('sesi')) {
+            $grup = $userModel->sesi_grup(session()->get('sesi'));
+        }
 
-        // jika dan hanya untuk view halaman siteman login
-        if ($arguments === ['view']) {
-            if (session()->get('loggedIn')) {
-                $grup = $userModel->sesi_grup(session()->get('sesi'));
+        if ($arguments !== null && is_array($arguments)) {
+            if ($arguments === ['view']) {
+                if (session()->get('loggedIn')) {
+                    switch ($grup) {
+                        case 1:
+                        case 2:
+                            return redirect()->route('admin.dashboard');
+                            break;
 
-                switch ($grup) {
-                    case 1:
-                    case 2:
-                        return redirect()->to('hom_desa');
-                        break;
+                        case 3:
+                        case 4:
+                            return redirect()->to('web');
+                            break;
+                    }
+                } else {
+                    return ;
+                }
+            }
 
-                    case 3:
-                    case 4:
-                        return redirect()->to('web');
-                        break;
+            if ($arguments === ['admin']) {
+                if (session()->get('loggedIn')) {
+                    switch ($grup) {
+                        case 3:
+                        case 4:
+                            return redirect()->to('web');
+                            break;
+                    }
+                } else {
+                    return redirect()->route('login.view');
                 }
             }
         }

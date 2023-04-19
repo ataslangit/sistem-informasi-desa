@@ -1,32 +1,18 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
+use App\Models\Config_model;
 
 class Hom_desa extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('user_model');
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
-        }
-        $this->load->model('header_model');
-        $this->load->model('config_model');
-    }
-
     public function index()
     {
-        $_SESSION['delik'] = 0;
-        $nav['act']        = 0;
-        $header            = $this->header_model->get_data();
-        $data['main']      = $this->config_model->get_data();
-        view('header', $header);
-        view('home/nav', $nav);
-        view('home/konfigurasi_form', $data);
-        view('footer');
+        $configModel  = new Config_model();
+        $data['main'] = $configModel->get_data();
+
+        return view('admin/konfigurasi_form', $data);
     }
 
     public function about()

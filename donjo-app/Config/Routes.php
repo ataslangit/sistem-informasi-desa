@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\Admin\Hom_desa;
 use App\Controllers\First;
 use App\Controllers\Main;
 use App\Controllers\Siteman;
@@ -52,6 +53,14 @@ $routes->group('siteman', ['filter' => 'login:view'], static function ($routes) 
     $routes->get('/', [Siteman::class, 'index'], ['as' => 'login.view']);
     $routes->post('/', [Siteman::class, 'auth'], ['as' => 'login.auth']);
 });
+
+$routes->group('admin', ['filter' => 'login:admin'], static function ($routes) {
+    $routes->get('hom_desa', [Hom_desa::class, 'index'], ['as' => 'admin.dashboard']);
+
+    $routes->addRedirect('/', 'admin.dashboard', 301);
+});
+
+$routes->addRedirect('hom_desa', 'admin.dashboard', 301);
 
 /*
  * --------------------------------------------------------------------

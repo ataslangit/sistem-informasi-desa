@@ -4,8 +4,25 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Modul_model extends Model
+class SettingModul extends Model
 {
+    protected $table            = 'setting_modul';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'modul',
+        'url',
+        'aktif',
+        'ikon',
+        'urut',
+        'level',
+        'hidden',
+    ];
+
     public function list_data()
     {
         $sql = 'SELECT u.* FROM setting_modul u WHERE hidden = 0';
@@ -74,7 +91,7 @@ class Modul_model extends Model
         return $query->row_array();
     }
 
-    public function update($id = 0)
+    public function update_($id = 0)
     {
         $data = $_POST;
         $this->db->where('id', $id);
@@ -86,7 +103,7 @@ class Modul_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete_($id = '')
     {
         $sql  = 'DELETE FROM setting_modul WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
