@@ -12,7 +12,7 @@ $user = $userModel->find(session()->get('id'));
 
 $foto = '';
 $nama = 'Unknown';
-if($user !== null) {
+if ($user !== null) {
     $foto = $user[0]['foto'];
     $nama = $user[0]['nama'];
 }
@@ -81,45 +81,41 @@ $act = 0;
         </div>
     </div>
     <div class="ui-layout-center" id="wrapper">
-
-        <?php if (@$_SESSION['success'] == 1) : ?>
-            <script>
-                $(function() {
-                    notification('success', 'Data Berhasil Disimpan')();
-                });
-            </script>
-        <?php elseif (@$_SESSION['success'] == -1) : ?>
-            <script>
-                $(function() {
-                    notification('error', 'Data Gagal Disimpan')();
-                });
-            </script>
-        <?php endif; ?>
-
-        <?php $_SESSION['success'] = 0; ?>
+        <?php if (session()->has('success')) : ?>
+            <?php if (session()->get('success') === 1) : ?>
+                <script>
+                    $(function() {
+                        notification('success', 'Data Berhasil Disimpan')();
+                    });
+                </script>
+            <?php elseif (session()->get('success') === -1) : ?>
+                <script>
+                    $(function() {
+                        notification('error', 'Data Gagal Disimpan')();
+                    });
+                </script>
+            <?php endif ?>
+        <?php endif ?>
 
         <?= view_cell('AdminModul::nav') ?>
 
         <div id="nav">
             <ul>
-                <?php if ($_SESSION['grup'] == 1) { ?>
-                    <li <?php if ($act == 0) { ?>class="selected" <?php } ?>>
+                <?php if (session()->get('grup') === '1') { ?>
+                    <li <?php if (url_is('admin/hom_desa*')) { ?>class="selected" <?php } ?>>
                         <a href="<?php echo site_url('hom_desa') ?>">Identitas Desa</a>
                     </li>
                 <?php } ?>
-                <li <?php if ($act == 1) { ?>class="selected" <?php } ?>>
+                <li <?php if (url_is('admin/pengurus*')) { ?>class="selected" <?php } ?>>
                     <a href="<?php echo site_url('pengurus') ?>">Pemerintah Desa</a>
                 </li>
-                <li <?php if ($act == 2) { ?>class="selected" <?php } ?>>
+                <li <?php if (url_is('admin/about*')) { ?>class="selected" <?php } ?>>
                     <a href="<?php echo site_url('hom_desa/about') ?>">SID <?= VERSI_SID ?></a>
                 </li>
             </ul>
         </div>
 
-
         <?= $this->renderSection('content') ?>
-
-
 
     </div>
     <div class="ui-layout-south" id="footer">

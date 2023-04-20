@@ -58,7 +58,7 @@ class Pengurus extends BaseController
         }
 
         if (! $validation->withRequest($this->request)->run()) {
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('success', -1);
         }
 
         $pamongDesaModel = new Pamong();
@@ -72,7 +72,7 @@ class Pengurus extends BaseController
             'pamong_tgl_terdaftar' => Time::now()->toDateTimeString(),
         ]);
 
-        return redirect('admin.pengurus.index');
+        return redirect('admin.pengurus.index')->with('success', 1);
     }
 
     /**
@@ -105,7 +105,7 @@ class Pengurus extends BaseController
         }
 
         if (! $validation->withRequest($this->request)->run()) {
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('success', -1);
         }
 
         $pamongDesaModel = new Pamong();
@@ -119,7 +119,7 @@ class Pengurus extends BaseController
             'jabatan'       => $this->request->getPost('jabatan'),
         ]);
 
-        return redirect('admin.pengurus.index');
+        return redirect('admin.pengurus.index')->with('success', 1);
     }
 
     /**
