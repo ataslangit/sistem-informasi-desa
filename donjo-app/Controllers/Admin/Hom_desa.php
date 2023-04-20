@@ -7,10 +7,13 @@ use App\Models\Config_model;
 
 class Hom_desa extends BaseController
 {
-    public function index()
+    /**
+     * Menampilkan halaman view Identitas desa
+     */
+    public function index(): string
     {
         $configModel  = new Config_model();
-        $data['main'] = $configModel->get_data();
+        $data['main'] = $configModel->first();
 
         return view('admin/konfigurasi_form', $data);
     }
