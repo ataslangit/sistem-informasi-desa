@@ -103,14 +103,14 @@ $act = 0;
             <ul>
                 <?php if (session()->get('grup') === '1') { ?>
                     <li <?php if (url_is('admin/hom_desa*')) { ?>class="selected" <?php } ?>>
-                        <a href="<?php echo site_url('hom_desa') ?>">Identitas Desa</a>
+                        <a href="<?php echo site_url('admin/hom_desa') ?>">Identitas Desa</a>
                     </li>
                 <?php } ?>
                 <li <?php if (url_is('admin/pengurus*')) { ?>class="selected" <?php } ?>>
-                    <a href="<?php echo site_url('pengurus') ?>">Pemerintah Desa</a>
+                    <a href="<?php echo site_url('admin/pengurus') ?>">Pemerintah Desa</a>
                 </li>
                 <li <?php if (url_is('admin/about*')) { ?>class="selected" <?php } ?>>
-                    <a href="<?php echo site_url('hom_desa/about') ?>">SID <?= VERSI_SID ?></a>
+                    <a href="<?php echo site_url('admin/about') ?>">SID <?= VERSI_SID ?></a>
                 </li>
             </ul>
         </div>

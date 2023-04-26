@@ -61,6 +61,8 @@ $routes->group('admin', ['filter' => 'login:admin'], static function ($routes) {
         $routes->post('update', [Hom_desa::class, 'update'], ['as' => 'admin.infodesa.update']);
     });
 
+    $routes->get('about', [Hom_desa::class, 'about'], ['as' => 'admin.about']);
+
     $routes->group('pengurus', ['filter' => 'login:admin'], static function ($routes) {
         $routes->get('/', [Pengurus::class, 'index'], ['as' => 'admin.pengurus.index']);
         $routes->get('form', [Pengurus::class, 'create'], ['as' => 'admin.pengurus.create']);

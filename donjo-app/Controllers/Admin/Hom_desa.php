@@ -18,14 +18,14 @@ class Hom_desa extends BaseController
         return view('admin/konfigurasi_form', $data);
     }
 
+    /**
+     * Menampilkan halaman about pada siteman
+     *
+     * @return string
+     */
     public function about()
     {
-        $nav['act'] = 2;
-        $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('home/nav', $nav);
-        view('home/desa');
-        view('footer');
+        return view('admin/about/index');
     }
 
     public function insert()
