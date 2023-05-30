@@ -35,12 +35,12 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', [First::class, 'index']);
+$routes->get('/', [First::class, 'index'], ['as' => 'halaman.utama']);
 
 $routes->get('instal', [Main::class, 'initial'], ['filter' => 'instal:done', 'as' => 'instal.view']);
 
 $routes->group('first', static function ($routes) {
-    $routes->get('/', [First::class, 'index']);
+    $routes->addRedirect('/', 'halaman.utama');
     $routes->get('artikel/(:segment)', [First::class, 'artikel']);
     $routes->get('kategori/(:num)', [First::class, 'kategori']);
     $routes->get('gallery', [First::class, 'gallery']);
