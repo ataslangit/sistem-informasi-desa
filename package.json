@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "js-beautify": "^1.14.7",
+    "js-beautify": "^1.14.8",
     "laravel-vite-plugin": "^0.7.8",
     "sitemap": "^7.1.1",
     "vitepress": "^1.0.0-beta.1",
