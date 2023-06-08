@@ -9,9 +9,7 @@ permissions:
   pull-requests: write
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  PR: ${{ github.event.issue.pull_request.html_url }}
-  ISSUE: "${{ github.event.repository.html_url }}/issues/${{ github.event.issue.number }}"
-  
+
 jobs:
   squash_merge:
     runs-on: ubuntu-latest
@@ -24,8 +22,11 @@ jobs:
         run: gh pr merge ${{ env.PR }} -t "${{ env.SQUASH_TITLE }}" -b "" -s
         working-directory: ${{ github.workspace }}
         env:
+          PR: ${{ github.event.issue.pull_request.html_url }}
           SQUASH_TITLE: "(#${{ github.event.issue.number }}) ${{ github.event.issue.title }}"
           
       - name: Lock
         run: gh pr lock ${{ env.ISSUE }} -r "resolved"
         working-directory: ${{ github.workspace }}
+        env:
+          ISSUE: "${{ github.event.repository.html_url }}/issues/${{ github.event.issue.number }}"
