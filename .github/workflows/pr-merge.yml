@@ -19,7 +19,7 @@ jobs:
       github.event.comment.user.id == 2387514
     steps:
       - name: Squash & Merge
-        run: gh pr merge $PR -t "SQUASH_TITLE" -b "" -s
+        run: gh pr merge $PR -t "$SQUASH_TITLE" -b "" -s
         working-directory: ${{ github.workspace }}
         env:
           PR: ${{ github.event.issue.pull_request.html_url }}
