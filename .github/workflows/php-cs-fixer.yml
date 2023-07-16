@@ -2,6 +2,8 @@ name: 🔧 Style PHP-CS-Fixer
 
 on:
   pull_request:
+    paths:
+      - '**.php'
   
 jobs:
   php-cs-fixer:
