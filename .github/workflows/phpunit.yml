@@ -2,7 +2,7 @@ name: PHPUnit
 
 on:
   pull_request:
-    branches: 
+    branches:
       - develop
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['7.4', '8.0']
+        php-versions: ["7.4", "8.0"]
 
     runs-on: ubuntu-latest
 
@@ -44,8 +44,8 @@ jobs:
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
         # To prevent rate limiting you may need to supply an OAuth token in Settings > Secrets
         # env:
-          # https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens
-          # COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        # https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens
+        # COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-text

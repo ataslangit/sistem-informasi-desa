@@ -3,8 +3,8 @@ name: 🔧 Style PHP-CS-Fixer
 on:
   pull_request:
     paths:
-      - '**.php'
-  
+      - "**.php"
+
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
@@ -20,5 +20,5 @@ jobs:
       - run: composer run csfix
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-            commit_message: Fixed & optimize by php-cs-fixer
-            commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit_message: Fixed & optimize by php-cs-fixer
+          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
