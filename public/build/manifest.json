@@ -1,4 +1,8 @@
 {
+  "resources/images/background.gif": {
+    "file": "assets/background.495b93dc.gif",
+    "src": "resources/images/background.gif"
+  },
   "resources/images/overlay.png": {
     "file": "assets/overlay.752df758.png",
     "src": "resources/images/overlay.png"
@@ -6,6 +10,14 @@
   "resources/images/controls.png": {
     "file": "assets/controls.32540d07.png",
     "src": "resources/images/controls.png"
+  },
+  "resources/images/tb.jpg": {
+    "file": "assets/tb.7435411d.jpg",
+    "src": "resources/images/tb.jpg"
+  },
+  "resources/images/tb2.jpg": {
+    "file": "assets/tb2.35531c99.jpg",
+    "src": "resources/images/tb2.jpg"
   },
   "resources/images/border.png": {
     "file": "assets/border.ad2bf304.png",
@@ -15,29 +27,22 @@
     "file": "assets/loading_background.3c95a8d9.png",
     "src": "resources/images/loading_background.png"
   },
-  "resources/images/background.gif": {
-    "file": "assets/background.495b93dc.gif",
-    "src": "resources/images/background.gif"
-  },
   "resources/images/loading.gif": {
     "file": "assets/loading.b91986fe.gif",
     "src": "resources/images/loading.gif"
   },
-  "resources/images/tb2.jpg": {
-    "file": "assets/tb2.35531c99.jpg",
-    "src": "resources/images/tb2.jpg"
-  },
-  "resources/images/tb.jpg": {
-    "file": "assets/tb.7435411d.jpg",
-    "src": "resources/images/tb.jpg"
+  "resources/css/default.css": {
+    "file": "assets/default.3e5be08e.css",
+    "src": "resources/css/default.css",
+    "isEntry": true
   },
   "resources/css/colorbox.css": {
-    "file": "assets/colorbox.749e7eb8.css",
+    "file": "assets/colorbox.fe38bb27.css",
     "src": "resources/css/colorbox.css",
     "isEntry": true
   },
   "resources/css/first.css": {
-    "file": "assets/first.79e4fcec.css",
+    "file": "assets/first.28c661bd.css",
     "src": "resources/css/first.css",
     "isEntry": true
   }

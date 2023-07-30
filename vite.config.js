@@ -7,6 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/css/colorbox.css",
+                "resources/css/default.css",
                 "resources/css/first.css",
             ],
             refresh: true,
