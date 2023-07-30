@@ -6,8 +6,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/css/first.css",
                 "resources/css/colorbox.css",
+                "resources/css/first.css",
             ],
             refresh: true,
         }),
