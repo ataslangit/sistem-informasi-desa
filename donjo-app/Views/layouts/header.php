@@ -29,11 +29,11 @@
     <link href="<?= base_url('build/vendors/fontawesome/css/font-awesome.min.css')?>" rel='stylesheet'>
     <link href="<?= asset('resources/css/first.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/ui-buttons.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/front/css/colorbox.css') ?>" rel="stylesheet">
+    <link href="<?= asset('resources/css/colorbox.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/front/js/stscode.js') ?>"></script>
     <script src="<?php echo base_url('assets/front/js/jquery.js') ?>"></script>
     <script src="<?php echo base_url('assets/front/js/layout.js') ?>"></script>
-    <script src="<?php echo base_url('assets/front/js/jquery.colorbox.js') ?>"></script>
+    <script src="<?= base_url('build/vendors/jquery.colorbox-min.js') ?>"></script>
     <script>
         $(document).ready(function() {
             $(".group2").colorbox({
