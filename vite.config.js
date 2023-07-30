@@ -18,6 +18,7 @@ export default defineConfig({
                 { src: "node_modules/font-awesome/fonts", dest: "vendors/fontawesome" },
 
                 { src: "node_modules/jquery-colorbox/jquery.colorbox-min.js", dest: "vendors" },
+                { src: "node_modules/jquery/jquery.min.*", dest: "vendors" },
             ],
         }),
     ],
