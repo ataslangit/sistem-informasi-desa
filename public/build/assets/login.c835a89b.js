@@ -1,1 +1,0 @@
-$(document).ready(function(){var i=$("#container");i.css({position:"absolute",margin:"0",top:($(window).height()-i.height())/2+"px",left:($(window).width()-i.width())/2+"px"}),i.css("top",($(window).height()-i.height())/2+"px"),i.css("left",($(window).width()-i.width())/2+"px")});

@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/js/login.js",
+                "resources/css/first.css",
             ],
             refresh: true,
         }),

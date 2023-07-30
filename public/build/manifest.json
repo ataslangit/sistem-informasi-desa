@@ -1,7 +1,19 @@
 {
-  "resources/js/login.js": {
-    "file": "assets/login.c835a89b.js",
-    "src": "resources/js/login.js",
+  "resources/images/background.gif": {
+    "file": "assets/background.495b93dc.gif",
+    "src": "resources/images/background.gif"
+  },
+  "resources/images/tb.jpg": {
+    "file": "assets/tb.7435411d.jpg",
+    "src": "resources/images/tb.jpg"
+  },
+  "resources/images/tb2.jpg": {
+    "file": "assets/tb2.35531c99.jpg",
+    "src": "resources/images/tb2.jpg"
+  },
+  "resources/css/first.css": {
+    "file": "assets/first.79e4fcec.css",
+    "src": "resources/css/first.css",
     "isEntry": true
   }
 }
