@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "font-awesome": "4.7.0"
+  },
   "devDependencies": {
     "js-beautify": "1.14.7",
     "laravel-vite-plugin": "0.7.8",
