@@ -16,7 +16,6 @@
     }
   },
   "config": {
-    "lock": false,
     "optimize-autoloader": true,
     "platform": {
       "php": "7.4.33"
@@ -26,6 +25,7 @@
     "vendor-dir": "donjo-sys"
   },
   "scripts": {
-    "csfix": "./donjo-sys/bin/php-cs-fixer fix"
+    "csfix": "./donjo-sys/bin/php-cs-fixer fix",
+    "update-resources": "git submodule update --init --remote resources"
   }
 }
