@@ -7,7 +7,7 @@
     });
 
 </script>
-<script src="<?php echo base_url('assets/front/js/jquery.colorbox.js')?>"></script>
+<script src="<?= base_url('build/vendors/jquery.colorbox-min.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $(".color2").colorbox({
@@ -17,7 +17,7 @@
     });
 
 </script>
-<link href="<?php echo base_url('assets/front/css/colorbox.css') ?>" rel="stylesheet">
+<link href="<?= asset('resources/css/colorbox.css') ?>" rel="stylesheet">
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
