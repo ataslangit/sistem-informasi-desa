@@ -3,7 +3,7 @@
     "js-beautify": "^1.14.9",
     "laravel-vite-plugin": "^0.7.8",
     "sitemap": "^7.1.1",
-    "vitepress": "^1.0.0-beta.6",
+    "vitepress": "^1.0.0-beta.7",
     "vue": "^3.3.4"
   },
   "scripts": {
