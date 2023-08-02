@@ -2,7 +2,8 @@
   "dependencies": {
     "font-awesome": "4.7.0",
     "jquery": "1.9",
-    "jquery-colorbox": "^1.6.4"
+    "jquery-colorbox": "^1.6.4",
+    "tinymce": "^4.3.7"
   },
   "devDependencies": {
     "js-beautify": "1.14.7",
