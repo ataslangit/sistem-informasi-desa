@@ -19,16 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          git remote
-          git branch
       - run: composer install
       - run: composer run csfix
       - run: |
           git config --local user.email "$COMMIT_USER_EMAIL"
           git config --local user.name "$COMMIT_USER_NAME"
           git commit -a -m "Fixed & optimize by php-cs-fixer"
-          git push
+          git push origin HEAD:${{github.head_ref}}
 
   format-view:
     needs: [php-cs-fixer]
@@ -55,4 +52,4 @@ jobs:
           git config --local user.email "$COMMIT_USER_EMAIL"
           git config --local user.name "$COMMIT_USER_NAME"
           git commit -a -m "Format view"
-          git push
+          git push origin HEAD:${{github.head_ref}}
