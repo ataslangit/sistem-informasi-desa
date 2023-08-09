@@ -19,7 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ toJson(github) }}
+      - run: |
+          git remote
+          git branch
       - run: composer install
       - run: composer run csfix
       - run: |
