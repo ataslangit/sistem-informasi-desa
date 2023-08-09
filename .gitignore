@@ -1,6 +1,5 @@
 .vscode/
 .env
-composer.lock
 
 # abaikan pada donjo-sys
 /donjo-sys/
