@@ -3,7 +3,7 @@ name: Fixer, Styling & Optimizer
 on:
   pull_request:
     paths:
-      - "docs/**"
+      - "donjo-app/Views**"
 
 permissions:
   actions: write
