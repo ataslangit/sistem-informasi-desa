@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: git remote -v
       - run: composer install
       - run: composer run csfix
       - run: |
