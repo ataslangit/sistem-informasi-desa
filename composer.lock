@@ -208,16 +208,16 @@
         },
         {
             "name": "kenjis/ci3-to-4-upgrade-helper",
-            "version": "v0.7.1",
+            "version": "v0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kenjis/ci3-to-4-upgrade-helper.git",
-                "reference": "0de196cdc9dc69a62fbb9d9fbfca681239549aad"
+                "reference": "c18e1bdb3a76cdc24c5ebe99af80e7690c855131"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kenjis/ci3-to-4-upgrade-helper/zipball/0de196cdc9dc69a62fbb9d9fbfca681239549aad",
-                "reference": "0de196cdc9dc69a62fbb9d9fbfca681239549aad",
+                "url": "https://api.github.com/repos/kenjis/ci3-to-4-upgrade-helper/zipball/c18e1bdb3a76cdc24c5ebe99af80e7690c855131",
+                "reference": "c18e1bdb3a76cdc24c5ebe99af80e7690c855131",
                 "shasum": ""
             },
             "require": {
@@ -266,9 +266,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kenjis/ci3-to-4-upgrade-helper/issues",
-                "source": "https://github.com/kenjis/ci3-to-4-upgrade-helper/tree/v0.7.1"
+                "source": "https://github.com/kenjis/ci3-to-4-upgrade-helper/tree/v0.7.2"
             },
-            "time": "2023-03-17T02:57:06+00:00"
+            "time": "2023-08-11T02:31:06+00:00"
         },
         {
             "name": "kenjis/phpunit-helper",
