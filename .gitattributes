@@ -7,6 +7,5 @@ composer.json export-ignore
 package-lock.json export-ignore
 package.json export-ignore
 
-.devcontainer/ export-ignore
 .github/ export-ignore
 docs export-ignore
