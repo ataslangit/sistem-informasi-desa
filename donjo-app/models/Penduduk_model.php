@@ -323,6 +323,7 @@ class Penduduk_model extends CI_Model
             return $log_sql;
         }
         $log_sql = '';
+
         // $log_sql= " AND u.status_dasar = 1 ";
         return $log_sql;
     }
