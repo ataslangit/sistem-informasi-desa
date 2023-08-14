@@ -781,8 +781,8 @@ class Analisis_respon_model extends CI_Model
                 $par             = $query2->result_array();
                 $data[$i]['par'] = $par;
 
-            //	$j++;
-            // }
+                //	$j++;
+                // }
             } else {
                 $data[$i]['par'] = null;
             }
@@ -1048,7 +1048,7 @@ class Analisis_respon_model extends CI_Model
                                     $n++;
                                 }
                             }
-                        // }
+                            // }
                         } else {
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                             $query = $this->db->query($sql, [$indi['id'], $isi]);
@@ -1186,7 +1186,7 @@ class Analisis_respon_model extends CI_Model
                                 $n++;
                             }
                         }
-                    // }
+                        // }
                     } else {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                         $query = $this->db->query($sql, [$indi['id'], $isi]);
@@ -1318,7 +1318,7 @@ class Analisis_respon_model extends CI_Model
                                 $n++;
                             }
                         }
-                    // }
+                        // }
                     } else {
                         $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND jawaban = ?;';
                         $query = $this->db->query($sql, [$indi['id'], $isi]);

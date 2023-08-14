@@ -14,8 +14,7 @@ $finder = Finder::create()
 $overrides = [];
 
 $options = [
-    'finder'       => $finder,
-    'customFixers' => FixerGenerator::create('donjo-sys/nexusphp/cs-config/src/Fixer', 'Nexus\\CsConfig\\Fixer'),
+    'finder' => $finder,
 ];
 
 return Factory::create(new CodeIgniter4(), $overrides, $options)->forProjects();
