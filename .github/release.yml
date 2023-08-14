@@ -6,7 +6,7 @@ changelog:
       - abaikan-rilis
       - dokumentasi
     authors:
-      - octocat
+      - dependabot
   categories:
     - title: 🚀 Peningkatan
       labels:
