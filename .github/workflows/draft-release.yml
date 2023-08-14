@@ -20,7 +20,7 @@ jobs:
         with:
           type: "zip"
           filename: "${{ steps.get_zipball_name.outputs.ZIPBALL_NAME }}.zip"
-          exclusions: "*.git* /*docs/* .editorconfig .php-cs-fixer.php code_of_conduct.md composer.json package-lock.json package.json"
+          exclusions: "*.git* /*docs/* /*resources/* .editorconfig .php-cs-fixer.php code_of_conduct.md composer.lock package-lock.json package.json vite.config.js"
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
