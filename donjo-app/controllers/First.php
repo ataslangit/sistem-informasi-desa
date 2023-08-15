@@ -11,19 +11,6 @@ class First extends CI_Controller
         parent::__construct();
 
         mandiri_timeout();
-
-        $this->load->model('header_model');
-        $this->load->model('config_model');
-        $this->load->model('first_keluarga_m');
-        $this->load->model('first_m');
-        $this->load->model('first_artikel_m');
-        $this->load->model('first_gallery_m');
-        $this->load->model('KategoriModel', 'kategori_model');
-        $this->load->model('first_menu_m');
-        $this->load->model('first_penduduk_m');
-        $this->load->model('penduduk_model');
-        $this->load->model('surat_model');
-        $this->load->model('surat_keluar_model');
     }
 
     public function auth()

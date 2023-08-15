@@ -9,13 +9,10 @@ class Modul extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-        $this->load->model('modul_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
         }
-        $this->load->model('header_model');
     }
 
     public function clear()

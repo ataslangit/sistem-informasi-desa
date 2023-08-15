@@ -9,14 +9,10 @@ class Web extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
             redirect('siteman');
         }
-        $this->load->model('header_model');
-        $this->load->model('web_artikel_model');
-        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()

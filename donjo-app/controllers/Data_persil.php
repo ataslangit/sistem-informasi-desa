@@ -9,16 +9,10 @@ class Data_persil extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
         }
-        $this->load->model('header_model');
-        $this->load->model('config_model');
-        $this->load->model('data_persil_model');
-        $this->load->model('penduduk_model');
     }
 
     public function clear()
@@ -224,7 +218,6 @@ class Data_persil extends CI_Controller
 
     public function import_proses()
     {
-        $this->load->model('import_model');
         $this->import_model->persil();
         redirect('data_persil');
     }

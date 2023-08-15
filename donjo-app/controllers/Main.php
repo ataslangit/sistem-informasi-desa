@@ -4,15 +4,6 @@ use App\Libraries\Install;
 
 class Main extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('header_model');
-        $this->load->model('user_model');
-        $this->load->model('config_model');
-    }
-
     public function index()
     {
         $install = new Install();

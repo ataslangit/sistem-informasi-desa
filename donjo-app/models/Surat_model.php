@@ -276,8 +276,6 @@ class Surat_model extends CI_Model
 
     public function coba($url = '')
     {
-        $this->load->model('config_model');
-
         $g = $_POST['pamong'];
         $u = $_SESSION['user'];
         $z = $_POST['nomor'];

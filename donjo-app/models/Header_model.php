@@ -4,8 +4,6 @@ class Header_model extends CI_Model
 {
     public function get_data()
     {
-        $this->load->model('config_model');
-
         // global variabel
         $outp['sasaran'] = ['1' => 'Penduduk', '2' => 'Keluarga / KK', '3' => 'Rumah Tangga', '4' => 'Kelompok/Organisasi Kemasyarakatan'];
 
