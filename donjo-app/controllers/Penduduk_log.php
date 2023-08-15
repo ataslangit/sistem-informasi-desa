@@ -8,15 +8,10 @@ class Penduduk_log extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
         }
-
-        $this->load->model('penduduk_model');
-        $this->load->model('header_model');
     }
 
     public function clear()

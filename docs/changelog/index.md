@@ -5,7 +5,7 @@ title: "Log Perubahan"
 # Log Perubahan
 Berikut adalah log perubahan dari SID.
 
-- [dev](/changelog/dev)<br>
+- [v4.5.4](/changelog/454)<br>
   <small>belum rilis</small>
 - [v4.5.3](/changelog/453)<br>
   <small>Rilis 13 April 2023</small>

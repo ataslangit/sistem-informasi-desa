@@ -1528,7 +1528,6 @@ class Spreadsheet_Excel_Reader
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_HYPER:
-
                     $row               = ord($this->data[$spos]) | ord($this->data[$spos + 1]) << 8;
                     $row2              = ord($this->data[$spos + 2]) | ord($this->data[$spos + 3]) << 8;
                     $column            = ord($this->data[$spos + 4]) | ord($this->data[$spos + 5]) << 8;

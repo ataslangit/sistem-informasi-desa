@@ -33,8 +33,6 @@ class Install
      */
     public function run()
     {
-        $this->CI->load->model('config_model');
-
         if (! $this->cek()) {
             $filename = '../sid.install';
             $templine = '';

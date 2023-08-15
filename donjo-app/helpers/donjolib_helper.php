@@ -494,7 +494,6 @@ function mandiri_timeout()
 function get_identitas()
 {
     $CI = &get_instance();
-    $CI->load->model('config_model');
 
     $hsl = $CI->config_model->get_data();
     // $string = "Desa : ".$hsl['nama_desa']." Kec : ".$hsl['nama_kecamatan']." Kab : ".$hsl['nama_kabupaten'];

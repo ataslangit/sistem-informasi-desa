@@ -5,16 +5,6 @@ if (! defined('BASEPATH')) {
 }
 class Area extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('config_model');
-        $this->load->model('header_model');
-        $this->load->model('plan_area_model');
-        $this->load->model('user_model');
-    }
-
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);

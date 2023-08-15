@@ -9,15 +9,10 @@ class Rtm extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
-        $this->load->model('rtm_model');
-        $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
         }
-        $this->load->model('header_model');
-        $this->load->model('config_model');
     }
 
     public function clear()
@@ -130,7 +125,6 @@ class Rtm extends CI_Controller
 
     public function excel_pbdt($o = 0)
     {
-        $this->load->model('config_model');
         $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
         view('sid/kependudukan/rtm_excel_pbdt', $data);

@@ -9,9 +9,6 @@ class Kelompok extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('kelompok_model');
-        $this->load->model('user_model');
-        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');

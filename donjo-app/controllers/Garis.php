@@ -5,16 +5,6 @@ if (! defined('BASEPATH')) {
 }
 class Garis extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('user_model');
-        $this->load->model('config_model');
-        $this->load->model('header_model');
-        $this->load->model('plan_garis_model');
-    }
-
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['line'], $_SESSION['subline']);
