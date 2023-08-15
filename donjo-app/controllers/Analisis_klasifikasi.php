@@ -61,13 +61,15 @@ class Analisis_klasifikasi extends BaseController
         view('footer');
     }
 
-    public function form($p = 1, $o = 0, $id = '')
+    public function form($p, $o, $id)
     {
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+
         $data['p'] = $p;
         $data['o'] = $o;
 
         if ($id) {
-            $data['analisis_klasifikasi'] = $this->analisis_klasifikasi_model->get_analisis_klasifikasi($id);
+            $data['analisis_klasifikasi'] = $analisisKlasifikasiModel->get_analisis_klasifikasi($id);
             $data['form_action']          = site_url("analisis_klasifikasi/update/{$p}/{$o}/{$id}");
         } else {
             $data['analisis_klasifikasi'] = null;

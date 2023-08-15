@@ -65,6 +65,13 @@ class AnalisisKlasifikasi extends Model
         }
     }
 
+    public function get_analisis_klasifikasi(int $id)
+    {
+        $query = $this->db->get_where($this->table, ['id' => $id]);
+
+        return $query->row_array();
+    }
+
     /**
      * Fungsi ini digunakan untuk menghasilkan data untuk proses autocomplete.
      */

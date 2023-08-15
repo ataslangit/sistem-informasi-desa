@@ -96,14 +96,6 @@ class Analisis_klasifikasi_model extends Model
         return $data;
     }
 
-    public function get_analisis_klasifikasi($id = 0)
-    {
-        $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id=?';
-        $query = $this->db->query($sql, $id);
-
-        return $query->row_array();
-    }
-
     public function get_analisis_master()
     {
         $sql   = 'SELECT * FROM analisis_master WHERE id=?';
