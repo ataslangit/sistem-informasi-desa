@@ -1,6 +1,8 @@
 <?php
 
-class Data_persil_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Data_persil_model extends Model
 {
     public function autocomplete()
     {

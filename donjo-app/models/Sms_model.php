@@ -1,8 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class Sms_model extends CI_Model
+class Sms_model extends Model
 {
     public function autocomplete()
     {

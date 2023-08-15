@@ -1,6 +1,8 @@
 <?php
 
-class Surat_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Surat_model extends Model
 {
     public function list_surat()
     {

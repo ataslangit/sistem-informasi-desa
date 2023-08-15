@@ -1,8 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class First_artikel_m extends CI_Model
+class First_artikel_m extends Model
 {
     public function get_headline()
     {

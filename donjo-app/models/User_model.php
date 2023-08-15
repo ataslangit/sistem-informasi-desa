@@ -1,8 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class User_model extends CI_Model
+class User_model extends Model
 {
     public function siteman()
     {

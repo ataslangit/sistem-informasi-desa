@@ -1,6 +1,8 @@
 <?php
 
-class Header_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Header_model extends Model
 {
     public function get_data()
     {

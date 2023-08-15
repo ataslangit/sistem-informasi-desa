@@ -1,8 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class Keluarga_model extends CI_Model
+class Keluarga_model extends Model
 {
     public function autocomplete()
     {

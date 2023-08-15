@@ -1,6 +1,8 @@
 <?php
 
-class Web_widget_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Web_widget_model extends Model
 {
     public function get_widget()
     {
