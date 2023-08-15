@@ -5,24 +5,6 @@ use App\Models\BaseModel as Model;
 
 class Analisis_grafik_model extends Model
 {
-    public function autocomplete()
-    {
-        $sql   = 'SELECT nama FROM analisis_klasifikasi';
-        $query = $this->db->query($sql);
-        $data  = $query->result_array();
-
-        $i    = 0;
-        $outp = '';
-
-        while ($i < count($data)) {
-            $outp .= ',"' . $data[$i]['nama'] . '"';
-            $i++;
-        }
-        $outp = strtolower(substr($outp, 1));
-
-        return '[' . $outp . ']';
-    }
-
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
@@ -206,72 +188,6 @@ class Analisis_grafik_model extends Model
         }
 
         return $data;
-    }
-
-    public function insert()
-    {
-        $data              = $_POST;
-        $data['id_master'] = $_SESSION['analisis_master'];
-        $outp              = $this->db->insert('analisis_klasifikasi', $data);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function update($id = 0)
-    {
-        $data              = $_POST;
-        $data['id_master'] = $_SESSION['analisis_master'];
-        $this->db->where('id', $id);
-        $outp = $this->db->update('analisis_klasifikasi', $data);
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function delete($id = '')
-    {
-        $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';
-        $outp = $this->db->query($sql, [$id]);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function delete_all()
-    {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
-                $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
-            }
-        } else {
-            $outp = false;
-        }
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function get_analisis_klasifikasi($id = 0)
-    {
-        $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id=?';
-        $query = $this->db->query($sql, $id);
-
-        return $query->row_array();
     }
 
     public function get_analisis_master()

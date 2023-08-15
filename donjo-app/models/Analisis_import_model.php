@@ -4,11 +4,6 @@ use App\Models\BaseModel as Model;
 
 class Analisis_import_model extends Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function import_excel()
     {
         $data  = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
