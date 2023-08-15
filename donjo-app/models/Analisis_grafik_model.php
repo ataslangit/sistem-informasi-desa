@@ -190,26 +190,6 @@ class Analisis_grafik_model extends Model
         return $data;
     }
 
-    public function delete_all()
-    {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
-                $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
-            }
-        } else {
-            $outp = false;
-        }
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function get_analisis_klasifikasi($id = 0)
     {
         $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id=?';

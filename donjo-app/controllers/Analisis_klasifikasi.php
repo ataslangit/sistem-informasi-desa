@@ -115,7 +115,9 @@ class Analisis_klasifikasi extends BaseController
 
     public function delete_all($p = 1, $o = 0)
     {
-        $this->analisis_klasifikasi_model->delete_all();
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+        $analisisKlasifikasiModel->delete_all();
+
         redirect("analisis_klasifikasi/index/{$p}/{$o}");
     }
 }

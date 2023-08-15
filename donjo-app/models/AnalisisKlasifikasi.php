@@ -46,6 +46,25 @@ class AnalisisKlasifikasi extends Model
         }
     }
 
+    public function delete_all()
+    {
+        $id_cb = $_POST['id_cb'];
+
+        if (count($id_cb)) {
+            foreach ($id_cb as $id) {
+                $outp = $this->db->delete($this->table, ['id' => $id]);
+            }
+        } else {
+            $outp = false;
+        }
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
     /**
      * Fungsi ini digunakan untuk menghasilkan data untuk proses autocomplete.
      */
