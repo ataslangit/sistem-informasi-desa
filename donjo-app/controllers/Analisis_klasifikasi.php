@@ -100,15 +100,16 @@ class Analisis_klasifikasi extends BaseController
     public function update($p, $o, $id)
     {
         $analisisKlasifikasiModel = new AnalisisKlasifikasi();
-
         $analisisKlasifikasiModel->update($id);
 
         redirect("analisis_klasifikasi/index/{$p}/{$o}");
     }
 
-    public function delete($p = 1, $o = 0, $id = '')
+    public function delete($p, $o, $id)
     {
-        $this->analisis_klasifikasi_model->delete($id);
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+        $analisisKlasifikasiModel->delete($id);
+
         redirect("analisis_klasifikasi/index/{$p}/{$o}");
     }
 

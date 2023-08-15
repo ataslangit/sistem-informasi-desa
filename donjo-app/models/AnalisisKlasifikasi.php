@@ -34,6 +34,18 @@ class AnalisisKlasifikasi extends Model
         }
     }
 
+    public function delete(int $id)
+    {
+        $this->db->where('id', $id);
+        $outp = $this->db->delete($this->table);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
     /**
      * Fungsi ini digunakan untuk menghasilkan data untuk proses autocomplete.
      */
