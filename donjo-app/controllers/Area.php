@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Area extends CI_Controller
+use App\Controllers\BaseController;
+
+class Area extends BaseController
 {
     public function clear()
     {

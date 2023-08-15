@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Dokumen extends CI_Controller
+use App\Controllers\BaseController;
+
+class Dokumen extends BaseController
 {
     public function __construct()
     {

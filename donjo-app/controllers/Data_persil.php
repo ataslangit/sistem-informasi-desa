@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Data_persil extends CI_Controller
+use App\Controllers\BaseController;
+
+class Data_persil extends BaseController
 {
     public function __construct()
     {

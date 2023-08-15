@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Mandiri extends CI_Controller
+use App\Controllers\BaseController;
+
+class Mandiri extends BaseController
 {
     public function __construct()
     {

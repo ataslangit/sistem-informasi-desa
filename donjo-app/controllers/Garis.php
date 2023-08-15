@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Garis extends CI_Controller
+use App\Controllers\BaseController;
+
+class Garis extends BaseController
 {
     public function clear()
     {

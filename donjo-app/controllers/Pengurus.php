@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Pengurus extends CI_Controller
+use App\Controllers\BaseController;
+
+class Pengurus extends BaseController
 {
     public function __construct()
     {

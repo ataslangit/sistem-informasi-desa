@@ -11,6 +11,7 @@
   },
   "autoload": {
     "psr-4": {
+      "App\\Controllers\\": "donjo-app/controllers/",
       "App\\Libraries\\": "donjo-app/Libraries/"
     }
   },
