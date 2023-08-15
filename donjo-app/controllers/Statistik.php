@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Statistik extends CI_Controller
+use App\Controllers\BaseController;
+
+class Statistik extends BaseController
 {
     public function __construct()
     {

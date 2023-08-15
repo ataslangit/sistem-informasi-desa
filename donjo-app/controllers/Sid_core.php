@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Sid_core extends CI_Controller
+use App\Controllers\BaseController;
+
+class Sid_core extends BaseController
 {
     public function __construct()
     {

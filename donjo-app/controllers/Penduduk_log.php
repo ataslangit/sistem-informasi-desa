@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Penduduk_log extends CI_Controller
+use App\Controllers\BaseController;
+
+class Penduduk_log extends BaseController
 {
     public function __construct()
     {

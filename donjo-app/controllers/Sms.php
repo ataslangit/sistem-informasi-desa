@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Sms extends CI_Controller
+use App\Controllers\BaseController;
+
+class Sms extends BaseController
 {
     public function __construct()
     {

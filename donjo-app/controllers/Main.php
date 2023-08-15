@@ -1,8 +1,9 @@
 <?php
 
+use App\Controllers\BaseController;
 use App\Libraries\Install;
 
-class Main extends CI_Controller
+class Main extends BaseController
 {
     public function index()
     {

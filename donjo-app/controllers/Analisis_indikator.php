@@ -1,9 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
-class Analisis_indikator extends CI_Controller
+use App\Controllers\BaseController;
+
+class Analisis_indikator extends BaseController
 {
     public function __construct()
     {
