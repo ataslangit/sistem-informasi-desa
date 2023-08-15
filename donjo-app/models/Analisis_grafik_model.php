@@ -190,19 +190,6 @@ class Analisis_grafik_model extends Model
         return $data;
     }
 
-    public function update($id = 0)
-    {
-        $data              = $_POST;
-        $data['id_master'] = $_SESSION['analisis_master'];
-        $this->db->where('id', $id);
-        $outp = $this->db->update('analisis_klasifikasi', $data);
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function delete($id = '')
     {
         $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';

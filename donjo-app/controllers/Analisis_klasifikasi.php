@@ -97,9 +97,12 @@ class Analisis_klasifikasi extends BaseController
         redirect('analisis_klasifikasi');
     }
 
-    public function update($p = 1, $o = 0, $id = '')
+    public function update($p, $o, $id)
     {
-        $this->analisis_klasifikasi_model->update($id);
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+
+        $analisisKlasifikasiModel->update($id);
+
         redirect("analisis_klasifikasi/index/{$p}/{$o}");
     }
 

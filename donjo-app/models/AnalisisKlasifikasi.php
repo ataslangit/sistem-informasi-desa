@@ -21,6 +21,19 @@ class AnalisisKlasifikasi extends Model
         }
     }
 
+    public function update(int $id)
+    {
+        $data              = $_POST;
+        $data['id_master'] = $_SESSION['analisis_master'];
+        $this->db->where('id', $id);
+        $outp = $this->db->update($this->table, $data);
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
     /**
      * Fungsi ini digunakan untuk menghasilkan data untuk proses autocomplete.
      */
