@@ -86,4 +86,3 @@
 </body>
 
 </html>
-<?php exec('c:\sid-combine\ncmd.exe speak text "Installation Successed" -5 100');?>
