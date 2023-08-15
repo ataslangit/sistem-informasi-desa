@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8b8d92f3885cf8855b399a12b1f3930",
+    "content-hash": "c396191536664a758c7e5bbd1a85b27a",
     "packages": [
         {
             "name": "codeigniter/framework",
@@ -519,16 +519,16 @@
     "packages-dev": [
         {
             "name": "codeigniter/coding-standard",
-            "version": "v1.7.5",
+            "version": "v1.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CodeIgniter/coding-standard.git",
-                "reference": "d01a2fae1dcac507380795f282ec4f4c4f3848de"
+                "reference": "22d57c7482e489fb37fb8d04d33a1e39cdab1fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CodeIgniter/coding-standard/zipball/d01a2fae1dcac507380795f282ec4f4c4f3848de",
-                "reference": "d01a2fae1dcac507380795f282ec4f4c4f3848de",
+                "url": "https://api.github.com/repos/CodeIgniter/coding-standard/zipball/22d57c7482e489fb37fb8d04d33a1e39cdab1fe8",
+                "reference": "22d57c7482e489fb37fb8d04d33a1e39cdab1fe8",
                 "shasum": ""
             },
             "require": {
@@ -569,7 +569,7 @@
                 "slack": "https://codeigniterchat.slack.com",
                 "source": "https://github.com/CodeIgniter/coding-standard"
             },
-            "time": "2023-07-15T08:36:08+00:00"
+            "time": "2023-08-15T04:07:37+00:00"
         },
         {
             "name": "composer/pcre",
