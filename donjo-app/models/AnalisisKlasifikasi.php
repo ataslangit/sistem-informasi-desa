@@ -8,6 +8,19 @@ class AnalisisKlasifikasi extends Model
 {
     protected $table = 'analisis_klasifikasi';
 
+    public function insert()
+    {
+        $data              = $_POST;
+        $data['id_master'] = $_SESSION['analisis_master'];
+        $outp              = $this->db->insert($this->table, $data);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
     /**
      * Fungsi ini digunakan untuk menghasilkan data untuk proses autocomplete.
      */

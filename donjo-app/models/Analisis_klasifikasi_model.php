@@ -96,19 +96,6 @@ class Analisis_klasifikasi_model extends Model
         return $data;
     }
 
-    public function insert()
-    {
-        $data              = $_POST;
-        $data['id_master'] = $_SESSION['analisis_master'];
-        $outp              = $this->db->insert('analisis_klasifikasi', $data);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function update($id = 0)
     {
         $data              = $_POST;

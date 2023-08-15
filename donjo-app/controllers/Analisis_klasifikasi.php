@@ -91,7 +91,9 @@ class Analisis_klasifikasi extends BaseController
 
     public function insert()
     {
-        $this->analisis_klasifikasi_model->insert();
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+
+        $analisisKlasifikasiModel->insert();
         redirect('analisis_klasifikasi');
     }
 
