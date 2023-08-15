@@ -1,6 +1,8 @@
 <?php
 
-class KategoriModel extends CI_Model
+use App\Models\BaseModel as Model;
+
+class KategoriModel extends Model
 {
     protected $table = 'kategori';
 

@@ -1,6 +1,8 @@
 <?php
 
-class Export_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Export_model extends Model
 {
     public function export_dasar()
     {

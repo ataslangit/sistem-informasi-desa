@@ -1,6 +1,8 @@
 <?php
 
-class First_keluarga_m extends CI_Model
+use App\Models\BaseModel as Model;
+
+class First_keluarga_m extends Model
 {
     public function list_raskin($tipex = 0)
     {

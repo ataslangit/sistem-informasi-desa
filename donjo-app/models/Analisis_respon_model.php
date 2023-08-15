@@ -1,14 +1,10 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class Analisis_respon_model extends CI_Model
+class Analisis_respon_model extends Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function autocomplete()
     {
         // $sql = "SELECT no_kk FROM tweb_keluarga

@@ -1,6 +1,8 @@
 <?php
 
-class Program_bantuan_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Program_bantuan_model extends Model
 {
     public function list_program($sasaran = 0)
     {

@@ -1,8 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\BaseModel as Model;
 
-class Plan_line_model extends CI_Model
+class Plan_line_model extends Model
 {
     public function autocomplete()
     {

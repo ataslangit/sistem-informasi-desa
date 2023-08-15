@@ -1,6 +1,8 @@
 <?php
 
-class First_penduduk_m extends CI_Model
+use App\Models\BaseModel as Model;
+
+class First_penduduk_m extends Model
 {
     public function list_data($lap = '', $o = 0)
     {

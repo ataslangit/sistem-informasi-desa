@@ -1,6 +1,8 @@
 <?php
 
-class Import_model extends CI_Model
+use App\Models\BaseModel as Model;
+
+class Import_model extends Model
 {
     public function __construct()
     {
