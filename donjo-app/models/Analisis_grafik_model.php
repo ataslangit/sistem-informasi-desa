@@ -5,24 +5,6 @@ use App\Models\BaseModel as Model;
 
 class Analisis_grafik_model extends Model
 {
-    public function autocomplete()
-    {
-        $sql   = 'SELECT nama FROM analisis_klasifikasi';
-        $query = $this->db->query($sql);
-        $data  = $query->result_array();
-
-        $i    = 0;
-        $outp = '';
-
-        while ($i < count($data)) {
-            $outp .= ',"' . $data[$i]['nama'] . '"';
-            $i++;
-        }
-        $outp = strtolower(substr($outp, 1));
-
-        return '[' . $outp . ']';
-    }
-
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {

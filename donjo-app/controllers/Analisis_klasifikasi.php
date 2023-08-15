@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\AnalisisKlasifikasi;
 
 class Analisis_klasifikasi extends BaseController
 {
@@ -31,6 +32,8 @@ class Analisis_klasifikasi extends BaseController
 
     public function index($p = 1, $o = 0)
     {
+        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+
         unset($_SESSION['cari2']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -48,7 +51,7 @@ class Analisis_klasifikasi extends BaseController
 
         $data['paging']          = $this->analisis_klasifikasi_model->paging($p, $o);
         $data['main']            = $this->analisis_klasifikasi_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']         = $this->analisis_klasifikasi_model->autocomplete();
+        $data['keyword']         = $analisisKlasifikasiModel->autocomplete();
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
