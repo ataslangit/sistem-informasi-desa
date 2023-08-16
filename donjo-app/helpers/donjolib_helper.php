@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Config;
+
 /**
  * This function checks `manifest.json` from `FCPATH` . 'build', extracts the entire file and returns an array.
  *
@@ -493,13 +495,12 @@ function mandiri_timeout()
 }
 function get_identitas()
 {
-    $CI = &get_instance();
+    $configModel = new Config();
 
-    $hsl = $CI->config_model->get_data();
+    $hsl = $configModel->get_data();
+
     // $string = "Desa : ".$hsl['nama_desa']." Kec : ".$hsl['nama_kecamatan']." Kab : ".$hsl['nama_kabupaten'];
-    $string = "<h2 class='kop'>PEMERINTAH KABUPATEN " . strtoupper($hsl['nama_kabupaten']) . '<br>KECAMATAN ' . strtoupper($hsl['nama_kecamatan']) . '<br>DESA ' . strtoupper($hsl['nama_desa']) . '</h2><hr>';
-
-    return $string;
+    return "<h2 class='kop'>PEMERINTAH KABUPATEN " . strtoupper($hsl['nama_kabupaten']) . '<br>KECAMATAN ' . strtoupper($hsl['nama_kecamatan']) . '<br>DESA ' . strtoupper($hsl['nama_desa']) . '</h2><hr>';
 }
 function fixSQL($str, $encode_ent = false)
 {

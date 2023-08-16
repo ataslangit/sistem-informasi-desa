@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Garis extends BaseController
 {
@@ -59,7 +60,9 @@ class Garis extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $data['desa']      = $this->config_model->get_data();
+        $configModel = new Config();
+
+        $data['desa']      = $configModel->get_data();
         $data['list_line'] = $this->plan_garis_model->list_line();
         $data['dusun']     = $this->plan_garis_model->list_dusun();
 

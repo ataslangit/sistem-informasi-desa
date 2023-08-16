@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Data_persil extends BaseController
 {
@@ -22,6 +23,8 @@ class Data_persil extends BaseController
 
     public function index($page = 1)
     {
+        $configModel = new Config();
+
         $header = $this->header_model->get_data();
         view('header', $header);
 
@@ -31,11 +34,12 @@ class Data_persil extends BaseController
             $data['cari'] = '';
         }
 
-        $data['desa']              = $this->config_model->get_data();
+        $data['desa']              = $configModel->get_data();
         $data['persil']            = $this->data_persil_model->list_persil('', 0, $page);
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
         $data['keyword']           = $this->data_persil_model->autocomplete();
+
         view('data_persil/persil', $data);
         view('footer');
     }

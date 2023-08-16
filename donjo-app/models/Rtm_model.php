@@ -2,6 +2,7 @@
 
 use App\Libraries\Paging;
 use App\Models\BaseModel as Model;
+use App\Models\Config;
 
 class Rtm_model extends Model
 {
@@ -473,7 +474,9 @@ class Rtm_model extends Model
 
     public function get_kode_wilayah()
     {
-        $d = $this->config_model->get_data();
+        $configModel = new Config();
+
+        $d = $configModel->get_data();
 
         return $d['kode_kabupaten'] . $d['kode_kecamatan'] . $d['kode_desa'];
     }

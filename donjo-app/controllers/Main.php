@@ -2,6 +2,7 @@
 
 use App\Controllers\BaseController;
 use App\Libraries\Install;
+use App\Models\Config;
 
 class Main extends BaseController
 {
@@ -69,19 +70,23 @@ class Main extends BaseController
 
     public function auth()
     {
+        $configModel = new Config();
+
         $this->user_model->login();
         $header = [
-            'desa' => $this->config_model->get_data(),
+            'desa' => $configModel->get_data(),
         ];
         view('siteman', $header);
     }
 
     public function logout()
     {
+        $configModel = new Config();
+
         $this->config_model->opt();
         $this->user_model->logout();
         $header = [
-            'desa' => $this->config_model->get_data(),
+            'desa' => $configModel->get_data(),
         ];
 
         view('siteman', $header);

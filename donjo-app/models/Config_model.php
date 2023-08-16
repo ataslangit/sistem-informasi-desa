@@ -56,18 +56,6 @@ class Config_model extends Model
         }
     }
 
-    public function get_data(bool $return_array = false)
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        if ($return_array) {
-            return $query->result_array();
-        }
-
-        return $query->row_array();
-    }
-
     public function insert()
     {
         $outp = $this->db->insert('config', $_POST);

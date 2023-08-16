@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Surat extends BaseController
 {
@@ -86,6 +87,8 @@ class Surat extends BaseController
 
     public function cetak($url = '')
     {
+        $configModel = new Config();
+
         $f = $url;
         $g = $_POST['pamong'];
         $u = $_SESSION['user'];
@@ -101,11 +104,12 @@ class Surat extends BaseController
         $data['pribadi'] = $this->surat_model->get_data_pribadi($id);
         $data['kk']      = $this->surat_model->get_data_kk($id);
 
-        $data['desa']   = $this->config_model->get_data();
+        $data['desa']   = $configModel->get_data();
         $data['pamong'] = $this->surat_model->get_pamong($_POST['pamong']);
 
         $data['pengikut'] = $this->surat_model->pengikut();
-        $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z);
+        // $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z); // ???
+
         view('surat/print/print_' . $url . '', $data);
     }
 

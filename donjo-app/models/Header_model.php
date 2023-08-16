@@ -1,11 +1,14 @@
 <?php
 
 use App\Models\BaseModel as Model;
+use App\Models\Config;
 
 class Header_model extends Model
 {
     public function get_data()
     {
+        $configModel = new Config();
+
         // global variabel
         $outp['sasaran'] = ['1' => 'Penduduk', '2' => 'Keluarga / KK', '3' => 'Rumah Tangga', '4' => 'Kelompok/Organisasi Kemasyarakatan'];
 
@@ -21,7 +24,7 @@ class Header_model extends Model
             }
         }
 
-        $outp['desa'] = $this->config_model->get_data();
+        $outp['desa'] = $configModel->get_data();
 
         $sql           = 'SELECT COUNT(id) AS jml FROM komentar WHERE id_artikel=775 AND enabled = 2;';
         $query         = $this->db->query($sql);

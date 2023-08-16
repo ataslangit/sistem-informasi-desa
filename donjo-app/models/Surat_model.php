@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\BaseModel as Model;
+use App\Models\Config;
 
 class Surat_model extends Model
 {
@@ -278,9 +279,7 @@ class Surat_model extends Model
 
     public function coba($url = '')
     {
-        $g = $_POST['pamong'];
-        $u = $_SESSION['user'];
-        $z = $_POST['nomor'];
+        $configModel = new Config();
 
         $id       = $_SESSION['nik'];
         $individu = $this->get_data_surat($id);
@@ -294,7 +293,7 @@ class Surat_model extends Model
         $input  = $_POST;
         $tgl    = tgl_indo(date('Y m d'));
         $thn    = date('Y');
-        $config = $this->config_model->get_data();
+        $config = $configModel->get_data();
         $surat  = $this->get_surat($url);
 
         $tgllhr                  = strtoupper(tgl_indo($individu['tanggallahir']));
@@ -408,6 +407,11 @@ class Surat_model extends Model
             $pxnik      = '';
             $pxhubungan = '';
             $pxusia     = '';
+            $pxtglahir  = '';
+            $pxtmplahir = '';
+            $pxttl      = '';
+            $pxttl2     = '';
+            $pxno       = '';
             if (isset($_POST['id_cb'])) {
                 $pengikut = $this->pengikut();
                 $nom      = 1;
