@@ -14,7 +14,7 @@ class Mandiri_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['nik'] . "'";
             $i++;
         }
@@ -26,12 +26,11 @@ class Mandiri_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
         }
     }
 
@@ -112,7 +111,7 @@ class Mandiri_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -124,7 +123,7 @@ class Mandiri_model extends Model
     public function generate_pin($pin = '')
     {
         if ($pin === '') {
-            $pin = mt_rand(100000, 999999);
+            $pin = random_int(100000, 999999);
             $pin = strrev($pin);
         }
 
@@ -138,14 +137,14 @@ class Mandiri_model extends Model
         }
 
         $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
-        $outp = $this->db->query($sql, [$_POST['nik']]);
+        $this->db->query($sql, [$_POST['nik']]);
 
         $rpin        = $this->generate_pin($_POST['pin']);
         $hash_pin    = hash_pin($rpin);
         $data['pin'] = $hash_pin;
         $data['nik'] = $_POST['nik'];
 
-        $outp = $this->db->insert('tweb_penduduk_mandiri', $data);
+        $this->db->insert('tweb_penduduk_mandiri', $data);
 
         if ($_POST['pin'] !== '') {
             return $_POST['pin'];
@@ -170,7 +169,7 @@ class Mandiri_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -194,7 +193,7 @@ class Mandiri_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }

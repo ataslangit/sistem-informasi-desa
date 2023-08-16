@@ -7,8 +7,6 @@ class Keluarga extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
@@ -610,7 +608,7 @@ class Keluarga extends BaseController
         $dp   = 0;
         $link = site_url('keluarga');
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             if ($_POST['nik'] === $data[$i]['nik']) {
                 $dp = 1;
                 $nk = $data[$i]['nik'];
@@ -636,7 +634,7 @@ class Keluarga extends BaseController
         $dp   = 0;
         $link = site_url('keluarga/form/0/1');
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             if ($_POST['no_kk'] === $data[$i]['no_kk']) {
                 $dp = 1;
                 $nk = $data[$i]['no_kk'];

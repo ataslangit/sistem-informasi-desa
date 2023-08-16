@@ -60,7 +60,7 @@ class Analisis_import_model extends Model
 
         $sheet = 2;
         $baris = $data->rowcount($sheet_index = $sheet);
-        $kolom = $data->colcount($sheet_index = $sheet);
+        $data->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $kode = explode('.', $data->val($i, 3, $sheet));
@@ -81,7 +81,7 @@ class Analisis_import_model extends Model
 
         $sheet = 3;
         $baris = $data->rowcount($sheet_index = $sheet);
-        $kolom = $data->colcount($sheet_index = $sheet);
+        $data->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $klasifikasi['id_master'] = $id_master;

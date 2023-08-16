@@ -50,7 +50,7 @@ class AnalisisKlasifikasi extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $outp = $this->db->delete($this->table, ['id' => $id]);
             }
@@ -85,7 +85,7 @@ class AnalisisKlasifikasi extends Model
         $outp = '';
 
         // Menggabungkan nama-nama dalam format autocomplete
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }

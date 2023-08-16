@@ -96,7 +96,7 @@ class First_artikel_m extends Model
 
             $i = 0;
 
-            while ($i < count($data)) {
+            while ($i < (is_countable($data) ? count($data) : 0)) {
                 $id                    = $data[$i]['id'];
                 $teks                  = strip_tags($data[$i]['isi']);
                 $pendek                = (strlen($teks) > 120) ? substr($teks, 0, 120) : $teks;
@@ -120,7 +120,7 @@ class First_artikel_m extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $id = $data[$i]['id'];
 
             $pendek                = str_split($data[$i]['isi'], 100);
@@ -164,7 +164,7 @@ class First_artikel_m extends Model
         if ($query->num_rows() > 0) {
             $i = 0;
 
-            while ($i < count($data)) {
+            while ($i < (is_countable($data) ? count($data) : 0)) {
                 $nomer = $offset + $i + 1;
                 $id    = $data[$i]['id'];
                 $tgl   = date('d/m/Y', strtotime($data[$i]['tgl_upload']));
@@ -200,7 +200,6 @@ class First_artikel_m extends Model
 
     public function cos_widget()
     {
-        $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE id_kategori='1003' ORDER BY a.tgl_upload DESC";
         $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori
 		FROM artikel a
 		LEFT JOIN user u ON a.id_user = u.id
@@ -233,7 +232,7 @@ class First_artikel_m extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $id = $data[$i]['id_artikel'];
 
             $pendek                     = str_split($data[$i]['komentar'], 25);
@@ -305,7 +304,7 @@ class First_artikel_m extends Model
 
             $i = 0;
 
-            while ($i < count($data)) {
+            while ($i < (is_countable($data) ? count($data) : 0)) {
                 $i++;
             }
         } else {

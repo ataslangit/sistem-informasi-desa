@@ -99,7 +99,7 @@ class Analisis_master extends CI_Controller
 
     public function import_analisis()
     {
-        $header = $this->header_model->get_data();
+        $this->header_model->get_data();
 
         $nav['act']          = 1;
         $data['form_action'] = site_url('analisis_master/import');

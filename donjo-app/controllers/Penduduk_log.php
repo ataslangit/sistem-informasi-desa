@@ -6,7 +6,6 @@ class Penduduk_log extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');

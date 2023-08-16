@@ -14,7 +14,7 @@ class Analisis_indikator_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['pertanyaan'] . "'";
             $i++;
         }
@@ -26,52 +26,47 @@ class Analisis_indikator_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.act_analisis = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.act_analisis = {$kf}";
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
+            $kf = $_SESSION['analisis_master'];
 
-            return $filter_sql;
+            return " AND u.id_master = {$kf}";
         }
     }
 
     public function tipe_sql()
     {
         if (isset($_SESSION['tipe'])) {
-            $kf         = $_SESSION['tipe'];
-            $filter_sql = " AND u.id_tipe = {$kf}";
+            $kf = $_SESSION['tipe'];
 
-            return $filter_sql;
+            return " AND u.id_tipe = {$kf}";
         }
     }
 
     public function kategori_sql()
     {
         if (isset($_SESSION['kategori'])) {
-            $kf         = $_SESSION['kategori'];
-            $filter_sql = " AND u.id_kategori = {$kf}";
+            $kf = $_SESSION['kategori'];
 
-            return $filter_sql;
+            return " AND u.id_kategori = {$kf}";
         }
     }
 
@@ -140,7 +135,7 @@ class Analisis_indikator_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['act_analisis'] === 1) {
@@ -213,7 +208,7 @@ class Analisis_indikator_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM analisis_indikator WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -270,7 +265,7 @@ class Analisis_indikator_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM analisis_parameter WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -294,7 +289,7 @@ class Analisis_indikator_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             $i++;

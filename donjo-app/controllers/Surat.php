@@ -7,8 +7,6 @@ class Surat extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
             redirect('siteman');
@@ -88,11 +86,6 @@ class Surat extends BaseController
     public function cetak($url = '')
     {
         $configModel = new Config();
-
-        $f = $url;
-        $g = $_POST['pamong'];
-        $u = $_SESSION['user'];
-        $z = $_POST['nomor'];
 
         $id                       = $_POST['nik'];
         $data['input']            = $_POST;

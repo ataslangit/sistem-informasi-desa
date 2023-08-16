@@ -6,8 +6,6 @@ class Analisis_respon extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         unset($_SESSION['delik']);
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {

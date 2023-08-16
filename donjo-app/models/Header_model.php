@@ -50,12 +50,12 @@ class Header_model extends Model
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_keluarga WHERE 1';
         $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $query->row_array();
         // $i = $i*$data['jml'];
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_wil_clusterdesa WHERE 1';
         $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $query->row_array();
         // $i = $i*$data['jml'];
 
         if ($i > 0) {

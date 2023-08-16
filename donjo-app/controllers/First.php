@@ -7,8 +7,6 @@ class First extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         mandiri_timeout();
     }
 

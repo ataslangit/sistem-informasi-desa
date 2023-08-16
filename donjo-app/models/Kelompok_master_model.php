@@ -14,7 +14,7 @@ class Kelompok_master_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['kelompok'] . '"';
             $i++;
         }
@@ -26,32 +26,29 @@ class Kelompok_master_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.kelompok LIKE '{$kw}' OR u.kelompok LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.kelompok LIKE '{$kw}' OR u.kelompok LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.id = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.id = {$kf}";
         }
     }
 
     public function state_sql()
     {
         if (isset($_SESSION['state'])) {
-            $kf         = $_SESSION['state'];
-            $filter_sql = " AND u.lock = {$kf}";
+            $kf = $_SESSION['state'];
 
-            return $filter_sql;
+            return " AND u.lock = {$kf}";
         }
     }
 
@@ -115,7 +112,7 @@ class Kelompok_master_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -164,7 +161,7 @@ class Kelompok_master_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM kelompok_master WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

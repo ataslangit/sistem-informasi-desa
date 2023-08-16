@@ -23,7 +23,7 @@ class Install
         $query = $this->CI->db->query($sql, $db);
         $data  = $query->result_array();
 
-        return ! (count($data) !== 77);
+        return ! ((is_countable($data) ? count($data) : 0) !== 77);
     }
 
     /**

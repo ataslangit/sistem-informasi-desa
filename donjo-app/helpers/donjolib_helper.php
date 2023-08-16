@@ -19,7 +19,7 @@ function asset(string $file): string
     }
 
     // Decode the JSON file.
-    $manifest = json_decode(file_get_contents($manifest_path), true);
+    $manifest = json_decode(file_get_contents($manifest_path), true, 512, JSON_THROW_ON_ERROR);
 
     // Check if the file exists in the manifest file.
     if (! isset($manifest[$file])) {
@@ -72,7 +72,7 @@ function Rpt($str = 0)
     $len     = strlen($str) - 3;
     $outp    = '';
     // < 1000
-    if ($len - $i >= 13) {
+    if ($len >= 13) {
         $isi = 0;
 
         while ($i < $len - 12) {
@@ -205,15 +205,10 @@ function Parse_Data($data, $p1, $p2)
 {
     $data  = ' ' . $data;
     $hasil = '';
-    $awal  = strpos($data, $p1);
-    if ($awal !== '') {
-        $akhir = strpos(strstr($data, $p1), $p2);
-        if ($akhir !== '') {
-            $hasil = substr($data, $awal + strlen($p1), $akhir - strlen($p1));
-        }
-    }
+    $awal  = strpos($data, (string) $p1);
+    $akhir = strpos(strstr($data, (string) $p1), (string) $p2);
 
-    return $hasil;
+    return substr($data, $awal + strlen($p1), $akhir - strlen($p1));
 }
 function Rupiah($nil = 0)
 {
@@ -408,51 +403,39 @@ function getBulan($bln)
     switch ($bln) {
         case 1:
             return 'Januari';
-            break;
 
         case 2:
             return 'Februari';
-            break;
 
         case 3:
             return 'Maret';
-            break;
 
         case 4:
             return 'April';
-            break;
 
         case 5:
             return 'Mei';
-            break;
 
         case 6:
             return 'Juni';
-            break;
 
         case 7:
             return 'Juli';
-            break;
 
         case 8:
             return 'Agustus';
-            break;
 
         case 9:
             return 'September';
-            break;
 
         case 10:
             return 'Oktober';
-            break;
 
         case 11:
             return 'November';
-            break;
 
         case 12:
             return 'Desember';
-            break;
     }
 }
 
@@ -518,9 +501,7 @@ function fixSQL($str, $encode_ent = false)
             $str = addslashes($str);
         }
     } else {
-        if (! get_magic_quotes_gpc()) {
-            $str = addslashes($str);
-        }
+        $str = addslashes($str);
     }
 
     return $str;

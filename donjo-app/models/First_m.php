@@ -46,7 +46,6 @@ class First_m extends Model
         $sql   = 'SELECT pin,last_login FROM tweb_penduduk_mandiri WHERE nik=?';
         $query = $this->db->query($sql, [$nik]);
         $row   = $query->row();
-        $lg    = $row->last_login;
 
         if ($hash_pin === $row->pin) {
             $sql = 'UPDATE tweb_penduduk_mandiri SET last_login=NOW() WHERE nik=?';

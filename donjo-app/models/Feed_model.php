@@ -15,7 +15,7 @@ class Feed_model extends Model
         $hasil = [];
         $i     = 0;
         if ($query->num_rows() > 0) {
-            while ($i < count($data)) {
+            while ($i < (is_countable($data) ? count($data) : 0)) {
                 $hasil[$i]['no']       = $data[$i]['id'];
                 $hasil[$i]['tgl']      = $data[$i]['tgl_upload'];
                 $hasil[$i]['judul']    = $data[$i]['judul'];

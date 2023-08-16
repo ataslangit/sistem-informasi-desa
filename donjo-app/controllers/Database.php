@@ -6,8 +6,6 @@ class Database extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $this->load->dbforge();
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {

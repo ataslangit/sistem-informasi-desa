@@ -16,15 +16,11 @@ class Main extends BaseController
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1: redirect('hom_desa');
-                            break;
-
+                        case 1:
                         case 2: redirect('hom_desa');
                             break;
 
-                        case 3: redirect('web');
-                            break;
-
+                        case 3:
                         case 4: redirect('web');
                             break;
 

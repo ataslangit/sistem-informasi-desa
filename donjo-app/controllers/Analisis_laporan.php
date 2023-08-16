@@ -6,8 +6,6 @@ class Analisis_laporan extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -158,7 +156,7 @@ class Analisis_laporan extends BaseController
 
             $id_cb = $_POST['id_cb'];
             $cb    = '';
-            if (count($id_cb)) {
+            if (is_countable($id_cb) ? count($id_cb) : 0) {
                 foreach ($id_cb as $id) {
                     $cb .= $id . ',';
                 }
@@ -166,7 +164,7 @@ class Analisis_laporan extends BaseController
             $_SESSION['jawab'] = $cb . '7777777';
 
             $jmkf             = $this->analisis_laporan_model->group_parameter();
-            $_SESSION['jmkf'] = count($jmkf);
+            $_SESSION['jmkf'] = is_countable($jmkf) ? count($jmkf) : 0;
         }
         redirect('analisis_laporan');
     }

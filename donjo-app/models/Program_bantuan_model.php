@@ -39,8 +39,7 @@ class Program_bantuan_model extends Model
                     $data = $query->result_array();
                     $i    = 0;
 
-                    while ($i < count($data)) {
-                        $data[$i]['id']   = $data[$i]['id'];
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         $data[$i]['nik']  = $data[$i]['peserta'];
                         $filter[]         = $data[$i]['peserta'];
                         $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['peserta'] . ']';
@@ -62,7 +61,7 @@ class Program_bantuan_model extends Model
                     $i = 0;
                     $j = 0;
 
-                    while ($i < count($data)) {
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         if (! in_array($data[$i]['nik'], $filter, true)) {
                             if ($data[$i]['nik'] !== '') {
                                 $data1[$j]['id']   = $data[$i]['nik'];
@@ -92,8 +91,7 @@ class Program_bantuan_model extends Model
                     $data = $query->result_array();
                     $i    = 0;
 
-                    while ($i < count($data)) {
-                        $data[$i]['id']   = $data[$i]['id'];
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         $data[$i]['nik']  = $data[$i]['no_kk'];
                         $filter[]         = $data[$i]['id'];
                         $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['no_kk'] . ']';
@@ -115,7 +113,7 @@ class Program_bantuan_model extends Model
                     $i = 0;
                     $j = 0;
 
-                    while ($i < count($data)) {
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         if (! in_array($data[$i]['id'], $filter, true)) {
                             $data[$j]['id']   = $data[$i]['id'];
                             $data[$j]['nik']  = $data[$i]['id'];
@@ -142,8 +140,7 @@ class Program_bantuan_model extends Model
                     $data = $query->result_array();
                     $i    = 0;
 
-                    while ($i < count($data)) {
-                        $data[$i]['id']   = $data[$i]['id'];
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         $data[$i]['nik']  = $data[$i]['peserta'];
                         $filter[]         = $data[$i]['peserta'];
                         $data[$i]['nama'] = strtoupper($data[$i]['nama']) . ' [' . $data[$i]['nik'] . ' - ' . $data[$i]['no_kk'] . ']';
@@ -167,7 +164,7 @@ class Program_bantuan_model extends Model
                     $i = 0;
                     $j = 0;
 
-                    while ($i < count($data)) {
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         if (! in_array($data[$i]['id'], $filter, true)) {
                             $data[$j]['id']   = $data[$i]['id'];
                             $data[$j]['nik']  = $data[$i]['id'];
@@ -193,8 +190,7 @@ class Program_bantuan_model extends Model
                     $data = $query->result_array();
                     $i    = 0;
 
-                    while ($i < count($data)) {
-                        $data[$i]['id']   = $data[$i]['id'];
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         $data[$i]['nik']  = $data[$i]['peserta'];
                         $filter[]         = $data[$i]['id'];
                         $data[$i]['nama'] = strtoupper($data[$i]['nama']);
@@ -212,9 +208,8 @@ class Program_bantuan_model extends Model
                 if ($query->num_rows() > 0) {
                     $i = 0;
 
-                    while ($i < count($data)) {
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         if (! in_array($data[$i]['id'], $filter, true)) {
-                            $data[$i]['id']   = $data[$i]['id'];
                             $data[$i]['nik']  = $data[$i]['id'];
                             $data[$i]['nama'] = strtoupper($data[$i]['nama']);
                             $data[$i]['info'] = '';
