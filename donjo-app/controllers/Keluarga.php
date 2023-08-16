@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Keluarga extends BaseController
 {
@@ -733,13 +734,15 @@ class Keluarga extends BaseController
 
     public function kartu_keluarga($p = 1, $o = 0, $id = 0)
     {
+        $configModel = new Config();
+
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']     = $this->config_model->get_data();
+        $data['desa']     = $configModel->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -747,33 +750,36 @@ class Keluarga extends BaseController
             $data['kepala_kk'] = null;
         }
 
-        $data['penduduk'] = $this->keluarga_model->list_penduduk_lepas();
-        $nav['act']       = 1;
-        $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
+        $data['penduduk']    = $this->keluarga_model->list_penduduk_lepas();
+        $nav['act']          = 1;
+        $header              = $this->header_model->get_data();
         $data['form_action'] = site_url('keluarga/print');
 
+        view('header', $header);
+        view('sid/nav', $nav);
         view('sid/kependudukan/kartu_keluarga', $data);
         view('footer');
     }
 
     public function cetak_kk($id = 0)
     {
+        $configModel = new Config();
+
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']      = $this->config_model->get_data();
+        $data['desa']      = $configModel->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 1;
-        $header            = $this->header_model->get_data();
+        // $header            = $this->header_model->get_data();
         view('sid/kependudukan/cetak_kk', $data);
     }
 
     public function doc_kk($id = 0)
     {
-        $data['desa'] = $this->config_model->get_data();
+        $configModel = new Config();
 
+        $data['desa']      = $configModel->get_data();
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $data['kepala_kk'] = $this->keluarga_model->get_kepala_kk($id);

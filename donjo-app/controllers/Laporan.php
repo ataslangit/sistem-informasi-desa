@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Laporan extends BaseController
 {
@@ -29,6 +30,8 @@ class Laporan extends BaseController
 
     public function index($lap = 0, $p = 1, $o = 0)
     {
+        $configModel = new Config();
+
         $data['p'] = $p;
         $data['o'] = $o;
         if (isset($_POST['per_page'])) {
@@ -50,7 +53,7 @@ class Laporan extends BaseController
 
         $data['bulan']          = $data['bulanku'];
         $data['tahun']          = $data['tahunku'];
-        $data['config']         = $this->config_model->get_data(true);
+        $data['config']         = $configModel->get_data(true);
         $data['penduduk_awal']  = $this->laporan_bulanan_model->penduduk_awal();
         $data['penduduk_akhir'] = $this->laporan_bulanan_model->penduduk_akhir();
         $data['kelahiran']      = $this->laporan_bulanan_model->kelahiran();
@@ -69,7 +72,9 @@ class Laporan extends BaseController
 
     public function cetak($lap = 0)
     {
-        $data['config']         = $this->config_model->get_data(true);
+        $configModel = new Config();
+
+        $data['config']         = $configModel->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
         $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);
@@ -86,7 +91,9 @@ class Laporan extends BaseController
 
     public function excel($lap = 0)
     {
-        $data['config']         = $this->config_model->get_data(true);
+        $configModel = new Config();
+
+        $data['config']         = $configModel->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
         $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);

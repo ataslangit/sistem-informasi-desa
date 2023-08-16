@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Penduduk extends BaseController
 {
@@ -594,11 +595,13 @@ class Penduduk extends BaseController
 
     public function ajax_penduduk_maps($p = 1, $o = 0, $id = '')
     {
+        $configModel = new Config();
+
         $data['p'] = $p;
         $data['o'] = $o;
 
         $data['penduduk'] = $this->penduduk_model->get_penduduk_map($id);
-        $data['desa']     = $this->config_model->get_data();
+        $data['desa']     = $configModel->get_data();
 
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 

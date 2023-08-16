@@ -1,14 +1,17 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Siteman extends BaseController
 {
     public function index()
     {
+        $configModel = new Config();
+
         $this->user_model->logout();
         $header = [
-            'desa' => $this->config_model->get_data(),
+            'desa' => $configModel->get_data(),
         ];
 
         if (! isset($_SESSION['siteman'])) {

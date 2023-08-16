@@ -56,28 +56,6 @@ class Config_model extends Model
         }
     }
 
-    public function get_data(bool $return_array = false)
-    {
-        $sql   = 'SELECT * FROM config WHERE 1';
-        $query = $this->db->query($sql);
-
-        if ($return_array) {
-            return $query->result_array();
-        }
-
-        return $query->row_array();
-    }
-
-    public function insert()
-    {
-        $outp = $this->db->insert('config', $_POST);
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function update($id = 0)
     {
         $data        = $_POST;
@@ -103,34 +81,6 @@ class Config_model extends Model
         $pamong['pamong_nip']  = $data['nip_kepala_desa'];
         $this->db->where('pamong_id', '707');
         $outp = $this->db->update('tweb_desa_pamong', $pamong);
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function update_kantor()
-    {
-        $data = $_POST;
-        $id   = '1';
-        $this->db->where('id', $id);
-        $outp = $this->db->update('config', $data);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function update_wilayah()
-    {
-        $data = $_POST;
-        $id   = '1';
-        $this->db->where('id', $id);
-        $outp = $this->db->update('config', $data);
-
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {

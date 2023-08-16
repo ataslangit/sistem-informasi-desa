@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Statistik extends BaseController
 {
@@ -265,6 +266,7 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
+
         view('header', $header);
         view('statistik/nav', $nav);
         view('statistik/penduduk_pie', $data);
@@ -273,6 +275,8 @@ class Statistik extends BaseController
 
     public function cetak($lap = 0)
     {
+        $configModel = new Config();
+
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -342,13 +346,16 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $this->config_model->get_data();
+        $data['config'] = $configModel->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
+
         view('statistik/penduduk_print', $data);
     }
 
     public function excel($lap = 0)
     {
+        $configModel = new Config();
+
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -418,13 +425,16 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $this->config_model->get_data();
+        $data['config'] = $configModel->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
+
         view('statistik/penduduk_excel', $data);
     }
 
     public function warga($lap = '', $data = '')
     {
+        $configModel = new Config();
+
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -494,7 +504,7 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $this->config_model->get_data();
+        $data['config'] = $configModel->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
 
         $_SESSION['per_page'] = 100;

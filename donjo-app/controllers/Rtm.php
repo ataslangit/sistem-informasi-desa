@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Rtm extends BaseController
 {
@@ -104,6 +105,7 @@ class Rtm extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 3;
         $header             = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/rtm', $data);
@@ -113,19 +115,24 @@ class Rtm extends BaseController
     public function cetak($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/rtm_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/rtm_excel', $data);
     }
 
     public function excel_pbdt($o = 0)
     {
-        $data['config'] = $this->config_model->get_data();
+        $configModel = new Config();
+
+        $data['config'] = $configModel->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
+
         view('sid/kependudukan/rtm_excel_pbdt', $data);
     }
 
@@ -332,13 +339,15 @@ class Rtm extends BaseController
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
     {
+        $configModel = new Config();
+
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']     = $this->config_model->get_data();
+        $data['desa']     = $configModel->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -359,13 +368,15 @@ class Rtm extends BaseController
 
     public function cetak_kk($id = 0)
     {
+        $configModel = new Config();
+
         $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']      = $this->config_model->get_data();
+        $data['desa']      = $configModel->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
-        $header            = $this->header_model->get_data();
+
         view('sid/kependudukan/cetak_rtm', $data);
     }
 

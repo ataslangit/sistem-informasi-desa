@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\Config;
 
 class Sid_core extends BaseController
 {
@@ -363,14 +364,17 @@ class Sid_core extends BaseController
         $data['input']            = $_POST;
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
-        $this->surat_keluar_model->log_surat($f, $id, $g, $u);
+        $this->surat_keluar_model->log_surat($f, $id, $g, $u); // ???
+
         view('surat/print_surat_ket_pengantar', $data);
     }
 
     public function ajax_wil_maps($id = 0)
     {
+        $configModel = new Config();
+
         $data['dusun']       = $this->wilayah_model->get_dusun_maps($id);
-        $data['desa']        = $this->config_model->get_data();
+        $data['desa']        = $configModel->get_data();
         $data['form_action'] = site_url("sid_core/update_dusun_map/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -384,8 +388,10 @@ class Sid_core extends BaseController
 
     public function ajax_rw_maps($dus = 0, $id = 0)
     {
+        $configModel = new Config();
+
         $data['dusun']       = $this->wilayah_model->get_rw($dus, $id);
-        $data['desa']        = $this->config_model->get_data();
+        $data['desa']        = $configModel->get_data();
         $data['form_action'] = site_url("sid_core/update_rw_map/{$dus}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -394,13 +400,16 @@ class Sid_core extends BaseController
     public function update_rw_map($dus = 0, $id = 0)
     {
         $this->wilayah_model->update_rw_map($dus, $id);
+
         redirect("sid_core/sub_rw/{$dus}");
     }
 
     public function ajax_rt_maps($dus = 0, $rw = 0, $id = 0)
     {
+        $configModel = new Config();
+
         $data['dusun']       = $this->wilayah_model->get_rt($dus, $rw, $id);
-        $data['desa']        = $this->config_model->get_data();
+        $data['desa']        = $configModel->get_data();
         $data['form_action'] = site_url("sid_core/update_rt_map/{$dus}/{$rw}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -409,17 +418,18 @@ class Sid_core extends BaseController
     public function update_rt_map($dus = 0, $rw = 0, $id = 0)
     {
         $this->wilayah_model->update_rt_map($dus, $rw, $id);
+
         redirect("sid_core/sub_rt/{$dus}/{$rw}");
     }
 
     public function warga($id = '')
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
+        $temp  = $this->wilayah_model->cluster_by_id($id);
+        $dusun = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
+
         redirect('penduduk/index/1/0');
     }
 
