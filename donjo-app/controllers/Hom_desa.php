@@ -74,13 +74,19 @@ class Hom_desa extends BaseController
 
     public function update_kantor_maps()
     {
-        $this->config_model->update_kantor();
+        $configModel = new Config();
+
+        $configModel->update_(1, $_POST);
+
         redirect('hom_desa');
     }
 
     public function update_wilayah_maps()
     {
-        $this->config_model->update_wilayah();
+        $configModel = new Config();
+
+        $configModel->update_(1, $_POST);
+
         redirect('hom_desa');
     }
 

@@ -88,34 +88,6 @@ class Config_model extends Model
         }
     }
 
-    public function update_kantor()
-    {
-        $data = $_POST;
-        $id   = '1';
-        $this->db->where('id', $id);
-        $outp = $this->db->update('config', $data);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
-    public function update_wilayah()
-    {
-        $data = $_POST;
-        $id   = '1';
-        $this->db->where('id', $id);
-        $outp = $this->db->update('config', $data);
-
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function kosong_pend()
     {
         $a = 'TRUNCATE tweb_wil_clusterdesa';
