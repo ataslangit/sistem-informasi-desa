@@ -56,16 +56,6 @@ class Config_model extends Model
         }
     }
 
-    public function insert()
-    {
-        $outp = $this->db->insert('config', $_POST);
-        if ($outp) {
-            $_SESSION['success'] = 1;
-        } else {
-            $_SESSION['success'] = -1;
-        }
-    }
-
     public function update($id = 0)
     {
         $data        = $_POST;

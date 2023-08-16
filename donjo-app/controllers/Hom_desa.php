@@ -41,7 +41,10 @@ class Hom_desa extends BaseController
 
     public function insert()
     {
-        $this->config_model->insert();
+        $configModel = new Config();
+
+        $configModel->insert($_POST);
+
         redirect('hom_desa');
     }
 
