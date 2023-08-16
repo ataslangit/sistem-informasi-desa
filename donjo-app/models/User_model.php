@@ -73,7 +73,7 @@ class User_model extends Model
 
     public function login()
     {
-        $username = $this->input->post('username');
+        $this->input->post('username');
         $password = hash_password($this->input->post('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE id_grup=1 LIMIT 1';
@@ -129,7 +129,7 @@ class User_model extends Model
         $i     = 0;
         $outp  = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['username'] . "'";
             $i++;
         }
@@ -141,22 +141,20 @@ class User_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.username LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.username LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.id_grup = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.id_grup = {$kf}";
         }
     }
 
@@ -216,7 +214,7 @@ class User_model extends Model
         $i     = 0;
         $j     = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -306,7 +304,7 @@ class User_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM user WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

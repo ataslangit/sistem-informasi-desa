@@ -14,13 +14,13 @@ class Penduduk_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
         $outp = substr($outp, 1);
         $outp = '[' . $outp . ']';
-        if (count($data) <= 1000) {
+        if ((is_countable($data) ? count($data) : 0) <= 1000) {
             return $outp;
         }
 
@@ -36,7 +36,7 @@ class Penduduk_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['no_kk'] . '"';
             $i++;
         }
@@ -64,222 +64,200 @@ class Penduduk_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = penetration($this->db->escape_like_str($cari));
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.nama LIKE '{$kw}' OR u.nik LIKE '{$kw}' OR d.no_kk LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = penetration($this->db->escape_like_str($cari));
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.nama LIKE '{$kw}' OR u.nik LIKE '{$kw}' OR d.no_kk LIKE '{$kw}')";
         }
     }
 
     public function sex_sql()
     {
         if (isset($_SESSION['sex'])) {
-            $kf      = $_SESSION['sex'];
-            $sex_sql = " AND u.sex = {$kf}";
+            $kf = $_SESSION['sex'];
 
-            return $sex_sql;
+            return " AND u.sex = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND a.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND a.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND a.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND a.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND a.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND a.rt = '{$kf}'";
         }
     }
 
     public function agama_sql()
     {
         if (isset($_SESSION['agama'])) {
-            $kf        = $_SESSION['agama'];
-            $agama_sql = " AND u.agama_id = {$kf}";
+            $kf = $_SESSION['agama'];
 
-            return $agama_sql;
+            return " AND u.agama_id = {$kf}";
         }
     }
 
     public function warganegara_sql()
     {
         if (isset($_SESSION['warganegara'])) {
-            $kf              = $_SESSION['warganegara'];
-            $warganegara_sql = " AND u.warganegara_id = {$kf}";
+            $kf = $_SESSION['warganegara'];
 
-            return $warganegara_sql;
+            return " AND u.warganegara_id = {$kf}";
         }
     }
 
     public function golongan_darah_sql()
     {
         if (isset($_SESSION['golongan_darah'])) {
-            $kf                 = $_SESSION['golongan_darah'];
-            $golongan_darah_sql = " AND u.golongan_darah_id = {$kf}";
+            $kf = $_SESSION['golongan_darah'];
 
-            return $golongan_darah_sql;
+            return " AND u.golongan_darah_id = {$kf}";
         }
     }
 
     public function pekerjaan_sql()
     {
         if (isset($_SESSION['pekerjaan_id'])) {
-            $kf            = $_SESSION['pekerjaan_id'];
-            $pekerjaan_sql = " AND u.pekerjaan_id = {$kf}";
+            $kf = $_SESSION['pekerjaan_id'];
 
-            return $pekerjaan_sql;
+            return " AND u.pekerjaan_id = {$kf}";
         }
     }
 
     public function cacat_sql()
     {
         if (isset($_SESSION['cacat'])) {
-            $kf        = $_SESSION['cacat'];
-            $cacat_sql = " AND u.cacat_id = {$kf}";
+            $kf = $_SESSION['cacat'];
 
-            return $cacat_sql;
+            return " AND u.cacat_id = {$kf}";
         }
     }
 
     public function hubungan_sql()
     {
         if (isset($_SESSION['hubungan'])) {
-            $kf        = $_SESSION['hubungan'];
-            $cacat_sql = " AND u.kk_level = {$kf}";
+            $kf = $_SESSION['hubungan'];
 
-            return $cacat_sql;
+            return " AND u.kk_level = {$kf}";
         }
     }
 
     public function cacatx_sql()
     {
         if (isset($_SESSION['cacatx'])) {
-            $kf         = $_SESSION['cacatx'];
-            $cacatx_sql = " AND u.cacat_id <> {$kf} AND u.cacat_id is not null and u.cacat_id<>''";
+            $kf = $_SESSION['cacatx'];
 
-            return $cacatx_sql;
+            return " AND u.cacat_id <> {$kf} AND u.cacat_id is not null and u.cacat_id<>''";
         }
     }
 
     public function menahun_sql()
     {
         if (isset($_SESSION['menahun'])) {
-            $kf          = $_SESSION['menahun'];
-            $menahun_sql = " AND u.sakit_menahun_id = {$kf}";
+            $kf = $_SESSION['menahun'];
 
-            return $menahun_sql;
+            return " AND u.sakit_menahun_id = {$kf}";
         }
     }
 
     public function menahunx_sql()
     {
         if (isset($_SESSION['menahunx'])) {
-            $kf           = $_SESSION['menahunx'];
-            $menahunx_sql = " AND u.sakit_menahun_id <> {$kf} and u.sakit_menahun_id is not null and u.sakit_menahun_id<>'0' ";
+            $kf = $_SESSION['menahunx'];
 
-            return $menahunx_sql;
+            return " AND u.sakit_menahun_id <> {$kf} and u.sakit_menahun_id is not null and u.sakit_menahun_id<>'0' ";
         }
     }
 
     public function statuskawin_sql()
     {
         if (isset($_SESSION['status'])) {
-            $kf              = $_SESSION['status'];
-            $statuskawin_sql = " AND u.status_kawin = {$kf}";
+            $kf = $_SESSION['status'];
 
-            return $statuskawin_sql;
+            return " AND u.status_kawin = {$kf}";
         }
     }
 
     public function pendidikan_kk_sql()
     {
         if (isset($_SESSION['pendidikan_kk_id'])) {
-            $kf                = $_SESSION['pendidikan_kk_id'];
-            $pendidikan_kk_sql = " AND u.pendidikan_kk_id = {$kf}";
+            $kf = $_SESSION['pendidikan_kk_id'];
 
-            return $pendidikan_kk_sql;
+            return " AND u.pendidikan_kk_id = {$kf}";
         }
     }
 
     public function hamil_sql()
     {
         if (isset($_SESSION['hamil'])) {
-            $kf        = $_SESSION['hamil'];
-            $hamil_sql = " AND u.hamil = {$kf}";
+            $kf = $_SESSION['hamil'];
 
-            return $hamil_sql;
+            return " AND u.hamil = {$kf}";
         }
     }
 
     public function pendidikan_sedang_sql()
     {
         if (isset($_SESSION['pendidikan_sedang_id'])) {
-            $kf                    = $_SESSION['pendidikan_sedang_id'];
-            $pendidikan_sedang_sql = " AND u.pendidikan_sedang_id = {$kf}";
+            $kf = $_SESSION['pendidikan_sedang_id'];
 
-            return $pendidikan_sedang_sql;
+            return " AND u.pendidikan_sedang_id = {$kf}";
         }
     }
 
     public function status_penduduk_sql()
     {
         if (isset($_SESSION['status_penduduk'])) {
-            $kf                  = $_SESSION['status_penduduk'];
-            $status_penduduk_sql = " AND u.status = {$kf}";
+            $kf = $_SESSION['status_penduduk'];
 
-            return $status_penduduk_sql;
+            return " AND u.status = {$kf}";
         }
     }
 
     public function umur_max_sql()
     {
         if (isset($_SESSION['umur_max'])) {
-            $kf           = $_SESSION['umur_max'];
-            $umur_max_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf} ";
+            $kf = $_SESSION['umur_max'];
 
-            return $umur_max_sql;
+            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf} ";
         }
     }
 
     public function umur_min_sql()
     {
         if (isset($_SESSION['umur_min'])) {
-            $kf           = $_SESSION['umur_min'];
-            $umur_min_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf} ";
+            $kf = $_SESSION['umur_min'];
 
-            return $umur_min_sql;
+            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf} ";
         }
     }
 
     public function umur_sql()
     {
         if (isset($_SESSION['umurx'])) {
-            $kf       = $_SESSION['umurx'];
-            $umur_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= (SELECT dari FROM tweb_penduduk_umur WHERE id={$kf} ) AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= (SELECT sampai FROM tweb_penduduk_umur WHERE id={$kf} ) ";
+            $kf = $_SESSION['umurx'];
 
-            return $umur_sql;
+            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= (SELECT dari FROM tweb_penduduk_umur WHERE id={$kf} ) AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= (SELECT sampai FROM tweb_penduduk_umur WHERE id={$kf} ) ";
         }
     }
 
@@ -300,33 +278,27 @@ class Penduduk_model extends Model
     public function duplikat_sql()
     {
         if (isset($_SESSION['duplikat'])) {
-            $duplikat_sql = ' AND u.id NOT IN (SELECT id FROM tweb_penduduk GROUP BY nik, nama HAVING COUNT(*) = 1) ';
-
-            return $duplikat_sql;
+            return ' AND u.id NOT IN (SELECT id FROM tweb_penduduk GROUP BY nik, nama HAVING COUNT(*) = 1) ';
         }
     }
 
     public function status_dasar_sql()
     {
         if (isset($_SESSION['status_dasar'])) {
-            $kf           = $_SESSION['status_dasar'];
-            $status_dasar = " AND u.status_dasar = {$kf}";
+            $kf = $_SESSION['status_dasar'];
 
-            return $status_dasar;
+            return " AND u.status_dasar = {$kf}";
         }
     }
 
     public function log_sql()
     {
         if (isset($_SESSION['log'])) {
-            $log_sql = ' AND u.id > 1 AND u.id IN (SELECT id_pend FROM log_penduduk)';
-
-            return $log_sql;
+            return ' AND u.id > 1 AND u.id IN (SELECT id_pend FROM log_penduduk)';
         }
-        $log_sql = '';
 
         // $log_sql= " AND u.status_dasar = 1 ";
-        return $log_sql;
+        return '';
     }
 
     public function paging($p = 1, $o = 0, $log = 0)
@@ -447,7 +419,7 @@ class Penduduk_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']     = $j + 1;
             $data[$i]['alamat'] = '';
 
@@ -503,7 +475,7 @@ class Penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = '';
 
             if ($data[$i]['rt'] !== '-') {
@@ -631,10 +603,6 @@ class Penduduk_model extends Model
 
         unset($data['file_foto'], $data['old_foto']);
 
-        $data['nama']      = $data['nama'];
-        $data['nama_ayah'] = $data['nama_ayah'];
-        $data['nama_ibu']  = $data['nama_ibu'];
-
         $data['tanggallahir']      = tgl_indo_in($data['tanggallahir']);
         $data['tanggalperkawinan'] = tgl_indo_in($data['tanggalperkawinan']);
         $data['tanggalperceraian'] = tgl_indo_in($data['tanggalperceraian']);
@@ -728,7 +696,7 @@ class Penduduk_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_penduduk WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -1066,7 +1034,7 @@ class Penduduk_model extends Model
                 $sql   = "SELECT nama FROM {$table} WHERE id IN ({$kf})";
                 $query = $this->db->query($sql);
                 $data  = $query->result_array();
-                if (count($data) > 0) {
+                if ((is_countable($data) ? count($data) : 0) > 0) {
                     $br = ' ';
                     $rn = "\r\n";
                     // $out = "| ".$head.":";
@@ -1074,7 +1042,7 @@ class Penduduk_model extends Model
 
                     $i = 0;
 
-                    while ($i < count($data)) {
+                    while ($i < (is_countable($data) ? count($data) : 0)) {
                         $out .= $data[$i]['nama'] . $br;
                         $i++;
                     }
@@ -1192,7 +1160,7 @@ class Penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $lat = '-7.5';
             $lng = '110.4';
             $id  = $data[$i]['id'];
@@ -1219,7 +1187,7 @@ class Penduduk_model extends Model
         $randomString     = '';
 
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
 
         return $randomString;
@@ -1232,7 +1200,7 @@ class Penduduk_model extends Model
         $randomString     = '';
 
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
 
         return $randomString;
@@ -1261,9 +1229,8 @@ class Penduduk_model extends Model
 
             $data   = $this->list_data();
             $i      = 1;
-            $h      = substr_count($c, 'fxnama');
             $h      = 4;
-            $j      = count($data);
+            $j      = is_countable($data) ? count($data) : 0;
             $k      = 1;
             $buffer = $c;
 
@@ -1318,7 +1285,7 @@ class Penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -1337,7 +1304,7 @@ class Penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -1381,7 +1348,7 @@ class Penduduk_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM dokumen WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

@@ -14,7 +14,7 @@ class Web_kategori_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['kategori'] . '"';
             $i++;
         }
@@ -26,22 +26,20 @@ class Web_kategori_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (kategori LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (kategori LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 
@@ -95,7 +93,7 @@ class Web_kategori_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -139,7 +137,7 @@ class Web_kategori_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM kategori WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -164,7 +162,7 @@ class Web_kategori_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -188,7 +186,7 @@ class Web_kategori_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -205,7 +203,7 @@ class Web_kategori_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']    = $i + 1;
             $data[$i]['judul'] = $data[$i]['kategori'];
             $i++;
@@ -245,7 +243,7 @@ class Web_kategori_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM kategori WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -290,7 +288,7 @@ class Web_kategori_model extends Model
         $url   = site_url('first');
         $i     = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['kategori'] = "<li><a href='{$url}/" . $data[$i]['link'] . "'>" . $data[$i]['kategori'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM kategori s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
@@ -301,7 +299,7 @@ class Web_kategori_model extends Model
                 $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
                 $j                    = 0;
 
-                while ($j < count($data2)) {
+                while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }
@@ -323,7 +321,7 @@ class Web_kategori_model extends Model
         $url   = site_url('first');
         $i     = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['kategori'] = "<li><a href='{$url}/" . $data[$i]['link'] . "'>" . $data[$i]['kategori'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM kategori s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
@@ -334,7 +332,7 @@ class Web_kategori_model extends Model
                 $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
                 $j                    = 0;
 
-                while ($j < count($data2)) {
+                while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }

@@ -13,7 +13,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['nama'] = ($i + 1) . ') ' . $data[$i]['nama'];
             $i++;
         }
@@ -45,7 +45,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'RT-' . $data[$i]['rt'] . ', RW-' . $data[$i]['rw'] . ' ' . $data[$i]['dusun'];
             $i++;
         }
@@ -61,7 +61,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -77,7 +77,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -93,7 +93,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -151,7 +151,7 @@ class Surat_model extends Model
     {
         $id_cb = $_POST['id_cb'];
         $outp  = '';
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $outp = $outp . $id . ',';
             }

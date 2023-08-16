@@ -6,8 +6,6 @@ class User_setting extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== (1 || 2 || 3 || 4 || 5)) {
             redirect('login');
@@ -17,10 +15,8 @@ class User_setting extends BaseController
     public function index()
     {
         $id     = $_SESSION['user'];
-        $header = $this->header_model->get_data();
-        // view('header', $header);
-
-        $header       = $this->header_model->get_data();
+        $this->header_model->get_data();
+        $this->header_model->get_data();
         $data['main'] = $this->user_model->get_user($id);
 
         view('setting', $data);

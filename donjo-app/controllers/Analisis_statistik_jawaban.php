@@ -6,8 +6,6 @@ class Analisis_statistik_jawaban extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -166,7 +164,7 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
 
         // redirect('analisis_statistik_jawaban');
 
@@ -207,7 +205,7 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         // if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
         //	redirect('analisis_statistik_jawaban');
 

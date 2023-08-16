@@ -7,8 +7,6 @@ class Statistik extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $_SESSION['filter'] = 77;
         unset($_SESSION['log']);
         $_SESSION['status_dasar'] = 1;

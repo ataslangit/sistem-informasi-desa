@@ -7,8 +7,6 @@ class Penduduk extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
             redirect('siteman');
@@ -344,7 +342,7 @@ class Penduduk extends BaseController
         $dp   = 0;
         $link = site_url('penduduk/form');
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             if ($_POST['nik'] === $data[$i]['nik']) {
                 $dp = 1;
                 $nk = $data[$i]['nik'];
@@ -545,7 +543,6 @@ class Penduduk extends BaseController
     {
         $dusun = str_replace('_', ' ', $dusun);
         $rt    = $this->penduduk_model->list_rt($dusun, $rw);
-        $dusun = str_replace(' ', '_', $dusun);
         echo "<td>RT</td>
 		<td><select name='id_cluster'>
 		<option value=''>Pilih RT</option>";

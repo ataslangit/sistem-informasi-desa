@@ -14,7 +14,7 @@ class Laporan_penduduk_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['dusun_nama'] . "'";
             $i++;
         }
@@ -26,12 +26,11 @@ class Laporan_penduduk_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND u.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND u.nama LIKE '{$kw}'";
         }
     }
 
@@ -247,7 +246,7 @@ class Laporan_penduduk_model extends Model
         $total['perempuan'] = 0;
         $i                  = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             $total['jumlah'] += $data[$i]['jumlah'];
@@ -267,7 +266,7 @@ class Laporan_penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['persen'] = $data[$i]['jumlah'] / $bel['jumlah'] * 100;
             $data[$i]['persen'] = number_format((float) $data[$i]['persen'], 2, '.', '');
             $data[$i]['persen'] = $data[$i]['persen'] . '%';
@@ -362,7 +361,7 @@ class Laporan_penduduk_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_penduduk_umur WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

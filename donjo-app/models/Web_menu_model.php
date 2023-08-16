@@ -14,7 +14,7 @@ class Web_menu_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
@@ -36,10 +36,9 @@ class Web_menu_model extends Model
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 
@@ -97,7 +96,7 @@ class Web_menu_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if (isset($data[$i]['enabled']) && $data[$i]['enabled'] === 1) {
@@ -173,7 +172,7 @@ class Web_menu_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM menu WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -198,7 +197,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -222,7 +221,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -239,7 +238,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']    = $i + 1;
             $data[$i]['judul'] = $data[$i]['nama'];
             $i++;
@@ -307,7 +306,7 @@ class Web_menu_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM menu WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

@@ -15,7 +15,7 @@ class Web_artikel_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['judul'] . "'";
             $i++;
         }
@@ -27,32 +27,29 @@ class Web_artikel_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (judul LIKE '{$kw}' OR isi LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (judul LIKE '{$kw}' OR isi LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND a.enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND a.enabled = {$kf}";
         }
     }
 
     public function grup_sql()
     {
         if ($_SESSION['grup'] === 4) {
-            $kf         = $_SESSION['user'];
-            $filter_sql = " AND a.id_user = {$kf}";
+            $kf = $_SESSION['user'];
 
-            return $filter_sql;
+            return " AND a.id_user = {$kf}";
         }
     }
 
@@ -115,7 +112,7 @@ class Web_artikel_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -179,7 +176,6 @@ class Web_artikel_model extends Model
         }
 
         $lokasi_file = $_FILES['dokumen']['tmp_name'];
-        $tipe_file   = $_FILES['dokumen']['type'];
         $nama_file   = $_FILES['dokumen']['name'];
 
         if ($nama_file) {
@@ -253,7 +249,6 @@ class Web_artikel_model extends Model
             unset($data['gambar3']);
         }
         $lokasi_file = $_FILES['dokumen']['tmp_name'];
-        $tipe_file   = $_FILES['dokumen']['type'];
         $nama_file   = $_FILES['dokumen']['name'];
 
         if ($nama_file) {
@@ -318,7 +313,7 @@ class Web_artikel_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM artikel WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -380,7 +375,7 @@ class Web_artikel_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $id = $data[$i]['id'];
 
             $pendek                = str_split($data[$i]['isi'], 100);
@@ -428,7 +423,7 @@ class Web_artikel_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $i++;
         }
 

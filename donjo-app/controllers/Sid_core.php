@@ -7,8 +7,6 @@ class Sid_core extends BaseController
 {
     public function __construct()
     {
-        parent::__construct();
-
         $_SESSION['filter'] = 77;
 
         unset($_SESSION['log']);
@@ -295,7 +293,6 @@ class Sid_core extends BaseController
     public function form_rt($id_dusun = '', $rw = '', $rt = '')
     {
         $temp             = $this->wilayah_model->cluster_by_id($id_dusun);
-        $dusun            = $temp['dusun'];
         $data['dusun']    = $temp['dusun'];
         $data['id_dusun'] = $id_dusun;
 
@@ -341,20 +338,14 @@ class Sid_core extends BaseController
 
     public function delete_rt($id_cluster = '')
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
-        $rw       = $temp['rw'];
+        $this->wilayah_model->cluster_by_id($id_cluster);
         $this->wilayah_model->delete_rt($id_cluster);
         echo '<script>self.history.back();self.history.back();</script>';
     }
 
     public function delete_all_rt()
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
-        $rw       = $temp['rw'];
+        $this->wilayah_model->cluster_by_id($id_cluster);
         $this->wilayah_model->delete_all_rt();
         redirect('sid_core');
     }
@@ -436,7 +427,6 @@ class Sid_core extends BaseController
     public function warga_kk($id = '')
     {
         $temp                 = $this->wilayah_model->cluster_by_id($id);
-        $id_dusun             = $temp['id'];
         $dusun                = $temp['dusun'];
         $_SESSION['per_page'] = 50;
         $_SESSION['dusun']    = $dusun;
@@ -445,9 +435,8 @@ class Sid_core extends BaseController
 
     public function warga_l($id = '')
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
+        $temp  = $this->wilayah_model->cluster_by_id($id);
+        $dusun = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
@@ -457,9 +446,8 @@ class Sid_core extends BaseController
 
     public function warga_p($id = '')
     {
-        $temp     = $this->wilayah_model->cluster_by_id($id);
-        $id_dusun = $temp['id'];
-        $dusun    = $temp['dusun'];
+        $temp  = $this->wilayah_model->cluster_by_id($id);
+        $dusun = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;

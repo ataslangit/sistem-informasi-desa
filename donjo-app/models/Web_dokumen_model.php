@@ -15,7 +15,7 @@ class Web_dokumen_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['satuan'] . "'";
             $i++;
         }
@@ -27,22 +27,20 @@ class Web_dokumen_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 
@@ -106,7 +104,7 @@ class Web_dokumen_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -144,9 +142,8 @@ class Web_dokumen_model extends Model
         $data        = $_POST;
         $lokasi_file = $_FILES['satuan']['tmp_name'];
         $nama_file   = $_FILES['satuan']['name'];
-        $old_file    = $data['old_file'];
         if (! empty($lokasi_file)) {
-            UploadDocument($nama_file, $old_file);
+            UploadDocument($nama_file);
             unset($data['old_file']);
         } else {
             $_SESSION['success'] = -1;
@@ -178,7 +175,7 @@ class Web_dokumen_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM dokumen WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

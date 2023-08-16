@@ -8,52 +8,47 @@ class Analisis_grafik_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
+            $kf = $_SESSION['analisis_master'];
 
-            return $filter_sql;
+            return " AND u.id_master = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
@@ -123,7 +118,7 @@ class Analisis_grafik_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             $i++;
@@ -135,7 +130,7 @@ class Analisis_grafik_model extends Model
 
     public function list_data2($o = 0, $offset = 0, $limit = 500)
     {
-        $per     = $this->get_aktif_periode();
+        $this->get_aktif_periode();
         $pembagi = $this->get_analisis_master();
         $pembagi = $pembagi['pembagi'] + 0;
 
@@ -176,7 +171,7 @@ class Analisis_grafik_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             $sql                = "SELECT COUNT(id) as jml FROM analisis_respon_hasil WHERE akumulasi/{$pembagi} > ? AND akumulasi/{$pembagi} <=? group by id_periode order by id_periode";
@@ -228,8 +223,7 @@ class Analisis_grafik_model extends Model
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 }

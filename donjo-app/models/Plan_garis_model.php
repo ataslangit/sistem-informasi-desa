@@ -14,7 +14,7 @@ class Plan_garis_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
@@ -26,42 +26,38 @@ class Plan_garis_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND l.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND l.nama LIKE '{$kw}'";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND l.enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND l.enabled = {$kf}";
         }
     }
 
     public function line_sql()
     {
         if (isset($_SESSION['line'])) {
-            $kf       = $_SESSION['line'];
-            $line_sql = " AND p.id = {$kf}";
+            $kf = $_SESSION['line'];
 
-            return $line_sql;
+            return " AND p.id = {$kf}";
         }
     }
 
     public function subline_sql()
     {
         if (isset($_SESSION['subline'])) {
-            $kf          = $_SESSION['subline'];
-            $subline_sql = " AND m.id = {$kf}";
+            $kf = $_SESSION['subline'];
 
-            return $subline_sql;
+            return " AND m.id = {$kf}";
         }
     }
 
@@ -121,7 +117,7 @@ class Plan_garis_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -202,7 +198,7 @@ class Plan_garis_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM garis WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -228,9 +224,8 @@ class Plan_garis_model extends Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function list_subline()
@@ -246,9 +241,8 @@ class Plan_garis_model extends Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function garis_lock($id = '', $val = 0)

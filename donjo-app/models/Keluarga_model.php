@@ -14,14 +14,14 @@ class Keluarga_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
         $outp = strtolower(substr($outp, 1));
         $outp = '[' . $outp . ']';
 
-        if (count($data) <= 1000) {
+        if ((is_countable($data) ? count($data) : 0) <= 1000) {
             return $outp;
         }
 
@@ -37,7 +37,7 @@ class Keluarga_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['no_kk'] . '"';
             $i++;
         }
@@ -65,132 +65,119 @@ class Keluarga_model extends Model
     public function sex_sql()
     {
         if (isset($_SESSION['sex'])) {
-            $kf      = $_SESSION['sex'];
-            $sex_sql = " AND t.sex = '{$kf}'";
+            $kf = $_SESSION['sex'];
 
-            return $sex_sql;
+            return " AND t.sex = '{$kf}'";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = penetration($this->db->escape_like_str($cari));
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}' OR t.nik LIKE '{$kw}') ";
+            $cari = $_SESSION['cari'];
+            $kw   = penetration($this->db->escape_like_str($cari));
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}' OR t.nik LIKE '{$kw}') ";
         }
     }
 
     public function jenis_sql()
     {
         if (isset($_SESSION['jenis'])) {
-            $kh        = $_SESSION['jenis'];
-            $jenis_sql = " AND jenis = {$kh}";
+            $kh = $_SESSION['jenis'];
 
-            return $jenis_sql;
+            return " AND jenis = {$kh}";
         }
     }
 
     public function kelas_sql()
     {
         if (isset($_SESSION['kelas'])) {
-            $kh        = $_SESSION['kelas'];
-            $kelas_sql = " AND kelas_sosial= {$kh}";
+            $kh = $_SESSION['kelas'];
 
-            return $kelas_sql;
+            return " AND kelas_sosial= {$kh}";
         }
     }
 
     public function raskin_sql()
     {
         if (isset($_SESSION['raskin'])) {
-            $kh         = $_SESSION['raskin'];
-            $raskin_sql = " AND raskin= {$kh}";
+            $kh = $_SESSION['raskin'];
 
-            return $raskin_sql;
+            return " AND raskin= {$kh}";
         }
     }
 
     public function blt_sql()
     {
         if (isset($_SESSION['id_blt'])) {
-            $kh      = $_SESSION['id_blt'];
-            $blt_sql = " AND id_blt= {$kh}";
+            $kh = $_SESSION['id_blt'];
 
-            return $blt_sql;
+            return " AND id_blt= {$kh}";
         }
     }
 
     public function bos_sql()
     {
         if (isset($_SESSION['id_bos'])) {
-            $kh      = $_SESSION['id_bos'];
-            $bos_sql = " AND id_bos= {$kh}";
+            $kh = $_SESSION['id_bos'];
 
-            return $bos_sql;
+            return " AND id_bos= {$kh}";
         }
     }
 
     public function pkh_sql()
     {
         if (isset($_SESSION['id_pkh'])) {
-            $kh      = $_SESSION['id_pkh'];
-            $pkh_sql = " AND id_pkh= {$kh}";
+            $kh = $_SESSION['id_pkh'];
 
-            return $pkh_sql;
+            return " AND id_pkh= {$kh}";
         }
     }
 
     public function jampersal_sql()
     {
         if (isset($_SESSION['id_jampersal'])) {
-            $kh            = $_SESSION['id_jampersal'];
-            $jampersal_sql = " AND id_jampersal= {$kh}";
+            $kh = $_SESSION['id_jampersal'];
 
-            return $jampersal_sql;
+            return " AND id_jampersal= {$kh}";
         }
     }
 
     public function bedah_rumah_sql()
     {
         if (isset($_SESSION['id_bedah_rumah'])) {
-            $kh              = $_SESSION['id_bedah_rumah'];
-            $bedah_rumah_sql = " AND id_bedah_rumah= {$kh}";
+            $kh = $_SESSION['id_bedah_rumah'];
 
-            return $bedah_rumah_sql;
+            return " AND id_bedah_rumah= {$kh}";
         }
     }
 
@@ -260,7 +247,7 @@ class Keluarga_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             if ($data[$i]['jumlah_anggota'] === 0) {
                 $data[$i]['jumlah_anggota'] = '-';
@@ -360,7 +347,7 @@ class Keluarga_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             if ($data[$i]['jumlah_anggota'] === 0) {
                 $data[$i]['jumlah_anggota'] = '-';
@@ -498,7 +485,7 @@ class Keluarga_model extends Model
     {
         $sql   = 'SELECT nik_kepala FROM tweb_keluarga WHERE id=?';
         $query = $this->db->query($sql, $id);
-        $temp  = $query->row_array();
+        $query->row_array();
 
         $default['id_kk']    = '';
         $default['kk_level'] = '';
@@ -520,7 +507,7 @@ class Keluarga_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_keluarga WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -618,7 +605,7 @@ class Keluarga_model extends Model
         $id_cb         = $_POST['id_cb'];
         $temp['id_kk'] = 0;
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $this->db->where('id', $id);
                 $outp = $this->db->update('tweb_penduduk', $temp);
@@ -666,7 +653,7 @@ class Keluarga_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -683,7 +670,7 @@ class Keluarga_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']           = $i + 1;
             $data[$i]['alamat']       = 'Dusun ' . ununderscore($data[$i]['dusun']) . ', RW ' . $data[$i]['rw'] . ', RT ' . $data[$i]['rt'];
             $data[$i]['tanggallahir'] = tgl_indo($data[$i]['tanggallahir']);
@@ -995,9 +982,8 @@ class Keluarga_model extends Model
 
             $data   = $this->list_data();
             $i      = 1;
-            $h      = substr_count($c, 'fxnama');
             $h      = 4;
-            $j      = count($data);
+            $j      = is_countable($data) ? count($data) : 0;
             $k      = 1;
             $buffer = $c;
 

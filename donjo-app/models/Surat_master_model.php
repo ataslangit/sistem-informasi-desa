@@ -14,7 +14,7 @@ class Surat_master_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['nama'] . "'";
             $i++;
         }
@@ -26,12 +26,11 @@ class Surat_master_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND nama LIKE '{$kw}'";
         }
     }
 
@@ -92,7 +91,7 @@ class Surat_master_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -186,9 +185,8 @@ class Surat_master_model extends Model
 
     public function upload($url = '')
     {
-        $tipe_file = $_FILES['foto']['type'];
-        $name      = $_FILES['foto']['name'];
-        $name      = substr($name, strlen($name) - 4, 4);
+        $name = $_FILES['foto']['name'];
+        $name = substr($name, strlen($name) - 4, 4);
 
         if ($name !== '.rtf') {
             $_SESSION['success'] = -1;
@@ -216,7 +214,7 @@ class Surat_master_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_surat_format WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -240,7 +238,7 @@ class Surat_master_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             $i++;

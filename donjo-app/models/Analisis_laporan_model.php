@@ -15,7 +15,7 @@ class Analisis_laporan_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['no_kk'] . '"';
             $i++;
         }
@@ -56,62 +56,56 @@ class Analisis_laporan_model extends Model
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
+            $kf = $_SESSION['analisis_master'];
 
-            return $filter_sql;
+            return " AND u.id_master = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
     public function klasifikasi_sql()
     {
         if (isset($_SESSION['klasifikasi'])) {
-            $kf              = $_SESSION['klasifikasi'];
-            $klasifikasi_sql = " AND k.id = '{$kf}' ";
+            $kf = $_SESSION['klasifikasi'];
 
-            return $klasifikasi_sql;
+            return " AND k.id = '{$kf}' ";
         }
     }
 
     public function jawab_sql()
     {
         if (isset($_SESSION['jawab'])) {
-            $per       = $this->get_aktif_periode();
-            $kf        = $_SESSION['jawab'];
-            $jmkf      = $_SESSION['jmkf'];
-            $jawab_sql = "AND x.id_parameter IN ({$kf}) AND ((SELECT COUNT(id_parameter) FROM analisis_respon WHERE id_subjek = u.id AND id_periode = {$per} AND id_parameter IN ({$kf})) = {$jmkf}) ";
+            $per  = $this->get_aktif_periode();
+            $kf   = $_SESSION['jawab'];
+            $jmkf = $_SESSION['jmkf'];
 
-            return $jawab_sql;
+            return "AND x.id_parameter IN ({$kf}) AND ((SELECT COUNT(id_parameter) FROM analisis_respon WHERE id_subjek = u.id AND id_periode = {$per} AND id_parameter IN ({$kf})) = {$jmkf}) ";
         }
     }
 
@@ -119,9 +113,8 @@ class Analisis_laporan_model extends Model
     {
         $paging = new Paging();
 
-        $subjek      = $_SESSION['subjek_tipe'];
-        $master      = $this->get_analisis_master();
-        $id_kelompok = $master['id_kelompok'];
+        $subjek = $_SESSION['subjek_tipe'];
+        $this->get_analisis_master();
 
         $per     = $this->get_aktif_periode();
         $pembagi = $this->get_analisis_master();
@@ -255,7 +248,7 @@ class Analisis_laporan_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['cek']) {
@@ -301,7 +294,7 @@ class Analisis_laporan_model extends Model
     {
         $jmkf = $this->group_parameter();
         $cb   = '';
-        if (count($jmkf)) {
+        if (is_countable($jmkf) ? count($jmkf) : 0) {
             foreach ($jmkf as $jm) {
                 $cb .= $jm['id_jmkf'] . ',';
             }
@@ -315,7 +308,7 @@ class Analisis_laporan_model extends Model
         $data  = $query->result_array();
         $i     = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             $ret                 = $this->list_jawab2($id, $data[$i]['id']);
@@ -406,7 +399,7 @@ class Analisis_laporan_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             // $data[$i]['cek'] 	= null;
             $i++;
@@ -421,9 +414,8 @@ class Analisis_laporan_model extends Model
             $idcb  = $_SESSION['jawab'];
             $sql   = "SELECT DISTINCT(id_indikator) AS id_jmkf FROM analisis_parameter WHERE id IN({$idcb})";
             $query = $this->db->query($sql);
-            $data  = $query->result_array();
 
-            return $data;
+            return $query->result_array();
         }
 
         return null;
@@ -475,8 +467,7 @@ class Analisis_laporan_model extends Model
     {
         $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 }

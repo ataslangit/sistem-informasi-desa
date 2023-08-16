@@ -15,7 +15,7 @@ class Pamong_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -34,7 +34,7 @@ class Pamong_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ",'" . $data[$i]['pamong_nama'] . "'";
             $i++;
         }
@@ -46,22 +46,20 @@ class Pamong_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pamong_nama LIKE '{$kw}' OR u.pamong_nip LIKE '{$kw}' OR u.pamong_nik LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.pamong_nama LIKE '{$kw}' OR u.pamong_nip LIKE '{$kw}' OR u.pamong_nik LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.pamong_status = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.pamong_status = {$kf}";
         }
     }
 
@@ -126,7 +124,7 @@ class Pamong_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (count($id_cb)) {
+        if (is_countable($id_cb) ? count($id_cb) : 0) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_desa_pamong WHERE pamong_id=?';
                 $outp = $this->db->query($sql, [$id]);

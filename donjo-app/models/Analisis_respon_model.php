@@ -35,14 +35,13 @@ class Analisis_respon_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $outp .= ',"' . $data[$i]['no_kk'] . '"';
             $i++;
         }
         $outp = strtolower(substr($outp, 1));
-        $outp = '[' . $outp . ']';
 
-        return $outp;
+        return '[' . $outp . ']';
     }
 
     public function search_sql()
@@ -77,30 +76,27 @@ class Analisis_respon_model extends Model
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
@@ -230,7 +226,7 @@ class Analisis_respon_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $j + 1;
 
             // $this->update_hasil($data[$i]['id']);
@@ -441,7 +437,7 @@ class Analisis_respon_model extends Model
                 if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg') {
                     $_SESSION['sukses'] = -1;
                 } else {
-                    $nama_file = $_SESSION['analisis_master'] . '_' . $per . '_' . $id . '_' . mt_rand(10000, 99999) . '.jpg';
+                    $nama_file = $_SESSION['analisis_master'] . '_' . $per . '_' . $id . '_' . random_int(10000, 99999) . '.jpg';
                     UploadPengesahan($nama_file);
                     $bukti['pengesahan'] = $nama_file;
                     $bukti['id_master']  = $id_master;
@@ -473,7 +469,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             if (isset($_SESSION['delik'])) {
                 $data[$i]['cek'] = 0;
@@ -502,7 +498,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['id_tipe'] === 1 || $data[$i]['id_tipe'] === 2) {
@@ -536,7 +532,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
             if (isset($_SESSION['delik'])) {
                 $data[$i]['cek'] = 0;
@@ -574,7 +570,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['id_tipe'] === 1 || $data[$i]['id_tipe'] === 2) {
@@ -602,9 +598,8 @@ class Analisis_respon_model extends Model
         $sql   = 'SELECT id FROM analisis_periode WHERE id_master = ? AND aktif = 1';
         $query = $this->db->query($sql, $id_child);
         $per   = $query->row_array();
-        $per   = $per['id'];
 
-        return $per;
+        return $per['id'];
     }
     // ---------------------------
 
@@ -614,9 +609,8 @@ class Analisis_respon_model extends Model
         $sql = 'SELECT pengesahan FROM analisis_respon_bukti WHERE id_subjek = ? AND id_master = ? AND id_periode = ? ';
         $sql .= ' ORDER BY tgl_update DESC';
         $query = $this->db->query($sql, [$id, $_SESSION['analisis_master'], $per]);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function get_subjek($id = 0)
@@ -668,7 +662,6 @@ class Analisis_respon_model extends Model
 
     public function aturan_unduh()
     {
-        $subjek    = $_SESSION['subjek_tipe'];
         $order_sql = ' ORDER BY u.nomor ASC';
         $sql       = 'SELECT u.*,t.tipe AS tipe_indikator,k.kategori AS kategori FROM analisis_indikator u LEFT JOIN analisis_tipe_indikator t ON u.id_tipe = t.id LEFT JOIN analisis_kategori_indikator k ON u.id_kategori = k.id WHERE u.id_master = ? ';
         $sql .= $order_sql;
@@ -676,10 +669,10 @@ class Analisis_respon_model extends Model
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
         $data  = $query->result_array();
 
-        $per = $this->get_aktif_periode();
-        $i   = 0;
+        $this->get_aktif_periode();
+        $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['id_tipe'] === 1 || $data[$i]['id_tipe'] === 2) {
@@ -724,9 +717,9 @@ class Analisis_respon_model extends Model
             default:$order_sql = ' ORDER BY u.id';
         }
 
-        $sql       = 'SELECT * FROM analisis_indikator WHERE id_master = ? ORDER BY nomor';
-        $query     = $this->db->query($sql, $_SESSION['analisis_master']);
-        $indikator = $query->result_array();
+        $sql   = 'SELECT * FROM analisis_indikator WHERE id_master = ? ORDER BY nomor';
+        $query = $this->db->query($sql, $_SESSION['analisis_master']);
+        $query->result_array();
 
         $subjek = $_SESSION['subjek_tipe'];
 
@@ -744,7 +737,6 @@ class Analisis_respon_model extends Model
                 break;
 
             default: return null;
-                break;
         }
         if ($id_kelompok !== 0) {
             $sql .= $this->kelompok_sql($id_kelompok);
@@ -762,7 +754,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no'] = $i + 1;
 
             if ($p === 1) {
@@ -809,7 +801,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']  = $i + 1;
             $data[$i]['par'] = null;
 
@@ -837,7 +829,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $data[$i]['no']  = $i + 1;
             $data[$i]['par'] = null;
 
@@ -877,7 +869,7 @@ class Analisis_respon_model extends Model
 
         $i = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             // $this->update_hasil($data[$i]['id']);
 
             $sql   = 'SELECT SUM(i.bobot * nilai) as jml FROM analisis_respon r LEFT JOIN analisis_indikator i ON r.id_indikator = i.id LEFT JOIN analisis_parameter z ON r.id_parameter = z.id WHERE r.id_subjek = ? AND i.act_analisis=1 AND r.id_periode=?';
@@ -927,7 +919,6 @@ class Analisis_respon_model extends Model
         $sql       = 'SELECT * FROM analisis_indikator WHERE id_master=? ORDER BY id ASC';
         $query     = $this->db->query($sql, $_SESSION['analisis_master']);
         $indikator = $query->result_array();
-        $jml       = count($indikator);
 
         $data  = new Spreadsheet_Excel_Reader($_FILES['respon']['tmp_name']);
         $s     = 0;
@@ -1108,7 +1099,6 @@ class Analisis_respon_model extends Model
         $per = $this->get_aktif_periode();
 
         $subjek    = $_SESSION['subjek_tipe'];
-        $mas       = $_SESSION['analisis_master'];
         $sql       = 'SELECT * FROM analisis_indikator WHERE id_master=? ORDER BY id ASC';
         $query     = $this->db->query($sql, $_SESSION['analisis_master']);
         $indikator = $query->result_array();
@@ -1124,7 +1114,7 @@ class Analisis_respon_model extends Model
         // foreach($tdata AS $data){
         $di = 0;
 
-        while ($di < count($data)) {
+        while ($di < (is_countable($data) ? count($data) : 0)) {
             $id_subjek = $data[$di]['nik'];
             if (strlen($id_subjek) > 14 && $subjek === 1) {
                 $sqls      = 'SELECT id FROM tweb_penduduk WHERE nik = ?;';
@@ -1242,10 +1232,7 @@ class Analisis_respon_model extends Model
         ini_set('max_execution_time', 1600);
         ini_set('memory_limit', '2048M');
 
-        $per = $this->get_aktif_periode();
-
-        $subjek    = $_SESSION['subjek_tipe'];
-        $mas       = $_SESSION['analisis_master'];
+        $per       = $this->get_aktif_periode();
         $sql       = 'SELECT * FROM analisis_indikator WHERE id_master=? ORDER BY id ASC';
         $query     = $this->db->query($sql, $_SESSION['analisis_master']);
         $indikator = $query->result_array();
@@ -1261,7 +1248,7 @@ class Analisis_respon_model extends Model
         // foreach($tdata AS $data){
         $di = 0;
 
-        while ($di < count($data)) {
+        while ($di < (is_countable($data) ? count($data) : 0)) {
             $dat       = $data[$di];
             $id_subjek = $data[$di]['id_rts'];
 

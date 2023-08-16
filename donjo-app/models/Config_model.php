@@ -187,7 +187,7 @@ class Config_model extends Model
         $i = 0;
         $m = 0;
 
-        while ($i < count($data)) {
+        while ($i < (is_countable($data) ? count($data) : 0)) {
             $jwb = $data[$i]['jawaban'];
             $id  = $data[$i]['id'];
 

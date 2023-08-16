@@ -18,7 +18,7 @@ class Paging
 
     public function __construct($props = [])
     {
-        if (count($props) > 0) {
+        if ((is_countable($props) ? count($props) : 0) > 0) {
             $this->init($props);
         }
     }
