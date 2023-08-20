@@ -8,6 +8,16 @@ class AnalisisPeriode extends Model
 {
     protected $table = 'analisis_periode';
 
+    public function get_periode()
+    {
+        $query = $this->db->get_where($this->table, [
+            'aktif'     => '1',
+            'id_master' => $_SESSION['analisis_master'],
+        ]);
+
+        return $query->row_array();
+    }
+
     public function list_periode()
     {
         $query = $this->db->get_where($this->table, [
@@ -19,12 +29,6 @@ class AnalisisPeriode extends Model
 
     public function get_aktif_periode()
     {
-        $query = $this->db->get_where($this->table, [
-            'aktif'     => '1',
-            'id_master' => $_SESSION['analisis_master'],
-        ]);
-        $data = $query->row_array();
-
-        return $data['id'];
+        return $this->get_periode()['id'];
     }
 }

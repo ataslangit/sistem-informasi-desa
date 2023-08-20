@@ -1372,15 +1372,6 @@ class Analisis_respon_model extends Model
         return $query->row_array();
     }
 
-    public function get_periode()
-    {
-        $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
-        $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
-
-        return $data['nama'];
-    }
-
     public function list_dusun()
     {
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND rw = '0' ";

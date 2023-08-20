@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\BaseController;
+use App\Models\AnalisisPeriode;
 
 class Analisis_respon extends BaseController
 {
@@ -32,6 +33,8 @@ class Analisis_respon extends BaseController
 
     public function index($p = 1, $o = 0)
     {
+        $analisisiPeriodeModel = new AnalisisPeriode();
+
         unset($_SESSION['cari2']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -80,7 +83,7 @@ class Analisis_respon extends BaseController
         $data['main']             = $this->analisis_respon_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']          = $this->analisis_respon_model->autocomplete();
         $data['analisis_master']  = $this->analisis_respon_model->get_analisis_master();
-        $data['analisis_periode'] = $this->analisis_respon_model->get_periode();
+        $data['analisis_periode'] = $analisisiPeriodeModel->get_periode()['nama'];
 
         $header = $this->header_model->get_data();
 
