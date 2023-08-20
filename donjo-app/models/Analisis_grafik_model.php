@@ -218,12 +218,4 @@ class Analisis_grafik_model extends Model
 
         return $data['nama'];
     }
-
-    public function list_periode()
-    {
-        $sql   = 'SELECT * FROM analisis_periode WHERE id_master=?';
-        $query = $this->db->query($sql, $_SESSION['analisis_master']);
-
-        return $query->result_array();
-    }
 }
