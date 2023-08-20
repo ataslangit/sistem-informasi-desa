@@ -174,8 +174,10 @@ class Analisis_respon extends BaseController
 
     public function data_unduh($p = 0, $o = 0)
     {
+        $analisisPeriodeModel = new AnalisisPeriode();
+
         $data['main']      = $this->analisis_respon_model->data_unduh($p, $o);
-        $data['periode']   = $this->analisis_respon_model->get_aktif_periode();
+        $data['periode']   = $analisisPeriodeModel->get_aktif_periode();
         $data['indikator'] = $this->analisis_respon_model->indikator_unduh($p, $o);
         view('analisis_respon/import/data_unduh', $data);
     }
