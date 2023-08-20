@@ -13,13 +13,13 @@ class AnalisisPeriode extends Model
         $this->db->insert($this->table, $data);
     }
 
-    function update(?int $id = null, ?int $id_master = null, $data)
+    public function update(?int $id, ?int $id_master, $data)
     {
-        if($id !== null) {
+        if ($id !== null) {
             $this->db->where('id', $id);
         }
 
-        if($id_master !== null) {
+        if ($id_master !== null) {
             $this->db->where('id_master', $id_master);
         }
         $this->db->update($this->table, $data);

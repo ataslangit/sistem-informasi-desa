@@ -148,7 +148,7 @@ class Analisis_periode_model extends Model
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
             $analisisPeriodeModel = new AnalisisPeriode();
-            $akt['aktif'] = 2;
+            $akt['aktif']         = 2;
 
             $analisisPeriodeModel->update(null, $_SESSION['analisis_master'], $akt);
         }
@@ -185,8 +185,8 @@ class Analisis_periode_model extends Model
     public function update($id = 0)
     {
         $analisisPeriodeModel = new AnalisisPeriode();
-        $data = $_POST;
-        $akt  = [];
+        $data                 = $_POST;
+        $akt                  = [];
 
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
@@ -194,7 +194,7 @@ class Analisis_periode_model extends Model
             $analisisPeriodeModel->update(null, $_SESSION['analisis_master'], $akt);
         }
         $data['id_master'] = $_SESSION['analisis_master'];
-        $outp = $analisisPeriodeModel->update($id, null, $data);
+        $outp              = $analisisPeriodeModel->update($id, null, $data);
 
         if ($outp) {
             $_SESSION['success'] = 1;
