@@ -327,7 +327,7 @@ class Import_model extends Model
 					union SELECT '-' as rt, rw as rw, dusun from impor GROUP BY rw,dusun
 					union SELECT '0' as rt, rw as rw, dusun from impor GROUP BY rw,dusun
 					 ORDER BY rw,rt,dusun ASC) as temp";
-        $hasil = $this->db->query($query);
+        $this->db->query($query);
 
         $query = 'INSERT INTO tweb_keluarga(no_kk) SELECT DISTINCT(id_kk) AS no_kk FROM impor';
         $this->db->query($query);

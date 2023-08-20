@@ -27,7 +27,7 @@ class Analisis_import_model extends Model
 
         $sheet = 1;
         $baris = $data->rowcount($sheet_index = $sheet);
-        $kolom = $data->colcount($sheet_index = $sheet);
+        $data->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $sql   = 'SELECT * FROM analisis_kategori_indikator WHERE kategori=? AND id_master=?';
