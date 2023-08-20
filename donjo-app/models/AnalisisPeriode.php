@@ -8,6 +8,11 @@ class AnalisisPeriode extends Model
 {
     protected $table = 'analisis_periode';
 
+    public function insert(array $data)
+    {
+        $this->db->insert($this->table, $data);
+    }
+
     public function get_periode()
     {
         $query = $this->db->get_where($this->table, [

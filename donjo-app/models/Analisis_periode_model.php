@@ -1,6 +1,7 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\AnalisisPeriode;
 use App\Models\BaseModel as Model;
 
 class Analisis_periode_model extends Model
@@ -131,8 +132,9 @@ class Analisis_periode_model extends Model
 
     public function insert()
     {
-        $data = $_POST;
-        $dp   = $data['duplikasi'];
+        $analisisPeriodeModel = new AnalisisPeriode();
+        $data                 = $_POST;
+        $dp                   = $data['duplikasi'];
         unset($data['duplikasi']);
 
         if ($dp === 1) {
@@ -149,7 +151,7 @@ class Analisis_periode_model extends Model
             $this->db->where('id_master', $_SESSION['analisis_master']);
             $this->db->update('analisis_periode', $akt);
         }
-        $outp = $this->db->insert('analisis_periode', $data);
+        $outp = $analisisPeriodeModel->insert($data);
 
         if ($dp === 1) {
             $sqld   = 'SELECT id FROM analisis_periode WHERE id_master=? ORDER BY id DESC LIMIT 1';
