@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\AnalisisPeriode;
 use App\Models\BaseModel as Model;
 
 class Analisis_import_model extends Model
 {
     public function import_excel()
     {
-        $data  = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $data                 = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $analisisPeriodeModel = new AnalisisPeriode();
+
         $sheet = 0;
 
         $master['nama']        = $data->val(1, 2, $sheet);
@@ -23,11 +26,12 @@ class Analisis_import_model extends Model
         $periode['tahun_pelaksanaan'] = $data->val(7, 2, $sheet);
         $periode['keterangan']        = $data->val(5, 2, $sheet);
         $periode['aktif']             = 1;
-        $this->db->insert('analisis_periode', $periode);
+
+        $analisisPeriodeModel->insert($periode);
 
         $sheet = 1;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $data->colcount($sheet_index = $sheet);
+        $baris = $data->rowcount($sheet);
+        $data->colcount($sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $sql   = 'SELECT * FROM analisis_kategori_indikator WHERE kategori=? AND id_master=?';

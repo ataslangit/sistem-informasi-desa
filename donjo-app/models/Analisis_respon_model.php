@@ -1,6 +1,7 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\AnalisisPeriode;
 use App\Models\BaseModel as Model;
 
 class Analisis_respon_model extends Model
@@ -1357,11 +1358,9 @@ class Analisis_respon_model extends Model
     // -----------------
     public function get_aktif_periode()
     {
-        $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
-        $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
+        $analisisPeriodeModel = new AnalisisPeriode();
 
-        return $data['id'];
+        return $analisisPeriodeModel->get_periode()['id'];
     }
 
     public function get_analisis_master()
@@ -1370,15 +1369,6 @@ class Analisis_respon_model extends Model
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
 
         return $query->row_array();
-    }
-
-    public function get_periode()
-    {
-        $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
-        $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
-
-        return $data['nama'];
     }
 
     public function list_dusun()

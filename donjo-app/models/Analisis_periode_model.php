@@ -1,6 +1,7 @@
 <?php
 
 use App\Libraries\Paging;
+use App\Models\AnalisisPeriode;
 use App\Models\BaseModel as Model;
 
 class Analisis_periode_model extends Model
@@ -131,8 +132,9 @@ class Analisis_periode_model extends Model
 
     public function insert()
     {
-        $data = $_POST;
-        $dp   = $data['duplikasi'];
+        $analisisPeriodeModel = new AnalisisPeriode();
+        $data                 = $_POST;
+        $dp                   = $data['duplikasi'];
         unset($data['duplikasi']);
 
         if ($dp === 1) {
@@ -145,11 +147,12 @@ class Analisis_periode_model extends Model
         $akt               = [];
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
-            $akt['aktif'] = 2;
-            $this->db->where('id_master', $_SESSION['analisis_master']);
-            $this->db->update('analisis_periode', $akt);
+            $analisisPeriodeModel = new AnalisisPeriode();
+            $akt['aktif']         = 2;
+
+            $analisisPeriodeModel->update(null, $_SESSION['analisis_master'], $akt);
         }
-        $outp = $this->db->insert('analisis_periode', $data);
+        $outp = $analisisPeriodeModel->insert($data);
 
         if ($dp === 1) {
             $sqld   = 'SELECT id FROM analisis_periode WHERE id_master=? ORDER BY id DESC LIMIT 1';
@@ -181,18 +184,18 @@ class Analisis_periode_model extends Model
 
     public function update($id = 0)
     {
-        $data = $_POST;
-        $akt  = [];
+        $analisisPeriodeModel = new AnalisisPeriode();
+        $data                 = $_POST;
+        $akt                  = [];
 
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
             $akt['aktif'] = 2;
-            $this->db->where('id_master', $_SESSION['analisis_master']);
-            $this->db->update('analisis_periode', $akt);
+            $analisisPeriodeModel->update(null, $_SESSION['analisis_master'], $akt);
         }
         $data['id_master'] = $_SESSION['analisis_master'];
-        $this->db->where('id', $id);
-        $outp = $this->db->update('analisis_periode', $data);
+        $outp              = $analisisPeriodeModel->update($id, null, $data);
+
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
