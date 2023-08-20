@@ -136,7 +136,7 @@ class Mandiri_model extends Model
             redirect('mandiri');
         }
 
-        $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
+        $sql = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
         $this->db->query($sql, [$_POST['nik']]);
 
         $rpin        = $this->generate_pin($_POST['pin']);

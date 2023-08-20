@@ -320,9 +320,9 @@ class Web_gallery_model extends Model
 
     public function update_sub_gallery($id = 0)
     {
-        $x          = $_POST;
-        $tipe_file  = $_FILES['gambar']['type'];
-        $nama_file  = $_FILES['gambar']['name'];
+        $x         = $_POST;
+        $tipe_file = $_FILES['gambar']['type'];
+        $nama_file = $_FILES['gambar']['name'];
         if (! empty($nama_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
                 UploadGallery($nama_file);

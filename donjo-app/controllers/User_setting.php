@@ -14,7 +14,7 @@ class User_setting extends BaseController
 
     public function index()
     {
-        $id     = $_SESSION['user'];
+        $id = $_SESSION['user'];
         $this->header_model->get_data();
         $this->header_model->get_data();
         $data['main'] = $this->user_model->get_user($id);

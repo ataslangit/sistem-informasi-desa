@@ -28,8 +28,8 @@
   },
   "scripts": {
     "csfix": [
-      "./donjo-sys/bin/php-cs-fixer fix",
-      "./donjo-sys/bin/rector process"
+      "./donjo-sys/bin/rector process",
+      "./donjo-sys/bin/php-cs-fixer fix"
     ],
     "update-resources": "git submodule update --init --remote resources"
   }
