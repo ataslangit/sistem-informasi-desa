@@ -119,3 +119,5 @@ nb-configuration.xml
 /.phpunit.*.cache
 
 /node_modules
+
+/public/uploads

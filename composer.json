@@ -11,7 +11,8 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "codeigniter4/framework": "4.3.7"
+        "codeigniter4/framework": "4.3.7",
+        "symfony/filesystem": "^5.4"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.1",
