@@ -37,7 +37,7 @@ jobs:
           git fetch
           git pull
       - id: changed-files-specific
-        uses: tj-actions/changed-files@v37
+        uses: tj-actions/changed-files@v38
         with:
           files: donjo-app/Views/**
       - if: steps.changed-files-specific.outputs.any_changed == 'true'
