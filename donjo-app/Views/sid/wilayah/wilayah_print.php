@@ -4,7 +4,7 @@
 <head>
     <title>Data Wilayah</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="<?php echo base_url('assets/css/surat.css') ?>" rel="stylesheet">
+    <link href="<?= asset('resources/css/surat.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/report.css') ?>" rel="stylesheet">
 </head>
 

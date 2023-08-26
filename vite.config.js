@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/css/colorbox.css",
                 "resources/css/default.css",
                 "resources/css/first.css",
+                "resources/css/surat.css",
                 "resources/js/layout.js",
             ],
             refresh: true,
