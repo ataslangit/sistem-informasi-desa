@@ -14,6 +14,11 @@
     "isEntry": true,
     "src": "resources/css/first.css"
   },
+  "resources/css/surat.css": {
+    "file": "assets/surat-76595aa2.css",
+    "isEntry": true,
+    "src": "resources/css/surat.css"
+  },
   "resources/images/background.gif": {
     "file": "assets/background-495b93dc.gif",
     "src": "resources/images/background.gif"
