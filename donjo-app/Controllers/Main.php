@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Libraries\Install;
 use App\Models\Config;
 
