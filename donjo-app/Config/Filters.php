@@ -25,7 +25,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'sudahinstall' => SudahInstall::class,
+        'sudahinstall'  => SudahInstall::class,
     ];
 
     /**

@@ -27,8 +27,18 @@ class SudahInstall implements FilterInterface
     {
         $install = new Install();
 
-        if (! $install->cek()) {
+        if ($arguments === ['yes']) {
+            if ($install->cek()) {
+                return;
+            }
+
             return redirect()->route('install');
+        }
+
+        if ($arguments === ['no']) {
+            if ($install->cek()) {
+                return redirect()->to('/');
+            }
         }
     }
 
