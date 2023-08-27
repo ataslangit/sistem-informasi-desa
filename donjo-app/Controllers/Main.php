@@ -45,7 +45,7 @@ class Main extends BaseController
      */
     public function initial()
     {
-        view('install');
+        return view('install');
     }
 
     public function install()
