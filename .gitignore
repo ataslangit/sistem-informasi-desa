@@ -93,7 +93,6 @@ _modules/*
 
 # Netbeans
 nbproject/
-build/
 nbbuild/
 dist/
 nbdist/
@@ -125,16 +124,5 @@ nb-configuration.xml
 
 .php-cs-fixer.cache
 /install.sid
-
-# ----------------------------------------------------------
-# PUBLIC BUILD
-# ----------------------------------------------------------
-public/build/vendors/tinymce/**
-!public/build/vendors/tinymce/**/
-!public/build/vendors/tinymce/**/*.min.js
-!public/build/vendors/tinymce/**/*.css
-!public/build/vendors/tinymce/**/*.gif
-!public/build/vendors/tinymce/**/*.swf
-!public/build/vendors/tinymce/skins/**
 
 /dev/
