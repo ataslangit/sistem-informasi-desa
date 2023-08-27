@@ -12,7 +12,7 @@ class Install
      */
     public function cek(): bool
     {
-        return (bool) (is_file(ROOTPATH . 'install.sid'));
+        return is_file(ROOTPATH . 'install.sid');
     }
 
     /**
