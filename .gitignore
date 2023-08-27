@@ -21,3 +21,5 @@ public/build/vendors/tinymce/**
 !public/build/vendors/tinymce/**/*.gif
 !public/build/vendors/tinymce/**/*.swf
 !public/build/vendors/tinymce/skins/**
+
+/dev/
