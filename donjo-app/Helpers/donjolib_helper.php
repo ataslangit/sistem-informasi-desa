@@ -2,64 +2,6 @@
 
 use App\Models\Config;
 
-/**
- * This function checks `manifest.json` from `FCPATH` . 'build', extracts the entire file and returns an array.
- *
- * @param string $file The file name to check.
- *
- * @return string The path to the file, or `null` if the file does not exist.
- */
-function asset(string $file): string
-{
-    // Check if the manifest file exists.
-    $manifest_path = FCPATH . 'build' . DIRECTORY_SEPARATOR . 'manifest.json';
-
-    if (! file_exists($manifest_path)) {
-        return '';
-    }
-
-    // Decode the JSON file.
-    $manifest = json_decode(file_get_contents($manifest_path), true, 512, JSON_THROW_ON_ERROR);
-
-    // Check if the file exists in the manifest file.
-    if (! isset($manifest[$file])) {
-        return '';
-    }
-
-    // Return the path to the file.
-    return base_url('build/' . $manifest[$file]['file']);
-}
-
-if (! function_exists('view')) {
-    /**
-     * fungsi view() untuk menggantikan $this->load->view()
-     */
-    function view(string $view, array $data = [], bool $return = false)
-    {
-        $CI = &get_instance();
-
-        $CI->load->view($view, $data, $return);
-    }
-}
-
-if (! function_exists('dd')) {
-    /**
-     * Dump & die
-     *
-     * @param mixed ...$args
-     *
-     * @return void
-     */
-    function dd(...$args)
-    {
-        if (ENVIRONMENT === 'development') {
-            var_dump($args);
-
-            exit;
-        }
-    }
-}
-
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)

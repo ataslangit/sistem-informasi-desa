@@ -101,7 +101,8 @@ class Toolbar extends BaseConfig
      * NOTE: The ROOTPATH will be prepended to all values.
      */
     public array $watchedDirectories = [
-        'app',
+        'donjo-app',
+        'public'
     ];
 
     /**

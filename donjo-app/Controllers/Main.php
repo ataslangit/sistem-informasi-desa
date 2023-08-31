@@ -45,7 +45,12 @@ class Main extends BaseController
      */
     public function initial()
     {
-        return view('install');
+        $data = [
+            'title' => 'Instal SID',
+            'bodyClass' => 'instal'
+        ];
+
+        return view('install/index', $data);
     }
 
     public function install()
