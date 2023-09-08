@@ -300,9 +300,9 @@ class Export_model extends Model
             $query = '';
 
             foreach ($lines as $sql_line) {
-                if (trim($sql_line) !== '' && strpos($sql_line, '--') === false) {
+                if (trim($sql_line) !== '' && ! str_contains($sql_line, '--')) {
                     $query = $sql_line;
-                    if (substr(rtrim($query), -1) === ';') {
+                    if (str_ends_with(rtrim($query), ';')) {
                         $result = $this->db->query($query);
                     }
                 }

@@ -347,33 +347,17 @@ class Penduduk_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500, $log = 0)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.nik';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.nik DESC';
-                break;
-
-            case 3: $order_sql = ' ORDER BY u.nama';
-                break;
-
-            case 4: $order_sql = ' ORDER BY u.nama DESC';
-                break;
-
-            case 5: $order_sql = ' ORDER BY d.no_kk';
-                break;
-
-            case 6: $order_sql = ' ORDER BY d.no_kk DESC';
-                break;
-
-            case 7: $order_sql = ' ORDER BY umur';
-                break;
-
-            case 8: $order_sql = ' ORDER BY umur DESC';
-                break;
-
-            default:$order_sql = '';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.nik',
+            2       => ' ORDER BY u.nik DESC',
+            3       => ' ORDER BY u.nama',
+            4       => ' ORDER BY u.nama DESC',
+            5       => ' ORDER BY d.no_kk',
+            6       => ' ORDER BY d.no_kk DESC',
+            7       => ' ORDER BY umur',
+            8       => ' ORDER BY umur DESC',
+            default => '',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

@@ -28,11 +28,11 @@ class Install
             $lines    = file($filename);
 
             foreach ($lines as $line) {
-                if (substr($line, 0, 2) === '--' || $line === '') {
+                if (str_starts_with($line, '--') || $line === '') {
                     continue;
                 }
                 $templine .= $line;
-                if (substr(trim($line), -1, 1) === ';') {
+                if (str_ends_with(trim($line), ';')) {
                     $this->CI->db->query($templine);
                     $templine = '';
                 }

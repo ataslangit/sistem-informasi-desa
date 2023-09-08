@@ -132,15 +132,11 @@ class Surat_keluar_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.no_surat';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.no_surat DESC';
-                break;
-
-            default:$order_sql = ' ORDER BY u.tanggal';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.no_surat',
+            2       => ' ORDER BY u.no_surat DESC',
+            default => ' ORDER BY u.tanggal',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

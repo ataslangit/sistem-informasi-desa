@@ -76,27 +76,15 @@ class Analisis_periode_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.id';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.id DESC';
-                break;
-
-            case 3: $order_sql = ' ORDER BY u.id';
-                break;
-
-            case 4: $order_sql = ' ORDER BY u.id DESC';
-                break;
-
-            case 5: $order_sql = ' ORDER BY g.id';
-                break;
-
-            case 6: $order_sql = ' ORDER BY g.id DESC';
-                break;
-
-            default:$order_sql = ' ORDER BY u.id';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.id',
+            2       => ' ORDER BY u.id DESC',
+            3       => ' ORDER BY u.id',
+            4       => ' ORDER BY u.id DESC',
+            5       => ' ORDER BY g.id',
+            6       => ' ORDER BY g.id DESC',
+            default => ' ORDER BY u.id',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
