@@ -85,27 +85,15 @@ class Sms_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.SenderNumber';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.SenderNumber DESC';
-                break;
-
-            case 3: $order_sql = ' ORDER BY u.Class';
-                break;
-
-            case 4: $order_sql = ' ORDER BY u.Class DESC';
-                break;
-
-            case 5: $order_sql = ' ORDER BY u.ReceivingDateTime';
-                break;
-
-            case 6: $order_sql = ' ORDER BY u.ReceivingDateTime DESC';
-                break;
-
-            default:$order_sql = ' ORDER BY u.ReceivingDateTime DESC';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.SenderNumber',
+            2       => ' ORDER BY u.SenderNumber DESC',
+            3       => ' ORDER BY u.Class',
+            4       => ' ORDER BY u.Class DESC',
+            5       => ' ORDER BY u.ReceivingDateTime',
+            6       => ' ORDER BY u.ReceivingDateTime DESC',
+            default => ' ORDER BY u.ReceivingDateTime DESC',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
@@ -142,27 +130,15 @@ class Sms_model extends Model
 
     public function list_data_terkirim($o = 0, $offset = 0, $limit = 500)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.DestinationNumber';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC';
-                break;
-
-            case 3: $order_sql = ' ORDER BY u.Class';
-                break;
-
-            case 4: $order_sql = ' ORDER BY u.Class DESC';
-                break;
-
-            case 5: $order_sql = ' ORDER BY u.SendingDateTime';
-                break;
-
-            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC';
-                break;
-
-            default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.DestinationNumber',
+            2       => ' ORDER BY u.DestinationNumber DESC',
+            3       => ' ORDER BY u.Class',
+            4       => ' ORDER BY u.Class DESC',
+            5       => ' ORDER BY u.SendingDateTime',
+            6       => ' ORDER BY u.SendingDateTime DESC',
+            default => ' ORDER BY u.SendingDateTime DESC',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
@@ -198,27 +174,15 @@ class Sms_model extends Model
 
     public function list_data_tertunda($o = 0, $offset = 0, $limit = 500)
     {
-        switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.DestinationNumber';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.DestinationNumber DESC';
-                break;
-
-            case 3: $order_sql = ' ORDER BY u.Class';
-                break;
-
-            case 4: $order_sql = ' ORDER BY u.Class DESC';
-                break;
-
-            case 5: $order_sql = ' ORDER BY u.SendingDateTime';
-                break;
-
-            case 6: $order_sql = ' ORDER BY u.SendingDateTime DESC';
-                break;
-
-            default:$order_sql = ' ORDER BY u.SendingDateTime DESC';
-        }
+        $order_sql = match ($o) {
+            1       => ' ORDER BY u.DestinationNumber',
+            2       => ' ORDER BY u.DestinationNumber DESC',
+            3       => ' ORDER BY u.Class',
+            4       => ' ORDER BY u.Class DESC',
+            5       => ' ORDER BY u.SendingDateTime',
+            6       => ' ORDER BY u.SendingDateTime DESC',
+            default => ' ORDER BY u.SendingDateTime DESC',
+        };
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
