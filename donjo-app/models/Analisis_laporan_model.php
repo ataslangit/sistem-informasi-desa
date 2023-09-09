@@ -412,9 +412,9 @@ class Analisis_laporan_model extends Model
 
     public function get_aktif_periode()
     {
-        $analisisPeriodeModel = new AnalisisPeriode();
+        $analisisPeriode = new AnalisisPeriode();
 
-        return $analisisPeriodeModel->get_periode()['id'];
+        return $analisisPeriode->get_periode()['id'];
     }
 
     public function list_dusun()

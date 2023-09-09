@@ -68,12 +68,12 @@ class Plan extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']       = $configModel->get_data();
+        $data['desa']       = $config->get_data();
         $data['list_point'] = $this->plan_lokasi_model->list_point();
         $data['dusun']      = $this->plan_lokasi_model->list_dusun();
 
@@ -96,7 +96,7 @@ class Plan extends BaseController
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p'] = $p;
         $data['o'] = $o;
@@ -106,7 +106,7 @@ class Plan extends BaseController
             $data['lokasi'] = null;
         }
 
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
         view('lokasi/maps', $data);
     }

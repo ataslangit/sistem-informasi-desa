@@ -8,9 +8,9 @@ class WhoopsHook
     public function bootWhoops()
     {
         if (ENVIRONMENT === 'development') {
-            $whoops = new Run();
-            $whoops->pushHandler(new PrettyPageHandler());
-            $whoops->register();
+            $run = new Run();
+            $run->pushHandler(new PrettyPageHandler());
+            $run->register();
         }
     }
 }

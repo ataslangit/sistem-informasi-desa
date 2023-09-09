@@ -7,11 +7,11 @@ class Siteman extends BaseController
 {
     public function index()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $this->user_model->logout();
         $header = [
-            'desa' => $configModel->get_data(),
+            'desa' => $config->get_data(),
         ];
 
         if (! isset($_SESSION['siteman'])) {

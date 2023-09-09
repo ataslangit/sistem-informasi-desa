@@ -299,9 +299,9 @@ class Export_model extends Model
             $lines = file($filename);
             $query = '';
 
-            foreach ($lines as $sql_line) {
-                if (trim($sql_line) !== '' && ! str_contains($sql_line, '--')) {
-                    $query = $sql_line;
+            foreach ($lines as $line) {
+                if (trim($line) !== '' && ! str_contains($line, '--')) {
+                    $query = $line;
                     if (str_ends_with(rtrim($query), ';')) {
                         $result = $this->db->query($query);
                     }

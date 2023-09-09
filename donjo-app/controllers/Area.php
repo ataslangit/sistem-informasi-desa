@@ -60,12 +60,12 @@ class Area extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']         = $configModel->get_data();
+        $data['desa']         = $config->get_data();
         $data['list_polygon'] = $this->plan_area_model->list_polygon();
         $data['dusun']        = $this->plan_area_model->list_dusun();
 
@@ -88,7 +88,7 @@ class Area extends BaseController
 
     public function ajax_area_maps($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p'] = $p;
         $data['o'] = $o;
@@ -98,7 +98,7 @@ class Area extends BaseController
             $data['area'] = null;
         }
 
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url("area/update_maps/{$p}/{$o}/{$id}");
         view('area/maps', $data);
     }

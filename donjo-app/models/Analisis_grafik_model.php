@@ -180,8 +180,8 @@ class Analisis_grafik_model extends Model
 
     public function get_aktif_periode()
     {
-        $analisisPeriodeModel = new AnalisisPeriode();
+        $analisisPeriode = new AnalisisPeriode();
 
-        return $analisisPeriodeModel->get_aktif_periode();
+        return $analisisPeriode->get_aktif_periode();
     }
 }

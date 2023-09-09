@@ -7,9 +7,19 @@ class Gallery extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        if ($grup === '3') {
+            return;
+        }
+        if ($grup === '4') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()

@@ -190,12 +190,10 @@ class First_artikel_m extends Model
 		ORDER BY RAND() LIMIT 10 ';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            $data = $query->result_array();
-        } else {
-            $data = false;
+            return $query->result_array();
         }
 
-        return $data;
+        return false;
     }
 
     public function cos_widget()
@@ -208,12 +206,10 @@ class First_artikel_m extends Model
 		ORDER BY a.tgl_upload DESC";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            $data = $query->result_array();
-        } else {
-            $data = false;
+            return $query->result_array();
         }
 
-        return $data;
+        return false;
     }
 
     public function agenda_show()
@@ -251,12 +247,10 @@ class First_artikel_m extends Model
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE a.id=?';
         $query = $this->db->query($sql, $id);
         if ($query->num_rows() > 0) {
-            $data = $query->row_array();
-        } else {
-            $data = false;
+            return $query->row_array();
         }
 
-        return $data;
+        return false;
     }
 
     public function list_artikel($offset = 0, $limit = 50, $id = 0)
@@ -270,12 +264,10 @@ class First_artikel_m extends Model
         $sql .= $paging_sql;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            $data = $query->result_array();
-        } else {
-            $data = false;
+            return $query->result_array();
         }
 
-        return $data;
+        return false;
     }
 
     public function insert_comment($id = 0)
@@ -319,11 +311,9 @@ class First_artikel_m extends Model
         $sql   = 'SELECT * FROM media_sosial WHERE enabled=1';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            $data = $query->result_array();
-        } else {
-            $data = false;
+            return $query->result_array();
         }
 
-        return $data;
+        return false;
     }
 }

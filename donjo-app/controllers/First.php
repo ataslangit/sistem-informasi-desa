@@ -41,10 +41,10 @@ class First extends BaseController
 
     public function index($p = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']             = $p;
-        $data['desa']          = $data['data_config'] = $configModel->get_data();
+        $data['desa']          = $data['data_config'] = $config->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['headline']      = $this->first_artikel_m->get_headline();
@@ -75,13 +75,13 @@ class First extends BaseController
 
     public function mandiri($p = 1, $m = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         if ($_SESSION['mandiri'] !== 1) {
             redirect('first');
         } else {
             $data['p']             = $p;
-            $data['desa']          = $data['data_config'] = $configModel->get_data();
+            $data['desa']          = $data['data_config'] = $config->get_data();
             $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
             $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
             $data['headline']      = $this->first_artikel_m->get_headline();
@@ -115,12 +115,12 @@ class First extends BaseController
 
     public function artikel($id = '', $p = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $id           = explode('-', $id);
         $id           = $id[0];
         $data['p']    = $p;
-        $data['desa'] = $data['data_config'] = $configModel->get_data();
+        $data['desa'] = $data['data_config'] = $config->get_data();
 
         $data['paging']  = $this->first_artikel_m->paging($p);
         $data['artikel'] = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
@@ -144,13 +144,13 @@ class First extends BaseController
 
     public function arsip($p = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']      = $p;
         $data['paging'] = $this->first_artikel_m->paging_arsip($p);
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-        $data['desa']          = $data['data_config'] = $configModel->get_data();
+        $data['desa']          = $data['data_config'] = $config->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['sosmed']        = $this->first_artikel_m->list_sosmed();
@@ -168,10 +168,10 @@ class First extends BaseController
 
     public function gallery($p = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']    = $p;
-        $data['desa'] = $data['data_config'] = $configModel->get_data();
+        $data['desa'] = $data['data_config'] = $config->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['paging']        = $this->first_artikel_m->paging($p);
@@ -197,11 +197,11 @@ class First extends BaseController
 
     public function sub_gallery($gal = 0, $p = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']    = $p;
         $data['gal']  = $gal;
-        $data['desa'] = $data['data_config'] = $configModel->get_data();
+        $data['desa'] = $data['data_config'] = $config->get_data();
 
         $data['paging']  = $this->first_gallery_m->paging($p);
         $data['gallery'] = $this->first_gallery_m->gallery_show($data['paging']->offset, $data['paging']->per_page);
@@ -230,7 +230,7 @@ class First extends BaseController
 
     public function statistik($stat = '', $tipe = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         switch ($stat) {
             case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan';
@@ -270,7 +270,7 @@ class First extends BaseController
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $data['data_config'] = $configModel->get_data();
+        $data['desa']          = $data['data_config'] = $config->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['stat']          = $this->first_penduduk_m->list_data($stat);
@@ -286,11 +286,11 @@ class First extends BaseController
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $data['data_config'] = $configModel->get_data();
+        $data['desa']          = $data['data_config'] = $config->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -312,12 +312,12 @@ class First extends BaseController
 
     public function wilayah()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['main']          = $this->first_penduduk_m->wilayah();
         $data['heading']       = 'Populasi Per Wilayah';
-        $data['desa']          = $data['data_config'] = $configModel->get_data();
+        $data['desa']          = $data['data_config'] = $config->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -335,11 +335,11 @@ class First extends BaseController
 
     public function statistik_k($tipex = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['tipe']  = 2;
         $data['tipex'] = $tipex;
-        $data['desa']  = $data['data_config'] = $configModel->get_data();
+        $data['desa']  = $data['data_config'] = $config->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
@@ -357,9 +357,9 @@ class First extends BaseController
 
     public function agenda($stat = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['desa']      = $data['data_config'] = $configModel->get_data();
+        $data['desa']      = $data['data_config'] = $config->get_data();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['artikel']   = $this->first_artikel_m->agenda_show();
@@ -374,10 +374,10 @@ class First extends BaseController
 
     public function kategori($kat = 0, $p = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']         = $p;
-        $data['desa']      = $data['data_config'] = $configModel->get_data();
+        $data['desa']      = $data['data_config'] = $config->get_data();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['headline']  = null;
@@ -401,9 +401,9 @@ class First extends BaseController
 
     public function add_comment($id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['data_config'] = $configModel->get_data();
+        $data['data_config'] = $config->get_data();
 
         $this->first_artikel_m->insert_comment($id);
 
