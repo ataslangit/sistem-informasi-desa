@@ -14,9 +14,13 @@ class Sid_core extends BaseController
         unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()
@@ -362,10 +366,10 @@ class Sid_core extends BaseController
 
     public function ajax_wil_maps($id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['dusun']       = $this->wilayah_model->get_dusun_maps($id);
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url("sid_core/update_dusun_map/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -379,10 +383,10 @@ class Sid_core extends BaseController
 
     public function ajax_rw_maps($dus = 0, $id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['dusun']       = $this->wilayah_model->get_rw($dus, $id);
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url("sid_core/update_rw_map/{$dus}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -397,10 +401,10 @@ class Sid_core extends BaseController
 
     public function ajax_rt_maps($dus = 0, $rw = 0, $id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['dusun']       = $this->wilayah_model->get_rt($dus, $rw, $id);
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url("sid_core/update_rt_map/{$dus}/{$rw}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);

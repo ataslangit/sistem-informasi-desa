@@ -19,7 +19,7 @@ function GetInt4d($data, $pos)
 {
     $value = ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | (ord($data[$pos + 3]) << 24);
     if ($value >= 4_294_967_294) {
-        $value = -2;
+        return -2;
     }
 
     return $value;
@@ -458,11 +458,14 @@ class Spreadsheet_Excel_Reader
     public function val($row, $col, $sheet = 0)
     {
         $col = $this->getCol($col);
-        if (array_key_exists($row, $this->sheets[$sheet]['cells']) && array_key_exists($col, $this->sheets[$sheet]['cells'][$row])) {
-            return $this->sheets[$sheet]['cells'][$row][$col];
+        if (! array_key_exists($row, $this->sheets[$sheet]['cells'])) {
+            return '';
+        }
+        if (! array_key_exists($col, $this->sheets[$sheet]['cells'][$row])) {
+            return '';
         }
 
-        return '';
+        return $this->sheets[$sheet]['cells'][$row][$col];
     }
 
     public function value($row, $col, $sheet = 0)
@@ -473,14 +476,20 @@ class Spreadsheet_Excel_Reader
     public function info($row, $col, $type = '', $sheet = 0)
     {
         $col = $this->getCol($col);
-        if (array_key_exists('cellsInfo', $this->sheets[$sheet])
-                && array_key_exists($row, $this->sheets[$sheet]['cellsInfo'])
-                && array_key_exists($col, $this->sheets[$sheet]['cellsInfo'][$row])
-                && array_key_exists($type, $this->sheets[$sheet]['cellsInfo'][$row][$col])) {
-            return $this->sheets[$sheet]['cellsInfo'][$row][$col][$type];
+        if (! array_key_exists('cellsInfo', $this->sheets[$sheet])) {
+            return '';
+        }
+        if (! array_key_exists($row, $this->sheets[$sheet]['cellsInfo'])) {
+            return '';
+        }
+        if (! array_key_exists($col, $this->sheets[$sheet]['cellsInfo'][$row])) {
+            return '';
+        }
+        if (! array_key_exists($type, $this->sheets[$sheet]['cellsInfo'][$row][$col])) {
+            return '';
         }
 
-        return '';
+        return $this->sheets[$sheet]['cellsInfo'][$row][$col][$type];
     }
 
     public function type($row, $col, $sheet = 0)
@@ -758,11 +767,14 @@ class Spreadsheet_Excel_Reader
 
     public function rawColor($ci)
     {
-        if (($ci !== 0x7FFF) && ($ci !== '')) {
-            return $this->colors[$ci];
+        if ($ci === 0x7FFF) {
+            return '';
+        }
+        if ($ci === '') {
+            return '';
         }
 
-        return '';
+        return $this->colors[$ci];
     }
 
     public function bold($row, $col, $sheet = 0)
@@ -1667,7 +1679,7 @@ class Spreadsheet_Excel_Reader
         }
         $value += $mantissalow2 / 2 ** (52 - ($exp - 1023));
         if ($sign) {
-            $value = -1 * $value;
+            return -1 * $value;
         }
 
         return $value;
@@ -1678,10 +1690,15 @@ class Spreadsheet_Excel_Reader
         $this->sheets[$this->sn]['maxrow']                                                    = max($this->sheets[$this->sn]['maxrow'], $row + $this->_rowoffset);
         $this->sheets[$this->sn]['maxcol']                                                    = max($this->sheets[$this->sn]['maxcol'], $col + $this->_coloffset);
         $this->sheets[$this->sn]['cells'][$row + $this->_rowoffset][$col + $this->_coloffset] = $string;
-        if ($this->store_extended_info && $info) {
-            foreach ($info as $key => $val) {
-                $this->sheets[$this->sn]['cellsInfo'][$row + $this->_rowoffset][$col + $this->_coloffset][$key] = $val;
-            }
+        if (! $this->store_extended_info) {
+            return;
+        }
+        if (! $info) {
+            return;
+        }
+
+        foreach ($info as $key => $val) {
+            $this->sheets[$this->sn]['cellsInfo'][$row + $this->_rowoffset][$col + $this->_coloffset][$key] = $val;
         }
     }
 
@@ -1727,7 +1744,7 @@ class Spreadsheet_Excel_Reader
     {
         $value = ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | (ord($data[$pos + 3]) << 24);
         if ($value >= 4_294_967_294) {
-            $value = -2;
+            return -2;
         }
 
         return $value;

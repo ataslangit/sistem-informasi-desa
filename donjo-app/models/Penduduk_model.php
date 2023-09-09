@@ -266,12 +266,10 @@ class Penduduk_model extends Model
         if (isset($_SESSION['filter'])) {
             $kf = $_SESSION['filter'];
             if ($kf === '77') {
-                $filter_sql = ' AND (u.status = 1 OR u.status = 2) ';
-            } else {
-                $filter_sql = " AND u.status = {$kf}";
+                return ' AND (u.status = 1 OR u.status = 2) ';
             }
 
-            return $filter_sql;
+            return " AND u.status = {$kf}";
         }
     }
 

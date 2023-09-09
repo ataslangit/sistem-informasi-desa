@@ -145,7 +145,7 @@ class Statistik extends BaseController
 
     public function cetak($lap = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['lap'] = $lap;
 
@@ -174,7 +174,7 @@ class Statistik extends BaseController
             default => 'Pendidikan',
         };
 
-        $data['config'] = $configModel->get_data();
+        $data['config'] = $config->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
 
         view('statistik/penduduk_print', $data);
@@ -182,7 +182,7 @@ class Statistik extends BaseController
 
     public function excel($lap = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['lap'] = $lap;
 
@@ -211,7 +211,7 @@ class Statistik extends BaseController
             default => 'Pendidikan',
         };
 
-        $data['config'] = $configModel->get_data();
+        $data['config'] = $config->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
 
         view('statistik/penduduk_excel', $data);
@@ -219,7 +219,7 @@ class Statistik extends BaseController
 
     public function warga($lap = '', $data = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['lap'] = $lap;
 
@@ -248,7 +248,7 @@ class Statistik extends BaseController
             default => 'Pendidikan',
         };
 
-        $data['config'] = $configModel->get_data();
+        $data['config'] = $config->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
 
         $_SESSION['per_page'] = 100;

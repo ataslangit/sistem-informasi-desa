@@ -21,7 +21,7 @@ class Gis extends BaseController
 
     public function index()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
@@ -109,7 +109,7 @@ class Gis extends BaseController
         $data['wilayah']         = $this->penduduk_model->list_wil();
         $data['list_agama']      = $this->penduduk_model->list_agama();
         $data['list_pendidikan'] = $this->penduduk_model->list_pendidikan();
-        $data['desa']            = $configModel->get_data();
+        $data['desa']            = $config->get_data();
         $data['lokasi']          = $this->plan_lokasi_model->list_data();
         $data['garis']           = $this->plan_garis_model->list_data();
         $data['area']            = $this->plan_area_model->list_data();

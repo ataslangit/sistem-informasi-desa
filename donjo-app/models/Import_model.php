@@ -195,9 +195,9 @@ class Import_model extends Model
         $baris2 = '';
         $a      = 'DROP TABLE IF EXISTS impor';
         $this->db->query($a);
-        $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
 
-        $baris = $data->rowcount($sheet_index = 0);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = 0);
 
         $a = "CREATE TABLE IF NOT EXISTS impor (
 		dusun varchar(50) NOT NULL DEFAULT 0,
@@ -232,25 +232,25 @@ class Import_model extends Model
         $baris2 = '';
 
         for ($i = 2; $i <= $baris; $i++) {
-            $dusun = $data->val($i, 1);
-            $rw    = $data->val($i, 2);
-            $rt    = $data->val($i, 3);
+            $dusun = $spreadsheetExcelReader->val($i, 1);
+            $rw    = $spreadsheetExcelReader->val($i, 2);
+            $rt    = $spreadsheetExcelReader->val($i, 3);
 
-            $nama = $data->val($i, 4);
+            $nama = $spreadsheetExcelReader->val($i, 4);
             if ($nama !== '') {
                 $nama = '"' . $nama . '"';
             }
 
-            $id_kk       = $data->val($i, 5);
-            $nik         = $data->val($i, 6);
-            $sex         = $data->val($i, 7);
-            $tempatlahir = $data->val($i, 8);
+            $id_kk       = $spreadsheetExcelReader->val($i, 5);
+            $nik         = $spreadsheetExcelReader->val($i, 6);
+            $sex         = $spreadsheetExcelReader->val($i, 7);
+            $tempatlahir = $spreadsheetExcelReader->val($i, 8);
             if ($tempatlahir !== '') {
                 $tempatlahir = '"' . $tempatlahir . '"';
             } else {
                 $tempatlahir = '"-"';
             }
-            $tanggallahir = $data->val($i, 9);
+            $tanggallahir = $spreadsheetExcelReader->val($i, 9);
 
             if ($tanggallahir !== '') {
                 $tanggallahir = date('Y-m-d', strtotime($tanggallahir));
@@ -274,32 +274,32 @@ class Import_model extends Model
                 $tanggallahir = rev_tgl($tanggallahir);
             }
 
-            $agama_id             = $data->val($i, 10);
-            $pendidikan_kk_id     = $data->val($i, 11);
-            $pendidikan_sedang_id = $data->val($i, 12);
+            $agama_id             = $spreadsheetExcelReader->val($i, 10);
+            $pendidikan_kk_id     = $spreadsheetExcelReader->val($i, 11);
+            $pendidikan_sedang_id = $spreadsheetExcelReader->val($i, 12);
             if ($pendidikan_sedang_id === '') {
                 $pendidikan_sedang_id = 18;
             }
 
-            $pekerjaan_id   = $data->val($i, 13);
-            $status_kawin   = $data->val($i, 14);
-            $kk_level       = $data->val($i, 15);
+            $pekerjaan_id   = $spreadsheetExcelReader->val($i, 13);
+            $status_kawin   = $spreadsheetExcelReader->val($i, 14);
+            $kk_level       = $spreadsheetExcelReader->val($i, 15);
             $warganegara_id = 1;
 
-            $nama_ayah = $data->val($i, 17);
+            $nama_ayah = $spreadsheetExcelReader->val($i, 17);
             if ($nama_ayah !== '') {
                 $nama_ayah = '"' . $nama_ayah . '"';
             } else {
                 $nama_ayah = '"-"';
             }
-            $nama_ibu = $data->val($i, 18);
+            $nama_ibu = $spreadsheetExcelReader->val($i, 18);
             if ($nama_ibu !== '') {
                 $nama_ibu = '"' . $nama_ibu . '"';
             } else {
                 $nama_ibu = '"-"';
             }
 
-            $golongan_darah_id = $data->val($i, 19);
+            $golongan_darah_id = $spreadsheetExcelReader->val($i, 19);
 
             $nik   = preg_replace('/[^0-9]+/', '', $nik);
             $id_kk = preg_replace('/[^0-9]+/', '', $id_kk);
@@ -485,18 +485,18 @@ class Import_model extends Model
         $a = 'DELETE FROM tweb_penduduk WHERE status = 2;';
         $this->db->query($a);
 
-        $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
 
         $sheet = 0;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $kolom = $data->colcount($sheet_index = $sheet);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = $sheet);
+        $kolom = $spreadsheetExcelReader->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             for ($j = 1; $j <= $kolom; $j++) {
                 $rt     = '';
                 $dusun  = '';
                 $dusun2 = '';
-                $temp   = $data->val($i, $j, $sheet);
+                $temp   = $spreadsheetExcelReader->val($i, $j, $sheet);
                 if ($j === 11) {
                     $p = strlen($temp);
                     if (is_numeric($temp[$p - 1])) {
@@ -516,7 +516,7 @@ class Import_model extends Model
                     }
                     $rt2 = $rt * 1;
                 } elseif ($j === 17) {
-                    $tlahir = $data->val($i, 16, $sheet) . '-' . $data->val($i, 17, $sheet) . '-1';
+                    $tlahir = $spreadsheetExcelReader->val($i, 16, $sheet) . '-' . $spreadsheetExcelReader->val($i, 17, $sheet) . '-1';
                 }
 
                 if ($j === 1) {
@@ -534,16 +534,16 @@ class Import_model extends Model
             $penduduk                     = '';
             $penduduk['id_cluster']       = $id_cluster;
             $penduduk['status']           = 2;
-            $penduduk['nama']             = $data->val($i, 13, $sheet);
-            $penduduk['nik']              = $data->val($i, 12, $sheet);
-            $penduduk['id_rtm']           = $data->val($i, 1, $sheet);
+            $penduduk['nama']             = $spreadsheetExcelReader->val($i, 13, $sheet);
+            $penduduk['nik']              = $spreadsheetExcelReader->val($i, 12, $sheet);
+            $penduduk['id_rtm']           = $spreadsheetExcelReader->val($i, 1, $sheet);
             $penduduk['tanggallahir']     = $tlahir;
             $penduduk['rtm_level']        = 2;
-            $penduduk['nik']              = $data->val($i, 25, $sheet);
-            $penduduk['kk_level']         = $data->val($i, 14, $sheet);
-            $penduduk['sex']              = $data->val($i, 15, $sheet);
-            $penduduk['pendidikan_id']    = $data->val($i, 22, $sheet);
-            $penduduk['pendidikan_kk_id'] = $data->val($i, 22, $sheet);
+            $penduduk['nik']              = $spreadsheetExcelReader->val($i, 25, $sheet);
+            $penduduk['kk_level']         = $spreadsheetExcelReader->val($i, 14, $sheet);
+            $penduduk['sex']              = $spreadsheetExcelReader->val($i, 15, $sheet);
+            $penduduk['pendidikan_id']    = $spreadsheetExcelReader->val($i, 22, $sheet);
+            $penduduk['pendidikan_kk_id'] = $spreadsheetExcelReader->val($i, 22, $sheet);
 
             $outp = $this->db->insert('tweb_penduduk', $penduduk);
         }
@@ -563,26 +563,26 @@ class Import_model extends Model
 
     public function pbdt_individu()
     {
-        $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
 
         $sheet = 0;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $data->colcount($sheet_index = $sheet);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = $sheet);
+        $spreadsheetExcelReader->colcount($sheet_index = $sheet);
 
         $gg = 0;
 
         for ($i = 2; $i <= $baris; $i++) {
             // ID RuTa
-            $id_rtm = $data->val($i, 2, $sheet);
+            $id_rtm = $spreadsheetExcelReader->val($i, 2, $sheet);
 
             // Level
-            $rtm_level = $data->val($i, 3, $sheet);
+            $rtm_level = $spreadsheetExcelReader->val($i, 3, $sheet);
             if ($rtm_level > 1) {
                 $rtm_level = 2;
             }
 
             // NIK
-            $nik = $data->val($i, 1, $sheet);
+            $nik = $spreadsheetExcelReader->val($i, 1, $sheet);
 
             $sql   = 'SELECT nama FROM tweb_penduduk WHERE nik = ?';
             $query = $this->db->query($sql, $nik);
@@ -602,7 +602,7 @@ class Import_model extends Model
                 $penduduk               = '';
                 $penduduk['id_cluster'] = 0;
                 $penduduk['status']     = 2;
-                $penduduk['nama']       = $data->val($i, 8, $sheet);
+                $penduduk['nama']       = $spreadsheetExcelReader->val($i, 8, $sheet);
                 $penduduk['nik']        = $nik;
                 $penduduk['id_rtm']     = $id_rtm;
                 $penduduk['rtm_level']  = $rtm_level;
@@ -635,17 +635,17 @@ class Import_model extends Model
 
     public function ppls_rumahtangga()
     {
-        $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
 
         $sheet = 0;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $data->colcount($sheet_index = $sheet);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = $sheet);
+        $spreadsheetExcelReader->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $penduduk = '';
 
-            $penduduk['nama']   = $data->val($i, 12, $sheet);
-            $penduduk['id_rtm'] = $data->val($i, 1, $sheet);
+            $penduduk['nama']   = $spreadsheetExcelReader->val($i, 12, $sheet);
+            $penduduk['id_rtm'] = $spreadsheetExcelReader->val($i, 1, $sheet);
 
             // $outp = $this->db->insert('tweb_penduduk',$penduduk);
             $upd['rtm_level'] = 1;
@@ -679,16 +679,16 @@ class Import_model extends Model
 
     public function pbdt_rumahtangga()
     {
-        $data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
 
         $sheet = 0;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $data->colcount($sheet_index = $sheet);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = $sheet);
+        $spreadsheetExcelReader->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
             $penduduk           = '';
-            $penduduk['nama']   = $data->val($i, 12, $sheet);
-            $penduduk['id_rtm'] = $data->val($i, 1, $sheet);
+            $penduduk['nama']   = $spreadsheetExcelReader->val($i, 12, $sheet);
+            $penduduk['id_rtm'] = $spreadsheetExcelReader->val($i, 1, $sheet);
 
             // $outp = $this->db->insert('tweb_penduduk',$penduduk);
             $upd['rtm_level'] = 1;
@@ -722,21 +722,21 @@ class Import_model extends Model
 
     public function persil()
     {
-        $data = new Spreadsheet_Excel_Reader($_FILES['persil']['tmp_name']);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['persil']['tmp_name']);
 
         $sheet = 0;
-        $baris = $data->rowcount($sheet_index = $sheet);
-        $data->colcount($sheet_index = $sheet);
+        $baris = $spreadsheetExcelReader->rowcount($sheet_index = $sheet);
+        $spreadsheetExcelReader->colcount($sheet_index = $sheet);
 
         for ($i = 2; $i <= $baris; $i++) {
-            $upd['nik']                  = $data->val($i, 2, $sheet);
-            $upd['nama']                 = $data->val($i, 3, $sheet);
-            $upd['persil_jenis_id']      = $data->val($i, 4, $sheet);
-            $upd['id_clusterdesa']       = $data->val($i, 5, $sheet);
-            $upd['luas']                 = $data->val($i, 6, $sheet);
-            $upd['kelas']                = $data->val($i, 7, $sheet);
-            $upd['no_sppt_pbb']          = $data->val($i, 8, $sheet);
-            $upd['persil_peruntukan_id'] = $data->val($i, 9, $sheet);
+            $upd['nik']                  = $spreadsheetExcelReader->val($i, 2, $sheet);
+            $upd['nama']                 = $spreadsheetExcelReader->val($i, 3, $sheet);
+            $upd['persil_jenis_id']      = $spreadsheetExcelReader->val($i, 4, $sheet);
+            $upd['id_clusterdesa']       = $spreadsheetExcelReader->val($i, 5, $sheet);
+            $upd['luas']                 = $spreadsheetExcelReader->val($i, 6, $sheet);
+            $upd['kelas']                = $spreadsheetExcelReader->val($i, 7, $sheet);
+            $upd['no_sppt_pbb']          = $spreadsheetExcelReader->val($i, 8, $sheet);
+            $upd['persil_peruntukan_id'] = $spreadsheetExcelReader->val($i, 9, $sheet);
 
             $outp = $this->db->insert('data_persil', $upd);
         }

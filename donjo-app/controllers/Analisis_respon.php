@@ -33,7 +33,7 @@ class Analisis_respon extends BaseController
 
     public function index($p = 1, $o = 0)
     {
-        $analisisiPeriodeModel = new AnalisisPeriode();
+        $analisisPeriode = new AnalisisPeriode();
 
         unset($_SESSION['cari2']);
         $data['p'] = $p;
@@ -83,7 +83,7 @@ class Analisis_respon extends BaseController
         $data['main']             = $this->analisis_respon_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']          = $this->analisis_respon_model->autocomplete();
         $data['analisis_master']  = $this->analisis_respon_model->get_analisis_master();
-        $data['analisis_periode'] = $analisisiPeriodeModel->get_periode()['nama'];
+        $data['analisis_periode'] = $analisisPeriode->get_periode()['nama'];
 
         $header = $this->header_model->get_data();
 
@@ -174,10 +174,10 @@ class Analisis_respon extends BaseController
 
     public function data_unduh($p = 0, $o = 0)
     {
-        $analisisPeriodeModel = new AnalisisPeriode();
+        $analisisPeriode = new AnalisisPeriode();
 
         $data['main']      = $this->analisis_respon_model->data_unduh($p, $o);
-        $data['periode']   = $analisisPeriodeModel->get_aktif_periode();
+        $data['periode']   = $analisisPeriode->get_aktif_periode();
         $data['indikator'] = $this->analisis_respon_model->indikator_unduh($p, $o);
         view('analisis_respon/import/data_unduh', $data);
     }

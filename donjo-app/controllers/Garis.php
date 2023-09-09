@@ -60,9 +60,9 @@ class Garis extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['desa']      = $configModel->get_data();
+        $data['desa']      = $config->get_data();
         $data['list_line'] = $this->plan_garis_model->list_line();
         $data['dusun']     = $this->plan_garis_model->list_dusun();
 

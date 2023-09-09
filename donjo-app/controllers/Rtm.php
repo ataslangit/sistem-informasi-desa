@@ -8,9 +8,13 @@ class Rtm extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()
@@ -126,9 +130,9 @@ class Rtm extends BaseController
 
     public function excel_pbdt($o = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['config'] = $configModel->get_data();
+        $data['config'] = $config->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
 
         view('sid/kependudukan/rtm_excel_pbdt', $data);
@@ -337,7 +341,7 @@ class Rtm extends BaseController
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']        = $p;
         $data['o']        = $o;
@@ -345,7 +349,7 @@ class Rtm extends BaseController
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']     = $configModel->get_data();
+        $data['desa']     = $config->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -366,12 +370,12 @@ class Rtm extends BaseController
 
     public function cetak_kk($id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']      = $configModel->get_data();
+        $data['desa']      = $config->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
 

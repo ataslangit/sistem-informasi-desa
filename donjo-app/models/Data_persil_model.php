@@ -196,12 +196,11 @@ class Data_persil_model extends Model
                 }
                 $i++;
             }
-            $hasil2 = $data1;
-        } else {
-            $hasil2 = false;
+
+            return $data1;
         }
 
-        return $hasil2;
+        return false;
     }
 
     public function list_persil_peruntukan()

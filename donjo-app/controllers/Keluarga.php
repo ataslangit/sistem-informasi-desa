@@ -8,9 +8,13 @@ class Keluarga extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()
@@ -732,7 +736,7 @@ class Keluarga extends BaseController
 
     public function kartu_keluarga($p = 1, $o = 0, $id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p']        = $p;
         $data['o']        = $o;
@@ -740,7 +744,7 @@ class Keluarga extends BaseController
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']     = $configModel->get_data();
+        $data['desa']     = $config->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -761,12 +765,12 @@ class Keluarga extends BaseController
 
     public function cetak_kk($id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']      = $configModel->get_data();
+        $data['desa']      = $config->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 1;
         // $header            = $this->header_model->get_data();
@@ -775,9 +779,9 @@ class Keluarga extends BaseController
 
     public function doc_kk($id = 0)
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['desa']      = $configModel->get_data();
+        $data['desa']      = $config->get_data();
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $data['kepala_kk'] = $this->keluarga_model->get_kepala_kk($id);

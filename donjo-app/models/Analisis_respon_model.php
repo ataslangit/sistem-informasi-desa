@@ -107,12 +107,10 @@ class Analisis_respon_model extends Model
             $per = $this->get_aktif_periode();
             $kf  = $_SESSION['isi'];
             if ($kf === 1) {
-                $isi_sql = " AND (SELECT COUNT(id_subjek) FROM analisis_respon_hasil WHERE id_subjek = u.id AND id_periode={$per} ) = 1 ";
-            } else {
-                $isi_sql = " AND (SELECT COUNT(id_subjek) FROM analisis_respon_hasil WHERE id_subjek = u.id AND id_periode={$per} ) = 0 ";
+                return " AND (SELECT COUNT(id_subjek) FROM analisis_respon_hasil WHERE id_subjek = u.id AND id_periode={$per} ) = 1 ";
             }
 
-            return $isi_sql;
+            return " AND (SELECT COUNT(id_subjek) FROM analisis_respon_hasil WHERE id_subjek = u.id AND id_periode={$per} ) = 0 ";
         }
     }
 
@@ -335,22 +333,22 @@ class Analisis_respon_model extends Model
             if (isset($_POST['ia'])) {
                 $id_ia = $_POST['ia'];
 
-                foreach ($id_ia as $id_p) {
-                    if ($id_p !== '') {
+                foreach ($id_ia as $id_ium) {
+                    if ($id_ium !== '') {
                         unset($data);
                         $indikator = key($id_ia);
 
                         $sql   = 'SELECT * FROM analisis_parameter u WHERE jawaban = ? AND id_indikator = ?';
-                        $query = $this->db->query($sql, [$id_p, $indikator]);
+                        $query = $this->db->query($sql, [$id_ium, $indikator]);
                         $dx    = $query->row_array();
                         if (! $dx) {
                             $data['id_indikator'] = $indikator;
-                            $data['jawaban']      = $id_p;
+                            $data['jawaban']      = $id_ium;
                             $this->db->insert('analisis_parameter', $data);
                             unset($data);
 
                             $sql   = 'SELECT * FROM analisis_parameter u WHERE jawaban = ? AND id_indikator = ?';
-                            $query = $this->db->query($sql, [$id_p, $indikator]);
+                            $query = $this->db->query($sql, [$id_ium, $indikator]);
                             $dx    = $query->row_array();
 
                             $data['id_parameter'] = $dx['id'];
@@ -905,17 +903,17 @@ class Analisis_respon_model extends Model
         $query     = $this->db->query($sql, $_SESSION['analisis_master']);
         $indikator = $query->result_array();
 
-        $data  = new Spreadsheet_Excel_Reader($_FILES['respon']['tmp_name']);
-        $s     = 0;
-        $baris = $data->rowcount($s);
-        $kolom = $data->colcount($s);
+        $spreadsheetExcelReader = new Spreadsheet_Excel_Reader($_FILES['respon']['tmp_name']);
+        $s                      = 0;
+        $baris                  = $spreadsheetExcelReader->rowcount($s);
+        $kolom                  = $spreadsheetExcelReader->colcount($s);
 
         $ketemu = 0;
 
         for ($b = 1; $b <= $baris; $b++) {
             // echo "<tr>";
             for ($k = 1; $k <= $kolom; $k++) {
-                $isi = $data->val($b, $k, $s);
+                $isi = $spreadsheetExcelReader->val($b, $k, $s);
                 // echo "<td>$b : $k ($isi)";
 
                 // ketemu njuk stop
@@ -936,12 +934,12 @@ class Analisis_respon_model extends Model
             $true = 0;
 
             for ($i = $br; $i <= $baris; $i++) {
-                $id_subjek = $data->val($i, $kl - 1, $s);
+                $id_subjek = $spreadsheetExcelReader->val($i, $kl - 1, $s);
 
                 $j = $kl;
 
                 foreach ($indikator as $indi) {
-                    $isi = $data->val($i, $j, $s);
+                    $isi = $spreadsheetExcelReader->val($i, $j, $s);
                     if ($isi !== '') {
                         $true = 1;
                     }
@@ -965,7 +963,7 @@ class Analisis_respon_model extends Model
             $n = 0;
 
             for ($i = $br; $i <= $baris; $i++) {
-                $id_subjek = $data->val($i, $kl - 1, $s);
+                $id_subjek = $spreadsheetExcelReader->val($i, $kl - 1, $s);
                 if (strlen($id_subjek) > 14 && $subjek === 1) {
                     $sqls      = 'SELECT id FROM tweb_penduduk WHERE nik = ?;';
                     $querys    = $this->db->query($sqls, [$id_subjek]);
@@ -977,7 +975,7 @@ class Analisis_respon_model extends Model
                 $all = '';
 
                 foreach ($indikator as $indi) {
-                    $isi = $data->val($i, $j, $s);
+                    $isi = $spreadsheetExcelReader->val($i, $j, $s);
                     if ($isi !== '') {
                         if ($indi['id_tipe'] === 1) {
                             $sql   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ? AND kode_jawaban = ?;';
@@ -1342,9 +1340,9 @@ class Analisis_respon_model extends Model
     // -----------------
     public function get_aktif_periode()
     {
-        $analisisPeriodeModel = new AnalisisPeriode();
+        $analisisPeriode = new AnalisisPeriode();
 
-        return $analisisPeriodeModel->get_periode()['id'];
+        return $analisisPeriode->get_periode()['id'];
     }
 
     public function get_analisis_master()

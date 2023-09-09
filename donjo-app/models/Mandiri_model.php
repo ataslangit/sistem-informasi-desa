@@ -39,12 +39,10 @@ class Mandiri_model extends Model
         if (isset($_SESSION['nik'])) {
             $kf = $_SESSION['nik'];
             if ($kf === '0') {
-                $filter_sql = '';
-            } else {
-                $filter_sql = " AND n.id = '" . $kf . "'";
+                return '';
             }
 
-            return $filter_sql;
+            return " AND n.id = '" . $kf . "'";
         }
     }
 
@@ -52,12 +50,10 @@ class Mandiri_model extends Model
     {
         $kf = $nik;
         if ($kf === 0) {
-            $filterku_sql = '';
-        } else {
-            $filterku_sql = " AND u.id_pend = '" . $kf . "'";
+            return '';
         }
 
-        return $filterku_sql;
+        return " AND u.id_pend = '" . $kf . "'";
     }
 
     public function paging($p = 1, $o = 0)

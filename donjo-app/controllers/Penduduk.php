@@ -8,9 +8,13 @@ class Penduduk extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()
@@ -592,13 +596,13 @@ class Penduduk extends BaseController
 
     public function ajax_penduduk_maps($p = 1, $o = 0, $id = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $data['p'] = $p;
         $data['o'] = $o;
 
         $data['penduduk'] = $this->penduduk_model->get_penduduk_map($id);
-        $data['desa']     = $configModel->get_data();
+        $data['desa']     = $config->get_data();
 
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 

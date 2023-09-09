@@ -39,7 +39,10 @@ class Install
             $lines    = file($filename);
 
             foreach ($lines as $line) {
-                if (str_starts_with($line, '--') || $line === '') {
+                if (str_starts_with($line, '--')) {
+                    continue;
+                }
+                if ($line === '') {
                     continue;
                 }
                 $templine .= $line;
