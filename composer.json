@@ -9,7 +9,7 @@
     "codeigniter/coding-standard": "^1.1",
     "filp/whoops": "^2.15",
     "mikey179/vfsstream": "1.6.*",
-    "rector/rector": "0.18.2"
+    "rector/rector": "0.18.3"
   },
   "autoload": {
     "psr-4": {
