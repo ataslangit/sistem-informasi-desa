@@ -6,6 +6,7 @@ on:
       - 4.5.x
     paths:
       - "docs/**"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   deploy:
