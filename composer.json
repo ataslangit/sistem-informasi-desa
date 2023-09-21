@@ -1,5 +1,7 @@
 {
   "name": "ataslangit/sistem-informasi-desa",
+  "description": "Sistem Informasi Desa pengambangan dari CRI",
+  "license": "GPL-3.0-or-later",
   "require": {
     "php": "^7.4 || ^8.0",
     "codeigniter4/framework": "4.4.0"
@@ -8,7 +10,7 @@
     "codeigniter/coding-standard": "^1.1",
     "fakerphp/faker": "^1.9",
     "mikey179/vfsstream": "1.6.*",
-    "rector/rector": "0.18.2"
+    "rector/rector": "0.18.3"
   },
   "autoload": {
     "exclude-from-classmap": [

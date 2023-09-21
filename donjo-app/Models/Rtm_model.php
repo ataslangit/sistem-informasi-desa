@@ -438,9 +438,9 @@ class Rtm_model extends Model
 
     public function get_kode_wilayah()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $d = $configModel->get_data();
+        $d = $config->get_data();
 
         return $d['kode_kabupaten'] . $d['kode_kecamatan'] . $d['kode_desa'];
     }

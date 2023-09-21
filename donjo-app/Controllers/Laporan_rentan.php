@@ -26,7 +26,7 @@ class Laporan_rentan extends BaseController
 
     public function index()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         if (isset($_SESSION['dusun'])) {
             $data['dusun'] = $_SESSION['dusun'];
@@ -35,7 +35,7 @@ class Laporan_rentan extends BaseController
         }
 
         $data['list_dusun'] = $this->laporan_bulanan_model->list_dusun();
-        $data['config']     = $configModel->get_data(true);
+        $data['config']     = $config->get_data(true);
 
         $data['main'] = $this->laporan_bulanan_model->list_data();
 
@@ -49,18 +49,18 @@ class Laporan_rentan extends BaseController
 
     public function cetak()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['config'] = $configModel->get_data(true);
+        $data['config'] = $config->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
         view('laporan/kelompok_print', $data);
     }
 
     public function excel()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['config'] = $configModel->get_data(true);
+        $data['config'] = $config->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
         view('laporan/kelompok_excel', $data);
     }

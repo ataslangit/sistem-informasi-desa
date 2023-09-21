@@ -8,19 +8,23 @@ class Hom_desa extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function index()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $_SESSION['delik'] = 0;
         $nav['act']        = 0;
         $header            = $this->header_model->get_data();
-        $data['main']      = $configModel->get_data();
+        $data['main']      = $config->get_data();
         view('header', $header);
         view('home/nav', $nav);
         view('home/konfigurasi_form', $data);
@@ -39,9 +43,9 @@ class Hom_desa extends BaseController
 
     public function insert()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $configModel->insert($_POST);
+        $config->insert($_POST);
 
         redirect('hom_desa');
     }
@@ -54,36 +58,36 @@ class Hom_desa extends BaseController
 
     public function ajax_kantor_maps()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url('hom_desa/update_kantor_maps/');
         view('home/ajax_kantor_desa_maps', $data);
     }
 
     public function ajax_wilayah_maps()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $data['desa']        = $configModel->get_data();
+        $data['desa']        = $config->get_data();
         $data['form_action'] = site_url('hom_desa/update_wilayah_maps/');
         view('home/ajax_wilayah_desa_maps', $data);
     }
 
     public function update_kantor_maps()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $configModel->update_(1, $_POST);
+        $config->update_(1, $_POST);
 
         redirect('hom_desa');
     }
 
     public function update_wilayah_maps()
     {
-        $configModel = new Config();
+        $config = new Config();
 
-        $configModel->update_(1, $_POST);
+        $config->update_(1, $_POST);
 
         redirect('hom_desa');
     }

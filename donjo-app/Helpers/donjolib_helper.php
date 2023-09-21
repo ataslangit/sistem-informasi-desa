@@ -176,11 +176,14 @@ function Rupiah($nil = 0)
         $i++;
     }
     $rp = strrev($str2);
-    if ($rp !== '' && $rp > 0) {
-        return "Rp. {$rp}";
+    if ($rp === '') {
+        return 'Rp. 0,00';
+    }
+    if ($rp <= 0) {
+        return 'Rp. 0,00';
     }
 
-    return 'Rp. 0,00';
+    return "Rp. {$rp}";
 }
 
 function jecho($a, $b, $str)

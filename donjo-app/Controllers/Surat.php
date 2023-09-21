@@ -8,9 +8,16 @@ class Surat extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        if ($grup === '3') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function index()
@@ -85,7 +92,7 @@ class Surat extends BaseController
 
     public function cetak($url = '')
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $id                       = $_POST['nik'];
         $data['input']            = $_POST;
@@ -97,7 +104,7 @@ class Surat extends BaseController
         $data['pribadi'] = $this->surat_model->get_data_pribadi($id);
         $data['kk']      = $this->surat_model->get_data_kk($id);
 
-        $data['desa']   = $configModel->get_data();
+        $data['desa']   = $config->get_data();
         $data['pamong'] = $this->surat_model->get_pamong($_POST['pamong']);
 
         $data['pengikut'] = $this->surat_model->pengikut();

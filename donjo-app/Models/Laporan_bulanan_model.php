@@ -60,12 +60,10 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['dusun'])) {
             $kf = $_SESSION['dusun'];
             if ($kf === '') {
-                $dusun_sql = '';
-            } else {
-                $dusun_sql = " AND c.dusun = '" . $kf . "'";
+                return '';
             }
 
-            return $dusun_sql;
+            return " AND c.dusun = '" . $kf . "'";
         }
     }
 
@@ -74,12 +72,10 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['bulanku'])) {
             $kf = $_SESSION['bulanku'];
             if ($kf === '') {
-                $bulan_sql = '';
-            } else {
-                $bulan_sql = " where bulan = {$kf}";
+                return '';
             }
 
-            return $bulan_sql;
+            return " where bulan = {$kf}";
         }
     }
 
@@ -88,12 +84,10 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['tahunku'])) {
             $kf = $_SESSION['tahunku'];
             if ($kf === '') {
-                $bulan_sql = '';
-            } else {
-                $bulan_sql = " and tahun = {$kf}";
+                return '';
             }
 
-            return $bulan_sql;
+            return " and tahun = {$kf}";
         }
     }
 
@@ -304,18 +298,16 @@ FROM log_penduduk ";
         $sql .= $paging_sql;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            $data = $query->row_array();
-        } else {
-            $data = [
-                'WNI_L' => 0,
-                'WNI_P' => 0,
-                'WNA_L' => 0,
-                'WNA_P' => 0,
-                'bulan' => $bln,
-                'tahun' => $thn, ];
+            return $query->row_array();
         }
 
-        return $data;
+        return [
+            'WNI_L' => 0,
+            'WNI_P' => 0,
+            'WNA_L' => 0,
+            'WNA_P' => 0,
+            'bulan' => $bln,
+            'tahun' => $thn, ];
     }
 
     public function pindahx()

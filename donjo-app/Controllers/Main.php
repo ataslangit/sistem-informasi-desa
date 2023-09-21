@@ -72,23 +72,23 @@ class Main extends BaseController
 
     public function auth()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $this->user_model->login();
         $header = [
-            'desa' => $configModel->get_data(),
+            'desa' => $config->get_data(),
         ];
         view('siteman', $header);
     }
 
     public function logout()
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $this->config_model->opt();
         $this->user_model->logout();
         $header = [
-            'desa' => $configModel->get_data(),
+            'desa' => $config->get_data(),
         ];
 
         view('siteman', $header);

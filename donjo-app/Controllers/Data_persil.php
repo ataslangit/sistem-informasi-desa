@@ -8,9 +8,13 @@ class Data_persil extends BaseController
     public function __construct()
     {
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+        if ($grup === '1') {
+            return;
         }
+        if ($grup === '2') {
+            return;
+        }
+        redirect('siteman');
     }
 
     public function clear()
@@ -21,7 +25,7 @@ class Data_persil extends BaseController
 
     public function index($page = 1)
     {
-        $configModel = new Config();
+        $config = new Config();
 
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -32,7 +36,7 @@ class Data_persil extends BaseController
             $data['cari'] = '';
         }
 
-        $data['desa']              = $configModel->get_data();
+        $data['desa']              = $config->get_data();
         $data['persil']            = $this->data_persil_model->list_persil('', 0, $page);
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();

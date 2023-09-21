@@ -30,7 +30,7 @@ class Analisis_grafik extends BaseController
 
     public function index($p = 1, $o = 0)
     {
-        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
+        $analisisKlasifikasi = new AnalisisKlasifikasi();
 
         unset($_SESSION['cari2']);
         $data['p'] = $p;
@@ -72,7 +72,7 @@ class Analisis_grafik extends BaseController
         $data['list_dusun']      = $this->analisis_laporan_keluarga_model->list_dusun();
         $data['paging']          = $this->analisis_grafik_model->paging($p, $o);
         $data['main']            = $this->analisis_grafik_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']         = $analisisKlasifikasiModel->autocomplete();
+        $data['keyword']         = $analisisKlasifikasi->autocomplete();
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
@@ -84,8 +84,8 @@ class Analisis_grafik extends BaseController
 
     public function time($p = 1, $o = 0)
     {
-        $analisisKlasifikasiModel = new AnalisisKlasifikasi();
-        $analisisPeriodeModel     = new AnalisisPeriode();
+        $analisisKlasifikasi = new AnalisisKlasifikasi();
+        $analisisPeriode     = new AnalisisPeriode();
 
         unset($_SESSION['cari2']);
         $data['p'] = $p;
@@ -104,9 +104,9 @@ class Analisis_grafik extends BaseController
 
         $data['paging']          = $this->analisis_grafik_model->paging($p, $o);
         $data['main']            = $this->analisis_grafik_model->list_data2($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']         = $analisisKlasifikasiModel->autocomplete();
+        $data['keyword']         = $analisisKlasifikasi->autocomplete();
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
-        $data['periode']         = $analisisPeriodeModel->list_periode();
+        $data['periode']         = $analisisPeriode->list_periode();
         $header                  = $this->header_model->get_data();
 
         view('header', $header);
