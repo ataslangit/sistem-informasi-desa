@@ -3,22 +3,19 @@
   "description": "Sistem Informasi Desa pengambangan dari CRI",
   "license": "GPL-3.0-or-later",
   "require": {
-    "php": ">=7.4",
-    "codeigniter/framework": "^3",
-    "vlucas/phpdotenv": "^5.5"
+    "php": "^7.4 || ^8.0",
+    "codeigniter4/framework": "4.4.0"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
-    "filp/whoops": "^2.15",
+    "fakerphp/faker": "^1.9",
     "mikey179/vfsstream": "1.6.*",
     "rector/rector": "0.18.3"
   },
   "autoload": {
-    "psr-4": {
-      "App\\Controllers\\": "donjo-app/controllers/",
-      "App\\Libraries\\": "donjo-app/Libraries/",
-      "App\\Models\\": "donjo-app/models/"
-    }
+    "exclude-from-classmap": [
+      "**/Database/Migrations/**"
+    ]
   },
   "config": {
     "optimize-autoloader": true,
