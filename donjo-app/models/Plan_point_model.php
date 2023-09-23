@@ -64,13 +64,21 @@ class Plan_point_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY nama',
-            2       => ' ORDER BY nama DESC',
-            3       => ' ORDER BY enabled',
-            4       => ' ORDER BY enabled DESC',
-            default => ' ORDER BY id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY nama';
+                break;
+
+            case 2: $order_sql = ' ORDER BY nama DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY enabled';
+                break;
+
+            case 4: $order_sql = ' ORDER BY enabled DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY id';
+        }
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT * FROM point WHERE tipe = 0 ';

@@ -46,9 +46,11 @@ if (! function_exists('dd')) {
     /**
      * Dump & die
      *
+     * @param mixed ...$args
+     *
      * @return void
      */
-    function dd(mixed ...$args)
+    function dd(...$args)
     {
         if (ENVIRONMENT === 'development') {
             var_dump($args);
@@ -287,21 +289,63 @@ function ununderscore($str)
 }
 function bulan($bln)
 {
-    return match ($bln) {
-        '1'     => 'Januari',
-        '2'     => 'Februari',
-        '3'     => 'Maret',
-        '4'     => 'April',
-        '5'     => 'Mei',
-        '6'     => 'Juni',
-        '7'     => 'Juli',
-        '8'     => 'Agustus',
-        '9'     => 'September',
-        '10'    => 'Oktober',
-        '11'    => 'November',
-        '12'    => 'Desember',
-        default => '',
-    };
+    $nm = '';
+
+    switch ($bln) {
+        case '1':
+            $nm = 'Januari';
+            break;
+
+        case '2':
+            $nm = 'Februari';
+            break;
+
+        case '3':
+            $nm = 'Maret';
+            break;
+
+        case '4':
+            $nm = 'April';
+            break;
+
+        case '5':
+            $nm = 'Mei';
+            break;
+
+        case '6':
+            $nm = 'Juni';
+            break;
+
+        case '7':
+            $nm = 'Juli';
+            break;
+
+        case '8':
+            $nm = 'Agustus';
+            break;
+
+        case '9':
+            $nm = 'September';
+            break;
+
+        case '10':
+            $nm = 'Oktober';
+            break;
+
+        case '11':
+            $nm = 'November';
+            break;
+
+        case '12':
+            $nm = 'Desember';
+            break;
+
+        default:
+            $nm = '';
+            break;
+    }
+
+    return $nm;
 }
 
 function tgl_indo2($tgl)

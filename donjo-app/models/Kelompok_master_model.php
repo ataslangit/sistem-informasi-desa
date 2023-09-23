@@ -75,15 +75,27 @@ class Kelompok_master_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.kelompok',
-            2       => ' ORDER BY u.kelompok DESC',
-            3       => ' ORDER BY u.kelompok',
-            4       => ' ORDER BY u.kelompok DESC',
-            5       => ' ORDER BY g.kelompok',
-            6       => ' ORDER BY g.kelompok DESC',
-            default => ' ORDER BY u.kelompok',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.kelompok';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.kelompok DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.kelompok';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.kelompok DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY g.kelompok';
+                break;
+
+            case 6: $order_sql = ' ORDER BY g.kelompok DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY u.kelompok';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

@@ -171,13 +171,21 @@ class Analisis_respon_model extends Model
         $master      = $this->get_analisis_master();
         $id_kelompok = $master['id_kelompok'];
 
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.id',
-            2       => ' ORDER BY u.id DESC',
-            3       => ' ORDER BY u.id',
-            4       => ' ORDER BY u.id DESC',
-            default => ' ORDER BY u.id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY u.id';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
@@ -692,13 +700,21 @@ class Analisis_respon_model extends Model
         $master      = $this->get_analisis_master();
         $id_kelompok = $master['id_kelompok'];
 
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.id',
-            2       => ' ORDER BY u.id DESC',
-            3       => ' ORDER BY u.id',
-            4       => ' ORDER BY u.id DESC',
-            default => ' ORDER BY u.id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY u.id';
+        }
 
         $sql   = 'SELECT * FROM analisis_indikator WHERE id_master = ? ORDER BY nomor';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
