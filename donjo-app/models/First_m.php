@@ -33,7 +33,7 @@ class First_m extends Model
         }
 
         if ($_SESSION['mandiri_try'] > 2) {
-            $_SESSION['mandiri_try'] = $_SESSION['mandiri_try'] - 1;
+            $_SESSION['mandiri_try']--;
         } else {
             $_SESSION['mandiri_wait'] = 1;
         }

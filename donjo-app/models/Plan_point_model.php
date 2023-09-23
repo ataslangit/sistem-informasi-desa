@@ -302,16 +302,16 @@ class Plan_point_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['point'] = $data[$i]['point'] . '<ul>';
-                $j                 = 0;
+                $data[$i]['point'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['point'] = $data[$i]['point'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['point'] = $data[$i]['point'] . '</ul>';
+                $data[$i]['point'] .= '</ul>';
             }
-            $data[$i]['point'] = $data[$i]['point'] . '</li>';
+            $data[$i]['point'] .= '</li>';
             $i++;
         }
 
@@ -335,16 +335,16 @@ class Plan_point_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['point'] = $data[$i]['point'] . '<ul>';
-                $j                 = 0;
+                $data[$i]['point'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['point'] = $data[$i]['point'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['point'] = $data[$i]['point'] . '</ul>';
+                $data[$i]['point'] .= '</ul>';
             }
-            $data[$i]['point'] = $data[$i]['point'] . '</li>';
+            $data[$i]['point'] .= '</li>';
             $i++;
         }
 

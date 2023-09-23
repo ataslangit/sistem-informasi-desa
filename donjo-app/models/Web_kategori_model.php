@@ -296,16 +296,16 @@ class Web_kategori_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
-                $j                    = 0;
+                $data[$i]['kategori'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '</ul>';
+                $data[$i]['kategori'] .= '</ul>';
             }
-            $data[$i]['kategori'] = $data[$i]['kategori'] . '</li>';
+            $data[$i]['kategori'] .= '</li>';
             $i++;
         }
 
@@ -329,16 +329,16 @@ class Web_kategori_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
-                $j                    = 0;
+                $data[$i]['kategori'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '</ul>';
+                $data[$i]['kategori'] .= '</ul>';
             }
-            $data[$i]['kategori'] = $data[$i]['kategori'] . '</li>';
+            $data[$i]['kategori'] .= '</li>';
             $i++;
         }
 

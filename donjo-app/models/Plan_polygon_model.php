@@ -351,16 +351,16 @@ class Plan_polygon_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '<ul>';
-                $j                   = 0;
+                $data[$i]['polygon'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['polygon'] = $data[$i]['polygon'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '</ul>';
+                $data[$i]['polygon'] .= '</ul>';
             }
-            $data[$i]['polygon'] = $data[$i]['polygon'] . '</li>';
+            $data[$i]['polygon'] .= '</li>';
             $i++;
         }
 
@@ -384,16 +384,16 @@ class Plan_polygon_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '<ul>';
-                $j                   = 0;
+                $data[$i]['polygon'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['polygon'] = $data[$i]['polygon'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '</ul>';
+                $data[$i]['polygon'] .= '</ul>';
             }
-            $data[$i]['polygon'] = $data[$i]['polygon'] . '</li>';
+            $data[$i]['polygon'] .= '</li>';
             $i++;
         }
 
