@@ -93,33 +93,69 @@ class Laporan_bulanan_model extends Model
 
     public function bulan($bulan)
     {
-        return match ($bulan) {
-            1       => 'Januari',
-            2       => 'Februari',
-            3       => 'Maret',
-            4       => 'April',
-            5       => 'Mei',
-            6       => 'Juni',
-            7       => 'Juli',
-            8       => 'Agustus',
-            9       => 'September',
-            10      => 'Oktober',
-            11      => 'November',
-            12      => 'Desember',
-            default => $bulan,
-        };
+        switch ($bulan) {
+            case 1: $bulan = 'Januari';
+                break;
+
+            case 2: $bulan = 'Februari';
+                break;
+
+            case 3: $bulan = 'Maret';
+                break;
+
+            case 4: $bulan = 'April';
+                break;
+
+            case 5: $bulan = 'Mei';
+                break;
+
+            case 6: $bulan = 'Juni';
+                break;
+
+            case 7: $bulan = 'Juli';
+                break;
+
+            case 8: $bulan = 'Agustus';
+                break;
+
+            case 9: $bulan = 'September';
+                break;
+
+            case 10: $bulan = 'Oktober';
+                break;
+
+            case 11: $bulan = 'November';
+                break;
+
+            case 12: $bulan = 'Desember';
+                break;
+        }
+
+        return $bulan;
     }
 
     public function paging($lap = 0, $p = 1, $o = 0)
     {
         $paging = new Paging();
 
-        $sql = match ($lap) {
-            0 => 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ',
-            1 => 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 ',
-            2, 3, 4, 5, 6, 7, 8 => 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ',
-            default => 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ',
-        };
+        switch ($lap) {
+            case 0: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 1: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 ';
+                break;
+
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            default:$sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+        }
 
         $query    = $this->db->query($sql);
         $row      = $query->row_array();

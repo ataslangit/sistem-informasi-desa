@@ -64,13 +64,21 @@ class Plan_polygon_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY nama',
-            2       => ' ORDER BY nama DESC',
-            3       => ' ORDER BY enabled',
-            4       => ' ORDER BY enabled DESC',
-            default => ' ORDER BY id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY nama';
+                break;
+
+            case 2: $order_sql = ' ORDER BY nama DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY enabled';
+                break;
+
+            case 4: $order_sql = ' ORDER BY enabled DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY id';
+        }
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT * FROM polygon WHERE tipe = 0 ';
@@ -343,16 +351,16 @@ class Plan_polygon_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '<ul>';
-                $j                   = 0;
+                $data[$i]['polygon'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['polygon'] = $data[$i]['polygon'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '</ul>';
+                $data[$i]['polygon'] .= '</ul>';
             }
-            $data[$i]['polygon'] = $data[$i]['polygon'] . '</li>';
+            $data[$i]['polygon'] .= '</li>';
             $i++;
         }
 
@@ -376,16 +384,16 @@ class Plan_polygon_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '<ul>';
-                $j                   = 0;
+                $data[$i]['polygon'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['polygon'] = $data[$i]['polygon'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['polygon'] = $data[$i]['polygon'] . '</ul>';
+                $data[$i]['polygon'] .= '</ul>';
             }
-            $data[$i]['polygon'] = $data[$i]['polygon'] . '</li>';
+            $data[$i]['polygon'] .= '</li>';
             $i++;
         }
 
