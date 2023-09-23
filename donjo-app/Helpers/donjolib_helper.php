@@ -10,16 +10,16 @@ function Rpt($str = 0)
     $belas   = ['', ' sebelas', ' duabelas', ' tigabelas', ' empatbelas', ' limabelas', ' enambelas', ' tujuhbelas', ' delapanbelas', ' sembilanbelas'];
     $lipatan = ['', '', 'puluh', 'ratus'];
     $i       = 0;
-    $str     = $str . '.00';
-    $len     = strlen($str) - 3;
-    $outp    = '';
+    $str .= '.00';
+    $len  = strlen($str) - 3;
+    $outp = '';
     // < 1000
     if ($len >= 13) {
         $isi = 0;
 
         while ($i < $len - 12) {
             if ($str[$i] === 1 && $len - $i === 14 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 13)) {
@@ -32,7 +32,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' triliyun';
+            $outp .= ' triliyun';
         }
     }
 
@@ -41,8 +41,8 @@ function Rpt($str = 0)
 
         while ($i < $len - 9) {
             if ($str[$i] === 1 && $len - $i === 11 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
-                $isi  = 1;
+                $outp .= $belas[$str[$i + 1]];
+                $isi = 1;
                 $i++;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 10)) {
                 $outp = $outp . ' se' . $lipatan[$len - ($i + 9)];
@@ -54,7 +54,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' miliyar';
+            $outp .= ' miliyar';
         }
     }
 
@@ -63,7 +63,7 @@ function Rpt($str = 0)
 
         while ($i < $len - 6) {
             if ($str[$i] === 1 && $len - $i === 8 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 7)) {
@@ -76,7 +76,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' juta';
+            $outp .= ' juta';
         }
     }
 
@@ -85,7 +85,7 @@ function Rpt($str = 0)
 
         while ($i < $len - 3) {
             if ($str[$i] === 1 && $len - $i === 5 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len)) {
@@ -98,7 +98,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' ribu';
+            $outp .= ' ribu';
         }
     }
 
@@ -117,7 +117,7 @@ function Rpt($str = 0)
     }
     $i++;
     $outp2 = '';
-    $len   = $len + 3;
+    $len += 3;
 
     while ($i < ($len)) {
         if ($str[$i] === 1 && $len - $i === 2 && $str[$i + 1] !== 0) {
@@ -136,7 +136,7 @@ function Rpt($str = 0)
     if ($outp2 !== '') {
         $outp = $outp . ' komah ' . $outp2;
     }
-    $outp = $outp . ' rupiah';
+    $outp .= ' rupiah';
     $len  = strlen($outp);
     $outp = substr($outp, 1, $len - 1);
 
@@ -154,11 +154,11 @@ function Parse_Data($data, $p1, $p2)
 }
 function Rupiah($nil = 0)
 {
-    $nil = $nil + 0;
+    $nil += 0;
     if (($nil * 100) % 100 === 0) {
-        $nil = $nil . '.00';
+        $nil .= '.00';
     } elseif (($nil * 100) % 10 === 0) {
-        $nil = $nil . '0';
+        $nil .= '0';
     }
     $nil  = str_replace('.', ',', $nil);
     $str1 = $nil;
@@ -231,21 +231,63 @@ function ununderscore($str)
 }
 function bulan($bln)
 {
-    return match ($bln) {
-        '1'     => 'Januari',
-        '2'     => 'Februari',
-        '3'     => 'Maret',
-        '4'     => 'April',
-        '5'     => 'Mei',
-        '6'     => 'Juni',
-        '7'     => 'Juli',
-        '8'     => 'Agustus',
-        '9'     => 'September',
-        '10'    => 'Oktober',
-        '11'    => 'November',
-        '12'    => 'Desember',
-        default => '',
-    };
+    $nm = '';
+
+    switch ($bln) {
+        case '1':
+            $nm = 'Januari';
+            break;
+
+        case '2':
+            $nm = 'Februari';
+            break;
+
+        case '3':
+            $nm = 'Maret';
+            break;
+
+        case '4':
+            $nm = 'April';
+            break;
+
+        case '5':
+            $nm = 'Mei';
+            break;
+
+        case '6':
+            $nm = 'Juni';
+            break;
+
+        case '7':
+            $nm = 'Juli';
+            break;
+
+        case '8':
+            $nm = 'Agustus';
+            break;
+
+        case '9':
+            $nm = 'September';
+            break;
+
+        case '10':
+            $nm = 'Oktober';
+            break;
+
+        case '11':
+            $nm = 'November';
+            break;
+
+        case '12':
+            $nm = 'Desember';
+            break;
+
+        default:
+            $nm = '';
+            break;
+    }
+
+    return $nm;
 }
 
 function tgl_indo2($tgl)
@@ -462,7 +504,7 @@ function fTampilTgl($sdate, $edate)
 function hash_pin($pin = '')
 {
     $pin = strrev($pin);
-    $pin = $pin * 77;
+    $pin *= 77;
     $pin .= '!#@$#%';
 
     return md5($pin);

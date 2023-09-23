@@ -64,13 +64,21 @@ class Web_kategori_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY kategori',
-            2       => ' ORDER BY kategori DESC',
-            3       => ' ORDER BY enabled',
-            4       => ' ORDER BY enabled DESC',
-            default => ' ORDER BY id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY kategori';
+                break;
+
+            case 2: $order_sql = ' ORDER BY kategori DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY enabled';
+                break;
+
+            case 4: $order_sql = ' ORDER BY enabled DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY id';
+        }
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
         $sql        = 'SELECT k.*,k.kategori AS kategori FROM kategori k WHERE parrent = 0';
 
@@ -288,16 +296,16 @@ class Web_kategori_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
-                $j                    = 0;
+                $data[$i]['kategori'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '</ul>';
+                $data[$i]['kategori'] .= '</ul>';
             }
-            $data[$i]['kategori'] = $data[$i]['kategori'] . '</li>';
+            $data[$i]['kategori'] .= '</li>';
             $i++;
         }
 
@@ -321,16 +329,16 @@ class Web_kategori_model extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '<ul>';
-                $j                    = 0;
+                $data[$i]['kategori'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['kategori'] = $data[$i]['kategori'] . "<li><a href='{$url}/" . $data2[$j]['link'] . "'>" . $data2[$j]['kategori'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['kategori'] = $data[$i]['kategori'] . '</ul>';
+                $data[$i]['kategori'] .= '</ul>';
             }
-            $data[$i]['kategori'] = $data[$i]['kategori'] . '</li>';
+            $data[$i]['kategori'] .= '</li>';
             $i++;
         }
 

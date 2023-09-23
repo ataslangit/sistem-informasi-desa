@@ -47,15 +47,27 @@ class Analisis_klasifikasi_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.minval',
-            2       => ' ORDER BY u.minval DESC',
-            3       => ' ORDER BY u.minval',
-            4       => ' ORDER BY u.minval DESC',
-            5       => ' ORDER BY g.minval',
-            6       => ' ORDER BY g.minval DESC',
-            default => ' ORDER BY u.minval',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.minval';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.minval DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.minval';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.minval DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY g.minval';
+                break;
+
+            case 6: $order_sql = ' ORDER BY g.minval DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY u.minval';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

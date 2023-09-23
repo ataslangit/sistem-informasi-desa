@@ -75,15 +75,27 @@ class Analisis_master_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.nama',
-            2       => ' ORDER BY u.nama DESC',
-            3       => ' ORDER BY u.nama',
-            4       => ' ORDER BY u.nama DESC',
-            5       => ' ORDER BY g.nama',
-            6       => ' ORDER BY g.nama DESC',
-            default => ' ORDER BY u.id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.nama';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.nama DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.nama';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.nama DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
+
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY u.id';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

@@ -139,8 +139,8 @@ class OLERead
         $data  = '';
 
         while ($block !== -2) {
-            $pos   = ($block + 1) * BIG_BLOCK_SIZE;
-            $data  = $data . substr($this->data, $pos, BIG_BLOCK_SIZE);
+            $pos = ($block + 1) * BIG_BLOCK_SIZE;
+            $data .= substr($this->data, $pos, BIG_BLOCK_SIZE);
             $block = $this->bigBlockChain[$block];
         }
 
@@ -922,7 +922,7 @@ class Spreadsheet_Excel_Reader
         }
 
         if (preg_match('/\\d(\\%)([^\\%]|$)/', $pattern, $matches)) {
-            $num     = $num * 100;
+            $num *= 100;
             $pattern = preg_replace('/(\\d)(\\%)([^\\%]|$)/', '$1%$3', $pattern);
         }
 

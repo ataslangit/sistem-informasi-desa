@@ -115,15 +115,15 @@ class First_penduduk_m extends Model
             while ($i < (is_countable($data) ? count($data) : 0)) {
                 $data[$i]['persen'] = $data[$i]['jumlah'] / $bel['jumlah'] * 100;
                 $data[$i]['persen'] = number_format((float) $data[$i]['persen'], 2, '.', '');
-                $data[$i]['persen'] = $data[$i]['persen'] . '%';
+                $data[$i]['persen'] .= '%';
 
                 $data[$i]['persen1'] = $data[$i]['laki'] / $bel['jumlah'] * 100;
                 $data[$i]['persen1'] = number_format((float) $data[$i]['persen1'], 2, '.', '');
-                $data[$i]['persen1'] = $data[$i]['persen1'] . '%';
+                $data[$i]['persen1'] .= '%';
 
                 $data[$i]['persen2'] = $data[$i]['perempuan'] / $bel['jumlah'] * 100;
                 $data[$i]['persen2'] = number_format((float) $data[$i]['persen2'], 2, '.', '');
-                $data[$i]['persen2'] = $data[$i]['persen2'] . '%';
+                $data[$i]['persen2'] .= '%';
 
                 $i++;
             }
@@ -131,11 +131,11 @@ class First_penduduk_m extends Model
 
             $bel['persen1'] = $bel['laki'] / $bel['jumlah'] * 100;
             $bel['persen1'] = number_format((float) $bel['persen1'], 2, '.', '');
-            $bel['persen1'] = $bel['persen1'] . '%';
+            $bel['persen1'] .= '%';
 
             $bel['persen2'] = $bel['perempuan'] / $bel['jumlah'] * 100;
             $bel['persen2'] = number_format((float) $bel['persen2'], 2, '.', '');
-            $bel['persen2'] = $bel['persen2'] . '%';
+            $bel['persen2'] .= '%';
         } else {
             $data[$i]['persen'] = 0;
             $data[$i]['persen'] = 0;

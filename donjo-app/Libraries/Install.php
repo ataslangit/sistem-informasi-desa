@@ -35,7 +35,7 @@ class Install
                     continue;
                 }
                 $templine .= $line;
-                if (str_ends_with(trim($line), ';')) {
+                if (substr(trim($line), -1, 1) === ';') {
                     $this->CI->db->query($templine);
                     $templine = '';
                 }

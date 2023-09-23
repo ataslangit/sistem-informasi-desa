@@ -176,15 +176,27 @@ class Analisis_laporan_model extends Model
         $pembagi = $this->get_analisis_master();
         $pembagi = $pembagi['pembagi'] + 0;
 
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.id',
-            2       => ' ORDER BY u.id DESC',
-            3       => ' ORDER BY u.id',
-            4       => ' ORDER BY u.id DESC',
-            5       => ' ORDER BY cek',
-            6       => ' ORDER BY cek DESC',
-            default => '',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY u.id';
+                break;
+
+            case 4: $order_sql = ' ORDER BY u.id DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY cek';
+                break;
+
+            case 6: $order_sql = ' ORDER BY cek DESC';
+                break;
+
+            default:$order_sql = '';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
@@ -288,7 +300,7 @@ class Analisis_laporan_model extends Model
                 $cb .= $jm['id_jmkf'] . ',';
             }
         }
-        $cb = $cb . '7777777';
+        $cb .= '7777777';
 
         $sql = "SELECT u.*,(SELECT COUNT(id) FROM analisis_indikator WHERE id = u.id AND id IN({$cb})) AS cek FROM analisis_indikator u WHERE 1 ";
         $sql .= $this->master_sql();

@@ -65,15 +65,27 @@ class Web_gallery_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY nama',
-            2       => ' ORDER BY nama DESC',
-            3       => ' ORDER BY enabled',
-            4       => ' ORDER BY enabled DESC',
-            5       => ' ORDER BY tgl_upload',
-            6       => ' ORDER BY tgl_upload DESC',
-            default => ' ORDER BY id',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY nama';
+                break;
+
+            case 2: $order_sql = ' ORDER BY nama DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY enabled';
+                break;
+
+            case 4: $order_sql = ' ORDER BY enabled DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY tgl_upload';
+                break;
+
+            case 6: $order_sql = ' ORDER BY tgl_upload DESC';
+                break;
+
+            default:$order_sql = ' ORDER BY id';
+        }
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
         $sql = 'SELECT * FROM gambar_gallery WHERE tipe = 0 ';

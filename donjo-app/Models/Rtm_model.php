@@ -158,15 +158,27 @@ class Rtm_model extends Model
 
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.no_kk',
-            2       => ' ORDER BY u.no_kk DESC',
-            3       => ' ORDER BY kepala_kk',
-            4       => ' ORDER BY kepala_kk DESC',
-            5       => ' ORDER BY g.nama',
-            6       => ' ORDER BY g.nama DESC',
-            default => ' ',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.no_kk';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.no_kk DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY kepala_kk';
+                break;
+
+            case 4: $order_sql = ' ORDER BY kepala_kk DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
+
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
+
+            default:$order_sql = ' ';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 
@@ -201,15 +213,27 @@ class Rtm_model extends Model
 
     public function list_data_pbdt($o = 0, $offset = 0, $limit = 500)
     {
-        $order_sql = match ($o) {
-            1       => ' ORDER BY u.no_kk',
-            2       => ' ORDER BY u.no_kk DESC',
-            3       => ' ORDER BY kepala_kk',
-            4       => ' ORDER BY kepala_kk DESC',
-            5       => ' ORDER BY g.nama',
-            6       => ' ORDER BY g.nama DESC',
-            default => ' ',
-        };
+        switch ($o) {
+            case 1: $order_sql = ' ORDER BY u.no_kk';
+                break;
+
+            case 2: $order_sql = ' ORDER BY u.no_kk DESC';
+                break;
+
+            case 3: $order_sql = ' ORDER BY kepala_kk';
+                break;
+
+            case 4: $order_sql = ' ORDER BY kepala_kk DESC';
+                break;
+
+            case 5: $order_sql = ' ORDER BY g.nama';
+                break;
+
+            case 6: $order_sql = ' ORDER BY g.nama DESC';
+                break;
+
+            default:$order_sql = ' ';
+        }
 
         $paging_sql = ' LIMIT ' . $offset . ',' . $limit;
 

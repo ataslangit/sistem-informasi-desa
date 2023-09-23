@@ -21,17 +21,17 @@ class First_menu_m extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['menu'] = $data[$i]['menu'] . '<ul>';
-                $j                = 0;
+                $data[$i]['menu'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['menu'] = $data[$i]['menu'] . '<li><a href="' . site_url('first/' . $data2[$j]['link']) . '">' . $data2[$j]['nama'] . '</a></li>';
 
                     $j++;
                 }
-                $data[$i]['menu'] = $data[$i]['menu'] . '</ul>';
+                $data[$i]['menu'] .= '</ul>';
             }
-            $data[$i]['menu'] = $data[$i]['menu'] . '</li>';
+            $data[$i]['menu'] .= '</li>';
             $i++;
         }
 
@@ -54,16 +54,16 @@ class First_menu_m extends Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['menu'] = $data[$i]['menu'] . '<ul>';
-                $j                = 0;
+                $data[$i]['menu'] .= '<ul>';
+                $j = 0;
 
                 while ($j < (is_countable($data2) ? count($data2) : 0)) {
                     $data[$i]['menu'] = $data[$i]['menu'] . '<li><a href="' . site_url('first/kategori/' . $data2[$j]['id']) . '">' . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['menu'] = $data[$i]['menu'] . '</ul>';
+                $data[$i]['menu'] .= '</ul>';
             }
-            $data[$i]['menu'] = $data[$i]['menu'] . '</li>';
+            $data[$i]['menu'] .= '</li>';
             $i++;
         }
 
