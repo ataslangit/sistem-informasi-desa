@@ -1,0 +1,78 @@
+{
+    "name": "kenjis/phpunit-helper",
+    "type": "library",
+    "description": "Provides helper traits for PHPUnit",
+    "keywords": ["phpunit","mock"],
+    "homepage": "https://github.com/kenjis/phpunit-helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kenji Suzuki",
+            "homepage": "https://github.com/kenjis"
+        }
+    ],
+    "require": {
+        "php": "^7.3||^8.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kenjis\\PhpUnitHelper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kenjis\\PhpUnitHelper\\": [
+                "tests/",
+                "tests/Fake"
+            ]
+        }
+    },
+    "scripts": {
+        "setup": "php bin/setup.php",
+        "test": "./vendor/bin/phpunit",
+        "coverage": "php -dzend_extension=xdebug.so -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",
+        "pcov": "php -dextension=pcov.so -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage  --coverage-clover=coverage.xml",
+        "cs": "./vendor/bin/phpcs",
+        "cs-fix": "./vendor/bin/phpcbf src tests",
+        "metrics": "./vendor/bin/phpmetrics --report-html=build/metrics --exclude=Exception src",
+        "clean": [
+            "./vendor/bin/phpstan clear-result-cache",
+            "./vendor/bin/psalm --clear-cache"
+        ],
+        "sa": [
+            "./vendor/bin/phpstan analyse -c phpstan.neon",
+            "psalm --show-info=true",
+            "./vendor/bin/phpmd src text ./phpmd.xml"
+        ],
+        "tests": [
+            "@cs",
+            "@sa",
+            "@test"
+        ],
+        "build": [
+            "@clean",
+            "@cs",
+            "@sa",
+            "@pcov",
+            "@metrics"
+        ],
+        "post-install-cmd": "@composer bin all install --ansi",
+        "post-update-cmd": "@composer bin all update --ansi"
+    },
+    "scripts-descriptions": {
+        "test": "Run unit tests",
+        "coverage": "Generate test coverage report",
+        "pcov": "Generate test coverage report (pcov)",
+        "cs": "Check the coding style",
+        "cs-fix": "Fix the coding style",
+        "clean": "Delete tmp files",
+        "sa": "Run static analysis",
+        "metrics": "Build metrics report",
+        "tests": "Run tests and quality checks",
+        "build": "Build project"
+    }
+}

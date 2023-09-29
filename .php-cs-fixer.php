@@ -13,7 +13,8 @@ $finder = Finder::create()
 $overrides = [];
 
 $options = [
-    'finder' => $finder,
+    'finder'     => $finder,
+    'usingCache' => false,
 ];
 
 return Factory::create(new CodeIgniter4(), $overrides, $options)->forProjects();

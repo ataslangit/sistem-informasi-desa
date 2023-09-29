@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.8.0@9cf4f60a333f779ad3bc704a555920e81d4fdcda">
+  <file src="src/CI3Compatible/Core/CI_Controller.php">
+    <UndefinedAttributeClass>
+      <code>\AllowDynamicProperties</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/CI3Compatible/Core/CI_Loader.php">
+    <UndefinedAttributeClass>
+      <code>\AllowDynamicProperties</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/CI3Compatible/Database/CI_DB_driver.php">
+    <ReservedWord>
+      <code>BaseConnection</code>
+    </ReservedWord>
+  </file>
+  <file src="src/CI3Compatible/Database/CI_DB_query_builder.php">
+    <ReservedWord>
+      <code><![CDATA[$this->builder->get($limit, $offset)]]></code>
+    </ReservedWord>
+  </file>
+  <file src="src/CI3Compatible/Database/CI_DB_result.php">
+    <ReservedWord>
+      <code>ResultInterface</code>
+    </ReservedWord>
+  </file>
+</files>

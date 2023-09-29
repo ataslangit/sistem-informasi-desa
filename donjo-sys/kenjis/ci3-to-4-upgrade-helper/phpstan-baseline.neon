@@ -1,0 +1,12 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Kenjis\\\\CI3Compatible\\\\Library\\\\CI_Parser\\:\\:parse\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: src/CI3Compatible/Library/CI_Parser.php
+
+		-
+			message: "#^Method Kenjis\\\\CI3Compatible\\\\Library\\\\CI_Parser\\:\\:parse_string\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: src/CI3Compatible/Library/CI_Parser.php
+

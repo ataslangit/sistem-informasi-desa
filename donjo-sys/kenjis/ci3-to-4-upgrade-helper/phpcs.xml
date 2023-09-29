@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<ruleset
+        name=""
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value=".phpcs-cache"/>
+
+    <!-- Compatibility with PHP 7.2.0 -->
+    <config name="php_version" value="70200"/>
+
+    <!-- Ignore warnings, show progress of the run and show sniff names -->
+    <arg value="nps"/>
+
+    <!-- Directories to be checked -->
+    <file>src</file>
+    <file>tests</file>
+    <exclude-pattern>*/src/CI3Compatible/Views/*</exclude-pattern>
+    <exclude-pattern>*/tests/App/Views/*</exclude-pattern>
+    <exclude-pattern>*/tmp/*</exclude-pattern>
+    <exclude-pattern>*/Fake/*</exclude-pattern>
+
+    <!-- PSR12 Coding Standard -->
+    <rule ref="PSR12"/>
+
+    <!-- Doctrine Coding Standard -->
+    <rule ref="Doctrine">
+
+        <!-- Temp Exclude Rules -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamName"/>
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
+
+        <!-- Exclude Rules -->
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame"/>
+        <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
+        <exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable"/>
+        <exclude name="SlevomatCodingStandard.Commenting.UselessInheritDocComment.UselessInheritDocComment"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn.UselessIfCondition"/>
+    </rule>
+
+    <!-- Additional Rules -->
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <property name="annotationsGroups" type="array">
+                <element value="@param, @psalm-param, @phpstan-param"/>
+                <element value="@return, @psalm-return, @phpstan-return"/>
+                <element value="@throws"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.PropertySpacing">
+        <properties>
+            <property name="minLinesCountBeforeWithComment" value="1"/>
+            <property name="maxLinesCountBeforeWithComment" value="1"/>
+            <property name="maxLinesCountBeforeWithoutComment" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- Exclude rules -->
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix">
+        <exclude-pattern>*/tests/CI3Compatible/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Commenting.FunctionComment.WrongStyle">
+        <exclude-pattern>*/tests/CI3Compatible/*</exclude-pattern>
+        <exclude-pattern>src/CI3Compatible/Test/bootstrap.php</exclude-pattern>
+    </rule>
+
+    <!-- Exclude rules for CodeIgniter3 coding style -->
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>*/src/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/App/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Helper/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*/src/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/App/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Helper/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Internal/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Test/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps">
+        <exclude-pattern>*/src/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/App/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps">
+        <exclude-pattern>*/src/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Helper/*</exclude-pattern>
+        <exclude-pattern>*/tests/App/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Core/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Library/*</exclude-pattern>
+        <exclude-pattern>*/tests/CI3Compatible/Helper/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <exclude-pattern>*/src/CI3Compatible/Database/*</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Core/CI_Loader.php</exclude-pattern>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
+        <exclude-pattern>*/src/CI3Compatible/Core/CI_Controller.php</exclude-pattern>
+        <exclude-pattern>*/src/CI3Compatible/Core/CI_Loader.php</exclude-pattern>
+    </rule>
+    <rule ref="Generic.PHP.ForbiddenFunctions.Found">
+        <exclude-pattern>*/src/CI3Compatible/Core/CI_Loader.php</exclude-pattern>
+    </rule>
+</ruleset>
