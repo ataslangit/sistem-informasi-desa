@@ -102,7 +102,7 @@ class Toolbar extends BaseConfig
      */
     public array $watchedDirectories = [
         'donjo-app',
-        'public'
+        'public',
     ];
 
     /**
