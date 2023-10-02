@@ -351,7 +351,7 @@ function mandiri_timer()
 }
 function mandiri_timeout()
 {
-    if (!isset($_SESSION['mandiri_timeout'])) {
+    if (! isset($_SESSION['mandiri_timeout'])) {
         $_SESSION['mandiri_timeout'] = time() - 1;
     }
 
