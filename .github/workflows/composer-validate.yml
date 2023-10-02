@@ -3,7 +3,7 @@ name: Composer
 on:
   pull_request:
     branches:
-      - "4.5.x"
+      - "dev"
     paths:
       - "composer.json"
       - ".github/workflows/composer-validate.yml"
