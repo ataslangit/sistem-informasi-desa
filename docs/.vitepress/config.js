@@ -30,7 +30,7 @@ export default {
         },
         editLink: {
             pattern:
-                "https://github.com/ataslangit/sistem-informasi-desa/edit/4.5.x/docs/:path",
+                "https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path",
             text: "Perbarui laman ini",
         },
         lastUpdatedText: "Diperbarui pada:",

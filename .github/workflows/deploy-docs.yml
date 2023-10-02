@@ -1,12 +1,12 @@
-name: Deploy
+name: Deploy Docs
 
 on:
   push:
     branches:
-      - 4.5.x
+      - dev
     paths:
       - "docs/**"
-      - ".github/workflows/deploy.yml"
+      - ".github/workflows/deploy-docs.yml"
 
 jobs:
   deploy:
