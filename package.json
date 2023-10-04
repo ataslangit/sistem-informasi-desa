@@ -12,7 +12,7 @@
     "laravel-vite-plugin": "0.8.1",
     "sass": "1.68.0",
     "sitemap": "7.1.1",
-    "vite": "4.4.9",
+    "vite": "4.4.10",
     "vite-plugin-static-copy": "0.17.0",
     "vitepress": "1.0.0-rc.20",
     "vue": "3.3.4"
