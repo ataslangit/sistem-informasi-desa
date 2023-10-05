@@ -11,5 +11,6 @@ rector.php         export-ignore
 vite.config.js     export-ignore
 
 .github/   export-ignore
+admin/     export-ignore
 docs/      export-ignore
 resources/ export-ignore

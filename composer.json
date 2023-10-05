@@ -30,6 +30,9 @@
   "scripts": {
     "cs": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
     "csfix": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff",
-    "update-resources": "git submodule update --init --remote resources"
+    "update-resources": "git submodule update --init --remote resources",
+    "post-update-cmd": [
+      "bash -c \"if [ -f admin/setup.sh ]; then bash admin/setup.sh; fi\""
+    ]
   }
 }
