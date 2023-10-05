@@ -27,6 +27,7 @@
     "vendor-dir": "donjo-sys"
   },
   "scripts": {
-    "csfix": "./donjo-sys/bin/php-cs-fixer fix"
+    "cs": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
+    "csfix": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
   }
 }

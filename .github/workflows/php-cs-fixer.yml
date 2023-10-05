@@ -1,23 +1,21 @@
-name: Style PHP-CS-Fixer
+name: PHP-CS-FIXER
 
 on:
   pull_request:
+    branches:
+      - "dev"
+    paths:
+      - "composer.json"
+      - ".github/workflows/composer-validate.yml"
 
 jobs:
-  php-cs-fixer:
+  build:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Install composer packages
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependency
         run: composer install
-
-      - name: Run PHP-CS-Fixer Lint
-        run: composer csfix
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply PHP-CS-Fixer changes
-          file_pattern: 'donjo-app/*'
+      - name: Run PHP-CS-FIXER
+        run: composer run cs
