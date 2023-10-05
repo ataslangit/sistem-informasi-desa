@@ -31,7 +31,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     // Include Composer's autoload - required for global execution, remove if running locally
     $rectorConfig->autoloadPaths([
-        __DIR__ . '/vendor/autoload.php',
+        __DIR__ . '/donjo-sys/autoload.php',
     ]);
 
     // Set the target version for refactoring
