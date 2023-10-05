@@ -7,10 +7,18 @@ use Nexus\CsConfig\Factory;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()
+    ->files()
     ->in(__DIR__)
-    ->exclude(['donjo-app/Views', 'donjo-sys', 'node_modules']);
+    ->exclude(['donjo-app/Views', 'donjo-sys', 'node_modules'])
+    ->append([
+        __FILE__,
+        __DIR__ . '/rector.php',
+    ]);
 
-$overrides = [];
+$overrides = [
+    // 'declare_strict_types' => true,
+    // 'void_return'          => true,
+];
 
 $options = [
     'finder'     => $finder,

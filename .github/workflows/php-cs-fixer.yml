@@ -1,0 +1,20 @@
+name: PHP-CS-FIXER
+
+on:
+  pull_request:
+    branches:
+      - "dev"
+    paths:
+      - "composer.json"
+      - ".github/workflows/composer-validate.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependency
+        run: composer install
+      - name: Run PHP-CS-FIXER
+        run: composer run cs
