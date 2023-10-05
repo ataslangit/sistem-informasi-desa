@@ -98,6 +98,5 @@ class TwebPendudukPekerjaan extends Seeder
         (87, 'BIARAWATI'),
         (88, 'WIRASWASTA'),
         (89, 'LAINNYA');");
-
     }
 }
