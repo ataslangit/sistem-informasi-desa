@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Squash PR
-        run: gh pr merge ${{ github.event.issue.number }} -t "${{ env.SQUASH_TITLE }}" -b "" -s
+        run: gh pr merge ${{ github.event.issue.number }} -t "${{ env.SQUASH_TITLE }}" -b "" --admin -s
         working-directory: ${{ github.workspace }}
         env:
           SQUASH_TITLE: "(#${{ github.event.issue.number }}) ${{ github.event.issue.title }}"
