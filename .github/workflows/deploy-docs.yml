@@ -1,4 +1,4 @@
-name: Deploy
+name: Docs
 
 on:
   push:
@@ -10,7 +10,9 @@ on:
       - "package.json"
 
 jobs:
-  deploy:
+  build:
+    name: Deploy
+    if: github.repository == 'ataslangit/sistem-informasi-desa'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
