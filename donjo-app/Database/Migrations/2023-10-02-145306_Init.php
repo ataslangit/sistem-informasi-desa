@@ -8,7 +8,7 @@ class Init extends Migration
 {
     public function up()
     {
-        $this->db->query("CREATE TABLE IF NOT EXISTS `analisis_indikator` (
+        $this->db->query("CREATE TABLE IF NOT EXISTS `".$this->db->protectIdentifiers('analisis_indikator', true)."` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_master` int(11) NOT NULL,
             `nomor` int(3) NOT NULL,
@@ -24,7 +24,7 @@ class Init extends Migration
             KEY `id_kategori` (`id_kategori`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_kategori_indikator` (
+        $this->db->query('CREATE TABLE IF NOT EXISTS `'.$this->db->protectIdentifiers('analisis_kategori_indikator', true).'` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `id_master` tinyint(4) NOT NULL,
             `kategori_kode` varchar(3) NOT NULL,
