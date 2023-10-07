@@ -1316,7 +1316,7 @@ class Penduduk_model extends Model
         $nama_file   = $_FILES['satuan']['name'];
         if (! empty($lokasi_file)) {
             $data      = $_POST;
-            $nama_file = $data['id_pend'] . '_' . $data['nama'] . '_' . generator(6) . '_' . $nama_file;
+            $nama_file = $data['id_pend'] . '_' . $data['nama'] . '_' . random_string('alnum', 6) . '_' . $nama_file;
             $nama_file = urlencode($nama_file);
             UploadDocument($nama_file);
             $data['satuan'] = $nama_file;
