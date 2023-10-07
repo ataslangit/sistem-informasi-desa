@@ -40,7 +40,7 @@ class Install
                     $templine = '';
                 }
             }
-            $passwd      = generator();
+            $passwd      = random_string('alnum', 7);
             $out['pass'] = $passwd;
             $idsid       = hash_password($passwd);
 
