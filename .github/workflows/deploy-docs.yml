@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Docs
 
 on:
   push:
@@ -9,7 +9,9 @@ on:
       - ".github/workflows/deploy-docs.yml"
 
 jobs:
-  deploy:
+  build:
+    name: Deploy
+    if: github.repository == 'ataslangit/sistem-informasi-desa'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
