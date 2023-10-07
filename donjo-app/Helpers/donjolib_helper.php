@@ -282,7 +282,13 @@ function waktu_ind($time)
     return $str . ' Detik';
 }
 
-function getBulan($bln)
+/*
+ * Mengambil nama bulan
+ * @param int $bln Bulan dalam angka
+ * @return string Nama Bulan
+ * TODO: Sesuaikan fungsi dengan bawaan dari CodeIgniter 4
+ */
+function getBulan(int $bln)
 {
     switch ($bln) {
         case 1:
@@ -320,6 +326,9 @@ function getBulan($bln)
 
         case 12:
             return 'Desember';
+
+        default:
+          return '';
     }
 }
 
