@@ -3,12 +3,14 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use Config\Database;
 
 class Init extends Migration
 {
     public function up()
     {
-        $this->db->query("CREATE TABLE IF NOT EXISTS `".$this->db->protectIdentifiers('analisis_indikator', true)."` (
+        $db = Database::connect();
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_indikator', true) . "` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_master` int(11) NOT NULL,
             `nomor` int(3) NOT NULL,
@@ -24,7 +26,7 @@ class Init extends Migration
             KEY `id_kategori` (`id_kategori`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `'.$this->db->protectIdentifiers('analisis_kategori_indikator', true).'` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_kategori_indikator', true) . '` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `id_master` tinyint(4) NOT NULL,
             `kategori_kode` varchar(3) NOT NULL,
@@ -33,7 +35,7 @@ class Init extends Migration
             KEY `id_master` (`id_master`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_klasifikasi` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_klasifikasi') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_master` int(11) NOT NULL,
             `nama` varchar(20) NOT NULL,
@@ -43,7 +45,7 @@ class Init extends Migration
             KEY `id_master` (`id_master`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `analisis_master` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('analisis_master').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(40) NOT NULL,
             `subjek_tipe` tinyint(4) NOT NULL,
@@ -56,7 +58,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `analisis_parameter` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('analisis_parameter').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_indikator` int(11) NOT NULL,
             `kode_jawaban` int(3) NOT NULL,
@@ -67,7 +69,7 @@ class Init extends Migration
             KEY `id_indikator` (`id_indikator`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `analisis_partisipasi` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('analisis_partisipasi').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_subjek` int(11) NOT NULL,
             `id_master` int(11) NOT NULL,
@@ -80,7 +82,7 @@ class Init extends Migration
             KEY `id_klassifikasi` (`id_klassifikasi`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `analisis_periode` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('analisis_periode').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_master` int(11) NOT NULL,
             `nama` varchar(50) NOT NULL,
@@ -93,26 +95,26 @@ class Init extends Migration
             KEY `id_state` (`id_state`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_ref_state` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_ref_state') . '` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(40) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_ref_subjek` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_ref_subjek') . '` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `subjek` varchar(20) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_respon` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_respon') . '` (
             `id_indikator` int(11) NOT NULL,
             `id_parameter` int(11) NOT NULL,
             `id_subjek` int(11) NOT NULL,
             `id_periode` int(11) NOT NULL
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_respon_bukti` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_respon_bukti') . '` (
             `id_master` tinyint(4) NOT NULL,
             `id_periode` tinyint(4) NOT NULL,
             `id_subjek` int(11) NOT NULL,
@@ -120,7 +122,7 @@ class Init extends Migration
             `tgl_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_respon_hasil` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_respon_hasil') . '` (
             `id_master` tinyint(4) NOT NULL,
             `id_periode` tinyint(4) NOT NULL,
             `id_subjek` int(11) NOT NULL,
@@ -129,13 +131,13 @@ class Init extends Migration
             UNIQUE KEY `id_master` (`id_master`,`id_periode`,`id_subjek`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `analisis_tipe_indikator` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_tipe_indikator') . '` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `tipe` varchar(20) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `area` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('area').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `path` text NOT NULL,
@@ -147,7 +149,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `artikel` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('artikel').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `gambar` varchar(200) NOT NULL,
             `isi` text NOT NULL,
@@ -165,7 +167,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `config` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('config') . '` (
             `id` int(5) NOT NULL AUTO_INCREMENT,
             `nama_desa` varchar(100) NOT NULL,
             `kode_desa` varchar(100) NOT NULL,
@@ -195,7 +197,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `data_persil` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('data_persil').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nik` varchar(64) NOT NULL,
             `nama` varchar(128) NOT NULL COMMENT 'nomer persil',
@@ -213,14 +215,14 @@ class Init extends Migration
             KEY `nik` (`nik`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `data_persil_jenis` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('data_persil_jenis') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(128) NOT NULL,
             `ndesc` text NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `data_persil_log` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('data_persil_log').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `persil_id` int(11) NOT NULL,
             `persil_transaksi_jenis` tinyint(2) NOT NULL,
@@ -231,19 +233,19 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            ) COMMENT='Tabel untuk menyimpan catatan transaksi atas data persil'");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `data_persil_peruntukan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('data_persil_peruntukan') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(128) NOT NULL,
             `ndesc` text NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `detail_log_penduduk` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('detail_log_penduduk') . '` (
             `id` int(10) NOT NULL,
             `nama` varchar(50) NOT NULL
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `dokumen` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('dokumen').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_pend` int(11) NOT NULL DEFAULT '0',
             `satuan` varchar(200) NOT NULL,
@@ -253,7 +255,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `gambar_gallery` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('gambar_gallery').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `parrent` int(4) NOT NULL,
             `gambar` varchar(200) NOT NULL,
@@ -265,7 +267,7 @@ class Init extends Migration
             KEY `parrent` (`parrent`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `garis` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('garis').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `path` text NOT NULL,
@@ -277,11 +279,11 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `gis_simbol` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('gis_simbol') . '` (
             `simbol` varchar(40) DEFAULT NULL
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `inbox` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('inbox').'` (
             `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             `ReceivingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
             `Text` text NOT NULL,
@@ -297,7 +299,7 @@ class Init extends Migration
             PRIMARY KEY (`ID`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `kategori` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('kategori').'` (
             `id` int(5) NOT NULL AUTO_INCREMENT,
             `kategori` varchar(100) NOT NULL,
             `tipe` int(4) NOT NULL DEFAULT '1',
@@ -307,7 +309,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `kelompok` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_master` int(11) NOT NULL,
             `id_ketua` int(11) NOT NULL,
@@ -319,7 +321,7 @@ class Init extends Migration
             KEY `id_master` (`id_master`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `kelompok_anggota` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok_anggota') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_kelompok` int(11) NOT NULL,
             `id_penduduk` int(11) NOT NULL,
@@ -328,14 +330,14 @@ class Init extends Migration
             UNIQUE KEY `id_kelompok` (`id_kelompok`,`id_penduduk`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `kelompok_master` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok_master') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `kelompok` varchar(50) NOT NULL,
             `deskripsi` varchar(400) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `komentar` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('komentar').'` (
             `id` int(5) NOT NULL AUTO_INCREMENT,
             `id_artikel` int(7) NOT NULL,
             `owner` varchar(50) NOT NULL,
@@ -346,21 +348,21 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `kontak` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kontak') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_pend` int(11) DEFAULT NULL,
             `no_hp` varchar(15) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `kontak_grup` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kontak_grup') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama_grup` varchar(30) NOT NULL,
             `id_kontak` int(11) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `line` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('line').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `simbol` varchar(50) NOT NULL,
@@ -372,7 +374,7 @@ class Init extends Migration
             KEY `parrent` (`parrent`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `log_bulanan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_bulanan') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `pend` int(11) NOT NULL,
             `lk` int(11) NOT NULL,
@@ -382,7 +384,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `log_penduduk` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_penduduk') . '` (
             `id` int(10) NOT NULL AUTO_INCREMENT,
             `id_pend` int(11) NOT NULL,
             `id_detail` int(4) NOT NULL,
@@ -393,7 +395,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `log_perubahan_penduduk` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_perubahan_penduduk') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_pend` int(11) NOT NULL,
             `id_cluster` varchar(200) NOT NULL,
@@ -401,7 +403,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `log_surat` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_surat') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_format_surat` int(4) NOT NULL,
             `id_pend` int(11) NOT NULL,
@@ -414,7 +416,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `lokasi` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('lokasi').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `desk` text NOT NULL,
             `nama` varchar(50) NOT NULL,
@@ -428,7 +430,7 @@ class Init extends Migration
             KEY `ref_point` (`ref_point`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `media_sosial` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('media_sosial') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `gambar` text NOT NULL,
             `link` text NOT NULL,
@@ -437,7 +439,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `menu` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('menu').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `link` varchar(500) NOT NULL,
@@ -448,7 +450,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `outbox` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('outbox').'` (
             `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
             `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -472,7 +474,7 @@ class Init extends Migration
             KEY `outbox_sender` (`SenderID`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `point` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('point').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `simbol` varchar(50) NOT NULL,
@@ -483,7 +485,7 @@ class Init extends Migration
             KEY `parrent` (`parrent`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `polygon` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('polygon').'` (
             `id` int(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             `simbol` varchar(50) NOT NULL,
@@ -495,7 +497,7 @@ class Init extends Migration
             KEY `parrent` (`parrent`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `program` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('program').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(256) NOT NULL,
             `ndesc` text NOT NULL,
@@ -508,7 +510,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `program_peserta` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('program_peserta') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `program_id` int(11) NOT NULL,
             `peserta` decimal(18,0) NOT NULL,
@@ -518,7 +520,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `sentitems` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('sentitems').'` (
             `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
             `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -545,7 +547,7 @@ class Init extends Migration
             KEY `sentitems_sender` (`SenderID`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `setting_modul` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('setting_modul').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `modul` varchar(50) NOT NULL,
             `url` varchar(50) NOT NULL,
@@ -557,18 +559,18 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `setting_sms` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('setting_sms') . '` (
             `autoreply_text` varchar(160) DEFAULT NULL
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `sys_traffic` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('sys_traffic') . '` (
             `Tanggal` date NOT NULL,
             `ipAddress` text NOT NULL,
             `Jumlah` int(10) NOT NULL,
             PRIMARY KEY (`Tanggal`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_alamat_sekarang` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_alamat_sekarang') . '` (
             `id` int(11) NOT NULL,
             `jalan` varchar(100) NOT NULL,
             `rt` varchar(100) NOT NULL,
@@ -580,13 +582,13 @@ class Init extends Migration
             `provinsi` varchar(100) NOT NULL
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_cacat` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_cacat') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `tweb_desa_pamong` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_desa_pamong').'` (
             `pamong_id` int(5) NOT NULL AUTO_INCREMENT,
             `pamong_nama` varchar(100) DEFAULT NULL,
             `pamong_nip` varchar(20) DEFAULT NULL,
@@ -597,13 +599,13 @@ class Init extends Migration
             PRIMARY KEY (`pamong_id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_golongan_darah` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_golongan_darah') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(15) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `tweb_keluarga` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_keluarga').'` (
             `id` int(10) NOT NULL AUTO_INCREMENT,
             `no_kk` varchar(160) DEFAULT NULL,
             `nik_kepala` varchar(200) DEFAULT NULL,
@@ -618,7 +620,7 @@ class Init extends Migration
             UNIQUE KEY `no_kk` (`no_kk`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `tweb_penduduk` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_penduduk').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             `nik` decimal(16,0) NOT NULL,
@@ -661,25 +663,25 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_agama` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_agama') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_hubungan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_hubungan') . '` (
             `id` int(10) NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_kawin` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_kawin') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_mandiri` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_mandiri') . '` (
             `nik` varchar(20) NOT NULL,
             `pin` varchar(60) NOT NULL,
             `tanggal_buat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -687,43 +689,43 @@ class Init extends Migration
             UNIQUE KEY `nik` (`nik`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_map` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_map') . '` (
             `id` int(11) NOT NULL,
             `lat` varchar(24) NOT NULL,
             `lng` varchar(24) NOT NULL
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_pekerjaan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pekerjaan') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_pendidikan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pendidikan') . '` (
             `id` tinyint(3) NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_pendidikan_kk` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pendidikan_kk') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_sex` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_sex') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(15) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_status` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_status') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_umur` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_umur') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(25) DEFAULT NULL,
             `dari` int(11) DEFAULT NULL,
@@ -732,13 +734,13 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_penduduk_warganegara` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_warganegara') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(25) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_rtm` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_rtm') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nik_kepala` int(11) NOT NULL,
             `no_kk` varchar(20) NOT NULL,
@@ -747,25 +749,25 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_rtm_hubungan` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_rtm_hubungan') . '` (
             `id` tinyint(4) NOT NULL AUTO_INCREMENT,
             `nama` varchar(20) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_sakit_menahun` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_sakit_menahun') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(255) NOT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_status_dasar` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_status_dasar') . '` (
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
             `nama` varchar(50) DEFAULT NULL,
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `tweb_surat_atribut` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_surat_atribut') . '` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `id_surat` int(11) NOT NULL,
             `id_tipe` tinyint(4) NOT NULL,
@@ -775,7 +777,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )');
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `tweb_surat_format` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_surat_format').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `nama` varchar(100) NOT NULL,
             `url_surat` varchar(100) NOT NULL,
@@ -785,7 +787,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `tweb_wil_clusterdesa` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_wil_clusterdesa').'` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `rt` varchar(10) NOT NULL DEFAULT '0',
             `rw` varchar(10) NOT NULL DEFAULT '0',
@@ -801,7 +803,7 @@ class Init extends Migration
             KEY `id_kepala` (`id_kepala`)
            )");
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `user` (
+        $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('user').'` (
             `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
             `username` varchar(100) NOT NULL,
             `password` varchar(40) NOT NULL,
@@ -817,7 +819,7 @@ class Init extends Migration
             PRIMARY KEY (`id`)
            )");
 
-        $this->db->query('CREATE TABLE IF NOT EXISTS `user_grup` (
+        $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('user_grup') . '` (
             `id` tinyint(4) NOT NULL,
             `nama` varchar(20) NOT NULL,
             PRIMARY KEY (`id`)
