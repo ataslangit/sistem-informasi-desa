@@ -187,114 +187,154 @@ class Init extends Migration
 
         // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('analisis_tipe_indikator') . '` (
-        //     `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-        //     `tipe` varchar(20) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` tinyint(4) NOT NULL AUTO_INCREMENT',
+            '`tipe` varchar(20) NOT NULL',
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('area').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `path` text NOT NULL,
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     `ref_polygon` int(9) NOT NULL,
-        //     `foto` varchar(100) NOT NULL,
-        //     `id_cluster` int(11) NOT NULL,
-        //     `desk` text NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('artikel').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `gambar` varchar(200) NOT NULL,
-        //     `isi` text NOT NULL,
-        //     `enabled` int(2) NOT NULL DEFAULT '1',
-        //     `tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `id_kategori` int(4) NOT NULL,
-        //     `id_user` int(4) NOT NULL,
-        //     `judul` varchar(100) NOT NULL,
-        //     `headline` int(1) NOT NULL DEFAULT '0',
-        //     `gambar1` varchar(200) NOT NULL,
-        //     `gambar2` varchar(200) NOT NULL,
-        //     `gambar3` varchar(200) NOT NULL,
-        //     `dokumen` varchar(400) NOT NULL,
-        //     `link_dokumen` varchar(200) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->createTable('analisis_tipe_indikator', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('config') . '` (
-        //     `id` int(5) NOT NULL AUTO_INCREMENT,
-        //     `nama_desa` varchar(100) NOT NULL,
-        //     `kode_desa` varchar(100) NOT NULL,
-        //     `nama_kepala_desa` varchar(100) NOT NULL,
-        //     `nip_kepala_desa` varchar(100) NOT NULL,
-        //     `kode_pos` varchar(6) NOT NULL,
-        //     `nama_kecamatan` varchar(100) NOT NULL,
-        //     `kode_kecamatan` varchar(100) NOT NULL,
-        //     `nama_kepala_camat` varchar(100) NOT NULL,
-        //     `nip_kepala_camat` varchar(100) NOT NULL,
-        //     `nama_kabupaten` varchar(100) NOT NULL,
-        //     `kode_kabupaten` varchar(100) NOT NULL,
-        //     `nama_propinsi` varchar(100) NOT NULL,
-        //     `kode_propinsi` varchar(100) NOT NULL,
-        //     `logo` varchar(100) NOT NULL,
-        //     `lat` varchar(20) NOT NULL,
-        //     `lng` varchar(20) NOT NULL,
-        //     `zoom` tinyint(4) NOT NULL,
-        //     `map_tipe` varchar(20) NOT NULL,
-        //     `path` text NOT NULL,
-        //     `alamat_kantor` varchar(200) DEFAULT NULL,
-        //     `g_analytic` varchar(200) NOT NULL,
-        //     `regid` varchar(60) NOT NULL,
-        //     `macid` varchar(60) NOT NULL,
-        //     `email_desa` varchar(100) NOT NULL,
-        //     `gapi_key` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('data_persil').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nik` varchar(64) NOT NULL,
-        //     `nama` varchar(128) NOT NULL COMMENT 'nomer persil',
-        //     `persil_jenis_id` tinyint(2) NOT NULL,
-        //     `id_clusterdesa` varchar(64) NOT NULL,
-        //     `alamat_ext` varchar(64) NOT NULL,
-        //     `luas` decimal(7,2) NOT NULL,
-        //     `kelas` varchar(128) DEFAULT NULL,
-        //     `peta` text,
-        //     `no_sppt_pbb` varchar(128) NOT NULL,
-        //     `persil_peruntukan_id` tinyint(2) NOT NULL,
-        //     `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `userID` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     KEY `nik` (`nik`)
-        //    )");
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`path` text NOT NULL',
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+            '`ref_polygon` int(9) NOT NULL',
+            '`foto` varchar(100) NOT NULL',
+            '`id_cluster` int(11) NOT NULL',
+            '`desk` text NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('data_persil_jenis') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(128) NOT NULL,
-        //     `ndesc` text NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('data_persil_log').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `persil_id` int(11) NOT NULL,
-        //     `persil_transaksi_jenis` tinyint(2) NOT NULL,
-        //     `pemilik_lama` varchar(24) NOT NULL,
-        //     `pemilik_baru` varchar(24) NOT NULL,
-        //     `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `user_id` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    ) COMMENT='Tabel untuk menyimpan catatan transaksi atas data persil'");
+        $this->forge->createTable('area', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('data_persil_peruntukan') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(128) NOT NULL,
-        //     `ndesc` text NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`gambar` varchar(200) NOT NULL',
+            '`isi` text NOT NULL',
+            "`enabled` int(2) NOT NULL DEFAULT '1'",
+            '`tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`id_kategori` int(4) NOT NULL',
+            '`id_user` int(4) NOT NULL',
+            '`judul` varchar(100) NOT NULL',
+            "`headline` int(1) NOT NULL DEFAULT '0'",
+            '`gambar1` varchar(200) NOT NULL',
+            '`gambar2` varchar(200) NOT NULL',
+            '`gambar3` varchar(200) NOT NULL',
+            '`dokumen` varchar(400) NOT NULL',
+            '`link_dokumen` varchar(200) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('artikel', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(5) NOT NULL AUTO_INCREMENT',
+            '`nama_desa` varchar(100) NOT NULL',
+            '`kode_desa` varchar(100) NOT NULL',
+            '`nama_kepala_desa` varchar(100) NOT NULL',
+            '`nip_kepala_desa` varchar(100) NOT NULL',
+            '`kode_pos` varchar(6) NOT NULL',
+            '`nama_kecamatan` varchar(100) NOT NULL',
+            '`kode_kecamatan` varchar(100) NOT NULL',
+            '`nama_kepala_camat` varchar(100) NOT NULL',
+            '`nip_kepala_camat` varchar(100) NOT NULL',
+            '`nama_kabupaten` varchar(100) NOT NULL',
+            '`kode_kabupaten` varchar(100) NOT NULL',
+            '`nama_propinsi` varchar(100) NOT NULL',
+            '`kode_propinsi` varchar(100) NOT NULL',
+            '`logo` varchar(100) NOT NULL',
+            '`lat` varchar(20) NOT NULL',
+            '`lng` varchar(20) NOT NULL',
+            '`zoom` tinyint(4) NOT NULL',
+            '`map_tipe` varchar(20) NOT NULL',
+            '`path` text NOT NULL',
+            '`alamat_kantor` varchar(200) DEFAULT NULL',
+            '`g_analytic` varchar(200) NOT NULL',
+            '`regid` varchar(60) NOT NULL',
+            '`macid` varchar(60) NOT NULL',
+            '`email_desa` varchar(100) NOT NULL',
+            '`gapi_key` varchar(100) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('config', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nik` varchar(64) NOT NULL',
+            "`nama` varchar(128) NOT NULL COMMENT 'nomer persil'",
+            '`persil_jenis_id` tinyint(2) NOT NULL',
+            '`id_clusterdesa` varchar(64) NOT NULL',
+            '`alamat_ext` varchar(64) NOT NULL',
+            '`luas` decimal(7,2) NOT NULL',
+            '`kelas` varchar(128) DEFAULT NULL',
+            '`peta` text',
+            '`no_sppt_pbb` varchar(128) NOT NULL',
+            '`persil_peruntukan_id` tinyint(2) NOT NULL',
+            '`rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`userID` int(11) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('nik');
+
+        $this->forge->createTable('data_persil', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(128) NOT NULL',
+            '`ndesc` text NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('data_persil_jenis', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`persil_id` int(11) NOT NULL',
+            '`persil_transaksi_jenis` tinyint(2) NOT NULL',
+            '`pemilik_lama` varchar(24) NOT NULL',
+            '`pemilik_baru` varchar(24) NOT NULL',
+            '`rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`user_id` int(11) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('data_persil_log', true, ['COMMENT' => 'Tabel untuk menyimpan catatan transaksi atas data persil']);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(128) NOT NULL',
+            '`ndesc` text NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('data_persil_peruntukan', true);
+
+        // =====================================================================
 
         // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('detail_log_penduduk') . '` (
         //     `id` int(10) NOT NULL,
