@@ -336,364 +336,525 @@ class Init extends Migration
 
         // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('detail_log_penduduk') . '` (
-        //     `id` int(10) NOT NULL,
-        //     `nama` varchar(50) NOT NULL
-        //    )');
+        $this->forge->addField([
+            '`id` int(10) NOT NULL',
+            '`nama` varchar(50) NOT NULL',
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('dokumen').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_pend` int(11) NOT NULL DEFAULT '0',
-        //     `satuan` varchar(200) NOT NULL,
-        //     `nama` varchar(50) NOT NULL,
-        //     `enabled` int(2) NOT NULL DEFAULT '1',
-        //     `tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->createTable('detail_log_penduduk', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('gambar_gallery').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `parrent` int(4) NOT NULL,
-        //     `gambar` varchar(200) NOT NULL,
-        //     `nama` varchar(50) NOT NULL,
-        //     `enabled` int(2) NOT NULL DEFAULT '1',
-        //     `tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `tipe` int(4) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     KEY `parrent` (`parrent`)
-        //    )");
+        // =====================================================================
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('garis').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `path` text NOT NULL,
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     `ref_line` int(9) NOT NULL,
-        //     `foto` varchar(100) NOT NULL,
-        //     `desk` text NOT NULL,
-        //     `id_cluster` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            "`id_pend` int(11) NOT NULL DEFAULT '0'",
+            '`satuan` varchar(200) NOT NULL',
+            '`nama` varchar(50) NOT NULL',
+            "`enabled` int(2) NOT NULL DEFAULT '1'",
+            '`tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('gis_simbol') . '` (
-        //     `simbol` varchar(40) DEFAULT NULL
-        //    )');
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('inbox').'` (
-        //     `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     `ReceivingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-        //     `Text` text NOT NULL,
-        //     `SenderNumber` varchar(20) NOT NULL DEFAULT '',
-        //     `Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression',
-        //     `UDH` text NOT NULL,
-        //     `SMSCNumber` varchar(20) NOT NULL DEFAULT '',
-        //     `Class` int(11) NOT NULL DEFAULT '-1',
-        //     `TextDecoded` text NOT NULL,
-        //     `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `RecipientID` text NOT NULL,
-        //     `Processed` enum('false','true') NOT NULL DEFAULT 'false',
-        //     PRIMARY KEY (`ID`)
-        //    )");
+        $this->forge->createTable('dokumen', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('kategori').'` (
-        //     `id` int(5) NOT NULL AUTO_INCREMENT,
-        //     `kategori` varchar(100) NOT NULL,
-        //     `tipe` int(4) NOT NULL DEFAULT '1',
-        //     `urut` tinyint(4) NOT NULL,
-        //     `enabled` tinyint(4) NOT NULL,
-        //     `parrent` tinyint(4) NOT NULL DEFAULT '0',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_master` int(11) NOT NULL,
-        //     `id_ketua` int(11) NOT NULL,
-        //     `kode` varchar(16) NOT NULL,
-        //     `nama` varchar(50) NOT NULL,
-        //     `keterangan` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     KEY `id_ketua` (`id_ketua`),
-        //     KEY `id_master` (`id_master`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`parrent` int(4) NOT NULL',
+            '`gambar` varchar(200) NOT NULL',
+            '`nama` varchar(50) NOT NULL',
+            "`enabled` int(2) NOT NULL DEFAULT '1'",
+            '`tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`tipe` int(4) NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok_anggota') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_kelompok` int(11) NOT NULL,
-        //     `id_penduduk` int(11) NOT NULL,
-        //     `no_anggota` varchar(20) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     UNIQUE KEY `id_kelompok` (`id_kelompok`,`id_penduduk`)
-        //    )');
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('parrent');
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kelompok_master') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `kelompok` varchar(50) NOT NULL,
-        //     `deskripsi` varchar(400) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('gambar_gallery', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('komentar').'` (
-        //     `id` int(5) NOT NULL AUTO_INCREMENT,
-        //     `id_artikel` int(7) NOT NULL,
-        //     `owner` varchar(50) NOT NULL,
-        //     `email` varchar(50) NOT NULL,
-        //     `komentar` text NOT NULL,
-        //     `tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `enabled` int(2) NOT NULL DEFAULT '2',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kontak') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_pend` int(11) DEFAULT NULL,
-        //     `no_hp` varchar(15) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`path` text NOT NULL',
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+            '`ref_line` int(9) NOT NULL',
+            '`foto` varchar(100) NOT NULL',
+            '`desk` text NOT NULL',
+            '`id_cluster` int(11) NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('kontak_grup') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama_grup` varchar(30) NOT NULL,
-        //     `id_kontak` int(11) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
+        $this->forge->createTable('garis', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('line').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `simbol` varchar(50) NOT NULL,
-        //     `color` varchar(10) NOT NULL DEFAULT 'ff0000',
-        //     `tipe` int(4) NOT NULL,
-        //     `parrent` int(4) DEFAULT '1',
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     PRIMARY KEY (`id`),
-        //     KEY `parrent` (`parrent`)
-        //    )");
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_bulanan') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `pend` int(11) NOT NULL,
-        //     `lk` int(11) NOT NULL,
-        //     `pr` int(11) NOT NULL,
-        //     `kk` int(11) NOT NULL,
-        //     `tgl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`simbol` varchar(40) DEFAULT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_penduduk') . '` (
-        //     `id` int(10) NOT NULL AUTO_INCREMENT,
-        //     `id_pend` int(11) NOT NULL,
-        //     `id_detail` int(4) NOT NULL,
-        //     `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `bulan` varchar(2) NOT NULL,
-        //     `tahun` varchar(4) NOT NULL,
-        //     `tgl_peristiwa` date NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('gis_simbol', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_perubahan_penduduk') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_pend` int(11) NOT NULL,
-        //     `id_cluster` varchar(200) NOT NULL,
-        //     `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('log_surat') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_format_surat` int(4) NOT NULL,
-        //     `id_pend` int(11) NOT NULL,
-        //     `id_pamong` int(4) NOT NULL,
-        //     `id_user` int(4) NOT NULL,
-        //     `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `bulan` varchar(2) DEFAULT NULL,
-        //     `tahun` varchar(4) DEFAULT NULL,
-        //     `no_surat` varchar(20) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            "`ReceivingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
+            '`Text` text NOT NULL',
+            "`SenderNumber` varchar(20) NOT NULL DEFAULT ''",
+            "`Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression'",
+            '`UDH` text NOT NULL',
+            "`SMSCNumber` varchar(20) NOT NULL DEFAULT ''",
+            "`Class` int(11) NOT NULL DEFAULT '-1'",
+            '`TextDecoded` text NOT NULL',
+            '`ID` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`RecipientID` text NOT NULL',
+            "`Processed` enum('false','true') NOT NULL DEFAULT 'false'",
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('lokasi').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `desk` text NOT NULL,
-        //     `nama` varchar(50) NOT NULL,
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     `lat` varchar(30) NOT NULL,
-        //     `lng` varchar(30) NOT NULL,
-        //     `ref_point` int(9) NOT NULL,
-        //     `foto` varchar(100) NOT NULL,
-        //     `id_cluster` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     KEY `ref_point` (`ref_point`)
-        //    )");
+        $this->forge->addKey('ID', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('media_sosial') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `gambar` text NOT NULL,
-        //     `link` text NOT NULL,
-        //     `nama` varchar(100) NOT NULL,
-        //     `enabled` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('inbox', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('menu').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `link` varchar(500) NOT NULL,
-        //     `tipe` int(4) NOT NULL,
-        //     `parrent` int(4) NOT NULL DEFAULT '1',
-        //     `link_tipe` tinyint(1) NOT NULL DEFAULT '0',
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        // =====================================================================
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('outbox').'` (
-        //     `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-        //     `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-        //     `SendBefore` time NOT NULL DEFAULT '23:59:59',
-        //     `SendAfter` time NOT NULL DEFAULT '00:00:00',
-        //     `Text` text,
-        //     `DestinationNumber` varchar(20) NOT NULL DEFAULT '',
-        //     `Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression',
-        //     `UDH` text,
-        //     `Class` int(11) DEFAULT '-1',
-        //     `TextDecoded` text NOT NULL,
-        //     `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `MultiPart` enum('false','true') DEFAULT 'false',
-        //     `RelativeValidity` int(11) DEFAULT '-1',
-        //     `SenderID` varchar(255) DEFAULT NULL,
-        //     `SendingTimeOut` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-        //     `DeliveryReport` enum('default','yes','no') DEFAULT 'default',
-        //     `CreatorID` text NOT NULL,
-        //     PRIMARY KEY (`ID`),
-        //     KEY `outbox_date` (`SendingDateTime`,`SendingTimeOut`),
-        //     KEY `outbox_sender` (`SenderID`)
-        //    )");
+        $this->forge->addField([
+            '`id` int(5) NOT NULL AUTO_INCREMENT',
+            '`kategori` varchar(100) NOT NULL',
+            "`tipe` int(4) NOT NULL DEFAULT '1'",
+            '`urut` tinyint(4) NOT NULL',
+            '`enabled` tinyint(4) NOT NULL',
+            "`parrent` tinyint(4) NOT NULL DEFAULT '0'",
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('point').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `simbol` varchar(50) NOT NULL,
-        //     `tipe` int(4) NOT NULL,
-        //     `parrent` int(4) NOT NULL DEFAULT '1',
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     PRIMARY KEY (`id`),
-        //     KEY `parrent` (`parrent`)
-        //    )");
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('polygon').'` (
-        //     `id` int(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     `simbol` varchar(50) NOT NULL,
-        //     `color` varchar(10) NOT NULL DEFAULT 'ff0000',
-        //     `tipe` int(4) NOT NULL,
-        //     `parrent` int(4) DEFAULT '1',
-        //     `enabled` int(11) NOT NULL DEFAULT '1',
-        //     PRIMARY KEY (`id`),
-        //     KEY `parrent` (`parrent`)
-        //    )");
+        $this->forge->createTable('kategori', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('program').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(256) NOT NULL,
-        //     `ndesc` text NOT NULL,
-        //     `sasaran` tinyint(1) NOT NULL DEFAULT '0',
-        //     `sdate` datetime NOT NULL,
-        //     `edate` datetime NOT NULL,
-        //     `userID` int(11) NOT NULL,
-        //     `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `status` tinyint(1) NOT NULL DEFAULT '0',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('program_peserta') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `program_id` int(11) NOT NULL,
-        //     `peserta` decimal(18,0) NOT NULL,
-        //     `sasaran` tinyint(1) NOT NULL,
-        //     `userID` int(11) NOT NULL,
-        //     `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_master` int(11) NOT NULL',
+            '`id_ketua` int(11) NOT NULL',
+            '`kode` varchar(16) NOT NULL',
+            '`nama` varchar(50) NOT NULL',
+            '`keterangan` varchar(100) NOT NULL',
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('sentitems').'` (
-        //     `UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     `InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-        //     `SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-        //     `DeliveryDateTime` timestamp NULL DEFAULT NULL,
-        //     `Text` text NOT NULL,
-        //     `DestinationNumber` varchar(20) NOT NULL DEFAULT '',
-        //     `Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression',
-        //     `UDH` text NOT NULL,
-        //     `SMSCNumber` varchar(20) NOT NULL DEFAULT '',
-        //     `Class` int(11) NOT NULL DEFAULT '-1',
-        //     `TextDecoded` text NOT NULL,
-        //     `ID` int(10) unsigned NOT NULL DEFAULT '0',
-        //     `SenderID` varchar(255) NOT NULL,
-        //     `SequencePosition` int(11) NOT NULL DEFAULT '1',
-        //     `Status` enum('SendingOK','SendingOKNoReport','SendingError','DeliveryOK','DeliveryFailed','DeliveryPending','DeliveryUnknown','Error') NOT NULL DEFAULT 'SendingOK',
-        //     `StatusError` int(11) NOT NULL DEFAULT '-1',
-        //     `TPMR` int(11) NOT NULL DEFAULT '-1',
-        //     `RelativeValidity` int(11) NOT NULL DEFAULT '-1',
-        //     `CreatorID` text NOT NULL,
-        //     PRIMARY KEY (`ID`,`SequencePosition`),
-        //     KEY `sentitems_date` (`DeliveryDateTime`),
-        //     KEY `sentitems_tpmr` (`TPMR`),
-        //     KEY `sentitems_dest` (`DestinationNumber`),
-        //     KEY `sentitems_sender` (`SenderID`)
-        //    )");
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('id_ketua');
+        $this->forge->addKey('id_master');
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('setting_modul').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `modul` varchar(50) NOT NULL,
-        //     `url` varchar(50) NOT NULL,
-        //     `aktif` tinyint(1) NOT NULL DEFAULT '0',
-        //     `ikon` varchar(50) NOT NULL,
-        //     `urut` tinyint(4) NOT NULL,
-        //     `level` tinyint(1) NOT NULL DEFAULT '2',
-        //     `hidden` tinyint(1) NOT NULL DEFAULT '0',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->createTable('kelompok', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('setting_sms') . '` (
-        //     `autoreply_text` varchar(160) DEFAULT NULL
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('sys_traffic') . '` (
-        //     `Tanggal` date NOT NULL,
-        //     `ipAddress` text NOT NULL,
-        //     `Jumlah` int(10) NOT NULL,
-        //     PRIMARY KEY (`Tanggal`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_kelompok` int(11) NOT NULL',
+            '`id_penduduk` int(11) NOT NULL',
+            '`no_anggota` varchar(20) NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_alamat_sekarang') . '` (
-        //     `id` int(11) NOT NULL,
-        //     `jalan` varchar(100) NOT NULL,
-        //     `rt` varchar(100) NOT NULL,
-        //     `rw` varchar(100) NOT NULL,
-        //     `dusun` varchar(100) NOT NULL,
-        //     `desa` varchar(100) NOT NULL,
-        //     `kecamatan` varchar(100) NOT NULL,
-        //     `kabupaten` varchar(100) NOT NULL,
-        //     `provinsi` varchar(100) NOT NULL
-        //    )');
+        $this->forge->addKey('id', true);
+        $this->forge->addKey(['id_kelompok', 'id_penduduk'], false, true, 'id_kelompok');
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_cacat') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('kelompok_anggota', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_desa_pamong').'` (
-        //     `pamong_id` int(5) NOT NULL AUTO_INCREMENT,
-        //     `pamong_nama` varchar(100) DEFAULT NULL,
-        //     `pamong_nip` varchar(20) DEFAULT NULL,
-        //     `pamong_nik` varchar(20) DEFAULT NULL,
-        //     `jabatan` varchar(50) DEFAULT '0',
-        //     `pamong_status` varchar(45) DEFAULT NULL,
-        //     `pamong_tgl_terdaftar` date DEFAULT NULL,
-        //     PRIMARY KEY (`pamong_id`)
-        //    )");
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`kelompok` varchar(50) NOT NULL',
+            '`deskripsi` varchar(400) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('kelompok_master', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(5) NOT NULL AUTO_INCREMENT',
+            '`id_artikel` int(7) NOT NULL',
+            '`owner` varchar(50) NOT NULL',
+            '`email` varchar(50) NOT NULL',
+            '`komentar` text NOT NULL',
+            '`tgl_upload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            "`enabled` int(2) NOT NULL DEFAULT '2'",
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('komentar', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_pend` int(11) DEFAULT NULL',
+            '`no_hp` varchar(15) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('kontak', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama_grup` varchar(30) NOT NULL',
+            '`id_kontak` int(11) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('kontak_grup', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`simbol` varchar(50) NOT NULL',
+            "`color` varchar(10) NOT NULL DEFAULT 'ff0000'",
+            '`tipe` int(4) NOT NULL',
+            "`parrent` int(4) DEFAULT '1'",
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('parrent');
+
+        $this->forge->createTable('line', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`pend` int(11) NOT NULL',
+            '`lk` int(11) NOT NULL',
+            '`pr` int(11) NOT NULL',
+            '`kk` int(11) NOT NULL',
+            '`tgl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('log_bulanan', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) NOT NULL AUTO_INCREMENT',
+            '`id_pend` int(11) NOT NULL',
+            '`id_detail` int(4) NOT NULL',
+            '`tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`bulan` varchar(2) NOT NULL',
+            '`tahun` varchar(4) NOT NULL',
+            '`tgl_peristiwa` date NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('log_penduduk', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_pend` int(11) NOT NULL',
+            '`id_cluster` varchar(200) NOT NULL',
+            '`tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('log_perubahan_penduduk', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_format_surat` int(4) NOT NULL',
+            '`id_pend` int(11) NOT NULL',
+            '`id_pamong` int(4) NOT NULL',
+            '`id_user` int(4) NOT NULL',
+            '`tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            '`bulan` varchar(2) DEFAULT NULL',
+            '`tahun` varchar(4) DEFAULT NULL',
+            '`no_surat` varchar(20) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('log_surat', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`desk` text NOT NULL',
+            '`nama` varchar(50) NOT NULL',
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+            '`lat` varchar(30) NOT NULL',
+            '`lng` varchar(30) NOT NULL',
+            '`ref_point` int(9) NOT NULL',
+            '`foto` varchar(100) NOT NULL',
+            '`id_cluster` int(11) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('ref_point');
+
+        $this->forge->createTable('lokasi', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`gambar` text NOT NULL',
+            '`link` text NOT NULL',
+            '`nama` varchar(100) NOT NULL',
+            '`enabled` int(11) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('media_sosial', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`link` varchar(500) NOT NULL',
+            '`tipe` int(4) NOT NULL',
+            "`parrent` int(4) NOT NULL DEFAULT '1'",
+            "`link_tipe` tinyint(1) NOT NULL DEFAULT '0'",
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('menu', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            "`InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
+            "`SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
+            "`SendBefore` time NOT NULL DEFAULT '23:59:59'",
+            "`SendAfter` time NOT NULL DEFAULT '00:00:00'",
+            '`Text` text',
+            "`DestinationNumber` varchar(20) NOT NULL DEFAULT ''",
+            "`Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression'",
+            '`UDH` text',
+            "`Class` int(11) DEFAULT '-1'",
+            '`TextDecoded` text NOT NULL',
+            '`ID` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            "`MultiPart` enum('false','true') DEFAULT 'false'",
+            "`RelativeValidity` int(11) DEFAULT '-1'",
+            '`SenderID` varchar(255) DEFAULT NULL',
+            "`SendingTimeOut` timestamp NULL DEFAULT '0000-00-00 00:00:00'",
+            "`DeliveryReport` enum('default','yes','no') DEFAULT 'default'",
+            '`CreatorID` text NOT NULL',
+        ]);
+
+        $this->forge->addKey('ID', true);
+        $this->forge->addKey(['SendingDateTime', 'SendingTimeOut'], false, false, 'outbox_date');
+        $this->forge->addKey('SenderID', false, false, 'outbox_sender');
+
+        $this->forge->createTable('outbox', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`simbol` varchar(50) NOT NULL',
+            '`tipe` int(4) NOT NULL',
+            "`parrent` int(4) NOT NULL DEFAULT '1'",
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('parrent');
+
+        $this->forge->createTable('point', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+            '`simbol` varchar(50) NOT NULL',
+            "`color` varchar(10) NOT NULL DEFAULT 'ff0000'",
+            '`tipe` int(4) NOT NULL',
+            "`parrent` int(4) DEFAULT '1'",
+            "`enabled` int(11) NOT NULL DEFAULT '1'",
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('parrent');
+
+        $this->forge->createTable('polygon', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(256) NOT NULL',
+            '`ndesc` text NOT NULL',
+            "`sasaran` tinyint(1) NOT NULL DEFAULT '0'",
+            '`sdate` datetime NOT NULL',
+            '`edate` datetime NOT NULL',
+            '`userID` int(11) NOT NULL',
+            '`rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            "`status` tinyint(1) NOT NULL DEFAULT '0'",
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('program', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`program_id` int(11) NOT NULL',
+            '`peserta` decimal(18,0) NOT NULL',
+            '`sasaran` tinyint(1) NOT NULL',
+            '`userID` int(11) NOT NULL',
+            '`rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('program_peserta', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`UpdatedInDB` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            "`InsertIntoDB` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
+            "`SendingDateTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
+            '`DeliveryDateTime` timestamp NULL DEFAULT NULL',
+            '`Text` text NOT NULL',
+            "`DestinationNumber` varchar(20) NOT NULL DEFAULT ''",
+            "`Coding` enum('Default_No_Compression','Unicode_No_Compression','8bit','Default_Compression','Unicode_Compression') NOT NULL DEFAULT 'Default_No_Compression'",
+            '`UDH` text NOT NULL',
+            "`SMSCNumber` varchar(20) NOT NULL DEFAULT ''",
+            "`Class` int(11) NOT NULL DEFAULT '-1'",
+            '`TextDecoded` text NOT NULL',
+            "`ID` int(10) unsigned NOT NULL DEFAULT '0'",
+            '`SenderID` varchar(255) NOT NULL',
+            "`SequencePosition` int(11) NOT NULL DEFAULT '1'",
+            "`Status` enum('SendingOK','SendingOKNoReport','SendingError','DeliveryOK','DeliveryFailed','DeliveryPending','DeliveryUnknown','Error') NOT NULL DEFAULT 'SendingOK'",
+            "`StatusError` int(11) NOT NULL DEFAULT '-1'",
+            "`TPMR` int(11) NOT NULL DEFAULT '-1'",
+            "`RelativeValidity` int(11) NOT NULL DEFAULT '-1'",
+            '`CreatorID` text NOT NULL',
+        ]);
+
+        $this->forge->addKey(['ID', 'SequencePosition'], true);
+        $this->forge->addKey('DeliveryDateTime', false, false, 'sentitems_date');
+        $this->forge->addKey('TPMR', false, false, 'sentitems_tpmr');
+        $this->forge->addKey('DestinationNumber', false, false, 'sentitems_dest');
+        $this->forge->addKey('SenderID', false, false, 'sentitems_sender');
+
+        $this->forge->createTable('sentitems', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`modul` varchar(50) NOT NULL',
+            '`url` varchar(50) NOT NULL',
+            "`aktif` tinyint(1) NOT NULL DEFAULT '0'",
+            '`ikon` varchar(50) NOT NULL',
+            '`urut` tinyint(4) NOT NULL',
+            "`level` tinyint(1) NOT NULL DEFAULT '2'",
+            "`hidden` tinyint(1) NOT NULL DEFAULT '0'",
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('setting_modul', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`autoreply_text` varchar(160) DEFAULT NULL',
+        ]);
+
+        $this->forge->createTable('setting_sms', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`Tanggal` date NOT NULL',
+            '`ipAddress` text NOT NULL',
+            '`Jumlah` int(10) NOT NULL',
+            'PRIMARY KEY (`Tanggal`)',
+        ]);
+
+        $this->forge->addKey('Tanggal', true);
+
+        $this->forge->createTable('sys_traffic', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL',
+            '`jalan` varchar(100) NOT NULL',
+            '`rt` varchar(100) NOT NULL',
+            '`rw` varchar(100) NOT NULL',
+            '`dusun` varchar(100) NOT NULL',
+            '`desa` varchar(100) NOT NULL',
+            '`kecamatan` varchar(100) NOT NULL',
+            '`kabupaten` varchar(100) NOT NULL',
+            '`provinsi` varchar(100) NOT NULL',
+        ]);
+
+        $this->forge->createTable('tweb_alamat_sekarang', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_cacat', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`pamong_id` int(5) NOT NULL AUTO_INCREMENT',
+            '`pamong_nama` varchar(100) DEFAULT NULL',
+            '`pamong_nip` varchar(20) DEFAULT NULL',
+            '`pamong_nik` varchar(20) DEFAULT NULL',
+            "`jabatan` varchar(50) DEFAULT '0'",
+            '`pamong_status` varchar(45) DEFAULT NULL',
+            '`pamong_tgl_terdaftar` date DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('pamong_id', true);
+
+        $this->forge->createTable('tweb_desa_pamong', true);
+
+        // =====================================================================
 
         // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_golongan_darah') . '` (
         //     `id` int(11) NOT NULL AUTO_INCREMENT,
