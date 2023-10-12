@@ -335,12 +335,6 @@ function getBulan(int $bln)
     }
 }
 
-function timer()
-{
-    $time                = 2000;
-    $_SESSION['timeout'] = time() + $time;
-}
-
 function hash_password($password = '')
 {
     $password = strrev($password);
