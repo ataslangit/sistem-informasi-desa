@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@popperjs/core": "2.11.8",
+    "bootstrap": "5.3.2",
     "font-awesome": "4.7.0",
     "jquery": "1.9",
     "jquery-colorbox": "^1.6.4",
@@ -7,12 +9,12 @@
   },
   "devDependencies": {
     "js-beautify": "1.14.9",
-    "laravel-vite-plugin": "0.8.0",
-    "sass": "1.66.1",
+    "laravel-vite-plugin": "0.8.1",
+    "sass": "1.69.2",
     "sitemap": "7.1.1",
-    "vite": "4.4.9",
+    "vite": "4.4.11",
     "vite-plugin-static-copy": "0.17.0",
-    "vitepress": "1.0.0-rc.9",
+    "vitepress": "1.0.0-rc.20",
     "vue": "3.3.4"
   },
   "scripts": {
