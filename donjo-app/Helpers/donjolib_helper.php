@@ -2,64 +2,6 @@
 
 use App\Models\Config;
 
-/**
- * This function checks `manifest.json` from `FCPATH` . 'build', extracts the entire file and returns an array.
- *
- * @param string $file The file name to check.
- *
- * @return string The path to the file, or `null` if the file does not exist.
- */
-function asset(string $file): string
-{
-    // Check if the manifest file exists.
-    $manifest_path = FCPATH . 'build' . DIRECTORY_SEPARATOR . 'manifest.json';
-
-    if (! file_exists($manifest_path)) {
-        return '';
-    }
-
-    // Decode the JSON file.
-    $manifest = json_decode(file_get_contents($manifest_path), true, 512, JSON_THROW_ON_ERROR);
-
-    // Check if the file exists in the manifest file.
-    if (! isset($manifest[$file])) {
-        return '';
-    }
-
-    // Return the path to the file.
-    return base_url('build/' . $manifest[$file]['file']);
-}
-
-if (! function_exists('view')) {
-    /**
-     * fungsi view() untuk menggantikan $this->load->view()
-     */
-    function view(string $view, array $data = [], bool $return = false)
-    {
-        $CI = &get_instance();
-
-        $CI->load->view($view, $data, $return);
-    }
-}
-
-if (! function_exists('dd')) {
-    /**
-     * Dump & die
-     *
-     * @param mixed ...$args
-     *
-     * @return void
-     */
-    function dd(...$args)
-    {
-        if (ENVIRONMENT === 'development') {
-            var_dump($args);
-
-            exit;
-        }
-    }
-}
-
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)
@@ -68,16 +10,16 @@ function Rpt($str = 0)
     $belas   = ['', ' sebelas', ' duabelas', ' tigabelas', ' empatbelas', ' limabelas', ' enambelas', ' tujuhbelas', ' delapanbelas', ' sembilanbelas'];
     $lipatan = ['', '', 'puluh', 'ratus'];
     $i       = 0;
-    $str     = $str . '.00';
-    $len     = strlen($str) - 3;
-    $outp    = '';
+    $str .= '.00';
+    $len  = strlen($str) - 3;
+    $outp = '';
     // < 1000
     if ($len >= 13) {
         $isi = 0;
 
         while ($i < $len - 12) {
             if ($str[$i] === 1 && $len - $i === 14 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 13)) {
@@ -90,7 +32,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' triliyun';
+            $outp .= ' triliyun';
         }
     }
 
@@ -99,8 +41,8 @@ function Rpt($str = 0)
 
         while ($i < $len - 9) {
             if ($str[$i] === 1 && $len - $i === 11 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
-                $isi  = 1;
+                $outp .= $belas[$str[$i + 1]];
+                $isi = 1;
                 $i++;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 10)) {
                 $outp = $outp . ' se' . $lipatan[$len - ($i + 9)];
@@ -112,7 +54,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' miliyar';
+            $outp .= ' miliyar';
         }
     }
 
@@ -121,7 +63,7 @@ function Rpt($str = 0)
 
         while ($i < $len - 6) {
             if ($str[$i] === 1 && $len - $i === 8 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len) && ($len - $i !== 7)) {
@@ -134,7 +76,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' juta';
+            $outp .= ' juta';
         }
     }
 
@@ -143,7 +85,7 @@ function Rpt($str = 0)
 
         while ($i < $len - 3) {
             if ($str[$i] === 1 && $len - $i === 5 && $str[$i + 1] !== 0) {
-                $outp = $outp . $belas[$str[$i + 1]];
+                $outp .= $belas[$str[$i + 1]];
                 $i++;
                 $isi = 1;
             } elseif ($str[$i] === 1 && ($i + 1 !== $len)) {
@@ -156,7 +98,7 @@ function Rpt($str = 0)
             $i++;
         }
         if ($isi === 1) {
-            $outp = $outp . ' ribu';
+            $outp .= ' ribu';
         }
     }
 
@@ -175,7 +117,7 @@ function Rpt($str = 0)
     }
     $i++;
     $outp2 = '';
-    $len   = $len + 3;
+    $len += 3;
 
     while ($i < ($len)) {
         if ($str[$i] === 1 && $len - $i === 2 && $str[$i + 1] !== 0) {
@@ -194,7 +136,7 @@ function Rpt($str = 0)
     if ($outp2 !== '') {
         $outp = $outp . ' komah ' . $outp2;
     }
-    $outp = $outp . ' rupiah';
+    $outp .= ' rupiah';
     $len  = strlen($outp);
     $outp = substr($outp, 1, $len - 1);
 
@@ -204,7 +146,6 @@ function Rpt($str = 0)
 function Parse_Data($data, $p1, $p2)
 {
     $data  = ' ' . $data;
-    $hasil = '';
     $awal  = strpos($data, (string) $p1);
     $akhir = strpos(strstr($data, (string) $p1), (string) $p2);
 
@@ -212,11 +153,11 @@ function Parse_Data($data, $p1, $p2)
 }
 function Rupiah($nil = 0)
 {
-    $nil = $nil + 0;
+    $nil += 0;
     if (($nil * 100) % 100 === 0) {
-        $nil = $nil . '.00';
+        $nil .= '.00';
     } elseif (($nil * 100) % 10 === 0) {
-        $nil = $nil . '0';
+        $nil .= '0';
     }
     $nil  = str_replace('.', ',', $nil);
     $str1 = $nil;
@@ -234,11 +175,14 @@ function Rupiah($nil = 0)
         $i++;
     }
     $rp = strrev($str2);
-    if ($rp !== '' && $rp > 0) {
-        return "Rp. {$rp}";
+    if ($rp === '') {
+        return 'Rp. 0,00';
+    }
+    if ($rp <= 0) {
+        return 'Rp. 0,00';
     }
 
-    return 'Rp. 0,00';
+    return "Rp. {$rp}";
 }
 
 function jecho($a, $b, $str)
@@ -283,66 +227,6 @@ function underscore($str)
 function ununderscore($str)
 {
     return str_replace('_', ' ', $str);
-}
-function bulan($bln)
-{
-    $nm = '';
-
-    switch ($bln) {
-        case '1':
-            $nm = 'Januari';
-            break;
-
-        case '2':
-            $nm = 'Februari';
-            break;
-
-        case '3':
-            $nm = 'Maret';
-            break;
-
-        case '4':
-            $nm = 'April';
-            break;
-
-        case '5':
-            $nm = 'Mei';
-            break;
-
-        case '6':
-            $nm = 'Juni';
-            break;
-
-        case '7':
-            $nm = 'Juli';
-            break;
-
-        case '8':
-            $nm = 'Agustus';
-            break;
-
-        case '9':
-            $nm = 'September';
-            break;
-
-        case '10':
-            $nm = 'Oktober';
-            break;
-
-        case '11':
-            $nm = 'November';
-            break;
-
-        case '12':
-            $nm = 'Desember';
-            break;
-
-        default:
-            $nm = '';
-            break;
-    }
-
-    return $nm;
 }
 
 function tgl_indo2($tgl)
@@ -398,7 +282,16 @@ function waktu_ind($time)
     return $str . ' Detik';
 }
 
-function getBulan($bln)
+/**
+ * Mengambil nama bulan
+ *
+ * @param int $bln Bulan dalam angka
+ *
+ * @return string Nama Bulan
+ *
+ * @todo Sesuaikan fungsi dengan bawaan dari CodeIgniter 4
+ */
+function getBulan(int $bln)
 {
     switch ($bln) {
         case 1:
@@ -436,13 +329,12 @@ function getBulan($bln)
 
         case 12:
             return 'Desember';
+
+        default:
+            return '';
     }
 }
 
-function generator($length = 7)
-{
-    return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);
-}
 function hash_password($password = '')
 {
     $password = strrev($password);
@@ -554,7 +446,7 @@ function fTampilTgl($sdate, $edate)
 function hash_pin($pin = '')
 {
     $pin = strrev($pin);
-    $pin = $pin * 77;
+    $pin *= 77;
     $pin .= '!#@$#%';
 
     return md5($pin);

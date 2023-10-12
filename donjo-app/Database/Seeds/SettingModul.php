@@ -1,0 +1,156 @@
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class SettingModul extends Seeder
+{
+    public function run()
+    {
+        $builder = $this->db->table('setting_modul');
+
+        $builder->insertBatch([
+            [
+                'id'     => 1,
+                'modul'  => 'SID Home',
+                'url'    => 'hom_desa',
+                'aktif'  => 1,
+                'ikon'   => 'go-home-5.png',
+                'urut'   => 1,
+                'level'  => 2,
+                'hidden' => 1,
+            ],
+            [
+                'id'     => 2,
+                'modul'  => 'Penduduk',
+                'url'    => 'penduduk/clear',
+                'aktif'  => 1,
+                'ikon'   => 'preferences-contact-list.png',
+                'urut'   => 2,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 3,
+                'modul'  => 'Statistik',
+                'url'    => 'statistik',
+                'aktif'  => 1,
+                'ikon'   => 'statistik.png',
+                'urut'   => 3,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 4,
+                'modul'  => 'Cetak Surat',
+                'url'    => 'surat',
+                'aktif'  => 1,
+                'ikon'   => 'applications-office-5.png',
+                'urut'   => 4,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 5,
+                'modul'  => 'Analisis',
+                'url'    => 'analisis_master/clear',
+                'aktif'  => 1,
+                'ikon'   => 'analysis.png',
+                'urut'   => 5,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 6,
+                'modul'  => 'Bantuan',
+                'url'    => 'program_bantuan',
+                'aktif'  => 2,
+                'ikon'   => 'program.png',
+                'urut'   => 6,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 7,
+                'modul'  => 'Persil',
+                'url'    => 'data_persil/clear',
+                'aktif'  => 2,
+                'ikon'   => 'persil.png',
+                'urut'   => 7,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 8,
+                'modul'  => 'Plan',
+                'url'    => 'plan',
+                'aktif'  => 2,
+                'ikon'   => 'plan.png',
+                'urut'   => 8,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 9,
+                'modul'  => 'Peta',
+                'url'    => 'gis',
+                'aktif'  => 2,
+                'ikon'   => 'gis.png',
+                'urut'   => 9,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 10,
+                'modul'  => 'SMS',
+                'url'    => 'sms',
+                'aktif'  => 2,
+                'ikon'   => 'mail-send-receive.png',
+                'urut'   => 10,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 11,
+                'modul'  => 'Pengguna',
+                'url'    => 'man_user/clear',
+                'aktif'  => 1,
+                'ikon'   => 'system-users.png',
+                'urut'   => 11,
+                'level'  => 1,
+                'hidden' => 1,
+            ],
+            [
+                'id'     => 12,
+                'modul'  => 'Database',
+                'url'    => 'database',
+                'aktif'  => 1,
+                'ikon'   => 'database.png',
+                'urut'   => 12,
+                'level'  => 1,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 13,
+                'modul'  => 'Admin Web',
+                'url'    => 'web/clear',
+                'aktif'  => 1,
+                'ikon'   => 'message-news.png',
+                'urut'   => 13,
+                'level'  => 4,
+                'hidden' => 0,
+            ],
+            [
+                'id'     => 14,
+                'modul'  => 'Laporan',
+                'url'    => 'lapor',
+                'aktif'  => 1,
+                'ikon'   => 'mail-reply-all.png',
+                'urut'   => 14,
+                'level'  => 2,
+                'hidden' => 0,
+            ],
+        ]);
+    }
+}

@@ -1,0 +1,38 @@
+name: PULL_REQUEST
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    name: MERGE & LOCK
+    runs-on: ubuntu-22.04
+    if: >-
+      github.event.review.state == 'APPROVED' &&
+      github.event.review.user.id == 2387514
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Squash & Merge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        id: squashmerge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: "squash"
+          MERGE_LABELS: "dependencies"
+          MERGE_COMMIT_MESSAGE: "(#{pullRequest.number})  {pull-request-title}"
+          
+      - if: steps.squashmerge.outputs.mergeResult == 'merged'
+        name: lock PR
+        run: gh pr lock ${{ steps.squashmerge.outputs.pullRequestNumber }} -r "resolved"

@@ -7,25 +7,21 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/css/colorbox.css",
-                "resources/css/default.css",
-                "resources/css/first.css",
-                "resources/css/surat.css",
-                "resources/js/layout.js",
+                "resources/scss/app.scss",
             ],
             refresh: true,
         }),
 
-        viteStaticCopy({
-            targets: [
-                { src: "node_modules/font-awesome/css/font-awesome.min.css", dest: "vendors/fontawesome/css" },
-                { src: "node_modules/font-awesome/fonts", dest: "vendors/fontawesome" },
+        // viteStaticCopy({
+        //     targets: [
+        //         { src: "node_modules/font-awesome/css/font-awesome.min.css", dest: "vendors/fontawesome/css" },
+        //         { src: "node_modules/font-awesome/fonts", dest: "vendors/fontawesome" },
 
-                { src: "node_modules/jquery-colorbox/jquery.colorbox-min.js", dest: "vendors" },
-                { src: "node_modules/jquery/jquery.min.*", dest: "vendors" },
+        //         { src: "node_modules/jquery-colorbox/jquery.colorbox-min.js", dest: "vendors" },
+        //         { src: "node_modules/jquery/jquery.min.*", dest: "vendors" },
 
-                { src: './node_modules/tinymce/*', dest: "vendors/tinymce" },
-            ],
-        }),
+        //         { src: './node_modules/tinymce/*', dest: "vendors/tinymce" },
+        //     ],
+        // }),
     ],
 });

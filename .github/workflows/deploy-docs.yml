@@ -1,0 +1,41 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "docs/**"
+      - ".github/workflows/deploy-docs.yml"
+
+jobs:
+  build:
+    name: Deploy
+    if: github.repository == 'ataslangit/sistem-informasi-desa'
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm install
+      - run: npm run docs:build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: ataslangit/ataslangit.github.io
+          publish_dir: docs/.vitepress/dist
+          publish_branch: main
+          user_name: "github-actions"
+          user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          full_commit_message: ${{ github.event.head_commit.message }}
