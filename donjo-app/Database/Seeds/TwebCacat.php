@@ -8,13 +8,16 @@ class TwebCacat extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_cacat` (`id`, `nama`) VALUES
-        (1, 'CACAT FISIK'),
-        (2, 'CACAT NETRA/BUTA'),
-        (3, 'CACAT RUNGU/WICARA'),
-        (4, 'CACAT MENTAL/JIWA'),
-        (5, 'CACAT FISIK DAN MENTAL'),
-        (6, 'CACAT LAINNYA'),
-        (7, 'TIDAK CACAT');");
+        $builder = $this->db->table('tweb_cacat');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'CACAT FISIK'],
+            ['id' => 2, 'nama' => 'CACAT NETRA/BUTA'],
+            ['id' => 3, 'nama' => 'CACAT RUNGU/WICARA'],
+            ['id' => 4, 'nama' => 'CACAT MENTAL/JIWA'],
+            ['id' => 5, 'nama' => 'CACAT FISIK DAN MENTAL'],
+            ['id' => 6, 'nama' => 'CACAT LAINNYA'],
+            ['id' => 7, 'nama' => 'TIDAK CACAT'],
+        ]);
     }
 }

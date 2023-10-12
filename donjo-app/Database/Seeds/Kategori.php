@@ -8,14 +8,17 @@ class Kategori extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `kategori` (`id`, `kategori`, `tipe`, `urut`, `enabled`, `parrent`) VALUES
-        (1, 'Berita ', 1, 1, 1, 0),
-        (4, 'Agenda ', 2, 2, 1, 0),
-        (5, 'Produk Hukum', 2, 5, 1, 0),
-        (6, 'Perencanaan & Penganggaran', 2, 6, 1, 0),
-        (8, 'Laporan', 2, 3, 1, 0),
-        (18, 'Panduan Layanan Publik', 1, 0, 1, 0),
-        (17, 'teks_berjalan', 1, 0, 1, 0),
-        (19, 'Potensi & Produk Usaha', 1, 0, 1, 0);");
+        $builder = $this->db->table('kategori');
+
+        $builder->insertBatch([
+            ['id' => '1', 'kategori' => 'Berita ', 'tipe' => 1, 'urut' => 1, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '4', 'kategori' => 'Agenda ', 'tipe' => 2, 'urut' => 2, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '5', 'kategori' => 'Produk Hukum', 'tipe' => 2, 'urut' => 5, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '6', 'kategori' => 'Perencanaan & Penganggaran', 'tipe' => 2, 'urut' => 6, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '8', 'kategori' => 'Laporan', 'tipe' => 2, 'urut' => 3, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '18', 'kategori' => 'Panduan Layanan Publik', 'tipe' => 1, 'urut' => 0, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '17', 'kategori' => 'teks_berjalan', 'tipe' => 1, 'urut' => 0, 'enabled' => 1, 'parrent' => 0],
+            ['id' => '19', 'kategori' => 'Potensi & Produk Usaha', 'tipe' => 1, 'urut' => 0, 'enabled' => 1, 'parrent' => 0],
+        ]);
     }
 }

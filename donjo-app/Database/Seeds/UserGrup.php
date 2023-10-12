@@ -8,10 +8,13 @@ class UserGrup extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `user_grup` (`id`, `nama`) VALUES
-        (1, 'Administrator'),
-        (2, 'Operator'),
-        (3, 'Redaksi'),
-        (4, 'Kontributor');");
+        $builder = $this->db->table('user_grup');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'Administrator'],
+            ['id' => 2, 'nama' => 'Operator'],
+            ['id' => 3, 'nama' => 'Redaksi'],
+            ['id' => 4, 'nama' => 'Kontributor'],
+        ]);
     }
 }

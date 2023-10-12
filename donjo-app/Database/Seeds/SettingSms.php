@@ -8,7 +8,8 @@ class SettingSms extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `setting_sms` (`autoreply_text`) VALUES
-        ('Terima kasih pesan Anda telah kami terima.');");
+        $builder = $this->db->table('setting_sms');
+
+        $builder->insert(['autoreply_text' => 'Terima kasih pesan Anda telah kami terima.']);
     }
 }

@@ -804,7 +804,6 @@ class Init extends Migration
             '`Tanggal` date NOT NULL',
             '`ipAddress` text NOT NULL',
             '`Jumlah` int(10) NOT NULL',
-            'PRIMARY KEY (`Tanggal`)',
         ]);
 
         $this->forge->addKey('Tanggal', true);
@@ -856,234 +855,352 @@ class Init extends Migration
 
         // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_golongan_darah') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(15) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(15) DEFAULT NULL',
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_keluarga').'` (
-        //     `id` int(10) NOT NULL AUTO_INCREMENT,
-        //     `no_kk` varchar(160) DEFAULT NULL,
-        //     `nik_kepala` varchar(200) DEFAULT NULL,
-        //     `tgl_daftar` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-        //     `kelas_sosial` int(4) DEFAULT NULL,
-        //     `raskin` int(4) NOT NULL DEFAULT '2',
-        //     `id_bedah_rumah` int(2) NOT NULL DEFAULT '2',
-        //     `id_pkh` int(2) NOT NULL DEFAULT '2',
-        //     `id_blt` int(2) NOT NULL DEFAULT '2',
-        //     PRIMARY KEY (`id`),
-        //     UNIQUE KEY `id` (`id`),
-        //     UNIQUE KEY `no_kk` (`no_kk`)
-        //    )");
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_penduduk').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     `nik` decimal(16,0) NOT NULL,
-        //     `id_kk` int(11) DEFAULT '0',
-        //     `kk_level` tinyint(2) NOT NULL DEFAULT '0',
-        //     `id_rtm` int(11) NOT NULL,
-        //     `rtm_level` int(11) NOT NULL,
-        //     `sex` tinyint(4) unsigned DEFAULT NULL,
-        //     `tempatlahir` varchar(100) NOT NULL,
-        //     `tanggallahir` date NOT NULL,
-        //     `agama_id` int(10) unsigned NOT NULL,
-        //     `pendidikan_kk_id` int(10) unsigned NOT NULL,
-        //     `pendidikan_id` int(10) unsigned NOT NULL,
-        //     `pendidikan_sedang_id` int(10) unsigned NOT NULL,
-        //     `pekerjaan_id` int(10) unsigned NOT NULL,
-        //     `status_kawin` tinyint(4) unsigned NOT NULL,
-        //     `warganegara_id` int(10) unsigned NOT NULL,
-        //     `dokumen_pasport` varchar(45) DEFAULT NULL,
-        //     `dokumen_kitas` varchar(20) DEFAULT NULL,
-        //     `ayah_nik` varchar(16) NOT NULL,
-        //     `ibu_nik` varchar(16) NOT NULL,
-        //     `nama_ayah` varchar(100) NOT NULL,
-        //     `nama_ibu` varchar(100) NOT NULL,
-        //     `foto` varchar(100) NOT NULL,
-        //     `golongan_darah_id` int(11) NOT NULL,
-        //     `id_cluster` int(11) NOT NULL,
-        //     `status` int(10) unsigned DEFAULT NULL,
-        //     `alamat_sebelumnya` varchar(200) NOT NULL,
-        //     `alamat_sekarang` varchar(200) NOT NULL,
-        //     `status_dasar` tinyint(4) NOT NULL DEFAULT '1',
-        //     `hamil` int(1) DEFAULT NULL,
-        //     `cacat_id` int(11) DEFAULT NULL,
-        //     `sakit_menahun_id` int(11) NOT NULL,
-        //     `jamkesmas` int(11) NOT NULL DEFAULT '2',
-        //     `akta_lahir` varchar(40) NOT NULL,
-        //     `akta_perkawinan` varchar(40) NOT NULL,
-        //     `tanggalperkawinan` date NOT NULL,
-        //     `akta_perceraian` varchar(40) NOT NULL,
-        //     `tanggalperceraian` date NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->createTable('tweb_golongan_darah', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_agama') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_hubungan') . '` (
-        //     `id` int(10) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(10) NOT NULL AUTO_INCREMENT',
+            '`no_kk` varchar(160) DEFAULT NULL',
+            '`nik_kepala` varchar(200) DEFAULT NULL',
+            '`tgl_daftar` timestamp NULL DEFAULT CURRENT_TIMESTAMP',
+            '`kelas_sosial` int(4) DEFAULT NULL',
+            "`raskin` int(4) NOT NULL DEFAULT '2'",
+            "`id_bedah_rumah` int(2) NOT NULL DEFAULT '2'",
+            "`id_pkh` int(2) NOT NULL DEFAULT '2'",
+            "`id_blt` int(2) NOT NULL DEFAULT '2'",
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_kawin') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('no_kk', false, true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_mandiri') . '` (
-        //     `nik` varchar(20) NOT NULL,
-        //     `pin` varchar(60) NOT NULL,
-        //     `tanggal_buat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     `last_login` datetime NOT NULL,
-        //     UNIQUE KEY `nik` (`nik`)
-        //    )');
+        $this->forge->createTable('tweb_keluarga', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_map') . '` (
-        //     `id` int(11) NOT NULL,
-        //     `lat` varchar(24) NOT NULL,
-        //     `lng` varchar(24) NOT NULL
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pekerjaan') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+            '`nik` decimal(16,0) NOT NULL',
+            "`id_kk` int(11) DEFAULT '0'",
+            "`kk_level` tinyint(2) NOT NULL DEFAULT '0'",
+            '`id_rtm` int(11) NOT NULL',
+            '`rtm_level` int(11) NOT NULL',
+            '`sex` tinyint(4) unsigned DEFAULT NULL',
+            '`tempatlahir` varchar(100) NOT NULL',
+            '`tanggallahir` date NOT NULL',
+            '`agama_id` int(10) unsigned NOT NULL',
+            '`pendidikan_kk_id` int(10) unsigned NOT NULL',
+            '`pendidikan_id` int(10) unsigned NOT NULL',
+            '`pendidikan_sedang_id` int(10) unsigned NOT NULL',
+            '`pekerjaan_id` int(10) unsigned NOT NULL',
+            '`status_kawin` tinyint(4) unsigned NOT NULL',
+            '`warganegara_id` int(10) unsigned NOT NULL',
+            '`dokumen_pasport` varchar(45) DEFAULT NULL',
+            '`dokumen_kitas` varchar(20) DEFAULT NULL',
+            '`ayah_nik` varchar(16) NOT NULL',
+            '`ibu_nik` varchar(16) NOT NULL',
+            '`nama_ayah` varchar(100) NOT NULL',
+            '`nama_ibu` varchar(100) NOT NULL',
+            '`foto` varchar(100) NOT NULL',
+            '`golongan_darah_id` int(11) NOT NULL',
+            '`id_cluster` int(11) NOT NULL',
+            '`status` int(10) unsigned DEFAULT NULL',
+            '`alamat_sebelumnya` varchar(200) NOT NULL',
+            '`alamat_sekarang` varchar(200) NOT NULL',
+            "`status_dasar` tinyint(4) NOT NULL DEFAULT '1'",
+            '`hamil` int(1) DEFAULT NULL',
+            '`cacat_id` int(11) DEFAULT NULL',
+            '`sakit_menahun_id` int(11) NOT NULL',
+            "`jamkesmas` int(11) NOT NULL DEFAULT '2'",
+            '`akta_lahir` varchar(40) NOT NULL',
+            '`akta_perkawinan` varchar(40) NOT NULL',
+            '`tanggalperkawinan` date NOT NULL',
+            '`akta_perceraian` varchar(40) NOT NULL',
+            '`tanggalperceraian` date NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pendidikan') . '` (
-        //     `id` tinyint(3) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_pendidikan_kk') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('tweb_penduduk', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_sex') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(15) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_status') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_umur') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(25) DEFAULT NULL,
-        //     `dari` int(11) DEFAULT NULL,
-        //     `sampai` int(11) DEFAULT NULL,
-        //     `status` int(11) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_penduduk_warganegara') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(25) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('tweb_penduduk_agama', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_rtm') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nik_kepala` int(11) NOT NULL,
-        //     `no_kk` varchar(20) NOT NULL,
-        //     `tgl_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        //     `kelas_sosial` int(11) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_rtm_hubungan') . '` (
-        //     `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(20) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addField([
+            '`id` int(10) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+        ]);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_sakit_menahun') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(255) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->addKey('id', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_status_dasar') . '` (
-        //     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(50) DEFAULT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        $this->forge->createTable('tweb_penduduk_hubungan', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('tweb_surat_atribut') . '` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `id_surat` int(11) NOT NULL,
-        //     `id_tipe` tinyint(4) NOT NULL,
-        //     `nama` varchar(40) NOT NULL,
-        //     `long` tinyint(4) NOT NULL,
-        //     `kode` tinyint(4) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_surat_format').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `nama` varchar(100) NOT NULL,
-        //     `url_surat` varchar(100) NOT NULL,
-        //     `kode_surat` varchar(10) NOT NULL,
-        //     `kunci` tinyint(1) NOT NULL DEFAULT '0',
-        //     `favorit` tinyint(1) NOT NULL DEFAULT '0',
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+        ]);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('tweb_wil_clusterdesa').'` (
-        //     `id` int(11) NOT NULL AUTO_INCREMENT,
-        //     `rt` varchar(10) NOT NULL DEFAULT '0',
-        //     `rw` varchar(10) NOT NULL DEFAULT '0',
-        //     `dusun` varchar(50) NOT NULL DEFAULT '0',
-        //     `id_kepala` int(11) NOT NULL,
-        //     `lat` varchar(20) NOT NULL,
-        //     `lng` varchar(20) NOT NULL,
-        //     `zoom` int(5) NOT NULL,
-        //     `path` text NOT NULL,
-        //     `map_tipe` varchar(20) NOT NULL,
-        //     PRIMARY KEY (`id`),
-        //     UNIQUE KEY `rt` (`rt`,`rw`,`dusun`),
-        //     KEY `id_kepala` (`id_kepala`)
-        //    )");
+        $this->forge->addKey('id', true);
 
-        // $db->query("CREATE TABLE IF NOT EXISTS `'.{$db->protectIdentifiers}('user').'` (
-        //     `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-        //     `username` varchar(100) NOT NULL,
-        //     `password` varchar(40) NOT NULL,
-        //     `id_grup` int(5) NOT NULL,
-        //     `email` varchar(100) NOT NULL,
-        //     `last_login` datetime NOT NULL,
-        //     `active` tinyint(1) unsigned DEFAULT '0',
-        //     `nama` varchar(50) DEFAULT NULL,
-        //     `company` varchar(100) DEFAULT NULL,
-        //     `phone` varchar(20) DEFAULT NULL,
-        //     `foto` varchar(100) NOT NULL,
-        //     `session` varchar(40) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )");
+        $this->forge->createTable('tweb_penduduk_kawin', true);
 
-        // $db->query('CREATE TABLE IF NOT EXISTS `' . $db->protectIdentifiers('user_grup') . '` (
-        //     `id` tinyint(4) NOT NULL,
-        //     `nama` varchar(20) NOT NULL,
-        //     PRIMARY KEY (`id`)
-        //    )');
+        // =====================================================================
 
-        // $seeder = \Config\Database::seeder();
-        // $seeder->call('Init');
+        $this->forge->addField([
+            '`nik` varchar(20) NOT NULL',
+            '`pin` varchar(60) NOT NULL',
+            '`tanggal_buat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            '`last_login` datetime NOT NULL',
+        ]);
+
+        $this->forge->addKey('nik', false, true);
+
+        $this->forge->createTable('tweb_penduduk_mandiri', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL',
+            '`lat` varchar(24) NOT NULL',
+            '`lng` varchar(24) NOT NULL',
+        ]);
+
+        $this->forge->createTable('tweb_penduduk_map', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_pekerjaan', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` tinyint(3) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_pendidikan', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_pendidikan_kk', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(15) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_sex', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_status', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(25) DEFAULT NULL',
+            '`dari` int(11) DEFAULT NULL',
+            '`sampai` int(11) DEFAULT NULL',
+            '`status` int(11) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_umur', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(25) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_penduduk_warganegara', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nik_kepala` int(11) NOT NULL',
+            '`no_kk` varchar(20) NOT NULL',
+            '`tgl_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            '`kelas_sosial` int(11) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_rtm', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` tinyint(4) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(20) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_rtm_hubungan', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(255) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_sakit_menahun', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(10) unsigned NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(50) DEFAULT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_status_dasar', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`id_surat` int(11) NOT NULL',
+            '`id_tipe` tinyint(4) NOT NULL',
+            '`nama` varchar(40) NOT NULL',
+            '`long` tinyint(4) NOT NULL',
+            '`kode` tinyint(4) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_surat_atribut', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            '`nama` varchar(100) NOT NULL',
+            '`url_surat` varchar(100) NOT NULL',
+            '`kode_surat` varchar(10) NOT NULL',
+            "`kunci` tinyint(1) NOT NULL DEFAULT '0'",
+            "`favorit` tinyint(1) NOT NULL DEFAULT '0'",
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('tweb_surat_format', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` int(11) NOT NULL AUTO_INCREMENT',
+            "`rt` varchar(10) NOT NULL DEFAULT '0'",
+            "`rw` varchar(10) NOT NULL DEFAULT '0'",
+            "`dusun` varchar(50) NOT NULL DEFAULT '0'",
+            '`id_kepala` int(11) NOT NULL',
+            '`lat` varchar(20) NOT NULL',
+            '`lng` varchar(20) NOT NULL',
+            '`zoom` int(5) NOT NULL',
+            '`path` text NOT NULL',
+            '`map_tipe` varchar(20) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->addKey(['rt', 'rw', 'dusun'], false, true, 'rt');
+        $this->forge->addKey('id_kepala');
+
+        $this->forge->createTable('tweb_wil_clusterdesa', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT',
+            '`username` varchar(100) NOT NULL',
+            '`password` varchar(40) NOT NULL',
+            '`id_grup` int(5) NOT NULL',
+            '`email` varchar(100) NOT NULL',
+            '`last_login` datetime NOT NULL',
+            "`active` tinyint(1) unsigned DEFAULT '0'",
+            '`nama` varchar(50) DEFAULT NULL',
+            '`company` varchar(100) DEFAULT NULL',
+            '`phone` varchar(20) DEFAULT NULL',
+            '`foto` varchar(100) NOT NULL',
+            '`session` varchar(40) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('user', true);
+
+        // =====================================================================
+
+        $this->forge->addField([
+            '`id` tinyint(4) NOT NULL',
+            '`nama` varchar(20) NOT NULL',
+        ]);
+
+        $this->forge->addKey('id', true);
+
+        $this->forge->createTable('user_grup', true);
+
+        // =====================================================================
+
+        $seeder = \Config\Database::seeder();
+        $seeder->call('Init');
     }
 
     public function down()

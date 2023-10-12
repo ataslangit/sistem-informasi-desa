@@ -8,9 +8,12 @@ class TwebPendudukWarganegara extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_penduduk_warganegara` (`id`, `nama`) VALUES
-        (1, 'WNI'),
-        (2, 'WNA'),
-        (3, 'DUA KEWARGANEGARAAN');");
+        $builder = $this->db->table('tweb_penduduk_warganegara');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'WNI'],
+            ['id' => 2, 'nama' => 'WNA'],
+            ['id' => 3, 'nama' => 'DUA KEWARGANEGARAAN'],
+        ]);
     }
 }

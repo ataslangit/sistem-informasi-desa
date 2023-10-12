@@ -8,9 +8,12 @@ class AnalisisRefState extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `analisis_ref_state` (`id`, `nama`) VALUES
-            (1, 'Belum Entri / Pendataan'),
-            (2, 'Sedang Dalam Pendataan'),
-            (3, 'Selesai Entri / Pendataan')");
+        $builder = $this->db->table('analisis_ref_state');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'Belum Entri / Pendataan'],
+            ['id' => 2, 'nama' => 'Sedang Dalam Pendataan'],
+            ['id' => 3, 'nama' => 'Selesai Entri / Pendataan'],
+        ]);
     }
 }

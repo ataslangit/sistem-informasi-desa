@@ -8,10 +8,13 @@ class AnalisisTipeIndikator extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `analisis_tipe_indikator` (`id`, `tipe`) VALUES
-        (1, 'Pilihan (Tunggal)'),
-        (2, 'Pilihan (Multivalue)'),
-        (3, 'Isian Angka'),
-        (4, 'Isian Tulisan')");
+        $builder = $this->db->table('analisis_tipe_indikator');
+
+        $builder->insertBatch([
+            ['id' => '1', 'tipe' => 'Pilihan (Tunggal)'],
+            ['id' => '2', 'tipe' => 'Pilihan (Multivalue)'],
+            ['id' => '3', 'tipe' => 'Isian Angka'],
+            ['id' => '4', 'tipe' => 'Isian Tulisan'],
+        ]);
     }
 }

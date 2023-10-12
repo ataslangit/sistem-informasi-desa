@@ -8,8 +8,11 @@ class TwebRtmHubungan extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_rtm_hubungan` (`id`, `nama`) VALUES
-        (1, 'Kepala Rumah Tangga'),
-        (2, 'Anggota');");
+        $builder = $this->db->table('tweb_rtm_hubungan');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'Kepala Rumah Tangga'],
+            ['id' => 2, 'nama' => 'Anggota'],
+        ]);
     }
 }

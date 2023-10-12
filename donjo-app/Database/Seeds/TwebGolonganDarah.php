@@ -8,19 +8,22 @@ class TwebGolonganDarah extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_golongan_darah` (`id`, `nama`) VALUES
-        (1, 'A'),
-        (2, 'B'),
-        (3, 'AB'),
-        (4, 'O'),
-        (5, 'A+'),
-        (6, 'A-'),
-        (7, 'B+'),
-        (8, 'B-'),
-        (9, 'AB+'),
-        (10, 'AB-'),
-        (11, 'O+'),
-        (12, 'O-'),
-        (13, 'TIDAK TAHU');");
+        $builder = $this->db->table('tweb_golongan_darah');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'A'],
+            ['id' => 2, 'nama' => 'B'],
+            ['id' => 3, 'nama' => 'AB'],
+            ['id' => 4, 'nama' => 'O'],
+            ['id' => 5, 'nama' => 'A+'],
+            ['id' => 6, 'nama' => 'A-'],
+            ['id' => 7, 'nama' => 'B+'],
+            ['id' => 8, 'nama' => 'B-'],
+            ['id' => 9, 'nama' => 'AB+'],
+            ['id' => 10, 'nama' => 'AB-'],
+            ['id' => 11, 'nama' => 'O+'],
+            ['id' => 12, 'nama' => 'O-'],
+            ['id' => 13, 'nama' => 'TIDAK TAHU'],
+        ]);
     }
 }

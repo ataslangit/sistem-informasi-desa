@@ -8,20 +8,23 @@ class TwebSakitMenahun extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_sakit_menahun` (`id`, `nama`) VALUES
-        (1, 'JANTUNG'),
-        (2, 'LEVER'),
-        (3, 'PARU-PARU'),
-        (4, 'KANKER'),
-        (5, 'STROKE'),
-        (6, 'DIABETES MELITUS'),
-        (7, 'GINJAL'),
-        (8, 'MALARIA'),
-        (9, 'LEPRA/ KUSTA'),
-        (10, 'HIV/ AIDS'),
-        (11, 'GILA/STRESS'),
-        (12, 'TBC'),
-        (13, 'ASTHMA'),
-        (14, 'TIDAK ADA/ TIDAK SAKIT');");
+        $builder = $this->db->table('tweb_sakit_menahun');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'JANTUNG'],
+            ['id' => 2, 'nama' => 'LEVER'],
+            ['id' => 3, 'nama' => 'PARU-PARU'],
+            ['id' => 4, 'nama' => 'KANKER'],
+            ['id' => 5, 'nama' => 'STROKE'],
+            ['id' => 6, 'nama' => 'DIABETES MELITUS'],
+            ['id' => 7, 'nama' => 'GINJAL'],
+            ['id' => 8, 'nama' => 'MALARIA'],
+            ['id' => 9, 'nama' => 'LEPRA/ KUSTA'],
+            ['id' => 10, 'nama' => 'HIV/ AIDS'],
+            ['id' => 11, 'nama' => 'GILA/STRESS'],
+            ['id' => 12, 'nama' => 'TBC'],
+            ['id' => 13, 'nama' => 'ASTHMA'],
+            ['id' => 14, 'nama' => 'TIDAK ADA/ TIDAK SAKIT'],
+        ]);
     }
 }

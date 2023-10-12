@@ -8,16 +8,19 @@ class TwebPendudukPendidikanKk extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_penduduk_pendidikan_kk` (`id`, `nama`) VALUES
-        (1, 'TIDAK / BELUM SEKOLAH'),
-        (2, 'BELUM TAMAT SD/SEDERAJAT'),
-        (3, 'TAMAT SD / SEDERAJAT'),
-        (4, 'SLTP/SEDERAJAT'),
-        (5, 'SLTA / SEDERAJAT'),
-        (6, 'DIPLOMA I / II'),
-        (7, 'AKADEMI/ DIPLOMA III/S. MUDA'),
-        (8, 'DIPLOMA IV/ STRATA I'),
-        (9, 'STRATA II'),
-        (10, 'STRATA III');");
+        $builder = $this->db->table('tweb_penduduk_pendidikan_kk');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'TIDAK / BELUM SEKOLAH'],
+            ['id' => 2, 'nama' => 'BELUM TAMAT SD/SEDERAJAT'],
+            ['id' => 3, 'nama' => 'TAMAT SD / SEDERAJAT'],
+            ['id' => 4, 'nama' => 'SLTP/SEDERAJAT'],
+            ['id' => 5, 'nama' => 'SLTA / SEDERAJAT'],
+            ['id' => 6, 'nama' => 'DIPLOMA I / II'],
+            ['id' => 7, 'nama' => 'AKADEMI/ DIPLOMA III/S. MUDA'],
+            ['id' => 8, 'nama' => 'DIPLOMA IV/ STRATA I'],
+            ['id' => 9, 'nama' => 'STRATA II'],
+            ['id' => 10, 'nama' => 'STRATA III'],
+        ]);
     }
 }
