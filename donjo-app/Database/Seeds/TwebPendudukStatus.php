@@ -8,10 +8,13 @@ class TwebPendudukStatus extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_penduduk_status` (`id`, `nama`) VALUES
-        (1, 'TETAP'),
-        (2, 'TIDAK AKTIF'),
-        (3, 'PENDUDUK DOMISILI'),
-        (77, 'WARGA');");
+        $builder = $this->db->table('tweb_penduduk_status');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'TETAP'],
+            ['id' => 2, 'nama' => 'TIDAK AKTIF'],
+            ['id' => 3, 'nama' => 'PENDUDUK DOMISILI'],
+            ['id' => 77, 'nama' => 'WARGA'],
+        ]);
     }
 }

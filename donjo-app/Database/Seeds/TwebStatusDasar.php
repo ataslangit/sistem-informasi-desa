@@ -8,9 +8,12 @@ class TwebStatusDasar extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_status_dasar` (`id`, `nama`) VALUES
-        (1, 'HIDUP'),
-        (2, 'MATI'),
-        (3, 'PINDAH');");
+        $builder = $this->db->table('tweb_status_dasar');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'HIDUP'],
+            ['id' => 2, 'nama' => 'MATI'],
+            ['id' => 3, 'nama' => 'PINDAH'],
+        ]);
     }
 }

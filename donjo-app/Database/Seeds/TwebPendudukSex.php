@@ -8,8 +8,11 @@ class TwebPendudukSex extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_penduduk_sex` (`id`, `nama`) VALUES
-        (1, 'LAKI-LAKI'),
-        (2, 'PEREMPUAN');");
+        $builder = $this->db->table('tweb_penduduk_sex');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'LAKI-LAKI'],
+            ['id' => 2, 'nama' => 'PEREMPUAN'],
+        ]);
     }
 }

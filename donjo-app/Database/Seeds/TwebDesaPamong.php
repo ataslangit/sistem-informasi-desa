@@ -8,8 +8,19 @@ class TwebDesaPamong extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_desa_pamong` (`pamong_id`, `pamong_nama`, `pamong_nip`, `pamong_nik`, `jabatan`, `pamong_status`, `pamong_tgl_terdaftar`) VALUES
-        (1, 'Jarwo', '', '', 'Kepala Desa', '1', '2015-05-19'),
-        (2, 'Jarwo', '', '', '(A/n) Kepala Desa', '1', '2015-05-19');");
+        $builder = $this->db->table('tweb_desa_pamong');
+
+        $builder->insertBatch([
+            [
+                'pamong_id'     => 1, 'pamong_nama' => 'Jarwo', 'pamong_nip' => '',
+                'pamong_nik'    => '', 'jabatan' => 'Kepala Desa',
+                'pamong_status' => '1', 'pamong_tgl_terdaftar' => '2015-05-19',
+            ],
+            [
+                'pamong_id'     => 2, 'pamong_nama' => 'Jarwo', 'pamong_nip' => '',
+                'pamong_nik'    => '', 'jabatan' => '(A/n) Kepala Desa',
+                'pamong_status' => '1', 'pamong_tgl_terdaftar' => '2015-05-19',
+            ],
+        ]);
     }
 }

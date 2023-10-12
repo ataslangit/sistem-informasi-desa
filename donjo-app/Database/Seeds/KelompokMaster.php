@@ -8,9 +8,12 @@ class KelompokMaster extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `kelompok_master` (`id`, `kelompok`, `deskripsi`) VALUES
-        (1, 'Kelompok Tani', 'ent'),
-        (2, 'Dasa Wisma', 'Oye'),
-        (3, 'Jagongan', 'OOO');");
+        $builder = $this->db->table('kelompok_master');
+
+        $builder->insertBatch([
+            ['id' => 1, 'kelompok' => 'Kelompok Tani', 'deskripsi' => 'ent'],
+            ['id' => 2, 'kelompok' => 'Dasa Wisma', 'deskripsi' => 'Oye'],
+            ['id' => 3, 'kelompok' => 'Jagongan', 'deskripsi' => 'OOO'],
+        ]);
     }
 }

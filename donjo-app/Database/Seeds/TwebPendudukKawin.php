@@ -8,10 +8,13 @@ class TwebPendudukKawin extends Seeder
 {
     public function run()
     {
-        $this->db->query("INSERT INTO `tweb_penduduk_kawin` (`id`, `nama`) VALUES
-        (1, 'BELUM KAWIN'),
-        (2, 'KAWIN'),
-        (3, 'CERAI HIDUP'),
-        (4, 'CERAI MATI');");
+        $builder = $this->db->table('tweb_penduduk_kawin');
+
+        $builder->insertBatch([
+            ['id' => 1, 'nama' => 'BELUM KAWIN'],
+            ['id' => 2, 'nama' => 'KAWIN'],
+            ['id' => 3, 'nama' => 'CERAI HIDUP'],
+            ['id' => 4, 'nama' => 'CERAI MATI'],
+        ]);
     }
 }
