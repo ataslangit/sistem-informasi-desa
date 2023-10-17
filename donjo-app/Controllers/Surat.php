@@ -86,7 +86,7 @@ class Surat extends BaseController
         view('header', $header);
 
         view('surat/nav', $nav);
-        $this->load->view("surat/form/{$url}", $data);
+        view("surat/form/{$url}", $data);
         view('footer');
     }
 
