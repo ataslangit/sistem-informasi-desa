@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Data_persil_model extends Model
+class Data_persil_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Data_persil_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['nik'] . "'";
             $i++;
         }
@@ -26,11 +26,12 @@ class Data_persil_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.nama LIKE '{$kw}' OR p.nik LIKE '{$kw}')";
 
-            return " AND (u.nama LIKE '{$kw}' OR p.nik LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
@@ -66,7 +67,7 @@ class Data_persil_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             if (! is_numeric($data[$i]['nik']) && $data[$i]['nik'] !== '') {
                 $data[$i]['namapemilik'] = $data[$i]['nik'];
                 $data[$i]['nik']         = '-';
@@ -170,6 +171,7 @@ class Data_persil_model extends Model
 			LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
 			WHERE p.nik='" . fixSQL($id) . "'";
         $query = $this->db->query($strSQL);
+        $data  = '';
 
         return $query->row_array();
     }
@@ -181,12 +183,13 @@ class Data_persil_model extends Model
 			LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
 			WHERE 1 ORDER BY nama';
         $query = $this->db->query($strSQL);
+        $data  = '';
         $data  = $query->result_array();
         if ($query->num_rows() > 0) {
             $i = 0;
             $j = 0;
 
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 if ($data[$i]['nik'] !== '') {
                     $data1[$j]['id']   = $data[$i]['nik'];
                     $data1[$j]['nik']  = $data[$i]['nik'];
@@ -196,11 +199,12 @@ class Data_persil_model extends Model
                 }
                 $i++;
             }
-
-            return $data1;
+            $hasil2 = $data1;
+        } else {
+            $hasil2 = false;
         }
 
-        return false;
+        return $hasil2;
     }
 
     public function list_persil_peruntukan()

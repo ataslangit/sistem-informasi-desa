@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
-use App\Models\Config;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Surat_model extends Model
+class Surat_model extends CI_Model
 {
     public function list_surat()
     {
@@ -13,7 +12,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['nama'] = ($i + 1) . ') ' . $data[$i]['nama'];
             $i++;
         }
@@ -45,7 +44,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'RT-' . $data[$i]['rt'] . ', RW-' . $data[$i]['rw'] . ' ' . $data[$i]['dusun'];
             $i++;
         }
@@ -61,7 +60,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -77,7 +76,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -93,7 +92,7 @@ class Surat_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }
@@ -151,7 +150,7 @@ class Surat_model extends Model
     {
         $id_cb = $_POST['id_cb'];
         $outp  = '';
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $outp = $outp . $id . ',';
             }
@@ -279,7 +278,11 @@ class Surat_model extends Model
 
     public function coba($url = '')
     {
-        $configModel = new Config();
+        $this->load->model('config_model');
+
+        $g = $_POST['pamong'];
+        $u = $_SESSION['user'];
+        $z = $_POST['nomor'];
 
         $id       = $_SESSION['nik'];
         $individu = $this->get_data_surat($id);
@@ -293,7 +296,7 @@ class Surat_model extends Model
         $input  = $_POST;
         $tgl    = tgl_indo(date('Y m d'));
         $thn    = date('Y');
-        $config = $configModel->get_data();
+        $config = $this->config_model->get_data();
         $surat  = $this->get_surat($url);
 
         $tgllhr                  = strtoupper(tgl_indo($individu['tanggallahir']));
@@ -407,11 +410,6 @@ class Surat_model extends Model
             $pxnik      = '';
             $pxhubungan = '';
             $pxusia     = '';
-            $pxtglahir  = '';
-            $pxtmplahir = '';
-            $pxttl      = '';
-            $pxttl2     = '';
-            $pxno       = '';
             if (isset($_POST['id_cb'])) {
                 $pengikut = $this->pengikut();
                 $nom      = 1;

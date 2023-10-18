@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_m extends Model
+class First_m extends CI_Model
 {
     public function siteman()
     {
@@ -46,6 +46,7 @@ class First_m extends Model
         $sql   = 'SELECT pin,last_login FROM tweb_penduduk_mandiri WHERE nik=?';
         $query = $this->db->query($sql, [$nik]);
         $row   = $query->row();
+        $lg    = $row->last_login;
 
         if ($hash_pin === $row->pin) {
             $sql = 'UPDATE tweb_penduduk_mandiri SET last_login=NOW() WHERE nik=?';

@@ -1,12 +1,23 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Gis extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Gis extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('penduduk_model');
+        $this->load->model('plan_area_model');
+        $this->load->model('plan_garis_model');
+        $this->load->model('plan_lokasi_model');
+        $this->load->model('user_model');
+
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -16,13 +27,13 @@ class Gis extends BaseController
     public function clear()
     {
         unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['fisik'], $_SESSION['mental'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk'], $_SESSION['layer_penduduk'], $_SESSION['layer_keluarga'], $_SESSION['layer_desa'], $_SESSION['layer_wilayah'], $_SESSION['layer_area'], $_SESSION['layer_line'], $_SESSION['layer_point']);
+
+        $_SESSION['layer_keluarga'] === 0;
         redirect('gis');
     }
 
     public function index()
     {
-        $config = new Config();
-
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
         } else {
@@ -109,7 +120,7 @@ class Gis extends BaseController
         $data['wilayah']         = $this->penduduk_model->list_wil();
         $data['list_agama']      = $this->penduduk_model->list_agama();
         $data['list_pendidikan'] = $this->penduduk_model->list_pendidikan();
-        $data['desa']            = $config->get_data();
+        $data['desa']            = $this->config_model->get_data();
         $data['lokasi']          = $this->plan_lokasi_model->list_data();
         $data['garis']           = $this->plan_garis_model->list_data();
         $data['area']            = $this->plan_area_model->list_data();

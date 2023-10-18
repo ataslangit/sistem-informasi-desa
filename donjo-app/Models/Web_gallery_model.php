@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Web_gallery_model extends Model
+class Web_gallery_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -15,7 +15,7 @@ class Web_gallery_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['gambar'] . "'";
             $i++;
         }
@@ -27,20 +27,22 @@ class Web_gallery_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (gambar LIKE '{$kw}' OR nama LIKE '{$kw}')";
 
-            return " AND (gambar LIKE '{$kw}' OR nama LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND enabled = {$kf}";
 
-            return " AND enabled = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -101,7 +103,7 @@ class Web_gallery_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -148,9 +150,10 @@ class Web_gallery_model extends Model
         $lokasi_file = $_FILES['gambar']['tmp_name'];
         $tipe_file   = $_FILES['gambar']['type'];
         $nama_file   = $_FILES['gambar']['name'];
+        $old_gambar  = $x['old_gambar'];
         if (! empty($lokasi_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file);
+                UploadGallery($nama_file, $old_gambar);
                 unset($x['old_gambar']);
             }
         } else {
@@ -188,7 +191,7 @@ class Web_gallery_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM gambar_gallery WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -265,7 +268,7 @@ class Web_gallery_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -320,12 +323,14 @@ class Web_gallery_model extends Model
 
     public function update_sub_gallery($id = 0)
     {
-        $x         = $_POST;
-        $tipe_file = $_FILES['gambar']['type'];
-        $nama_file = $_FILES['gambar']['name'];
+        $x           = $_POST;
+        $lokasi_file = $_FILES['gambar']['tmp_name'];
+        $tipe_file   = $_FILES['gambar']['type'];
+        $nama_file   = $_FILES['gambar']['name'];
+        $old_gambar  = $x['old_gambar'];
         if (! empty($nama_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file);
+                UploadGallery($nama_file, $old_gambar);
                 unset($x['old_gambar']);
             }
         } else {

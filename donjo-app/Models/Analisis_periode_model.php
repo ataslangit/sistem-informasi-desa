@@ -1,10 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\AnalisisPeriode;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Analisis_periode_model extends Model
+class Analisis_periode_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -15,7 +14,7 @@ class Analisis_periode_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
@@ -27,29 +26,32 @@ class Analisis_periode_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
 
-            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf = $_SESSION['analisis_master'];
+            $kf         = $_SESSION['analisis_master'];
+            $filter_sql = " AND u.id_master = {$kf}";
 
-            return " AND u.id_master = {$kf}";
+            return $filter_sql;
         }
     }
 
     public function state_sql()
     {
         if (isset($_SESSION['state'])) {
-            $kf = $_SESSION['state'];
+            $kf         = $_SESSION['state'];
+            $filter_sql = " AND u.id_state = {$kf}";
 
-            return " AND u.id_state = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -114,7 +116,7 @@ class Analisis_periode_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['aktif'] === 1) {
@@ -132,9 +134,8 @@ class Analisis_periode_model extends Model
 
     public function insert()
     {
-        $analisisPeriodeModel = new AnalisisPeriode();
-        $data                 = $_POST;
-        $dp                   = $data['duplikasi'];
+        $data = $_POST;
+        $dp   = $data['duplikasi'];
         unset($data['duplikasi']);
 
         if ($dp === 1) {
@@ -147,12 +148,11 @@ class Analisis_periode_model extends Model
         $akt               = [];
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
-            $analisisPeriodeModel = new AnalisisPeriode();
-            $akt['aktif']         = 2;
-
-            $analisisPeriodeModel->update(null, $_SESSION['analisis_master'], $akt);
+            $akt['aktif'] = 2;
+            $this->db->where('id_master', $_SESSION['analisis_master']);
+            $this->db->update('analisis_periode', $akt);
         }
-        $outp = $analisisPeriodeModel->insert($data);
+        $outp = $this->db->insert('analisis_periode', $data);
 
         if ($dp === 1) {
             $sqld   = 'SELECT id FROM analisis_periode WHERE id_master=? ORDER BY id DESC LIMIT 1';
@@ -166,12 +166,12 @@ class Analisis_periode_model extends Model
 
             $i = 0;
 
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $data[$i]['id_periode'] = $skrg;
                 $i++;
             }
             $outp = $this->db->insert_batch('analisis_respon', $data);
-
+            $this->load->model('analisis_respon_model');
             $this->analisis_respon_model->pre_update($skrg);
         }
 
@@ -184,18 +184,18 @@ class Analisis_periode_model extends Model
 
     public function update($id = 0)
     {
-        $analisisPeriode = new AnalisisPeriode();
-        $data            = $_POST;
-        $akt             = [];
+        $data = $_POST;
+        $akt  = [];
 
         $data['id_master'] = $_SESSION['analisis_master'];
         if ($data['aktif'] === 1) {
             $akt['aktif'] = 2;
-            $analisisPeriode->update(null, $_SESSION['analisis_master'], $akt);
+            $this->db->where('id_master', $_SESSION['analisis_master']);
+            $this->db->update('analisis_periode', $akt);
         }
         $data['id_master'] = $_SESSION['analisis_master'];
-        $outp              = $analisisPeriode->update($id, null, $data);
-
+        $this->db->where('id', $id);
+        $outp = $this->db->update('analisis_periode', $data);
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -219,7 +219,7 @@ class Analisis_periode_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM analisis_periode WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

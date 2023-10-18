@@ -1,10 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Area extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Area extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('plan_area_model');
+        $this->load->model('user_model');
+    }
+
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);
@@ -60,12 +71,10 @@ class Area extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']         = $config->get_data();
+        $data['desa']         = $this->config_model->get_data();
         $data['list_polygon'] = $this->plan_area_model->list_polygon();
         $data['dusun']        = $this->plan_area_model->list_dusun();
 
@@ -88,8 +97,6 @@ class Area extends BaseController
 
     public function ajax_area_maps($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
         if ($id) {
@@ -98,7 +105,7 @@ class Area extends BaseController
             $data['area'] = null;
         }
 
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("area/update_maps/{$p}/{$o}/{$id}");
         view('area/maps', $data);
     }

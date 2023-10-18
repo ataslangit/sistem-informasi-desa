@@ -1,26 +1,29 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Sid_core extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Sid_core extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
         $_SESSION['filter'] = 77;
 
         unset($_SESSION['log']);
         $_SESSION['status_dasar'] = 1;
         unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
 
+        $this->load->model('user_model');
+        $this->load->model('wilayah_model');
+        $this->load->model('config_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
     }
 
     public function clear()
@@ -297,6 +300,7 @@ class Sid_core extends BaseController
     public function form_rt($id_dusun = '', $rw = '', $rt = '')
     {
         $temp             = $this->wilayah_model->cluster_by_id($id_dusun);
+        $dusun            = $temp['dusun'];
         $data['dusun']    = $temp['dusun'];
         $data['id_dusun'] = $id_dusun;
 
@@ -342,14 +346,20 @@ class Sid_core extends BaseController
 
     public function delete_rt($id_cluster = '')
     {
-        $this->wilayah_model->cluster_by_id($id_cluster);
+        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
+        $id_dusun = $temp['id'];
+        $dusun    = $temp['dusun'];
+        $rw       = $temp['rw'];
         $this->wilayah_model->delete_rt($id_cluster);
         echo '<script>self.history.back();self.history.back();</script>';
     }
 
     public function delete_all_rt()
     {
-        $this->wilayah_model->cluster_by_id($id_cluster);
+        $temp     = $this->wilayah_model->cluster_by_id($id_cluster);
+        $id_dusun = $temp['id'];
+        $dusun    = $temp['dusun'];
+        $rw       = $temp['rw'];
         $this->wilayah_model->delete_all_rt();
         redirect('sid_core');
     }
@@ -359,17 +369,14 @@ class Sid_core extends BaseController
         $data['input']            = $_POST;
         $data['tanggal_sekarang'] = tgl_indo(date('Y m d'));
         $data['total']            = $this->wilayah_model->total();
-        $this->surat_keluar_model->log_surat($f, $id, $g, $u); // ???
-
+        $this->surat_keluar_model->log_surat($f, $id, $g, $u);
         view('surat/print_surat_ket_pengantar', $data);
     }
 
     public function ajax_wil_maps($id = 0)
     {
-        $config = new Config();
-
         $data['dusun']       = $this->wilayah_model->get_dusun_maps($id);
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_dusun_map/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -383,10 +390,8 @@ class Sid_core extends BaseController
 
     public function ajax_rw_maps($dus = 0, $id = 0)
     {
-        $config = new Config();
-
         $data['dusun']       = $this->wilayah_model->get_rw($dus, $id);
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rw_map/{$dus}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -395,16 +400,13 @@ class Sid_core extends BaseController
     public function update_rw_map($dus = 0, $id = 0)
     {
         $this->wilayah_model->update_rw_map($dus, $id);
-
         redirect("sid_core/sub_rw/{$dus}");
     }
 
     public function ajax_rt_maps($dus = 0, $rw = 0, $id = 0)
     {
-        $config = new Config();
-
         $data['dusun']       = $this->wilayah_model->get_rt($dus, $rw, $id);
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("sid_core/update_rt_map/{$dus}/{$rw}/{$id}");
 
         view('sid/wilayah/ajax_wil_dusun', $data);
@@ -413,24 +415,24 @@ class Sid_core extends BaseController
     public function update_rt_map($dus = 0, $rw = 0, $id = 0)
     {
         $this->wilayah_model->update_rt_map($dus, $rw, $id);
-
         redirect("sid_core/sub_rt/{$dus}/{$rw}");
     }
 
     public function warga($id = '')
     {
-        $temp  = $this->wilayah_model->cluster_by_id($id);
-        $dusun = $temp['dusun'];
+        $temp     = $this->wilayah_model->cluster_by_id($id);
+        $id_dusun = $temp['id'];
+        $dusun    = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
-
         redirect('penduduk/index/1/0');
     }
 
     public function warga_kk($id = '')
     {
         $temp                 = $this->wilayah_model->cluster_by_id($id);
+        $id_dusun             = $temp['id'];
         $dusun                = $temp['dusun'];
         $_SESSION['per_page'] = 50;
         $_SESSION['dusun']    = $dusun;
@@ -439,8 +441,9 @@ class Sid_core extends BaseController
 
     public function warga_l($id = '')
     {
-        $temp  = $this->wilayah_model->cluster_by_id($id);
-        $dusun = $temp['dusun'];
+        $temp     = $this->wilayah_model->cluster_by_id($id);
+        $id_dusun = $temp['id'];
+        $dusun    = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;
@@ -450,8 +453,9 @@ class Sid_core extends BaseController
 
     public function warga_p($id = '')
     {
-        $temp  = $this->wilayah_model->cluster_by_id($id);
-        $dusun = $temp['dusun'];
+        $temp     = $this->wilayah_model->cluster_by_id($id);
+        $id_dusun = $temp['id'];
+        $dusun    = $temp['dusun'];
 
         $_SESSION['per_page'] = 100;
         $_SESSION['dusun']    = $dusun;

@@ -1,20 +1,24 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Rtm extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Rtm extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('rtm_model');
+        $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('config_model');
     }
 
     public function clear()
@@ -107,7 +111,6 @@ class Rtm extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 3;
         $header             = $this->header_model->get_data();
-
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/rtm', $data);
@@ -117,24 +120,20 @@ class Rtm extends BaseController
     public function cetak($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-
         view('sid/kependudukan/rtm_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-
         view('sid/kependudukan/rtm_excel', $data);
     }
 
     public function excel_pbdt($o = 0)
     {
-        $config = new Config();
-
-        $data['config'] = $config->get_data();
+        $this->load->model('config_model');
+        $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
-
         view('sid/kependudukan/rtm_excel_pbdt', $data);
     }
 
@@ -341,15 +340,13 @@ class Rtm extends BaseController
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
     {
-        $config = new Config();
-
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']     = $config->get_data();
+        $data['desa']     = $this->config_model->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -370,15 +367,13 @@ class Rtm extends BaseController
 
     public function cetak_kk($id = 0)
     {
-        $config = new Config();
-
         $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']      = $config->get_data();
+        $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
-
+        $header            = $this->header_model->get_data();
         view('sid/kependudukan/cetak_rtm', $data);
     }
 

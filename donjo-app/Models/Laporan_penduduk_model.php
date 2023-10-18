@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Laporan_penduduk_model extends Model
+class Laporan_penduduk_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Laporan_penduduk_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['dusun_nama'] . "'";
             $i++;
         }
@@ -26,11 +26,12 @@ class Laporan_penduduk_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND u.nama LIKE '{$kw}'";
 
-            return " AND u.nama LIKE '{$kw}'";
+            return $search_sql;
         }
     }
 
@@ -246,7 +247,7 @@ class Laporan_penduduk_model extends Model
         $total['perempuan'] = 0;
         $i                  = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             $total['jumlah'] += $data[$i]['jumlah'];
@@ -266,7 +267,7 @@ class Laporan_penduduk_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['persen'] = $data[$i]['jumlah'] / $bel['jumlah'] * 100;
             $data[$i]['persen'] = number_format((float) $data[$i]['persen'], 2, '.', '');
             $data[$i]['persen'] .= '%';
@@ -361,7 +362,7 @@ class Laporan_penduduk_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_penduduk_umur WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

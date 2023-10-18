@@ -1,11 +1,19 @@
 <?php
 
+namespace App\Controllers;
+
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
 class Analisis_master extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
+        $this->load->model('analisis_master_model');
+        $this->load->model('analisis_import_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -99,7 +107,7 @@ class Analisis_master extends CI_Controller
 
     public function import_analisis()
     {
-        $this->header_model->get_data();
+        $header = $this->header_model->get_data();
 
         $nav['act']          = 1;
         $data['form_action'] = site_url('analisis_master/import');
@@ -140,6 +148,7 @@ class Analisis_master extends CI_Controller
 
         // PATCH
         // if($p==1){
+        $this->load->model('analisis_respon_model');
         $this->analisis_respon_model->pre_update();
         // }
         // ----

@@ -1,20 +1,25 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Data_persil extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Data_persil extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('config_model');
+        $this->load->model('data_persil_model');
+        $this->load->model('penduduk_model');
     }
 
     public function clear()
@@ -25,8 +30,6 @@ class Data_persil extends BaseController
 
     public function index($page = 1)
     {
-        $config = new Config();
-
         $header = $this->header_model->get_data();
         view('header', $header);
 
@@ -36,12 +39,11 @@ class Data_persil extends BaseController
             $data['cari'] = '';
         }
 
-        $data['desa']              = $config->get_data();
+        $data['desa']              = $this->config_model->get_data();
         $data['persil']            = $this->data_persil_model->list_persil('', 0, $page);
         $data['persil_peruntukan'] = $this->data_persil_model->list_persil_peruntukan();
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
         $data['keyword']           = $this->data_persil_model->autocomplete();
-
         view('data_persil/persil', $data);
         view('footer');
     }
@@ -83,6 +85,9 @@ class Data_persil extends BaseController
 
     public function create($id = 0)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
 
         $header = $this->header_model->get_data();
@@ -108,6 +113,9 @@ class Data_persil extends BaseController
 
     public function create_ext($id = 0)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
 
         $header = $this->header_model->get_data();
@@ -123,6 +131,9 @@ class Data_persil extends BaseController
 
     public function simpan_persil($page = 1)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -161,6 +172,9 @@ class Data_persil extends BaseController
 
     public function persil_jenis($id = 0)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -189,6 +203,9 @@ class Data_persil extends BaseController
 
     public function persil_peruntukan($id = 0)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('nama', 'Nama Jenis Persil', 'required');
         $header = $this->header_model->get_data();
         view('header', $header);
@@ -223,6 +240,7 @@ class Data_persil extends BaseController
 
     public function import_proses()
     {
+        $this->load->model('import_model');
         $this->import_model->persil();
         redirect('data_persil');
     }

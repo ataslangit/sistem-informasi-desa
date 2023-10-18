@@ -1,16 +1,25 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Database extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Database extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $this->load->dbforge();
+        // $this->load->model('wilayah_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
         }
+        $this->load->model('header_model');
+        $this->load->model('import_model');
+        $this->load->model('export_model');
     }
 
     public function clear()

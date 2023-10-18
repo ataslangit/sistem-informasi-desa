@@ -1,23 +1,25 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Surat extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Surat extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('penduduk_model');
+        $this->load->model('surat_keluar_model');
+        $this->load->model('surat_model');
     }
 
     public function index()
@@ -86,13 +88,16 @@ class Surat extends BaseController
         view('header', $header);
 
         view('surat/nav', $nav);
-        view("surat/form/{$url}", $data);
+        $this->load->view("surat/form/{$url}", $data);
         view('footer');
     }
 
     public function cetak($url = '')
     {
-        $config = new Config();
+        $f = $url;
+        $g = $_POST['pamong'];
+        $u = $_SESSION['user'];
+        $z = $_POST['nomor'];
 
         $id                       = $_POST['nik'];
         $data['input']            = $_POST;
@@ -104,12 +109,11 @@ class Surat extends BaseController
         $data['pribadi'] = $this->surat_model->get_data_pribadi($id);
         $data['kk']      = $this->surat_model->get_data_kk($id);
 
-        $data['desa']   = $config->get_data();
+        $data['desa']   = $this->config_model->get_data();
         $data['pamong'] = $this->surat_model->get_pamong($_POST['pamong']);
 
         $data['pengikut'] = $this->surat_model->pengikut();
-        // $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z); // ???
-
+        $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z);
         view('surat/print/print_' . $url . '', $data);
     }
 

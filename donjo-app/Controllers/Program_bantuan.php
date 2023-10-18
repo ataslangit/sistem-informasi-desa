@@ -1,19 +1,23 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Program_bantuan extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Program_bantuan extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('program_bantuan_model');
     }
 
     public function index()
@@ -64,6 +68,9 @@ class Program_bantuan extends BaseController
 
     public function create()
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('cid', 'Sasaran', 'required');
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');
@@ -81,6 +88,9 @@ class Program_bantuan extends BaseController
 
     public function edit($id)
     {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
         $this->form_validation->set_rules('cid', 'Sasaran', 'required');
         $this->form_validation->set_rules('nama', 'Nama Program', 'required');
         $this->form_validation->set_rules('sdate', 'Tanggal awal', 'required');

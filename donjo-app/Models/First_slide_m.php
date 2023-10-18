@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_slide_m extends Model
+class First_slide_m extends CI_Model
 {
     public function slide_show()
     {

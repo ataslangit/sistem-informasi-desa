@@ -1,17 +1,24 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Siteman extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Siteman extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('config_model');
+    }
+
     public function index()
     {
-        $config = new Config();
-
         $this->user_model->logout();
         $header = [
-            'desa' => $config->get_data(),
+            'desa' => $this->config_model->get_data(),
         ];
 
         if (! isset($_SESSION['siteman'])) {

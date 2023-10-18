@@ -1,10 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
-use App\Models\Config;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Rtm_model extends Model
+class Rtm_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -15,7 +14,7 @@ class Rtm_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ',"' . $data[$i]['nama'] . ' - ' . $data[$i]['kk_level'] . '"';
             $i++;
         }
@@ -27,110 +26,122 @@ class Rtm_model extends Model
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf = $_SESSION['dusun'];
+            $kf        = $_SESSION['dusun'];
+            $dusun_sql = " AND c.dusun = '{$kf}'";
 
-            return " AND c.dusun = '{$kf}'";
+            return $dusun_sql;
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf = $_SESSION['rw'];
+            $kf     = $_SESSION['rw'];
+            $rw_sql = " AND c.rw = '{$kf}'";
 
-            return " AND c.rw = '{$kf}'";
+            return $rw_sql;
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf = $_SESSION['rt'];
+            $kf     = $_SESSION['rt'];
+            $rt_sql = " AND c.rt = '{$kf}'";
 
-            return " AND c.rt = '{$kf}'";
+            return $rt_sql;
         }
     }
 
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = penetration($this->db->escape_like_str($cari));
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = penetration($this->db->escape_like_str($cari));
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}') ";
 
-            return " AND (t.nama LIKE '{$kw}' OR u.no_kk LIKE '{$kw}') ";
+            return $search_sql;
         }
     }
 
     public function jenis_sql()
     {
         if (isset($_SESSION['jenis'])) {
-            $kh = $_SESSION['jenis'];
+            $kh        = $_SESSION['jenis'];
+            $jenis_sql = " AND jenis = {$kh}";
 
-            return " AND jenis = {$kh}";
+            return $jenis_sql;
         }
     }
 
     public function kelas_sql()
     {
         if (isset($_SESSION['kelas'])) {
-            $kh = $_SESSION['kelas'];
+            $kh        = $_SESSION['kelas'];
+            $kelas_sql = " AND kelas_sosial= {$kh}";
 
-            return " AND kelas_sosial= {$kh}";
+            return $kelas_sql;
         }
     }
 
     public function raskin_sql()
     {
         if (isset($_SESSION['raskin'])) {
-            $kh = $_SESSION['raskin'];
+            $kh         = $_SESSION['raskin'];
+            $raskin_sql = " AND raskin= {$kh}";
 
-            return " AND raskin= {$kh}";
+            return $raskin_sql;
         }
     }
 
     public function blt_sql()
     {
         if (isset($_SESSION['id_blt'])) {
-            $kh = $_SESSION['id_blt'];
+            $kh      = $_SESSION['id_blt'];
+            $blt_sql = " AND id_blt= {$kh}";
 
-            return " AND id_blt= {$kh}";
+            return $blt_sql;
         }
     }
 
     public function bos_sql()
     {
         if (isset($_SESSION['id_bos'])) {
-            $kh = $_SESSION['id_bos'];
+            $kh      = $_SESSION['id_bos'];
+            $bos_sql = " AND id_bos= {$kh}";
 
-            return " AND id_bos= {$kh}";
+            return $bos_sql;
         }
     }
 
     public function pkh_sql()
     {
         if (isset($_SESSION['id_pkh'])) {
-            $kh = $_SESSION['id_pkh'];
+            $kh      = $_SESSION['id_pkh'];
+            $pkh_sql = " AND id_pkh= {$kh}";
 
-            return " AND id_pkh= {$kh}";
+            return $pkh_sql;
         }
     }
 
     public function jampersal_sql()
     {
         if (isset($_SESSION['id_jampersal'])) {
-            $kh = $_SESSION['id_jampersal'];
+            $kh            = $_SESSION['id_jampersal'];
+            $jampersal_sql = " AND id_jampersal= {$kh}";
 
-            return " AND id_jampersal= {$kh}";
+            return $jampersal_sql;
         }
     }
 
     public function bedah_rumah_sql()
     {
         if (isset($_SESSION['id_bedah_rumah'])) {
-            $kh = $_SESSION['id_bedah_rumah'];
+            $kh              = $_SESSION['id_bedah_rumah'];
+            $bedah_rumah_sql = " AND id_bedah_rumah= {$kh}";
 
-            return " AND id_bedah_rumah= {$kh}";
+            return $bedah_rumah_sql;
         }
     }
 
@@ -198,7 +209,7 @@ class Rtm_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             if ($data[$i]['jumlah_anggota'] === 0) {
                 $data[$i]['jumlah_anggota'] = '-';
@@ -253,7 +264,7 @@ class Rtm_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             if ($data[$i]['jumlah_anggota'] === 0) {
                 $data[$i]['jumlah_anggota'] = '-';
@@ -321,7 +332,7 @@ class Rtm_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_rtm WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -420,7 +431,7 @@ class Rtm_model extends Model
         $temp['id_rtm']    = 0;
         $temp['rtm_level'] = 0;
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $this->db->where('id', $id);
                 $outp = $this->db->update('tweb_penduduk', $temp);
@@ -462,9 +473,8 @@ class Rtm_model extends Model
 
     public function get_kode_wilayah()
     {
-        $config = new Config();
-
-        $d = $config->get_data();
+        $this->load->model('config_model');
+        $d = $this->config_model->get_data();
 
         return $d['kode_kabupaten'] . $d['kode_kecamatan'] . $d['kode_desa'];
     }
@@ -477,7 +487,7 @@ class Rtm_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $data[$i]['nama']   = '' . $data[$i]['nama'] . ' - ' . $data[$i]['kk_level'] . '';
             $i++;
@@ -495,7 +505,7 @@ class Rtm_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no']           = $i + 1;
             $data[$i]['alamat']       = 'Dusun ' . ununderscore($data[$i]['dusun']) . ', RW ' . $data[$i]['rw'] . ', RT ' . $data[$i]['rt'];
             $data[$i]['tanggallahir'] = tgl_indo($data[$i]['tanggallahir']);

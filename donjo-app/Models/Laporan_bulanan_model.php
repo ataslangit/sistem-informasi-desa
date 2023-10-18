@@ -1,12 +1,14 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Laporan_bulanan_model extends Model
+class Laporan_bulanan_model extends CI_Model
 {
     public function __construct()
     {
+        parent::__construct();
+
         $sql   = 'SELECT (SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1) AS pend,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =1) AS lk,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_dasar =1 AND sex =2) AS pr,(SELECT COUNT(id) FROM tweb_keluarga) AS kk';
         $query = $this->db->query($sql);
         $data  = $query->row_array();
@@ -35,7 +37,7 @@ class Laporan_bulanan_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['dusun_nama'] . "'";
             $i++;
         }
@@ -47,11 +49,12 @@ class Laporan_bulanan_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND u.nama LIKE '{$kw}'";
 
-            return " AND u.nama LIKE '{$kw}'";
+            return $search_sql;
         }
     }
 
@@ -60,10 +63,12 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['dusun'])) {
             $kf = $_SESSION['dusun'];
             if ($kf === '') {
-                return '';
+                $dusun_sql = '';
+            } else {
+                $dusun_sql = " AND c.dusun = '" . $kf . "'";
             }
 
-            return " AND c.dusun = '" . $kf . "'";
+            return $dusun_sql;
         }
     }
 
@@ -72,10 +77,12 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['bulanku'])) {
             $kf = $_SESSION['bulanku'];
             if ($kf === '') {
-                return '';
+                $bulan_sql = '';
+            } else {
+                $bulan_sql = " where bulan = {$kf}";
             }
 
-            return " where bulan = {$kf}";
+            return $bulan_sql;
         }
     }
 
@@ -84,11 +91,56 @@ class Laporan_bulanan_model extends Model
         if (isset($_SESSION['tahunku'])) {
             $kf = $_SESSION['tahunku'];
             if ($kf === '') {
-                return '';
+                $bulan_sql = '';
+            } else {
+                $bulan_sql = " and tahun = {$kf}";
             }
 
-            return " and tahun = {$kf}";
+            return $bulan_sql;
         }
+    }
+
+    public function bulan($bulan)
+    {
+        switch ($bulan) {
+            case 1: $bulan = 'Januari';
+                break;
+
+            case 2: $bulan = 'Februari';
+                break;
+
+            case 3: $bulan = 'Maret';
+                break;
+
+            case 4: $bulan = 'April';
+                break;
+
+            case 5: $bulan = 'Mei';
+                break;
+
+            case 6: $bulan = 'Juni';
+                break;
+
+            case 7: $bulan = 'Juli';
+                break;
+
+            case 8: $bulan = 'Agustus';
+                break;
+
+            case 9: $bulan = 'September';
+                break;
+
+            case 10: $bulan = 'Oktober';
+                break;
+
+            case 11: $bulan = 'November';
+                break;
+
+            case 12: $bulan = 'Desember';
+                break;
+        }
+
+        return $bulan;
     }
 
     public function paging($lap = 0, $p = 1, $o = 0)
@@ -102,12 +154,24 @@ class Laporan_bulanan_model extends Model
             case 1: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 ';
                 break;
 
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
+            case 2: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 3: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 4: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 5: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 6: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
+            case 7: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+                break;
+
             case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
                 break;
 
@@ -158,7 +222,7 @@ from tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no']    = $i + 1;
             $data[$i]['tabel'] = $data[$i]['rt'];
             $i++;
@@ -216,14 +280,15 @@ from tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from
         $sql   = "SELECT lk as WNI_L,pr AS WNI_P FROM log_bulanan WHERE month(tgl) = {$bln} AND year(tgl) = {$thn};";
         $query = $this->db->query($sql);
         $hasil = $query->row_array();
-
-        return [
+        $data  = [
             'WNI_L' => $hasil['WNI_L'],
             'WNI_P' => $hasil['WNI_P'],
             'WNA_L' => 0,
             'WNA_P' => 0,
             'bulan' => $bln,
             'tahun' => $thn, ];
+
+        return $data;
     }
 
     public function penduduk_akhirx()
@@ -291,16 +356,18 @@ FROM log_penduduk ";
         $sql .= $paging_sql;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->row_array();
+            $data = $query->row_array();
+        } else {
+            $data = [
+                'WNI_L' => 0,
+                'WNI_P' => 0,
+                'WNA_L' => 0,
+                'WNA_P' => 0,
+                'bulan' => $bln,
+                'tahun' => $thn, ];
         }
 
-        return [
-            'WNI_L' => 0,
-            'WNI_P' => 0,
-            'WNA_L' => 0,
-            'WNA_P' => 0,
-            'bulan' => $bln,
-            'tahun' => $thn, ];
+        return $data;
     }
 
     public function pindahx()

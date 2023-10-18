@@ -92,11 +92,11 @@
                 </div>
 
                 <?php if(count($teks_berjalan)>0){
-						view('layouts/teks_berjalan.php');
+						echo view('layouts/teks_berjalan.php');
 					} ?>
 
                 <div id="mainmenu">
-                    <?php view('partials/menu.left.php');?>
+                    <?php echo view('partials/menu.left.php');?>
                 </div>
 
             </div>

@@ -1,11 +1,18 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Analisis_statistik_jawaban extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Analisis_statistik_jawaban extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('analisis_statistik_jawaban_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -164,7 +171,7 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
 
         // redirect('analisis_statistik_jawaban');
 
@@ -205,7 +212,7 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         // if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
         //	redirect('analisis_statistik_jawaban');
 

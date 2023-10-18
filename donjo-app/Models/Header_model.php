@@ -1,13 +1,12 @@
 <?php
 
-use App\Models\BaseModel as Model;
-use App\Models\Config;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Header_model extends Model
+class Header_model extends CI_Model
 {
     public function get_data()
     {
-        $config = new Config();
+        $this->load->model('config_model');
 
         // global variabel
         $outp['sasaran'] = ['1' => 'Penduduk', '2' => 'Keluarga / KK', '3' => 'Rumah Tangga', '4' => 'Kelompok/Organisasi Kemasyarakatan'];
@@ -24,7 +23,7 @@ class Header_model extends Model
             }
         }
 
-        $outp['desa'] = $config->get_data();
+        $outp['desa'] = $this->config_model->get_data();
 
         $sql           = 'SELECT COUNT(id) AS jml FROM komentar WHERE id_artikel=775 AND enabled = 2;';
         $query         = $this->db->query($sql);
@@ -50,12 +49,12 @@ class Header_model extends Model
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_keluarga WHERE 1';
         $query = $this->db->query($sql);
-        $query->row_array();
+        $data  = $query->row_array();
         // $i = $i*$data['jml'];
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_wil_clusterdesa WHERE 1';
         $query = $this->db->query($sql);
-        $query->row_array();
+        $data  = $query->row_array();
         // $i = $i*$data['jml'];
 
         if ($i > 0) {

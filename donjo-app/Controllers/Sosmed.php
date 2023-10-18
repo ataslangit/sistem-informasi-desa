@@ -1,27 +1,28 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Sosmed extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Sosmed extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('web_sosmed_model');
     }
 
     public function index()
     {
         $data['main']        = $this->web_sosmed_model->get_sosmed(1);
+        $id                  = $data['main']['id'];
         $data['form_action'] = site_url('sosmed/update/1');
         $header              = $this->header_model->get_data();
         $nav['act']          = 6;

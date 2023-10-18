@@ -1,12 +1,18 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\AnalisisPeriode;
+namespace App\Controllers;
 
-class Analisis_laporan extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Analisis_laporan extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('analisis_laporan_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -32,8 +38,6 @@ class Analisis_laporan extends BaseController
 
     public function index($p = 1, $o = 0)
     {
-        $analisisPeriode = new AnalisisPeriode();
-
         unset($_SESSION['cari2']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -83,7 +87,7 @@ class Analisis_laporan extends BaseController
         $data['main']             = $this->analisis_laporan_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']          = $this->analisis_laporan_model->autocomplete();
         $data['analisis_master']  = $this->analisis_laporan_model->get_analisis_master();
-        $data['analisis_periode'] = $analisisPeriode->get_periode()['nama'];
+        $data['analisis_periode'] = $this->analisis_laporan_model->get_periode();
         $header                   = $this->header_model->get_data();
 
         view('header', $header);
@@ -101,6 +105,7 @@ class Analisis_laporan extends BaseController
         $data['subjek']          = $this->analisis_laporan_model->get_subjek($id);
         $data['total']           = $this->analisis_laporan_model->get_total($id);
 
+        $this->load->model('analisis_respon_model');
         $data['list_bukti']   = $this->analisis_respon_model->list_bukti($id);
         $data['list_anggota'] = $this->analisis_respon_model->list_anggota($id);
         $data['list_jawab']   = $this->analisis_laporan_model->list_indikator($id);
@@ -159,7 +164,7 @@ class Analisis_laporan extends BaseController
 
             $id_cb = $_POST['id_cb'];
             $cb    = '';
-            if (is_countable($id_cb) ? count($id_cb) : 0) {
+            if (count($id_cb)) {
                 foreach ($id_cb as $id) {
                     $cb .= $id . ',';
                 }
@@ -167,7 +172,7 @@ class Analisis_laporan extends BaseController
             $_SESSION['jawab'] = $cb . '7777777';
 
             $jmkf             = $this->analisis_laporan_model->group_parameter();
-            $_SESSION['jmkf'] = is_countable($jmkf) ? count($jmkf) : 0;
+            $_SESSION['jmkf'] = count($jmkf);
         }
         redirect('analisis_laporan');
     }

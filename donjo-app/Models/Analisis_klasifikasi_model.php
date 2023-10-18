@@ -1,27 +1,47 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Analisis_klasifikasi_model extends Model
+class Analisis_klasifikasi_model extends CI_Model
 {
+    public function autocomplete()
+    {
+        $sql   = 'SELECT nama FROM analisis_klasifikasi';
+        $query = $this->db->query($sql);
+        $data  = $query->result_array();
+
+        $i    = 0;
+        $outp = '';
+
+        while ($i < count($data)) {
+            $outp .= ',"' . $data[$i]['nama'] . '"';
+            $i++;
+        }
+        $outp = strtolower(substr($outp, 1));
+
+        return '[' . $outp . ']';
+    }
+
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
 
-            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf = $_SESSION['analisis_master'];
+            $kf         = $_SESSION['analisis_master'];
+            $filter_sql = " AND u.id_master = {$kf}";
 
-            return " AND u.id_master = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -84,7 +104,7 @@ class Analisis_klasifikasi_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             $i++;
@@ -92,6 +112,72 @@ class Analisis_klasifikasi_model extends Model
         }
 
         return $data;
+    }
+
+    public function insert()
+    {
+        $data              = $_POST;
+        $data['id_master'] = $_SESSION['analisis_master'];
+        $outp              = $this->db->insert('analisis_klasifikasi', $data);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function update($id = 0)
+    {
+        $data              = $_POST;
+        $data['id_master'] = $_SESSION['analisis_master'];
+        $this->db->where('id', $id);
+        $outp = $this->db->update('analisis_klasifikasi', $data);
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function delete($id = '')
+    {
+        $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';
+        $outp = $this->db->query($sql, [$id]);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function delete_all()
+    {
+        $id_cb = $_POST['id_cb'];
+
+        if (count($id_cb)) {
+            foreach ($id_cb as $id) {
+                $sql  = 'DELETE FROM analisis_klasifikasi WHERE id=?';
+                $outp = $this->db->query($sql, [$id]);
+            }
+        } else {
+            $outp = false;
+        }
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function get_analisis_klasifikasi($id = 0)
+    {
+        $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id=?';
+        $query = $this->db->query($sql, $id);
+
+        return $query->row_array();
     }
 
     public function get_analisis_master()

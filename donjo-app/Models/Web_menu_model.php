@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Web_menu_model extends Model
+class Web_menu_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Web_menu_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
@@ -36,9 +36,10 @@ class Web_menu_model extends Model
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND enabled = {$kf}";
 
-            return " AND enabled = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -96,7 +97,7 @@ class Web_menu_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if (isset($data[$i]['enabled']) && $data[$i]['enabled'] === 1) {
@@ -172,7 +173,7 @@ class Web_menu_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM menu WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -197,7 +198,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -221,7 +222,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -238,7 +239,7 @@ class Web_menu_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no']    = $i + 1;
             $data[$i]['judul'] = $data[$i]['nama'];
             $i++;
@@ -306,7 +307,7 @@ class Web_menu_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM menu WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

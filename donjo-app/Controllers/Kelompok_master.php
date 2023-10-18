@@ -1,11 +1,18 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Kelompok_master extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Kelompok_master extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('kelompok_master_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');

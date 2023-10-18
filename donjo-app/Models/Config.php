@@ -1,12 +1,19 @@
 <?php
 
+use Kenjis\CI3Compatible\Core\CI_Model;
+
 namespace App\Models;
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model as Model;
 
 class Config extends Model
 {
     protected $table = 'config';
+
+    public function __construct()
+    {
+        $this->load->database('default');
+    }
 
     public function insert($data)
     {

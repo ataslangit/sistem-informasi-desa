@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Web_dokumen_model extends Model
+class Web_dokumen_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -15,7 +15,7 @@ class Web_dokumen_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['satuan'] . "'";
             $i++;
         }
@@ -27,20 +27,22 @@ class Web_dokumen_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
 
-            return " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND enabled = {$kf}";
 
-            return " AND enabled = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -104,7 +106,7 @@ class Web_dokumen_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -142,8 +144,9 @@ class Web_dokumen_model extends Model
         $data        = $_POST;
         $lokasi_file = $_FILES['satuan']['tmp_name'];
         $nama_file   = $_FILES['satuan']['name'];
+        $old_file    = $data['old_file'];
         if (! empty($lokasi_file)) {
-            UploadDocument($nama_file);
+            UploadDocument($nama_file, $old_file);
             unset($data['old_file']);
         } else {
             $_SESSION['success'] = -1;
@@ -175,7 +178,7 @@ class Web_dokumen_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM dokumen WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

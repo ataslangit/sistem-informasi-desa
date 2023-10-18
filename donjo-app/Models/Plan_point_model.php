@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Plan_point_model extends Model
+class Plan_point_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Plan_point_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ',"' . $data[$i]['nama'] . '"';
             $i++;
         }
@@ -26,20 +26,22 @@ class Plan_point_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (nama LIKE '{$kw}')";
 
-            return " AND (nama LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND enabled = {$kf}";
 
-            return " AND enabled = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -94,7 +96,7 @@ class Plan_point_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -151,7 +153,7 @@ class Plan_point_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM point WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -176,7 +178,7 @@ class Plan_point_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -233,7 +235,7 @@ class Plan_point_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM point WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -294,7 +296,7 @@ class Plan_point_model extends Model
         $url   = site_url('first');
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['point'] = "<li><a href='{$url}/" . $data[$i]['simbol'] . "'>" . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM point s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
@@ -305,7 +307,7 @@ class Plan_point_model extends Model
                 $data[$i]['point'] .= '<ul>';
                 $j = 0;
 
-                while ($j < (is_countable($data2) ? count($data2) : 0)) {
+                while ($j < count($data2)) {
                     $data[$i]['point'] = $data[$i]['point'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
@@ -327,7 +329,7 @@ class Plan_point_model extends Model
         $url   = site_url('first');
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['point'] = "<li><a href='{$url}/" . $data[$i]['simbol'] . "'>" . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM point s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
@@ -338,7 +340,7 @@ class Plan_point_model extends Model
                 $data[$i]['point'] .= '<ul>';
                 $j = 0;
 
-                while ($j < (is_countable($data2) ? count($data2) : 0)) {
+                while ($j < count($data2)) {
                     $data[$i]['point'] = $data[$i]['point'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }

@@ -1,12 +1,19 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Plan extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Plan extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('plan_lokasi_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
@@ -68,12 +75,10 @@ class Plan extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']       = $config->get_data();
+        $data['desa']       = $this->config_model->get_data();
         $data['list_point'] = $this->plan_lokasi_model->list_point();
         $data['dusun']      = $this->plan_lokasi_model->list_dusun();
 
@@ -96,8 +101,6 @@ class Plan extends BaseController
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
         if ($id) {
@@ -106,7 +109,7 @@ class Plan extends BaseController
             $data['lokasi'] = null;
         }
 
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
         view('lokasi/maps', $data);
     }

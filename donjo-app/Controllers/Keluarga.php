@@ -1,20 +1,24 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Keluarga extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Keluarga extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('config_model');
+        $this->load->model('keluarga_model');
+        $this->load->model('penduduk_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
     }
 
     public function clear()
@@ -612,7 +616,7 @@ class Keluarga extends BaseController
         $dp   = 0;
         $link = site_url('keluarga');
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             if ($_POST['nik'] === $data[$i]['nik']) {
                 $dp = 1;
                 $nk = $data[$i]['nik'];
@@ -638,7 +642,7 @@ class Keluarga extends BaseController
         $dp   = 0;
         $link = site_url('keluarga/form/0/1');
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             if ($_POST['no_kk'] === $data[$i]['no_kk']) {
                 $dp = 1;
                 $nk = $data[$i]['no_kk'];
@@ -736,15 +740,13 @@ class Keluarga extends BaseController
 
     public function kartu_keluarga($p = 1, $o = 0, $id = 0)
     {
-        $config = new Config();
-
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
         $data['main']     = $this->keluarga_model->list_anggota($id);
         $kk               = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']     = $config->get_data();
+        $data['desa']     = $this->config_model->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -752,36 +754,33 @@ class Keluarga extends BaseController
             $data['kepala_kk'] = null;
         }
 
-        $data['penduduk']    = $this->keluarga_model->list_penduduk_lepas();
-        $nav['act']          = 1;
-        $header              = $this->header_model->get_data();
-        $data['form_action'] = site_url('keluarga/print');
-
+        $data['penduduk'] = $this->keluarga_model->list_penduduk_lepas();
+        $nav['act']       = 1;
+        $header           = $this->header_model->get_data();
         view('header', $header);
         view('sid/nav', $nav);
+        $data['form_action'] = site_url('keluarga/print');
+
         view('sid/kependudukan/kartu_keluarga', $data);
         view('footer');
     }
 
     public function cetak_kk($id = 0)
     {
-        $config = new Config();
-
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
-        $data['desa']      = $config->get_data();
+        $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 1;
-        // $header            = $this->header_model->get_data();
+        $header            = $this->header_model->get_data();
         view('sid/kependudukan/cetak_kk', $data);
     }
 
     public function doc_kk($id = 0)
     {
-        $config = new Config();
+        $data['desa'] = $this->config_model->get_data();
 
-        $data['desa']      = $config->get_data();
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $data['kepala_kk'] = $this->keluarga_model->get_kepala_kk($id);

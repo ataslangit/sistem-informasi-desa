@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Mandiri_model extends Model
+class Mandiri_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Mandiri_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['nik'] . "'";
             $i++;
         }
@@ -26,11 +26,12 @@ class Mandiri_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
 
-            return " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
@@ -39,10 +40,12 @@ class Mandiri_model extends Model
         if (isset($_SESSION['nik'])) {
             $kf = $_SESSION['nik'];
             if ($kf === '0') {
-                return '';
+                $filter_sql = '';
+            } else {
+                $filter_sql = " AND n.id = '" . $kf . "'";
             }
 
-            return " AND n.id = '" . $kf . "'";
+            return $filter_sql;
         }
     }
 
@@ -50,10 +53,12 @@ class Mandiri_model extends Model
     {
         $kf = $nik;
         if ($kf === 0) {
-            return '';
+            $filterku_sql = '';
+        } else {
+            $filterku_sql = " AND u.id_pend = '" . $kf . "'";
         }
 
-        return " AND u.id_pend = '" . $kf . "'";
+        return $filterku_sql;
     }
 
     public function paging($p = 1, $o = 0)
@@ -107,7 +112,7 @@ class Mandiri_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -119,7 +124,7 @@ class Mandiri_model extends Model
     public function generate_pin($pin = '')
     {
         if ($pin === '') {
-            $pin = random_int(100000, 999999);
+            $pin = mt_rand(100000, 999999);
             $pin = strrev($pin);
         }
 
@@ -132,15 +137,15 @@ class Mandiri_model extends Model
             redirect('mandiri');
         }
 
-        $sql = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
-        $this->db->query($sql, [$_POST['nik']]);
+        $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE nik=?';
+        $outp = $this->db->query($sql, [$_POST['nik']]);
 
         $rpin        = $this->generate_pin($_POST['pin']);
         $hash_pin    = hash_pin($rpin);
         $data['pin'] = $hash_pin;
         $data['nik'] = $_POST['nik'];
 
-        $this->db->insert('tweb_penduduk_mandiri', $data);
+        $outp = $this->db->insert('tweb_penduduk_mandiri', $data);
 
         if ($_POST['pin'] !== '') {
             return $_POST['pin'];
@@ -165,7 +170,7 @@ class Mandiri_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM tweb_penduduk_mandiri WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -189,7 +194,7 @@ class Mandiri_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }

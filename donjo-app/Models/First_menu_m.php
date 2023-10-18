@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_menu_m extends Model
+class First_menu_m extends CI_Model
 {
     public function list_menu_atas()
     {
@@ -13,7 +13,7 @@ class First_menu_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['menu'] = '<li><a href="' . site_url('first/' . $data[$i]['link']) . '">' . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.* FROM menu s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
@@ -24,7 +24,7 @@ class First_menu_m extends Model
                 $data[$i]['menu'] .= '<ul>';
                 $j = 0;
 
-                while ($j < (is_countable($data2) ? count($data2) : 0)) {
+                while ($j < count($data2)) {
                     $data[$i]['menu'] = $data[$i]['menu'] . '<li><a href="' . site_url('first/' . $data2[$j]['link']) . '">' . $data2[$j]['nama'] . '</a></li>';
 
                     $j++;
@@ -46,7 +46,7 @@ class First_menu_m extends Model
         $data  = $query->result_array();
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['menu'] = '<li><a href="' . site_url('first/kategori/' . $data[$i]['id']) . '">' . $data[$i]['nama'] . '</a>';
 
             $sql2  = 'SELECT s.*,s.kategori AS nama FROM kategori s WHERE s.parrent = ? AND s.enabled = 1';
@@ -57,7 +57,7 @@ class First_menu_m extends Model
                 $data[$i]['menu'] .= '<ul>';
                 $j = 0;
 
-                while ($j < (is_countable($data2) ? count($data2) : 0)) {
+                while ($j < count($data2)) {
                     $data[$i]['menu'] = $data[$i]['menu'] . '<li><a href="' . site_url('first/kategori/' . $data2[$j]['id']) . '">' . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }

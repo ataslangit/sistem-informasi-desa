@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_keluarga_m extends Model
+class First_keluarga_m extends CI_Model
 {
     public function list_raskin($tipex = 0)
     {
@@ -39,9 +39,12 @@ class First_keluarga_m extends Model
 
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $hasil = $sql;
+            $hasil = $query->result_array();
+        } else {
+            $hasil = false;
         }
 
-        return false;
+        return $hasil;
     }
 }

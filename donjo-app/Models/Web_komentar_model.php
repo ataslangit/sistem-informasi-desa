@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Web_komentar_model extends Model
+class Web_komentar_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Web_komentar_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['komentar'] . "'";
             $i++;
         }
@@ -26,20 +26,22 @@ class Web_komentar_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (komentar LIKE '{$kw}' OR komentar LIKE '{$kw}')";
 
-            return " AND (komentar LIKE '{$kw}' OR komentar LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND enabled = {$kf}";
 
-            return " AND enabled = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -100,7 +102,7 @@ class Web_komentar_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             if ($data[$i]['enabled'] === 1) {
@@ -157,7 +159,7 @@ class Web_komentar_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM komentar WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -201,7 +203,7 @@ class Web_komentar_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $id = $data[$i]['id'];
 
             $pendek                = str_split($data[$i]['isi'], 100);
@@ -236,7 +238,7 @@ class Web_komentar_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $i++;
         }
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_penduduk_m extends Model
+class First_penduduk_m extends CI_Model
 {
     public function list_data($lap = '', $o = 0)
     {
@@ -92,7 +92,7 @@ class First_penduduk_m extends Model
         $total['perempuan'] = 0;
         $i                  = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
             if (isset($data[$i]['jumlah'])) {
                 $total['jumlah'] += $data[$i]['jumlah'];
@@ -112,7 +112,7 @@ class First_penduduk_m extends Model
 
         $i = 0;
         if (isset($data[$i]['jumlah']) && $data[$i]['jumlah'] > 0) {
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $data[$i]['persen'] = $data[$i]['jumlah'] / $bel['jumlah'] * 100;
                 $data[$i]['persen'] = number_format((float) $data[$i]['persen'], 2, '.', '');
                 $data[$i]['persen'] .= '%';
@@ -180,7 +180,7 @@ class First_penduduk_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -205,7 +205,7 @@ class First_penduduk_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
             $i++;
         }
@@ -244,7 +244,7 @@ class First_penduduk_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             $sql    = "SELECT COUNT(r.id_subjek) AS jml FROM analisis_respon r {$sbj} WHERE r.id_parameter = ? AND r.id_periode = {$per}";

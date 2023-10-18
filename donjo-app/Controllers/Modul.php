@@ -1,15 +1,22 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Modul extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Modul extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('modul_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
             redirect('siteman');
         }
+        $this->load->model('header_model');
     }
 
     public function clear()

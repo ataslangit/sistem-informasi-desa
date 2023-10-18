@@ -1,20 +1,24 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Penduduk extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Penduduk extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('penduduk_model');
     }
 
     public function clear()
@@ -346,7 +350,7 @@ class Penduduk extends BaseController
         $dp   = 0;
         $link = site_url('penduduk/form');
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             if ($_POST['nik'] === $data[$i]['nik']) {
                 $dp = 1;
                 $nk = $data[$i]['nik'];
@@ -547,6 +551,7 @@ class Penduduk extends BaseController
     {
         $dusun = str_replace('_', ' ', $dusun);
         $rt    = $this->penduduk_model->list_rt($dusun, $rw);
+        $dusun = str_replace(' ', '_', $dusun);
         echo "<td>RT</td>
 		<td><select name='id_cluster'>
 		<option value=''>Pilih RT</option>";
@@ -596,13 +601,11 @@ class Penduduk extends BaseController
 
     public function ajax_penduduk_maps($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
 
         $data['penduduk'] = $this->penduduk_model->get_penduduk_map($id);
-        $data['desa']     = $config->get_data();
+        $data['desa']     = $this->config_model->get_data();
 
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 

@@ -1,25 +1,23 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Web extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Web extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
+            redirect('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        if ($grup === '4') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('web_artikel_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
