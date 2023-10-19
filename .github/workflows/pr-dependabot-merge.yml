@@ -40,4 +40,4 @@ jobs:
 
       - if: steps.squashmerge.outputs.mergeResult == 'merged'
         name: lock PR
-        run: gh pr lock {{ steps.squashmerge.outputs.pullRequestNumber }} -r "resolved"
+        run: gh pr lock ${{ steps.squashmerge.outputs.pullRequestNumber }} -r "resolved"
