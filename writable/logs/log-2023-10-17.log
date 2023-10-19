@@ -1,0 +1,22 @@
+ERROR - 2023-10-17 23:38:44 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' in /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect()
+#1 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/Database.php(66): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/Config.php(108): CodeIgniter\Database\Database->loadForge()
+#4 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Commands/Database/CreateDatabase.php(134): CodeIgniter\Database\Config::forge()
+#5 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\CreateDatabase->run()
+#6 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#7 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/spark(102): CodeIgniter\CLI\Console->run()
+#8 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' in /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/Database.php(66): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Database/Config.php(108): CodeIgniter\Database\Database->loadForge()
+#3 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/Commands/Database/CreateDatabase.php(134): CodeIgniter\Database\Config::forge()
+#4 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\CreateDatabase->run()
+#5 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/donjo-sys/codeigniter4/framework/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#6 /home/toto/Dokumen/WEBPROJECT/ataslangit/sistem-informasi-desa/spark(102): CodeIgniter\CLI\Console->run()
+#7 {main}
