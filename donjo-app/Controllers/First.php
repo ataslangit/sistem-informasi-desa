@@ -152,7 +152,8 @@ class First extends CI_Controller
         $data['w_cos']          = $this->first_artikel_m->cos_widget();
 
         $data['data_config'] = $this->config_model->get_data();
-        view('layouts/artikel.tpl.php', $data);
+
+        return view('layouts/artikel.tpl.php', $data);
     }
 
     public function arsip($p = 1)
