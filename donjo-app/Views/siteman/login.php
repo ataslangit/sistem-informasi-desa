@@ -1,7 +1,7 @@
 <?= $this->extend('siteman/template') ?>
 
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login-new.css')?>" media="screen">
+    <link rel="stylesheet" href="<?= asset('resources/css/login.scss')?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
