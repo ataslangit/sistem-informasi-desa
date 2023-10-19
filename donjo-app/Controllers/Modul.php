@@ -14,7 +14,7 @@ class Modul extends CI_Controller
         $this->load->model('modul_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
@@ -23,7 +23,7 @@ class Modul extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('modul');
+        return redirect()->to('modul');
     }
 
     public function index()
@@ -79,7 +79,8 @@ class Modul extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function search()
@@ -90,30 +91,35 @@ class Modul extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function insert()
     {
         $this->modul_model->insert();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function update($id = '')
     {
         $this->modul_model->update($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete($id = '')
     {
         $this->modul_model->delete($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete_all()
     {
         $this->modul_model->delete_all();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 }

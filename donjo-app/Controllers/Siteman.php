@@ -39,12 +39,13 @@ class Siteman extends CI_Controller
     {
         $this->user_model->siteman();
 
-        return redirect('main');
+        return redirect()->to('main');
     }
 
     public function login()
     {
         $this->user_model->logout();
-        redirect('siteman');
+
+        return redirect()->to('siteman');
     }
 }

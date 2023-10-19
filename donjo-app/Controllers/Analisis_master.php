@@ -16,7 +16,7 @@ class Analisis_master extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         unset($_SESSION['submenu'], $_SESSION['asubmenu']);
     }
@@ -25,7 +25,7 @@ class Analisis_master extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
 
-        redirect('analisis_master');
+        return redirect()->to('analisis_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -140,7 +140,7 @@ class Analisis_master extends CI_Controller
                 $data['menu_laporan']    = 'analisis_laporan_kelompok';
                 break;
 
-            default:redirect('analisis_master');
+            default:return redirect()->to('analisis_master');
         }
         $data['menu_respon']  = 'analisis_respon';
         $data['menu_laporan'] = 'analisis_laporan';
@@ -168,7 +168,8 @@ class Analisis_master extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function filter()
@@ -179,7 +180,8 @@ class Analisis_master extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function state()
@@ -190,36 +192,42 @@ class Analisis_master extends CI_Controller
         } else {
             unset($_SESSION['state']);
         }
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function insert()
     {
         $this->analisis_master_model->insert();
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function import()
     {
         $this->analisis_import_model->import_excel();
-        redirect('analisis_master');
+
+        return redirect()->to('analisis_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_master_model->update($id);
-        redirect("analisis_master/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_master/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_master_model->delete($id);
-        redirect("analisis_master/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_master/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_master_model->delete_all();
-        redirect("analisis_master/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_master/index/{$p}/{$o}");
     }
 }

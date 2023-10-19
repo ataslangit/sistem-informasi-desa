@@ -15,7 +15,7 @@ class Analisis_indikator extends CI_Controller
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Indikator';
         $_SESSION['asubmenu'] = 'analisis_indikator';
@@ -25,14 +25,15 @@ class Analisis_indikator extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
 
-        redirect('analisis_indikator');
+        return redirect()->to('analisis_indikator');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -108,7 +109,7 @@ class Analisis_indikator extends CI_Controller
     {
         $ai = $this->analisis_indikator_model->get_analisis_indikator($id);
         if ($ai['id_tipe'] === 3 || $ai['id_tipe'] === 4) {
-            redirect('analisis_indikator');
+            return redirect()->to('analisis_indikator');
         }
 
         $data['analisis_indikator'] = $this->analisis_indikator_model->get_analisis_indikator($id);
@@ -162,7 +163,8 @@ class Analisis_indikator extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function filter()
@@ -173,7 +175,8 @@ class Analisis_indikator extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function tipe()
@@ -184,7 +187,8 @@ class Analisis_indikator extends CI_Controller
         } else {
             unset($_SESSION['tipe']);
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function kategori()
@@ -195,54 +199,63 @@ class Analisis_indikator extends CI_Controller
         } else {
             unset($_SESSION['kategori']);
         }
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function insert()
     {
         $this->analisis_indikator_model->insert();
-        redirect('analisis_indikator');
+
+        return redirect()->to('analisis_indikator');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_indikator_model->update($id);
-        redirect("analisis_indikator/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_indikator/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_indikator_model->delete($id);
-        redirect("analisis_indikator/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_indikator/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_indikator_model->delete_all();
-        redirect("analisis_indikator/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_indikator/index/{$p}/{$o}");
     }
 
     public function p_insert($in = '')
     {
         $this->analisis_indikator_model->p_insert($in);
-        redirect("analisis_indikator/parameter/{$in}");
+
+        return redirect()->to("analisis_indikator/parameter/{$in}");
     }
 
     public function p_update($in = '', $id = '')
     {
         $this->analisis_indikator_model->p_update($id);
-        redirect("analisis_indikator/parameter/{$in}");
+
+        return redirect()->to("analisis_indikator/parameter/{$in}");
     }
 
     public function p_delete($in = '', $id = '')
     {
         $this->analisis_indikator_model->p_delete($id);
-        redirect("analisis_indikator/parameter/{$in}");
+
+        return redirect()->to("analisis_indikator/parameter/{$in}");
     }
 
     public function p_delete_all()
     {
         $this->analisis_indikator_model->p_delete_all();
-        redirect("analisis_indikator/parameter/{$in}");
+
+        return redirect()->to("analisis_indikator/parameter/{$in}");
     }
 }

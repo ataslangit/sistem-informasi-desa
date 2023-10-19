@@ -14,7 +14,7 @@ class Pengurus extends CI_Controller
         $this->load->model('pamong_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
@@ -23,7 +23,7 @@ class Pengurus extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('pengurus');
+        return redirect()->to('pengurus');
     }
 
     public function index()
@@ -79,7 +79,8 @@ class Pengurus extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function search()
@@ -90,30 +91,35 @@ class Pengurus extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function insert()
     {
         $this->pamong_model->insert();
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function update($id = '')
     {
         $this->pamong_model->update($id);
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function delete($id = '')
     {
         $this->pamong_model->delete($id);
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 
     public function delete_all()
     {
         $this->pamong_model->delete_all();
-        redirect('pengurus');
+
+        return redirect()->to('pengurus');
     }
 }

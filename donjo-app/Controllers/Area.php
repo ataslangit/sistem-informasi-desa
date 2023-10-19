@@ -20,7 +20,7 @@ class Area extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['polygon'], $_SESSION['subpolygon']);
 
-        redirect('area');
+        return redirect()->to('area');
     }
 
     public function index($p = 1, $o = 0)
@@ -113,7 +113,8 @@ class Area extends CI_Controller
     public function update_maps($p = 1, $o = 0, $id = '')
     {
         $this->plan_area_model->update_position($id);
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 
     public function search()
@@ -124,7 +125,8 @@ class Area extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function filter()
@@ -135,7 +137,8 @@ class Area extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function polygon()
@@ -146,7 +149,8 @@ class Area extends CI_Controller
         } else {
             unset($_SESSION['polygon']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function subpolygon()
@@ -158,42 +162,49 @@ class Area extends CI_Controller
         } else {
             unset($_SESSION['subpolygon']);
         }
-        redirect('area');
+
+        return redirect()->to('area');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_area_model->insert($tip);
-        redirect("area/index/{$tip}");
+
+        return redirect()->to("area/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_area_model->update($id);
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_area_model->delete($id);
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_area_model->delete_all();
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 
     public function area_lock($id = '')
     {
         $this->plan_area_model->area_lock($id, 1);
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 
     public function area_unlock($id = '')
     {
         $this->plan_area_model->area_lock($id, 2);
-        redirect("area/index/{$p}/{$o}");
+
+        return redirect()->to("area/index/{$p}/{$o}");
     }
 }

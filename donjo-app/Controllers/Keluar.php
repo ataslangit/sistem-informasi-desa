@@ -15,7 +15,7 @@ class Keluar extends CI_Controller
         $this->load->model('surat_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
     }
@@ -24,7 +24,7 @@ class Keluar extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('keluar');
+        return redirect()->to('keluar');
     }
 
     public function index($p = 1, $o = 0)
@@ -65,7 +65,8 @@ class Keluar extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('keluar');
+
+        return redirect()->to('keluar');
     }
 
     public function perorangan($nik = 0, $p = 1, $o = 0)
@@ -119,7 +120,8 @@ class Keluar extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 
     public function nik()
@@ -130,6 +132,7 @@ class Keluar extends CI_Controller
         } else {
             unset($_SESSION['nik']);
         }
-        redirect('keluar/perorangan');
+
+        return redirect()->to('keluar/perorangan');
     }
 }

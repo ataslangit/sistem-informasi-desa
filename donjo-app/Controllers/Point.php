@@ -19,7 +19,7 @@ class Point extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('point');
+        return redirect()->to('point');
     }
 
     public function index($p = 1, $o = 0)
@@ -114,7 +114,8 @@ class Point extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function filter()
@@ -125,78 +126,91 @@ class Point extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('point');
+
+        return redirect()->to('point');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_point_model->insert($tip);
-        redirect("point/index/{$tip}");
+
+        return redirect()->to("point/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_point_model->update($id);
-        redirect("point/index/{$p}/{$o}");
+
+        return redirect()->to("point/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_point_model->delete($id);
-        redirect("point/index/{$p}/{$o}");
+
+        return redirect()->to("point/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_point_model->delete_all();
-        redirect("point/index/{$p}/{$o}");
+
+        return redirect()->to("point/index/{$p}/{$o}");
     }
 
     public function point_lock($id = '')
     {
         $this->plan_point_model->point_lock($id, 1);
-        redirect("point/index/{$p}/{$o}");
+
+        return redirect()->to("point/index/{$p}/{$o}");
     }
 
     public function point_unlock($id = '')
     {
         $this->plan_point_model->point_lock($id, 2);
-        redirect("point/index/{$p}/{$o}");
+
+        return redirect()->to("point/index/{$p}/{$o}");
     }
 
     public function insert_sub_point($point = '')
     {
         $this->plan_point_model->insert_sub_point($point);
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 
     public function update_sub_point($point = '', $id = '')
     {
         $this->plan_point_model->update_sub_point($id);
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 
     public function delete_sub_point($point = '', $id = '')
     {
         $this->plan_point_model->delete_sub_point($id);
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 
     public function delete_all_sub_point($point = '')
     {
         $this->plan_point_model->delete_all_sub_point();
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 
     public function point_lock_sub_point($point = '', $id = '')
     {
         $this->plan_point_model->point_lock($id, 1);
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 
     public function point_unlock_sub_point($point = '', $id = '')
     {
         $this->plan_point_model->point_lock($id, 2);
-        redirect("point/sub_point/{$point}");
+
+        return redirect()->to("point/sub_point/{$point}");
     }
 }

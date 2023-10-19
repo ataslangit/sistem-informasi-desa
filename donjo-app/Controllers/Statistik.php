@@ -20,7 +20,7 @@ class Statistik extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $_SESSION['per_page'] = 500;
@@ -111,7 +111,7 @@ class Statistik extends CI_Controller
     {
         unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
 
-        redirect('statistik');
+        return redirect()->to('statistik');
     }
 
     public function graph($lap = 0)
@@ -505,7 +505,8 @@ class Statistik extends CI_Controller
 
         $_SESSION['per_page'] = 100;
         $_SESSION['data']     = $data;
-        redirect('sid_penduduk/index/');
+
+        return redirect()->to('sid_penduduk/index/');
     }
 
     public function rentang_umur()
@@ -539,24 +540,28 @@ class Statistik extends CI_Controller
     public function rentang_insert()
     {
         $data['insert'] = $this->laporan_penduduk_model->insert_rentang();
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function rentang_update($id = 0)
     {
         $this->laporan_penduduk_model->update_rentang($id);
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function rentang_delete($id = 0)
     {
         $this->laporan_penduduk_model->delete_rentang($id);
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function delete_all_rentang()
     {
         $this->laporan_penduduk_model->delete_all_rentang();
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 }

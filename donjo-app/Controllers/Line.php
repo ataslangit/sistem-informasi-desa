@@ -19,7 +19,7 @@ class Line extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('line');
+        return redirect()->to('line');
     }
 
     public function index($p = 1, $o = 0)
@@ -112,7 +112,8 @@ class Line extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function filter()
@@ -123,78 +124,91 @@ class Line extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_line_model->insert($tip);
-        redirect("line/index/{$tip}");
+
+        return redirect()->to("line/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_line_model->update($id);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_line_model->delete($id);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_line_model->delete_all();
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function line_lock($id = '')
     {
         $this->plan_line_model->line_lock($id, 1);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function line_unlock($id = '')
     {
         $this->plan_line_model->line_lock($id, 2);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function insert_sub_line($line = '')
     {
         $this->plan_line_model->insert_sub_line($line);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function update_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->update_sub_line($id);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function delete_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->delete_sub_line($id);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function delete_all_sub_line($line = '')
     {
         $this->plan_line_model->delete_all_sub_line();
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function line_lock_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->line_lock($id, 1);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function line_unlock_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->line_lock($id, 2);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 }

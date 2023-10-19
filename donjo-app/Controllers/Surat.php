@@ -13,7 +13,7 @@ class Surat extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('config_model');
         $this->load->model('header_model');
@@ -135,9 +135,9 @@ class Surat extends CI_Controller
     {
         $cari = $this->input->post('nik');
         if ($cari !== '') {
-            redirect("surat/form/{$cari}");
-        } else {
-            redirect('surat');
+            return redirect()->to("surat/form/{$cari}");
         }
+
+        return redirect()->to('surat');
     }
 }

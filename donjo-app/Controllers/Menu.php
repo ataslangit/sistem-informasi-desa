@@ -13,7 +13,7 @@ class Menu extends CI_Controller
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('web_menu_model');
@@ -23,7 +23,7 @@ class Menu extends CI_Controller
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('menu');
+        return redirect()->to('menu');
     }
 
     public function index($tip = 1, $p = 1, $o = 0)
@@ -123,7 +123,8 @@ class Menu extends CI_Controller
         } else {
             unset($_SESSION['cari']);
         }
-        redirect("menu/index/{$tip}");
+
+        return redirect()->to("menu/index/{$tip}");
     }
 
     public function filter()
@@ -134,78 +135,91 @@ class Menu extends CI_Controller
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('menu');
+
+        return redirect()->to('menu');
     }
 
     public function insert($tip = 1)
     {
         $this->web_menu_model->insert($tip);
-        redirect("menu/index/{$tip}");
+
+        return redirect()->to("menu/index/{$tip}");
     }
 
     public function update($tip = 1, $id = '')
     {
         $this->web_menu_model->update($id);
-        redirect("menu/index/{$tip}");
+
+        return redirect()->to("menu/index/{$tip}");
     }
 
     public function delete($tip = 1, $id = '')
     {
         $this->web_menu_model->delete($id);
-        redirect("menu/index/{$tip}");
+
+        return redirect()->to("menu/index/{$tip}");
     }
 
     public function delete_all($tip = 1, $p = 1, $o = 0)
     {
         $this->web_menu_model->delete_all();
-        redirect("menu/index/{$tip}/{$p}/{$o}");
+
+        return redirect()->to("menu/index/{$tip}/{$p}/{$o}");
     }
 
     public function menu_lock($tip = 1, $id = '')
     {
         $this->web_menu_model->menu_lock($id, 1);
-        redirect("menu/index/{$tip}/{$p}/{$o}");
+
+        return redirect()->to("menu/index/{$tip}/{$p}/{$o}");
     }
 
     public function menu_unlock($tip = 1, $id = '')
     {
         $this->web_menu_model->menu_lock($id, 2);
-        redirect("menu/index/{$tip}/{$p}/{$o}");
+
+        return redirect()->to("menu/index/{$tip}/{$p}/{$o}");
     }
 
     public function insert_sub_menu($tip = 1, $menu = '')
     {
         $this->web_menu_model->insert_sub_menu($menu);
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 
     public function update_sub_menu($tip = 1, $menu = '', $id = '')
     {
         $this->web_menu_model->update_sub_menu($id);
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 
     public function delete_sub_menu($tip = '', $menu = '', $id = 0)
     {
         $this->web_menu_model->delete($id);
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 
     public function delete_all_sub_menu($tip = 1, $menu = '')
     {
         $this->web_menu_model->delete_all();
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 
     public function menu_lock_sub_menu($tip = 1, $menu = '', $id = '')
     {
         $this->web_menu_model->menu_lock($id, 1);
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 
     public function menu_unlock_sub_menu($tip = 1, $menu = '', $id = '')
     {
         $this->web_menu_model->menu_lock($id, 2);
-        redirect("menu/sub_menu/{$tip}/{$menu}");
+
+        return redirect()->to("menu/sub_menu/{$tip}/{$menu}");
     }
 }
