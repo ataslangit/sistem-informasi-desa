@@ -14,25 +14,17 @@ class Siteman extends CI_Controller
         $this->load->model('config_model');
     }
 
-    public function index()
+    /**
+     * Menampilkan halaman login
+     */
+    public function index(): string
     {
-        $this->user_model->logout();
-        $header = [
-            'desa' => $this->config_model->get_data(),
+        $data = [
+            'title' => 'Masuk',
+            'desa'  => $this->config_model->get_data(),
         ];
 
-        if (! isset($_SESSION['siteman'])) {
-            $_SESSION['siteman'] = 0;
-        }
-        $_SESSION['success']    = 0;
-        $_SESSION['per_page']   = 10;
-        $_SESSION['cari']       = '';
-        $_SESSION['pengumuman'] = 0;
-        $_SESSION['sesi']       = 'kosong';
-        $_SESSION['timeout']    = 0;
-
-        echo view('siteman', $header);
-        $_SESSION['siteman'] = 0;
+        return view('siteman/login', $data);
     }
 
     public function auth()

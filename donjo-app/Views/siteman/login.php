@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
+<?= $this->extend('siteman/template') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <title>SID <?= VERSI_SID ?> Login</title>
-
+<?= $this->section('css') ?>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login-new.css')?>" media="screen">
-</head>
+<?= $this->endSection() ?>
 
-<body>
-    <div id="loginform">
+<?= $this->section('content') ?>
+<div id="loginform">
         <a href="<?php echo site_url('first')?>">
             <div id="facebook">
                 <div id="sid">SID</div>
@@ -27,7 +23,7 @@
                 <input name="username" type="text" placeholder="username" value="" required>
                 <input name="password" type="password" placeholder="password" value="" required>
                 <button type="submit" id="but">LOGIN</button>
-                <?php if($_SESSION['siteman']==-1){?>
+                <?php /* if($_SESSION['siteman']==-1){?>
                 <div id="note">
                     Login Gagal. Username atau Password yang Anda masukkan salah!
                 </div>
@@ -35,13 +31,14 @@
                 <div id="note">
                     Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
                 </div>
-                <?php } unset($_SESSION['siteman']);?>
+                <?php } unset($_SESSION['siteman']); */ ?>
             </form>
         </div>
         <div id="facebook2">
             <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?php echo base_url('assets/images/logo-combine.png') ?>"></a></div>
         </div>
     </div>
-</body>
+<?= $this->endSection() ?>
 
-</html>
+<?= $this->section('js') ?>
+<?= $this->endSection() ?>
