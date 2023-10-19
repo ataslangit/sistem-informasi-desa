@@ -1,4 +1,8 @@
-<?php if (isset($_SESSION['mandiri']) && $_SESSION['mandiri'] !== 1 && $_SESSION['mandiri_wait'] === 1) { ?>
+<?php
+
+use CodeIgniter\Database\RawSql;
+
+ if (isset($_SESSION['mandiri']) && $_SESSION['mandiri'] !== 1 && $_SESSION['mandiri_wait'] === 1) { ?>
     <div class="box box-primary box-solid">
         <div class="box-header">
             <h3 class="box-title"><i class="fa fa-user"></i> Layanan Mandiri</h3><br>
@@ -194,37 +198,54 @@
     <div class="box-body">
         <?php
         $ip = $_SERVER['REMOTE_ADDR'] . '{}';
+        $builder = \Config\Database::connect()->table('sys_traffic');
+
         if (!isset($_SESSION['MemberOnline'])) {
-            $cek = $this->db->query("SELECT Tanggal,ipAddress FROM sys_traffic WHERE Tanggal='" . date('Y-m-d') . "'");
-            if ($cek->num_rows() === 0) {
-                $up                       = $this->db->query("INSERT INTO sys_traffic (Tanggal,ipAddress,Jumlah) VALUES ('" . date('Y-m-d') . "','" . $ip . "','1')");
+            $cek = $builder->select('Tanggal,ipAddress')->where('Tanggal', date('Y-m-d'));
+
+            if ($cek->countAllResults(false) === 0) {
+                $builder->insert([
+                    'Tanggal' => date('Y-m-d'),
+                    'ipAddress' => $ip,
+                    'Jumlah' => '1'
+                ]);
+
                 $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
             } else {
-                $res                      = $cek->row(0);
+                $res                      = $cek->get()->getRow(0);
                 $ipaddr                   = $res->ipAddress;
-                $up                       = $this->db->query("UPDATE sys_traffic SET Jumlah=Jumlah + 1,ipAddress='" . $ip . "' WHERE Tanggal='" . date('Y-m-d') . "'");
+
+                $builder->where('Tanggal', date('Y-m-d'))->update([
+                    'Jumlah' => new RawSql('Jumlah + 1'),
+                    'ipAddress' => $ip
+                ]);
+
                 $_SESSION['MemberOnline'] = date('Y-m-d H:i:s');
             }
         }
-        $rs = $this->db->query('SELECT Jumlah AS Visitor FROM sys_traffic WHERE Tanggal="' . date('Y-m-d') . '" LIMIT 1');
-        if ($rs->num_rows() > 0) {
-            $visitor = $rs->row(0);
+
+        $rs = $builder->select('Jumlah AS Visitor')->where('Tanggal', date('Y-m-d'));
+
+        if ($rs->countAllResults(false) > 0) {
+            $visitor = $rs->get()->getRow(0);
             $today   = $visitor->Visitor;
         } else {
             $today = 0;
         }
-        $strSQL = 'SELECT Jumlah AS Visitor FROM sys_traffic WHERE
-	Tanggal=(SELECT DATE_ADD(CURDATE(),INTERVAL -1 DAY) FROM sys_traffic LIMIT 1)
-	LIMIT 1';
-        $rs = $this->db->query($strSQL);
-        if ($rs->num_rows() > 0) {
-            $visitor   = $rs->row(0);
+
+        $subQuery = \Config\Database::connect()->table('sys_traffic')->select('DATE_ADD(CURDATE(),INTERVAL -1 DAY)');
+        $strSQL = $builder->select('Jumlah AS Visitor')->where('Tanggal', $subQuery )->limit(1);
+
+        $rs = $strSQL;
+        if ($rs->countAllResults() > 0) {
+            $visitor   = $rs->get()->getRow(0);;
             $yesterday = $visitor->Visitor;
         } else {
             $yesterday = 0;
         }
-        $rs      = $this->db->query('SELECT SUM(Jumlah) as Total FROM sys_traffic');
-        $visitor = $rs->row(0);
+
+        $rs = $builder->select('SUM(Jumlah) AS Total');
+        $visitor = $rs->get()->getRow(0);
         $total   = $visitor->Total;
         function num_toimage($tot, $jumlah)
         {
