@@ -20,7 +20,7 @@ jobs:
     if: >-
       github.event.review.state == 'APPROVED' &&
       github.event.review.user.id == 2387514
-      
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
           MERGE_METHOD: "squash"
           MERGE_LABELS: "dependencies"
           MERGE_COMMIT_MESSAGE: "(#{pullRequest.number}) ${{ steps.getTitle.outputs.title }}"
-          
+
       - if: steps.squashmerge.outputs.mergeResult == 'merged'
         name: lock PR
-        run: gh pr lock $PR_URL -r "resolved"
+        run: gh pr lock ${{ github.event.issue.number }} -r "resolved"
