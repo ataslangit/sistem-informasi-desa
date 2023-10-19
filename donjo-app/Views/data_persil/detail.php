@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		view('data_persil/menu_kiri.php')
+		echo view('data_persil/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane">
@@ -21,7 +21,7 @@
 				</div>";
 				$_SESSION["success"]==0;
 			}
-			
+
 			?>
 
                         <?php
@@ -87,7 +87,7 @@ echo "
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		view('data_persil/panduan.php');
+		echo view('data_persil/panduan.php');
 		?>
             </td>
         </tr>

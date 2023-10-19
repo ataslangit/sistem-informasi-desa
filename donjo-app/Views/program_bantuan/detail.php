@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		view('program_bantuan/menu_kiri.php')
+		echo view('program_bantuan/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane">
@@ -30,7 +30,7 @@
 							</table>
 						</div>
 						";
-						
+
 						if($program[0]["status"] == 0){
 							echo "
 							<div>
@@ -57,7 +57,7 @@
 									}
 									echo "
 									];
-									
+
 									$('#nik').flexbox(nik, {
 										resultTemplate: '<div><label>No ID : </label>{name}</div><div>{info}</div>',
 										watermark: \"Cari nama di sini..\",
@@ -65,7 +65,7 @@
 										noResultsText :'Tidak ada no nik yang sesuai..',
 										onSelect: function() {
 											$('#'+'main').submit();
-									} 
+									}
 									});
 								});
 							</script>
@@ -83,7 +83,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
+                                    <?php
 							$nomer = 0;
 							if(is_array($peserta)){
 								foreach ($peserta as $key=>$item){
@@ -94,7 +94,7 @@
                                         <td><a href="<?php echo site_url('program_bantuan/peserta/'.$program[0]["sasaran"].'/'.$item["nik"].'/')?>"><?php echo $item["nama"] ?></a></td>
                                         <td><?php echo $item["info"];?></td>
                                     </tr>
-                                    <?php 
+                                    <?php
 								}
 							}
 							?>
