@@ -75,10 +75,10 @@ class Analisis_indikator extends CI_Controller
         $data['list_kategori']   = $this->analisis_indikator_model->list_kategori();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -98,10 +98,10 @@ class Analisis_indikator extends CI_Controller
         $header                  = $this->header_model->get_data();
         $data['analisis_master'] = $this->analisis_indikator_model->get_analisis_master();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/form', $data);
+        echo view('footer');
     }
 
     public function parameter($id = '')
@@ -117,10 +117,10 @@ class Analisis_indikator extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/parameter/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/parameter/table', $data);
+        echo view('footer');
     }
 
     public function form_parameter($in = '', $id = '')
@@ -136,10 +136,10 @@ class Analisis_indikator extends CI_Controller
         $data['analisis_master']    = $this->analisis_indikator_model->get_analisis_master();
         $data['analisis_indikator'] = $this->analisis_indikator_model->get_analisis_indikator($in);
 
-        //	view('header', $header);
-        //	view('analisis_master/nav');
-        view('analisis_indikator/parameter/ajax_form', $data);
-        //	view('footer');
+        //	echo view('header', $header);
+        //	echo view('analisis_master/nav');
+        echo view('analisis_indikator/parameter/ajax_form', $data);
+        //	echo view('footer');
     }
 
     public function menu($id = '')
@@ -148,10 +148,10 @@ class Analisis_indikator extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_indikator/menu', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_indikator/menu', $data);
+        echo view('footer');
     }
 
     public function search()

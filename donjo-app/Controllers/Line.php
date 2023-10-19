@@ -49,11 +49,11 @@ class Line extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -71,11 +71,11 @@ class Line extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/form', $data);
+        echo view('footer');
     }
 
     public function sub_line($line = 1)
@@ -85,11 +85,11 @@ class Line extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/sub_line_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/sub_line_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_line($line = 0, $id = 0)
@@ -101,7 +101,7 @@ class Line extends CI_Controller
             $data['line']        = null;
             $data['form_action'] = site_url("line/insert_sub_line/{$line}");
         }
-        view('line/ajax_add_sub_line_form', $data);
+        echo view('line/ajax_add_sub_line_form', $data);
     }
 
     public function search()

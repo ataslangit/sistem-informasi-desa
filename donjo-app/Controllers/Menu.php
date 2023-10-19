@@ -54,10 +54,10 @@ class Menu extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 1;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/table', $data);
+        echo view('footer');
     }
 
     public function form($tip = 1, $id = '')
@@ -78,10 +78,10 @@ class Menu extends CI_Controller
         $data['tip'] = $tip;
 
         $nav['act'] = 1;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/form', $data);
+        echo view('footer');
     }
 
     public function sub_menu($tip = 1, $menu = 1)
@@ -92,10 +92,10 @@ class Menu extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 1;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('menu/sub_menu_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('menu/sub_menu_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_menu($tip = 1, $menu = '', $id = '')
@@ -112,7 +112,7 @@ class Menu extends CI_Controller
             $data['submenu']     = null;
             $data['form_action'] = site_url("menu/insert_sub_menu/{$tip}/{$menu}");
         }
-        view('menu/ajax_add_sub_menu_form', $data);
+        echo view('menu/ajax_add_sub_menu_form', $data);
     }
 
     public function search($tip = 1)

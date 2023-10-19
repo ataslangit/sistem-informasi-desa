@@ -67,10 +67,10 @@ class Plan extends CI_Controller
         $header     = $this->header_model->get_data();
         $nav['act'] = 3;
 
-        view('header-gis', $header);
-        view('plan/nav', $nav);
-        view('lokasi/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('lokasi/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -92,11 +92,11 @@ class Plan extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('lokasi/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('lokasi/form', $data);
+        echo view('footer');
     }
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
@@ -111,7 +111,7 @@ class Plan extends CI_Controller
 
         $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
-        view('lokasi/maps', $data);
+        echo view('lokasi/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')

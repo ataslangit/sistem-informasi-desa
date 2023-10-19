@@ -33,10 +33,10 @@ class Database extends CI_Controller
     {
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('nav', $nav);
-        view('export/exp');
-        view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('export/exp');
+        echo view('footer');
     }
 
     public function import()
@@ -45,10 +45,10 @@ class Database extends CI_Controller
         $data['form_action']  = site_url('database/import_dasar');
         $data['form_action3'] = site_url('database/ppls_individu');
         $header               = $this->header_model->get_data();
-        view('header', $header);
-        view('nav', $nav);
-        view('import/imp', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/imp', $data);
+        echo view('footer');
     }
 
     public function siak()
@@ -56,10 +56,10 @@ class Database extends CI_Controller
         $nav['act']          = 6;
         $data['form_action'] = site_url('database/import_siak');
         $header              = $this->header_model->get_data();
-        view('header', $header);
-        view('nav', $nav);
-        view('import/siak', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/siak', $data);
+        echo view('footer');
     }
 
     public function import_ppls()
@@ -69,10 +69,10 @@ class Database extends CI_Controller
         $data['form_action2'] = site_url('database/ppls_rumahtangga');
         // $data['form_action'] = site_url("database/ppls_kuisioner");
         $header = $this->header_model->get_data();
-        view('header', $header);
-        view('nav', $nav);
-        view('import/ppls', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('import/ppls', $data);
+        echo view('footer');
     }
 
     public function backup()
@@ -80,10 +80,10 @@ class Database extends CI_Controller
         $nav['act']          = 3;
         $data['form_action'] = site_url('database/restore');
         $header              = $this->header_model->get_data();
-        view('header', $header);
-        view('nav', $nav);
-        view('database/backup', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('nav', $nav);
+        echo view('database/backup', $data);
+        echo view('footer');
     }
 
     public function export_dasar()
@@ -102,20 +102,20 @@ class Database extends CI_Controller
         $data['form_action']  = site_url('database/import_dasar');
         $data['form_action2'] = site_url('database/import_akp');
         $header               = $this->header_model->get_data();
-        view('header', $header);
-        view('export/nav', $nav);
-        view('export/imp', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('export/nav', $nav);
+        echo view('export/imp', $data);
+        echo view('footer');
     }
 
     public function pre_migrate()
     {
         $nav['act'] = 3;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('export/nav', $nav);
-        view('export/mig');
-        view('footer');
+        echo view('header', $header);
+        echo view('export/nav', $nav);
+        echo view('export/mig');
+        echo view('footer');
     }
 
     public function migrate()
@@ -180,7 +180,7 @@ class Database extends CI_Controller
 
     public function exec_backup()
     {
-        view('database/export');
+        echo view('database/export');
         //	redirect('database/backup');
     }
 
@@ -205,12 +205,12 @@ class Database extends CI_Controller
     public function export_excel()
     {
         $data['main'] = $this->export_model->export_excel();
-        view('export/penduduk_excel', $data);
+        echo view('export/penduduk_excel', $data);
     }
 
     public function export_csv()
     {
         $data['main'] = $this->export_model->export_excel();
-        view('export/penduduk_csv', $data);
+        echo view('export/penduduk_csv', $data);
     }
 }

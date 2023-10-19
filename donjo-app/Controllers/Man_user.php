@@ -52,10 +52,10 @@ class Man_user extends CI_Controller
         $header          = $this->header_model->get_data();
         $menu['act']     = 'man_user';
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -74,10 +74,10 @@ class Man_user extends CI_Controller
         $data['grup'] = $this->user_model->list_grup();
         $header       = $this->header_model->get_data();
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_form', $data);
+        echo view('footer');
     }
 
     public function search()

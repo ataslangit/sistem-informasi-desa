@@ -62,11 +62,11 @@ class Garis extends CI_Controller
         $header               = $this->header_model->get_data();
         $nav['act']           = 1;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('garis/table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('garis/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -85,11 +85,11 @@ class Garis extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 1;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('garis/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('garis/form', $data);
+        echo view('footer');
     }
 
     public function ajax_garis_maps($p = 1, $o = 0, $id = '')
@@ -104,7 +104,7 @@ class Garis extends CI_Controller
 
         $data['desa']        = $this->config->get_data();
         $data['form_action'] = site_url("garis/update_maps/{$p}/{$o}/{$id}");
-        view('garis/maps', $data);
+        echo view('garis/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')

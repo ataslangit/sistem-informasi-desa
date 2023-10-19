@@ -80,10 +80,10 @@ class Analisis_grafik extends CI_Controller
         $data['analisis_master'] = $this->analisis_grafik_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_grafik/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_grafik/table', $data);
+        echo view('footer');
     }
 
     public function time($p = 1, $o = 0)
@@ -110,10 +110,10 @@ class Analisis_grafik extends CI_Controller
         $data['periode']         = $this->analisis_grafik_model->list_periode();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_grafik/time', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_grafik/time', $data);
+        echo view('footer');
     }
 
     public function dusun()

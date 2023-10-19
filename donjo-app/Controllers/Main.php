@@ -55,7 +55,7 @@ class Main extends CI_Controller
 
     public function initial()
     {
-        view('install');
+        echo view('install');
     }
 
     public function install()
@@ -67,12 +67,12 @@ class Main extends CI_Controller
             return redirect()->to('/');
         }
 
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function init($out = null)
     {
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function auth()
@@ -81,7 +81,7 @@ class Main extends CI_Controller
         $header = [
             'desa' => $this->config_model->get_data(),
         ];
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 
     public function logout()
@@ -92,6 +92,6 @@ class Main extends CI_Controller
             'desa' => $this->config_model->get_data(),
         ];
 
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 }

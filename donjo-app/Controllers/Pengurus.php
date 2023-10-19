@@ -44,11 +44,11 @@ class Pengurus extends CI_Controller
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
-        view('home/nav', $nav);
-        view('home/pengurus', $data);
-        view('footer');
+        echo view('home/nav', $nav);
+        echo view('home/pengurus', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -63,12 +63,12 @@ class Pengurus extends CI_Controller
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        view('home/nav', $nav);
-        view('home/pengurus_form', $data);
-        view('footer');
+        echo view('home/nav', $nav);
+        echo view('home/pengurus_form', $data);
+        echo view('footer');
     }
 
     public function filter()

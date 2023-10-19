@@ -53,10 +53,10 @@ class Dokumen extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 4;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -75,10 +75,10 @@ class Dokumen extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/form', $data);
+        echo view('footer');
     }
 
     public function search()

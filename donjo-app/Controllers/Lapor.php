@@ -54,10 +54,10 @@ class Lapor extends CI_Controller
         $header          = $this->header_model->get_data();
         $nav['act']      = 0;
 
-        view('header', $header);
-        view('lapor/nav', $nav);
-        view('lapor/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('lapor/nav', $nav);
+        echo view('lapor/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -78,11 +78,11 @@ class Lapor extends CI_Controller
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        view('header', $header);
-        view('web/spacer');
-        view('web/nav', $nav);
-        view('lapor/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/spacer');
+        echo view('web/nav', $nav);
+        echo view('lapor/form', $data);
+        echo view('footer');
     }
 
     public function search()
