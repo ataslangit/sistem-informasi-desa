@@ -5,7 +5,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "codeigniter4/framework": "4.4.1",
-    "kenjis/ci3-to-4-upgrade-helper": "^0.1.0",
+    "kenjis/ci3-to-4-upgrade-helper": "^0.8.0",
     "totoprayogo1916/codeigniter-additional": "^1.0"
   },
   "require-dev": {
