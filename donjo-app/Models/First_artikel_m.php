@@ -7,9 +7,14 @@ class First_artikel_m extends CI_Model
 {
     public function get_headline()
     {
-        $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE headline = 1 ORDER BY tgl_upload DESC LIMIT 1 ';
-        $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $query = $this->db->select('a.*, u.nama as owner')->
+        from('artikel a')->
+        join('user u', 'a.id_user=u.id')->
+        where('headline', 1)->
+        order_by('tgl_upload', 'desc')->
+        get();
+
+        $data = $query->row_array();
         if (empty($data)) {
             $data = null;
         } else {
@@ -21,8 +26,14 @@ class First_artikel_m extends CI_Model
 
     public function get_teks_berjalan()
     {
-        $sql   = "SELECT a.isi FROM artikel a LEFT JOIN kategori k ON a.id_kategori = k.id WHERE k.kategori = 'teks_berjalan' AND k.enabled = 1";
-        $query = $this->db->query($sql);
+        $query = $this->db->select('a.isi')->
+        from('artikel a')->
+        join('kategori k', 'a.id_kategori=k.id')->
+        where([
+            'k.kategori' => 'teks_berjalan',
+            'k.enabled'  => 1,
+        ])->
+        get();
 
         return $query->result_array();
     }

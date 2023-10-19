@@ -3,7 +3,7 @@
 <body>
     <div id="content" class="container_12 clearfix">
         <div id="content-main" class="grid_7">
-            <link href="<?= asset('resources/css/surat.css') ?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/surat.css') ?>" rel="stylesheet">
             <div>
                 <table width="100%">
                     <tr> <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="" class="logo"></tr>
