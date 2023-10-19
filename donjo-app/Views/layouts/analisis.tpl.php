@@ -1,11 +1,11 @@
-<?php view('layouts/header.php');?>
+<?php echo view('layouts/header.php');?>
 <div id="contentwrapper">
     <div id="contentcolumn">
         <div class="innertube" style="padding-left:10px;">
             <?php
-						if($list_jawab){
-							view('partials/analisis.php');
-						}else{ ?>
+            if($list_jawab){
+                echo view('partials/analisis.php');
+            }else{ ?>
             <h2 class="judul">DAFTAR DATA STATISTIK ANALISIS DI TINGKAT DESA</h2>
             <h3>Klik judul Analisis untuk melihat tampilan detail data statistik</h3><br>
             <ul>
@@ -37,21 +37,19 @@
                     </div>
                 </div>
                 <?php
-							}
-						} ?>
+                }
+            } ?>
         </div>
     </div>
 </div>
 <div id="rightcolumn">
     <div class="innertube">
-        <?php view('partials/side.right.stat.php');?>
+        <?php echo view('partials/side.right.stat.php');?>
     </div>
 </div>
 
 <div id="footer">
-    <?php
-				view('partials/copywright.tpl.php');
-				?>
+    <?php echo view('partials/copywright.tpl.php'); ?>
 </div>
 </div>
 </body>

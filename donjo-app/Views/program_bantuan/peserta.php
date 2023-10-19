@@ -5,14 +5,14 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		view('program_bantuan/menu_kiri.php')
-		
-		
+		echo view('program_bantuan/menu_kiri.php')
+
+
 		?>
             </td>
             <td class="contentpane">
                 <legend>Profil Penerima Manfaat Program</legend>
-                <?php 
+                <?php
 			$profil = $program[1];
 			echo "
 			<div style=\"margin-bottom:2em;\">
@@ -22,7 +22,7 @@
 				</table>
 			</div>
 			";
-			
+
 			$programkerja = $program[0];
 			?>
                 <legend>Program yang pernah diikuti</legend>
@@ -38,9 +38,9 @@
                         </thead>
                         <tbody>
 
-                            <?php 
+                            <?php
 $nomer = 0;
-foreach ($programkerja as $item): 
+foreach ($programkerja as $item):
 	$nomer++;
 ?>
                             <tr>
@@ -56,7 +56,7 @@ foreach ($programkerja as $item):
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		view('program_bantuan/panduan.php');
+		echo view('program_bantuan/panduan.php');
 		?>
             </td>
         </tr>

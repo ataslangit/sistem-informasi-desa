@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		view('program_bantuan/menu_kiri.php')
+		echo view('program_bantuan/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane"><?php
@@ -21,12 +21,12 @@
 			</div>
 			";
 		}
-		
+
 		 ?>
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		view('program_bantuan/panduan.php')
+		echo view('program_bantuan/panduan.php')
 		?>
             </td>
         </tr>

@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class User_model extends Model
+class User_model extends CI_Model
 {
     public function siteman()
     {
@@ -73,7 +73,7 @@ class User_model extends Model
 
     public function login()
     {
-        $this->input->post('username');
+        $username = $this->input->post('username');
         $password = hash_password($this->input->post('password'));
 
         $sql   = 'SELECT id,password,id_grup,session FROM user WHERE id_grup=1 LIMIT 1';
@@ -129,7 +129,7 @@ class User_model extends Model
         $i     = 0;
         $outp  = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['username'] . "'";
             $i++;
         }
@@ -141,20 +141,22 @@ class User_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.username LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
 
-            return " AND (u.username LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND u.id_grup = {$kf}";
 
-            return " AND u.id_grup = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -214,7 +216,7 @@ class User_model extends Model
         $i     = 0;
         $j     = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             $i++;
             $j++;
@@ -304,7 +306,7 @@ class User_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM user WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);

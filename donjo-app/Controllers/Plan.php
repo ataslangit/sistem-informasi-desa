@@ -1,15 +1,22 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Plan extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Plan extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('plan_lokasi_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -17,7 +24,7 @@ class Plan extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['point'], $_SESSION['subpoint']);
 
-        redirect('plan');
+        return redirect()->to('plan');
     }
 
     public function index($p = 1, $o = 0)
@@ -60,20 +67,18 @@ class Plan extends BaseController
         $header     = $this->header_model->get_data();
         $nav['act'] = 3;
 
-        view('header-gis', $header);
-        view('plan/nav', $nav);
-        view('lokasi/table', $data);
-        view('footer');
+        echo view('header-gis', $header);
+        echo view('plan/nav', $nav);
+        echo view('lokasi/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['desa']       = $config->get_data();
+        $data['desa']       = $this->config_model->get_data();
         $data['list_point'] = $this->plan_lokasi_model->list_point();
         $data['dusun']      = $this->plan_lokasi_model->list_dusun();
 
@@ -87,17 +92,15 @@ class Plan extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 3;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('lokasi/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('lokasi/form', $data);
+        echo view('footer');
     }
 
     public function ajax_lokasi_maps($p = 1, $o = 0, $id = '')
     {
-        $config = new Config();
-
         $data['p'] = $p;
         $data['o'] = $o;
         if ($id) {
@@ -106,15 +109,16 @@ class Plan extends BaseController
             $data['lokasi'] = null;
         }
 
-        $data['desa']        = $config->get_data();
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("plan/update_maps/{$p}/{$o}/{$id}");
-        view('lokasi/maps', $data);
+        echo view('lokasi/maps', $data);
     }
 
     public function update_maps($p = 1, $o = 0, $id = '')
     {
         $this->plan_lokasi_model->update_position($id);
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 
     public function search()
@@ -125,7 +129,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function filter()
@@ -136,7 +141,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function point()
@@ -147,7 +153,8 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['point']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function subpoint()
@@ -159,42 +166,49 @@ class Plan extends BaseController
         } else {
             unset($_SESSION['subpoint']);
         }
-        redirect('plan');
+
+        return redirect()->to('plan');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_lokasi_model->insert($tip);
-        redirect("plan/index/{$tip}");
+
+        return redirect()->to("plan/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_lokasi_model->update($id);
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_lokasi_model->delete($id);
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_lokasi_model->delete_all();
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 
     public function lokasi_lock($id = '')
     {
         $this->plan_lokasi_model->lokasi_lock($id, 1);
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 
     public function lokasi_unlock($id = '')
     {
         $this->plan_lokasi_model->lokasi_lock($id, 2);
-        redirect("plan/index/{$p}/{$o}");
+
+        return redirect()->to("plan/index/{$p}/{$o}");
     }
 }

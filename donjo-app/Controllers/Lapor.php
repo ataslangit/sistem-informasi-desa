@@ -1,29 +1,30 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Lapor extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Lapor extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('web_komentar_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('lapor');
+        return redirect()->to('lapor');
     }
 
     public function index($p = 1, $o = 0)
@@ -53,10 +54,10 @@ class Lapor extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 0;
 
-        view('header', $header);
-        view('lapor/nav', $nav);
-        view('lapor/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('lapor/nav', $nav);
+        echo view('lapor/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -77,11 +78,11 @@ class Lapor extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        view('header', $header);
-        view('web/spacer');
-        view('web/nav', $nav);
-        view('lapor/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/spacer');
+        echo view('web/nav', $nav);
+        echo view('lapor/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -92,7 +93,8 @@ class Lapor extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('lapor');
+
+        return redirect()->to('lapor');
     }
 
     public function filter()
@@ -103,42 +105,49 @@ class Lapor extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('lapor');
+
+        return redirect()->to('lapor');
     }
 
     public function insert()
     {
         $this->web_komentar_model->insert();
-        redirect('lapor');
+
+        return redirect()->to('lapor');
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->web_komentar_model->update($id);
-        redirect("lapor/index/{$p}/{$o}");
+
+        return redirect()->to("lapor/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->web_komentar_model->delete($id);
-        redirect("lapor/index/{$p}/{$o}");
+
+        return redirect()->to("lapor/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_komentar_model->delete_all();
-        redirect("lapor/index/{$p}/{$o}");
+
+        return redirect()->to("lapor/index/{$p}/{$o}");
     }
 
     public function komentar_lock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 1);
-        redirect("lapor/index/{$p}/{$o}");
+
+        return redirect()->to("lapor/index/{$p}/{$o}");
     }
 
     public function komentar_unlock($id = '')
     {
         $this->web_komentar_model->komentar_lock($id, 2);
-        redirect("lapor/index/{$p}/{$o}");
+
+        return redirect()->to("lapor/index/{$p}/{$o}");
     }
 }

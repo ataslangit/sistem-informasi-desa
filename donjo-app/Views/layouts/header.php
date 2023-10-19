@@ -26,14 +26,14 @@
 
     <meta property="og:site_name" content="<?php echo unpenetration($desa['nama_desa']);?>">
     <link rel="shortcut icon" href="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>">
-    <link href="<?= base_url('build/vendors/fontawesome/css/font-awesome.min.css')?>" rel='stylesheet'>
-    <link href="<?= asset('resources/css/first.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/font-awesome.min.css')?>" rel='stylesheet'>
+    <link href="<?php echo base_url('assets/front/css/first.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/ui-buttons.css') ?>" rel="stylesheet">
-    <link href="<?= asset('resources/css/colorbox.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/front/css/colorbox.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/front/js/stscode.js') ?>"></script>
-    <script src="<?= base_url('build/vendors/jquery.min.js') ?>"></script>
-    <script src="<?= asset('resources/js/layout.js') ?>"></script>
-    <script src="<?= base_url('build/vendors/jquery.colorbox-min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/jquery.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/layout.js') ?>"></script>
+    <script src="<?php echo base_url('assets/front/js/jquery.colorbox.js') ?>"></script>
     <script>
         $(document).ready(function() {
             $(".group2").colorbox({
@@ -57,12 +57,12 @@
                     <div id="headercontent">
                         <div id="menu_vert">
                             <div id="menuwrapper">
-                                <?php view('partials/menu.tpl.php');?>
+                                <?php echo view('partials/menu.tpl.php');?>
                             </div>
                         </div>
                         <div id="menu_vert2">
                             <?php if(count($slide)>0){
-									view('layouts/slide.php');
+									echo view('layouts/slide.php');
 								} ?>
                         </div>
                     </div>
@@ -92,11 +92,11 @@
                 </div>
 
                 <?php if(count($teks_berjalan)>0){
-						view('layouts/teks_berjalan.php');
+						echo view('layouts/teks_berjalan.php');
 					} ?>
 
                 <div id="mainmenu">
-                    <?php view('partials/menu.left.php');?>
+                    <?php echo view('partials/menu.left.php');?>
                 </div>
 
             </div>

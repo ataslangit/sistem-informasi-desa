@@ -1,14 +1,20 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Man_user extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Man_user extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -16,7 +22,7 @@ class Man_user extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('man_user');
+        return redirect()->to('man_user');
     }
 
     public function index($p = 1, $o = 0)
@@ -46,10 +52,10 @@ class Man_user extends BaseController
         $header          = $this->header_model->get_data();
         $menu['act']     = 'man_user';
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -68,10 +74,10 @@ class Man_user extends BaseController
         $data['grup'] = $this->user_model->list_grup();
         $header       = $this->header_model->get_data();
 
-        view('header', $header);
-        view('man_user/nav');
-        view('man_user/manajemen_user_form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('man_user/nav');
+        echo view('man_user/manajemen_user_form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -82,7 +88,8 @@ class Man_user extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function filter()
@@ -93,42 +100,49 @@ class Man_user extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function insert()
     {
         $this->user_model->insert();
-        redirect('man_user');
+
+        return redirect()->to('man_user');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->user_model->update($id);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->user_model->delete($id);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->user_model->delete_all();
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function user_lock($id = '')
     {
         $this->user_model->user_lock($id, 0);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 
     public function user_unlock($id = '')
     {
         $this->user_model->user_lock($id, 1);
-        redirect("man_user/index/{$p}/{$o}");
+
+        return redirect()->to("man_user/index/{$p}/{$o}");
     }
 }

@@ -1,4 +1,4 @@
-<?php view('print/headjs.php');?>
+<?php echo view('print/headjs.php');?>
 
 <body>
     <div id="container">

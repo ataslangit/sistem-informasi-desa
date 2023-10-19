@@ -1,9 +1,9 @@
-<?php view('print/headjs.php');?>
+<?php echo view('print/headjs.php');?>
 
 <body>
     <div id="content" class="container_12 clearfix">
         <div id="content-main" class="grid_7">
-            <link href="<?= asset('resources/css/surat.css') ?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/surat.css') ?>" rel="stylesheet">
             <img src="<?php echo base_url('assets/files/logo/' .  $desa['logo']) ?>" alt="" width="100" height="80" class="logo">
             <div class="header">
                 <h4 class="kop">PEMERINTAH KABUPATEN <?php echo strtoupper(unpenetration($desa['nama_kabupaten']))?> </h4>

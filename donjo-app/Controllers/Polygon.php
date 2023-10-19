@@ -1,14 +1,26 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Polygon extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Polygon extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('user_model');
+
+        $this->load->model('header_model');
+        $this->load->model('plan_polygon_model');
+    }
+
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('polygon');
+        return redirect()->to('polygon');
     }
 
     public function index($p = 1, $o = 0)
@@ -38,11 +50,11 @@ class Polygon extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 5;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('polygon/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -60,11 +72,11 @@ class Polygon extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('polygon/form', $data);
+        echo view('footer');
     }
 
     public function sub_polygon($polygon = 1)
@@ -74,11 +86,11 @@ class Polygon extends BaseController
         $header             = $this->header_model->get_data();
         $nav['act']         = 5;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/sub_polygon_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('polygon/sub_polygon_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_polygon($polygon = 0, $id = 0)
@@ -93,10 +105,10 @@ class Polygon extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 5;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('polygon/ajax_add_sub_polygon_form', $data);
+        echo view('plan/nav', $nav);
+        echo view('polygon/ajax_add_sub_polygon_form', $data);
     }
 
     public function search()
@@ -107,7 +119,8 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('polygon');
+
+        return redirect()->to('polygon');
     }
 
     public function filter()
@@ -118,78 +131,91 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('polygon');
+
+        return redirect()->to('polygon');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_polygon_model->insert($tip);
-        redirect("polygon/index/{$tip}");
+
+        return redirect()->to("polygon/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_polygon_model->update($id);
-        redirect("polygon/index/{$p}/{$o}");
+
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_polygon_model->delete($id);
-        redirect("polygon/index/{$p}/{$o}");
+
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_polygon_model->delete_all();
-        redirect("polygon/index/{$p}/{$o}");
+
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function polygon_lock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 1);
-        redirect("polygon/index/{$p}/{$o}");
+
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function polygon_unlock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 2);
-        redirect("polygon/index/{$p}/{$o}");
+
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function insert_sub_polygon($polygon = '')
     {
         $this->plan_polygon_model->insert_sub_polygon($polygon);
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function update_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->update_sub_polygon($id);
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function delete_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->delete_sub_polygon($id);
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function delete_all_sub_polygon($polygon = '')
     {
         $this->plan_polygon_model->delete_all_sub_polygon();
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function polygon_lock_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 1);
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function polygon_unlock_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 2);
-        redirect("polygon/sub_polygon/{$polygon}");
+
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 }

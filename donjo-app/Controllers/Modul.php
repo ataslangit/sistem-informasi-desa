@@ -1,22 +1,29 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Modul extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Modul extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('modul_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
+        $this->load->model('header_model');
     }
 
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('modul');
+        return redirect()->to('modul');
     }
 
     public function index()
@@ -37,11 +44,11 @@ class Modul extends BaseController
         $nav['act']      = 1;
         $header          = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
-        view('setting/nav', $nav);
-        view('setting/modul/table', $data);
-        view('footer');
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/table', $data);
+        echo view('footer');
     }
 
     public function form($id = '')
@@ -56,12 +63,12 @@ class Modul extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
 
         $nav['act'] = 1;
-        view('setting/nav', $nav);
-        view('setting/modul/form', $data);
-        view('footer');
+        echo view('setting/nav', $nav);
+        echo view('setting/modul/form', $data);
+        echo view('footer');
     }
 
     public function filter()
@@ -72,7 +79,8 @@ class Modul extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function search()
@@ -83,30 +91,35 @@ class Modul extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function insert()
     {
         $this->modul_model->insert();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function update($id = '')
     {
         $this->modul_model->update($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete($id = '')
     {
         $this->modul_model->delete($id);
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 
     public function delete_all()
     {
         $this->modul_model->delete_all();
-        redirect('modul');
+
+        return redirect()->to('modul');
     }
 }

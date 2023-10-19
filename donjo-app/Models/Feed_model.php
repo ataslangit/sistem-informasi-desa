@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Feed_model extends Model
+class Feed_model extends CI_Model
 {
     public function list_feeds()
     {
@@ -15,7 +15,7 @@ class Feed_model extends Model
         $hasil = [];
         $i     = 0;
         if ($query->num_rows() > 0) {
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $hasil[$i]['no']       = $data[$i]['id'];
                 $hasil[$i]['tgl']      = $data[$i]['tgl_upload'];
                 $hasil[$i]['judul']    = $data[$i]['judul'];

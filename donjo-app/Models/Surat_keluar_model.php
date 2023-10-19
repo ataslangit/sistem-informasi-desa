@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Surat_keluar_model extends Model
+class Surat_keluar_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Surat_keluar_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['no_surat'] . "'";
             $i++;
         }
@@ -26,11 +26,12 @@ class Surat_keluar_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.no_surat LIKE '{$kw}' OR u.id_pend LIKE '{$kw}')";
 
-            return " AND (u.no_surat LIKE '{$kw}' OR u.id_pend LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
@@ -39,10 +40,12 @@ class Surat_keluar_model extends Model
         if (isset($_SESSION['nik'])) {
             $kf = $_SESSION['nik'];
             if ($kf === '0') {
-                return '';
+                $filter_sql = '';
+            } else {
+                $filter_sql = " AND n.id = '" . $kf . "'";
             }
 
-            return " AND n.id = '" . $kf . "'";
+            return $filter_sql;
         }
     }
 
@@ -50,10 +53,12 @@ class Surat_keluar_model extends Model
     {
         $kf = $nik;
         if ($kf === 0) {
-            return '';
+            $filterku_sql = '';
+        } else {
+            $filterku_sql = " AND u.id_pend = '" . $kf . "'";
         }
 
-        return " AND u.id_pend = '" . $kf . "'";
+        return $filterku_sql;
     }
 
     public function paging($p = 1, $o = 0)
@@ -117,7 +122,7 @@ class Surat_keluar_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 3;
             $i++;
             $j++;
@@ -159,7 +164,7 @@ class Surat_keluar_model extends Model
         $i = 0;
         $j = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
             $data[$i]['t']  = $data[$i]['id_pend'];
 
@@ -243,7 +248,7 @@ class Surat_keluar_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = 'DELETE FROM log_surat WHERE id=?';
                 $outp = $this->db->query($sql, [$id]);
@@ -267,7 +272,7 @@ class Surat_keluar_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['alamat'] = 'Alamat :' . $data[$i]['nama'];
             $i++;
         }

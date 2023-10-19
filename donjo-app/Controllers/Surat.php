@@ -1,23 +1,25 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Surat extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Surat extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('config_model');
+        $this->load->model('header_model');
+        $this->load->model('penduduk_model');
+        $this->load->model('surat_keluar_model');
+        $this->load->model('surat_model');
     }
 
     public function index()
@@ -29,23 +31,23 @@ class Surat extends BaseController
         $data['menu_surat2']   = $this->surat_model->list_surat2();
         $data['surat_favorit'] = $this->surat_model->list_surat_fav();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 1;
 
-        view('surat/nav', $nav);
-        view('surat/format_surat', $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/format_surat', $data);
+        echo view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('surat/nav', $nav);
-        view('surat/panduan');
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view('surat/panduan');
+        echo view('footer');
     }
 
     public function form($url = '')
@@ -83,16 +85,19 @@ class Surat extends BaseController
         $data['form_action2'] = site_url("surat/doc/{$url}");
         $nav['act']           = 1;
         $header               = $this->header_model->get_data();
-        view('header', $header);
+        echo view('header', $header);
 
-        view('surat/nav', $nav);
-        view("surat/form/{$url}", $data);
-        view('footer');
+        echo view('surat/nav', $nav);
+        echo view("surat/form/{$url}", $data);
+        echo view('footer');
     }
 
     public function cetak($url = '')
     {
-        $config = new Config();
+        $f = $url;
+        $g = $_POST['pamong'];
+        $u = $_SESSION['user'];
+        $z = $_POST['nomor'];
 
         $id                       = $_POST['nik'];
         $data['input']            = $_POST;
@@ -104,13 +109,12 @@ class Surat extends BaseController
         $data['pribadi'] = $this->surat_model->get_data_pribadi($id);
         $data['kk']      = $this->surat_model->get_data_kk($id);
 
-        $data['desa']   = $config->get_data();
+        $data['desa']   = $this->config_model->get_data();
         $data['pamong'] = $this->surat_model->get_pamong($_POST['pamong']);
 
         $data['pengikut'] = $this->surat_model->pengikut();
-        // $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z); // ???
-
-        view('surat/print/print_' . $url . '', $data);
+        $this->surat_keluar_model->log_surat($f, $id, $g, $u, $z);
+        echo view('surat/print/print_' . $url . '', $data);
     }
 
     public function doc($url = '')
@@ -131,9 +135,9 @@ class Surat extends BaseController
     {
         $cari = $this->input->post('nik');
         if ($cari !== '') {
-            redirect("surat/form/{$cari}");
-        } else {
-            redirect('surat');
+            return redirect()->to("surat/form/{$cari}");
         }
+
+        return redirect()->to('surat');
     }
 }

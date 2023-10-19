@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_gallery_m extends Model
+class First_gallery_m extends CI_Model
 {
     public function paging($p = 1)
     {

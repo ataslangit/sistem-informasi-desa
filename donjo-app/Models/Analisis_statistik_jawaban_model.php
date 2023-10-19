@@ -1,10 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\AnalisisPeriode;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Analisis_statistik_jawaban_model extends Model
+class Analisis_statistik_jawaban_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -15,7 +14,7 @@ class Analisis_statistik_jawaban_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['pertanyaan'] . "'";
             $i++;
         }
@@ -37,74 +36,82 @@ class Analisis_statistik_jawaban_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
 
-            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND u.act_analisis = {$kf}";
 
-            return " AND u.act_analisis = {$kf}";
+            return $filter_sql;
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf = $_SESSION['analisis_master'];
+            $kf         = $_SESSION['analisis_master'];
+            $filter_sql = " AND u.id_master = {$kf}";
 
-            return " AND u.id_master = {$kf}";
+            return $filter_sql;
         }
     }
 
     public function tipe_sql()
     {
         if (isset($_SESSION['tipe'])) {
-            $kf = $_SESSION['tipe'];
+            $kf         = $_SESSION['tipe'];
+            $filter_sql = " AND u.id_tipe = {$kf}";
 
-            return " AND u.id_tipe = {$kf}";
+            return $filter_sql;
         }
     }
 
     public function kategori_sql()
     {
         if (isset($_SESSION['kategori'])) {
-            $kf = $_SESSION['kategori'];
+            $kf         = $_SESSION['kategori'];
+            $filter_sql = " AND u.id_kategori = {$kf}";
 
-            return " AND u.id_kategori = {$kf}";
+            return $filter_sql;
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf = $_SESSION['dusun'];
+            $kf        = $_SESSION['dusun'];
+            $dusun_sql = " AND a.dusun = '{$kf}'";
 
-            return " AND a.dusun = '{$kf}'";
+            return $dusun_sql;
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf = $_SESSION['rw'];
+            $kf     = $_SESSION['rw'];
+            $rw_sql = " AND a.rw = '{$kf}'";
 
-            return " AND a.rw = '{$kf}'";
+            return $rw_sql;
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf = $_SESSION['rt'];
+            $kf     = $_SESSION['rt'];
+            $rt_sql = " AND a.rt = '{$kf}'";
 
-            return " AND a.rt = '{$kf}'";
+            return $rt_sql;
         }
     }
 
@@ -192,7 +199,7 @@ class Analisis_statistik_jawaban_model extends Model
         $i   = 0;
         $j   = $offset;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $j + 1;
 
             $data[$i]['jumlah'] = '-';
@@ -263,7 +270,7 @@ class Analisis_statistik_jawaban_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $data[$i]['no'] = $i + 1;
 
             $sql = "SELECT COUNT(r.id_subjek) AS jml FROM analisis_respon r {$sbj} WHERE r.id_parameter = ? AND r.id_periode = {$per} ";
@@ -312,7 +319,7 @@ class Analisis_statistik_jawaban_model extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             if ($data[$i]['sex'] === 1) {
                 $data[$i]['sex'] = 'Laki-laki';
             } else {
@@ -369,9 +376,11 @@ class Analisis_statistik_jawaban_model extends Model
 
     public function get_aktif_periode()
     {
-        $analisisPeriode = new AnalisisPeriode();
+        $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
+        $query = $this->db->query($sql, $_SESSION['analisis_master']);
+        $data  = $query->row_array();
 
-        return $analisisPeriode->get_periode()['id'];
+        return $data['id'];
     }
 
     public function list_dusun()

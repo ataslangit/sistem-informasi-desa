@@ -15,9 +15,9 @@
                 interval: 2000
             }).autoscroll();
             $('#aside').prepend('<a class="print-preview">Cetak </a>');
-            $('a.print-preview').printPreview();
+            $('a.print-preview').printPreecho view();
             var code = 80;
-            $.printPreview.loadPrintPreview();
+            $.printPreview.loadPrintPreecho view();
         });
 
     </script>

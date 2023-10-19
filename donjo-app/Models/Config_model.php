@@ -1,9 +1,14 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Config_model extends Model
+class Config_model extends CI_Model
 {
+    public function __construct()
+    {
+        $this->load->database('default');
+    }
+
     public function gawe_surat()
     {
         $sql   = 'SELECT kunci,favorit FROM tweb_surat_format WHERE 1;';
@@ -56,6 +61,27 @@ class Config_model extends Model
         }
     }
 
+    public function get_data(bool $return_array = false)
+    {
+        $query = $this->db->get('config');
+
+        if ($return_array) {
+            return $query->result_array();
+        }
+
+        return $query->row_array();
+    }
+
+    public function insert()
+    {
+        $outp = $this->db->insert('config', $_POST);
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
     public function update($id = 0)
     {
         $data        = $_POST;
@@ -81,6 +107,34 @@ class Config_model extends Model
         $pamong['pamong_nip']  = $data['nip_kepala_desa'];
         $this->db->where('pamong_id', '707');
         $outp = $this->db->update('tweb_desa_pamong', $pamong);
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function update_kantor()
+    {
+        $data = $_POST;
+        $id   = '1';
+        $this->db->where('id', $id);
+        $outp = $this->db->update('config', $data);
+
+        if ($outp) {
+            $_SESSION['success'] = 1;
+        } else {
+            $_SESSION['success'] = -1;
+        }
+    }
+
+    public function update_wilayah()
+    {
+        $data = $_POST;
+        $id   = '1';
+        $this->db->where('id', $id);
+        $outp = $this->db->update('config', $data);
+
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -187,7 +241,7 @@ class Config_model extends Model
         $i = 0;
         $m = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $jwb = $data[$i]['jawaban'];
             $id  = $data[$i]['id'];
 

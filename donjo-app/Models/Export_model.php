@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Export_model extends Model
+class Export_model extends CI_Model
 {
     public function export_dasar()
     {
@@ -70,8 +70,8 @@ class Export_model extends Model
         }
         $return .= '</cluster>';
 
-        $result = mysql_query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
-        mysql_num_fields($result);
+        $result     = mysql_query('SELECT * FROM tweb_wil_clusterdesa WHERE 1');
+        $num_fields = mysql_num_fields($result);
         header('Content-type: application/octet-stream');
         header('Content-Disposition: attachment; filename=data_dasar(' . date('d-m-Y') . ').sid');
         echo $return;
@@ -118,13 +118,13 @@ class Export_model extends Model
         $data  = $query->result_array();
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $sql2   = 'SELECT u.*,(SELECT COUNT(id) FROM analisis_parameter WHERE id_indikator = u.id) AS jml FROM analisis_indikator u WHERE id_master = 1 ORDER BY bobot';
             $query2 = $this->db->query($sql2);
             $res    = $query2->result_array();
             $j      = 0;
 
-            while ($j < (is_countable($res) ? count($res) : 0)) {
+            while ($j < count($res)) {
                 $updx['id_subjek']    = $data[$i]['id'];
                 $updx['id_indikator'] = $res[$j]['id'];
                 $jm                   = $res[$j]['jml'];
@@ -134,7 +134,7 @@ class Export_model extends Model
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
                 $jaw    = $queryx->result_array();
 
-                $numbers = random_int($jaw[0]['id'], $jaw[$jm]['id']);
+                $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
 
                 $updx['id_parameter'] = $numbers;
                 $updx['id_periode']   = 1;
@@ -170,13 +170,13 @@ class Export_model extends Model
         $data  = $query->result_array();
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $sql2   = 'SELECT u.*,(SELECT COUNT(id) FROM analisis_parameter WHERE id_indikator = u.id) AS jml FROM analisis_indikator u WHERE id_master = 2 ORDER BY bobot';
             $query2 = $this->db->query($sql2);
             $res    = $query2->result_array();
             $j      = 0;
 
-            while ($j < (is_countable($res) ? count($res) : 0)) {
+            while ($j < count($res)) {
                 $updx['id_subjek']    = $data[$i]['id'];
                 $updx['id_indikator'] = $res[$j]['id'];
                 $jm                   = $res[$j]['jml'];
@@ -186,7 +186,7 @@ class Export_model extends Model
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
                 $jaw    = $queryx->result_array();
 
-                $numbers = random_int($jaw[0]['id'], $jaw[$jm]['id']);
+                $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
 
                 $updx['id_parameter'] = $numbers;
                 $updx['id_periode']   = 2;
@@ -216,7 +216,7 @@ class Export_model extends Model
         $data  = $query->result_array();
         $i     = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $upx['id_master']    = 4;
             $upx['id_kategori']  = $data[$i]['id_kat'];
             $upx['pertanyaan']   = $data[$i]['indi'];
@@ -260,6 +260,8 @@ class Export_model extends Model
     public function backup()
     {
         $this->load->dbutil();
+        $this->load->helper('download');
+        $this->load->helper('file');
 
         $prefs = [
             'format' => 'sql',
@@ -293,16 +295,19 @@ class Export_model extends Model
         foreach ($data as $dat) {
             $tbl = $dat['TABLE_NAME'];
         }
+
+        $data     = '';
+        $in       = '';
         $outp     = '';
         $filename = $_FILES['userfile']['tmp_name'];
         if ($filename !== '') {
             $lines = file($filename);
             $query = '';
 
-            foreach ($lines as $line) {
-                if (trim($line) !== '' && ! str_contains($line, '--')) {
-                    $query = $line;
-                    if (str_ends_with(rtrim($query), ';')) {
+            foreach ($lines as $sql_line) {
+                if (trim($sql_line) !== '' && strpos($sql_line, '--') === false) {
+                    $query = $sql_line;
+                    if (substr(rtrim($query), -1) === ';') {
                         $result = $this->db->query($query);
                     }
                 }

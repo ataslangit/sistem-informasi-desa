@@ -1,22 +1,23 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Penduduk_log extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Penduduk_log extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        redirect('siteman');
+
+        $this->load->model('penduduk_model');
+        $this->load->model('header_model');
     }
 
     public function clear()
@@ -25,7 +26,8 @@ class Penduduk_log extends BaseController
 
         $_SESSION['per_page'] = 200;
         $_SESSION['log']      = 1;
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function index($p = 1, $o = 0)
@@ -112,10 +114,10 @@ class Penduduk_log extends BaseController
         $header     = $this->header_model->get_data();
         $nav['act'] = 2;
 
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/penduduk_log', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/penduduk_log', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -126,7 +128,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function filter()
@@ -137,7 +140,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function sex()
@@ -148,7 +152,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['sex']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function agama()
@@ -159,7 +164,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['agama']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function dusun()
@@ -170,7 +176,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rw()
@@ -181,7 +188,8 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function rt()
@@ -192,31 +200,34 @@ class Penduduk_log extends BaseController
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('penduduk_log');
+
+        return redirect()->to('penduduk_log');
     }
 
     public function edit_status_dasar($p = 1, $o = 0, $id = 0)
     {
         $data['nik']         = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url("penduduk_log/update_status_dasar/{$p}/{$o}/{$id}");
-        view('sid/kependudukan/ajax_edit_status_dasar', $data);
+        echo view('sid/kependudukan/ajax_edit_status_dasar', $data);
     }
 
     public function update_status_dasar($p = 1, $o = 0, $id = '')
     {
         $this->penduduk_model->update_status_dasar($id);
-        redirect("penduduk_log/index/{$p}/{$o}");
+
+        return redirect()->to("penduduk_log/index/{$p}/{$o}");
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
-        view('sid/kependudukan/penduduk_print', $data);
+        echo view('sid/kependudukan/penduduk_print', $data);
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->penduduk_model->delete_all();
-        redirect("penduduk_log/index/{$p}/{$o}");
+
+        return redirect()->to("penduduk_log/index/{$p}/{$o}");
     }
 }

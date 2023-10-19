@@ -5,7 +5,7 @@
         <tr style="vertical-align:top">
             <td class="side-menu">
                 <?php
-		view('data_persil/menu_kiri.php')
+		echo view('data_persil/menu_kiri.php')
 		?>
             </td>
             <td class="contentpane">
@@ -21,7 +21,7 @@
 				</div>";
 				$_SESSION["success"]==0;
 			}
-			
+
 			?>
 
                         <?php
@@ -39,7 +39,7 @@ echo "
 		}
 		echo "
 		];
-		
+
 		$('#nik').flexbox(nik, {
 			resultTemplate: '<div><label>Nama : </label>{name}</div><div><label>Alamat : </label>{info}</div>',
 			watermark: \"Cari nama di sini..\",
@@ -47,7 +47,7 @@ echo "
 			noResultsText :'Tidak ada no nik yang sesuai..',
 			onSelect: function() {
 				$('#'+'main').submit();
-		} 
+		}
 		});
 	});
 </script>
@@ -181,7 +181,7 @@ echo "</form>
             </td>
             <td style="width:250px;" class="contentpane">
                 <?php
-		view('data_persil/panduan.php');
+		echo view('data_persil/panduan.php');
 		?>
             </td>
         </tr>

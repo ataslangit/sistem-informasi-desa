@@ -1,13 +1,29 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class First extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class First extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
         mandiri_timeout();
+
+        $this->load->model('header_model');
+        $this->load->model('config_model');
+        $this->load->model('first_keluarga_m');
+        $this->load->model('first_m');
+        $this->load->model('first_artikel_m');
+        $this->load->model('first_gallery_m');
+        $this->load->model('KategoriModel', 'kategori_model');
+        $this->load->model('first_menu_m');
+        $this->load->model('first_penduduk_m');
+        $this->load->model('penduduk_model');
+        $this->load->model('surat_model');
+        $this->load->model('surat_keluar_model');
     }
 
     public function auth()
@@ -16,10 +32,10 @@ class First extends BaseController
             $this->first_m->siteman();
         }
         if ($_SESSION['mandiri'] === 1) {
-            redirect('first/mandiri/1/1');
-        } else {
-            redirect('first');
+            return redirect()->to('first/mandiri/1/1');
         }
+
+        return redirect()->to('first');
     }
 
     public function mobile($user = '', $pass = '')
@@ -30,21 +46,21 @@ class First extends BaseController
     public function logout()
     {
         $this->first_m->logout();
-        redirect('first');
+
+        return redirect()->to('first');
     }
 
     public function ganti()
     {
         $this->first_m->ganti();
-        redirect('first');
+
+        return redirect()->to('first');
     }
 
     public function index($p = 1)
     {
-        $config = new Config();
-
         $data['p']             = $p;
-        $data['desa']          = $data['data_config'] = $config->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['headline']      = $this->first_artikel_m->get_headline();
@@ -58,69 +74,66 @@ class First extends BaseController
         $data['agenda'] = $this->first_artikel_m->agenda_show();
         $data['slide']  = $this->first_artikel_m->slide_show();
 
-        $data['stat']   = $this->first_penduduk_m->list_data(4);
-        $data['sosmed'] = $this->first_artikel_m->list_sosmed();
-        $data['w_gal']  = $this->first_gallery_m->gallery_widget();
-        $data['w_cos']  = $this->first_artikel_m->cos_widget();
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function cetak_biodata($id = '')
     {
         $data['desa']     = $this->header_model->get_data();
         $data['penduduk'] = $this->penduduk_model->get_penduduk($id);
-        view('sid/kependudukan/cetak_biodata', $data);
+        echo view('sid/kependudukan/cetak_biodata', $data);
     }
 
     public function mandiri($p = 1, $m = 0)
     {
-        $config = new Config();
-
         if ($_SESSION['mandiri'] !== 1) {
-            redirect('first');
-        } else {
-            $data['p']             = $p;
-            $data['desa']          = $data['data_config'] = $config->get_data();
-            $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
-            $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
-            $data['headline']      = $this->first_artikel_m->get_headline();
-            $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-
-            // $data['paging']  = $this->first_artikel_m->paging($p);
-            // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
-
-            $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
-            $data['arsip']    = $this->first_artikel_m->arsip_show();
-            $data['komen']    = $this->first_artikel_m->komentar_show();
-            $data['agenda']   = $this->first_artikel_m->agenda_show();
-            $data['slide']    = $this->first_artikel_m->slide_show();
-
-            $data['stat']   = $this->first_penduduk_m->list_data(4);
-            $data['sosmed'] = $this->first_artikel_m->list_sosmed();
-            $data['w_gal']  = $this->first_gallery_m->gallery_widget();
-            $data['w_cos']  = $this->first_artikel_m->cos_widget();
-
-            $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
-            $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
-
-            // if($m == 2)
-            $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
-
-            // $data['menu_surat2'] = $this->surat_model->list_surat2();
-            $data['m'] = $m;
-            view('layouts/mandiri.php', $data);
+            return redirect()->to('first');
         }
+        $data['p']             = $p;
+        $data['desa']          = $this->config_model->get_data();
+        $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
+        $data['headline']      = $this->first_artikel_m->get_headline();
+        $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
+
+        // $data['paging']  = $this->first_artikel_m->paging($p);
+        // $data['artikel'] = $this->first_artikel_m->artikel_show(0,$data['paging']->offset,$data['paging']->per_page);
+
+        $data['penduduk'] = $this->penduduk_model->get_penduduk($_SESSION['id']);
+        $data['arsip']    = $this->first_artikel_m->arsip_show();
+        $data['komen']    = $this->first_artikel_m->komentar_show();
+        $data['agenda']   = $this->first_artikel_m->agenda_show();
+        $data['slide']    = $this->first_artikel_m->slide_show();
+
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
+
+        $data['list_dokumen']  = $this->penduduk_model->list_dokumen($_SESSION['id']);
+        $data['list_kelompok'] = $this->penduduk_model->list_kelompok($_SESSION['id']);
+
+        // if($m == 2)
+        $data['surat_keluar'] = $this->surat_keluar_model->list_data_surat($_SESSION['id']);
+
+        // $data['menu_surat2'] = $this->surat_model->list_surat2();
+        $data['m'] = $m;
+        echo view('layouts/mandiri.php', $data);
     }
 
     public function artikel($id = '', $p = 1)
     {
-        $config = new Config();
-
         $id           = explode('-', $id);
         $id           = $id[0];
         $data['p']    = $p;
-        $data['desa'] = $data['data_config'] = $config->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['paging']  = $this->first_artikel_m->paging($p);
         $data['artikel'] = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
@@ -139,18 +152,18 @@ class First extends BaseController
         $data['w_gal']          = $this->first_gallery_m->gallery_widget();
         $data['w_cos']          = $this->first_artikel_m->cos_widget();
 
-        view('layouts/artikel.tpl.php', $data);
+        $data['data_config'] = $this->config_model->get_data();
+
+        echo view('layouts/artikel.tpl.php', $data);
     }
 
     public function arsip($p = 1)
     {
-        $config = new Config();
-
         $data['p']      = $p;
         $data['paging'] = $this->first_artikel_m->paging_arsip($p);
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-        $data['desa']          = $data['data_config'] = $config->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['sosmed']        = $this->first_artikel_m->list_sosmed();
@@ -162,16 +175,16 @@ class First extends BaseController
         $data['stat']          = $this->first_penduduk_m->list_data(5);
         $data['w_gal']         = $this->first_gallery_m->gallery_widget();
         $data['w_cos']         = $this->first_artikel_m->cos_widget();
+        $data['data_config']   = $this->config_model->get_data();
 
-        view('layouts/arsip.tpl.php', $data);
+        echo view('layouts/arsip.tpl.php', $data);
     }
 
     public function gallery($p = 1)
     {
-        $config = new Config();
+        $data['p'] = $p;
 
-        $data['p']    = $p;
-        $data['desa'] = $data['data_config'] = $config->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['paging']        = $this->first_artikel_m->paging($p);
@@ -188,20 +201,19 @@ class First extends BaseController
         $data['paging']  = $this->first_gallery_m->paging($p);
         $data['gallery'] = $this->first_gallery_m->gallery_show($data['paging']->offset, $data['paging']->per_page);
 
-        $data['stat']  = $this->first_penduduk_m->list_data(6);
-        $data['w_gal'] = $this->first_gallery_m->gallery_widget();
-        $data['w_cos'] = $this->first_artikel_m->cos_widget();
+        $data['stat']        = $this->first_penduduk_m->list_data(6);
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
 
-        view('layouts/gallery.tpl.php', $data);
+        echo view('layouts/gallery.tpl.php', $data);
     }
 
     public function sub_gallery($gal = 0, $p = 1)
     {
-        $config = new Config();
-
         $data['p']    = $p;
         $data['gal']  = $gal;
-        $data['desa'] = $data['data_config'] = $config->get_data();
+        $data['desa'] = $this->config_model->get_data();
 
         $data['paging']  = $this->first_gallery_m->paging($p);
         $data['gallery'] = $this->first_gallery_m->gallery_show($data['paging']->offset, $data['paging']->per_page);
@@ -220,18 +232,17 @@ class First extends BaseController
         $data['slide']   = $this->first_artikel_m->slide_show();
         $data['sosmed']  = $this->first_artikel_m->list_sosmed();
 
-        $data['stat']  = $this->first_penduduk_m->list_data(4);
-        $data['w_gal'] = $this->first_gallery_m->gallery_widget();
-        $data['w_cos'] = $this->first_artikel_m->cos_widget();
-        $data['mode']  = 1;
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['w_gal']       = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']       = $this->first_artikel_m->cos_widget();
+        $data['data_config'] = $this->config_model->get_data();
+        $data['mode']        = 1;
 
-        view('layouts/sub_gallery.tpl.php', $data);
+        echo view('layouts/sub_gallery.tpl.php', $data);
     }
 
     public function statistik($stat = '', $tipe = 0)
     {
-        $config = new Config();
-
         switch ($stat) {
             case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan';
                 break;
@@ -257,20 +268,21 @@ class First extends BaseController
             case 'warga-negara':$data['heading'] = 'Warga Negara';
                 break;
 
-            case 'wilayah':redirect('first/wilayah');
+            case 'wilayah':return redirect()->to('first/wilayah');
                 break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
                 break;
 
             default:$data['heading'] = '';
-                redirect('first');
+
+                return redirect()->to('first');
                 break;
         }
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $data['data_config'] = $config->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['stat']          = $this->first_penduduk_m->list_data($stat);
@@ -279,18 +291,18 @@ class First extends BaseController
         $data['sosmed'] = $this->first_artikel_m->list_sosmed();
         $data['arsip']  = $this->first_artikel_m->arsip_show();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
-        $data['st']     = $stat;
 
-        view('layouts/stat.tpl.php', $data);
+        $data['data_config'] = $this->config_model->get_data();
+        $data['st']          = $stat;
+
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
     {
-        $config = new Config();
-
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $data['data_config'] = $config->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -307,17 +319,17 @@ class First extends BaseController
         $data['arsip']  = $this->first_artikel_m->arsip_show();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
-        view('layouts/analisis.tpl.php', $data);
+        $data['data_config'] = $this->config_model->get_data();
+
+        echo view('layouts/analisis.tpl.php', $data);
     }
 
     public function wilayah()
     {
-        $config = new Config();
-
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['main']          = $this->first_penduduk_m->wilayah();
         $data['heading']       = 'Populasi Per Wilayah';
-        $data['desa']          = $data['data_config'] = $config->get_data();
+        $data['desa']          = $this->config_model->get_data();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -326,20 +338,20 @@ class First extends BaseController
         $data['arsip']  = $this->first_artikel_m->arsip_show();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
-        $data['tipe']  = 3;
-        $data['total'] = $this->first_penduduk_m->total();
-        $data['st']    = 1;
+        $data['tipe'] = 3;
 
-        view('layouts/stat.tpl.php', $data);
+        $data['total']       = $this->first_penduduk_m->total();
+        $data['st']          = 1;
+        $data['data_config'] = $this->config_model->get_data();
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function statistik_k($tipex = 0)
     {
-        $config = new Config();
-
         $data['tipe']  = 2;
         $data['tipex'] = $tipex;
-        $data['desa']  = $data['data_config'] = $config->get_data();
+
+        $data['desa'] = $this->config_model->get_data();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
@@ -350,34 +362,32 @@ class First extends BaseController
         $data['arsip']  = $this->first_artikel_m->arsip_show();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
         $data['stat']   = $this->first_penduduk_m->list_data(4);
-        $data['main']   = $this->first_keluarga_m->list_raskin($tipex);
 
-        view('layouts/stat.tpl.php', $data);
+        $data['main']        = $this->first_keluarga_m->list_raskin($tipex);
+        $data['data_config'] = $this->config_model->get_data();
+        echo view('layouts/stat.tpl.php', $data);
     }
 
     public function agenda($stat = 0)
     {
-        $config = new Config();
+        $data['desa']        = $this->config_model->get_data();
+        $data['menu_atas']   = $this->first_menu_m->list_menu_atas();
+        $data['menu_kiri']   = $this->first_menu_m->list_menu_kiri();
+        $data['artikel']     = $this->first_artikel_m->agenda_show();
+        $data['arsip']       = $this->first_artikel_m->arsip_show();
+        $data['komen']       = $this->first_artikel_m->komentar_show();
+        $data['agenda']      = $this->first_artikel_m->agenda_show();
+        $data['sosmed']      = $this->first_artikel_m->list_sosmed();
+        $data['stat']        = $this->first_penduduk_m->list_data(4);
+        $data['data_config'] = $this->config_model->get_data();
 
-        $data['desa']      = $data['data_config'] = $config->get_data();
-        $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
-        $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
-        $data['artikel']   = $this->first_artikel_m->agenda_show();
-        $data['arsip']     = $this->first_artikel_m->arsip_show();
-        $data['komen']     = $this->first_artikel_m->komentar_show();
-        $data['agenda']    = $this->first_artikel_m->agenda_show();
-        $data['sosmed']    = $this->first_artikel_m->list_sosmed();
-        $data['stat']      = $this->first_penduduk_m->list_data(4);
-
-        view('layouts/main.tpl.php', $data);
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function kategori($kat = 0, $p = 0)
     {
-        $config = new Config();
-
         $data['p']         = $p;
-        $data['desa']      = $data['data_config'] = $config->get_data();
+        $data['desa']      = $this->config_model->get_data();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['headline']  = null;
@@ -386,33 +396,31 @@ class First extends BaseController
         $data['paging']        = $this->first_artikel_m->paging_kat($p, $kat);
         $data['artikel']       = $this->first_artikel_m->list_artikel($data['paging']->offset, $data['paging']->per_page, $kat);
 
-        $data['arsip']          = $this->first_artikel_m->arsip_show();
-        $data['komen']          = $this->first_artikel_m->komentar_show();
-        $data['agenda']         = $this->first_artikel_m->agenda_show();
-        $data['slide']          = $this->first_artikel_m->slide_show();
-        $data['stat']           = $this->first_penduduk_m->list_data(4);
-        $data['sosmed']         = $this->first_artikel_m->list_sosmed();
-        $data['w_gal']          = $this->first_gallery_m->gallery_widget();
-        $data['w_cos']          = $this->first_artikel_m->cos_widget();
+        $data['arsip']  = $this->first_artikel_m->arsip_show();
+        $data['komen']  = $this->first_artikel_m->komentar_show();
+        $data['agenda'] = $this->first_artikel_m->agenda_show();
+        $data['slide']  = $this->first_artikel_m->slide_show();
+        $data['stat']   = $this->first_penduduk_m->list_data(4);
+        $data['sosmed'] = $this->first_artikel_m->list_sosmed();
+        $data['w_gal']  = $this->first_gallery_m->gallery_widget();
+        $data['w_cos']  = $this->first_artikel_m->cos_widget();
+
         $data['judul_kategori'] = $this->kategori_model->get($kat);
 
-        view('layouts/main.tpl.php', $data);
+        $data['data_config'] = $this->config_model->get_data();
+        echo view('layouts/main.tpl.php', $data);
     }
 
     public function add_comment($id = 0)
     {
-        $config = new Config();
-
-        $data['data_config'] = $config->get_data();
-
         $this->first_artikel_m->insert_comment($id);
-
+        $data['data_config'] = $this->config_model->get_data();
         if ($id !== 775) {
-            redirect("first/artikel/{$id}");
-        } else {
-            $_SESSION['sukses'] = 1;
-            redirect('first/mandiri/1/3');
+            return redirect()->to("first/artikel/{$id}");
         }
+        $_SESSION['sukses'] = 1;
+
+        return redirect()->to('first/mandiri/1/3');
     }
 
     public function randomap($id = 0)

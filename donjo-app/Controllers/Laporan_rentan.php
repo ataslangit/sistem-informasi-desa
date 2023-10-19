@@ -1,33 +1,40 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Laporan_rentan extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Laporan_rentan extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('laporan_bulanan_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
+        $this->load->model('config_model');
+        $this->load->model('header_model');
 
         $_SESSION['success']  = 0;
         $_SESSION['per_page'] = 20;
         $_SESSION['cari']     = '';
+
+        $this->load->model('header_model');
     }
 
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
 
-        redirect('laporan_rentan');
+        return redirect()->to('laporan_rentan');
     }
 
     public function index()
     {
-        $config = new Config();
-
         if (isset($_SESSION['dusun'])) {
             $data['dusun'] = $_SESSION['dusun'];
         } else {
@@ -35,34 +42,30 @@ class Laporan_rentan extends BaseController
         }
 
         $data['list_dusun'] = $this->laporan_bulanan_model->list_dusun();
-        $data['config']     = $config->get_data(true);
+        $data['config']     = $this->config_model->get_data(true);
 
         $data['main'] = $this->laporan_bulanan_model->list_data();
 
         $nav['act'] = 2;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('laporan/kelompok', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('laporan/kelompok', $data);
+        echo view('footer');
     }
 
     public function cetak()
     {
-        $config = new Config();
-
-        $data['config'] = $config->get_data(true);
+        $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        view('laporan/kelompok_print', $data);
+        echo view('laporan/kelompok_print', $data);
     }
 
     public function excel()
     {
-        $config = new Config();
-
-        $data['config'] = $config->get_data(true);
+        $data['config'] = $this->config_model->get_data(true);
         $data['main']   = $this->laporan_bulanan_model->list_data();
-        view('laporan/kelompok_excel', $data);
+        echo view('laporan/kelompok_excel', $data);
     }
 
     public function dusun()
@@ -73,6 +76,7 @@ class Laporan_rentan extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('laporan_rentan');
+
+        return redirect()->to('laporan_rentan');
     }
 }

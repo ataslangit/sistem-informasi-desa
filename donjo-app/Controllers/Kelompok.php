@@ -1,14 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Kelompok extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Kelompok extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('kelompok_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -16,7 +23,7 @@ class Kelompok extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
 
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function index($p = 1, $o = 0)
@@ -52,12 +59,12 @@ class Kelompok extends BaseController
         $data['list_master'] = $this->kelompok_model->list_master();
         $header              = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok/table', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/table', $data);
+        echo view('footer');
     }
 
     public function anggota($id = 0)
@@ -67,12 +74,12 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $header           = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok/anggota/table', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/anggota/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -92,12 +99,12 @@ class Kelompok extends BaseController
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok/form', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/form', $data);
+        echo view('footer');
     }
 
     public function form_anggota($id = 0, $id_a = 0)
@@ -115,22 +122,22 @@ class Kelompok extends BaseController
         $data['list_penduduk'] = $this->kelompok_model->list_penduduk();
         $header                = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok/anggota/form', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok/anggota/form', $data);
+        echo view('footer');
     }
 
     public function panduan()
     {
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('kelompok/nav2');
-        view('kelompok/panduan');
-        view('footer');
+        echo view('header', $header);
+        echo view('kelompok/nav2');
+        echo view('kelompok/panduan');
+        echo view('footer');
     }
 
     public function cetak()
@@ -138,7 +145,7 @@ class Kelompok extends BaseController
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        view('kelompok/cetak', $data);
+        echo view('kelompok/cetak', $data);
     }
 
     public function excel()
@@ -146,7 +153,7 @@ class Kelompok extends BaseController
         $data['header'] = $this->header_model->get_data();
         $data['main']   = $this->kelompok_model->list_data();
 
-        view('kelompok/excel', $data);
+        echo view('kelompok/excel', $data);
     }
 
     public function cetak_a($id = 0)
@@ -155,7 +162,7 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        view('kelompok/anggota/cetak', $data);
+        echo view('kelompok/anggota/cetak', $data);
     }
 
     public function excel_a($id = 0)
@@ -164,7 +171,7 @@ class Kelompok extends BaseController
         $data['main']     = $this->kelompok_model->list_anggota($id);
         $data['kelompok'] = $this->kelompok_model->get_kelompok($id);
 
-        view('kelompok/anggota/excel', $data);
+        echo view('kelompok/anggota/excel', $data);
     }
 
     public function menu($id = '')
@@ -187,15 +194,15 @@ class Kelompok extends BaseController
             case 4: $data['menu_respon'] = 'kelompok_respon_kelompok';
                 break;
 
-            default:redirect('kelompok');
+            default:return redirect()->to('kelompok');
         }
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('kelompok/nav');
-        view('kelompok/menu', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('kelompok/nav');
+        echo view('kelompok/menu', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -206,7 +213,8 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kelompok');
+
+        return redirect()->to('kelompok');
     }
 
     public function filter()
@@ -217,7 +225,8 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok');
+
+        return redirect()->to('kelompok');
     }
 
     public function state()
@@ -228,49 +237,57 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['state']);
         }
-        redirect('kelompok');
+
+        return redirect()->to('kelompok');
     }
 
     public function insert()
     {
         $this->kelompok_model->insert();
-        redirect('kelompok');
+
+        return redirect()->to('kelompok');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_model->update($id);
-        redirect("kelompok/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function update_a($id = '', $id_a = 0)
     {
         $this->kelompok_model->update_a($id, $id_a);
-        redirect("kelompok/anggota/{$id}");
+
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_model->delete($id);
-        redirect("kelompok/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->kelompok_model->delete_all();
-        redirect("kelompok/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function insert_a($id = 0)
     {
         $this->kelompok_model->insert_a($id);
-        redirect("kelompok/anggota/{$id}");
+
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function delete_a($id = '', $a = 0)
     {
         $this->kelompok_model->delete_a($a);
-        redirect("kelompok/anggota/{$id}");
+
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function to_master($id = 0)
@@ -281,6 +298,7 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok');
+
+        return redirect()->to('kelompok');
     }
 }

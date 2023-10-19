@@ -1,32 +1,29 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Dokumen extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Dokumen extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        if ($grup === '4') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('web_dokumen_model');
     }
 
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('dokumen');
+        return redirect()->to('dokumen');
     }
 
     public function index($p = 1, $o = 0)
@@ -56,10 +53,10 @@ class Dokumen extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 4;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -78,10 +75,10 @@ class Dokumen extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 4;
-        view('header', $header);
-        view('web/nav', $nav);
-        view('dokumen/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('dokumen/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -92,7 +89,8 @@ class Dokumen extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function filter()
@@ -103,42 +101,49 @@ class Dokumen extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function insert()
     {
         $this->web_dokumen_model->insert();
-        redirect('dokumen');
+
+        return redirect()->to('dokumen');
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->web_dokumen_model->update($id);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->web_dokumen_model->delete($id);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_dokumen_model->delete_all();
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function dokumen_lock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 1);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 
     public function dokumen_unlock($id = '')
     {
         $this->web_dokumen_model->dokumen_lock($id, 2);
-        redirect("dokumen/index/{$p}/{$o}");
+
+        return redirect()->to("dokumen/index/{$p}/{$o}");
     }
 }

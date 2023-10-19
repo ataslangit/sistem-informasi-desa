@@ -1,15 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\AnalisisKlasifikasi;
+namespace App\Controllers;
 
-class Analisis_klasifikasi extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Analisis_klasifikasi extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('analisis_klasifikasi_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Klasifikasi';
         $_SESSION['asubmenu'] = 'analisis_klasifikasi';
@@ -18,20 +24,20 @@ class Analisis_klasifikasi extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
-
         unset($_SESSION['cari2']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -49,25 +55,23 @@ class Analisis_klasifikasi extends BaseController
 
         $data['paging']          = $this->analisis_klasifikasi_model->paging($p, $o);
         $data['main']            = $this->analisis_klasifikasi_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']         = $analisisKlasifikasi->autocomplete();
+        $data['keyword']         = $this->analisis_klasifikasi_model->autocomplete();
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_klasifikasi/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_klasifikasi/table', $data);
+        echo view('footer');
     }
 
-    public function form($p, $o, $id)
+    public function form($p = 1, $o = 0, $id = '')
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
-
         $data['p'] = $p;
         $data['o'] = $o;
 
         if ($id) {
-            $data['analisis_klasifikasi'] = $analisisKlasifikasi->get_analisis_klasifikasi($id);
+            $data['analisis_klasifikasi'] = $this->analisis_klasifikasi_model->get_analisis_klasifikasi($id);
             $data['form_action']          = site_url("analisis_klasifikasi/update/{$p}/{$o}/{$id}");
         } else {
             $data['analisis_klasifikasi'] = null;
@@ -75,7 +79,7 @@ class Analisis_klasifikasi extends BaseController
         }
 
         $data['analisis_master'] = $this->analisis_klasifikasi_model->get_analisis_master();
-        view('analisis_klasifikasi/ajax_form', $data);
+        echo view('analisis_klasifikasi/ajax_form', $data);
     }
 
     public function search()
@@ -86,38 +90,35 @@ class Analisis_klasifikasi extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_klasifikasi');
+
+        return redirect()->to('analisis_klasifikasi');
     }
 
     public function insert()
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
+        $this->analisis_klasifikasi_model->insert();
 
-        $analisisKlasifikasi->insert();
-        redirect('analisis_klasifikasi');
+        return redirect()->to('analisis_klasifikasi');
     }
 
-    public function update($p, $o, $id)
+    public function update($p = 1, $o = 0, $id = '')
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
-        $analisisKlasifikasi->update($id);
+        $this->analisis_klasifikasi_model->update($id);
 
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 
-    public function delete($p, $o, $id)
+    public function delete($p = 1, $o = 0, $id = '')
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
-        $analisisKlasifikasi->delete($id);
+        $this->analisis_klasifikasi_model->delete($id);
 
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
-        $analisisKlasifikasi = new AnalisisKlasifikasi();
-        $analisisKlasifikasi->delete_all();
+        $this->analisis_klasifikasi_model->delete_all();
 
-        redirect("analisis_klasifikasi/index/{$p}/{$o}");
+        return redirect()->to("analisis_klasifikasi/index/{$p}/{$o}");
     }
 }

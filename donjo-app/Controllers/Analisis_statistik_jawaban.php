@@ -1,14 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Analisis_statistik_jawaban extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Analisis_statistik_jawaban extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('analisis_statistik_jawaban_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Statistik Jawaban';
         $_SESSION['asubmenu'] = 'analisis_statistik_jawaban';
@@ -18,14 +25,15 @@ class Analisis_statistik_jawaban extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt']);
 
-        redirect('analisis_statistik_jawaban');
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -91,10 +99,10 @@ class Analisis_statistik_jawaban extends BaseController
         $data['list_dusun']      = $this->analisis_statistik_jawaban_model->list_dusun();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_statistik_jawaban/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_statistik_jawaban/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -114,17 +122,17 @@ class Analisis_statistik_jawaban extends BaseController
         $header                  = $this->header_model->get_data();
         $data['analisis_master'] = $this->analisis_statistik_jawaban_model->get_analisis_master();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_statistik_jawaban/form', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_statistik_jawaban/form', $data);
+        echo view('footer');
     }
 
     public function parameter($id = '')
     {
         $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         if ($ai['id_tipe'] === 3 || $ai['id_tipe'] === 4) {
-            redirect('analisis_statistik_jawaban');
+            return redirect()->to('analisis_statistik_jawaban');
         }
 
         $data['analisis_statistik_jawaban'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
@@ -133,10 +141,10 @@ class Analisis_statistik_jawaban extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_statistik_jawaban/parameter/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_statistik_jawaban/parameter/table', $data);
+        echo view('footer');
     }
 
     public function grafik_parameter($id = '')
@@ -164,9 +172,9 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
 
-        // redirect('analisis_statistik_jawaban');
+        // return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_jawaban'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_master']            = $this->analisis_statistik_jawaban_model->get_analisis_master();
@@ -174,10 +182,10 @@ class Analisis_statistik_jawaban extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_statistik_jawaban/parameter/grafik_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_statistik_jawaban/parameter/grafik_table', $data);
+        echo view('footer');
     }
 
     public function subjek_parameter($id = '', $par = '')
@@ -205,9 +213,9 @@ class Analisis_statistik_jawaban extends BaseController
         }
         $data['list_dusun'] = $this->analisis_statistik_jawaban_model->list_dusun();
 
-        $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
+        $ai = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         // if($ai['id_tipe']==3 OR $ai['id_tipe']==4)
-        //	redirect('analisis_statistik_jawaban');
+        //	return redirect()->to('analisis_statistik_jawaban');
 
         $data['analisis_statistik_pertanyaan'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_statistik_jawaban']    = $this->analisis_statistik_jawaban_model->get_analisis_parameter($par);
@@ -216,22 +224,22 @@ class Analisis_statistik_jawaban extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_statistik_jawaban/parameter/subjek_table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_statistik_jawaban/parameter/subjek_table', $data);
+        echo view('footer');
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->analisis_statistik_jawaban_model->list_data($o, 0, 10000);
-        view('analisis_statistik_jawaban/table_print', $data);
+        echo view('analisis_statistik_jawaban/table_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->analisis_statistik_jawaban_model->list_data($o, 0, 10000);
-        view('analisis_statistik_jawaban/table_excel', $data);
+        echo view('analisis_statistik_jawaban/table_excel', $data);
     }
 
     public function cetak2($id = '', $par = '')
@@ -239,7 +247,7 @@ class Analisis_statistik_jawaban extends BaseController
         $data['analisis_statistik_pertanyaan'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_statistik_jawaban']    = $this->analisis_statistik_jawaban_model->get_analisis_parameter($par);
         $data['main']                          = $this->analisis_statistik_jawaban_model->list_subjek($par);
-        view('analisis_statistik_jawaban/parameter/table_print', $data);
+        echo view('analisis_statistik_jawaban/parameter/table_print', $data);
     }
 
     public function excel2($id = '', $par = '')
@@ -247,7 +255,7 @@ class Analisis_statistik_jawaban extends BaseController
         $data['analisis_statistik_pertanyaan'] = $this->analisis_statistik_jawaban_model->get_analisis_indikator($id);
         $data['analisis_statistik_jawaban']    = $this->analisis_statistik_jawaban_model->get_analisis_parameter($par);
         $data['main']                          = $this->analisis_statistik_jawaban_model->list_subjek($par);
-        view('analisis_statistik_jawaban/parameter/subjek_excel', $data);
+        echo view('analisis_statistik_jawaban/parameter/subjek_excel', $data);
     }
 
     public function search()
@@ -258,7 +266,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function filter()
@@ -269,7 +278,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function tipe()
@@ -280,7 +290,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['tipe']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function kategori()
@@ -291,7 +302,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['kategori']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function dusun()
@@ -304,7 +316,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function rw()
@@ -316,7 +329,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rw']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function rt()
@@ -327,7 +341,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rt']);
         }
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function dusun2($id = '', $par = '')
@@ -340,7 +355,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function rw2($id = '', $par = '')
@@ -352,7 +368,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rw']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function rt2($id = '', $par = '')
@@ -363,7 +380,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rt']);
         }
-        redirect("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
+
+        return redirect()->to("analisis_statistik_jawaban/subjek_parameter/{$id}/{$par}");
     }
 
     public function dusun3($id = '')
@@ -376,7 +394,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['dusun']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function rw3($id = '')
@@ -388,7 +407,8 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rw']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function rt3($id = '')
@@ -399,54 +419,63 @@ class Analisis_statistik_jawaban extends BaseController
         } else {
             unset($_SESSION['rt']);
         }
-        redirect("analisis_statistik_jawaban/grafik_parameter/{$id}");
+
+        return redirect()->to("analisis_statistik_jawaban/grafik_parameter/{$id}");
     }
 
     public function insert()
     {
         $this->analisis_statistik_jawaban_model->insert();
-        redirect('analisis_statistik_jawaban');
+
+        return redirect()->to('analisis_statistik_jawaban');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_statistik_jawaban_model->update($id);
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_statistik_jawaban_model->delete($id);
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_statistik_jawaban_model->delete_all();
-        redirect("analisis_statistik_jawaban/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_statistik_jawaban/index/{$p}/{$o}");
     }
 
     public function p_insert($in = '')
     {
         $this->analisis_statistik_jawaban_model->p_insert($in);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_update($in = '', $id = '')
     {
         $this->analisis_statistik_jawaban_model->p_update($id);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_delete($in = '', $id = '')
     {
         $this->analisis_statistik_jawaban_model->p_delete($id);
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 
     public function p_delete_all()
     {
         $this->analisis_statistik_jawaban_model->p_delete_all();
-        redirect("analisis_statistik_jawaban/parameter/{$in}");
+
+        return redirect()->to("analisis_statistik_jawaban/parameter/{$in}");
     }
 }

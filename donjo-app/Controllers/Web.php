@@ -1,32 +1,30 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Web extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Web extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2' && $grup !== '3' && $grup !== '4') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        if ($grup === '3') {
-            return;
-        }
-        if ($grup === '4') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('web_artikel_model');
+        $this->load->model('KategoriModel', 'kategori_model');
     }
 
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('web');
+        return redirect()->to('web');
     }
 
     public function pager($cat = 1)
@@ -34,7 +32,8 @@ class Web extends BaseController
         if (isset($_POST['per_page'])) {
             $_SESSION['per_page'] = $_POST['per_page'];
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function index($cat = 1, $p = 1, $o = 0)
@@ -68,10 +67,10 @@ class Web extends BaseController
         $header                = $this->header_model->get_data();
         $nav['act']            = 0;
 
-        view('header', $header);
-        view('web/nav', $nav);
-        view('web/artikel/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('web/nav', $nav);
+        echo view('web/artikel/table', $data);
+        echo view('footer');
     }
 
     public function form($cat = 1, $p = 1, $o = 0, $id = '')
@@ -93,16 +92,16 @@ class Web extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 0;
-        view('header', $header);
-        // view('web/spacer');
-        view('web/nav', $nav);
+        echo view('header', $header);
+        // echo view('web/spacer');
+        echo view('web/nav', $nav);
         if ($cat !== 1003) {
-            view('web/artikel/form', $data);
+            echo view('web/artikel/form', $data);
         } else {
-            view('web/artikel/widget-form', $data);
+            echo view('web/artikel/widget-form', $data);
         }
 
-        view('footer');
+        echo view('footer');
     }
 
     public function search($cat = 1)
@@ -113,7 +112,8 @@ class Web extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function filter($cat = 1)
@@ -124,72 +124,83 @@ class Web extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function insert($cat = 1)
     {
         $this->web_artikel_model->insert($cat);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function update($cat = 0, $id = '', $p = 1, $o = 0)
     {
         $this->web_artikel_model->update($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function delete($cat = 1, $p = 1, $o = 0, $id = '')
     {
         $this->web_artikel_model->delete($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function hapus($cat = 1, $p = 1, $o = 0)
     {
         $this->kategori_model->hapus($cat);
-        redirect("web/index/1/{$p}/{$o}");
+
+        return redirect()->to("web/index/1/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->web_artikel_model->delete_all();
-        redirect("web/index/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$p}/{$o}");
     }
 
     public function artikel_lock($cat = 1, $id = 0)
     {
         $this->web_artikel_model->artikel_lock($id, 1);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function artikel_unlock($cat = 1, $id = 0)
     {
         $this->web_artikel_model->artikel_lock($id, 2);
-        redirect("web/index/{$cat}");
+
+        return redirect()->to("web/index/{$cat}");
     }
 
     public function ajax_add_kategori($cat = 1, $p = 1, $o = 0)
     {
         $data['form_action'] = site_url("web/insert_kategori/{$cat}/{$p}/{$o}");
-        view('web/artikel/ajax_add_kategori_form', $data);
+        echo view('web/artikel/ajax_add_kategori_form', $data);
     }
 
     public function insert_kategori($cat = 1, $p = 1, $o = 0)
     {
         $this->web_artikel_model->insert_kategori();
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function headline($cat = 1, $p = 1, $o = 0, $id = 0)
     {
         $this->web_artikel_model->headline($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 
     public function slide($cat = 1, $p = 1, $o = 0, $id = 0)
     {
         $this->web_artikel_model->slide($id);
-        redirect("web/index/{$cat}/{$p}/{$o}");
+
+        return redirect()->to("web/index/{$cat}/{$p}/{$o}");
     }
 }

@@ -5,6 +5,7 @@
     "font-awesome": "4.7.0",
     "jquery": "1.9",
     "jquery-colorbox": "^1.6.4",
+    "simplebar": "^6.2.5",
     "tinymce": "^4.3.7"
   },
   "devDependencies": {

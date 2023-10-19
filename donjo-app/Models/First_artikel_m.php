@@ -1,15 +1,20 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class First_artikel_m extends Model
+class First_artikel_m extends CI_Model
 {
     public function get_headline()
     {
-        $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE headline = 1 ORDER BY tgl_upload DESC LIMIT 1 ';
-        $query = $this->db->query($sql);
-        $data  = $query->row_array();
+        $query = $this->db->select('a.*, u.nama as owner')->
+        from('artikel a')->
+        join('user u', 'a.id_user=u.id')->
+        where('headline', 1)->
+        order_by('tgl_upload', 'desc')->
+        get();
+
+        $data = $query->row_array();
         if (empty($data)) {
             $data = null;
         } else {
@@ -21,8 +26,14 @@ class First_artikel_m extends Model
 
     public function get_teks_berjalan()
     {
-        $sql   = "SELECT a.isi FROM artikel a LEFT JOIN kategori k ON a.id_kategori = k.id WHERE k.kategori = 'teks_berjalan' AND k.enabled = 1";
-        $query = $this->db->query($sql);
+        $query = $this->db->select('a.isi')->
+        from('artikel a')->
+        join('kategori k', 'a.id_kategori=k.id')->
+        where([
+            'k.kategori' => 'teks_berjalan',
+            'k.enabled'  => 1,
+        ])->
+        get();
 
         return $query->result_array();
     }
@@ -96,7 +107,7 @@ class First_artikel_m extends Model
 
             $i = 0;
 
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $id                    = $data[$i]['id'];
                 $teks                  = strip_tags($data[$i]['isi']);
                 $pendek                = (strlen($teks) > 120) ? substr($teks, 0, 120) : $teks;
@@ -120,7 +131,7 @@ class First_artikel_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $id = $data[$i]['id'];
 
             $pendek                = str_split($data[$i]['isi'], 100);
@@ -164,7 +175,7 @@ class First_artikel_m extends Model
         if ($query->num_rows() > 0) {
             $i = 0;
 
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $nomer = $offset + $i + 1;
                 $id    = $data[$i]['id'];
                 $tgl   = date('d/m/Y', strtotime($data[$i]['tgl_upload']));
@@ -190,14 +201,17 @@ class First_artikel_m extends Model
 		ORDER BY RAND() LIMIT 10 ';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $data = $query->result_array();
+        } else {
+            $data = false;
         }
 
-        return false;
+        return $data;
     }
 
     public function cos_widget()
     {
+        $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE id_kategori='1003' ORDER BY a.tgl_upload DESC";
         $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori
 		FROM artikel a
 		LEFT JOIN user u ON a.id_user = u.id
@@ -206,10 +220,12 @@ class First_artikel_m extends Model
 		ORDER BY a.tgl_upload DESC";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $data = $query->result_array();
+        } else {
+            $data = false;
         }
 
-        return false;
+        return $data;
     }
 
     public function agenda_show()
@@ -228,7 +244,7 @@ class First_artikel_m extends Model
 
         $i = 0;
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $id = $data[$i]['id_artikel'];
 
             $pendek                     = str_split($data[$i]['komentar'], 25);
@@ -247,10 +263,12 @@ class First_artikel_m extends Model
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE a.id=?';
         $query = $this->db->query($sql, $id);
         if ($query->num_rows() > 0) {
-            return $query->row_array();
+            $data = $query->row_array();
+        } else {
+            $data = false;
         }
 
-        return false;
+        return $data;
     }
 
     public function list_artikel($offset = 0, $limit = 50, $id = 0)
@@ -264,10 +282,12 @@ class First_artikel_m extends Model
         $sql .= $paging_sql;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $data = $query->result_array();
+        } else {
+            $data = false;
         }
 
-        return false;
+        return $data;
     }
 
     public function insert_comment($id = 0)
@@ -296,7 +316,7 @@ class First_artikel_m extends Model
 
             $i = 0;
 
-            while ($i < (is_countable($data) ? count($data) : 0)) {
+            while ($i < count($data)) {
                 $i++;
             }
         } else {
@@ -311,9 +331,11 @@ class First_artikel_m extends Model
         $sql   = 'SELECT * FROM media_sosial WHERE enabled=1';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $data = $query->result_array();
+        } else {
+            $data = false;
         }
 
-        return false;
+        return $data;
     }
 }

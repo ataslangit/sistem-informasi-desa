@@ -1,14 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Analisis_kategori extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Analisis_kategori extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('analisis_kategori_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $_SESSION['submenu']  = 'Data Kategori';
         $_SESSION['asubmenu'] = 'analisis_kategori';
@@ -17,14 +24,16 @@ class Analisis_kategori extends BaseController
     public function clear()
     {
         unset($_SESSION['cari']);
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function leave()
     {
         $id = $_SESSION['analisis_master'];
         unset($_SESSION['analisis_master']);
-        redirect("analisis_master/menu/{$id}");
+
+        return redirect()->to("analisis_master/menu/{$id}");
     }
 
     public function index($p = 1, $o = 0)
@@ -50,10 +59,10 @@ class Analisis_kategori extends BaseController
         $data['analisis_master'] = $this->analisis_kategori_model->get_analisis_master();
         $header                  = $this->header_model->get_data();
 
-        view('header', $header);
-        view('analisis_master/nav');
-        view('analisis_kategori/table', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('analisis_master/nav');
+        echo view('analisis_kategori/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -69,10 +78,10 @@ class Analisis_kategori extends BaseController
             $data['form_action']       = site_url('analisis_kategori/insert');
         }
 
-        // view('header', $header);
-        // view('analisis_master/nav');
-        view('analisis_kategori/ajax_form', $data);
-        // view('footer');
+        // echo view('header', $header);
+        // echo view('analisis_master/nav');
+        echo view('analisis_kategori/ajax_form', $data);
+        // echo view('footer');
     }
 
     public function search()
@@ -83,30 +92,35 @@ class Analisis_kategori extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function insert()
     {
         $this->analisis_kategori_model->insert();
-        redirect('analisis_kategori');
+
+        return redirect()->to('analisis_kategori');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->analisis_kategori_model->update($id);
-        redirect("analisis_kategori/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_kategori/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->analisis_kategori_model->delete($id);
-        redirect("analisis_kategori/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_kategori/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->analisis_kategori_model->delete_all();
-        redirect("analisis_kategori/index/{$p}/{$o}");
+
+        return redirect()->to("analisis_kategori/index/{$p}/{$o}");
     }
 }

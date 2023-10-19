@@ -1,20 +1,24 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Rtm extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Rtm extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('rtm_model');
+        $this->load->model('penduduk_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup === '1') {
-            return;
+        if ($grup !== '1' && $grup !== '2') {
+            return redirect()->to('siteman');
         }
-        if ($grup === '2') {
-            return;
-        }
-        redirect('siteman');
+        $this->load->model('header_model');
+        $this->load->model('config_model');
     }
 
     public function clear()
@@ -22,7 +26,8 @@ class Rtm extends BaseController
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['raskin'], $_SESSION['id_blt'], $_SESSION['id_bos'], $_SESSION['id_pkh'], $_SESSION['id_jampersal'], $_SESSION['id_bedah_rumah']);
 
         $_SESSION['per_page'] = 100;
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function index($p = 1, $o = 0)
@@ -107,49 +112,44 @@ class Rtm extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 3;
         $header             = $this->header_model->get_data();
-
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/rtm', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/rtm', $data);
+        echo view('footer');
     }
 
     public function cetak($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-
-        view('sid/kependudukan/rtm_print', $data);
+        echo view('sid/kependudukan/rtm_print', $data);
     }
 
     public function excel($o = 0)
     {
         $data['main'] = $this->rtm_model->list_data($o, 0, 10000);
-
-        view('sid/kependudukan/rtm_excel', $data);
+        echo view('sid/kependudukan/rtm_excel', $data);
     }
 
     public function excel_pbdt($o = 0)
     {
-        $config = new Config();
-
-        $data['config'] = $config->get_data();
+        $this->load->model('config_model');
+        $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->rtm_model->list_data_pbdt($o, 0, 10000);
-
-        view('sid/kependudukan/rtm_excel_pbdt', $data);
+        echo view('sid/kependudukan/rtm_excel_pbdt', $data);
     }
 
     public function edit_nokk($p = 1, $o = 0, $id = 0)
     {
         $data['kk']          = $this->rtm_model->get_rtm($id);
         $data['form_action'] = site_url("rtm/update_nokk/{$id}");
-        view('sid/kependudukan/ajax_edit_no_rtm', $data);
+        echo view('sid/kependudukan/ajax_edit_no_rtm', $data);
     }
 
     public function form_old($p = 1, $o = 0, $id = 0)
     {
         $data['penduduk']    = $this->rtm_model->list_penduduk_lepas();
         $data['form_action'] = site_url("rtm/insert/{$id}");
-        view('sid/kependudukan/ajax_add_rtm', $data);
+        echo view('sid/kependudukan/ajax_add_rtm', $data);
     }
 
     public function dusun($s = 0)
@@ -161,12 +161,13 @@ class Rtm extends BaseController
             unset($_SESSION['dusun']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function rw($s = 0)
@@ -178,12 +179,13 @@ class Rtm extends BaseController
             unset($_SESSION['rw']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function rt($s = 0)
@@ -195,12 +197,13 @@ class Rtm extends BaseController
             unset($_SESSION['rt']);
         }
         if ($s === 1) {
-            redirect('rtm/sosial');
-        } elseif ($s === 2) {
-            redirect('rtm/raskin_graph');
-        } else {
-            redirect('rtm');
+            return redirect()->to('rtm/sosial');
         }
+        if ($s === 2) {
+            return redirect()->to('rtm/raskin_graph');
+        }
+
+        return redirect()->to('rtm');
     }
 
     public function raskin()
@@ -211,7 +214,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['raskin']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function blt()
@@ -222,7 +226,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['id_blt']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function bos()
@@ -233,7 +238,8 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['id_bos']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function search()
@@ -244,55 +250,64 @@ class Rtm extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert()
     {
         $this->rtm_model->insert();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_by_kk()
     {
         $this->rtm_model->insert_by_kk();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_a()
     {
         $this->rtm_model->insert_a();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function insert_new()
     {
         $this->rtm_model->insert_new();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function update($id = '')
     {
         $this->rtm_model->update($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function update_nokk($id = '')
     {
         $this->rtm_model->update_nokk($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->rtm_model->delete($id);
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->rtm_model->delete_all();
-        redirect('rtm');
+
+        return redirect()->to('rtm');
     }
 
     public function anggota($p = 1, $o = 0, $id = 0)
@@ -305,10 +320,10 @@ class Rtm extends BaseController
         $data['kepala_kk'] = $this->rtm_model->get_kepala_kk($id);
         $nav['act']        = 3;
         $header            = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
-        view('sid/kependudukan/rtm_anggota', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
+        echo view('sid/kependudukan/rtm_anggota', $data);
+        echo view('footer');
     }
 
     public function ajax_add_anggota($p = 1, $o = 0, $id = 0)
@@ -326,7 +341,7 @@ class Rtm extends BaseController
 
         $data['form_action'] = site_url("rtm/add_anggota/{$p}/{$o}/{$id}");
 
-        view('sid/kependudukan/ajax_add_anggota_rtm_form', $data);
+        echo view('sid/kependudukan/ajax_add_anggota_rtm_form', $data);
     }
 
     public function edit_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
@@ -336,20 +351,18 @@ class Rtm extends BaseController
         $data['hubungan']    = $this->rtm_model->list_hubungan();
         $data['main']        = $this->rtm_model->get_anggota($id);
         $data['form_action'] = site_url("rtm/update_anggota/{$p}/{$o}/{$id_kk}/{$id}");
-        view('sid/kependudukan/ajax_edit_anggota_rtm', $data);
+        echo view('sid/kependudukan/ajax_edit_anggota_rtm', $data);
     }
 
     public function kartu_rtm($p = 1, $o = 0, $id = 0)
     {
-        $config = new Config();
-
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
         $data['hubungan'] = $this->rtm_model->list_hubungan();
         $data['main']     = $this->rtm_model->list_anggota($id);
         $kk               = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']     = $config->get_data();
+        $data['desa']     = $this->config_model->get_data();
 
         if ($kk) {
             $data['kepala_kk'] = $kk;
@@ -360,55 +373,57 @@ class Rtm extends BaseController
         $data['penduduk'] = $this->rtm_model->list_penduduk_lepas();
         $nav['act']       = 3;
         $header           = $this->header_model->get_data();
-        view('header', $header);
-        view('sid/nav', $nav);
+        echo view('header', $header);
+        echo view('sid/nav', $nav);
         $data['form_action'] = site_url('rtm/print');
 
-        view('sid/kependudukan/kartu_rtm', $data);
-        view('footer');
+        echo view('sid/kependudukan/kartu_rtm', $data);
+        echo view('footer');
     }
 
     public function cetak_kk($id = 0)
     {
-        $config = new Config();
-
         $data['id_kk']     = $id;
         $data['main']      = $this->rtm_model->list_anggota($id);
         $kk                = $this->rtm_model->get_kepala_kk($id);
-        $data['desa']      = $config->get_data();
+        $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 3;
-
-        view('sid/kependudukan/cetak_rtm', $data);
+        $header            = $this->header_model->get_data();
+        echo view('sid/kependudukan/cetak_rtm', $data);
     }
 
     public function add_anggota($p = 1, $o = 0, $id = 0)
     {
         $this->rtm_model->add_anggota($id);
-        redirect("rtm/anggota/{$p}/{$o}/{$id}");
+
+        return redirect()->to("rtm/anggota/{$p}/{$o}/{$id}");
     }
 
     public function update_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
     {
         $this->rtm_model->update_anggota($id);
-        redirect("rtm/anggota/{$p}/{$o}/{$id_kk}");
+
+        return redirect()->to("rtm/anggota/{$p}/{$o}/{$id_kk}");
     }
 
     public function delete_anggota($p = 1, $o = 0, $kk = 0, $id = '')
     {
         $this->rtm_model->rem_anggota($kk, $id);
-        redirect("rtm/anggota/{$p}/{$o}/{$kk}");
+
+        return redirect()->to("rtm/anggota/{$p}/{$o}/{$kk}");
     }
 
     public function delete_all_anggota($p = 1, $o = 0, $kk = 0)
     {
         $this->rtm_model->rem_all_anggota($kk);
-        redirect("rtm/anggota/{$p}/{$o}/{$kk}");
+
+        return redirect()->to("rtm/anggota/{$p}/{$o}/{$kk}");
     }
 
     public function cetak_statistik($tipe = 0)
     {
         $data['main'] = $this->rtm_model->list_data_statistik($tipe);
-        view('sid/kependudukan/rtm_print', $data);
+        echo view('sid/kependudukan/rtm_print', $data);
     }
 }

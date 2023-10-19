@@ -1,14 +1,25 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Line extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Line extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('user_model');
+        $this->load->model('header_model');
+        $this->load->model('plan_line_model');
+    }
+
     public function clear()
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('line');
+        return redirect()->to('line');
     }
 
     public function index($p = 1, $o = 0)
@@ -38,11 +49,11 @@ class Line extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -60,11 +71,11 @@ class Line extends BaseController
         $header = $this->header_model->get_data();
 
         $nav['act'] = 2;
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/form', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/form', $data);
+        echo view('footer');
     }
 
     public function sub_line($line = 1)
@@ -74,11 +85,11 @@ class Line extends BaseController
         $header          = $this->header_model->get_data();
         $nav['act']      = 2;
 
-        view('header-gis', $header);
+        echo view('header-gis', $header);
 
-        view('plan/nav', $nav);
-        view('line/sub_line_table', $data);
-        view('footer');
+        echo view('plan/nav', $nav);
+        echo view('line/sub_line_table', $data);
+        echo view('footer');
     }
 
     public function ajax_add_sub_line($line = 0, $id = 0)
@@ -90,7 +101,7 @@ class Line extends BaseController
             $data['line']        = null;
             $data['form_action'] = site_url("line/insert_sub_line/{$line}");
         }
-        view('line/ajax_add_sub_line_form', $data);
+        echo view('line/ajax_add_sub_line_form', $data);
     }
 
     public function search()
@@ -101,7 +112,8 @@ class Line extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function filter()
@@ -112,78 +124,91 @@ class Line extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('line');
+
+        return redirect()->to('line');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_line_model->insert($tip);
-        redirect("line/index/{$tip}");
+
+        return redirect()->to("line/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_line_model->update($id);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_line_model->delete($id);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_line_model->delete_all();
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function line_lock($id = '')
     {
         $this->plan_line_model->line_lock($id, 1);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function line_unlock($id = '')
     {
         $this->plan_line_model->line_lock($id, 2);
-        redirect("line/index/{$p}/{$o}");
+
+        return redirect()->to("line/index/{$p}/{$o}");
     }
 
     public function insert_sub_line($line = '')
     {
         $this->plan_line_model->insert_sub_line($line);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function update_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->update_sub_line($id);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function delete_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->delete_sub_line($id);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function delete_all_sub_line($line = '')
     {
         $this->plan_line_model->delete_all_sub_line();
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function line_lock_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->line_lock($id, 1);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 
     public function line_unlock_sub_line($line = '', $id = '')
     {
         $this->plan_line_model->line_lock($id, 2);
-        redirect("line/sub_line/{$line}");
+
+        return redirect()->to("line/sub_line/{$line}");
     }
 }

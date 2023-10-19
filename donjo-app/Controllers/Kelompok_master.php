@@ -1,14 +1,21 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Kelompok_master extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Kelompok_master extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
+        $this->load->model('kelompok_master_model');
+        $this->load->model('user_model');
+        $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -16,7 +23,7 @@ class Kelompok_master extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
 
-        redirect('kelompok_master');
+        return redirect()->to('kelompok_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -52,12 +59,12 @@ class Kelompok_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok_master/table', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/table', $data);
+        echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -75,12 +82,12 @@ class Kelompok_master extends BaseController
 
         $header = $this->header_model->get_data();
 
-        view('header', $header);
+        echo view('header', $header);
         $nav['act'] = 4;
 
-        view('sid/nav', $nav);
-        view('kelompok_master/form', $data);
-        view('footer');
+        echo view('sid/nav', $nav);
+        echo view('kelompok_master/form', $data);
+        echo view('footer');
     }
 
     public function search()
@@ -91,7 +98,8 @@ class Kelompok_master extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function filter()
@@ -102,7 +110,8 @@ class Kelompok_master extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function state()
@@ -113,30 +122,35 @@ class Kelompok_master extends BaseController
         } else {
             unset($_SESSION['state']);
         }
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function insert()
     {
         $this->kelompok_master_model->insert();
-        redirect('kelompok_master');
+
+        return redirect()->to('kelompok_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_master_model->update($id);
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_master_model->delete($id);
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->kelompok_master_model->delete_all();
-        redirect("kelompok_master/index/{$p}/{$o}");
+
+        return redirect()->to("kelompok_master/index/{$p}/{$o}");
     }
 }

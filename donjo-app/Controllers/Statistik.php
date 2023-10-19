@@ -1,21 +1,28 @@
 <?php
 
-use App\Controllers\BaseController;
-use App\Models\Config;
+namespace App\Controllers;
 
-class Statistik extends BaseController
+use Kenjis\CI3Compatible\Core\CI_Controller;
+
+class Statistik extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
         $_SESSION['filter'] = 77;
         unset($_SESSION['log']);
         $_SESSION['status_dasar'] = 1;
         unset($_SESSION['cari'], $_SESSION['duplikat'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['cacatx'], $_SESSION['menahunx'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['hubungan'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['pendidikan_sedang_id'], $_SESSION['pendidikan_kk_id'], $_SESSION['umurx'], $_SESSION['status_penduduk'], $_SESSION['judul_statistik'], $_SESSION['hamil']);
 
+        $this->load->model('config_model');
+        $this->load->model('laporan_penduduk_model');
+        $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
+        $this->load->model('header_model');
         $_SESSION['per_page'] = 500;
     }
 
@@ -94,17 +101,17 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('statistik/penduduk', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk', $data);
+        echo view('footer');
     }
 
     public function clear()
     {
         unset($_SESSION['log'], $_SESSION['cari'], $_SESSION['filter'], $_SESSION['sex'], $_SESSION['warganegara'], $_SESSION['cacat'], $_SESSION['menahun'], $_SESSION['golongan_darah'], $_SESSION['dusun'], $_SESSION['rw'], $_SESSION['rt'], $_SESSION['agama'], $_SESSION['umur_min'], $_SESSION['umur_max'], $_SESSION['pekerjaan_id'], $_SESSION['status'], $_SESSION['pendidikan_id'], $_SESSION['status_penduduk']);
 
-        redirect('statistik');
+        return redirect()->to('statistik');
     }
 
     public function graph($lap = 0)
@@ -181,10 +188,10 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('statistik/penduduk_graph', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk_graph', $data);
+        echo view('footer');
     }
 
     public function pie($lap = 0)
@@ -264,17 +271,14 @@ class Statistik extends BaseController
 
         $nav['act'] = 0;
         $header     = $this->header_model->get_data();
-
-        view('header', $header);
-        view('statistik/nav', $nav);
-        view('statistik/penduduk_pie', $data);
-        view('footer');
+        echo view('header', $header);
+        echo view('statistik/nav', $nav);
+        echo view('statistik/penduduk_pie', $data);
+        echo view('footer');
     }
 
     public function cetak($lap = 0)
     {
-        $config = new Config();
-
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -344,16 +348,13 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $config->get_data();
+        $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
-
-        view('statistik/penduduk_print', $data);
+        echo view('statistik/penduduk_print', $data);
     }
 
     public function excel($lap = 0)
     {
-        $config = new Config();
-
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -423,16 +424,13 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $config->get_data();
+        $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
-
-        view('statistik/penduduk_excel', $data);
+        echo view('statistik/penduduk_excel', $data);
     }
 
     public function warga($lap = '', $data = '')
     {
-        $config = new Config();
-
         $data['lap'] = $lap;
 
         switch ($lap) {
@@ -502,12 +500,13 @@ class Statistik extends BaseController
             default:$data['stat'] = 'Pendidikan';
         }
 
-        $data['config'] = $config->get_data();
+        $data['config'] = $this->config_model->get_data();
         $data['main']   = $this->laporan_penduduk_model->list_data($lap);
 
         $_SESSION['per_page'] = 100;
         $_SESSION['data']     = $data;
-        redirect('sid_penduduk/index/');
+
+        return redirect()->to('sid_penduduk/index/');
     }
 
     public function rentang_umur()
@@ -517,11 +516,11 @@ class Statistik extends BaseController
         $header       = $this->header_model->get_data();
         $menu['act']  = '2';
 
-        view('header', $header);
-        // view('statistik/menu');
-        view('statistik/nav', $menu);
-        view('statistik/rentang_umur', $data);
-        view('footer');
+        echo view('header', $header);
+        // echo view('statistik/menu');
+        echo view('statistik/nav', $menu);
+        echo view('statistik/rentang_umur', $data);
+        echo view('footer');
     }
 
     public function form_rentang($id = 0)
@@ -535,30 +534,34 @@ class Statistik extends BaseController
             $data['form_action'] = site_url("statistik/rentang_update/{$id}");
             $data['rentang']     = $this->laporan_penduduk_model->get_rentang($id);
         }
-        view('statistik/ajax_rentang_form', $data);
+        echo view('statistik/ajax_rentang_form', $data);
     }
 
     public function rentang_insert()
     {
         $data['insert'] = $this->laporan_penduduk_model->insert_rentang();
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function rentang_update($id = 0)
     {
         $this->laporan_penduduk_model->update_rentang($id);
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function rentang_delete($id = 0)
     {
         $this->laporan_penduduk_model->delete_rentang($id);
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 
     public function delete_all_rentang()
     {
         $this->laporan_penduduk_model->delete_all_rentang();
-        redirect('statistik/rentang_umur');
+
+        return redirect()->to('statistik/rentang_umur');
     }
 }

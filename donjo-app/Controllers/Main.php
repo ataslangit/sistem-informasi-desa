@@ -3,10 +3,19 @@
 namespace App\Controllers;
 
 use App\Libraries\Install;
-use App\Models\Config;
+use Kenjis\CI3Compatible\Core\CI_Controller;
 
-class Main extends BaseController
+class Main extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('header_model');
+        $this->load->model('user_model');
+        $this->load->model('config_model');
+    }
+
     public function index()
     {
         $install = new Install();
@@ -17,40 +26,36 @@ class Main extends BaseController
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1:
-                        case 2: redirect('hom_desa');
+                        case 1: return redirect()->to('hom_desa');
                             break;
 
-                        case 3:
-                        case 4: redirect('web');
+                        case 2: return redirect()->to('hom_desa');
+                            break;
+
+                        case 3: return redirect()->to('web');
+                            break;
+
+                        case 4: return redirect()->to('web');
                             break;
 
                         default: if (isset($_SESSION['siteman'])) {
-                            redirect('siteman');
-                        } else {
-                            redirect('first');
+                            return redirect()->to('siteman');
                         }
+
+                            return redirect()->to('first');
                     }
                 }
             } else {
-                redirect('first');
+                return redirect()->to('first');
             }
         } else {
-            return $this->initial();
+            return redirect()->to('main/initial');
         }
     }
 
-    /**
-     * View halaman instalasi pertama
-     */
     public function initial()
     {
-        $data = [
-            'title'     => 'Instal SID',
-            'bodyClass' => 'instal',
-        ];
-
-        return view('install/index', $data);
+        echo view('install');
     }
 
     public function install()
@@ -59,38 +64,34 @@ class Main extends BaseController
         $out     = $install->run();
 
         if (null === $out) {
-            redirect('/');
+            return redirect()->to('/');
         }
 
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function init($out = null)
     {
-        view('init', $out);
+        echo view('init', $out);
     }
 
     public function auth()
     {
-        $config = new Config();
-
         $this->user_model->login();
         $header = [
-            'desa' => $config->get_data(),
+            'desa' => $this->config_model->get_data(),
         ];
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 
     public function logout()
     {
-        $config = new Config();
-
         $this->config_model->opt();
         $this->user_model->logout();
         $header = [
-            'desa' => $config->get_data(),
+            'desa' => $this->config_model->get_data(),
         ];
 
-        view('siteman', $header);
+        echo view('siteman', $header);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
 use App\Libraries\Paging;
-use App\Models\BaseModel as Model;
+use Kenjis\CI3Compatible\Core\CI_Model;
 
-class Sms_model extends Model
+class Sms_model extends CI_Model
 {
     public function autocomplete()
     {
@@ -14,7 +14,7 @@ class Sms_model extends Model
         $i    = 0;
         $outp = '';
 
-        while ($i < (is_countable($data) ? count($data) : 0)) {
+        while ($i < count($data)) {
             $outp .= ",'" . $data[$i]['SenderNumber'] . "'";
             $i++;
         }
@@ -26,20 +26,22 @@ class Sms_model extends Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari = $_SESSION['cari'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari       = $_SESSION['cari'];
+            $kw         = $this->db->escape_like_str($cari);
+            $kw         = '%' . $kw . '%';
+            $search_sql = " AND (u.SenderNumber LIKE '{$kw}' OR u.TextDecoded LIKE '{$kw}')";
 
-            return " AND (u.SenderNumber LIKE '{$kw}' OR u.TextDecoded LIKE '{$kw}')";
+            return $search_sql;
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf = $_SESSION['filter'];
+            $kf         = $_SESSION['filter'];
+            $filter_sql = " AND u.Class = {$kf}";
 
-            return " AND u.Class = {$kf}";
+            return $filter_sql;
         }
     }
 
@@ -64,10 +66,10 @@ class Sms_model extends Model
 
     public function insert_autoreply()
     {
-        $data = $_POST;
-        $sql  = 'DELETE FROM setting_sms';
-        $this->db->query($sql);
-        $outp = $this->db->insert('setting_sms', $data);
+        $data  = $_POST;
+        $sql   = 'DELETE FROM setting_sms';
+        $query = $this->db->query($sql);
+        $outp  = $this->db->insert('setting_sms', $data);
         if ($outp) {
             $_SESSION['success'] = 1;
         } else {
@@ -117,8 +119,12 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function paging_terkirim($p = 1, $o = 0)
@@ -173,8 +179,12 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function paging_tertunda($p = 1, $o = 0)
@@ -229,8 +239,12 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function insert()
@@ -276,7 +290,7 @@ class Sms_model extends Model
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $ID) {
                 if ($Class === 2) {
                     $sql = 'DELETE FROM sentitems WHERE ID=?';
@@ -391,108 +405,120 @@ class Sms_model extends Model
     public function sex_sql()
     {
         if (isset($_SESSION['sex1'])) {
-            $kf = $_SESSION['sex1'];
+            $kf      = $_SESSION['sex1'];
+            $sex_sql = " AND u.sex = {$kf}";
 
-            return " AND u.sex = {$kf}";
+            return $sex_sql;
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun1'])) {
-            $kf = $_SESSION['dusun1'];
+            $kf        = $_SESSION['dusun1'];
+            $dusun_sql = " AND a.dusun = '{$kf}'";
 
-            return " AND a.dusun = '{$kf}'";
+            return $dusun_sql;
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw1'])) {
-            $kf = $_SESSION['rw1'];
+            $kf     = $_SESSION['rw1'];
+            $rw_sql = " AND a.rw = '{$kf}'";
 
-            return " AND a.rw = '{$kf}'";
+            return $rw_sql;
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt1'])) {
-            $kf = $_SESSION['rt1'];
+            $kf     = $_SESSION['rt1'];
+            $rt_sql = " AND a.rt = '{$kf}'";
 
-            return " AND a.rt = '{$kf}'";
+            return $rt_sql;
         }
     }
 
     public function agama_sql()
     {
         if (isset($_SESSION['agama1'])) {
-            $kf = $_SESSION['agama1'];
+            $kf        = $_SESSION['agama1'];
+            $agama_sql = " AND u.agama_id = {$kf}";
 
-            return " AND u.agama_id = {$kf}";
+            return $agama_sql;
         }
     }
 
     public function pekerjaan_sql()
     {
         if (isset($_SESSION['pekerjaan1'])) {
-            $kf = $_SESSION['pekerjaan1'];
+            $kf            = $_SESSION['pekerjaan1'];
+            $pekerjaan_sql = " AND u.pekerjaan_id = {$kf}";
 
-            return " AND u.pekerjaan_id = {$kf}";
+            return $pekerjaan_sql;
         }
     }
 
     public function statuskawin_sql()
     {
         if (isset($_SESSION['status1'])) {
-            $kf = $_SESSION['status1'];
+            $kf              = $_SESSION['status1'];
+            $statuskawin_sql = " AND u.status_kawin = {$kf}";
 
-            return " AND u.status_kawin = {$kf}";
+            return $statuskawin_sql;
         }
     }
 
     public function pendidikan_sql()
     {
         if (isset($_SESSION['pendidikan1'])) {
-            $kf = $_SESSION['pendidikan1'];
+            $kf             = $_SESSION['pendidikan1'];
+            $pendidikan_sql = " AND u.pendidikan_id = {$kf}";
 
-            return " AND u.pendidikan_id = {$kf}";
+            return $pendidikan_sql;
         }
     }
 
     public function status_penduduk_sql()
     {
         if (isset($_SESSION['status_penduduk1'])) {
-            $kf = $_SESSION['status_penduduk1'];
+            $kf                  = $_SESSION['status_penduduk1'];
+            $status_penduduk_sql = " AND u.status = {$kf}";
 
-            return " AND u.status = {$kf}";
+            return $status_penduduk_sql;
         }
     }
 
     public function grup_sql()
     {
         if (isset($_SESSION['grup1'])) {
-            $kf = $_SESSION['grup1'];
+            $kf       = $_SESSION['grup1'];
+            $grup_sql = " AND k.id IN (SELECT id_kontak FROM kontak_grup WHERE nama_grup='{$kf}')";
 
-            return " AND k.id IN (SELECT id_kontak FROM kontak_grup WHERE nama_grup='{$kf}')";
+            return $grup_sql;
         }
     }
 
     public function umur_max_sql()
     {
         if (isset($_SESSION['umur_max1'])) {
-            $kf = $_SESSION['umur_max1'];
+            $kf           = $_SESSION['umur_max1'];
+            $umur_max_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf}";
 
-            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf}";
+            return $umur_max_sql;
         }
     }
 
     public function umur_min_sql()
     {
         if (isset($_SESSION['umur_min1'])) {
-            $kf = $_SESSION['umur_min1'];
+            $kf           = $_SESSION['umur_min1'];
+            $umur_min_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf}";
 
-            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf}";
+            return $umur_min_sql;
         }
     }
 
@@ -554,40 +580,45 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function search_kontak_sql()
     {
         if (isset($_SESSION['cari_kontak'])) {
-            $cari = $_SESSION['cari_kontak'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari              = $_SESSION['cari_kontak'];
+            $kw                = $this->db->escape_like_str($cari);
+            $kw                = '%' . $kw . '%';
+            $search_kontak_sql = " AND (b.nama LIKE '{$kw}' OR a.no_hp LIKE '{$kw}')";
 
-            return " AND (b.nama LIKE '{$kw}' OR a.no_hp LIKE '{$kw}')";
+            return $search_kontak_sql;
         }
     }
 
     public function insert_kontak($id = 0)
     {
-        $data = $_POST;
-        $sql  = "DELETE FROM kontak WHERE id_pend='{$_POST['id_pend']}' ";
-        $this->db->query($sql);
-        $this->db->insert('kontak', $data);
+        $data  = $_POST;
+        $sql   = "DELETE FROM kontak WHERE id_pend='{$_POST['id_pend']}' ";
+        $query = $this->db->query($sql);
+        $outp  = $this->db->insert('kontak', $data);
     }
 
     public function delete_kontak($id = 0)
     {
-        $sql = "DELETE FROM kontak WHERE id='{$id}' ";
-        $this->db->query($sql);
+        $sql   = "DELETE FROM kontak WHERE id='{$id}' ";
+        $query = $this->db->query($sql);
     }
 
     public function delete_all_kontak()
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = "DELETE FROM kontak WHERE id='{$id}' ";
                 $outp = $this->db->query($sql, [$id]);
@@ -633,15 +664,19 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function insert_grup($id = 0)
     {
         $data['nama_grup'] = $_POST['nama_grup'];
         $data['id_kontak'] = '-';
-        $this->db->insert('kontak_grup', $data);
+        $outp              = $this->db->insert('kontak_grup', $data);
     }
 
     public function update_grup($id = 0)
@@ -650,20 +685,20 @@ class Sms_model extends Model
         $nama_awal = $_POST['nama_grup_awal'];
         $sql       = "UPDATE kontak_grup SET nama_grup='{$nama_baru}' WHERE nama_grup='{$nama_awal}'";
         echo $sql;
-        $this->db->query($sql);
+        $query = $this->db->query($sql);
     }
 
     public function delete_grup($id = 0)
     {
-        $sql = "DELETE FROM kontak_grup WHERE nama_grup='{$id}' ";
-        $this->db->query($sql);
+        $sql   = "DELETE FROM kontak_grup WHERE nama_grup='{$id}' ";
+        $query = $this->db->query($sql);
     }
 
     public function delete_all_grup()
     {
         $id_cb = $_POST['id_cb'];
 
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = "DELETE FROM kontak_grup WHERE nama_grup='{$id}' ";
                 $outp = $this->db->query($sql, [$id]);
@@ -682,22 +717,24 @@ class Sms_model extends Model
     public function search_grup_sql()
     {
         if (isset($_SESSION['cari_grup'])) {
-            $cari = $_SESSION['cari_grup'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari            = $_SESSION['cari_grup'];
+            $kw              = $this->db->escape_like_str($cari);
+            $kw              = '%' . $kw . '%';
+            $search_grup_sql = " AND (nama_grup LIKE '{$kw}')";
 
-            return " AND (nama_grup LIKE '{$kw}')";
+            return $search_grup_sql;
         }
     }
 
     public function search_anggota_sql()
     {
         if (isset($_SESSION['cari_anggota'])) {
-            $cari = $_SESSION['cari_anggota'];
-            $kw   = $this->db->escape_like_str($cari);
-            $kw   = '%' . $kw . '%';
+            $cari               = $_SESSION['cari_anggota'];
+            $kw                 = $this->db->escape_like_str($cari);
+            $kw                 = '%' . $kw . '%';
+            $search_anggota_sql = " AND (nama LIKE '{$kw}')";
 
-            return " AND (nama LIKE '{$kw}')";
+            return $search_anggota_sql;
         }
     }
 
@@ -729,8 +766,11 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
+        $i     = 0;
+        $j     = $offset;
 
-        return $query->result_array();
+        return $data;
     }
 
     public function list_data_nama($id = 0)
@@ -744,7 +784,7 @@ class Sms_model extends Model
     public function insert_anggota($id = 0)
     {
         $id_cb = $_POST['id_cb'];
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $a) {
                 $sql  = "INSERT INTO kontak_grup(nama_grup, id_kontak)VALUES('{$id}','{$a}')";
                 $outp = $this->db->query($sql, [$id]);
@@ -761,14 +801,14 @@ class Sms_model extends Model
 
     public function delete_anggota($grup = 0, $id = 0)
     {
-        $sql = "DELETE FROM kontak_grup WHERE nama_grup='{$grup}' AND id_kontak='{$id}'";
-        $this->db->query($sql);
+        $sql   = "DELETE FROM kontak_grup WHERE nama_grup='{$grup}' AND id_kontak='{$id}'";
+        $query = $this->db->query($sql);
     }
 
     public function delete_all_anggota($grup = 0)
     {
         $id_cb = $_POST['id_cb'];
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = "DELETE FROM kontak_grup WHERE nama_grup='{$grup}' AND id_kontak='{$id}'";
                 $outp = $this->db->query($sql, [$id]);
@@ -810,8 +850,12 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
 
-        return $query->result_array();
+        $i = 0;
+        $j = $offset;
+
+        return $data;
     }
 
     public function get_data_polling($id = 0)
@@ -840,14 +884,14 @@ class Sms_model extends Model
 
     public function delete_polling($id = 0)
     {
-        $sql = "DELETE FROM polling WHERE id_polling='{$id}' ";
-        $this->db->query($sql);
+        $sql   = "DELETE FROM polling WHERE id_polling='{$id}' ";
+        $query = $this->db->query($sql);
     }
 
     public function delete_all_polling()
     {
         $id_cb = $_POST['id_cb'];
-        if (is_countable($id_cb) ? count($id_cb) : 0) {
+        if (count($id_cb)) {
             foreach ($id_cb as $id) {
                 $sql  = "DELETE FROM polling WHERE id_polling='{$id}' ";
                 $outp = $this->db->query($sql, [$id]);
@@ -891,7 +935,10 @@ class Sms_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
+        $data  = $query->result_array();
+        $i     = 0;
+        $j     = $offset;
 
-        return $query->result_array();
+        return $data;
     }
 }
