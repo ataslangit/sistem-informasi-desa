@@ -1,7 +1,7 @@
 <?= $this->extend('template') ?>
 
 <?= $this->section('content') ?>
-<link rel="stylesheet" href="<?= base_url('assets/css/screen.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/screen.css') ?>">
 
     <style>
         body {

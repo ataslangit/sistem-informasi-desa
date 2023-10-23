@@ -9,9 +9,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', [Main::class, 'index']);
 
-// $routes->get('install', [Main::class, 'initial'], ['as' => 'install']);
-
 // install
 $routes->group('install', static function ($routes) {
-    $routes->get('/', [Install::class, 'index']);
+    $routes->get('/', [Install::class, 'index'], ['as' => 'install.view']);
 });

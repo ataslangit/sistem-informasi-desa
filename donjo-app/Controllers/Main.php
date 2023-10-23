@@ -53,11 +53,6 @@ class Main extends CI_Controller
         }
     }
 
-    public function initial()
-    {
-        echo view('install');
-    }
-
     public function install()
     {
         $install = new Install();
