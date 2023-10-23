@@ -29,7 +29,7 @@ class Login extends CI_Controller
     }
 
     /**
-     * Proses auntetikasi ke halaman siteman
+     * Proses autentikasi ke halaman siteman
      */
     public function submit()
     {
