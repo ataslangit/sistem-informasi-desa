@@ -49,7 +49,7 @@ class Main extends CI_Controller
                 return redirect()->to('first');
             }
         } else {
-            return redirect()->to('main/initial');
+            return redirect()->route('install.view');
         }
     }
 
