@@ -12,7 +12,6 @@ class Login extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
         $this->load->model('config_model');
     }
 
@@ -29,6 +28,9 @@ class Login extends CI_Controller
         return view('siteman/login', $data);
     }
 
+    /**
+     * Proses auntetikasi ke halaman siteman
+     */
     public function submit()
     {
         $validation = Services::validation();
@@ -58,26 +60,10 @@ class Login extends CI_Controller
                     'user_email'   => $cari->email,
                 ]);
 
-                // Redirect to the login view with a success message
-                return redirect('login.view')->with('success', 'Welcome back!');
+                return redirect('login.view')->with('success', 'Halo, selamat datang kembali');
             }
         }
 
-        // If validation fails or login fails, redirect back to the login view with an error message and input data preserved
-        return redirect('login.view')->withInput()->with('error', 'Email and/or password not correct');
-    }
-
-    public function auth()
-    {
-        $this->user_model->siteman();
-
-        return redirect()->to('main');
-    }
-
-    public function login()
-    {
-        $this->user_model->logout();
-
-        return redirect()->to('siteman');
+        return redirect('login.view')->withInput()->with('error', 'Silakan coba kembali.');
     }
 }
