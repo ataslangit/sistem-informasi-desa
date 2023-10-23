@@ -41,21 +41,21 @@ class Login extends CI_Controller
         if ($validation->withRequest($this->request)->run()) {
             $userModel = new User();
             $username  = $this->request->getPost('username');
+            $password  = $this->request->getPost('password');
 
-            $cari = $userModel->select('id,password,id_grup,session')->where('username', $username)->findAll();
+            $cari = $userModel->select('id,password,id_grup,session')->where('username', $username)->first();
 
-            dd($cari);
+            if ($cari !== null && hash_password($password) === $cari->password) {
+                $userModel->save([
+                    'session' => hash_password(time() . $password),
+                ]);
 
-            // Try to find a user based on the submitted email address
-            $find = $userModel->where('email', $this->request->getPost('email'))->first();
-
-            // Check if user exists and if the submitted password matches the hashed password in the database
-            if ($find !== null && password_verify($this->request->getPost('password'), $find->password)) {
-                // Set session data for the user
                 session()->set([
-                    'logged_in'  => true,
-                    'user_id'    => $find->id,
-                    'user_email' => $find->email,
+                    'logged_in'    => true,
+                    'user_id'      => $cari->id,
+                    'user_id_grup' => $cari->id_grup,
+                    'user_name'    => $cari->username,
+                    'user_email'   => $cari->email,
                 ]);
 
                 // Redirect to the login view with a success message
