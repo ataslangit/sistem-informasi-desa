@@ -1,29 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
+<?= $this->extend('template') ?>
 
-<head>
-    <title>Sistem Informasi Desa (SID)</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?= $this->section('content') ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/screen.css') ?>">
 
-    <link rel="shortcut icon" href="<?php echo base_url('favicon.ico')?>">
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php echo base_url('rss.xml') ?>">
-
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/screen.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style2.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/noJS.css') ?>">
-
-    <script src="<?php echo base_url('assets/js/jquery-1.5.2.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui-1.8.16.custom.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.formtips.1.2.2.packed.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.tipsy.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.elastic.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.flexbox.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.easing-1.3.pack.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/donjoscript/donjoscript2.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/donjoscript/donjo.ui.dialog.js') ?>"></script>
     <style>
         body {
-            background: url(<?php echo base_url('assets/files/bg.jpg') ?>) no-repeat center center fixed;
+            background: url(<?= base_url('assets/files/bg.jpg') ?>) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -43,17 +25,16 @@
         }
 
     </style>
-</head>
 
-<body>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <div id="full">
-        <h1>Instalasi Database SID <?= VERSI_SID ?></h1>
+        <h1>Instalasi Database Sistem Informasi Desa</h1>
         <hr>
         <div style="width:400px;margin:0px auto;">
             <h4>Klik “Lanjut” untuk memulai proses instalasi database SID. Proses instalasi memerlukan waktu singkat. Setelah selesai, Anda akan mendapatkan “username” dan “password”. Catat/simpan “username” dan “password” sebelum meneruskan ke langkah selanjutnya.</h4><br>
-            <a href="<?php echo site_url('main/install') ?>" class="uibutton special">Lanjut</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?= site_url('main/install') ?>" class="uibutton special">Lanjut</a>
         </div>
     </div>
-</body>
-
-</html>
+<?= $this->endSection() ?>
