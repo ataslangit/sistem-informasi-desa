@@ -48,16 +48,19 @@ class Login extends CI_Controller
             $cari = $userModel->select('id,password,id_grup,session')->where('username', $username)->first();
 
             if ($cari !== null && hash_password($password) === $cari->password) {
+                $sess = hash_password(time() . $password);
                 $userModel->save([
-                    'session' => hash_password(time() . $password),
+                    'session' => $sess,
                 ]);
 
                 session()->set([
-                    'logged_in'    => true,
-                    'user_id'      => $cari->id,
-                    'user_id_grup' => $cari->id_grup,
-                    'user_name'    => $cari->username,
-                    'user_email'   => $cari->email,
+                    'siteman'    => true,
+                    'user'       => $cari->id,
+                    'grup'       => $cari->id_grup,
+                    'user_name'  => $cari->username,
+                    'user_email' => $cari->email,
+                    'sesi'       => $sess,
+                    'per_page'   => 10,
                 ]);
 
                 return redirect('login.view')->with('success', 'Halo, selamat datang kembali');
