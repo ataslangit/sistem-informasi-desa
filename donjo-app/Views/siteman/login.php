@@ -19,7 +19,7 @@
         <div id="mainlogin">
             <div id="or"><?= VERSI_SID ?></div>
             <h1>Masukkan Username dan Password</h1>
-            <form action="<?php echo site_url('siteman/auth')?>" method="post">
+            <?= form_open(route_to('login.submit')) ?>
                 <input name="username" type="text" placeholder="username" value="" required>
                 <input name="password" type="password" placeholder="password" value="" required>
                 <button type="submit" id="but">LOGIN</button>
@@ -32,7 +32,7 @@
                     Tidak ada aktivitas dalam jangka waktu yang cukup lama. Demi keamanan silakan Login kembali.
                 </div>
                 <?php } unset($_SESSION['siteman']); */ ?>
-            </form>
+            <?= form_close() ?>
         </div>
         <div id="facebook2">
             <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?php echo base_url('assets/images/logo-combine.png') ?>"></a></div>
