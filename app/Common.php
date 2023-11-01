@@ -31,7 +31,7 @@ function asset(string $file): string
     }
 
     // Decode the JSON file.
-    $manifest = json_decode(file_get_contents($manifest_path), true, 512, JSON_THROW_ON_ERROR);
+    $manifest = json_decode(file_get_contents($manifest_path), true);
 
     // Check if the file exists in the manifest file.
     if (! isset($manifest[$file])) {

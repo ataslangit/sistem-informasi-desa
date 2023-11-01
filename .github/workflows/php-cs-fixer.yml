@@ -17,14 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "7.4"
-          
+
       - name: Install Dependency
         run: composer install
-        
+
       - name: Run PHP-CS-FIXER
         run: composer run cs
