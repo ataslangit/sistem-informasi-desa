@@ -34,7 +34,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "7.4"
-          extensions: mbstring, intl, json, mysqlnd, libcurl
+          extensions: mbstring, intl, json, mysqlnd
 
       - name: Psalm Security Scan
         uses: psalm/psalm-github-security-scan@f3e6fd9432bc3e44aec078572677ce9d2ef9c287
