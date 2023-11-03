@@ -14,7 +14,8 @@ $routes->get('/', [Main::class, 'index']);
 $routes->group('install', static function ($routes) {
     $routes->get('/', [Install::class, 'index'], ['as' => 'install.view']);
     $routes->post('/', [Install::class, 'submit'], ['as' => 'install.process']);
-$routes->get('install', [Main::class, 'initial'], ['as' => 'install']);
+    $routes->get('install', [Main::class, 'initial'], ['as' => 'install']);
+});
 
 // siteman
 $routes->group('siteman', static function ($routes) {
