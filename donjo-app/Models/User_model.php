@@ -3,6 +3,9 @@
 use App\Libraries\Paging;
 use Kenjis\CI3Compatible\Core\CI_Model;
 
+/**
+ * TODO: Penerapan dan penggunaan pada model ini sebaiknya dipindahkan ke `Models\User`
+ */
 class User_model extends CI_Model
 {
     public function siteman()

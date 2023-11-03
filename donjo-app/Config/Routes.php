@@ -12,4 +12,5 @@ $routes->get('/', [Main::class, 'index']);
 // install
 $routes->group('install', static function ($routes) {
     $routes->get('/', [Install::class, 'index'], ['as' => 'install.view']);
+    $routes->post('/', [Install::class, 'submit'], ['as' => 'install.process']);
 });
