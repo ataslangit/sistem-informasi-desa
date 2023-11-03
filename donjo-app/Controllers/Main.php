@@ -53,23 +53,6 @@ class Main extends CI_Controller
         }
     }
 
-    public function install()
-    {
-        $install = new Install();
-        $out     = $install->run();
-
-        if (null === $out) {
-            return redirect()->to('/');
-        }
-
-        echo view('init', $out);
-    }
-
-    public function init($out = null)
-    {
-        echo view('init', $out);
-    }
-
     public function auth()
     {
         $this->user_model->login();

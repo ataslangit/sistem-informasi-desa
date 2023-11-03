@@ -32,9 +32,9 @@
 <?= $this->section('content') ?>
     <div id="full">
         <p>
-            Selamat, aplikasi Sistem Infomasi Desa telah berhasil diinstall.
+            Anda baru saja menginstall aplikasi SID v<?= esc(VERSI_SID) ?> dengan lancar.
         </p>
-        <a href="<?= site_url('/') ?>" class="uibutton special">Lihat situs</a>
+        <a href="<?= site_url(route_to('siteman')) ?>" class="uibutton special">Mulai SID</a>
 
     </div>
 <?= $this->endSection() ?>
