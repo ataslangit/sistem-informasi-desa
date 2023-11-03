@@ -36,7 +36,7 @@ class SudahInstall implements FilterInterface
         }
 
         if (! $install->cek()) {
-            return redirect()->route('install');
+            return redirect()->route('install.view');
         }
     }
 
