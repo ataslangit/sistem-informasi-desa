@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\I18n\Time;
 use Config\Services;
 use Exception;
 
@@ -141,8 +142,18 @@ class Install extends BaseController
         return redirect()->to(current_url() . '?step=finish');
     }
 
+    /**
+     * Menampilhan halaman selesai proses install
+     * dan juga menambahkan file `install.sid`
+     */
     private function finish(): string
     {
+        $time   = new Time();
+        $handle = fopen(ROOTPATH . 'install.sid', 'w+b');
+
+        fwrite($handle, 'SID terinstall pada ' . $time->toDateTimeString());
+        fclose($handle);
+
         return view('install/finish');
     }
 }

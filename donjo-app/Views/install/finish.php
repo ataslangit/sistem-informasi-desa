@@ -34,7 +34,6 @@
         <p>
             Selamat, aplikasi Sistem Infomasi Desa telah berhasil diinstall.
         </p>
-        <a href="<?= site_url(route_to('siteman.login')) ?>" class="uibutton special">Login</a>
         <a href="<?= site_url('/') ?>" class="uibutton special">Lihat situs</a>
 
     </div>
