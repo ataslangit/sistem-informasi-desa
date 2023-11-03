@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use CodeIgniter\Encryption\Encryption;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\I18n\Time;
 use Config\Services;
@@ -60,8 +61,7 @@ class Install extends BaseController
             'database.default.database' => $this->request->getPost('db_name'),
             'database.default.username' => $this->request->getPost('db_user'),
             'database.default.password' => $this->request->getPost('db_pass'),
-            'encryption.key'            => 'hex2bin:' . bin2hex(\CodeIgniter\Encryption\Encryption::createKey(32)),
-            'CI_ENVIRONMENT'            => 'development',
+            'encryption.key'            => 'hex2bin:' . bin2hex(Encryption::createKey(32)),
         ];
 
         $data_new_user = [
