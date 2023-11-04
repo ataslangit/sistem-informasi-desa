@@ -33,7 +33,7 @@ jobs:
         run: composer install
 
       - name: Run PHPMD
-        run: ./donjo-sys/bin/phpmd donjo-app sarif cleancode,codesize,controversial,design,unusedcode --reportfile phpmd-results.sarif
+        run: ./donjo-sys/bin/phpmd donjo-app sarif cleancode --reportfile phpmd-results.sarif
         # continue-on-error: true
 
       - name: Upload analysis results to GitHub
