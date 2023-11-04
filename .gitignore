@@ -129,3 +129,5 @@ nb-configuration.xml
 /install.sid
 
 /dev/
+
+/phpmd-results.sarif
