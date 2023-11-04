@@ -3,7 +3,6 @@
 namespace App\Controllers\Siteman;
 
 use App\Models\User;
-use Config\Services;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
 class Login extends CI_Controller
@@ -33,38 +32,44 @@ class Login extends CI_Controller
      */
     public function submit()
     {
-        $validation = Services::validation();
+        if (! $this->request->is('post')) {
+            return $this->index();
+        }
 
-        $validation->setRules([
+        $rules = [
             'username' => ['label' => 'Username', 'rules' => 'required'],
             'password' => ['label' => 'Password', 'rules' => 'required'],
-        ]);
+        ];
 
-        if ($validation->withRequest($this->request)->run()) {
-            $userModel = new User();
-            $username  = $this->request->getPost('username');
-            $password  = $this->request->getPost('password');
+        if (! $this->validate($rules)) {
+            return $this->index();
+        }
 
-            $cari = $userModel->select('id,password,id_grup,session')->where('username', $username)->first();
+        $userModel = new User();
+        $username  = $this->request->getPost('username');
+        $password  = $this->request->getPost('password');
 
-            if ($cari !== null && hash_password($password) === $cari->password) {
-                $sess = hash_password(time() . $password);
-                $userModel->save([
-                    'session' => $sess,
-                ]);
+        $cari = $userModel->select('id,password,username,id_grup,session')->where('username', $username)->first();
 
-                session()->set([
-                    'siteman'    => true,
-                    'user'       => $cari->id,
-                    'grup'       => $cari->id_grup,
-                    'user_name'  => $cari->username,
-                    'user_email' => $cari->email,
-                    'sesi'       => $sess,
-                    'per_page'   => 10,
-                ]);
+        if ($cari !== null && hash_password($password) === $cari->password) {
+            $sess = hash_password(time() . $password);
+            $userModel->save([
+                'id'      => $cari->id,
+                'session' => $sess,
+            ]);
 
-                return redirect('login.view')->with('success', 'Halo, selamat datang kembali');
-            }
+            session()->set([
+                'siteman'   => 1,
+                'user'      => $cari->id,
+                'grup'      => $cari->id_grup,
+                'user_name' => $cari->username,
+                // 'user_email' => $cari->email,
+                'sesi'     => $sess,
+                'per_page' => 10,
+            ]);
+
+            // TODO: ganti url target redirect menggunakan nama route
+            return redirect()->to('hom_desa')->with('success', 'Halo, selamat datang kembali');
         }
 
         return redirect('login.view')->withInput()->with('error', 'Silakan coba kembali.');

@@ -18,7 +18,7 @@ $routes->group('install', static function ($routes) {
 });
 
 // siteman
-$routes->group('siteman', static function ($routes) {
+$routes->group('siteman', ['filter' => 'isLogin'], static function ($routes) {
     $routes->get('/', [Login::class, 'index'], ['as' => 'login.view']);
     $routes->post('/', [Login::class, 'submit'], ['as' => 'login.submit']);
 });
