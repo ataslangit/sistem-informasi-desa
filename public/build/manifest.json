@@ -1,0 +1,11 @@
+{
+  "resources/css/login.scss": {
+    "file": "assets/login-e8df96de.css",
+    "isEntry": true,
+    "src": "resources/css/login.scss"
+  },
+  "resources/images/bg.jpg": {
+    "file": "assets/bg-651882f6.jpg",
+    "src": "resources/images/bg.jpg"
+  }
+}

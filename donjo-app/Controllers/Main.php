@@ -53,15 +53,6 @@ class Main extends CI_Controller
         }
     }
 
-    public function auth()
-    {
-        $this->user_model->login();
-        $header = [
-            'desa' => $this->config_model->get_data(),
-        ];
-        echo view('siteman', $header);
-    }
-
     public function logout()
     {
         $this->config_model->opt();
