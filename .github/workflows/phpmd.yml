@@ -31,7 +31,7 @@ jobs:
           tools: phpmd
 
       - name: Run PHPMD
-        run: phpmd . sarif codesize --reportfile phpmd-results.sarif
+        run: phpmd . sarif codesize,unusedcode,naming,cleancode --reportfile phpmd-results.sarif
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
