@@ -28,9 +28,10 @@ jobs:
         uses: shivammathur/setup-php@aa1fe473f9c687b6fb896056d771232c0bc41161
         with:
           coverage: none
+          tools: phpmd
 
       - name: Run PHPMD
-        run: ./donjo-sys/bin/phpmd donjo-app sarif admin/phpmd.rules.xml --reportfile phpmd-results.sarif
+        run: phpmd donjo-app sarif admin/phpmd.rules.xml --reportfile phpmd-results.sarif
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
