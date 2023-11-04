@@ -32,7 +32,7 @@ jobs:
           tools: phpmd
 
       - name: Run PHPMD
-        run: phpmd donjo-app sarif codesize,cleancode,naming --reportfile phpmd-results.sarif
+        run: phpmd donjo-app sarif codesize,cleancode,naming,unusedcode --reportfile phpmd-results.sarif
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
