@@ -3,6 +3,7 @@
 namespace App\Controllers\Siteman;
 
 use App\Models\User;
+use CodeIgniter\HTTP\RedirectResponse;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
 class Login extends CI_Controller
@@ -29,6 +30,8 @@ class Login extends CI_Controller
 
     /**
      * Proses autentikasi ke halaman siteman
+     *
+     * @return RedirectResponse|string
      */
     public function submit()
     {
