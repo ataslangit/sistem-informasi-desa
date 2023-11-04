@@ -27,11 +27,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@aa1fe473f9c687b6fb896056d771232c0bc41161
         with:
-          coverage: none
-          tools: phpmd
+          php-version: "7.4"
+
+      - name: composer Install
+        run: composer install
 
       - name: Run PHPMD
-        run: phpmd donjo-app sarif admin/phpmd.rules.xml --reportfile phpmd-results.sarif
+        run: ./donjo-sys/bin/phpmd donjo-app sarif admin/phpmd.rules.xml --reportfile phpmd-results.sarif
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
