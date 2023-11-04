@@ -47,7 +47,7 @@ jobs:
           tools: phpmd
 
       - name: Run PHPMD
-        run: phpmd donjo-app sarif codesize,cleancode --reportfile phpmd-results.sarif --exclude donjo-sys/*
+        run: phpmd donjo-app sarif codesize,cleancode --reportfile phpmd-results.sarif
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
