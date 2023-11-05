@@ -2,12 +2,11 @@
 
 namespace App\Filters;
 
-use App\Libraries\Install;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class SudahInstall implements FilterInterface
+class IsLogin implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,18 +24,13 @@ class SudahInstall implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $install = new Install();
+        $session = session();
 
-        if ($arguments === ['installer']) {
-            if (! $install->cek()) {
-                return;
+        if ($session->has('siteman')) {
+            if ($session->get('siteman') === 1) {
+                // TODO: ganti url target redirect menggunakan nama route
+                return redirect()->to('hom_desa');
             }
-
-            return redirect()->to('/');
-        }
-
-        if (! $install->cek()) {
-            return redirect()->route('install.view');
         }
     }
 

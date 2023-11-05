@@ -49,39 +49,8 @@ class Main extends CI_Controller
                 return redirect()->to('first');
             }
         } else {
-            return redirect()->to('main/initial');
+            return redirect()->route('install.view');
         }
-    }
-
-    public function initial()
-    {
-        echo view('install');
-    }
-
-    public function install()
-    {
-        $install = new Install();
-        $out     = $install->run();
-
-        if (null === $out) {
-            return redirect()->to('/');
-        }
-
-        echo view('init', $out);
-    }
-
-    public function init($out = null)
-    {
-        echo view('init', $out);
-    }
-
-    public function auth()
-    {
-        $this->user_model->login();
-        $header = [
-            'desa' => $this->config_model->get_data(),
-        ];
-        echo view('siteman', $header);
     }
 
     public function logout()

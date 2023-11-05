@@ -3,37 +3,11 @@
 use App\Libraries\Paging;
 use Kenjis\CI3Compatible\Core\CI_Model;
 
+/**
+ * TODO: Penerapan dan penggunaan pada model ini sebaiknya dipindahkan ke `Models\User`
+ */
 class User_model extends CI_Model
 {
-    public function siteman()
-    {
-        $username = $this->input->post('username');
-        $password = hash_password($this->input->post('password'));
-
-        $sql   = 'SELECT id,password,id_grup,session FROM user WHERE username=?';
-        $query = $this->db->query($sql, [$username]);
-        $row   = $query->row();
-        if ($row) {
-            if ($password === $row->password) {
-                $this->reset_timer();
-                $data['session'] = hash_password(time() . $password);
-                $this->db->where('id', $row->id);
-                $this->db->update('user', $data);
-
-                $_SESSION['siteman'] = 1;
-                $_SESSION['sesi']    = $data['session'];
-                // $_SESSION['sesi'] = $row->session;
-                $_SESSION['user']     = $row->id;
-                $_SESSION['grup']     = $row->id_grup;
-                $_SESSION['per_page'] = 10;
-            } else {
-                $_SESSION['siteman'] = -1;
-            }
-        } else {
-            $_SESSION['siteman'] = -1;
-        }
-    }
-
     public function sesi_grup($sesi = '')
     {
         $sql   = "SELECT id_grup FROM user WHERE session=? AND session <> ''";

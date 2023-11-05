@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\IsLogin;
 use App\Filters\SudahInstall;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -27,6 +28,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'sudahinstall'  => SudahInstall::class,
+        'isLogin'       => IsLogin::class,
     ];
 
     /**
