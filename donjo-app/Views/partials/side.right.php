@@ -233,12 +233,11 @@ use CodeIgniter\Database\RawSql;
             $today = 0;
         }
 
-        $subQuery = \Config\Database::connect()->table('sys_traffic')->select('DATE_ADD(CURDATE(),INTERVAL -1 DAY)');
+        $subQuery = \Config\Database::connect()->table('sys_traffic')->select('DATE_ADD(CURDATE(),INTERVAL -1 DAY)')->limit(1);
         $strSQL = $builder->select('Jumlah AS Visitor')->where('Tanggal', $subQuery )->limit(1);
 
-        $rs = $strSQL;
-        if ($rs->countAllResults() > 0) {
-            $visitor   = $rs->get()->getRow(0);;
+        if ($strSQL) {
+            $visitor   = $strSQL->get()->getRow(0);
             $yesterday = $visitor->Visitor;
         } else {
             $yesterday = 0;

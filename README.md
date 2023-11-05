@@ -1,5 +1,5 @@
 # SISTEM INFORMASI DESA
-s
+
 ## APA ITU SISTEM INFORMASI DESA
 Sistem Informasi Desa (SID) adalah merupakan sistem olah data informasi berbasis komputer yang dikelola Pemerintah Desa.
 
