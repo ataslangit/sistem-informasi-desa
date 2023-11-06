@@ -3,10 +3,11 @@ name: Docs
 on:
   push:
     branches:
-      - dev
+      - "dev"
     paths:
-      - "docs/**"
       - ".github/workflows/deploy-docs.yml"
+      - "docs/**"
+      - "package.json"
 
 jobs:
   build:
