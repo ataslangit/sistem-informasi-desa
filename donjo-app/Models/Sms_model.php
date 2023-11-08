@@ -386,14 +386,6 @@ class Sms_model extends CI_Model
         }
     }
 
-    public function list_grup()
-    {
-        $sql   = 'SELECT * FROM user_grup';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
     public function list_grup_kontak()
     {
         $sql   = 'SELECT * FROM kontak_grup group by nama_grup';
