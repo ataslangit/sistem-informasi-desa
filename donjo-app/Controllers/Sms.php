@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\UserGrup;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
 class Sms extends CI_Controller
@@ -213,6 +214,7 @@ class Sms extends CI_Controller
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)
     {
+        $userGrup  = new UserGrup();
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -220,14 +222,14 @@ class Sms extends CI_Controller
             $data['sms']          = $this->sms_model->get_sms($tipe, $id);
             $data['form_action']  = site_url("sms/insert/{$tipe}");
             $data['tipe']['tipe'] = $tipe;
-            $data['grup']         = $this->sms_model->list_grup();
+            $data['grup']         = $userGrup->findAll();
             $data['kontak']       = $this->sms_model->list_kontak();
             echo view('sms/ajax_sms_form', $data);
         } else {
             $data['sms']          = null;
             $data['form_action']  = site_url("sms/insert/{$tipe}");
             $data['tipe']['tipe'] = $tipe;
-            $data['grup']         = $this->sms_model->list_grup();
+            $data['grup']         = $userGrup->findAll();
             $data['kontak']       = $this->sms_model->list_kontak();
             echo view('sms/ajax_sms_form_kirim', $data);
         }
@@ -248,11 +250,14 @@ class Sms extends CI_Controller
 
     public function formaftercari($tipe = 0)
     {
+        $userGrup = new UserGrup();
+
         $data['sms']['DestinationNumber'] = $_POST['kontak'];
         $data['sms']['TextDecoded']       = $_POST['text'];
         $data['form_action']              = site_url("sms/insert/{$tipe}");
         $data['tipe']['tipe']             = $tipe;
-        $data['grup']                     = $this->sms_model->list_grup();
+        $data['grup']                     = $userGrup->findAll();
+
         echo view('sms/ajax_sms_form', $data);
     }
 

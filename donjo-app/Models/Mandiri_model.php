@@ -227,12 +227,4 @@ class Mandiri_model extends CI_Model
             $_SESSION['success'] = -1;
         }
     }
-
-    public function list_grup()
-    {
-        $sql   = 'SELECT * FROM user_grup';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
 }

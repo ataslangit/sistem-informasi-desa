@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\UserGrup;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
 class Man_user extends CI_Controller
@@ -60,6 +61,8 @@ class Man_user extends CI_Controller
 
     public function form($p = 1, $o = 0, $id = '')
     {
+        $userGrup = new UserGrup();
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -71,7 +74,7 @@ class Man_user extends CI_Controller
             $data['form_action'] = site_url('man_user/insert');
         }
 
-        $data['grup'] = $this->user_model->list_grup();
+        $data['grup'] = $userGrup->findAll();
         $header       = $this->header_model->get_data();
 
         echo view('header', $header);
