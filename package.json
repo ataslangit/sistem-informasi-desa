@@ -9,7 +9,7 @@
     "tinymce": "^4.3.7"
   },
   "devDependencies": {
-    "js-beautify": "1.14.9",
+    "js-beautify": "1.14.11",
     "laravel-vite-plugin": "0.8.1",
     "sass": "1.69.5",
     "sitemap": "7.1.1",
