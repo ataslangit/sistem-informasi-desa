@@ -53,4 +53,4 @@ jobs:
           fi
 
       - name: Analyze for refactoring
-        run: vendor/bin/rector process --dry-run --no-progress-bar
+        run: donjo-sys/bin/rector process --dry-run --no-progress-bar
