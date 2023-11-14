@@ -1,0 +1,192 @@
+//
+// Codebase themes variables
+// --------------------------------------------------
+
+// Elegance Theme
+$theme-elegance-primary:                    #8f55f2 !default;
+$theme-elegance-light:                      lighten($theme-elegance-primary, 14%) !default;
+$theme-elegance-lighter:                    lighten($theme-elegance-primary, 26%) !default;
+$theme-elegance-dark:                       shade-color($gray-700, 5%) !default;
+$theme-elegance-darker:                     shade-color($gray-900, 5%) !default;
+
+$theme-elegance-body-bg:                    #f1f0f5 !default;
+$theme-elegance-body-bg-dark:               darken($theme-elegance-body-bg, 4%) !default;
+$theme-elegance-body-bg-light:              lighten($theme-elegance-body-bg, 2%) !default;
+
+$theme-elegance-body-color:                 $body-color !default;
+$theme-elegance-body-color-dark:            $body-color-dark !default;
+$theme-elegance-body-color-light:           $theme-elegance-body-bg-dark !default;
+
+$theme-elegance-link-color:                 $theme-elegance-primary !default;
+$theme-elegance-link-hover-color:           darken($theme-elegance-primary, 20%) !default;
+
+$theme-elegance-headings-color:             $theme-elegance-body-color-dark !default;
+
+$theme-elegance-input-btn-focus-color:      rgba($theme-elegance-primary, .25) !default;
+$theme-elegance-input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $theme-elegance-input-btn-focus-color !default;
+
+$theme-elegance-input-bg:                   $white !default;
+$theme-elegance-input-color:                $theme-elegance-body-color !default;
+$theme-elegance-input-border-color:         darken($theme-elegance-body-bg-dark, 5%) !default;
+
+$theme-elegance-input-focus-bg:             $white !default;
+$theme-elegance-input-focus-color:          $theme-elegance-body-color-dark !default;
+$theme-elegance-input-focus-border-color:   lighten($theme-elegance-body-bg-dark, 25%) !default;
+
+$theme-elegance-header-bg:                  $white !default;
+$theme-elegance-header-dark-bg:             shade-color($gray-800, 7.5%) !default;
+$theme-elegance-sidebar-bg:                 $white !default;
+$theme-elegance-sidebar-dark-bg:            shade-color($gray-800, 7.5%) !default;
+$theme-elegance-side-overlay-bg:            $white !default;
+
+
+// Pulse Theme
+$theme-pulse-primary:                       #db3f3f !default;
+$theme-pulse-light:                         lighten($theme-pulse-primary, 14%) !default;
+$theme-pulse-lighter:                       lighten($theme-pulse-primary, 32%) !default;
+$theme-pulse-dark:                          #393939 !default;
+$theme-pulse-darker:                        #252525 !default;
+
+$theme-pulse-body-bg:                       #f2f2f2 !default;
+$theme-pulse-body-bg-dark:                  darken($theme-pulse-body-bg, 4%) !default;
+$theme-pulse-body-bg-light:                 lighten($theme-pulse-body-bg, 2%) !default;
+
+$theme-pulse-body-color:                    $body-color !default;
+$theme-pulse-body-color-dark:               $body-color-dark !default;
+$theme-pulse-body-color-light:              $theme-pulse-body-bg-dark !default;
+
+$theme-pulse-link-color:                    $theme-pulse-primary !default;
+$theme-pulse-link-hover-color:              darken($theme-pulse-primary, 20%) !default;
+
+$theme-pulse-headings-color:                $theme-pulse-body-color-dark !default;
+
+$theme-pulse-input-btn-focus-color:         rgba($theme-pulse-primary, .25) !default;
+$theme-pulse-input-btn-focus-box-shadow:    0 0 0 $input-btn-focus-width $theme-pulse-input-btn-focus-color !default;
+
+$theme-pulse-input-bg:                      $white !default;
+$theme-pulse-input-color:                   $theme-pulse-body-color !default;
+$theme-pulse-input-border-color:            darken($theme-pulse-body-bg-dark, 5%) !default;
+
+$theme-pulse-input-focus-bg:                $white !default;
+$theme-pulse-input-focus-color:             $theme-pulse-body-color-dark !default;
+$theme-pulse-input-focus-border-color:      lighten($theme-pulse-body-bg-dark, 25%) !default;
+
+$theme-pulse-header-bg:                     $white !default;
+$theme-pulse-header-dark-bg:                $theme-pulse-dark !default;
+$theme-pulse-sidebar-bg:                    $white !default;
+$theme-pulse-sidebar-dark-bg:               $theme-pulse-dark !default;
+$theme-pulse-side-overlay-bg:               $white !default;
+
+
+// Flat Theme
+$theme-flat-primary:                        #36b3a0 !default;
+$theme-flat-light:                          lighten($theme-flat-primary, 14%) !default;
+$theme-flat-lighter:                        lighten($theme-flat-primary, 32%) !default;
+$theme-flat-dark:                           tint-color(#0b2830, 6%) !default;
+$theme-flat-darker:                         #0b2830 !default;
+
+$theme-flat-body-bg:                        #f2f5f5 !default;
+$theme-flat-body-bg-dark:                   darken($theme-flat-body-bg, 4%) !default;
+$theme-flat-body-bg-light:                  lighten($theme-flat-body-bg, 2%) !default;
+
+$theme-flat-body-color:                     $body-color !default;
+$theme-flat-body-color-dark:                $body-color-dark !default;
+$theme-flat-body-color-light:               $theme-flat-body-bg-dark !default;
+
+$theme-flat-link-color:                     $theme-flat-primary !default;
+$theme-flat-link-hover-color:               darken($theme-flat-primary, 20%) !default;
+
+$theme-flat-headings-color:                 $theme-flat-body-color-dark !default;
+
+$theme-flat-input-btn-focus-color:         rgba($theme-flat-primary, .25) !default;
+$theme-flat-input-btn-focus-box-shadow:    0 0 0 $input-btn-focus-width $theme-flat-input-btn-focus-color !default;
+
+$theme-flat-input-bg:                      $white !default;
+$theme-flat-input-color:                   $theme-flat-body-color !default;
+$theme-flat-input-border-color:            darken($theme-flat-body-bg-dark, 5%) !default;
+
+$theme-flat-input-focus-bg:                $white !default;
+$theme-flat-input-focus-color:             $theme-flat-body-color-dark !default;
+$theme-flat-input-focus-border-color:      lighten($theme-flat-body-bg-dark, 25%) !default;
+
+$theme-flat-header-bg:                      $white !default;
+$theme-flat-header-dark-bg:                 $theme-flat-dark !default;
+$theme-flat-sidebar-bg:                     $white !default;
+$theme-flat-sidebar-dark-bg:                $theme-flat-dark !default;
+$theme-flat-side-overlay-bg:                $white !default;
+
+
+// Corporate Theme
+$theme-corporate-primary:                   #2facb2 !default;
+$theme-corporate-light:                     lighten($theme-corporate-primary, 15%) !default;
+$theme-corporate-lighter:                   lighten($theme-corporate-primary, 36%) !default;
+$theme-corporate-dark:                      #323d4c !default;
+$theme-corporate-darker:                    #252d38 !default;
+
+$theme-corporate-body-bg:                   #f2f5f5 !default;
+$theme-corporate-body-bg-dark:              darken($theme-corporate-body-bg, 4%) !default;
+$theme-corporate-body-bg-light:             lighten($theme-corporate-body-bg, 2%) !default;
+
+$theme-corporate-body-color:                $body-color !default;
+$theme-corporate-body-color-dark:           $body-color-dark !default;
+$theme-corporate-body-color-light:          $theme-corporate-body-bg-dark !default;
+
+$theme-corporate-link-color:                $theme-corporate-primary !default;
+$theme-corporate-link-hover-color:          darken($theme-corporate-primary, 20%) !default;
+
+$theme-corporate-headings-color:            $theme-corporate-body-color-dark !default;
+
+$theme-corporate-input-btn-focus-color:         rgba($theme-corporate-primary, .25) !default;
+$theme-corporate-input-btn-focus-box-shadow:    0 0 0 $input-btn-focus-width $theme-corporate-input-btn-focus-color !default;
+
+$theme-corporate-input-bg:                      $white !default;
+$theme-corporate-input-color:                   $theme-corporate-body-color !default;
+$theme-corporate-input-border-color:            darken($theme-corporate-body-bg-dark, 5%) !default;
+
+$theme-corporate-input-focus-bg:                $white !default;
+$theme-corporate-input-focus-color:             $theme-corporate-body-color-dark !default;
+$theme-corporate-input-focus-border-color:      lighten($theme-corporate-body-bg-dark, 25%) !default;
+
+$theme-corporate-header-bg:                 $white !default;
+$theme-corporate-header-dark-bg:            $theme-corporate-dark !default;
+$theme-corporate-sidebar-bg:                $white !default;
+$theme-corporate-sidebar-dark-bg:           $theme-corporate-dark !default;
+$theme-corporate-side-overlay-bg:           $white !default;
+
+
+// Earth Theme
+$theme-earth-primary:                       #32a67f !default;
+$theme-earth-light:                         lighten($theme-earth-primary, 16%) !default;
+$theme-earth-lighter:                       lighten($theme-earth-primary, 40%) !default;
+$theme-earth-dark:                          #343434 !default;
+$theme-earth-darker:                        #222 !default;
+
+$theme-earth-body-bg:                       #f2f2f2 !default;
+$theme-earth-body-bg-dark:                  darken($theme-earth-body-bg, 4%) !default;
+$theme-earth-body-bg-light:                 lighten($theme-earth-body-bg, 2%) !default;
+
+$theme-earth-body-color:                    $body-color !default;
+$theme-earth-body-color-dark:               $body-color-dark !default;
+$theme-earth-body-color-light:              $theme-earth-body-bg-dark !default;
+
+$theme-earth-link-color:                    $theme-earth-primary !default;
+$theme-earth-link-hover-color:              darken($theme-earth-primary, 20%) !default;
+
+$theme-earth-headings-color:                $theme-earth-body-color-dark !default;
+
+$theme-earth-input-btn-focus-color:         rgba($theme-earth-primary, .25) !default;
+$theme-earth-input-btn-focus-box-shadow:    0 0 0 $input-btn-focus-width $theme-earth-input-btn-focus-color !default;
+
+$theme-earth-input-bg:                      $white !default;
+$theme-earth-input-color:                   $theme-earth-body-color !default;
+$theme-earth-input-border-color:            darken($theme-earth-body-bg-dark, 5%) !default;
+
+$theme-earth-input-focus-bg:                $white !default;
+$theme-earth-input-focus-color:             $theme-earth-body-color-dark !default;
+$theme-earth-input-focus-border-color:      lighten($theme-earth-body-bg-dark, 25%) !default;
+
+$theme-earth-header-bg:                     $white !default;
+$theme-earth-header-dark-bg:                $theme-earth-dark !default;
+$theme-earth-sidebar-bg:                    $white !default;
+$theme-earth-sidebar-dark-bg:               $theme-earth-dark !default;
+$theme-earth-side-overlay-bg:               $white !default;
