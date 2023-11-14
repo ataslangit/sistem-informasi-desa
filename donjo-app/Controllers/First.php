@@ -243,6 +243,8 @@ class First extends CI_Controller
 
     public function statistik($stat = '', $tipe = 0)
     {
+        $data = [];
+
         switch ($stat) {
             case 'pendidikan-dalam-kk':$data['heading'] = 'Pendidikan';
                 break;

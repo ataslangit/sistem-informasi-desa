@@ -214,7 +214,9 @@ class Sms extends CI_Controller
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)
     {
-        $userGrup  = new UserGrup();
+        $userGrup = new UserGrup();
+        $data     = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -237,6 +239,8 @@ class Sms extends CI_Controller
 
     public function carikontak($tipe = 0)
     {
+        $data = [];
+
         if (isset($_POST['TextDecoded'])) {
             $data['text']['TextDecoded'] = $_POST['TextDecoded'];
         }
@@ -251,6 +255,7 @@ class Sms extends CI_Controller
     public function formaftercari($tipe = 0)
     {
         $userGrup = new UserGrup();
+        $data     = [];
 
         $data['sms']['DestinationNumber'] = $_POST['kontak'];
         $data['sms']['TextDecoded']       = $_POST['text'];
