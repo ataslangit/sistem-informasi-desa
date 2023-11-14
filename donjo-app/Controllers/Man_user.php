@@ -62,6 +62,7 @@ class Man_user extends CI_Controller
     public function form($p = 1, $o = 0, $id = '')
     {
         $userGrup = new UserGrup();
+        $data     = [];
 
         $data['p'] = $p;
         $data['o'] = $o;
