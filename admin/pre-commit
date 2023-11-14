@@ -25,7 +25,4 @@ if [ "$FILES" != "" ]; then
     composer run csfix
 fi
 
-echo "Add all to stage changes..."
-git add .
-
 exit $?
