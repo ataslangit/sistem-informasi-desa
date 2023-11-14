@@ -887,28 +887,31 @@ class Analisis_respon_model extends CI_Model
         }
     }
 
-    public function update_hasil($id = 0)
+    public function update_hasil(int $id_subjek)
     {
-        $per = $this->get_aktif_periode();
+        $per  = $this->get_aktif_periode();
+        $data = [];
 
         $sql   = 'SELECT SUM(i.bobot * nilai) as jml FROM analisis_respon r LEFT JOIN analisis_indikator i ON r.id_indikator = i.id LEFT JOIN analisis_parameter z ON r.id_parameter = z.id WHERE r.id_subjek = ? AND i.act_analisis=1 AND r.id_periode=?';
-        $query = $this->db->query($sql, [$id, $per]);
-        $dx    = $query->row_array();
+        $query = $this->db->query($sql, [$id_subjek, $per]);
+        $row   = $query->row_array();
 
-        $upx['id_master']  = $_SESSION['analisis_master'];
-        $upx['akumulasi']  = 0 + $dx['jml'];
-        $upx['id_subjek']  = $id;
-        $upx['id_periode'] = $per;
+        $data['id_master']  = $_SESSION['analisis_master'];
+        $data['akumulasi']  = 0 + $row['jml'];
+        $data['id_subjek']  = $id_subjek;
+        $data['id_periode'] = $per;
 
         $sql = 'DELETE FROM analisis_respon_hasil WHERE id_subjek = ? AND id_periode=?';
         $this->db->query($sql, [$id, $per]);
 
-        $this->db->insert('analisis_respon_hasil', $upx);
+        $this->db->insert('analisis_respon_hasil', $data);
     }
 
     public function import_respon($op = 0)
     {
-        $per = $this->get_aktif_periode();
+        $per       = $this->get_aktif_periode();
+        $parameter = [];
+        $respon    = [];
 
         $subjek = $_SESSION['subjek_tipe'];
         $mas    = $_SESSION['analisis_master'];
