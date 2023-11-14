@@ -8,6 +8,10 @@ class CreateCiSessionsTable extends Migration
 {
     protected $DBGroup = 'default';
 
+    /**
+     *
+     * @SuppressWarnings(PHPMD.ShortMethodName)
+     */
     public function up()
     {
         $this->forge->addField([
