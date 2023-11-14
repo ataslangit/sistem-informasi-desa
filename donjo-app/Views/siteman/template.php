@@ -26,7 +26,7 @@
   </head>
   <body>
     <!-- Page Container -->
-    <!--
+    <?php /*
       Available classes for #page-container:
 
       GENERIC
@@ -75,7 +75,7 @@
       DARK MODE
 
         'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
-    -->
+    */ ?>
     <div id="page-container" class="main-content-boxed">
 
       <!-- Main Container -->

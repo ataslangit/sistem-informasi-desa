@@ -31,6 +31,16 @@
 
                     <!-- Sign In Form -->
                     <?= form_open(route_to('login.submit'), ['class' => 'px-4']) ?>
+
+                    <?php if (session()->has('error')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <p class="mb-0">
+                                <?= esc(session()->get('error')) ?>
+                            </p>
+                        </div>
+
+                    <?php endif ?>
+
                     <div class="form-floating mb-4">
                         <input type="text" class="form-control" id="login-username" name="username" placeholder="Masukkan namapengguna" required>
                         <label class="form-label" for="login-username">Nama Pengguna</label>

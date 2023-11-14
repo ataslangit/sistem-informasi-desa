@@ -31,16 +31,12 @@ class Login extends BaseController
      */
     public function submit()
     {
-        if (! $this->request->is('post')) {
-            return $this->index();
-        }
-
         $rules = [
             'username' => ['label' => 'Username', 'rules' => 'required'],
             'password' => ['label' => 'Password', 'rules' => 'required'],
         ];
 
-        if (! $this->validate($rules)) {
+        if (! $this->request->is('post') || ! $this->validate($rules)) {
             return $this->index();
         }
 
@@ -71,6 +67,8 @@ class Login extends BaseController
             return redirect()->to('hom_desa')->with('success', 'Halo, selamat datang kembali');
         }
 
-        return redirect('login.view')->withInput()->with('error', 'Silakan coba kembali.');
+        session()->setFlashdata('error', 'Silakan coba kembali.');
+
+        return $this->index();
     }
 }
