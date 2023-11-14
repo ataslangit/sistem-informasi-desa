@@ -211,7 +211,6 @@ class First_artikel_m extends CI_Model
 
     public function cos_widget()
     {
-        $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori FROM artikel a LEFT JOIN user u ON a.id_user = u.id LEFT JOIN kategori k ON a.id_kategori = k.id WHERE id_kategori='1003' ORDER BY a.tgl_upload DESC";
         $sql = "SELECT a.*,u.nama AS owner,k.kategori AS kategori
 		FROM artikel a
 		LEFT JOIN user u ON a.id_user = u.id

@@ -26,12 +26,11 @@ class Wilayah_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = penetration($_SESSION['cari']);
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND u.dusun LIKE '{$kw}'";
+            $cari = penetration($_SESSION['cari']);
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND u.dusun LIKE '{$kw}'";
         }
     }
 

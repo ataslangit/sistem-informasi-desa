@@ -1,7 +1,5 @@
 <?php
 
-use Kenjis\CI3Compatible\Core\CI_Model;
-
 namespace App\Models;
 
 use Kenjis\CI3Compatible\Core\CI_Model as Model;

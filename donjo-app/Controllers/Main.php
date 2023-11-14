@@ -26,17 +26,11 @@ class Main extends CI_Controller
                     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                     switch ($grup) {
-                        case 1: return redirect()->to('hom_desa');
-                            break;
-
+                        case 1:
                         case 2: return redirect()->to('hom_desa');
-                            break;
 
-                        case 3: return redirect()->to('web');
-                            break;
-
+                        case 3:
                         case 4: return redirect()->to('web');
-                            break;
 
                         default: if (isset($_SESSION['siteman'])) {
                             return redirect()->to('siteman');

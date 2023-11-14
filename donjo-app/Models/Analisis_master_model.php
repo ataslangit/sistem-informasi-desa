@@ -26,32 +26,29 @@ class Analisis_master_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.nama LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.nama LIKE '{$kw}' OR u.nama LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.subjek_tipe = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.subjek_tipe = {$kf}";
         }
     }
 
     public function state_sql()
     {
         if (isset($_SESSION['state'])) {
-            $kf         = $_SESSION['state'];
-            $filter_sql = " AND u.lock = {$kf}";
+            $kf = $_SESSION['state'];
 
-            return $filter_sql;
+            return " AND u.lock = {$kf}";
         }
     }
 
@@ -79,15 +76,11 @@ class Analisis_master_model extends CI_Model
     public function list_data($o = 0, $offset = 0, $limit = 500)
     {
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.nama';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.nama DESC';
-                break;
-
+            case 1:
             case 3: $order_sql = ' ORDER BY u.nama';
                 break;
 
+            case 2:
             case 4: $order_sql = ' ORDER BY u.nama DESC';
                 break;
 

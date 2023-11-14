@@ -46,9 +46,8 @@ class Analisis_respon_model extends CI_Model
             $i++;
         }
         $outp = strtolower(substr($outp, 1));
-        $outp = '[' . $outp . ']';
 
-        return $outp;
+        return '[' . $outp . ']';
     }
 
     public function search_sql()
@@ -83,30 +82,27 @@ class Analisis_respon_model extends CI_Model
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
@@ -183,15 +179,11 @@ class Analisis_respon_model extends CI_Model
         $id_kelompok = $master['id_kelompok'];
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.id';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.id DESC';
-                break;
-
+            case 1:
             case 3: $order_sql = ' ORDER BY u.id';
                 break;
 
+            case 2:
             case 4: $order_sql = ' ORDER BY u.id DESC';
                 break;
 
@@ -447,7 +439,7 @@ class Analisis_respon_model extends CI_Model
                 if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg') {
                     $_SESSION['sukses'] = -1;
                 } else {
-                    $nama_file = $_SESSION['analisis_master'] . '_' . $per . '_' . $id . '_' . mt_rand(10000, 99999) . '.jpg';
+                    $nama_file = $_SESSION['analisis_master'] . '_' . $per . '_' . $id . '_' . random_int(10000, 99999) . '.jpg';
                     UploadPengesahan($nama_file);
                     $bukti['pengesahan'] = $nama_file;
                     $bukti['id_master']  = $id_master;
@@ -608,9 +600,8 @@ class Analisis_respon_model extends CI_Model
         $sql   = 'SELECT id FROM analisis_periode WHERE id_master = ? AND aktif = 1';
         $query = $this->db->query($sql, $id_child);
         $per   = $query->row_array();
-        $per   = $per['id'];
 
-        return $per;
+        return $per['id'];
     }
     // ---------------------------
 
@@ -620,9 +611,8 @@ class Analisis_respon_model extends CI_Model
         $sql = 'SELECT pengesahan FROM analisis_respon_bukti WHERE id_subjek = ? AND id_master = ? AND id_periode = ? ';
         $sql .= ' ORDER BY tgl_update DESC';
         $query = $this->db->query($sql, [$id, $_SESSION['analisis_master'], $per]);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function get_subjek($id = 0)
@@ -715,15 +705,11 @@ class Analisis_respon_model extends CI_Model
         $id_kelompok = $master['id_kelompok'];
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.id';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.id DESC';
-                break;
-
+            case 1:
             case 3: $order_sql = ' ORDER BY u.id';
                 break;
 
+            case 2:
             case 4: $order_sql = ' ORDER BY u.id DESC';
                 break;
 
@@ -750,7 +736,6 @@ class Analisis_respon_model extends CI_Model
                 break;
 
             default: return null;
-                break;
         }
         if ($id_kelompok !== 0) {
             $sql .= $this->kelompok_sql($id_kelompok);

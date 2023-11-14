@@ -27,32 +27,29 @@ class Web_artikel_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (judul LIKE '{$kw}' OR isi LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (judul LIKE '{$kw}' OR isi LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND a.enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND a.enabled = {$kf}";
         }
     }
 
     public function grup_sql()
     {
         if ($_SESSION['grup'] === 4) {
-            $kf         = $_SESSION['user'];
-            $filter_sql = " AND a.id_user = {$kf}";
+            $kf = $_SESSION['user'];
 
-            return $filter_sql;
+            return " AND a.id_user = {$kf}";
         }
     }
 

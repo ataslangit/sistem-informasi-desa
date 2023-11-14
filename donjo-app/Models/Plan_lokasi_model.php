@@ -26,42 +26,38 @@ class Plan_lokasi_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND l.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND l.nama LIKE '{$kw}'";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND l.enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND l.enabled = {$kf}";
         }
     }
 
     public function point_sql()
     {
         if (isset($_SESSION['point'])) {
-            $kf        = $_SESSION['point'];
-            $point_sql = " AND p.id = {$kf}";
+            $kf = $_SESSION['point'];
 
-            return $point_sql;
+            return " AND p.id = {$kf}";
         }
     }
 
     public function subpoint_sql()
     {
         if (isset($_SESSION['subpoint'])) {
-            $kf           = $_SESSION['subpoint'];
-            $subpoint_sql = " AND m.id = {$kf}";
+            $kf = $_SESSION['subpoint'];
 
-            return $subpoint_sql;
+            return " AND m.id = {$kf}";
         }
     }
 
@@ -228,9 +224,8 @@ class Plan_lokasi_model extends CI_Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function list_subpoint()
@@ -246,9 +241,8 @@ class Plan_lokasi_model extends CI_Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function lokasi_lock($id = '', $val = 0)

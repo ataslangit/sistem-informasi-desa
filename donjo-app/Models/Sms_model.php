@@ -26,22 +26,20 @@ class Sms_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.SenderNumber LIKE '{$kw}' OR u.TextDecoded LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.SenderNumber LIKE '{$kw}' OR u.TextDecoded LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.Class = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.Class = {$kf}";
         }
     }
 
@@ -397,120 +395,108 @@ class Sms_model extends CI_Model
     public function sex_sql()
     {
         if (isset($_SESSION['sex1'])) {
-            $kf      = $_SESSION['sex1'];
-            $sex_sql = " AND u.sex = {$kf}";
+            $kf = $_SESSION['sex1'];
 
-            return $sex_sql;
+            return " AND u.sex = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun1'])) {
-            $kf        = $_SESSION['dusun1'];
-            $dusun_sql = " AND a.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun1'];
 
-            return $dusun_sql;
+            return " AND a.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw1'])) {
-            $kf     = $_SESSION['rw1'];
-            $rw_sql = " AND a.rw = '{$kf}'";
+            $kf = $_SESSION['rw1'];
 
-            return $rw_sql;
+            return " AND a.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt1'])) {
-            $kf     = $_SESSION['rt1'];
-            $rt_sql = " AND a.rt = '{$kf}'";
+            $kf = $_SESSION['rt1'];
 
-            return $rt_sql;
+            return " AND a.rt = '{$kf}'";
         }
     }
 
     public function agama_sql()
     {
         if (isset($_SESSION['agama1'])) {
-            $kf        = $_SESSION['agama1'];
-            $agama_sql = " AND u.agama_id = {$kf}";
+            $kf = $_SESSION['agama1'];
 
-            return $agama_sql;
+            return " AND u.agama_id = {$kf}";
         }
     }
 
     public function pekerjaan_sql()
     {
         if (isset($_SESSION['pekerjaan1'])) {
-            $kf            = $_SESSION['pekerjaan1'];
-            $pekerjaan_sql = " AND u.pekerjaan_id = {$kf}";
+            $kf = $_SESSION['pekerjaan1'];
 
-            return $pekerjaan_sql;
+            return " AND u.pekerjaan_id = {$kf}";
         }
     }
 
     public function statuskawin_sql()
     {
         if (isset($_SESSION['status1'])) {
-            $kf              = $_SESSION['status1'];
-            $statuskawin_sql = " AND u.status_kawin = {$kf}";
+            $kf = $_SESSION['status1'];
 
-            return $statuskawin_sql;
+            return " AND u.status_kawin = {$kf}";
         }
     }
 
     public function pendidikan_sql()
     {
         if (isset($_SESSION['pendidikan1'])) {
-            $kf             = $_SESSION['pendidikan1'];
-            $pendidikan_sql = " AND u.pendidikan_id = {$kf}";
+            $kf = $_SESSION['pendidikan1'];
 
-            return $pendidikan_sql;
+            return " AND u.pendidikan_id = {$kf}";
         }
     }
 
     public function status_penduduk_sql()
     {
         if (isset($_SESSION['status_penduduk1'])) {
-            $kf                  = $_SESSION['status_penduduk1'];
-            $status_penduduk_sql = " AND u.status = {$kf}";
+            $kf = $_SESSION['status_penduduk1'];
 
-            return $status_penduduk_sql;
+            return " AND u.status = {$kf}";
         }
     }
 
     public function grup_sql()
     {
         if (isset($_SESSION['grup1'])) {
-            $kf       = $_SESSION['grup1'];
-            $grup_sql = " AND k.id IN (SELECT id_kontak FROM kontak_grup WHERE nama_grup='{$kf}')";
+            $kf = $_SESSION['grup1'];
 
-            return $grup_sql;
+            return " AND k.id IN (SELECT id_kontak FROM kontak_grup WHERE nama_grup='{$kf}')";
         }
     }
 
     public function umur_max_sql()
     {
         if (isset($_SESSION['umur_max1'])) {
-            $kf           = $_SESSION['umur_max1'];
-            $umur_max_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf}";
+            $kf = $_SESSION['umur_max1'];
 
-            return $umur_max_sql;
+            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= {$kf}";
         }
     }
 
     public function umur_min_sql()
     {
         if (isset($_SESSION['umur_min1'])) {
-            $kf           = $_SESSION['umur_min1'];
-            $umur_min_sql = " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf}";
+            $kf = $_SESSION['umur_min1'];
 
-            return $umur_min_sql;
+            return " AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= {$kf}";
         }
     }
 
@@ -583,12 +569,11 @@ class Sms_model extends CI_Model
     public function search_kontak_sql()
     {
         if (isset($_SESSION['cari_kontak'])) {
-            $cari              = $_SESSION['cari_kontak'];
-            $kw                = $this->db->escape_like_str($cari);
-            $kw                = '%' . $kw . '%';
-            $search_kontak_sql = " AND (b.nama LIKE '{$kw}' OR a.no_hp LIKE '{$kw}')";
+            $cari = $_SESSION['cari_kontak'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_kontak_sql;
+            return " AND (b.nama LIKE '{$kw}' OR a.no_hp LIKE '{$kw}')";
         }
     }
 
@@ -709,24 +694,22 @@ class Sms_model extends CI_Model
     public function search_grup_sql()
     {
         if (isset($_SESSION['cari_grup'])) {
-            $cari            = $_SESSION['cari_grup'];
-            $kw              = $this->db->escape_like_str($cari);
-            $kw              = '%' . $kw . '%';
-            $search_grup_sql = " AND (nama_grup LIKE '{$kw}')";
+            $cari = $_SESSION['cari_grup'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_grup_sql;
+            return " AND (nama_grup LIKE '{$kw}')";
         }
     }
 
     public function search_anggota_sql()
     {
         if (isset($_SESSION['cari_anggota'])) {
-            $cari               = $_SESSION['cari_anggota'];
-            $kw                 = $this->db->escape_like_str($cari);
-            $kw                 = '%' . $kw . '%';
-            $search_anggota_sql = " AND (nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari_anggota'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_anggota_sql;
+            return " AND (nama LIKE '{$kw}')";
         }
     }
 

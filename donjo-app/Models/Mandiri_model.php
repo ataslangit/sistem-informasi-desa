@@ -26,12 +26,11 @@ class Mandiri_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.nik LIKE '{$kw}' OR n.nama LIKE '{$kw}')";
         }
     }
 
@@ -124,7 +123,7 @@ class Mandiri_model extends CI_Model
     public function generate_pin($pin = '')
     {
         if ($pin === '') {
-            $pin = mt_rand(100000, 999999);
+            $pin = random_int(100000, 999999);
             $pin = strrev($pin);
         }
 

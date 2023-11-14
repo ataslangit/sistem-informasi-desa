@@ -36,10 +36,9 @@ class Web_menu_model extends CI_Model
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 

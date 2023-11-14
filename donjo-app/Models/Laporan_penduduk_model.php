@@ -26,12 +26,11 @@ class Laporan_penduduk_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND u.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND u.nama LIKE '{$kw}'";
         }
     }
 
@@ -52,7 +51,8 @@ class Laporan_penduduk_model extends CI_Model
             case 3: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_agama u WHERE 1 ';
                 break;
 
-            case 4: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_sex u WHERE 1 ';
+            case 4:
+            case 11: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_sex u WHERE 1 ';
                 break;
 
             case 5: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_warganegara u WHERE 1 ';
@@ -68,9 +68,6 @@ class Laporan_penduduk_model extends CI_Model
                 break;
 
             case 10: $sql = 'SELECT COUNT(id) AS id FROM tweb_sakit_menahun u WHERE 1 ';
-                break;
-
-            case 11: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_sex u WHERE 1 ';
                 break;
 
             case 12: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan_kk u WHERE 1 ';

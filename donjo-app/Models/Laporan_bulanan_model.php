@@ -49,12 +49,11 @@ class Laporan_bulanan_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND u.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND u.nama LIKE '{$kw}'";
         }
     }
 
@@ -148,31 +147,17 @@ class Laporan_bulanan_model extends CI_Model
         $paging = new Paging();
 
         switch ($lap) {
-            case 0: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
+            case 0:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
                 break;
 
             case 1: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pekerjaan u WHERE 1 ';
-                break;
-
-            case 2: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 3: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 4: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 5: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 6: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 7: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
-                break;
-
-            case 8: $sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
                 break;
 
             default:$sql = 'SELECT COUNT(id) AS id FROM tweb_penduduk_pendidikan u WHERE 1 ';
@@ -280,15 +265,14 @@ from tweb_wil_clusterdesa c WHERE rw<>'0' AND rt<>'0' AND (select count(id) from
         $sql   = "SELECT lk as WNI_L,pr AS WNI_P FROM log_bulanan WHERE month(tgl) = {$bln} AND year(tgl) = {$thn};";
         $query = $this->db->query($sql);
         $hasil = $query->row_array();
-        $data  = [
+
+        return [
             'WNI_L' => $hasil['WNI_L'],
             'WNI_P' => $hasil['WNI_P'],
             'WNA_L' => 0,
             'WNA_P' => 0,
             'bulan' => $bln,
             'tahun' => $thn, ];
-
-        return $data;
     }
 
     public function penduduk_akhirx()

@@ -23,102 +23,95 @@ class Import_model extends CI_Model
         move_uploaded_file($_FILES['file_bw']['tmp_name'], $vfile_upload_bw);
 
         if (is_file($vfile_upload_dk)) {
-            if (is_file($vfile_upload_dk)) {
-                $data    = file_get_contents($vfile_upload_dk);
-                $convert = explode("\n", $data);
-                $strSQL  = 'TRUNCATE tweb_keluarga';
-                $this->db->query($strSQL);
-                $strSQL = 'TRUNCATE tweb_penduduk';
-                $this->db->query($strSQL);
-                $strSQL = 'TRUNCATE tweb_wil_clusterdesa';
-                $this->db->query($strSQL);
+            $data    = file_get_contents($vfile_upload_dk);
+            $convert = explode("\n", $data);
+            $strSQL  = 'TRUNCATE tweb_keluarga';
+            $this->db->query($strSQL);
+            $strSQL = 'TRUNCATE tweb_penduduk';
+            $this->db->query($strSQL);
+            $strSQL = 'TRUNCATE tweb_wil_clusterdesa';
+            $this->db->query($strSQL);
+            $kk       = [];
+            $j        = 0;
+            $x        = '';
+            $dusun    = 0;
+            $rw       = 0;
+            $rt       = 0;
+            $nKK      = 0;
+            $strSQLKK = '';
 
-                $kk = [];
-                $j  = 0;
-                $x  = '';
+            for ($i = 0; $i < count($convert); $i++) {
+                $item = explode(';', trim(str_replace('"', '', $convert[$i])));
 
-                $dusun = 0;
-                $rw    = 0;
-                $rt    = 0;
-                $nKK   = 0;
+                if ($j > 0) {
+                    if (strlen($convert[$i]) > 10) {
+                        $strDusun = str_replace('  ', ' ', trim($item[5]));
+                        // $strDusun = str_replace(" ","_",$strDusun);
 
-                $strSQLKK = '';
+                        $strRT = trim($item[3]);
 
-                for ($i = 0; $i < count($convert); $i++) {
-                    $item = explode(';', trim(str_replace('"', '', $convert[$i])));
-
-                    if ($j > 0) {
-                        if (strlen($convert[$i]) > 10) {
-                            $strDusun = str_replace('  ', ' ', trim($item[5]));
-                            // $strDusun = str_replace(" ","_",$strDusun);
-
-                            $strRT = trim($item[3]);
-
-                            $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='0' AND rt='0' ";
-                            $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
-                            } else {
-                                $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','0','" . fixSQL($strDusun) . "')";
-                                if ($this->db->query($strSQL)) {
-                                    $dusun++;
-                                }
-                            }
-
-                            $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='0'";
-                            $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
-                            } else {
-                                $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','-','" . fixSQL($strDusun) . "')";
-                                if ($this->db->query($strSQL)) {
-                                    $rw++;
-                                }
-                            }
-
-                            $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
-                            $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
-                                $rs     = $result->row(0);
-                                $id_wil = $rs->id;
-                            } else {
-                                $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('" . fixSQL($strRT) . "','-','" . fixSQL($strDusun) . "')";
-                                $result = $this->db->query($strSQL);
-                                if ($result) {
-                                    $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
-                                    $result = $this->db->query($strSQL);
-                                    if ($result->num_rows() > 0) {
-                                        $rs     = $result->row(0);
-                                        $id_wil = $rs->id;
-                                    }
-                                }
-                                $rt++;
-                            }
-
-                            if ($id_wil > 0) {
-                                $post_data = ['tgl_daftar' => '' . date('Y-m-d') . '', 'no_kk' => '' . fixSQL($item[0]) . '', 'nik_kepala' => '' . fixSQL($item[23]) . ''];
-                                $this->db->trans_start();
-                                if ($this->db->insert('tweb_keluarga', $post_data)) {
-                                    $this->db->trans_complete();
-                                    $nKK++;
-                                    $strSQL = "SELECT id FROM tweb_keluarga WHERE ((no_kk='" . fixSQL($item[0]) . "') AND (nik_kepala='" . fixSQL($item[23]) . "')) LIMIT 1";
-                                    $result = $this->db->query($strSQL);
-                                    if ($result->num_rows() > 0) {
-                                        $rs    = $result->row(0);
-                                        $id_kk = $rs->id;
-                                    }
-                                }
-                                $kk[$item[0]] = [$id_kk, '' . $id_wil . '', '' . $item[2] . ''];
+                        $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='0' AND rt='0' ";
+                        $result = $this->db->query($strSQL);
+                        if ($result->num_rows() <= 0) {
+                            $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','0','" . fixSQL($strDusun) . "')";
+                            if ($this->db->query($strSQL)) {
+                                $dusun++;
                             }
                         }
-                    }
-                    if (trim(strtolower($convert[$i])) === 'begindata') {
-                        $j++;
-                    }
-                    if ($j > 0) {
-                        $j++;
+
+                        $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='0'";
+                        $result = $this->db->query($strSQL);
+                        if ($result->num_rows() <= 0) {
+                            $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','-','" . fixSQL($strDusun) . "')";
+                            if ($this->db->query($strSQL)) {
+                                $rw++;
+                            }
+                        }
+
+                        $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
+                        $result = $this->db->query($strSQL);
+                        if ($result->num_rows() > 0) {
+                            $rs     = $result->row(0);
+                            $id_wil = $rs->id;
+                        } else {
+                            $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('" . fixSQL($strRT) . "','-','" . fixSQL($strDusun) . "')";
+                            $result = $this->db->query($strSQL);
+                            if ($result) {
+                                $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
+                                $result = $this->db->query($strSQL);
+                                if ($result->num_rows() > 0) {
+                                    $rs     = $result->row(0);
+                                    $id_wil = $rs->id;
+                                }
+                            }
+                            $rt++;
+                        }
+
+                        if ($id_wil > 0) {
+                            $post_data = ['tgl_daftar' => '' . date('Y-m-d') . '', 'no_kk' => '' . fixSQL($item[0]) . '', 'nik_kepala' => '' . fixSQL($item[23]) . ''];
+                            $this->db->trans_start();
+                            if ($this->db->insert('tweb_keluarga', $post_data)) {
+                                $this->db->trans_complete();
+                                $nKK++;
+                                $strSQL = "SELECT id FROM tweb_keluarga WHERE ((no_kk='" . fixSQL($item[0]) . "') AND (nik_kepala='" . fixSQL($item[23]) . "')) LIMIT 1";
+                                $result = $this->db->query($strSQL);
+                                if ($result->num_rows() > 0) {
+                                    $rs    = $result->row(0);
+                                    $id_kk = $rs->id;
+                                }
+                            }
+                            $kk[$item[0]] = [$id_kk, '' . $id_wil . '', '' . $item[2] . ''];
+                        }
                     }
                 }
-
-                $strInfo = '
+                if (trim(strtolower($convert[$i])) === 'begindata') {
+                    $j++;
+                }
+                if ($j > 0) {
+                    $j++;
+                }
+            }
+            $strInfo = '
 				<div>
 					<dl>
 						<dt>Dusun</dt><dd>' . $dusun . '</dd>
@@ -128,77 +121,70 @@ class Import_model extends CI_Model
 					</dl>
 				</div>
 				';
-            }
         }
 
         if (is_file($vfile_upload_bw)) {
-            if (is_file($vfile_upload_bw)) {
-                $data     = file_get_contents($vfile_upload_bw);
-                $convert1 = explode("\n", $data);
+            $data     = file_get_contents($vfile_upload_bw);
+            $convert1 = explode("\n", $data);
+            $j        = 0;
+            $strSQL   = 'INSERT INTO tweb_penduduk (`nama`, `nik`, `id_kk`, `kk_level`, `id_rtm`, `rtm_level`, ';
+            $strSQL .= '`sex`, `tempatlahir`, `tanggallahir`, ';
+            $strSQL .= '`agama_id`, `pendidikan_kk_id`, `pendidikan_id`, ';
+            $strSQL .= '`pendidikan_sedang_id`, `pekerjaan_id`, `status_kawin`, ';
+            $strSQL .= '`warganegara_id`, `dokumen_pasport`, `dokumen_kitas`, ';
+            $strSQL .= '`ayah_nik`, `ibu_nik`, `nama_ayah`, `nama_ibu`, ';
+            $strSQL .= '`foto`, `golongan_darah_id`, `id_cluster`, `status`, ';
+            $strSQL .= '`alamat_sebelumnya`, `alamat_sekarang`, `status_dasar`,';
+            $strSQL .= '`hamil`, `cacat_id`, `sakit_menahun_id`, `jamkesmas`, ';
+            $strSQL .= '`akta_lahir`, `akta_perkawinan`, `tanggalperkawinan`, ';
+            $strSQL .= "`akta_perceraian`, `tanggalperceraian`) VALUES\n";
 
-                $j      = 0;
-                $strSQL = 'INSERT INTO tweb_penduduk (`nama`, `nik`, `id_kk`, `kk_level`, `id_rtm`, `rtm_level`, ';
-                $strSQL .= '`sex`, `tempatlahir`, `tanggallahir`, ';
-                $strSQL .= '`agama_id`, `pendidikan_kk_id`, `pendidikan_id`, ';
-                $strSQL .= '`pendidikan_sedang_id`, `pekerjaan_id`, `status_kawin`, ';
-                $strSQL .= '`warganegara_id`, `dokumen_pasport`, `dokumen_kitas`, ';
-                $strSQL .= '`ayah_nik`, `ibu_nik`, `nama_ayah`, `nama_ibu`, ';
-                $strSQL .= '`foto`, `golongan_darah_id`, `id_cluster`, `status`, ';
-                $strSQL .= '`alamat_sebelumnya`, `alamat_sekarang`, `status_dasar`,';
-                $strSQL .= '`hamil`, `cacat_id`, `sakit_menahun_id`, `jamkesmas`, ';
-                $strSQL .= '`akta_lahir`, `akta_perkawinan`, `tanggalperkawinan`, ';
-                $strSQL .= "`akta_perceraian`, `tanggalperceraian`) VALUES\n";
-
-                for ($i = 0; $i < count($convert1); $i++) {
-                    if ($j > 0) {
-                        if (strlen($convert1[$i]) > 25) {
-                            $item = explode(';', trim(str_replace('"', '', $convert1[$i])));
-
-                            if ($j > 0) {
-                                if ($item[20] === 1) {
-                                    if (array_key_exists($item[36], $kk)) {
-                                        $strSQLX = "UPDATE tweb_keluarga SET nik_kepala='" . fixSQL($item[0]) . "' WHERE no_kk='" . $item[36] . "'";
-                                        $this->db->query($strSQLX);
-                                    }
-                                }
-                                if (array_key_exists($item[36], $kk)) {
-                                    $id_kk      = $kk[$item[36]][0];
-                                    $id_cluster = $kk[$item[36]][1];
-                                    $alamat     = $kk[$item[36]][2];
-                                } else {
-                                    $id_kk      = 0;
-                                    $id_cluster = 0;
-                                    $alamat     = '';
-                                }
-                                $strSQL .= "('" . fixSQL($item[5]) . "','" . fixSQL($item[0]) . "','" . fixSQL($id_kk) . "','" . fixSQL($item[20]) . "',";
-                                $strSQL .= "'-','-',";
-                                $strSQL .= "'" . fixSQL($item[6]) . "','" . fixSQL($item[7]) . "','" . fixSQL(date('Y-m-d', strtotime($item[8]))) . "',";
-                                $strSQL .= "'" . fixSQL($item[12]) . "','" . fixSQL($item[23]) . "','" . fixSQL($item[23]) . "',";
-                                $strSQL .= "'" . fixSQL($item[23]) . "','" . fixSQL($item[24]) . "','" . fixSQL($item[13]) . "',";
-                                $strSQL .= "'1','" . fixSQL($item[3]) . "','-',";
-                                $strSQL .= "'-','-','" . fixSQL($item[28]) . "','" . fixSQL($item[26]) . "',";
-                                $strSQL .= "'','" . fixSQL($item[11]) . "','" . fixSQL($id_cluster) . "',1,";
-                                $strSQL .= "'','" . fixSQL($alamat) . "',1,
+            for ($i = 0; $i < count($convert1); $i++) {
+                if ($j > 0) {
+                    if (strlen($convert1[$i]) > 25) {
+                        $item = explode(';', trim(str_replace('"', '', $convert1[$i])));
+                        if ($item[20] === 1) {
+                            if (array_key_exists($item[36], $kk)) {
+                                $strSQLX = "UPDATE tweb_keluarga SET nik_kepala='" . fixSQL($item[0]) . "' WHERE no_kk='" . $item[36] . "'";
+                                $this->db->query($strSQLX);
+                            }
+                        }
+                        if (array_key_exists($item[36], $kk)) {
+                            $id_kk      = $kk[$item[36]][0];
+                            $id_cluster = $kk[$item[36]][1];
+                            $alamat     = $kk[$item[36]][2];
+                        } else {
+                            $id_kk      = 0;
+                            $id_cluster = 0;
+                            $alamat     = '';
+                        }
+                        $strSQL .= "('" . fixSQL($item[5]) . "','" . fixSQL($item[0]) . "','" . fixSQL($id_kk) . "','" . fixSQL($item[20]) . "',";
+                        $strSQL .= "'-','-',";
+                        $strSQL .= "'" . fixSQL($item[6]) . "','" . fixSQL($item[7]) . "','" . fixSQL(date('Y-m-d', strtotime($item[8]))) . "',";
+                        $strSQL .= "'" . fixSQL($item[12]) . "','" . fixSQL($item[23]) . "','" . fixSQL($item[23]) . "',";
+                        $strSQL .= "'" . fixSQL($item[23]) . "','" . fixSQL($item[24]) . "','" . fixSQL($item[13]) . "',";
+                        $strSQL .= "'1','" . fixSQL($item[3]) . "','-',";
+                        $strSQL .= "'-','-','" . fixSQL($item[28]) . "','" . fixSQL($item[26]) . "',";
+                        $strSQL .= "'','" . fixSQL($item[11]) . "','" . fixSQL($id_cluster) . "',1,";
+                        $strSQL .= "'','" . fixSQL($alamat) . "',1,
 								'0','" . fixSQL($item[21]) . "','" . fixSQL($item[22]) . "','',
 								'" . fixSQL($item[9]) . "','" . fixSQL($item[14]) . "','" . fixSQL($item[16]) . "',
 								'" . fixSQL($item[17]) . "','" . fixSQL($item[19]) . "'),";
-                            }
-                        }
-                    }
-
-                    if (trim(strtolower($convert1[$i])) === 'begindata') {
-                        $j++;
-                    }
-                    if ($j > 0) {
-                        $j++;
                     }
                 }
-                $strSQL = rtrim($strSQL, ',');
+
+                if (trim(strtolower($convert1[$i])) === 'begindata') {
+                    $j++;
+                }
+                if ($j > 0) {
+                    $j++;
+                }
+            }
+            $strSQL = rtrim($strSQL, ',');
+            if ($this->db->query($strSQL)) {
+                $strSQL = 'UPDATE `tweb_keluarga` k SET k.nik_kepala = ( SELECT p.id FROM tweb_penduduk p WHERE p.id_kk = k.id AND p.kk_level =1 ) WHERE k.id >0';
                 if ($this->db->query($strSQL)) {
-                    $strSQL = 'UPDATE `tweb_keluarga` k SET k.nik_kepala = ( SELECT p.id FROM tweb_penduduk p WHERE p.id_kk = k.id AND p.kk_level =1 ) WHERE k.id >0';
-                    if ($this->db->query($strSQL)) {
-                        $_SESSION['success'] = 1;
-                    }
+                    $_SESSION['success'] = 1;
                 }
             }
         }
@@ -370,7 +356,6 @@ class Import_model extends CI_Model
         $this->db->query($a);
         $a = "DELETE FROM tweb_penduduk WHERE nama = '' AND nik = '';";
         $this->db->query($a);
-        $a = 'ALTER TABLE tweb_penduduk ENGINE = InnoDB ROW_FORMAT = DYNAMIC;';
 
         $a = 'ALTER TABLE tweb_keluarga ENGINE = InnoDB ROW_FORMAT = DYNAMIC;';
 

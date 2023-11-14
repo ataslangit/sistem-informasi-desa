@@ -134,7 +134,7 @@ class Export_model extends CI_Model
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
                 $jaw    = $queryx->result_array();
 
-                $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
+                $numbers = random_int($jaw[0]['id'], $jaw[$jm]['id']);
 
                 $updx['id_parameter'] = $numbers;
                 $updx['id_periode']   = 1;
@@ -186,7 +186,7 @@ class Export_model extends CI_Model
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
                 $jaw    = $queryx->result_array();
 
-                $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
+                $numbers = random_int($jaw[0]['id'], $jaw[$jm]['id']);
 
                 $updx['id_parameter'] = $numbers;
                 $updx['id_periode']   = 2;

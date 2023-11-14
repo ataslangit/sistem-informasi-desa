@@ -269,7 +269,6 @@ class First extends CI_Controller
                 break;
 
             case 'wilayah':return redirect()->to('first/wilayah');
-                break;
 
             case 'pendidikan-ditempuh':$data['heading'] = 'Pendidikan Sedang Ditempuh';
                 break;
@@ -277,7 +276,6 @@ class First extends CI_Controller
             default:$data['heading'] = '';
 
                 return redirect()->to('first');
-                break;
         }
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();

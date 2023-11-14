@@ -3,6 +3,7 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use Config\Database;
 
 class Init extends Migration
 {
@@ -1199,7 +1200,7 @@ class Init extends Migration
 
         // =====================================================================
 
-        $seeder = \Config\Database::seeder();
+        $seeder = Database::seeder();
         $seeder->call('Init');
     }
 
