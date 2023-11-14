@@ -1,0 +1,158 @@
+//
+// Nav
+// --------------------------------------------------
+
+// Links
+.nav-link {
+  color: $body-color;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    color: $primary;
+  }
+}
+
+// Nav Pills
+.nav-pills {
+  .nav-link {
+    color: $body-color;
+
+    &:hover,
+    &:focus {
+      background-color: $body-bg;
+    }
+  }
+
+  .nav-link.active,
+  .show > .nav-link {
+    color: $nav-pills-link-active-color;
+    background-color: $nav-pills-link-active-bg;
+  }
+}
+
+// Tabs block variation
+.nav-tabs-block {
+  background-color: $body-bg-light;
+  border-bottom: none;
+
+  .nav-item {
+    margin-bottom: 0;
+  }
+
+  .nav-link {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-color: transparent;
+    border-radius: 0;
+
+    &:hover,
+    &:focus {
+      color: $primary;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    color: $body-color;
+    background-color: $white;
+    border-color: transparent;
+  }
+}
+
+// Tabs block alternative variation
+.nav-tabs-alt {
+  background-color: transparent;
+  border-bottom-color: $body-bg-dark;
+
+  .nav-item {
+    margin-bottom: -2px;
+  }
+
+  .nav-link {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:focus {
+      color: $primary;
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: inset 0 -2px $primary;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: inset 0 -2px $primary;
+  }
+}
+
+// Users Navigation
+.nav-users {
+  @include list-unstyled;
+
+  > li:last-child > a {
+    border-bottom: none;
+  }
+
+  a {
+    position: relative;
+    padding: 12px 8px 8px 71px;
+    display: block;
+    min-height: 62px;
+    font-weight: 600;
+    border-bottom: 1px solid $body-bg;
+
+    > img {
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    > i {
+      position: absolute;
+      left: 40px;
+      top: 40px;
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      background-color: $white;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      background-color: $body-bg-light;
+    }
+  }
+}
+
+// Various Items Navigation
+.nav-items {
+  @include list-unstyled;
+
+  a {
+    &:hover {
+      background-color: $body-bg-light;
+    }
+
+    &:active {
+      background-color: $body-bg;
+    }
+  }
+
+  > li:not(:last-child) > a {
+    border-bottom: 1px solid $body-bg;
+  }
+}
