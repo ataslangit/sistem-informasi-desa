@@ -1,8 +1,4 @@
 {
-  "bg.jpg": {
-    "file": "assets/bg-651882f6.jpg",
-    "src": "bg.jpg"
-  },
   "resources/css/login.scss": {
     "file": "assets/login-e8df96de.css",
     "isEntry": true,
@@ -11,6 +7,11 @@
   "resources/images/bg.jpg": {
     "file": "assets/bg-651882f6.jpg",
     "src": "resources/images/bg.jpg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-a43f7536.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
   },
   "resources/scss/main.scss": {
     "file": "assets/main-32491f23.css",
