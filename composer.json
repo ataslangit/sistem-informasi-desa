@@ -30,7 +30,10 @@
   },
   "scripts": {
     "cs": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
-    "csfix": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff",
+    "csfix": [
+      "./donjo-sys/bin/rector process --no-progress-bar",
+      "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
+    ],
     "post-update-cmd": [
       "bash -c \"if [ -f admin/setup.sh ]; then bash admin/setup.sh; fi\""
     ]

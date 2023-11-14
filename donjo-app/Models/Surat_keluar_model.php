@@ -26,12 +26,11 @@ class Surat_keluar_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.no_surat LIKE '{$kw}' OR u.id_pend LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.no_surat LIKE '{$kw}' OR u.id_pend LIKE '{$kw}')";
         }
     }
 

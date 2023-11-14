@@ -27,22 +27,20 @@ class Web_dokumen_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (satuan LIKE '{$kw}' OR nama LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 
@@ -146,7 +144,7 @@ class Web_dokumen_model extends CI_Model
         $nama_file   = $_FILES['satuan']['name'];
         $old_file    = $data['old_file'];
         if (! empty($lokasi_file)) {
-            UploadDocument($nama_file, $old_file);
+            UploadDocument($nama_file);
             unset($data['old_file']);
         } else {
             $_SESSION['success'] = -1;

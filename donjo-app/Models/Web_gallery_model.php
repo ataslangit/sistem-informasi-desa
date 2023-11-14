@@ -27,22 +27,20 @@ class Web_gallery_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (gambar LIKE '{$kw}' OR nama LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (gambar LIKE '{$kw}' OR nama LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND enabled = {$kf}";
         }
     }
 
@@ -153,7 +151,7 @@ class Web_gallery_model extends CI_Model
         $old_gambar  = $x['old_gambar'];
         if (! empty($lokasi_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file, $old_gambar);
+                UploadGallery($nama_file);
                 unset($x['old_gambar']);
             }
         } else {
@@ -330,7 +328,7 @@ class Web_gallery_model extends CI_Model
         $old_gambar  = $x['old_gambar'];
         if (! empty($nama_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file, $old_gambar);
+                UploadGallery($nama_file);
                 unset($x['old_gambar']);
             }
         } else {

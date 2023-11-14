@@ -26,42 +26,38 @@ class Plan_garis_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND l.nama LIKE '{$kw}'";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND l.nama LIKE '{$kw}'";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND l.enabled = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND l.enabled = {$kf}";
         }
     }
 
     public function line_sql()
     {
         if (isset($_SESSION['line'])) {
-            $kf       = $_SESSION['line'];
-            $line_sql = " AND p.id = {$kf}";
+            $kf = $_SESSION['line'];
 
-            return $line_sql;
+            return " AND p.id = {$kf}";
         }
     }
 
     public function subline_sql()
     {
         if (isset($_SESSION['subline'])) {
-            $kf          = $_SESSION['subline'];
-            $subline_sql = " AND m.id = {$kf}";
+            $kf = $_SESSION['subline'];
 
-            return $subline_sql;
+            return " AND m.id = {$kf}";
         }
     }
 
@@ -228,9 +224,8 @@ class Plan_garis_model extends CI_Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function list_subline()
@@ -246,9 +241,8 @@ class Plan_garis_model extends CI_Model
         }
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 
     public function garis_lock($id = '', $val = 0)

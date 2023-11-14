@@ -16,7 +16,8 @@ class First_penduduk_m extends CI_Model
             case 'pekerjaan': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE pekerjaan_id = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE pekerjaan_id = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE pekerjaan_id = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_pekerjaan u WHERE 1 ORDER BY jumlah DESC';
                 break;
 
-            case 'status-perkawinan': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_kawin u WHERE 1 ORDER BY jumlah DESC';
+            case 'status-perkawinan':
+            case 14: $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_kawin u WHERE 1 ORDER BY jumlah DESC';
                 break;
 
             case 'agama': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE agama_id = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE agama_id = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE agama_id = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_agama u WHERE 1 ';
@@ -25,7 +26,8 @@ class First_penduduk_m extends CI_Model
             case 'jenis-kelamin': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE sex = u.id AND status_dasar = 1) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE sex = u.id AND sex=1 AND status_dasar = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE sex = 2 AND sex=u.id AND status_dasar = 1) AS perempuan FROM tweb_penduduk_sex u WHERE 1 ORDER BY jumlah DESC';
                 break;
 
-            case 'warga-negara': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_warganegara u WHERE 1 ORDER BY jumlah DESC';
+            case 'warga-negara':
+            case 13: $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_warganegara u WHERE 1 ORDER BY jumlah DESC';
                 break;
 
             case '': $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE status = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE status = u.id AND status = 0) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE status = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_status u WHERE 1 ORDER BY jumlah DESC';
@@ -51,12 +53,6 @@ class First_penduduk_m extends CI_Model
 			(SELECT COUNT(id) FROM tweb_penduduk WHERE DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 >= u.dari AND DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 <= u.sampai AND sex=1) AS laki,
 			(SELECT COUNT(id) FROM tweb_penduduk WHERE DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 >= u.dari AND DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 <= u.sampai AND sex=2) AS perempuan
 			FROM tweb_penduduk_umur u WHERE status = 1 ORDER BY u.id ";
-                break;
-
-            case 13: $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE warganegara_id = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_warganegara u WHERE 1 ORDER BY jumlah DESC';
-                break;
-
-            case 14: $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 1) AS laki,(SELECT COUNT(id) FROM tweb_penduduk WHERE status_kawin = u.id AND sex = 2) AS perempuan FROM tweb_penduduk_kawin u WHERE 1 ORDER BY jumlah DESC';
                 break;
 
             case 21: $sql = 'SELECT u.*,(SELECT COUNT(id) FROM tweb_keluarga WHERE kelas_sosial = u.id) AS jumlah,(SELECT COUNT(id) FROM tweb_keluarga WHERE 0) AS laki,(SELECT COUNT(id) FROM tweb_keluarga WHERE 0) AS perempuan FROM ref_kelas_sosial u WHERE 1 ORDER BY jumlah DESC';

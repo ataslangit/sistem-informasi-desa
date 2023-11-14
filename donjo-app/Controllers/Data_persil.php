@@ -146,8 +146,6 @@ class Data_persil extends CI_Controller
         $data['persil_jenis']      = $this->data_persil_model->list_persil_jenis();
 
         return redirect()->to('data_persil/clear');
-        echo view('data_persil/persil', $data);
-        echo view('footer');
     }
 
     public function jenis($apa = 0, $page = 1)

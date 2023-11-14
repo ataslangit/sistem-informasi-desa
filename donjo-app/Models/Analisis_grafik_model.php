@@ -26,52 +26,47 @@ class Analisis_grafik_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
+            $kf = $_SESSION['analisis_master'];
 
-            return $filter_sql;
+            return " AND u.id_master = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND c.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND c.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND c.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND c.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND c.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND c.rt = '{$kf}'";
         }
     }
 
@@ -102,15 +97,11 @@ class Analisis_grafik_model extends CI_Model
         $pembagi = $pembagi['pembagi'] + 0;
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.minval';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.minval DESC';
-                break;
-
+            case 1:
             case 3: $order_sql = ' ORDER BY u.minval';
                 break;
 
+            case 2:
             case 4: $order_sql = ' ORDER BY u.minval DESC';
                 break;
 
@@ -158,15 +149,11 @@ class Analisis_grafik_model extends CI_Model
         $pembagi = $pembagi['pembagi'] + 0;
 
         switch ($o) {
-            case 1: $order_sql = ' ORDER BY u.minval';
-                break;
-
-            case 2: $order_sql = ' ORDER BY u.minval DESC';
-                break;
-
+            case 1:
             case 3: $order_sql = ' ORDER BY u.minval';
                 break;
 
+            case 2:
             case 4: $order_sql = ' ORDER BY u.minval DESC';
                 break;
 
@@ -312,8 +299,7 @@ class Analisis_grafik_model extends CI_Model
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->result_array();
 
-        return $data;
+        return $query->result_array();
     }
 }

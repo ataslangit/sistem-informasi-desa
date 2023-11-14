@@ -36,82 +36,74 @@ class Analisis_statistik_jawaban_model extends CI_Model
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {
-            $cari       = $_SESSION['cari'];
-            $kw         = $this->db->escape_like_str($cari);
-            $kw         = '%' . $kw . '%';
-            $search_sql = " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
+            $cari = $_SESSION['cari'];
+            $kw   = $this->db->escape_like_str($cari);
+            $kw   = '%' . $kw . '%';
 
-            return $search_sql;
+            return " AND (u.pertanyaan LIKE '{$kw}' OR u.pertanyaan LIKE '{$kw}')";
         }
     }
 
     public function filter_sql()
     {
         if (isset($_SESSION['filter'])) {
-            $kf         = $_SESSION['filter'];
-            $filter_sql = " AND u.act_analisis = {$kf}";
+            $kf = $_SESSION['filter'];
 
-            return $filter_sql;
+            return " AND u.act_analisis = {$kf}";
         }
     }
 
     public function master_sql()
     {
         if (isset($_SESSION['analisis_master'])) {
-            $kf         = $_SESSION['analisis_master'];
-            $filter_sql = " AND u.id_master = {$kf}";
+            $kf = $_SESSION['analisis_master'];
 
-            return $filter_sql;
+            return " AND u.id_master = {$kf}";
         }
     }
 
     public function tipe_sql()
     {
         if (isset($_SESSION['tipe'])) {
-            $kf         = $_SESSION['tipe'];
-            $filter_sql = " AND u.id_tipe = {$kf}";
+            $kf = $_SESSION['tipe'];
 
-            return $filter_sql;
+            return " AND u.id_tipe = {$kf}";
         }
     }
 
     public function kategori_sql()
     {
         if (isset($_SESSION['kategori'])) {
-            $kf         = $_SESSION['kategori'];
-            $filter_sql = " AND u.id_kategori = {$kf}";
+            $kf = $_SESSION['kategori'];
 
-            return $filter_sql;
+            return " AND u.id_kategori = {$kf}";
         }
     }
 
     public function dusun_sql()
     {
         if (isset($_SESSION['dusun'])) {
-            $kf        = $_SESSION['dusun'];
-            $dusun_sql = " AND a.dusun = '{$kf}'";
+            $kf = $_SESSION['dusun'];
 
-            return $dusun_sql;
+            return " AND a.dusun = '{$kf}'";
         }
     }
 
     public function rw_sql()
     {
         if (isset($_SESSION['rw'])) {
-            $kf     = $_SESSION['rw'];
-            $rw_sql = " AND a.rw = '{$kf}'";
+            $kf = $_SESSION['rw'];
 
-            return $rw_sql;
+            return " AND a.rw = '{$kf}'";
         }
     }
 
     public function rt_sql()
     {
         if (isset($_SESSION['rt'])) {
-            $kf     = $_SESSION['rt'];
-            $rt_sql = " AND a.rt = '{$kf}'";
+            $kf = $_SESSION['rt'];
 
-            return $rt_sql;
+            return " AND a.rt = '{$kf}'";
         }
     }
 

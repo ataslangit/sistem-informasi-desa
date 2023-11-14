@@ -1509,6 +1509,7 @@ class Spreadsheet_Excel_Reader
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_DBCELL:
+                default:
                     break;
 
                 case SPREADSHEET_EXCEL_READER_TYPE_MULBLANK:
@@ -1583,9 +1584,6 @@ class Spreadsheet_Excel_Reader
                     for ($coli = $colfrom; $coli <= $colto; $coli++) {
                         $this->colInfo[$this->sn][$coli + 1] = ['width' => $cw, 'xf' => $cxf, 'hidden' => ($co & 0x01), 'collapsed' => ($co & 0x1000) >> 12];
                     }
-                    break;
-
-                default:
                     break;
             }
             $spos += $length;
