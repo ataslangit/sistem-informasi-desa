@@ -2,27 +2,23 @@
 
 namespace App\Controllers\Siteman;
 
+use App\Controllers\BaseController;
+use App\Models\Config;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
-use Kenjis\CI3Compatible\Core\CI_Controller;
 
-class Login extends CI_Controller
+class Login extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('config_model');
-    }
-
     /**
      * Menampilkan halaman login
      */
     public function index(): string
     {
+        $configModel = new Config();
+
         $data = [
             'title' => 'Masuk',
-            'desa'  => $this->config_model->get_data(),
+            'desa'  => $configModel->first(),
         ];
 
         return view('siteman/login', $data);
