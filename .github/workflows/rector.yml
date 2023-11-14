@@ -3,15 +3,7 @@ name: Rector
 on:
   pull_request:
     branches:
-      - develop
-    paths:
-      - "**.php"
-      - "composer.*"
-      - "rector.php"
-      - ".github/workflows/rector.yml"
-  push:
-    branches:
-      - develop
+      - dev
     paths:
       - "**.php"
       - "composer.*"
