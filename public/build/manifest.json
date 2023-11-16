@@ -1,8 +1,4 @@
 {
-  "bg.jpg": {
-    "file": "assets/bg-651882f6.jpg",
-    "src": "bg.jpg"
-  },
   "resources/css/login.scss": {
     "file": "assets/login-e8df96de.css",
     "isEntry": true,
