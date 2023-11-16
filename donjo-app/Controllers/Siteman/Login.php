@@ -67,7 +67,7 @@ class Login extends BaseController
             return redirect()->to('hom_desa')->with('success', 'Halo, selamat datang kembali');
         }
 
-        session()->setFlashdata('error', 'Silakan coba kembali.');
+        session()->setFlashdata('error', 'Kredensial tidak valid, silakan coba lagi.');
 
         return $this->index();
     }

@@ -1,8 +1,28 @@
 {
+  "bg.jpg": {
+    "file": "assets/bg-651882f6.jpg",
+    "src": "bg.jpg"
+  },
   "resources/css/login.scss": {
     "file": "assets/login-e8df96de.css",
     "isEntry": true,
     "src": "resources/css/login.scss"
+  },
+  "resources/fonts/fontawesome/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-70903480.ttf",
+    "src": "resources/fonts/fontawesome/fa-regular-400.ttf"
+  },
+  "resources/fonts/fontawesome/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-fa79fc4f.woff2",
+    "src": "resources/fonts/fontawesome/fa-regular-400.woff2"
+  },
+  "resources/fonts/fontawesome/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-1782156b.ttf",
+    "src": "resources/fonts/fontawesome/fa-solid-900.ttf"
+  },
+  "resources/fonts/fontawesome/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-1b099f88.woff2",
+    "src": "resources/fonts/fontawesome/fa-solid-900.woff2"
   },
   "resources/images/bg.jpg": {
     "file": "assets/bg-651882f6.jpg",
@@ -14,7 +34,7 @@
     "src": "resources/js/app.js"
   },
   "resources/scss/main.scss": {
-    "file": "assets/main-32491f23.css",
+    "file": "assets/main-2510119d.css",
     "isEntry": true,
     "src": "resources/scss/main.scss"
   }
