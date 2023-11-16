@@ -22,16 +22,6 @@ class Dashboard extends CI_Controller
     public function index()
     {
         return view('siteman/dashboard');
-
-        $_SESSION['delik'] = 0;
-        $nav['act']        = 0;
-        $header            = $this->header_model->get_data();
-        $data['main']      = $this->config_model->get_data();
-
-        echo view('header', $header);
-        echo view('home/nav', $nav);
-        echo view('home/konfigurasi_form', $data);
-        echo view('footer');
     }
 
     public function about()

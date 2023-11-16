@@ -317,7 +317,7 @@
     Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
 */
 ?>
-<nav id="sidebar">
+<nav id="sidebar" class="">
     <!-- Sidebar Content -->
     <div class="sidebar-content">
         <!-- Side Header -->
