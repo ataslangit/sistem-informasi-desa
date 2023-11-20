@@ -1,34 +1,27 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Siteman;
 
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
-class Hom_desa extends CI_Controller
+class Dashboard extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
+    // public function __construct()
+    // {
+    //     parent::__construct();
 
-        $this->load->model('user_model');
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            return redirect()->to('siteman');
-        }
-        $this->load->model('header_model');
-        $this->load->model('config_model');
-    }
+    //     $this->load->model('user_model');
+    //     $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+    //     if ($grup !== '1' && $grup !== '2') {
+    //         return redirect()->to('siteman');
+    //     }
+    //     $this->load->model('header_model');
+    //     $this->load->model('config_model');
+    // }
 
     public function index()
     {
-        $_SESSION['delik'] = 0;
-        $nav['act']        = 0;
-        $header            = $this->header_model->get_data();
-        $data['main']      = $this->config_model->get_data();
-        echo view('header', $header);
-        echo view('home/nav', $nav);
-        echo view('home/konfigurasi_form', $data);
-        echo view('footer');
+        return view('siteman/dashboard');
     }
 
     public function about()

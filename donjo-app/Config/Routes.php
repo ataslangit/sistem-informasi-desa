@@ -2,6 +2,7 @@
 
 use App\Controllers\Install;
 use App\Controllers\Main;
+use App\Controllers\Siteman\Dashboard;
 use App\Controllers\Siteman\Login;
 use CodeIgniter\Router\RouteCollection;
 
@@ -17,7 +18,14 @@ $routes->group('install', static function ($routes) {
 });
 
 // siteman
-$routes->group('siteman', ['filter' => 'isLogin'], static function ($routes) {
-    $routes->get('/', [Login::class, 'index'], ['as' => 'login.view']);
-    $routes->post('/', [Login::class, 'submit'], ['as' => 'login.submit']);
+$routes->group('siteman', static function ($routes) {
+    // login
+    $routes->get('/', [Login::class, 'index'], ['as' => 'login.view', 'filter' => 'isLogin']);
+    $routes->post('/', [Login::class, 'submit'], ['as' => 'login.submit', 'filter' => 'isLogin']);
+
+    // dashboard
+    $routes->get('dashboard', [Dashboard::class, 'index'], ['as' => 'siteman.dashboard.view']);
 });
+
+// redirect halaman yang lama
+$routes->addRedirect('hom_desa', 'siteman.dashboard.view');

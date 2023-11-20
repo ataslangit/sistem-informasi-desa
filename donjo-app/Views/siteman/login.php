@@ -12,8 +12,8 @@
                         Menuju Desa Digital
                     </p>
                     <p class="text-white-75 fw-medium">
-                        Copyright &copy; <span data-toggle="year-copy">2009 - 2016</span> Combine Resource Institution<br>
-                        Copyright &copy; <span data-toggle="year-copy">2022 - <?= date('Y') ?></span> Atas Langit
+                        Copyright &copy; 2009 - 2016 Combine Resource Institution<br>
+                        Copyright &copy; 2022 - <?= date('Y') ?> Atas Langit
                     </p>
                 </div>
             </div>
