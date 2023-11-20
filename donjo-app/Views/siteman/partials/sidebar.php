@@ -355,40 +355,6 @@ use App\Models\SettingModul;
 
         <!-- Sidebar Scrolling -->
         <div class="js-sidebar-scroll">
-            <!-- Side User -->
-            <div class="content-side content-side-user px-0 py-0">
-                <!-- Visible only in mini mode -->
-                <div class="smini-visible-block animated fadeIn px-3">
-                    <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar15.jpg" alt="">
-                </div>
-                <!-- END Visible only in mini mode -->
-
-                <!-- Visible only in normal mode -->
-                <div class="smini-hidden text-center mx-auto">
-                    <a class="img-link" href="be_pages_generic_profile.html">
-                        <img class="img-avatar" src="assets/media/avatars/avatar15.jpg" alt="">
-                    </a>
-                    <ul class="list-inline mt-3 mb-0">
-                        <li class="list-inline-item">
-                            <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="be_pages_generic_profile.html">J. Smith</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <a class="link-fx text-dual" data-toggle="layout" data-action="dark_mode_toggle" href="javascript:void(0)">
-                                <i class="fa fa-burn"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="link-fx text-dual" href="op_auth_signin.html">
-                                <i class="fa fa-sign-out-alt"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END Visible only in normal mode -->
-            </div>
-            <!-- END Side User -->
-
             <!-- Side Navigation -->
             <div class="content-side content-side-full">
                 <ul class="nav-main">
@@ -398,7 +364,7 @@ use App\Models\SettingModul;
                     foreach ($moduls as $modul): ?>
 
                         <li class="nav-main-item">
-                            <a class="nav-main-link active" href="<?= site_url($modul['url']) ?>">
+                            <a class="nav-main-link" href="<?= site_url($modul['url']) ?>">
                                 <i class="nav-main-link-icon fa <?= esc($modul['icon'] ?? 'fa-file') ?>"></i>
                                 <span class="nav-main-link-name"><?= esc($modul['modul']) ?></span>
                             </a>

@@ -22,5 +22,4 @@ class SettingModul extends Model
         'level',
         'hidden',
     ];
-
 }
