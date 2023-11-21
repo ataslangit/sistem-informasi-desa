@@ -39,21 +39,21 @@ class Penduduk extends CI_Controller
     {
         $desaModel = new Desa();
 
-        $data = [];
-        $data['p'] = $p;
-        $data['o'] = $o;
-        $data['filter'] = '';
+        $data                 = [];
+        $data['p']            = $p;
+        $data['o']            = $o;
+        $data['filter']       = '';
         $data['status_dasar'] = '';
-        $data['sex'] = '';
-        $data['list_dusun'] = $desaModel->where(['rt' => '0', 'rw' => '0'])->findAll();
-        $data['dusun'] = '';
-        $data['rw']    = '';
-        $data['rt']    = '';
-        $data['cari']    = '';
-        $data['info']    = '';
-        $data['main']    = [];
-        $data['per_page']    = 50;
-        $data['paging']    = [];
+        $data['sex']          = '';
+        $data['list_dusun']   = $desaModel->where(['rt' => '0', 'rw' => '0'])->findAll();
+        $data['dusun']        = '';
+        $data['rw']           = '';
+        $data['rt']           = '';
+        $data['cari']         = '';
+        $data['info']         = '';
+        $data['main']         = [];
+        $data['per_page']     = 50;
+        $data['paging']       = [];
 
         // $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
         // $data['paging']     = $this->penduduk_model->paging($p, $o);
