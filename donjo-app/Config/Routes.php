@@ -4,6 +4,7 @@ use App\Controllers\Install;
 use App\Controllers\Main;
 use App\Controllers\Siteman\Dashboard;
 use App\Controllers\Siteman\Login;
+use App\Controllers\Siteman\Penduduk;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -25,7 +26,12 @@ $routes->group('siteman', static function ($routes) {
 
     // dashboard
     $routes->get('dashboard', [Dashboard::class, 'index'], ['as' => 'siteman.dashboard.view']);
+
+    // penduduk
+    $routes->get('penduduk', [Penduduk::class, 'index'], ['as' => 'siteman.penduduk.view']);
 });
 
 // redirect halaman yang lama
 $routes->addRedirect('hom_desa', 'siteman.dashboard.view');
+$routes->addRedirect('penduduk', 'siteman.penduduk.view');
+$routes->addRedirect('penduduk/clear', 'siteman.penduduk.view');
