@@ -9,12 +9,12 @@ Harap lakukan backup terlebih dahulu untuk menghindari kesalahan saat melakukan 
 :::
 
 1. Replace direktori `donjo-app` & `donjo-sys` dengan versi yang ada pada `dev`.
-   Kemungkinan level direktorinya diturunkan, lihat [struktur direktori](#sturktur-direktori)
+   Kemungkinan level direktorinya diturunkan, lihat [struktur direktori](#struktur-direktori)
 2. Pindahkan direktori `assets` & `surat` ke direktori `public`.
 3. Pastikan bahwa akses halaman utama (root) ada pada direktori `public`. Anda dapat merubah nama 
    direktori ini dengan nama lain, misal `public_html`.
 
-# Sturktur Direktori
+# Struktur Direktori
 ## Struktur Direktori Lama
 
 ```cmd
@@ -45,6 +45,6 @@ Berikut menggunakan contoh jika direktori `public` diganti dengan `public_html`
 └-- sid.install
 ```
 ::: tip SARAN
-Anda juga dapat memasukkan direktori `donjo-app`, `donjo-sys`, `env`, dan `sid.install` kedalam direktori khusus.  
-Jangan lupa untuk perbaiki path-nya didalam file `index.php` pada direktori `public`.
+Anda juga dapat memasukkan direktori `donjo-app`, `donjo-sys`, `env`, dan `sid.install` ke dalam direktori khusus.  
+Jangan lupa untuk perbaiki path-nya di dalam file `index.php` pada direktori `public`.
 :::
