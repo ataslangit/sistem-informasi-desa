@@ -1,0 +1,105 @@
+//
+// Text
+// --------------------------------------------------
+
+// Helpers
+.text-back {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  font-size: 500%;
+  font-weight: 700;
+  opacity: .05;
+  z-index: 0;
+}
+
+// Contextual colors
+@include text-emphasis-variant(".text-primary", $primary);
+@include text-emphasis-variant('.text-primary-dark', $primary-dark);
+@include text-emphasis-variant('.text-primary-darker',$primary-darker);
+@include text-emphasis-variant('.text-primary-light', $primary-light);
+@include text-emphasis-variant('.text-primary-lighter', $primary-lighter);
+
+@include text-emphasis-variant(".text-dark", $dark);
+
+@include text-emphasis-variant(".text-success", $success);
+@include text-emphasis-variant(".text-success-light", $success-light);
+@include text-emphasis-variant(".text-warning", $warning);
+@include text-emphasis-variant(".text-warning-light", $warning-light);
+@include text-emphasis-variant(".text-info", $info);
+@include text-emphasis-variant(".text-info-light", $info-light);
+@include text-emphasis-variant(".text-danger", $danger);
+@include text-emphasis-variant(".text-danger-light", $danger-light);
+
+@include text-emphasis-variant(".text-body-bg", $body-bg);
+@include text-emphasis-variant(".text-body-bg-dark", $body-bg-dark);
+@include text-emphasis-variant(".text-body-bg-light", $body-bg-light);
+@include text-emphasis-variant(".text-body-color", $body-color);
+@include text-emphasis-variant(".text-body-color-dark", $body-color-dark);
+@include text-emphasis-variant(".text-body-color-light", $body-color-light);
+
+@include text-emphasis-variant(".text-muted", $text-muted);
+@include text-emphasis-variant(".text-white", $white);
+@include text-emphasis-variant(".text-white-25", rgba($white, .25));
+@include text-emphasis-variant(".text-white-50", rgba($white, .5));
+@include text-emphasis-variant(".text-white-75", rgba($white, .75));
+@include text-emphasis-variant(".text-black", $black);
+@include text-emphasis-variant(".text-black-25", rgba($black, .25));
+@include text-emphasis-variant(".text-black-50", rgba($black, .5));
+@include text-emphasis-variant(".text-black-75", rgba($black, .75));
+
+@include text-emphasis-variant(".text-gray", $gray-400);
+@include text-emphasis-variant(".text-gray-dark", $gray-600);
+@include text-emphasis-variant(".text-gray-darker", $gray-800);
+@include text-emphasis-variant(".text-gray-light", $gray-200);
+@include text-emphasis-variant(".text-gray-lighter", $gray-100);
+
+// Contextual dual text colors (for dark header/sidebar)
+@include text-emphasis-variant(".text-dual", $primary-dark);
+
+.page-header-dark #page-header,
+.sidebar-dark #sidebar {
+  @include text-emphasis-variant(".text-dual", $body-color-light);
+}
+
+// Default Color Theme
+@include text-emphasis-variant('.text-default', $primary);
+@include text-emphasis-variant('.text-default-dark', $primary-dark);
+@include text-emphasis-variant('.text-default-darker', $primary-darker);
+@include text-emphasis-variant('.text-default-light', $primary-light);
+@include text-emphasis-variant('.text-default-lighter', $primary-lighter);
+
+// Elegance Color Theme
+@include text-emphasis-variant('.text-elegance', $theme-elegance-primary);
+@include text-emphasis-variant('.text-elegance-dark', $theme-elegance-dark);
+@include text-emphasis-variant('.text-elegance-darker', $theme-elegance-darker);
+@include text-emphasis-variant('.text-elegance-light', $theme-elegance-light);
+@include text-emphasis-variant('.text-elegance-lighter', $theme-elegance-lighter);
+
+// Pulse Color Theme
+@include text-emphasis-variant('.text-pulse', $theme-pulse-primary);
+@include text-emphasis-variant('.text-pulse-dark', $theme-pulse-dark);
+@include text-emphasis-variant('.text-pulse-darker', $theme-pulse-darker);
+@include text-emphasis-variant('.text-pulse-light', $theme-pulse-light);
+@include text-emphasis-variant('.text-pulse-lighter', $theme-pulse-lighter);
+
+// Flat Color Theme
+@include text-emphasis-variant('.text-flat', $theme-flat-primary);
+@include text-emphasis-variant('.text-flat-dark', $theme-flat-dark);
+@include text-emphasis-variant('.text-flat-darker', $theme-flat-darker);
+@include text-emphasis-variant('.text-flat-light', $theme-flat-light);
+@include text-emphasis-variant('.text-flat-lighter', $theme-flat-lighter);
+
+// Corporate Color Theme
+@include text-emphasis-variant('.text-corporate', $theme-corporate-primary);
+@include text-emphasis-variant('.text-corporate-dark', $theme-corporate-dark);
+@include text-emphasis-variant('.text-corporate-darker', $theme-corporate-darker);
+@include text-emphasis-variant('.text-corporate-light', $theme-corporate-light);
+@include text-emphasis-variant('.text-corporate-lighter', $theme-corporate-lighter);
+
+// Earth Color Theme
+@include text-emphasis-variant('.text-earth', $theme-earth-primary);
+@include text-emphasis-variant('.text-earth-dark', $theme-earth-dark);
+@include text-emphasis-variant('.text-earth-darker', $theme-earth-darker);
+@include text-emphasis-variant('.text-earth-light', $theme-earth-light);
+@include text-emphasis-variant('.text-earth-lighter', $theme-earth-lighter);

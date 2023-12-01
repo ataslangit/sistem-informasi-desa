@@ -7,6 +7,9 @@ use Config\Database;
 
 class Init extends Migration
 {
+    /**
+     * @SuppressWarnings(PHPMD.ShortMethodName)
+     */
     public function up()
     {
         $this->forge->addField([

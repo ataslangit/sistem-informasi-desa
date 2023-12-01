@@ -1,0 +1,21 @@
+//
+// Borders
+// --------------------------------------------------
+
+.border-white-op {
+  border: 1px solid rgba($white, .1) !important;
+
+  &-t { border-top: 1px solid rgba($white, .1) !important; }
+  &-r { border-right: 1px solid rgba($white, .1) !important; }
+  &-b { border-bottom: 1px solid rgba($white, .1) !important; }
+  &-l { border-left: 1px solid rgba($white, .1) !important; }
+}
+
+.border-black-op {
+  border: 1px solid rgba($black, .1) !important;
+
+  &-t { border-top: 1px solid rgba($black, .1) !important; }
+  &-r { border-right: 1px solid rgba($black, .1) !important; }
+  &-b { border-bottom: 1px solid rgba($black, .1) !important; }
+  &-l { border-left: 1px solid rgba($black, .1) !important; }
+}

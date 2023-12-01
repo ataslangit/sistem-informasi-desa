@@ -8,6 +8,8 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/css/login.scss",
+                "resources/scss/main.scss",
+                "resources/js/app.js"
             ],
             refresh: true,
         }),

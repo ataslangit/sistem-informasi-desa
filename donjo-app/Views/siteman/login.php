@@ -1,41 +1,66 @@
 <?= $this->extend('siteman/template') ?>
 
-<?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= asset('resources/css/login.scss')?>">
-<?= $this->endSection() ?>
-
 <?= $this->section('content') ?>
-<div id="loginform">
-        <a href="<?php echo site_url('first')?>">
-            <div id="facebook">
-                <div id="sid">SID</div>
-                <div id="connect">ver.</div>
-                <div id="logo"><img src="<?php echo base_url('assets/images/SID-e1351656852451.png')?>"></div>
-                <div id="desa">Desa <?php echo unpenetration($desa['nama_desa'])?></div>
-                <div id="kec">Kecamatan <?php echo unpenetration($desa['nama_kecamatan'])?></div>
-                <div id="kab">Kabupaten <?php echo unpenetration($desa['nama_kabupaten'])?></div>
-            </div>
-        </a>
-        <div id="mainlogin">
-            <div id="or"><?= VERSI_SID ?></div>
-            <h1>Masukkan Username dan Password</h1>
-            <?= form_open(route_to('login.submit')) ?>
-                <input name="username" type="text" placeholder="username" value="" required>
-                <input name="password" type="password" placeholder="password" value="" required>
-                <button type="submit" id="but">LOGIN</button>
 
-                <?php if(session()->has('error')) {
-                    echo '<div id="note">';
-                    echo session()->get('error');
-                    echo '</div>';
-                } ?>
-            <?= form_close() ?>
-        </div>
-        <div id="facebook2">
-            <div id="kab2"><a href="http://combine.or.id" target="_blank"><img align=center src="<?php echo base_url('assets/images/logo-combine.png') ?>"></a></div>
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="bg-image" style="background-image: url('<?= asset('resources/images/bg.jpg') ?>');">
+        <div class="row mx-0 bg-black-50">
+            <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
+                <div class="p-4">
+                    <p class="fs-3 fw-semibold text-white">
+                        Menuju Desa Digital
+                    </p>
+                    <p class="text-white-75 fw-medium">
+                        Copyright &copy; 2009 - 2016 Combine Resource Institution<br>
+                        Copyright &copy; 2022 - <?= date('Y') ?> Atas Langit
+                    </p>
+                </div>
+            </div>
+            <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-body-extra-light">
+                <div class="content content-full">
+                    <!-- Header -->
+                    <div class="px-4 py-2 mb-4">
+                        <div class="logo">
+                            <?= SID_LOGO ?>
+                        </div>
+                        <h1 class="h3 fw-bold mt-4 mb-2">Selamat Datang</h1>
+                        <h2 class="h5 fw-medium text-muted mb-0">Silakan Masuk</h2>
+                    </div>
+                    <!-- END Header -->
+
+                    <!-- Sign In Form -->
+                    <?= form_open(route_to('login.submit'), ['class' => 'px-4']) ?>
+
+                    <?php if (session()->has('error')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <p class="mb-0">
+                                <?= esc(session()->get('error')) ?>
+                            </p>
+                        </div>
+
+                    <?php endif ?>
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="login-username" name="username" placeholder="Masukkan namapengguna" required>
+                        <label class="form-label" for="login-username">Nama Pengguna</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="login-password" name="password" placeholder="Masukkan katasandi" required>
+                        <label class="form-label" for="login-password">Kata Sandi</label>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
+                            Masuk
+                        </button>
+                    </div>
+                    <?= form_close() ?>
+                    <!-- END Sign In Form -->
+                </div>
+            </div>
         </div>
     </div>
-<?= $this->endSection() ?>
+    <!-- END Page Content -->
+</main>
 
-<?= $this->section('js') ?>
 <?= $this->endSection() ?>

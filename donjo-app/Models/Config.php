@@ -2,17 +2,28 @@
 
 namespace App\Models;
 
-use Kenjis\CI3Compatible\Core\CI_Model as Model;
+use CodeIgniter\Model;
 
 class Config extends Model
 {
-    protected $table = 'config';
+    protected $table            = 'config';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'nama_desa', 'kode_desa', 'nama_kepala_desa',
+        'nip_kepala_desa', 'kode_pos', 'nama_kecamatan',
+        'kode_kecamatan', 'nama_kepala_camat',
+        'nip_kepala_camat', 'nama_kabupaten',
+        'kode_kabupaten', 'nama_propinsi', 'kode_propinsi',
+        'logo', 'lat', 'lng', 'zoom', 'map_tipe', 'path',
+        'alamat_kantor', 'g_analytic', 'regid', 'macid',
+        'email_desa', 'gapi_key',
+    ];
 
-    public function __construct()
-    {
-        $this->load->database('default');
-    }
-
+    /*
     public function insert($data)
     {
         $outp = $this->db->insert($this->table, $data);
@@ -45,4 +56,5 @@ class Config extends Model
 
         return $query->row_array();
     }
+    */
 }

@@ -2,27 +2,23 @@
 
 namespace App\Controllers\Siteman;
 
+use App\Controllers\BaseController;
+use App\Models\Config;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
-use Kenjis\CI3Compatible\Core\CI_Controller;
 
-class Login extends CI_Controller
+class Login extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('config_model');
-    }
-
     /**
      * Menampilkan halaman login
      */
     public function index(): string
     {
+        $configModel = new Config();
+
         $data = [
             'title' => 'Masuk',
-            'desa'  => $this->config_model->get_data(),
+            'desa'  => $configModel->first(),
         ];
 
         return view('siteman/login', $data);
@@ -35,16 +31,12 @@ class Login extends CI_Controller
      */
     public function submit()
     {
-        if (! $this->request->is('post')) {
-            return $this->index();
-        }
-
         $rules = [
             'username' => ['label' => 'Username', 'rules' => 'required'],
             'password' => ['label' => 'Password', 'rules' => 'required'],
         ];
 
-        if (! $this->validate($rules)) {
+        if (! $this->request->is('post') || ! $this->validate($rules)) {
             return $this->index();
         }
 
@@ -75,6 +67,8 @@ class Login extends CI_Controller
             return redirect()->to('hom_desa')->with('success', 'Halo, selamat datang kembali');
         }
 
-        return redirect('login.view')->withInput()->with('error', 'Silakan coba kembali.');
+        session()->setFlashdata('error', 'Kredensial tidak valid, silakan coba lagi.');
+
+        return $this->index();
     }
 }
