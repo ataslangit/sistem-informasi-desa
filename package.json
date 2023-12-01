@@ -51,8 +51,8 @@
     "sitemap": "7.1.1",
     "vite": "4.5.0",
     "vite-plugin-static-copy": "0.17.1",
-    "vitepress": "1.0.0-rc.29",
-    "vue": "3.3.8"
+    "vitepress": "1.0.0-rc.31",
+    "vue": "3.3.9"
   },
   "scripts": {
     "build": "vite build",
