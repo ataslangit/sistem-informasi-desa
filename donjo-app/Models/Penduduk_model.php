@@ -45,22 +45,6 @@ class Penduduk_model extends CI_Model
         return '[' . $outp . ']';
     }
 
-    public function dp()
-    {
-        $sql   = 'SELECT no_kk FROM tweb_keluarga WHERE 1 ';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
-    public function dn()
-    {
-        $sql   = 'SELECT nik FROM tweb_penduduk WHERE 1 ';
-        $query = $this->db->query($sql);
-
-        return $query->result_array();
-    }
-
     public function search_sql()
     {
         if (isset($_SESSION['cari'])) {

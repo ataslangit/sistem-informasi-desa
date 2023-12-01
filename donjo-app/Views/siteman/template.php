@@ -76,7 +76,7 @@
 
         'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
     */ ?>
-    <div id="page-container" class="<?= url_is('siteman') ? '' : 'sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-modern main-content-boxed' ?>">
+    <div id="page-container" class="<?= url_is('siteman') ? '' : 'sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-modern' ?>">
 
       <!-- Main Container -->
 

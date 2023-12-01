@@ -14,16 +14,16 @@ export default defineConfig({
             refresh: true,
         }),
 
-        // viteStaticCopy({
-        //     targets: [
-        //         { src: "node_modules/font-awesome/css/font-awesome.min.css", dest: "vendors/fontawesome/css" },
-        //         { src: "node_modules/font-awesome/fonts", dest: "vendors/fontawesome" },
-
-        //         { src: "node_modules/jquery-colorbox/jquery.colorbox-min.js", dest: "vendors" },
-        //         { src: "node_modules/jquery/jquery.min.*", dest: "vendors" },
-
-        //         { src: './node_modules/tinymce/*', dest: "vendors/tinymce" },
-        //     ],
-        // }),
+        viteStaticCopy({
+            targets: [
+                { src: "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css", dest: "plugins/datatables" },
+                { src: "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js", dest: "plugins/datatables" },
+                { src: "node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css", dest: "plugins/datatables" },
+                { src: "node_modules/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js", dest: "plugins/datatables" },
+                { src: "node_modules/datatables.net-responsive/js/dataTables.responsive.min.js", dest: "plugins/datatables" },
+                { src: "node_modules/datatables.net/js/jquery.dataTables.min.js", dest: "plugins/datatables" },
+                { src: "node_modules/jquery/dist/jquery.min.js", dest: "plugins/jquery" },
+            ],
+        }),
     ],
 });

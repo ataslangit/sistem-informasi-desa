@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Siteman;
 
+use App\Models\Desa;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 
 class Penduduk extends CI_Controller
@@ -11,16 +12,17 @@ class Penduduk extends CI_Controller
         parent::__construct();
 
         $this->load->model('user_model');
-        $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
-        if ($grup !== '1' && $grup !== '2') {
-            return redirect()->to('siteman');
-        }
+        // $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+        // if ($grup !== '1' && $grup !== '2') {
+        //     return redirect()->to('siteman');
+        // }
 
         $this->load->model('config_model');
         $this->load->model('header_model');
         $this->load->model('penduduk_model');
     }
 
+    /*
     public function clear()
     {
         unset($_SESSION['log']);
@@ -31,84 +33,43 @@ class Penduduk extends CI_Controller
 
         return redirect()->to('penduduk');
     }
+    */
 
     public function index($p = 1, $o = 0)
     {
-        unset($_SESSION['log']);
-        $data['p'] = $p;
-        $data['o'] = $o;
+        $desaModel = new Desa();
 
-        if (isset($_SESSION['cari'])) {
-            $data['cari'] = $_SESSION['cari'];
-        } else {
-            $data['cari'] = '';
-        }
+        $data                 = [];
+        $data['p']            = $p;
+        $data['o']            = $o;
+        $data['filter']       = '';
+        $data['status_dasar'] = '';
+        $data['sex']          = '';
+        $data['list_dusun']   = $desaModel->where(['rt' => '0', 'rw' => '0'])->findAll();
+        $data['dusun']        = '';
+        $data['rw']           = '';
+        $data['rt']           = '';
+        $data['cari']         = '';
+        $data['info']         = '';
+        $data['main']         = [];
+        $data['per_page']     = 50;
+        $data['paging']       = [];
 
-        if (isset($_SESSION['judul_statistik'])) {
-            $data['judul_statistik'] = $_SESSION['judul_statistik'];
-        } else {
-            $data['judul_statistik'] = '';
-        }
+        // $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
+        // $data['paging']     = $this->penduduk_model->paging($p, $o);
+        // $data['main']       = $this->penduduk_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
+        // $data['keyword']    = $this->penduduk_model->autocomplete();
+        // $data['list_agama'] = $this->penduduk_model->list_agama();
 
-        if (isset($_SESSION['filter'])) {
-            $data['filter'] = $_SESSION['filter'];
-        } else {
-            $data['filter'] = '';
-        }
-        if (isset($_SESSION['status_dasar'])) {
-            $data['status_dasar'] = $_SESSION['status_dasar'];
-        } else {
-            $data['status_dasar'] = '1';
-        }
-        if (isset($_SESSION['sex'])) {
-            $data['sex'] = $_SESSION['sex'];
-        } else {
-            $data['sex'] = '';
-        }
+        // $header     = $this->header_model->get_data();
+        // $nav['act'] = 2;
 
-        if (isset($_SESSION['dusun'])) {
-            $data['dusun']   = $_SESSION['dusun'];
-            $data['list_rw'] = $this->penduduk_model->list_rw($data['dusun']);
+        // $data['info'] = $this->penduduk_model->get_filter();
 
-            if (isset($_SESSION['rw'])) {
-                $data['rw']      = $_SESSION['rw'];
-                $data['list_rt'] = $this->penduduk_model->list_rt($data['dusun'], $data['rw']);
-
-                if (isset($_SESSION['rt'])) {
-                    $data['rt'] = $_SESSION['rt'];
-                } else {
-                    $data['rt'] = '';
-                }
-            } else {
-                $data['rw'] = '';
-            }
-        } else {
-            $data['dusun'] = '';
-            $data['rw']    = '';
-            $data['rt']    = '';
-        }
-
-        if (isset($_POST['per_page'])) {
-            $_SESSION['per_page'] = $_POST['per_page'];
-        }
-        $data['per_page'] = $_SESSION['per_page'];
-
-        $data['grup']       = $this->user_model->sesi_grup($_SESSION['sesi']);
-        $data['paging']     = $this->penduduk_model->paging($p, $o);
-        $data['main']       = $this->penduduk_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
-        $data['keyword']    = $this->penduduk_model->autocomplete();
-        $data['list_agama'] = $this->penduduk_model->list_agama();
-        $data['list_dusun'] = $this->penduduk_model->list_dusun();
-
-        $header     = $this->header_model->get_data();
-        $nav['act'] = 2;
-
-        $data['info'] = $this->penduduk_model->get_filter();
-
-        echo view('header', $header);
-        echo view('sid/nav', $nav);
-        echo view('sid/kependudukan/penduduk', $data);
-        echo view('footer');
+        // echo view('header', $header);
+        // echo view('sid/nav', $nav);
+        return view('siteman/kependudukan/penduduk', $data);
+        // echo view('footer');
     }
 
     public function form($p = 1, $o = 0, $id = '')
@@ -358,7 +319,10 @@ class Penduduk extends CI_Controller
 
     public function insert()
     {
-        $data = $this->penduduk_model->dn();
+        $sql   = 'SELECT nik FROM tweb_penduduk WHERE 1 ';
+        $query = $this->db->query($sql);
+
+        $data = $query->result_array();
 
         $i    = 0;
         $dp   = 0;
