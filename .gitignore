@@ -2,6 +2,9 @@
 .env
 composer.lock
 
+/donjo-app/cache/session
+!/donjo-app/cache/session/index.php
+
 # abaikan pada donjo-sys
 /donjo-sys/
 
@@ -11,3 +14,4 @@ composer.lock
 
 .php-cs-fixer.cache
 /install.sid
+

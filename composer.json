@@ -7,6 +7,7 @@
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
+    "filp/whoops": "^2.15",
     "friendsofphp/php-cs-fixer": "^3",
     "mikey179/vfsstream": "1.6.*"
   },

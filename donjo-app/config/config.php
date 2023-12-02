@@ -105,7 +105,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = false;
+$config['enable_hooks'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -390,7 +390,7 @@ $config['sess_driver']             = 'files';
 $config['sess_cookie_name']        = 'ci_session';
 $config['sess_samesite']           = 'Lax';
 $config['sess_expiration']         = 7200;
-$config['sess_save_path']          = null;
+$config['sess_save_path']          = APPPATH . 'cache/session/';
 $config['sess_match_ip']           = false;
 $config['sess_time_to_update']     = 300;
 $config['sess_regenerate_destroy'] = false;

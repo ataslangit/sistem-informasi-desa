@@ -12,3 +12,11 @@ defined('BASEPATH') || exit('No direct script access allowed');
 |	https://codeigniter.com/userguide3/general/hooks.html
 |
 */
+
+$hook['pre_system'][] = [
+    'class'    => 'WhoopsHook',
+    'function' => 'bootWhoops',
+    'filename' => 'WhoopsHook.php',
+    'filepath' => 'hooks',
+    'params'   => [],
+];
