@@ -45,8 +45,12 @@
                         <ul>
                             <?php foreach($menu_surat AS $data){?>
                             <li <?php if($data['url_surat']==$lap){?>class="selected" <?php }?>>
-                            <a href="<?php echo site_url('surat/' . $data['url_surat']) ?>"><?php echo unpenetration($data['nama'])?></a></li>
+                                <a href="<?php echo site_url('surat/form/' . $data['url_surat']) ?>">
+                                    <?php echo unpenetration($data['nama'])?>
+                                </a>
+                            </li>
                             <?php }?>
+                        </ul>
                     </div>
                 </fieldset>
 
@@ -68,7 +72,7 @@
                                     </form>
                             </tr>
                             <form id="validasi" action="<?php echo $form_action?>" method="POST" target="_blank">
-                                <input type="hidden" name="nik" value="<?php echo $individu['id']?>" class="inputbox required">
+                                <input type="hidden" name="nik" value="<?= $individu['id'] ?? '' ?>" class="inputbox required">
                                 <?php if($individu){ ?>
                                 <tr>
                                     <th>Tempat Tanggal Lahir (Umur)</th>
