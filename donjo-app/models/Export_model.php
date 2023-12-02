@@ -126,7 +126,7 @@ class Export_model extends CI_Model
                 $updx['id_subjek']    = $data[$i]['id'];
                 $updx['id_indikator'] = $res[$j]['id'];
                 $jm                   = $res[$j]['jml'];
-                $jm                   = $jm - 1;
+                $jm--;
 
                 $sqlx   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ?';
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
@@ -178,7 +178,7 @@ class Export_model extends CI_Model
                 $updx['id_subjek']    = $data[$i]['id'];
                 $updx['id_indikator'] = $res[$j]['id'];
                 $jm                   = $res[$j]['jml'];
-                $jm                   = $jm - 1;
+                $jm--;
 
                 $sqlx   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ?';
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);

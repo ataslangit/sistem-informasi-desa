@@ -305,7 +305,7 @@ class Analisis_laporan_model extends CI_Model
                 $cb .= $jm['id_jmkf'] . ',';
             }
         }
-        $cb = $cb . '7777777';
+        $cb .= '7777777';
 
         $sql = "SELECT u.*,(SELECT COUNT(id) FROM analisis_indikator WHERE id = u.id AND id IN({$cb})) AS cek FROM analisis_indikator u WHERE 1 ";
         $sql .= $this->master_sql();

@@ -352,16 +352,16 @@ class Plan_line_model extends CI_Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['line'] = $data[$i]['line'] . '<ul>';
-                $j                = 0;
+                $data[$i]['line'] .= '<ul>';
+                $j = 0;
 
                 while ($j < count($data2)) {
                     $data[$i]['line'] = $data[$i]['line'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['line'] = $data[$i]['line'] . '</ul>';
+                $data[$i]['line'] .= '</ul>';
             }
-            $data[$i]['line'] = $data[$i]['line'] . '</li>';
+            $data[$i]['line'] .= '</li>';
             $i++;
         }
 
@@ -385,16 +385,16 @@ class Plan_line_model extends CI_Model
             $data2 = $query->result_array();
 
             if ($data2) {
-                $data[$i]['line'] = $data[$i]['line'] . '<ul>';
-                $j                = 0;
+                $data[$i]['line'] .= '<ul>';
+                $j = 0;
 
                 while ($j < count($data2)) {
                     $data[$i]['line'] = $data[$i]['line'] . "<li><a href='{$url}/" . $data2[$j]['simbol'] . "'>" . $data2[$j]['nama'] . '</a></li>';
                     $j++;
                 }
-                $data[$i]['line'] = $data[$i]['line'] . '</ul>';
+                $data[$i]['line'] .= '</ul>';
             }
-            $data[$i]['line'] = $data[$i]['line'] . '</li>';
+            $data[$i]['line'] .= '</li>';
             $i++;
         }
 

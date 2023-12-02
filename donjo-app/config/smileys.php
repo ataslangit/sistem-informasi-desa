@@ -15,7 +15,6 @@ defined('BASEPATH') || exit('No direct script access allowed');
 |
 */
 $smileys = [
-
     //	smiley			image name						width	height	alt
 
     ':-)'          => ['grin.gif', '19', '19', 'grin'],
@@ -61,5 +60,4 @@ $smileys = [
     ':snake:'      => ['snake.gif', '19', '19', 'snake'],
     ':exclaim:'    => ['exclaim.gif', '19', '19', 'exclaim'],
     ':question:'   => ['question.gif', '19', '19', 'question'],
-
 ];

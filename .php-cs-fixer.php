@@ -15,7 +15,7 @@ $overrides = [];
 
 $options = [
     'finder'       => $finder,
-    'customFixers' => FixerGenerator::create('donjo-sys/nexusphp/cs-config/src/Fixer', 'Nexus\\CsConfig\\Fixer'),
+    // 'customFixers' => FixerGenerator::create('donjo-sys/nexusphp/cs-config/src/Fixer', 'Nexus\\CsConfig\\Fixer'),
 ];
 
 return Factory::create(new CodeIgniter4(), $overrides, $options)->forProjects();
