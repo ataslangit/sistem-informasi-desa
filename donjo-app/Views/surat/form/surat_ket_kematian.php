@@ -45,7 +45,9 @@
                         <ul>
                             <?php foreach($menu_surat AS $data){?>
                             <li <?php if($data['url_surat']==$lap){?>class="selected" <?php }?>>
-                                <a href="<?php echo site_url('surat/' . $data['url_surat']) ?>"><?php echo unpenetration($data['nama'])?></a>
+                                <a href="<?php echo site_url('surat/form/' . $data['url_surat']) ?>">
+                                    <?php echo unpenetration($data['nama'])?>
+                                </a>
                             </li>
                             <?php }?>
                         </ul>
