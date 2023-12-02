@@ -84,10 +84,10 @@ class Surat extends CI_Controller
         $data['form_action2'] = site_url("surat/doc/{$url}");
         $nav['act']           = 1;
         $header               = $this->header_model->get_data();
-        view('header', $header);
 
+        view('header', $header);
         view('surat/nav', $nav);
-        $this->load->view("surat/form/{$url}", $data);
+        view("surat/form/{$url}", $data);
         view('footer');
     }
 

@@ -11,22 +11,22 @@
 			watermark: <?php  if($individu){?>'<?php echo $individu['nik']?> - <?php echo ($individu['nama'])?>'<?php  }else{?>'Ketik no nik di sini..'<?php  }?>,
 			width: 260,
 			noResultsText :'Tidak ada no nik yang sesuai..',
-			onSelect: function(){$('#'+'main').submit();}  
+			onSelect: function(){$('#'+'main').submit();}
 		});
-	
-	
-	$('#showData').click(function(){ 
+
+
+	$('#showData').click(function(){
 		$('tr.hide').show();
 		$('#showData').hide();
-		$('#hideData').show();		
+		$('#hideData').show();
 	});
-	
-	$('#hideData').click(function(){ 
+
+	$('#hideData').click(function(){
 		$('tr.hide').hide();
 		$('#hideData').hide();
-		$('#showData').show();		
+		$('#showData').show();
 	});
-	
+
 		$('#hideData').hide();
 	});
 </script>
@@ -46,7 +46,7 @@ tr .hide{
 <div id="pageC">
 	<table class="inner">
 	<tr style="vertical-align:top">
-	<td style="background:#fff;"> 
+	<td style="background:#fff;">
 		<div id="contentpane">
 			<div class="ui-layout-center" id="maincontent" style="padding: 5px;">
 				<h3>Formulir Layanan : [nama_surat]</h3>
@@ -65,10 +65,10 @@ tr .hide{
 				</br>
 				<div id="form-melengkapi-data-permohonan">
 					<form id="validasi" action="" method="POST" target="_blank">
-					<input type="hidden" name="nik" value="<?php echo $individu['id']?>" class="inputbox required" >
+					<input type="hidden" name="nik" value="<?= $individu['id'] ?? '' ?>" class="inputbox required" >
 					<table class="form">
-						<?php 
-						if($individu){ 
+						<?php
+						if($individu){
 							?>
 							<tr>
 								<th width="200">Tempat Tanggal Lahir (Umur)</th>
@@ -95,7 +95,7 @@ tr .hide{
 									<a class='uibutton' id='hideData'>Sembunyikan</a>
 								</td>
 							</tr>
-							
+
 							<tr class="hide">
 								<th colspan="1">Keluarga</th>
 								<td colspan="1">
@@ -111,11 +111,11 @@ tr .hide{
 													<th width="70" align="left" >Hubungan</th>
 													<th width="70" align="left" >Umur</th>
 													<th width="70" align="left" >Status Kawin</th>
-													<th width="100" align="left" >Pendidikan</th> 
+													<th width="100" align="left" >Pendidikan</th>
 												</tr>
 											</thead>
 											<tbody>
-												<?php 
+												<?php
 												if($anggota!=NULL){
 													$i=0;?>
 												<?php foreach($anggota AS $data){ $i++;?>
@@ -131,7 +131,7 @@ tr .hide{
 													<td><?php echo $data['umur']?></td>
 													<td><?php echo $data['status_kawin']?></td>
 													<td><?php echo $data['pendidikan']?></td>
-												</tr> 
+												</tr>
 												<?php }?>
 												<?php }?>
 											</tbody>
@@ -139,13 +139,13 @@ tr .hide{
 									</div>
 								</td>
 							</tr>
-								 
+
 							<tr>
 								<th>Dokumen Kelengkapan / Syarat</th>
 								<td>
 									<a header="Dokumen" target="ajax-modal" rel="dokumen" href="<?php echo site_url("penduduk/dokumen_list/$individu[id]")?>" class="uibutton special">Daftar Dokumen</a><a target="_blank" href="<?php echo site_url("penduduk/dokumen/$individu[id]")?>" class="uibutton confirm">Manajemen Dokumen</a> )* Atas Nama <?php echo $individu['nama']?> [<?php echo $individu['nik']?>]</td>
 							</tr>
-						<?php 
+						<?php
 						}
 						?>
 						<tr>
@@ -204,7 +204,7 @@ tr .hide{
 						<div class="uibutton-group">
 							<button class="uibutton" type="reset">Clear</button>
 							<button type="button" onclick="$('#'+'validasi').attr('action','<?php echo $form_action?>');$('#'+'validasi').submit();" class="uibutton special"><span class="ui-icon ui-icon-print">&nbsp;</span>Cetak</button>
-							
+
 							<?php if (file_exists("surat/$url/$url.rtf")) { ?><button type="button" onclick="$('#'+'validasi').attr('action','<?php echo $form_action2?>');$('#'+'validasi').submit();" class="uibutton confirm"><span class="ui-icon ui-icon-document">&nbsp;</span>Export Doc</button><?php } ?>
 						</div>
 					</div>
