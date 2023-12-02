@@ -43,7 +43,7 @@ class Header_model extends CI_Model
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_penduduk WHERE 1';
         $query = $this->db->query($sql);
         $data  = $query->row_array();
-        $i     = $i * $data['jml'];
+        $i *= $data['jml'];
 
         $sql   = 'SELECT COUNT(id) AS jml FROM tweb_keluarga WHERE 1';
         $query = $this->db->query($sql);
