@@ -8,9 +8,16 @@ if (! function_exists('url_to')) {
 }
 
 if (! function_exists('route_to')) {
-    function route_to(string $route_name, ...$args): string
+    function route_to(string $route_name, ...$args)
     {
-        return uri_string(route($route_name, $args));
+        $route    = route($route_name, $args);
+        $urlParts = parse_url($route);
+
+        if ($urlParts !== false && isset($urlParts['path'])) {
+            return trim($urlParts['path'], '/');
+        }
+
+        return $route;
     }
 }
 
