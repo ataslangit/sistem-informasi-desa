@@ -7,6 +7,7 @@ title: "Changelog SID dev"
 Rilis: __belum riilis__
 
 ## :rocket: Peningkatan
+- Hapus `index.php` dari url
 
 ## :hammer_and_wrench: Perbaikan
 
