@@ -7,8 +7,7 @@
  * pointed in all our routes, this allows to create dynamic routes without hacking/extending
  * the CI_Router class.
  */
-
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class LuthierController extends CI_Controller
 {
