@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller
         $install = new Install();
 
         if (! $install->cek()) {
-            return redirect('main/initial');
+            return redirect('install');
         }
     }
 }

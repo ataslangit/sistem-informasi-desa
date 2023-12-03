@@ -51,7 +51,7 @@
         <hr>
         <div style="width:400px;margin:0px auto;">
             <h4>Klik “Lanjut” untuk memulai proses instalasi database SID. Proses instalasi memerlukan waktu singkat. Setelah selesai, Anda akan mendapatkan “username” dan “password”. Catat/simpan “username” dan “password” sebelum meneruskan ke langkah selanjutnya.</h4><br>
-            <a href="<?php echo site_url('main/install') ?>" class="uibutton special">Lanjut</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?php echo site_url('install/run') ?>" class="uibutton special">Lanjut</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </body>

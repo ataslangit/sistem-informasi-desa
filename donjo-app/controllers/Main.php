@@ -2,7 +2,7 @@
 
 use App\Libraries\Install;
 
-class Main extends InstallController
+class Main extends BaseController
 {
     public function __construct()
     {
