@@ -11,6 +11,7 @@ Rilis: __belum rilis__
 - Pengecekan sudah install atau belum kini dilakukan secara global, tidak hanya pada main
 
 ## :hammer_and_wrench: Perbaikan
+- Penghapusan duplikat fungsi `bulan()`
 
 ## :capital_abcd: Lain-lain
 - Hapus fungsi `exec()` pada halaman selesai install
