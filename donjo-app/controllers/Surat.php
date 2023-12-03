@@ -77,10 +77,10 @@ class Surat extends CI_Controller
             $data['anggota']      = null;
             $data['list_dokumen'] = null;
         }
-        $data['penduduk'] = $this->surat_model->list_penduduk();
-        $data['pamong']   = $this->surat_model->list_pamong();
-        $data['menu_surat']    = $this->surat_model->list_surat();
-        $data['lap']    = $url;
+        $data['penduduk']   = $this->surat_model->list_penduduk();
+        $data['pamong']     = $this->surat_model->list_pamong();
+        $data['menu_surat'] = $this->surat_model->list_surat();
+        $data['lap']        = $url;
 
         $data['form_action']  = site_url("surat/cetak/{$url}");
         $data['form_action2'] = site_url("surat/doc/{$url}");
