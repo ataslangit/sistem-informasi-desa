@@ -17,7 +17,6 @@
     }
   },
   "config": {
-    "lock": false,
     "optimize-autoloader": true,
     "platform": {
       "php": "7.4.33"
