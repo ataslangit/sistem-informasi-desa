@@ -3,6 +3,7 @@
   "require": {
     "php": ">=7.4",
     "codeigniter/framework": "^3",
+    "luthier/luthier": "^1.0",
     "vlucas/phpdotenv": "^5.5"
   },
   "require-dev": {

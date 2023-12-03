@@ -1,5 +1,26 @@
 <?php
 
+if (! function_exists('url_to')) {
+    function url_to(string $route_name, ...$args): string
+    {
+        return route($route_name, $args);
+    }
+}
+
+if (! function_exists('route_to')) {
+    function route_to(string $route_name, ...$args)
+    {
+        $route    = route($route_name, $args);
+        $urlParts = parse_url($route);
+
+        if ($urlParts !== false && isset($urlParts['path'])) {
+            return $urlParts['path'];
+        }
+
+        return $route;
+    }
+}
+
 if (! function_exists('view')) {
     /**
      * fungsi view() untuk menggantikan $this->load->view()
@@ -8,7 +29,7 @@ if (! function_exists('view')) {
     {
         $CI = &get_instance();
 
-        $CI->load->view($view, $data, $return);
+        return $CI->load->view($view, $data, $return);
     }
 }
 
