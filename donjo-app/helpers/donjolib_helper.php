@@ -30,6 +30,22 @@ if (! function_exists('dd')) {
     }
 }
 
+if (! function_exists('d')) {
+    /**
+     * Dump
+     *
+     * @param mixed ...$args
+     *
+     * @return void
+     */
+    function d(...$args)
+    {
+        if (ENVIRONMENT === 'development') {
+            var_dump($args);
+        }
+    }
+}
+
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)
