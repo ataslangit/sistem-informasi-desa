@@ -296,6 +296,7 @@ class Penduduk_model extends CI_Model
         if (isset($_SESSION['log'])) {
             return ' AND u.id > 1 AND u.id IN (SELECT id_pend FROM log_penduduk)';
         }
+        $log_sql = '';
 
         // $log_sql= " AND u.status_dasar = 1 ";
         return '';

@@ -76,7 +76,7 @@
                         </br>
                         <div id="form-melengkapi-data-permohonan">
                             <form id="validasi" action="" method="POST" target="_blank">
-                                <input type="hidden" name="nik" value="<?php echo $individu['id']?>" class="inputbox required">
+                                <input type="hidden" name="nik" value="<?= $individu['id'] ?? '' ?>" class="inputbox required">
                                 <table class="form">
                                     <?php
 						if($individu){

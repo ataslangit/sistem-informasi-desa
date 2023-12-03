@@ -68,27 +68,40 @@ class Install
         return null;
     }
 
-    public function sysinfo()
+    /**
+     * Mengambil data informasi terkait PC yang digunakan
+     * bisa berasal dari Product ID, System Model atau BIOS Version
+     *
+     * TODO: cek kegunaan fungsi sebenarnya untuk apa
+     */
+    public function sysinfo(): string
     {
-        exec('systeminfo', $ret);
+        exec('systeminfo', $data);
 
-        for ($i = 0; $i < (count($ret)); $i++) {
-            $d = str_replace(' ', '', $ret[$i]);
-            $d .= '*';
-            $pd = Parse_Data($d, 'ProductID:', '*');
-            if ($pd !== '') {
-                $pd1 = $pd;
-            }
-            $pd = Parse_Data($d, 'SystemModel:', '*');
-            if ($pd !== '') {
-                $pd2 = $pd;
-            }
-            $pd = Parse_Data($d, 'BIOSVersion:', '*');
-            if ($pd !== '') {
-                $pd3 = $pd;
+        $value = '';
+
+        foreach ($data as $item) {
+            if (strpos($item, 'Product ID') !== false) {
+                $exploded = explode(':', $item);
+                if (count($exploded) > 1) {
+                    $value = trim($exploded[1]);
+                    break;
+                }
+            } elseif (strpos($item, 'System Model') !== false) {
+                $exploded = explode(':', $item);
+                if (count($exploded) > 1) {
+                    $value = trim($exploded[1]);
+                    break;
+                }
+            } elseif (strpos($item, 'BIOS Version') !== false) {
+                $exploded = explode(':', $item);
+                if (count($exploded) > 1) {
+                    $value = trim($exploded[1]);
+                    break;
+                }
             }
         }
 
-        return $pd1;
+        return $value;
     }
 }
