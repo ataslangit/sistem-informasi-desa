@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Gallery extends CI_Controller
+class Gallery extends BaseController
 {
     public function __construct()
     {

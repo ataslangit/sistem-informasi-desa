@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Penduduk extends CI_Controller
+class Penduduk extends BaseController
 {
     public function __construct()
     {

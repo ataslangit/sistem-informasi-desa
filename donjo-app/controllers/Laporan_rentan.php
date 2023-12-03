@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Laporan_rentan extends CI_Controller
+class Laporan_rentan extends BaseController
 {
     public function __construct()
     {

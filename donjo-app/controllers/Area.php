@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Area extends CI_Controller
+class Area extends BaseController
 {
     public function __construct()
     {

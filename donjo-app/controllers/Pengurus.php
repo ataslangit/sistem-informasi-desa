@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Pengurus extends CI_Controller
+class Pengurus extends BaseController
 {
     public function __construct()
     {

@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Dokumen extends CI_Controller
+class Dokumen extends BaseController
 {
     public function __construct()
     {

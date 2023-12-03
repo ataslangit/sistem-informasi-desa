@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Sms extends CI_Controller
+class Sms extends BaseController
 {
     public function __construct()
     {

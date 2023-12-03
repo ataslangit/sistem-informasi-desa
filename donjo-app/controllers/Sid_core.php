@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Sid_core extends CI_Controller
+class Sid_core extends BaseController
 {
     public function __construct()
     {
