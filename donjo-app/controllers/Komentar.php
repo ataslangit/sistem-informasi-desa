@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Komentar extends CI_Controller
+class Komentar extends BaseController
 {
     public function __construct()
     {

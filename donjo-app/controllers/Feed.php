@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Feed extends CI_Controller
+class Feed extends BaseController
 {
     public function __construct()
     {

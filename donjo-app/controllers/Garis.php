@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Garis extends CI_Controller
+class Garis extends BaseController
 {
     public function __construct()
     {

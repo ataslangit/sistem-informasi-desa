@@ -2,7 +2,7 @@
 
 use App\Libraries\Install;
 
-class Main extends CI_Controller
+class Main extends InstallController
 {
     public function __construct()
     {
@@ -15,38 +15,32 @@ class Main extends CI_Controller
 
     public function index()
     {
-        $install = new Install();
+        if (isset($_SESSION['siteman'])) {
+            if (isset($_SESSION['sesi'])) {
+                $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
-        if ($install->cek()) {
-            if (isset($_SESSION['siteman'])) {
-                if (isset($_SESSION['sesi'])) {
-                    $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
+                switch ($grup) {
+                    case 1: redirect('hom_desa');
+                        break;
 
-                    switch ($grup) {
-                        case 1: redirect('hom_desa');
-                            break;
+                    case 2: redirect('hom_desa');
+                        break;
 
-                        case 2: redirect('hom_desa');
-                            break;
+                    case 3: redirect('web');
+                        break;
 
-                        case 3: redirect('web');
-                            break;
+                    case 4: redirect('web');
+                        break;
 
-                        case 4: redirect('web');
-                            break;
-
-                        default: if (isset($_SESSION['siteman'])) {
-                            redirect('siteman');
-                        } else {
-                            redirect('first');
-                        }
+                    default: if (isset($_SESSION['siteman'])) {
+                        redirect('siteman');
+                    } else {
+                        redirect('first');
                     }
                 }
-            } else {
-                redirect('first');
             }
         } else {
-            redirect('main/initial');
+            redirect('first');
         }
     }
 

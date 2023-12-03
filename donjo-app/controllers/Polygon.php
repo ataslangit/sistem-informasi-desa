@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Polygon extends CI_Controller
+class Polygon extends BaseController
 {
     public function __construct()
     {

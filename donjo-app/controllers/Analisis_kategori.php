@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Analisis_kategori extends CI_Controller
+class Analisis_kategori extends BaseController
 {
     public function __construct()
     {

@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Analisis_indikator extends CI_Controller
+class Analisis_indikator extends BaseController
 {
     public function __construct()
     {

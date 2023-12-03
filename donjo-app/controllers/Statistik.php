@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Statistik extends CI_Controller
+class Statistik extends BaseController
 {
     public function __construct()
     {

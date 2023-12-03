@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Surat_master extends CI_Controller
+class Surat_master extends BaseController
 {
     public function __construct()
     {

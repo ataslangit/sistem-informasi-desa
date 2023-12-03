@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Analisis_periode extends CI_Controller
+class Analisis_periode extends BaseController
 {
     public function __construct()
     {

@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Rtm extends CI_Controller
+class Rtm extends BaseController
 {
     public function __construct()
     {

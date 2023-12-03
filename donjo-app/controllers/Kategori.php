@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Kategori extends CI_Controller
+class Kategori extends BaseController
 {
     public function __construct()
     {

@@ -4,7 +4,7 @@ if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class First extends CI_Controller
+class First extends BaseController
 {
     public function __construct()
     {

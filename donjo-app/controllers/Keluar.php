@@ -3,7 +3,7 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-class Keluar extends CI_Controller
+class Keluar extends BaseController
 {
     public function __construct()
     {
