@@ -20,3 +20,5 @@ $hook['pre_system'][] = [
     'filepath' => 'hooks',
     'params'   => [],
 ];
+
+$hook = Luthier\Hook::getHooks();
