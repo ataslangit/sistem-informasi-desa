@@ -259,66 +259,6 @@ function ununderscore($str)
 {
     return str_replace('_', ' ', $str);
 }
-function bulan($bln)
-{
-    $nm = '';
-
-    switch ($bln) {
-        case '1':
-            $nm = 'Januari';
-            break;
-
-        case '2':
-            $nm = 'Februari';
-            break;
-
-        case '3':
-            $nm = 'Maret';
-            break;
-
-        case '4':
-            $nm = 'April';
-            break;
-
-        case '5':
-            $nm = 'Mei';
-            break;
-
-        case '6':
-            $nm = 'Juni';
-            break;
-
-        case '7':
-            $nm = 'Juli';
-            break;
-
-        case '8':
-            $nm = 'Agustus';
-            break;
-
-        case '9':
-            $nm = 'September';
-            break;
-
-        case '10':
-            $nm = 'Oktober';
-            break;
-
-        case '11':
-            $nm = 'November';
-            break;
-
-        case '12':
-            $nm = 'Desember';
-            break;
-
-        default:
-            $nm = '';
-            break;
-    }
-
-    return $nm;
-}
 
 function tgl_indo2($tgl)
 {
