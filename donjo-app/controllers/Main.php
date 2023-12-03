@@ -44,9 +44,14 @@ class Main extends BaseController
         }
     }
 
+    /**
+     * View halaman install
+     *
+     * @return string
+     */
     public function initial()
     {
-        view('install');
+        return view('install/index');
     }
 
     public function install()
@@ -55,15 +60,10 @@ class Main extends BaseController
         $out     = $install->run();
 
         if (null === $out) {
-            redirect('/');
+            redirect(route_to('index'));
         }
 
-        view('init', $out);
-    }
-
-    public function init($out = null)
-    {
-        view('init', $out);
+        view('install/done', $out);
     }
 
     public function auth()

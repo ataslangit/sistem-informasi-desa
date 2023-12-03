@@ -11,4 +11,3 @@
 
 // Luthier\Cli::maker();
 // Luthier\Cli::migrations();
-

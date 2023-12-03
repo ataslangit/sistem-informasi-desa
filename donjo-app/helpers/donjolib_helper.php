@@ -14,7 +14,7 @@ if (! function_exists('route_to')) {
         $urlParts = parse_url($route);
 
         if ($urlParts !== false && isset($urlParts['path'])) {
-            return trim($urlParts['path'], '/');
+            return $urlParts['path'];
         }
 
         return $route;
