@@ -18,7 +18,7 @@ define('IDENTIFIER_OLE', pack('CCCCCCCC', 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x
 function GetInt4d($data, $pos)
 {
     $value = ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | (ord($data[$pos + 3]) << 24);
-    if ($value >= 4294967294) {
+    if ($value >= 4_294_967_294) {
         $value = -2;
     }
 
@@ -28,7 +28,7 @@ function gmgetdate($ts = null)
 {
     $k = ['seconds', 'minutes', 'hours', 'mday', 'wday', 'mon', 'year', 'yday', 'weekday', 'month', 0];
 
-    return array_comb($k, preg_split('/:/D', gmdate('s:i:G:j:w:n:Y:z:l:F:U', null === $ts ? time() : $ts)));
+    return array_comb($k, preg_split('/:/D', gmdate('s:i:G:j:w:n:Y:z:l:F:U', $ts ?? time())));
 }
 function array_comb($array1, $array2)
 {
@@ -1733,7 +1733,7 @@ class Spreadsheet_Excel_Reader
     public function _GetInt4d($data, $pos)
     {
         $value = ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | (ord($data[$pos + 3]) << 24);
-        if ($value >= 4294967294) {
+        if ($value >= 4_294_967_294) {
             $value = -2;
         }
 

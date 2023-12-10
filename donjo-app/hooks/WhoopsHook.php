@@ -1,12 +1,15 @@
 <?php
 
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+
 class WhoopsHook
 {
     public function bootWhoops()
     {
         if (ENVIRONMENT === 'development') {
-            $whoops = new \Whoops\Run();
-            $whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
+            $whoops = new Run();
+            $whoops->pushHandler(new PrettyPageHandler());
             $whoops->register();
         }
     }

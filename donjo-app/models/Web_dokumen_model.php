@@ -145,7 +145,7 @@ class Web_dokumen_model extends CI_Model
         $nama_file   = $_FILES['satuan']['name'];
         $old_file    = $data['old_file'];
         if (! empty($lokasi_file)) {
-            UploadDocument($nama_file, $old_file);
+            UploadDocument($nama_file);
             unset($data['old_file']);
         } else {
             $_SESSION['success'] = -1;

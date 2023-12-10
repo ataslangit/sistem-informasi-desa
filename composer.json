@@ -7,17 +7,20 @@
     "yidas/codeigniter-model": "^2.19"
   },
   "require-dev": {
-    "codeigniter/coding-standard": "^1.1",
-    "filp/whoops": "^2.15",
-    "friendsofphp/php-cs-fixer": "^3",
-    "mikey179/vfsstream": "1.6.*"
+    "codeigniter4/devkit": "^1.1",
+    "filp/whoops": "^2.15"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "App\\Libraries\\": "donjo-app/Libraries/"
     }
   },
   "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": false
+    },
     "optimize-autoloader": true,
     "platform": {
       "php": "7.4.33"
@@ -28,6 +31,9 @@
   },
   "scripts": {
     "cs": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
-    "csfix": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
+    "csfix": [
+      "./donjo-sys/bin/rector process --no-progress-bar",
+      "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
+    ]
   }
 }

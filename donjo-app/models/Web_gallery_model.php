@@ -152,7 +152,7 @@ class Web_gallery_model extends CI_Model
         $old_gambar  = $x['old_gambar'];
         if (! empty($lokasi_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file, $old_gambar);
+                UploadGallery($nama_file);
                 unset($x['old_gambar']);
             }
         } else {
@@ -329,7 +329,7 @@ class Web_gallery_model extends CI_Model
         $old_gambar  = $x['old_gambar'];
         if (! empty($nama_file)) {
             if ($tipe_file === 'image/jpeg' || $tipe_file === 'image/pjpeg') {
-                UploadGallery($nama_file, $old_gambar);
+                UploadGallery($nama_file);
                 unset($x['old_gambar']);
             }
         } else {
