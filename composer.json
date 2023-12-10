@@ -3,7 +3,8 @@
   "require": {
     "php": ">=7.4",
     "codeigniter/framework": "^3",
-    "vlucas/phpdotenv": "^5.5"
+    "vlucas/phpdotenv": "^5.5",
+    "yidas/codeigniter-model": "^2.19"
   },
   "require-dev": {
     "codeigniter/coding-standard": "^1.1",
