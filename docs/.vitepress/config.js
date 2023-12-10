@@ -26,11 +26,11 @@ export default {
         },
         footer: {
             copyright:
-                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 Atas Langit",
+                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 - 2023 Atas Langit",
         },
         editLink: {
             pattern:
-                "https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path",
+                "https://github.com/ataslangit/sistem-informasi-desa/edit/4.5.x/docs/:path",
             text: "Perbarui laman ini",
         },
         lastUpdatedText: "Diperbarui pada:",
