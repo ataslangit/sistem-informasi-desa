@@ -13,12 +13,12 @@ jobs:
   build:
     name: Deploy
     if: github.repository == 'ataslangit/sistem-informasi-desa'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
       - name: Cache dependencies
@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm ci
+      - run: npm install
       - run: npm run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

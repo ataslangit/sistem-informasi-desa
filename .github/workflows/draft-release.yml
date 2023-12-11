@@ -1,4 +1,4 @@
-name: draft-release
+name: Build ZIP release
 
 on:
   push:
@@ -7,20 +7,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Draft
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - id: get_zipball_name
-        run: echo ::set-output name=ZIPBALL_NAME::${{ github.event.repository.name }}-${{ github.ref_name }}
+      - name: Set Nama file ZIP
+        id: get_zipball_name
+        run: echo "ZIPBALL_NAME=${{ github.event.repository.name }}-${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
-      - run: composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev
+      - name: Jalankan Composer
+        run: composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev
 
-      - uses: thedoctor0/zip-release@main
+      - name: Buat file ZIP
+        uses: thedoctor0/zip-release@main
         with:
           type: "zip"
           filename: "${{ steps.get_zipball_name.outputs.ZIPBALL_NAME }}.zip"
-          exclusions: "*.git* /*docs/* .editorconfig .php-cs-fixer.php code_of_conduct.md composer.json package-lock.json package.json"
+          exclusions: "*.git* /*docs/* .editorconfig .php-cs-fixer.php code_of_conduct.md composer.lock package-lock.json package.json rector.php vite.config.js"
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
