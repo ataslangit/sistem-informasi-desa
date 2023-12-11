@@ -407,7 +407,8 @@ class First extends BaseController
         $config = new Config();
         $data   = [];
 
-        $data['p']         = $p;
+        $data['p'] = $p;
+
         $data['desa']      = $config->find()->get()->row_array();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
