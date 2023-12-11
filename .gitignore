@@ -2,13 +2,18 @@
 .env
 composer.lock
 
-/donjo-app/cache/session
-!/donjo-app/cache/session/index.php
+donjo-app/cache/*
+!donjo-app/cache/index.html
+!donjo-app/cache/session
+
+donjo-app/cache/session/*
+!donjo-app/cache/session/index.html
 
 # abaikan pada donjo-sys
 /donjo-sys/
 
 /node_modules/
+/package-lock.json
 
 /docs/.vitepress/dist
 
