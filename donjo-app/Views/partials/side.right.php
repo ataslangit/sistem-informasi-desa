@@ -301,7 +301,7 @@ if ($w_cos) {
 ?>
 
 <!-- widget Google Map -->
-<?php if ($data_config['lat'] !== '0') { ?>
+<?php if ($desa['lat'] !== '0') { ?>
     <?= '
 	<div class="box box-default box-solid">
 		<div class="box-header">
@@ -309,7 +309,7 @@ if ($w_cos) {
 		</div>
 		<div class="box-body">
 			<div id="map_canvas" style="height:200px;"></div>
-			<script src="//maps.google.com/maps/api/js?key=' . $data_config['gapi_key'] . '&sensor=false"></script>';
+			<script src="//maps.google.com/maps/api/js?key=' . $desa['gapi_key'] . '&sensor=false"></script>';
     ?>
     <script>
         var map;
@@ -317,9 +317,9 @@ if ($w_cos) {
         var location;
 
         function initialize() {
-            var myLatlng = new google.maps.LatLng(<?= $data_config['lat'] . ',' . $data_config['lng']; ?>);
+            var myLatlng = new google.maps.LatLng(<?= $desa['lat'] . ',' . $desa['lng']; ?>);
             var myOptions = {
-                zoom: <?= $data_config['zoom']; ?>,
+                zoom: <?= $desa['zoom']; ?>,
                 center: myLatlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 overviewMapControl: true
@@ -327,7 +327,7 @@ if ($w_cos) {
             map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(<?= $data_config['lat'] . ',' . $data_config['lng']; ?>),
+                position: new google.maps.LatLng(<?= $desa['lat'] . ',' . $desa['lng']; ?>),
                 map: map,
                 draggable: false
             });
@@ -347,7 +347,7 @@ if ($w_cos) {
         addEvent(window, 'load', initialize);
     </script>
     <?= '
-			<a href="//www.google.co.id/maps/@' . $data_config['lat'] . ',' . $data_config['lng'] . 'z?hl=id" target="_blank">tampilkan dalam peta lebih besar</a><br>
+			<a href="//www.google.co.id/maps/@' . $desa['lat'] . ',' . $desa['lng'] . 'z?hl=id" target="_blank">tampilkan dalam peta lebih besar</a><br>
 		</div>
 	</div>
 	';
