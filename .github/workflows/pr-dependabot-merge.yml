@@ -1,0 +1,43 @@
+name: PULL_REQUEST
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PR_URL: ${{ github.event.pull_request._links.html.href }}
+
+jobs:
+  build:
+    name: MERGE & LOCK
+    runs-on: ubuntu-22.04
+    if: >-
+      github.event.review.state == 'APPROVED' &&
+      github.event.review.user.id == 2387514
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get PR Title
+        id: getTitle
+        run: echo "title=$(gh pr view --json=title --jq '.title' $PR_URL)" >> $GITHUB_OUTPUT
+
+      - name: Squash & Merge
+        uses: "pascalgn/automerge-action@v0.15.6"
+        id: squashmerge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: "squash"
+          MERGE_LABELS: "dependencies"
+          MERGE_COMMIT_MESSAGE: "(#{pullRequest.number}) ${{ steps.getTitle.outputs.title }}"
+
+      - if: steps.squashmerge.outputs.mergeResult == 'merged'
+        name: lock PR
+        run: gh pr lock ${{ steps.squashmerge.outputs.pullRequestNumber }} -r "resolved"
