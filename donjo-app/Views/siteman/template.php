@@ -111,7 +111,7 @@
         Core libraries and functionality
         webpack is putting everything together at assets/_js/main/app.js
     -->
-    <script src="assets/js/codebase.app.min.js"></script>
+    <script src="<?= asset('resources/js/main/app.js')?>"></script>
     <?= $js ?>
 </body>
 
