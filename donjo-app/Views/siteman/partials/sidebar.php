@@ -49,6 +49,7 @@ Adding 'smini-visible-block' to an element will show it (display: block) only wh
             <!-- Side Navigation -->
             <div class="content-side content-side-full">
                 <ul class="nav-main">
+                    <li class="nav-main-heading">Menu Utama</li>
                     <?php
                     $moduls = $this->SettingModul->find()->where(['aktif' => '1', 'level >=' => $_SESSION['grup']])->get()->result_array();
 
@@ -60,6 +61,33 @@ Adding 'smini-visible-block' to an element will show it (display: block) only wh
                             </a>
                         </li>
                     <?php endforeach ?>
+
+                    <li class="nav-main-heading">Pengembangan SID</li>
+
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" target="_blank" href="https://github.com/ataslangit/sistem-informasi-desa/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=Bug%3A+">
+                            <i class="nav-main-link-icon fa fa-bug"></i>
+                            <span class="nav-main-link-name">Laporkan Bug</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" target="_blank" href="https://github.com/ataslangit/sistem-informasi-desa/issues/new?assignees=&labels=fitur&projects=&template=feature_request.yml&title=Permintaan+Fitur%3A+">
+                            <i class="nav-main-link-icon fa fa-flask"></i>
+                            <span class="nav-main-link-name">Permintaan Fitur</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" target="_blank" href="https://github.com/ataslangit/sistem-informasi-desa/discussions/new">
+                            <i class="nav-main-link-icon fa fa-comments"></i>
+                            <span class="nav-main-link-name">Kolom Diskusi</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" target="_blank" href="https://ataslangit.github.io/">
+                            <i class="nav-main-link-icon fa fa-globe"></i>
+                            <span class="nav-main-link-name">Panduan</span>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
