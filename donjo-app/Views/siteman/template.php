@@ -5,19 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>Codebase - Bootstrap 5 Admin Template &amp; UI Framework</title>
-
-    <meta name="description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="Codebase">
-    <meta property="og:description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+    <title><?= $title ?? 'Sistem Informasi Desa' ?></title>
 
     <?php /*
     <!-- Icons -->
@@ -43,6 +31,7 @@
 
 <body>
     <!-- Page Container -->
+    <?php /*
     <!--
       Available classes for #page-container:
 
@@ -93,6 +82,7 @@
 
         'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
     -->
+    */ ?>
     <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
 
         <?= view('siteman/partials/sidenav') ?>
@@ -105,12 +95,14 @@
     </div>
     <!-- END Page Container -->
 
+    <?php /*
     <!--
         Codebase JS
 
         Core libraries and functionality
         webpack is putting everything together at assets/_js/main/app.js
     -->
+    */ ?>
     <script src="<?= asset('resources/js/main/app.js')?>"></script>
     <?= $js ?>
 </body>
