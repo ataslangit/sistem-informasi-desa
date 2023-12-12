@@ -21,7 +21,7 @@ class Hom_desa extends BaseController
 
     public function index()
     {
-        $data['main']      = $this->config_model->get_data();
+        $data['main'] = $this->config_model->get_data();
 
         return siteman_view('siteman/dashboard', $data);
     }
