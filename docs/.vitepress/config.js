@@ -30,7 +30,7 @@ export default {
         },
         editLink: {
             pattern:
-                "https://github.com/ataslangit/sistem-informasi-desa/edit/dev/docs/:path",
+                "https://github.com/ataslangit/sistem-informasi-desa/edit/4.5.x/docs/:path",
             text: "Perbarui laman ini",
         },
         lastUpdatedText: "Diperbarui pada:",
@@ -95,8 +95,8 @@ function sidebarChangelog() {
             text: "Log Perubahan",
             collapsible: false,
             items: [
-                // { text: "dev (pengembangan)", link: "/changelog/dev" },
-                { text: "v4.5.4 (terbaru)", link: "/changelog/454" },
+                { text: "v4.5.5 (terbaru)", link: "/changelog/455" },
+                { text: "v4.5.4", link: "/changelog/454" },
                 { text: "v4.5.3", link: "/changelog/453" },
                 { text: "v4.5.2", link: "/changelog/452" },
                 { text: "v4.5.1", link: "/changelog/451" },

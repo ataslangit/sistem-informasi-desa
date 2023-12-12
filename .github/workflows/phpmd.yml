@@ -2,10 +2,10 @@ name: PHPMD
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["dev", "4.5.x"]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: ["dev"]
+    branches: ["dev", "4.5.x"]
   schedule:
     - cron: '27 4 * * 2'
 

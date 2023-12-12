@@ -21,7 +21,7 @@ features:
   - icon: 🛠️
     title: Dikembangkan bersama
     details: Akan ada fitur dan penyempurnaan selanjutnya
-  - icon: 🖖
+  - icon: 🆓
     title: Tidak ribet dan selalu gratis
     details: Cukup unduh, instal dan tidak perlu bayar
 ---

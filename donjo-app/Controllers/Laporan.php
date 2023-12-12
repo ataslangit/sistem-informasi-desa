@@ -81,7 +81,7 @@ class Laporan extends CI_Controller
         $data['config']         = $this->config_model->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
-        $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);
+        $data['bln']            = getBulan($data['bulan']);
         $data['penduduk_awal']  = $this->laporan_bulanan_model->penduduk_awal();
         $data['penduduk_akhir'] = $this->laporan_bulanan_model->penduduk_akhir();
         $data['kelahiran']      = $this->laporan_bulanan_model->kelahiran();
@@ -98,7 +98,7 @@ class Laporan extends CI_Controller
         $data['config']         = $this->config_model->get_data(true);
         $data['bulan']          = $_SESSION['bulanku'];
         $data['tahun']          = $_SESSION['tahunku'];
-        $data['bln']            = $this->laporan_bulanan_model->bulan($data['bulan']);
+        $data['bln']            = getBulan($data['bulan']);
         $data['penduduk_awal']  = $this->laporan_bulanan_model->penduduk_awal();
         $data['penduduk_akhir'] = $this->laporan_bulanan_model->penduduk_akhir();
         $data['kelahiran']      = $this->laporan_bulanan_model->kelahiran();

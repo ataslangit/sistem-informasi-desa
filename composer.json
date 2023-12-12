@@ -11,33 +11,33 @@
   "require-dev": {
     "codeigniter4/devkit": "^1.1"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "exclude-from-classmap": [
       "**/Database/Migrations/**"
     ]
   },
   "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": false
+    },
     "optimize-autoloader": true,
     "platform": {
       "php": "7.4.33"
     },
     "preferred-install": "dist",
     "sort-packages": true,
-    "vendor-dir": "donjo-sys",
-    "allow-plugins": {
-      "phpstan/extension-installer": false
-    }
+    "vendor-dir": "donjo-sys"
   },
   "scripts": {
+    "post-update-cmd": [
+      "bash -c \"if [ -f admin/setup.sh ]; then bash admin/setup.sh; fi\""
+    ],
     "cs": "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
     "csfix": [
       "./donjo-sys/bin/rector process --no-progress-bar",
       "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
-    ],
-    "post-update-cmd": [
-      "bash -c \"if [ -f admin/setup.sh ]; then bash admin/setup.sh; fi\""
     ]
-  },
-  "prefer-stable": true,
-  "minimum-stability": "dev"
+  }
 }

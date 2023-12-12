@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - "dev"
+      - "4.5.x"
     paths:
       - "composer.json"
       - ".github/workflows/composer-validate.yml"
