@@ -64,6 +64,7 @@ Adding 'smini-visible-block' to an element will show it (display: block) only wh
                 </ul>
             </div>
             <!-- END Side Navigation -->
+
         </div>
         <!-- END Sidebar Scrolling -->
     </div>

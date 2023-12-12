@@ -80,15 +80,4 @@
 // Side Content
 .content-side {
   @include content-layout($space-side, $space-side, hidden);
-
-  &.content-side-user {
-    display: flex;
-    align-items: center;
-    min-height: 9rem;
-    background-color: $body-bg-light;
-  }
-}
-
-.sidebar-dark .content-side.content-side-user {
-  background-color: darken($sidebar-dark-bg, 2.5%);
 }
