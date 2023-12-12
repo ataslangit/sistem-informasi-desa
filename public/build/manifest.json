@@ -1,0 +1,51 @@
+{
+  "resources/fonts/simple-line-icons/Simple-Line-Icons.eot": {
+    "file": "assets/Simple-Line-Icons.1c823013.eot",
+    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.eot"
+  },
+  "resources/fonts/fontawesome/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400.29bc4469.woff2",
+    "src": "resources/fonts/fontawesome/fa-brands-400.woff2"
+  },
+  "resources/fonts/fontawesome/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400.fa79fc4f.woff2",
+    "src": "resources/fonts/fontawesome/fa-regular-400.woff2"
+  },
+  "resources/fonts/fontawesome/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900.1b099f88.woff2",
+    "src": "resources/fonts/fontawesome/fa-solid-900.woff2"
+  },
+  "resources/fonts/fontawesome/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400.9e122861.ttf",
+    "src": "resources/fonts/fontawesome/fa-brands-400.ttf"
+  },
+  "resources/fonts/fontawesome/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400.70903480.ttf",
+    "src": "resources/fonts/fontawesome/fa-regular-400.ttf"
+  },
+  "resources/fonts/simple-line-icons/Simple-Line-Icons.woff2": {
+    "file": "assets/Simple-Line-Icons.104673f4.woff2",
+    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.woff2"
+  },
+  "resources/fonts/fontawesome/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900.1782156b.ttf",
+    "src": "resources/fonts/fontawesome/fa-solid-900.ttf"
+  },
+  "resources/fonts/simple-line-icons/Simple-Line-Icons.ttf": {
+    "file": "assets/Simple-Line-Icons.3f501ddb.ttf",
+    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.ttf"
+  },
+  "resources/fonts/simple-line-icons/Simple-Line-Icons.woff": {
+    "file": "assets/Simple-Line-Icons.14b825d7.woff",
+    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.woff"
+  },
+  "resources/fonts/simple-line-icons/Simple-Line-Icons.svg": {
+    "file": "assets/Simple-Line-Icons.b381f90a.svg",
+    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.svg"
+  },
+  "resources/css/main.scss": {
+    "file": "assets/main.95a2e8b0.css",
+    "src": "resources/css/main.scss",
+    "isEntry": true
+  }
+}

@@ -104,6 +104,36 @@ if (! function_exists('d')) {
     }
 }
 
+if(! function_exists('asset')) {
+    /**
+ * This function checks `manifest.json` from `FCPATH` . 'build', extracts the entire file and returns an array.
+ *
+ * @param string $file The file name to check.
+ *
+ * @return string The path to the file, or `null` if the file does not exist.
+ */
+function asset(string $file): string
+{
+    // Check if the manifest file exists.
+    $manifest_path = FCPATH . 'build' . DIRECTORY_SEPARATOR . 'manifest.json';
+
+    if (! file_exists($manifest_path)) {
+        return '';
+    }
+
+    // Decode the JSON file.
+    $manifest = json_decode(file_get_contents($manifest_path), true);
+
+    // Check if the file exists in the manifest file.
+    if (! isset($manifest[$file])) {
+        return '';
+    }
+
+    // Return the path to the file.
+    return base_url('build/' . $manifest[$file]['file']);
+}
+}
+
 // --------------------------------------------------------------------------
 
 function Rpt($str = 0)

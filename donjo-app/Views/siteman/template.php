@@ -32,7 +32,7 @@
 
     <!-- Fonts and Codebase framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">
-    <link rel="stylesheet" id="css-main" href="assets/css/codebase.min.css">
+    <link rel="stylesheet" id="css-main" href="<?= asset('resources/css/main.scss') ?>">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
