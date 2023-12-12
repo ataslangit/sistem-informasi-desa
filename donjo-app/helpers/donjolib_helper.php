@@ -12,6 +12,64 @@ if (! function_exists('view')) {
     }
 }
 
+if (! function_exists('siteman_view')) {
+    /**
+     * Fungsi untuk mengatur view pada siteman
+     */
+    function siteman_view(string $view, array $data = [])
+    {
+        $CI      = &get_instance();
+        $content = $CI->load->view($view, $data, true);
+
+        $layout_data['content'] = getContent($content, 'content');
+        $layout_data['js']      = getContent($content, 'js');
+        $layout_data['css']     = getContent($content, 'css');
+
+        $CI->load->view('siteman/template', $layout_data);
+    }
+}
+
+/**
+ * Mengambil detail konten, js atau css dari sebuah html
+ *
+ * @param string $html Sumber awal html
+ * @param string $tipe hanya js, css, dan content
+ */
+function getContent(string $html, string $tipe = 'content'): string
+{
+    // Menentukan posisi awal dan akhir dari potongan kode yang ingin diambil
+    switch ($tipe) {
+        case 'js':
+            $startTag = '<!-- START JS -->';
+            $endTag   = '<!-- END JS -->';
+            break;
+
+        case 'css':
+            $startTag = '<!-- START CSS -->';
+            $endTag   = '<!-- END CSS -->';
+            break;
+
+        default:
+            $startTag = '<!-- START CONTENT -->';
+            $endTag   = '<!-- END CONTENT -->';
+            break;
+    }
+
+    // Menggunakan fungsi strpos untuk menemukan posisi awal dan akhir
+    $startPos = strpos($html, $startTag);
+    $endPos   = strpos($html, $endTag);
+
+    if ($startPos !== false && $endPos !== false) {
+        // Mengambil potongan kode di antara tag awal dan akhir
+        $extractedCode = substr($html, $startPos + strlen($startTag), $endPos - ($startPos + strlen($startTag)));
+
+        // Menampilkan potongan kode yang diekstrak
+        return trim($extractedCode);
+    }
+
+    return '';
+}
+
 if (! function_exists('dd')) {
     /**
      * Dump & die

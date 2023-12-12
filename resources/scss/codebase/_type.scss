@@ -1,0 +1,49 @@
+//
+// Typography
+// --------------------------------------------------
+
+.content-heading {
+  margin-bottom: $space-mobile;
+  padding-top: 2rem;
+  padding-bottom: .5rem;
+  font-size: 1.125rem;
+  font-weight: $font-weight-medium;
+  line-height: 1.75;
+  border-bottom: 1px solid $body-bg-dark;
+
+  small {
+    margin-top: .25rem;
+    font-size: 1rem;
+    font-weight: $font-weight-normal;
+    color: $gray-600;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 1.5rem;
+    padding-top: 2.5rem;
+
+    small {
+      margin-top: 0;
+    }
+  }
+
+  .block-content > &:first-child,
+  .content > &:first-child {
+    padding-top: 0 !important;
+  }
+
+  .dropdown {
+    line-height: $line-height-base;
+  }
+}
+
+// Emphasis
+small,
+.small {
+  font-weight: inherit;
+}
+
+// Transformations
+.text-uppercase {
+  letter-spacing: .0625em;
+}

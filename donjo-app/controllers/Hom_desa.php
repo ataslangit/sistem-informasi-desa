@@ -25,10 +25,13 @@ class Hom_desa extends BaseController
         $nav['act']        = 0;
         $header            = $this->header_model->get_data();
         $data['main']      = $this->config_model->get_data();
-        view('header', $header);
-        view('home/nav', $nav);
-        view('home/konfigurasi_form', $data);
-        view('footer');
+
+        // view('header', $header);
+        // view('home/nav', $nav);
+        // view('home/konfigurasi_form', $data);
+        // view('footer');
+
+        return siteman_view('siteman/dashboard', $data);
     }
 
     public function about()
