@@ -30,6 +30,9 @@ class Keluarga extends BaseController
 
     public function index($p = 1, $o = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -116,6 +119,7 @@ class Keluarga extends BaseController
 
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga', $data);
@@ -124,6 +128,9 @@ class Keluarga extends BaseController
 
     public function sosial($p = 1, $o = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -203,6 +210,7 @@ class Keluarga extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 1;
         $header             = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_sosial', $data);
@@ -211,6 +219,9 @@ class Keluarga extends BaseController
 
     public function raskin_graph($p = 1, $o = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -288,6 +299,7 @@ class Keluarga extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 1;
         $header             = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_raskin', $data);
@@ -296,6 +308,9 @@ class Keluarga extends BaseController
 
     public function jamkesmas_graph($p = 1, $o = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -373,6 +388,7 @@ class Keluarga extends BaseController
         $data['list_dusun'] = $this->penduduk_model->list_dusun();
         $nav['act']         = 1;
         $header             = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_jamkesmas', $data);
@@ -381,24 +397,36 @@ class Keluarga extends BaseController
 
     public function pentagon()
     {
+        $data = [];
+
         $data['main'] = $this->keluarga_model->list_raskin();
+
         view('sid/kependudukan/pentagon/pentagon', $data);
     }
 
     public function cetak($o = 0)
     {
+        $data = [];
+
         $data['main'] = $this->keluarga_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/keluarga_print', $data);
     }
 
     public function excel($o = 0)
     {
+        $data = [];
+
         $data['main'] = $this->keluarga_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/keluarga_excel', $data);
     }
 
     public function form($id = 0, $new = 1)
     {
+        $data = [];
+        $nav = [];
+
         if ($new === 1) {
             if (isset($_POST['dusun'])) {
                 $data['dus_sel'] = $_POST['dusun'];
@@ -456,6 +484,7 @@ class Keluarga extends BaseController
         $data['cacat']          = $this->penduduk_model->list_cacat();
 
         $header = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_form', $data);
@@ -464,6 +493,9 @@ class Keluarga extends BaseController
 
     public function form_a($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['id_kk']       = $id;
         $data['kk']          = $this->keluarga_model->get_kepala_a($id);
         $data['form_action'] = site_url('keluarga/insert_a');
@@ -481,6 +513,7 @@ class Keluarga extends BaseController
         $data['cacat']          = $this->penduduk_model->list_cacat();
 
         $header = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_form_a', $data);
@@ -489,15 +522,21 @@ class Keluarga extends BaseController
 
     public function edit_nokk($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+
         $data['kk']          = $this->keluarga_model->get_keluarga($id);
         $data['form_action'] = site_url("keluarga/update_nokk/{$id}");
+
         view('sid/kependudukan/ajax_edit_nokk', $data);
     }
 
     public function form_old($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+
         $data['penduduk']    = $this->keluarga_model->list_penduduk_lepas();
         $data['form_action'] = site_url("keluarga/insert/{$id}");
+
         view('sid/kependudukan/ajax_add_keluarga', $data);
     }
 
@@ -701,6 +740,8 @@ class Keluarga extends BaseController
 
     public function ajax_add_anggota($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+
         $data['p']        = $p;
         $data['o']        = $o;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
@@ -712,7 +753,6 @@ class Keluarga extends BaseController
             $data['kepala_kk'] = null;
         }
         $data['penduduk'] = $this->keluarga_model->list_penduduk_lepas();
-
         $data['form_action'] = site_url("keluarga/add_anggota/{$p}/{$o}/{$id}");
 
         view('sid/kependudukan/ajax_add_anggota_form', $data);
@@ -720,6 +760,8 @@ class Keluarga extends BaseController
 
     public function edit_anggota($p = 1, $o = 0, $id_kk = 0, $id = 0)
     {
+        $data = [];
+
         $data['p']        = $p;
         $data['o']        = $o;
         $data['hubungan'] = $this->keluarga_model->list_hubungan();
@@ -739,6 +781,9 @@ class Keluarga extends BaseController
 
     public function kartu_keluarga($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p']        = $p;
         $data['o']        = $o;
         $data['id_kk']    = $id;
@@ -754,11 +799,13 @@ class Keluarga extends BaseController
         }
 
         $data['penduduk'] = $this->keluarga_model->list_penduduk_lepas();
+        $data['form_action'] = site_url('keluarga/print');
+
         $nav['act']       = 1;
         $header           = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
-        $data['form_action'] = site_url('keluarga/print');
 
         view('sid/kependudukan/kartu_keluarga', $data);
         view('footer');
@@ -766,18 +813,23 @@ class Keluarga extends BaseController
 
     public function cetak_kk($id = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['id_kk']     = $id;
         $data['main']      = $this->keluarga_model->list_anggota($id);
         $kk                = $this->keluarga_model->get_kepala_kk($id);
         $data['desa']      = $this->config_model->get_data();
         $data['kepala_kk'] = $kk;
         $nav['act']        = 1;
-        $header            = $this->header_model->get_data();
+
         view('sid/kependudukan/cetak_kk', $data);
     }
 
     public function doc_kk($id = 0)
     {
+        $data = [];
+
         $data['desa'] = $this->config_model->get_data();
 
         $data['id_kk']     = $id;
@@ -863,6 +915,9 @@ class Keluarga extends BaseController
 
     public function statistik($tipe = 0, $nomor = 0, $p = 1, $o = 0)
     {
+        $data = [];
+        $nav = [];
+
         $data['p']    = $p;
         $data['o']    = $o;
         $data['tipe'] = $tipe;
@@ -979,6 +1034,7 @@ class Keluarga extends BaseController
         }
         $nav['act'] = 1;
         $header     = $this->header_model->get_data();
+
         view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/keluarga_statistik', $data);
@@ -988,6 +1044,8 @@ class Keluarga extends BaseController
 
     public function cetak_statistik($tipe = 0)
     {
+        $data = [];
+
         $data['main'] = $this->keluarga_model->list_data_statistik($tipe);
         view('sid/kependudukan/keluarga_print', $data);
     }
