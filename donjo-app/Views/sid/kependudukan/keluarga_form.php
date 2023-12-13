@@ -119,7 +119,7 @@
                                 </tr>
                                 <tr>
                                     <th width="120">Nomor KK</th>
-                                    <td><input class="inputbox required" type="text" name="no_kk" id="no_kk" class="no_kk" size="25" value="<?php echo $kk['no_kk']?>"></td>
+                                    <td><input class="inputbox required" type="text" name="no_kk" id="no_kk" class="no_kk" size="25" value="<?php echo @$kk['no_kk']?>"></td>
                                 </tr>
                                 <tr>
                                     <th>Nama</th>

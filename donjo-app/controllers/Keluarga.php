@@ -397,7 +397,7 @@ class Keluarga extends BaseController
         view('sid/kependudukan/keluarga_excel', $data);
     }
 
-    public function form($p = 1, $o = 0, $id = 0, $new = 1)
+    public function form($id = 0, $new = 1)
     {
         if ($new === 1) {
             if (isset($_POST['dusun'])) {
