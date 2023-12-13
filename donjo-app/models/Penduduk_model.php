@@ -725,12 +725,10 @@ class Penduduk_model extends CI_Model
 
     public function delete_all()
     {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
+        if (isset($_POST['id_cb']) && count($_POST['id_cb']) > 0) {
+            foreach ($_POST['id_cb'] as $id_penduduk) {
                 $sql  = 'DELETE FROM tweb_penduduk WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
+                $outp = $this->db->query($sql, [$id_penduduk]);
             }
         } else {
             $outp = false;

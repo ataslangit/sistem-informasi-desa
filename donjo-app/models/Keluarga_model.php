@@ -517,12 +517,10 @@ class Keluarga_model extends CI_Model
 
     public function delete_all()
     {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
+        if (isset($_POST['id_cb']) && count($_POST['id_cb']) > 0) {
+            foreach ($_POST['id_cb'] as $id_keluarga) {
                 $sql  = 'DELETE FROM tweb_keluarga WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
+                $outp = $this->db->query($sql, [$id_keluarga]);
             }
         } else {
             $outp = false;
@@ -612,14 +610,13 @@ class Keluarga_model extends CI_Model
         }
     }
 
-    public function rem_all_anggota($kk)
+    public function rem_all_anggota()
     {
-        $id_cb         = $_POST['id_cb'];
         $temp['id_kk'] = 0;
 
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
-                $this->db->where('id', $id);
+        if (isset($_POST['id_cb']) && count($_POST['id_cb']) > 0) {
+            foreach ($_POST['id_cb'] as $id_keluarga) {
+                $this->db->where('id', $id_keluarga);
                 $outp = $this->db->update('tweb_penduduk', $temp);
             }
         } else {

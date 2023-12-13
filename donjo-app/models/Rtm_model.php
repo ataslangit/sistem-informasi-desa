@@ -329,17 +329,15 @@ class Rtm_model extends CI_Model
 
     public function delete_all()
     {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
+        if (isset($_POST['id_cb']) && count($_POST['id_cb']) > 0) {
+            foreach ($_POST['id_cb'] as $id_rtm) {
                 $sql  = 'DELETE FROM tweb_rtm WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
+                $outp = $this->db->query($sql, [$id_rtm]);
 
                 $default['id_rtm']    = '';
                 $default['rtm_level'] = '';
 
-                $this->db->where('id_rtm', $id);
+                $this->db->where('id_rtm', $id_rtm);
                 $this->db->update('tweb_penduduk', $default);
             }
         } else {

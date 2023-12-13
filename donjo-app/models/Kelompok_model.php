@@ -209,12 +209,10 @@ class Kelompok_model extends CI_Model
 
     public function delete_all()
     {
-        $id_cb = $_POST['id_cb'];
-
-        if (count($id_cb)) {
-            foreach ($id_cb as $id) {
+        if (isset($_POST['id_cb']) && count($_POST['id_cb']) > 0) {
+            foreach ($_POST['id_cb'] as $id_kelompok) {
                 $sql  = 'DELETE FROM kelompok WHERE id=?';
-                $outp = $this->db->query($sql, [$id]);
+                $outp = $this->db->query($sql, [$id_kelompok]);
             }
         } else {
             $outp = false;
