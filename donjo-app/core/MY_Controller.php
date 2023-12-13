@@ -20,9 +20,24 @@ class MY_Controller extends CI_Controller
 }
 
 /**
- * Sebagai Base Controller untuk semua controller.
+ * Sebagai Base Controller untuk siteman.
  */
 class BaseController extends MY_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (!isset($_SESSION['siteman'])) {
+            return redirect('first');
+        }
+    }
+}
+
+/**
+ * Sebagai Base Controller untuk halaman publik.
+ */
+class PublicController extends MY_Controller
 {
     public function __construct()
     {

@@ -4,7 +4,7 @@ if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class First extends BaseController
+class First extends PublicController
 {
     public function __construct()
     {

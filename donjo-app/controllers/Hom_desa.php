@@ -19,21 +19,17 @@ class Hom_desa extends BaseController
         $this->load->model('config_model');
     }
 
+    /**
+     * Menampilkan halaman siteman > dashboard
+     *
+     * @return string
+     * @todo Ubah url atau route agar menjadi "/siteman/dashboard" saat ini masih "/hom_desa"
+     */
     public function index()
     {
         $data['main'] = $this->config_model->get_data();
 
-        return siteman_view('siteman/dashboard', $data);
-    }
-
-    public function about()
-    {
-        $nav['act'] = 2;
-        $header     = $this->header_model->get_data();
-        view('header', $header);
-        view('home/nav', $nav);
-        view('home/desa');
-        view('footer');
+        return siteman_view('siteman/dashboard/index', $data);
     }
 
     public function insert()
