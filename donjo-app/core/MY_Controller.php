@@ -28,7 +28,7 @@ class BaseController extends MY_Controller
     {
         parent::__construct();
 
-        if (!isset($_SESSION['siteman'])) {
+        if (! isset($_SESSION['siteman'])) {
             return redirect('first');
         }
     }

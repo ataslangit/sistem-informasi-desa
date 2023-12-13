@@ -23,6 +23,7 @@ class Hom_desa extends BaseController
      * Menampilkan halaman siteman > dashboard
      *
      * @return string
+     *
      * @todo Ubah url atau route agar menjadi "/siteman/dashboard" saat ini masih "/hom_desa"
      */
     public function index()
