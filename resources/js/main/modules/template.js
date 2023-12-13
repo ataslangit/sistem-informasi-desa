@@ -9,10 +9,12 @@
 import * as bootstrap from 'bootstrap';
 import SimpleBar from 'simplebar';
 import Helpers from './helpers';
+import { DataTable } from 'simple-datatables';
 
 // Assignments
-window.bootstrap    = bootstrap;
-window.SimpleBar    = SimpleBar;
+window.bootstrap = bootstrap;
+window.SimpleBar = SimpleBar;
+window.dataTable = DataTable;
 
 // Template
 export default class Template {

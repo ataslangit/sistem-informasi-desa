@@ -233,7 +233,7 @@ export default class Helpers {
         }
         else { // ..else add it
           let elChild = document.createElement('span')
-          
+
           elChild.classList.add(cssClass)
           el.insertBefore(elChild, el.firstChild);
         }
@@ -390,13 +390,13 @@ export default class Helpers {
             && !e.target.parentNode.classList.contains('custom-control')) {
             let checkboxHead = table.querySelector('thead input[type=checkbox]');
             let checkbox = e.currentTarget.querySelector('input[type=checkbox]');
-            
+
             // Update row's checkbox status
             checkbox.checked = !checkbox.checked;
 
             // Update Row classes
             this.tableToolscheckRow(checkbox, checkbox.checked);
-  
+
             // Adjust checkbox in thead
             if (!checkbox.checked) {
               checkboxHead.checked = false
