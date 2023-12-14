@@ -374,6 +374,7 @@ class Keluarga_model extends CI_Model
 
     public function insert()
     {
+        $x    = [];
         $data = $_POST;
         $temp = $data['nik_kepala'];
         $outp = $this->db->insert('tweb_keluarga', penetration($data));
@@ -426,6 +427,7 @@ class Keluarga_model extends CI_Model
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
         $old_foto    = '';
+        $x           = [];
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
