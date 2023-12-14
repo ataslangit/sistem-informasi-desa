@@ -724,7 +724,7 @@ class Keluarga_model extends CI_Model
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
             } else {
-                UploadFoto($nama_file);
+                UploadFoto($nama_file, $data['old_foto']);
                 $data['foto'] = $nama_file;
             }
         } else {
@@ -880,7 +880,7 @@ class Keluarga_model extends CI_Model
         return $query->row_array();
     }
 
-    public function coba($data = '')
+    public function coba(array $data)
     {
         $mypath       = 'surat\\kk\\';
         $mypath_arsip = 'surat\\arsip\\';
@@ -890,7 +890,23 @@ class Keluarga_model extends CI_Model
 
         $file = $path . 'kk.rtf';
         if (is_file($file)) {
-            $nama = '';
+            $nama            = '';
+            $no              = '';
+            $hubungan        = '';
+            $nik             = '';
+            $sex             = '';
+            $tempatlahir     = '';
+            $tanggallahir    = '';
+            $agama           = '';
+            $pendidikan      = '';
+            $pekerjaan       = '';
+            $status_kawin    = '';
+            $warganegara     = '';
+            $dokumen_pasport = '';
+            $dokumen_kitas   = '';
+            $nama_ayah       = '';
+            $nama_ibu        = '';
+            $golongan_darah  = '';
 
             $handle = fopen($file, 'rb');
             $buffer = stream_get_contents($handle);
