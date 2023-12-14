@@ -374,16 +374,19 @@ class Keluarga_model extends CI_Model
 
     public function insert()
     {
-        $data = $_POST;
-        $temp = $data['nik_kepala'];
-        $outp = $this->db->insert('tweb_keluarga', penetration($data));
+        $data_insert = [];
+        $data        = $_POST;
+        $temp        = $data['nik_kepala'];
+        $outp        = $this->db->insert('tweb_keluarga', penetration($data));
 
         $sql   = 'SELECT id FROM tweb_keluarga WHERE nik_kepala=?';
         $query = $this->db->query($sql, $temp);
         $kk    = $query->row_array();
 
-        $default['id_kk']    = $kk['id'];
-        $default['kk_level'] = 1;
+        $default = [
+            'id_kk'    => $kk['id'],
+            'kk_level' => 1,
+        ];
 
         $this->db->where('id', $temp);
         $this->db->update('tweb_penduduk', $default);
@@ -394,19 +397,21 @@ class Keluarga_model extends CI_Model
         $blnskrg  = (date('m'));
         $thnskrg  = (date('Y'));
         if (($blnlahir === $blnskrg) && ($thnlahir === $thnskrg)) {
-            $x['id_detail'] = '1';
+            $data_insert['id_detail'] = '1';
         } else {
-            $x['id_detail'] = '5';
+            $data_insert['id_detail'] = '5';
         }
 
-        $x['id_pend']      = $temp;
-        $x['bulan']        = $blnskrg;
-        $x['tahun']        = $thnskrg;
-        $outp              = $this->db->insert('log_penduduk', $x);
-        $log['id_pend']    = 1;
-        $log['id_cluster'] = 1;
-        $log['tanggal']    = date('m-d-y');
-        $outp              = $this->db->insert('log_perubahan_penduduk', $log);
+        $data_insert['id_pend'] = $temp;
+        $data_insert['bulan']   = $blnskrg;
+        $data_insert['tahun']   = $thnskrg;
+        $outp                   = $this->db->insert('log_penduduk', $data_insert);
+        $log                    = [
+            'id_pend'    => 1,
+            'id_cluster' => 1,
+            'tanggal'    => date('m-d-y'),
+        ];
+        $outp = $this->db->insert('log_perubahan_penduduk', $log);
 
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -422,6 +427,7 @@ class Keluarga_model extends CI_Model
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
         $old_foto    = '';
+        $data_insert = [];
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
@@ -472,19 +478,22 @@ class Keluarga_model extends CI_Model
         $blnskrg  = (date('m'));
         $thnskrg  = (date('Y'));
         if (($blnlahir === $blnskrg) && ($thnlahir === $thnskrg)) {
-            $x['id_detail'] = '1';
+            $data_insert['id_detail'] = '1';
         } else {
-            $x['id_detail'] = '5';
+            $data_insert['id_detail'] = '5';
         }
 
-        $x['id_pend']      = $temp;
-        $x['bulan']        = $blnskrg;
-        $x['tahun']        = $thnskrg;
-        $outp              = $this->db->insert('log_penduduk', $x);
-        $log['id_pend']    = 1;
-        $log['id_cluster'] = 1;
-        $log['tanggal']    = date('m-d-y');
-        $outp              = $this->db->insert('log_perubahan_penduduk', $log);
+        $data_insert['id_pend'] = $temp;
+        $data_insert['bulan']   = $blnskrg;
+        $data_insert['tahun']   = $thnskrg;
+        $outp                   = $this->db->insert('log_penduduk', $data_insert);
+        $log                    = [
+            'id_pend'    => 1,
+            'id_cluster' => 1,
+            'tanggal'    => date('m-d-y'),
+        ];
+
+        $outp = $this->db->insert('log_perubahan_penduduk', $log);
 
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -495,9 +504,7 @@ class Keluarga_model extends CI_Model
 
     public function delete($id = '')
     {
-        $sql   = 'SELECT nik_kepala FROM tweb_keluarga WHERE id=?';
-        $query = $this->db->query($sql, $id);
-        $temp  = $query->row_array();
+        $default = [];
 
         $default['id_kk']    = '';
         $default['kk_level'] = '';
@@ -724,7 +731,7 @@ class Keluarga_model extends CI_Model
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
             } else {
-                UploadFoto($nama_file);
+                UploadFoto($nama_file, $data['old_foto']);
                 $data['foto'] = $nama_file;
             }
         } else {
@@ -880,7 +887,7 @@ class Keluarga_model extends CI_Model
         return $query->row_array();
     }
 
-    public function coba($data = '')
+    public function coba(array $data)
     {
         $mypath       = 'surat\\kk\\';
         $mypath_arsip = 'surat\\arsip\\';
@@ -890,7 +897,23 @@ class Keluarga_model extends CI_Model
 
         $file = $path . 'kk.rtf';
         if (is_file($file)) {
-            $nama = '';
+            $nama            = '';
+            $no              = '';
+            $hubungan        = '';
+            $nik             = '';
+            $sex             = '';
+            $tempatlahir     = '';
+            $tanggallahir    = '';
+            $agama           = '';
+            $pendidikan      = '';
+            $pekerjaan       = '';
+            $status_kawin    = '';
+            $warganegara     = '';
+            $dokumen_pasport = '';
+            $dokumen_kitas   = '';
+            $nama_ayah       = '';
+            $nama_ibu        = '';
+            $golongan_darah  = '';
 
             $handle = fopen($file, 'rb');
             $buffer = stream_get_contents($handle);
