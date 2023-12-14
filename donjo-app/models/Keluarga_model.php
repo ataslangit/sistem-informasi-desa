@@ -481,17 +481,17 @@ class Keluarga_model extends CI_Model
             $x['id_detail'] = '5';
         }
 
-        $x['id_pend']      = $temp;
-        $x['bulan']        = $blnskrg;
-        $x['tahun']        = $thnskrg;
-        $outp              = $this->db->insert('log_penduduk', $x);
-        $log =[
+        $x['id_pend'] = $temp;
+        $x['bulan']   = $blnskrg;
+        $x['tahun']   = $thnskrg;
+        $outp         = $this->db->insert('log_penduduk', $x);
+        $log          = [
             'id_pend'    => 1,
             'id_cluster' => 1,
             'tanggal'    => date('m-d-y'),
         ];
 
-        $outp              = $this->db->insert('log_perubahan_penduduk', $log);
+        $outp = $this->db->insert('log_perubahan_penduduk', $log);
 
         if ($outp) {
             $_SESSION['success'] = 1;
