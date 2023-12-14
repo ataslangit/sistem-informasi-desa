@@ -374,7 +374,7 @@ class Keluarga_model extends CI_Model
 
     public function insert()
     {
-        $x    = [];
+        $data_insert    = [];
         $data = $_POST;
         $temp = $data['nik_kepala'];
         $outp = $this->db->insert('tweb_keluarga', penetration($data));
@@ -397,15 +397,15 @@ class Keluarga_model extends CI_Model
         $blnskrg  = (date('m'));
         $thnskrg  = (date('Y'));
         if (($blnlahir === $blnskrg) && ($thnlahir === $thnskrg)) {
-            $x['id_detail'] = '1';
+            $data_insert['id_detail'] = '1';
         } else {
-            $x['id_detail'] = '5';
+            $data_insert['id_detail'] = '5';
         }
 
-        $x['id_pend'] = $temp;
-        $x['bulan']   = $blnskrg;
-        $x['tahun']   = $thnskrg;
-        $outp         = $this->db->insert('log_penduduk', $x);
+        $data_insert['id_pend'] = $temp;
+        $data_insert['bulan']   = $blnskrg;
+        $data_insert['tahun']   = $thnskrg;
+        $outp         = $this->db->insert('log_penduduk', $data_insert);
         $log          = [
             'id_pend'    => 1,
             'id_cluster' => 1,
@@ -427,7 +427,7 @@ class Keluarga_model extends CI_Model
         $tipe_file   = $_FILES['foto']['type'];
         $nama_file   = $_FILES['foto']['name'];
         $old_foto    = '';
-        $x           = [];
+        $data_insert           = [];
         if (! empty($lokasi_file)) {
             if ($tipe_file !== 'image/jpeg' && $tipe_file !== 'image/pjpeg' && $tipe_file !== 'image/png') {
                 unset($data['foto']);
@@ -478,15 +478,15 @@ class Keluarga_model extends CI_Model
         $blnskrg  = (date('m'));
         $thnskrg  = (date('Y'));
         if (($blnlahir === $blnskrg) && ($thnlahir === $thnskrg)) {
-            $x['id_detail'] = '1';
+            $data_insert['id_detail'] = '1';
         } else {
-            $x['id_detail'] = '5';
+            $data_insert['id_detail'] = '5';
         }
 
-        $x['id_pend'] = $temp;
-        $x['bulan']   = $blnskrg;
-        $x['tahun']   = $thnskrg;
-        $outp         = $this->db->insert('log_penduduk', $x);
+        $data_insert['id_pend'] = $temp;
+        $data_insert['bulan']   = $blnskrg;
+        $data_insert['tahun']   = $thnskrg;
+        $outp         = $this->db->insert('log_penduduk', $data_insert);
         $log          = [
             'id_pend'    => 1,
             'id_cluster' => 1,
