@@ -32,6 +32,9 @@ class Penduduk extends BaseController
 
     public function index($p = 1, $o = 0)
     {
+        $data = [];
+        $nav  = [];
+
         unset($_SESSION['log']);
         $data['p'] = $p;
         $data['o'] = $o;
@@ -111,6 +114,9 @@ class Penduduk extends BaseController
 
     public function form($p = 1, $o = 0, $id = '')
     {
+        $data = [];
+        $nav  = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -157,8 +163,9 @@ class Penduduk extends BaseController
         $data['cacat']             = $this->penduduk_model->list_cacat();
         $data['sakit_menahun']     = $this->penduduk_model->list_sakit_menahun();
 
-        view('header', $header);
         $nav['act'] = 2;
+
+        view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/penduduk_form', $data);
         view('footer');
@@ -166,6 +173,9 @@ class Penduduk extends BaseController
 
     public function detail($p = 1, $o = 0, $id = '')
     {
+        $data = [];
+        $nav  = [];
+
         $data['p']             = $p;
         $data['o']             = $o;
         $data['list_dokumen']  = $this->penduduk_model->list_dokumen($id);
@@ -173,8 +183,9 @@ class Penduduk extends BaseController
         $data['penduduk']      = $this->penduduk_model->get_penduduk($id);
         $header                = $this->header_model->get_data();
 
-        view('header', $header);
         $nav['act'] = 2;
+
+        view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/penduduk_detail', $data);
         view('footer');
@@ -182,12 +193,16 @@ class Penduduk extends BaseController
 
     public function dokumen($id = '')
     {
+        $data = [];
+        $nav  = [];
+
         $data['list_dokumen'] = $this->penduduk_model->list_dokumen($id);
         $data['penduduk']     = $this->penduduk_model->get_penduduk($id);
         $header               = $this->header_model->get_data();
 
-        view('header', $header);
         $nav['act'] = 2;
+
+        view('header', $header);
         view('sid/nav', $nav);
         view('sid/kependudukan/penduduk_dokumen', $data);
         view('footer');
@@ -195,15 +210,21 @@ class Penduduk extends BaseController
 
     public function dokumen_form($id = 0)
     {
+        $data = [];
+
         $data['penduduk']    = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url('penduduk/dokumen_insert');
+
         view('sid/kependudukan/dokumen_form', $data);
     }
 
     public function dokumen_list($id = 0)
     {
+        $data = [];
+
         $data['list_dokumen'] = $this->penduduk_model->list_dokumen($id);
         $data['penduduk']     = $this->penduduk_model->get_penduduk($id);
+
         view('sid/kependudukan/dokumen_ajax', $data);
     }
 
@@ -211,25 +232,31 @@ class Penduduk extends BaseController
     {
         $this->penduduk_model->dokumen_insert();
         $id = $_POST['id_pend'];
+
         redirect("penduduk/dokumen/{$id}");
     }
 
     public function delete_dokumen($id_pend = 0, $id = '')
     {
         $this->penduduk_model->delete_dokumen($id);
+
         redirect("penduduk/dokumen/{$id_pend}");
     }
 
     public function delete_all_dokumen($id_pend = 0)
     {
         $this->penduduk_model->delete_all_dokumen();
+
         redirect("penduduk/dokumen/{$id_pend}");
     }
 
     public function cetak_biodata($id = '')
     {
+        $data = [];
+
         $data['desa']     = $this->header_model->get_data();
         $data['penduduk'] = $this->penduduk_model->get_penduduk($id);
+
         view('sid/kependudukan/cetak_biodata', $data);
     }
 
@@ -370,29 +397,35 @@ class Penduduk extends BaseController
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->penduduk_model->update($id);
+
         redirect("penduduk/index/{$p}/{$o}");
     }
 
     public function delete_confirm($p = 1, $o = 0, $id = '')
     {
         $data['form_action'] = site_url("penduduk/index/{$p}/{$o}/{$id}");
+
         view('sid/kependudukan/ajax_delete', $data);
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->penduduk_model->delete($id);
+
         redirect("penduduk/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->penduduk_model->delete_all();
+
         redirect("penduduk/index/{$p}/{$o}");
     }
 
     public function ajax_adv_search()
     {
+        $data = [];
+
         if (isset($_SESSION['cari'])) {
             $data['cari'] = $_SESSION['cari'];
         } else {
@@ -496,6 +529,7 @@ class Penduduk extends BaseController
         $data['pendidikan_kk']       = $this->penduduk_model->list_pendidikan_kk();
         $data['pekerjaan']           = $this->penduduk_model->list_pekerjaan();
         $data['form_action']         = site_url('penduduk/adv_search_proses');
+
         view('sid/kependudukan/ajax_adv_search_form', $data);
     }
 
@@ -523,6 +557,8 @@ class Penduduk extends BaseController
 
     public function ajax_penduduk_pindah($id = 0)
     {
+        $data = [];
+
         $data['dusun'] = $this->penduduk_model->list_dusun();
 
         $data['form_action'] = site_url("penduduk/pindah_proses/{$id}");
@@ -600,12 +636,13 @@ class Penduduk extends BaseController
 
     public function ajax_penduduk_maps($p = 1, $o = 0, $id = '')
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
-        $data['penduduk'] = $this->penduduk_model->get_penduduk_map($id);
-        $data['desa']     = $this->config_model->get_data();
-
+        $data['penduduk']    = $this->penduduk_model->get_penduduk_map($id);
+        $data['desa']        = $this->config_model->get_data();
         $data['form_action'] = site_url("penduduk/update_maps/{$p}/{$o}/{$id}");
 
         view('sid/kependudukan/maps', $data);
@@ -614,14 +651,16 @@ class Penduduk extends BaseController
     public function update_maps($p = 1, $o = 0, $id = '')
     {
         $this->penduduk_model->update_position($id);
+
         redirect("penduduk/form/{$p}/{$o}/{$id}");
     }
 
     public function wilayah_sel($p = 1, $o = 0, $id = '')
     {
-        $data['p'] = $p;
-        $data['o'] = $o;
+        $data = [];
 
+        $data['p']           = $p;
+        $data['o']           = $o;
         $data['form_action'] = site_url('penduduk');
 
         view('sid/kependudukan/maps', $data);
@@ -629,8 +668,11 @@ class Penduduk extends BaseController
 
     public function edit_status_dasar($p = 1, $o = 0, $id = 0)
     {
+        $data = [];
+
         $data['nik']         = $this->penduduk_model->get_penduduk($id);
         $data['form_action'] = site_url("penduduk/update_status_dasar/{$p}/{$o}/{$id}");
+
         view('sid/kependudukan/ajax_edit_status_dasar', $data);
     }
 
@@ -642,15 +684,21 @@ class Penduduk extends BaseController
 
     public function cetak($o = 0)
     {
+        $data = [];
+
         $data['info'] = $this->penduduk_model->get_filter();
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/penduduk_print', $data);
     }
 
     public function excel($o = 0)
     {
+        $data = [];
+
         $data['info'] = $this->penduduk_model->get_filter();
         $data['main'] = $this->penduduk_model->list_data($o, 0, 10000);
+
         view('sid/kependudukan/penduduk_excel', $data);
     }
 

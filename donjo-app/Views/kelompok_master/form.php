@@ -10,7 +10,7 @@
                 <table class="form">
                     <tr>
                         <th>Kategori/ Kategori Kelompok</th>
-                        <td><input name="kelompok" type="text" class="inputbox" size="80" value="<?php echo $kelompok_master['kelompok']?>"></td>
+                        <td><input name="kelompok" type="text" class="inputbox" size="80" value="<?php echo $kelompok_master['kelompok'] ?? ''?>" required></td>
                     </tr>
                     <tr>
                     <tr>
@@ -18,7 +18,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea name="deskripsi" style="width:600px; height:300px;resize:none;"><?php echo $kelompok_master['deskripsi']?></textarea>
+                            <textarea name="deskripsi" style="width:600px; height:300px;resize:none;"><?php echo $kelompok_master['deskripsi'] ?? ''?></textarea>
                         </td>
                     </tr>
                 </table>
