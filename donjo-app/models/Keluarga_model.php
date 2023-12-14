@@ -382,8 +382,10 @@ class Keluarga_model extends CI_Model
         $query = $this->db->query($sql, $temp);
         $kk    = $query->row_array();
 
-        $default['id_kk']    = $kk['id'];
-        $default['kk_level'] = 1;
+        $default = [
+            'id_kk'    => $kk['id'],
+            'kk_level' => 1,
+        ];
 
         $this->db->where('id', $temp);
         $this->db->update('tweb_penduduk', $default);
@@ -399,14 +401,16 @@ class Keluarga_model extends CI_Model
             $x['id_detail'] = '5';
         }
 
-        $x['id_pend']      = $temp;
-        $x['bulan']        = $blnskrg;
-        $x['tahun']        = $thnskrg;
-        $outp              = $this->db->insert('log_penduduk', $x);
-        $log['id_pend']    = 1;
-        $log['id_cluster'] = 1;
-        $log['tanggal']    = date('m-d-y');
-        $outp              = $this->db->insert('log_perubahan_penduduk', $log);
+        $x['id_pend'] = $temp;
+        $x['bulan']   = $blnskrg;
+        $x['tahun']   = $thnskrg;
+        $outp         = $this->db->insert('log_penduduk', $x);
+        $log          = [
+            'id_pend'    => 1,
+            'id_cluster' => 1,
+            'tanggal'    => date('m-d-y'),
+        ];
+        $outp = $this->db->insert('log_perubahan_penduduk', $log);
 
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -481,9 +485,12 @@ class Keluarga_model extends CI_Model
         $x['bulan']        = $blnskrg;
         $x['tahun']        = $thnskrg;
         $outp              = $this->db->insert('log_penduduk', $x);
-        $log['id_pend']    = 1;
-        $log['id_cluster'] = 1;
-        $log['tanggal']    = date('m-d-y');
+        $log =[
+            'id_pend'    => 1,
+            'id_cluster' => 1,
+            'tanggal'    => date('m-d-y'),
+        ];
+
         $outp              = $this->db->insert('log_perubahan_penduduk', $log);
 
         if ($outp) {
@@ -495,9 +502,7 @@ class Keluarga_model extends CI_Model
 
     public function delete($id = '')
     {
-        $sql   = 'SELECT nik_kepala FROM tweb_keluarga WHERE id=?';
-        $query = $this->db->query($sql, $id);
-        $temp  = $query->row_array();
+        $default = [];
 
         $default['id_kk']    = '';
         $default['kk_level'] = '';
