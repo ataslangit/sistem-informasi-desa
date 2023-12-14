@@ -11,9 +11,10 @@
     <div id="container">
         <!-- Print Body -->
         <div id="body">
-            <div class="header" align="center"><label align="left"><?php echo get_identitas()?></label>
+            <div class="header" align="center">
+                <label align="left"><?php echo get_identitas()?></label>
                 <h3> DATA KELUARGA </h3>
-                <strong><?php echo $_SESSION['judul_statistik']; ?></strong>
+                <strong><?php echo @$_SESSION['judul_statistik']; ?></strong>
             </div>
             <br>
             <table class="border thick">

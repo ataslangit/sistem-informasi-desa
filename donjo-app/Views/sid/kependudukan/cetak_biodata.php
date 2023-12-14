@@ -197,14 +197,14 @@
                                 <td width="2px">5.</td>
                                 <td>Nomor Paspor</td>
                                 <td>:</td>
-                                <td><?php echo strtoupper($penduduk['no_paspor'])?></td>
+                                <td><?php echo strtoupper(@$penduduk['no_paspor'])?></td>
                             </tr>
 
                             <tr>
                                 <td width="2px">6.</td>
                                 <td>Nomor Perkawinan</td>
                                 <td>:</td>
-                                <td><?php echo strtoupper($penduduk['nomor_kawin'])?></td>
+                                <td><?php echo strtoupper(@$penduduk['nomor_kawin'])?></td>
                             </tr>
                             <tr>
                                 <td width="2px">7.</td>

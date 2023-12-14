@@ -43,12 +43,13 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                <?php if (!empty($rt_sel) or (!empty($penduduk))) { ?>
+
+                                <?php if (!empty($rt_sel) || (!empty($penduduk))) { ?>
                                     <tr>
                                         <th class="top">Foto</th>
                                         <td>
                                             <div class="userbox-avatar">
-                                                <?php if ($penduduk['foto']) { ?>
+                                                <?php if (!empty($penduduk['foto'])) { ?>
                                                     <img src="<?php echo base_url('assets/files/user_pict/kecil_' . $penduduk['foto']) ?>" alt="">
                                                 <?php } else { ?>
                                                     <img src="<?php echo base_url('assets/files/user_pict/kuser.png') ?>" alt="">
@@ -77,13 +78,9 @@
                                         <th>Jenis Kelamin</th>
                                         <td>
                                             <div class="uiradio">
-                                                <input type="radio" id="sx1" name="sex" value="1" <?php if ($penduduk['id_sex'] == '1' or $penduduk['id_sex'] == '') {
-                                                                                                        echo 'checked';
-                                                                                                    } ?>>
+                                                <input type="radio" id="sx1" name="sex" value="1" <?php if ($penduduk['id_sex'] == '1' or $penduduk['id_sex'] == '') { echo 'checked'; } ?>>
                                                 <label for="sx1">Laki-laki</label>
-                                                <input type="radio" id="sx2" name="sex" value="2" <?php if ($penduduk['id_sex'] == '2') {
-                                                                                                        echo 'checked';
-                                                                                                    } ?>>
+                                                <input type="radio" id="sx2" name="sex" value="2" <?php if ($penduduk['id_sex'] == '2') { echo 'checked';} ?>>
                                                 <label for="sx2">Perempuan</label>
                                             </div>
                                         </td>
