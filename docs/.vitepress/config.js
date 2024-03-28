@@ -26,7 +26,7 @@ export default {
         },
         footer: {
             copyright:
-                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 - 2023 Atas Langit",
+                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 - 2024 Atas Langit",
         },
         editLink: {
             pattern:
