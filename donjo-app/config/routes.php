@@ -1323,8 +1323,6 @@ $route['persuratan/doc/(:any)'] = 'persuratan/doc/
 
 $route['persuratan/search'] = 'persuratan/search';
 
-
-
 // Surat_master
 $route['surat_master']                                  = 'surat_master';
 $route['surat_master/index']                            = 'surat_master';
