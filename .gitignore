@@ -20,3 +20,5 @@ donjo-app/cache/session/*
 .php-cs-fixer.cache
 /install.sid
 
+/*.md
+!/README.md
