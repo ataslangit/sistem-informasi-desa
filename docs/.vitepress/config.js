@@ -26,7 +26,7 @@ export default {
         },
         footer: {
             copyright:
-                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 - 2024 Atas Langit",
+                "Copyright © 2009 - 2016 Combine Resource Institution<br> Copyright © 2022 - 2025 Atas Langit",
         },
         editLink: {
             pattern:
@@ -95,7 +95,8 @@ function sidebarChangelog() {
             text: "Log Perubahan",
             collapsible: false,
             items: [
-                { text: "v4.5.5 (terbaru)", link: "/changelog/455" },
+                { text: "v4.5.6 (terbaru)", link: "/changelog/456" },
+                { text: "v4.5.5", link: "/changelog/455" },
                 { text: "v4.5.4", link: "/changelog/454" },
                 { text: "v4.5.3", link: "/changelog/453" },
                 { text: "v4.5.2", link: "/changelog/452" },
