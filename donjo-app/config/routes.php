@@ -1298,17 +1298,32 @@ $route['statistik/rentang_delete']        = 'statistik/rentang_delete';
 $route['statistik/rentang_delete/(:num)'] = 'statistik/rentang_delete/$1';
 $route['statistik/delete_all_rentang']    = 'statistik/delete_all_rentang';
 
-// Surat
-$route['surat']              = 'surat';
-$route['surat/index']        = 'surat';
-$route['surat/panduan']      = 'surat/panduan';
-$route['surat/form']         = 'surat/form';
-$route['surat/form/(:any)']  = 'surat/form/$1';
-$route['surat/cetak']        = 'surat/cetak';
-$route['surat/cetak/(:any)'] = 'surat/cetak/$1';
-$route['surat/doc']          = 'surat/doc';
-$route['surat/doc/(:any)']   = 'surat/doc/$1';
-$route['surat/search']       = 'surat/search';
+// Persuratan
+
+$route['persuratan'] = 'persuratan';
+
+$route['persuratan/index'] = 'persuratan';
+
+$route['persuratan/panduan'] = 'persuratan/panduan';
+
+$route['persuratan/form'] = 'persuratan/form';
+
+$route['persuratan/form/(:any)'] = 'persuratan/form/
+';
+
+$route['persuratan/cetak'] = 'persuratan/cetak';
+
+$route['persuratan/cetak/(:any)'] = 'persuratan/cetak/
+';
+
+$route['persuratan/doc'] = 'persuratan/doc';
+
+$route['persuratan/doc/(:any)'] = 'persuratan/doc/
+';
+
+$route['persuratan/search'] = 'persuratan/search';
+
+
 
 // Surat_master
 $route['surat_master']                                  = 'surat_master';

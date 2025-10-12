@@ -1328,7 +1328,7 @@ INSERT INTO `setting_modul` (`id`, `modul`, `url`, `aktif`, `ikon`, `urut`, `lev
 (1, 'SID Home', 'hom_desa', 1, 'go-home-5.png', 1, 2, 1),
 (2, 'Penduduk', 'penduduk/clear', 1, 'preferences-contact-list.png', 2, 2, 0),
 (3, 'Statistik', 'statistik', 1, 'statistik.png', 3, 2, 0),
-(4, 'Cetak Surat', 'surat', 1, 'applications-office-5.png', 4, 2, 0),
+(4, 'Cetak Surat', 'persuratan', 1, 'applications-office-5.png', 4, 2, 0),
 (5, 'Analisis', 'analisis_master/clear', 1, 'analysis.png', 5, 2, 0),
 (6, 'Bantuan', 'program_bantuan', 2, 'program.png', 6, 2, 0),
 (7, 'Persil', 'data_persil/clear', 2, 'persil.png', 7, 2, 0),
