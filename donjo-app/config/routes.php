@@ -1299,16 +1299,16 @@ $route['statistik/rentang_delete/(:num)'] = 'statistik/rentang_delete/$1';
 $route['statistik/delete_all_rentang']    = 'statistik/delete_all_rentang';
 
 // Persuratan
-$route['persuratan'] = 'persuratan';
-$route['persuratan/index'] = 'persuratan';
-$route['persuratan/panduan'] = 'persuratan/panduan';
-$route['persuratan/form'] = 'persuratan/form';
-$route['persuratan/form/(:any)'] = 'persuratan/form/$1';
-$route['persuratan/cetak'] = 'persuratan/cetak';
+$route['persuratan']              = 'persuratan';
+$route['persuratan/index']        = 'persuratan';
+$route['persuratan/panduan']      = 'persuratan/panduan';
+$route['persuratan/form']         = 'persuratan/form';
+$route['persuratan/form/(:any)']  = 'persuratan/form/$1';
+$route['persuratan/cetak']        = 'persuratan/cetak';
 $route['persuratan/cetak/(:any)'] = 'persuratan/cetak/$1';
-$route['persuratan/doc'] = 'persuratan/doc';
-$route['persuratan/doc/(:any)'] = 'persuratan/doc/$1';
-$route['persuratan/search'] = 'persuratan/search';
+$route['persuratan/doc']          = 'persuratan/doc';
+$route['persuratan/doc/(:any)']   = 'persuratan/doc/$1';
+$route['persuratan/search']       = 'persuratan/search';
 
 // Surat_master
 $route['surat_master']                                  = 'surat_master';
