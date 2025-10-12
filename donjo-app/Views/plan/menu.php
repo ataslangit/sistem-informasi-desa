@@ -13,7 +13,7 @@
                 <img src="<?= base_url('assets/images/cpanel/statistik.png') ?>" alt="">
                 <span>Statistik</span>
             </a>
-            <a class="cpanel" href="<?= site_url('surat') ?>">
+            <a class="cpanel" href="<?= site_url('persuratan') ?>">
                 <img src="<?= base_url('assets/images/cpanel/applications-office-5.png') ?>" alt="">
                 <span>Cetak Surat</span>
                 <a class="cpanel" href="<?= site_url('analisis') ?>">

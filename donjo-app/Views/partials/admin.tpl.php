@@ -94,11 +94,11 @@
 
         <li class='has-sub'><a href="#"><span>Administrasi Desa</span></a>
             <ul>
-                <li class='active'><a href="<?php echo site_url('surat'); ?>"><span>FORMAT SURAT</span></a></li>
-                <li class='active'><a href="<?php echo site_url('surat'); ?>"><span>LAYANAN SURAT MENYURAT</span></a></li>
-                <li class='active'><a href="<?php echo site_url('surat/masuk'); ?>"><span>ARSIP SURAT</span></a></li>
+                <li class='active'><a href="<?php echo site_url('persuratan'); ?>"><span>FORMAT SURAT</span></a></li>
+                <li class='active'><a href="<?php echo site_url('persuratan'); ?>"><span>LAYANAN SURAT MENYURAT</span></a></li>
+                <li class='active'><a href="<?php echo site_url('keluar'); ?>"><span>ARSIP SURAT</span></a></li>
                 <li class='active'><a href="<?php echo site_url('keluar'); ?>"><span>STATISTIK</span></a></li>
-                <li class='active'><a href="<?php echo site_url('surat'); ?>"><span>PENCARIAN LANJUT</span></a></li>
+                <li class='active'><a href="<?php echo site_url('persuratan'); ?>"><span>PENCARIAN LANJUT</span></a></li>
             </ul>
 
         <li class='has-sub'><a href="#"><span>Keuangan Desa</span></a>

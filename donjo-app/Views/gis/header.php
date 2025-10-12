@@ -96,7 +96,7 @@ img, div,span,a,button { behavior: url(assets/js/iepngfix.htc) }
                     <li><a href="<?= site_url('hom_desa') ?>"><i class="fa fa-home"></i>SID Home</a></li>
                     <li><a href="<?= site_url('sid_core') ?>"><i class="icon-group icon-large"></i>Penduduk</a></li>
                     <li><a href="<?= site_url('statistik') ?>"><i class="fa fa-bar-chart"></i>Statistik</a></li>
-                    <li><a href="<?= site_url('surat') ?>"><i class="fa fa-print"></i>Cetak Surat</a></li>
+                    <li><a href="<?= site_url('persuratan') ?>"><i class="fa fa-print"></i>Cetak Surat</a></li>
                     <li><a href="<?= site_url('analisis') ?>"><i class="icon-dashboard icon-large"></i>Analisis</a></li>
                 <?php } ?>
                 <?php if ($_SESSION['grup'] === 1 || $_SESSION['grup'] === 2) { ?>
