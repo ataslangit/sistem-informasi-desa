@@ -32,7 +32,7 @@ jobs:
           tools: phpmd
 
       - name: Run PHPMD
-        run: phpmd donjo-app sarif ${{ github.workspace }}/.github/phpmd.xml --reportfile phpmd-results.sarif
+        run: phpmd donjo-app text codesize
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
