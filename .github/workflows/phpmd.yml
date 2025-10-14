@@ -33,7 +33,6 @@ jobs:
 
       - name: Run PHPMD
         run: phpmd donjo-app text codesize
-        continue-on-error: true
 
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v4
