@@ -13,7 +13,7 @@ class Plan_polygon_model extends Model
     {
         $sql   = 'SELECT nama FROM polygon';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -56,12 +56,12 @@ class Plan_polygon_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM polygon WHERE tipe = 0 ';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -95,7 +95,7 @@ class Plan_polygon_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -202,7 +202,7 @@ class Plan_polygon_model extends Model
         $sql = 'SELECT * FROM polygon WHERE parrent = ? AND tipe = 2 ';
 
         $query = $this->db->query($sql, $polygon);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -329,7 +329,7 @@ class Plan_polygon_model extends Model
         $sql   = 'SELECT * FROM polygon WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function polygon_show()
@@ -337,7 +337,7 @@ class Plan_polygon_model extends Model
         $sql   = 'SELECT * FROM polygon WHERE enabled=?';
         $query = $this->db->query($sql, 1);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_polygon_atas()
@@ -345,7 +345,7 @@ class Plan_polygon_model extends Model
         $sql = 'SELECT m.* FROM polygon m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -354,7 +354,7 @@ class Plan_polygon_model extends Model
 
             $sql2  = 'SELECT s.* FROM polygon s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['polygon'] .= '<ul>';
@@ -378,7 +378,7 @@ class Plan_polygon_model extends Model
         $sql = 'SELECT m.* FROM polygon m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -387,7 +387,7 @@ class Plan_polygon_model extends Model
 
             $sql2  = 'SELECT s.* FROM polygon s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['polygon'] .= '<ul>';

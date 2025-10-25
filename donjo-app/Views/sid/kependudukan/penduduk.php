@@ -204,7 +204,7 @@
                                         <option value="200" <?php selected($per_page,200); ?>>200</option>
                                     </select>
                                     <label>Dari</label>
-                                    <label><strong><?php echo $paging->num_rows?></strong></label>
+                                    <label><strong><?php echo $paging->getNumRows?></strong></label>
                                     <label>Total Data</label>
                                 </form>
                             </div>

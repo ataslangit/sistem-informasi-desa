@@ -23,7 +23,7 @@ class Laporan_perubahan_model extends Model
 FROM tweb_wil_clusterdesa x WHERE rw='0' AND rt='0' ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function total_data()
@@ -42,6 +42,6 @@ FROM tweb_wil_clusterdesa x WHERE rw='0' AND rt='0' ";
 FROM tweb_wil_clusterdesa x WHERE rw='0' AND rt='0') as z ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

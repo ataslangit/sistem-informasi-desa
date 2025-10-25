@@ -36,7 +36,7 @@ class Feed extends BaseController
             ->where(['a.enabled' => '1', 'a.judul <>' => ''])
             ->order_by('a.id', 'DESC')
             ->get()
-            ->result_array();
+            ->getResultArray();
 
         $isiFeed = [];
 

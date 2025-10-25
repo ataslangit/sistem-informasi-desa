@@ -13,7 +13,7 @@ class Surat_keluar_model extends Model
     {
         $sql   = 'SELECT no_surat FROM log_surat';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -72,12 +72,12 @@ class Surat_keluar_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM log_surat u WHERE 1';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -92,12 +92,12 @@ class Surat_keluar_model extends Model
         $sql .= $this->filterku_sql($nik);
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -121,7 +121,7 @@ class Surat_keluar_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -163,7 +163,7 @@ class Surat_keluar_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -191,8 +191,8 @@ class Surat_keluar_model extends Model
 
         $sql   = 'SELECT id FROM tweb_surat_format WHERE url_surat = ?';
         $query = $this->db->query($sql, $f);
-        if ($query->num_rows() > 0) {
-            $pam                     = $query->row_array();
+        if ($query->getNumRows() > 0) {
+            $pam                     = $query->getRowArray();
             $data['id_format_surat'] = $pam['id'];
         } else {
             $data['id_format_surat'] = $f;
@@ -200,8 +200,8 @@ class Surat_keluar_model extends Model
 
         $sql   = 'SELECT pamong_id FROM tweb_desa_pamong WHERE pamong_nama = ?';
         $query = $this->db->query($sql, $g);
-        if ($query->num_rows() > 0) {
-            $pam               = $query->row_array();
+        if ($query->getNumRows() > 0) {
+            $pam               = $query->getRowArray();
             $data['id_pamong'] = $pam['pamong_id'];
         } else {
             $data['id_pamong'] = 1;
@@ -224,10 +224,10 @@ class Surat_keluar_model extends Model
         $sql   = 'select round(((jml*100)/(select count(id) from log_surat)),2) as jumlah, nama from (SELECT COUNT(l.id) as jml, f.nama from log_surat l left join tweb_surat_format f on l.id_format_surat=f.id group by l.id_format_surat) as a';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
-    public function update($id = 0)
+    public function update2($id = 0)
     {
         if ($outp) {
             $_SESSION['success'] = 1;
@@ -236,7 +236,7 @@ class Surat_keluar_model extends Model
         }
     }
 
-    public function delete($id = '')
+    public function delete2($id = '')
     {
         $sql  = 'DELETE FROM log_surat WHERE id=?';
         $outp = $this->db->query($sql, [$id]);
@@ -272,7 +272,7 @@ class Surat_keluar_model extends Model
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status = 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -315,6 +315,6 @@ class Surat_keluar_model extends Model
         $sql   = 'SELECT * FROM user_grup';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

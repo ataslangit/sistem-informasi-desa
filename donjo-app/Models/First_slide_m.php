@@ -12,6 +12,6 @@ class First_slide_m extends Model
         $sql   = 'SELECT * FROM gambar_slide WHERE enabled=?';
         $query = $this->db->query($sql, 1);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

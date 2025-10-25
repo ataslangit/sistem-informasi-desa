@@ -10,7 +10,7 @@
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
-            <?php 
+            <?php
 ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content">
@@ -89,7 +89,7 @@
                                             <input type="checkbox" name="id_cb[]" value="<?php echo $data['id']?>">
                                         </td>
                                         <td>
-                                            <a href="<?php echo site_url("plan/form/$p/$o/$data[id]")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?php echo site_url("plan/delete/$p/$o/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php 
+                                            <a href="<?php echo site_url("plan/form/$p/$o/$data[id]")?>" class="ui-icons icon-edit tipsy south" title="Edit Data"></a><a href="<?php echo site_url("plan/delete/$p/$o/$data[id]")?>" class="ui-icons icon-remove tipsy south" title="Delete Data" target="confirm" message="Apakah Anda Yakin?" header="Hapus Data"></a><?php
 ?><a href="<?php echo site_url("plan/ajax_lokasi_maps/$p/$o/$data[id]")?>" target="ajax-modalz" rel="window" header="Lokasi <?php echo $data['nama']?>" class="ui-icons icon-maps tipsy south" title="Lokasi <?php echo $data['nama']?>"></a>
                                         </td>
                                         <td width="150"><?php echo $data['nama']?></td>
@@ -114,7 +114,7 @@
                                         <option value="100" <?php selected($per_page,100); ?>>100</option>
                                     </select>
                                     <label>Dari</label>
-                                    <label><strong><?php echo $paging->num_rows?></strong></label>
+                                    <label><strong><?php echo $paging->getNumRows?></strong></label>
                                     <label>Total Data</label>
                                 </form>
                             </div>

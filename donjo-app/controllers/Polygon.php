@@ -25,7 +25,7 @@ class Polygon extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter']);
 
-        redirect('polygon');
+        return redirect()->to('polygon');
     }
 
     public function index($p = 1, $o = 0)
@@ -124,7 +124,7 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('polygon');
+        return redirect()->to('polygon');
     }
 
     public function filter()
@@ -135,78 +135,78 @@ class Polygon extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('polygon');
+        return redirect()->to('polygon');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_polygon_model->insert($tip);
-        redirect("polygon/index/{$tip}");
+        return redirect()->to("polygon/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_polygon_model->update($id);
-        redirect("polygon/index/{$p}/{$o}");
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_polygon_model->delete($id);
-        redirect("polygon/index/{$p}/{$o}");
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_polygon_model->delete_all();
-        redirect("polygon/index/{$p}/{$o}");
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function polygon_lock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 1);
-        redirect("polygon/index/{$p}/{$o}");
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function polygon_unlock($id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 2);
-        redirect("polygon/index/{$p}/{$o}");
+        return redirect()->to("polygon/index/{$p}/{$o}");
     }
 
     public function insert_sub_polygon($polygon = '')
     {
         $this->plan_polygon_model->insert_sub_polygon($polygon);
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function update_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->update_sub_polygon($id);
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function delete_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->delete_sub_polygon($id);
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function delete_all_sub_polygon($polygon = '')
     {
         $this->plan_polygon_model->delete_all_sub_polygon();
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function polygon_lock_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 1);
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 
     public function polygon_unlock_sub_polygon($polygon = '', $id = '')
     {
         $this->plan_polygon_model->polygon_lock($id, 2);
-        redirect("polygon/sub_polygon/{$polygon}");
+        return redirect()->to("polygon/sub_polygon/{$polygon}");
     }
 }

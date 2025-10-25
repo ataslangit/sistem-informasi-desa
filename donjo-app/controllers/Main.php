@@ -10,15 +10,20 @@ use App\Libraries\Install;
 
 class Main extends BaseController
 {
+    private $user_model;
+    private $config_model;
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
 
-        $this->load->model('header_model');
-        $this->load->model('user_model');
-        $this->load->model('config_model');
+        // $this->load->model('header_model');
+        // $this->load->model('user_model');
+        $this->user_model = new \App\Models\User_model();
+        // $this->load->model('config_model');
+        $this->config_model = new \App\Models\Config_model();
     }
 
     public function index()
@@ -28,27 +33,27 @@ class Main extends BaseController
                 $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
 
                 switch ($grup) {
-                    case 1: redirect('hom_desa');
+                    case 1: return redirect()->to('hom_desa');
                         break;
 
-                    case 2: redirect('hom_desa');
+                    case 2: return redirect()->to('hom_desa');
                         break;
 
-                    case 3: redirect('web');
+                    case 3: return redirect()->to('web');
                         break;
 
-                    case 4: redirect('web');
+                    case 4: return redirect()->to('web');
                         break;
 
                     default: if (isset($_SESSION['siteman'])) {
-                        redirect('siteman');
+                        return redirect()->to('siteman');
                     } else {
-                        redirect('first');
+                        return redirect()->to('first');
                     }
                 }
             }
         } else {
-            redirect('first');
+            return redirect()->to('first');
         }
     }
 
@@ -63,7 +68,7 @@ class Main extends BaseController
         $out     = $install->run();
 
         if (null === $out) {
-            redirect('/');
+            return redirect()->to('/');
         }
 
         view('init', $out);

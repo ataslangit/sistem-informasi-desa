@@ -6,7 +6,6 @@ use CodeIgniter\Model;
 
 class KategoriModel extends Model
 {
-    protected $table            = 'tbl';
     protected $table = 'kategori';
 
     /**
@@ -22,8 +21,8 @@ class KategoriModel extends Model
         $this->db->where('id', $id);
 
         $query = $this->db->get($this->table);
-        if ($query->num_rows() > 0) {
-            return $query->row_array();
+        if ($query->getNumRows() > 0) {
+            return $query->getRowArray();
         }
 
         return false;
@@ -38,7 +37,7 @@ class KategoriModel extends Model
     {
         $query = $this->db->order_by('urut', 'ASC')->get($this->table);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     /**
@@ -52,7 +51,7 @@ class KategoriModel extends Model
     {
         $query = $this->db->where('tipe', $tipe)->get($this->table);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     /**

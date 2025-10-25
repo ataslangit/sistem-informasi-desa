@@ -13,7 +13,7 @@ class Web_kategori_model extends Model
     {
         $sql   = 'SELECT kategori FROM kategori WHERE parrent =0';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -56,12 +56,12 @@ class Web_kategori_model extends Model
         $sql = 'SELECT COUNT(id) AS id FROM kategori WHERE parrent = 0';
         $sql .= $this->search_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -94,7 +94,7 @@ class Web_kategori_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -164,7 +164,7 @@ class Web_kategori_model extends Model
         $sql = 'SELECT * FROM kategori WHERE parrent = ? ';
 
         $query = $this->db->query($sql, $kategori);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -188,7 +188,7 @@ class Web_kategori_model extends Model
         $sql = "SELECT a.* FROM artikel a INNER JOIN kategori k ON a.id_kategori=k.id WHERE tipe ='2'";
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -205,7 +205,7 @@ class Web_kategori_model extends Model
         $sql = 'SELECT k.id,k.kategori AS kategori FROM kategori k WHERE 1';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -282,7 +282,7 @@ class Web_kategori_model extends Model
         $sql   = 'SELECT * FROM kategori WHERE enabled=?';
         $query = $this->db->query($sql, 1);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_kategori_atas()
@@ -290,7 +290,7 @@ class Web_kategori_model extends Model
         $sql = 'SELECT m.* FROM kategori m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 1';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -299,7 +299,7 @@ class Web_kategori_model extends Model
 
             $sql2  = 'SELECT s.* FROM kategori s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['kategori'] .= '<ul>';
@@ -323,7 +323,7 @@ class Web_kategori_model extends Model
         $sql = 'SELECT m.* FROM kategori m WHERE m.parrent = 1 AND m.enabled = 1 AND m.tipe = 2';
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $url   = site_url('first');
         $i     = 0;
 
@@ -332,7 +332,7 @@ class Web_kategori_model extends Model
 
             $sql2  = 'SELECT s.* FROM kategori s WHERE s.parrent = ? AND s.enabled = 1 AND s.tipe = 3';
             $query = $this->db->query($sql2, $data[$i]['id']);
-            $data2 = $query->result_array();
+            $data2 = $query->getResultArray();
 
             if ($data2) {
                 $data[$i]['kategori'] .= '<ul>';

@@ -20,7 +20,7 @@ class Kelompok extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -28,7 +28,7 @@ class Kelompok extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['state']);
 
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function index($p = 1, $o = 0)
@@ -199,7 +199,7 @@ class Kelompok extends BaseController
             case 4: $data['menu_respon'] = 'kelompok_respon_kelompok';
                 break;
 
-            default:redirect('kelompok');
+            default:return redirect()->to('kelompok');
         }
 
         $header = $this->header_model->get_data();
@@ -218,7 +218,7 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function filter()
@@ -229,7 +229,7 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function state()
@@ -240,49 +240,49 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['state']);
         }
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function insert()
     {
         $this->kelompok_model->insert();
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_model->update($id);
-        redirect("kelompok/index/{$p}/{$o}");
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function update_a($id = '', $id_a = 0)
     {
         $this->kelompok_model->update_a($id, $id_a);
-        redirect("kelompok/anggota/{$id}");
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->kelompok_model->delete($id);
-        redirect("kelompok/index/{$p}/{$o}");
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->kelompok_model->delete_all();
-        redirect("kelompok/index/{$p}/{$o}");
+        return redirect()->to("kelompok/index/{$p}/{$o}");
     }
 
     public function insert_a($id = 0)
     {
         $this->kelompok_model->insert_a($id);
-        redirect("kelompok/anggota/{$id}");
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function delete_a($id = '', $a = 0)
     {
         $this->kelompok_model->delete_a($a);
-        redirect("kelompok/anggota/{$id}");
+        return redirect()->to("kelompok/anggota/{$id}");
     }
 
     public function to_master($id = 0)
@@ -293,6 +293,6 @@ class Kelompok extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('kelompok');
+        return redirect()->to('kelompok');
     }
 }

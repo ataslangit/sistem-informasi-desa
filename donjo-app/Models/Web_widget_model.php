@@ -12,7 +12,7 @@ class Web_widget_model extends Model
         $sql   = 'SELECT * FROM widget limit 1';
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function update($id = 0)
@@ -21,7 +21,7 @@ class Web_widget_model extends Model
 
         $sql   = 'SELECT * FROM widget WHERE 1 ';
         $query = $this->db->query($sql);
-        $hasil = $query->result_array();
+        $hasil = $query->getResultArray();
 
         if ($hasil) {
             $this->db->where('id', $id);

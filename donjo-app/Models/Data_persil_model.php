@@ -12,7 +12,7 @@ class Data_persil_model extends Model
         $sql = 'SELECT nik FROM data_persil
 					UNION SELECT p.nama AS nik FROM data_persil u LEFT JOIN tweb_penduduk p ON u.nik = p.nik';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -62,8 +62,8 @@ class Data_persil_model extends Model
         $strSQL .= $this->search_sql();
         $strSQL .= ') LIMIT ' . $offset . ',' . $limit;
         $query = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
-            $data = $query->result_array();
+        if ($query->getNumRows() > 0) {
+            $data = $query->getResultArray();
         } else {
             $_SESSION['pesan'] = $strSQL;
         }
@@ -92,8 +92,8 @@ class Data_persil_model extends Model
 				LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_clusterdesa
 			 WHERE p.id=' . $id;
         $query = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
-            $data = $query->row_array();
+        if ($query->getNumRows() > 0) {
+            $data = $query->getRowArray();
         }
 
         if (! is_numeric($data['nik'])) {
@@ -164,7 +164,7 @@ class Data_persil_model extends Model
         $strSQL = 'SELECT `id`,`rt`,`rw`,`dusun` FROM `tweb_wil_clusterdesa` WHERE (`rt`>0) ORDER BY `dusun`';
         $query  = $this->db->query($strSQL);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_penduduk($id)
@@ -176,7 +176,7 @@ class Data_persil_model extends Model
         $query = $this->db->query($strSQL);
         $data  = '';
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_penduduk()
@@ -187,8 +187,8 @@ class Data_persil_model extends Model
 			WHERE 1 ORDER BY nama';
         $query = $this->db->query($strSQL);
         $data  = '';
-        $data  = $query->result_array();
-        if ($query->num_rows() > 0) {
+        $data  = $query->getResultArray();
+        if ($query->getNumRows() > 0) {
             $i = 0;
             $j = 0;
 
@@ -215,7 +215,7 @@ class Data_persil_model extends Model
         $data   = false;
         $strSQL = 'SELECT id,nama,ndesc FROM data_persil_peruntukan WHERE 1';
         $query  = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
+        if ($query->getNumRows() > 0) {
             $data = [];
 
             foreach ($query->result() as $row) {
@@ -231,9 +231,9 @@ class Data_persil_model extends Model
         $data   = false;
         $strSQL = 'SELECT id,nama,ndesc FROM data_persil_peruntukan WHERE id=' . $id;
         $query  = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
+        if ($query->getNumRows() > 0) {
             $data      = [];
-            $data[$id] = $query->row_array();
+            $data[$id] = $query->getRowArray();
         }
 
         return $data;
@@ -282,7 +282,7 @@ class Data_persil_model extends Model
         $data   = false;
         $strSQL = 'SELECT id,nama,ndesc FROM data_persil_jenis WHERE 1';
         $query  = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
+        if ($query->getNumRows() > 0) {
             $data = [];
 
             foreach ($query->result() as $row) {
@@ -298,9 +298,9 @@ class Data_persil_model extends Model
         $data   = false;
         $strSQL = 'SELECT id,nama,ndesc FROM data_persil_jenis WHERE id=' . $id;
         $query  = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
+        if ($query->getNumRows() > 0) {
             $data      = [];
-            $data[$id] = $query->row_array();
+            $data[$id] = $query->getRowArray();
         }
 
         return $data;

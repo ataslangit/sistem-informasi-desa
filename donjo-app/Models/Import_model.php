@@ -59,7 +59,7 @@ class Import_model extends Model
 
                             $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='0' AND rt='0' ";
                             $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
+                            if ($result->getNumRows() > 0) {
                             } else {
                                 $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','0','" . fixSQL($strDusun) . "')";
                                 if ($this->db->query($strSQL)) {
@@ -69,7 +69,7 @@ class Import_model extends Model
 
                             $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='0'";
                             $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
+                            if ($result->getNumRows() > 0) {
                             } else {
                                 $strSQL = "INSERT INTO tweb_wil_clusterdesa(rt,rw,dusun) VALUES('0','-','" . fixSQL($strDusun) . "')";
                                 if ($this->db->query($strSQL)) {
@@ -79,7 +79,7 @@ class Import_model extends Model
 
                             $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
                             $result = $this->db->query($strSQL);
-                            if ($result->num_rows() > 0) {
+                            if ($result->getNumRows() > 0) {
                                 $rs     = $result->row(0);
                                 $id_wil = $rs->id;
                             } else {
@@ -88,7 +88,7 @@ class Import_model extends Model
                                 if ($result) {
                                     $strSQL = "SELECT id FROM tweb_wil_clusterdesa WHERE dusun='" . fixSQL($strDusun) . "' AND rw='-' AND rt='" . fixSQL($strRT) . "' LIMIT 1";
                                     $result = $this->db->query($strSQL);
-                                    if ($result->num_rows() > 0) {
+                                    if ($result->getNumRows() > 0) {
                                         $rs     = $result->row(0);
                                         $id_wil = $rs->id;
                                     }
@@ -104,7 +104,7 @@ class Import_model extends Model
                                     $nKK++;
                                     $strSQL = "SELECT id FROM tweb_keluarga WHERE ((no_kk='" . fixSQL($item[0]) . "') AND (nik_kepala='" . fixSQL($item[23]) . "')) LIMIT 1";
                                     $result = $this->db->query($strSQL);
-                                    if ($result->num_rows() > 0) {
+                                    if ($result->getNumRows() > 0) {
                                         $rs    = $result->row(0);
                                         $id_kk = $rs->id;
                                     }
@@ -357,7 +357,7 @@ class Import_model extends Model
 
         $sql = 'SELECT id FROM tweb_keluarga';
         if ($a = $this->db->query($sql)) {
-            $hsl = $a->result_array();
+            $hsl = $a->getResultArray();
 
             foreach ($hsl as $hsl2) {
                 $idnya = ($hsl2['id']);
@@ -548,7 +548,7 @@ class Import_model extends Model
             }
             $sql     = 'SELECT id FROM tweb_wil_clusterdesa WHERE rt = ? OR rt = ?';
             $query   = $this->db->query($sql, [$rt, $rt2]);
-            $cluster = $query->row_array();
+            $cluster = $query->getRowArray();
             if ($cluster) {
                 $id_cluster = $cluster['id'];
             } else {
@@ -609,7 +609,7 @@ class Import_model extends Model
 
             $sql   = 'SELECT nama FROM tweb_penduduk WHERE nik = ?';
             $query = $this->db->query($sql, $nik);
-            $pdd   = $query->row_array();
+            $pdd   = $query->getRowArray();
 
             $nama = '--> GAGAL';
             if ($pdd) {
@@ -681,7 +681,7 @@ class Import_model extends Model
         $sql = 'SELECT id,no_kk FROM tweb_rtm WHERE 1 ';
 
         $query = $this->db->query($sql);
-        $rtm   = $query->result_array();
+        $rtm   = $query->getResultArray();
 
         $i = 0;
 
@@ -724,7 +724,7 @@ class Import_model extends Model
         $sql = 'SELECT id,no_kk FROM tweb_rtm WHERE 1 ';
 
         $query = $this->db->query($sql);
-        $rtm   = $query->result_array();
+        $rtm   = $query->getResultArray();
 
         $i = 0;
 

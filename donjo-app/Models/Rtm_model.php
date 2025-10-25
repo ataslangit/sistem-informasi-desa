@@ -13,7 +13,7 @@ class Rtm_model extends Model
     {
         $sql   = 'SELECT t.nama,t.kk_level FROM tweb_rtm u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -159,12 +159,12 @@ class Rtm_model extends Model
         $sql .= $this->rw_sql();
         $sql .= $this->rt_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -208,7 +208,7 @@ class Rtm_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -263,7 +263,7 @@ class Rtm_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -276,7 +276,7 @@ class Rtm_model extends Model
 
             $sqlp                = 'SELECT nama FROM tweb_penduduk WHERE id_rtm = ? AND rtm_level <> 1';
             $query               = $this->db->query($sqlp, $data[$i]['id']);
-            $data[$i]['anggota'] = $query->result_array();
+            $data[$i]['anggota'] = $query->getResultArray();
 
             $i++;
             $j++;
@@ -294,7 +294,7 @@ class Rtm_model extends Model
 
         $sql   = 'SELECT id FROM tweb_rtm ORDER by id DESC LIMIT 1';
         $query = $this->db->query($sql);
-        $kk    = $query->row_array();
+        $kk    = $query->getRowArray();
 
         $kw                = $this->get_kode_wilayah();
         $nortm             = 100000 + $kk['id'];
@@ -384,7 +384,7 @@ class Rtm_model extends Model
         if ($data['rtm_level'] === 1) {
             $sql    = 'SELECT id_rtm FROM tweb_penduduk WHERE id=?';
             $query  = $this->db->query($sql, $id);
-            $r      = $query->row_array();
+            $r      = $query->getRowArray();
             $id_rtm = $r['id_rtm'];
 
             $del['rtm_level'] = 2;
@@ -454,7 +454,7 @@ class Rtm_model extends Model
         $sql   = 'SELECT * FROM tweb_rtm WHERE dusun_id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_rtm($id = 0)
@@ -462,7 +462,7 @@ class Rtm_model extends Model
         $sql   = 'SELECT * FROM tweb_rtm WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_anggota($id = 0)
@@ -470,7 +470,7 @@ class Rtm_model extends Model
         $sql   = 'SELECT * FROM tweb_penduduk WHERE id_rtm=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_kode_wilayah()
@@ -485,7 +485,7 @@ class Rtm_model extends Model
     {
         $sql   = 'SELECT p.id,p.nik,p.nama,h.nama as kk_level FROM tweb_penduduk p LEFT JOIN tweb_penduduk_hubungan h ON p.kk_level=h.id WHERE (status = 1 OR status = 3) AND id_rtm = 0';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -503,7 +503,7 @@ class Rtm_model extends Model
         $sql = 'SELECT b.dusun,b.rw,b.rt,u.id,nik,x.nama as sex,k.no_kk,u.rtm_level,tempatlahir,tanggallahir,a.nama as agama, d.nama as pendidikan,j.nama as pekerjaan,w.nama as status_kawin,f.nama as warganegara,nama_ayah,nama_ibu,g.nama as golongan_darah,u.nama,status,h.nama AS hubungan FROM tweb_penduduk u LEFT JOIN tweb_keluarga k ON u.id_kk = k.id LEFT JOIN tweb_penduduk_agama a ON u.agama_id = a.id LEFT JOIN tweb_penduduk_pekerjaan j ON u.pekerjaan_id = j.id LEFT JOIN tweb_penduduk_pendidikan_kk d ON u.pendidikan_kk_id = d.id LEFT JOIN tweb_penduduk_warganegara f ON u.warganegara_id = f.id LEFT JOIN tweb_golongan_darah g ON u.golongan_darah_id = g.id LEFT JOIN tweb_penduduk_kawin w ON u.status_kawin = w.id LEFT JOIN tweb_penduduk_sex x ON u.sex = x.id LEFT JOIN tweb_rtm_hubungan h ON u.rtm_level = h.id LEFT JOIN tweb_wil_clusterdesa b ON u.id_cluster = b.id WHERE id_rtm = ? ORDER BY rtm_level';
 
         $query = $this->db->query($sql, [$id]);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -523,7 +523,7 @@ class Rtm_model extends Model
         $sql   = 'SELECT nik,u.nama,r.no_kk,c.dusun,c.rw,c.rt FROM tweb_penduduk u LEFT JOIN tweb_rtm r ON u.id_rtm = r.id LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE r.id = ? AND u.rtm_level =1 LIMIT 1';
         $query = $this->db->query($sql, [$id]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_hubungan()
@@ -531,7 +531,7 @@ class Rtm_model extends Model
         $sql   = 'SELECT id,nama as hubungan FROM tweb_rtm_hubungan WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function update_nokk($id = 0)

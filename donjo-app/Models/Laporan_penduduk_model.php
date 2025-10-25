@@ -13,7 +13,7 @@ class Laporan_penduduk_model extends Model
     {
         $sql   = 'SELECT dusun_nama FROM tweb_wil_dusun';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -114,12 +114,12 @@ class Laporan_penduduk_model extends Model
         }
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $o;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -228,7 +228,7 @@ class Laporan_penduduk_model extends Model
 
         $sql .= $order_sql;
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         if ($lap <= 20) {
             $sql3 = 'SELECT (SELECT COUNT(p.id) FROM tweb_penduduk p WHERE p.status_dasar=1 AND (status = 1 OR status = 2)) AS jumlah,
@@ -241,7 +241,7 @@ class Laporan_penduduk_model extends Model
         }
 
         $query3 = $this->db->query($sql3);
-        $bel    = $query3->row_array();
+        $bel    = $query3->getRowArray();
 
         $total['jumlah']    = 0;
         $bel['no']          = '';
@@ -307,7 +307,7 @@ class Laporan_penduduk_model extends Model
         $sql   = 'SELECT * FROM tweb_penduduk_umur WHERE status=1 order by dari ';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_rentang($id = 0)
@@ -315,7 +315,7 @@ class Laporan_penduduk_model extends Model
         $sql   = "SELECT * FROM tweb_penduduk_umur WHERE id= {$id} ";
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_rentang_terakhir()
@@ -323,7 +323,7 @@ class Laporan_penduduk_model extends Model
         $sql   = "SELECT (case when max(sampai) is null then '0' else (max(sampai)+1) end) as dari FROM tweb_penduduk_umur WHERE status=1 ";
         $query = $this->db->query($sql);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function insert_rentang()

@@ -118,13 +118,13 @@ class Export_model extends Model
 
         $sql   = "SELECT u.id FROM tweb_penduduk u WHERE (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= '2' AND (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) <= '17' ORDER BY id LIMIT 87";
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
 
         while ($i < count($data)) {
             $sql2   = 'SELECT u.*,(SELECT COUNT(id) FROM analisis_parameter WHERE id_indikator = u.id) AS jml FROM analisis_indikator u WHERE id_master = 1 ORDER BY bobot';
             $query2 = $this->db->query($sql2);
-            $res    = $query2->result_array();
+            $res    = $query2->getResultArray();
             $j      = 0;
 
             while ($j < count($res)) {
@@ -135,7 +135,7 @@ class Export_model extends Model
 
                 $sqlx   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ?';
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
-                $jaw    = $queryx->result_array();
+                $jaw    = $queryx->getResultArray();
 
                 $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
 
@@ -170,13 +170,13 @@ class Export_model extends Model
 
         $sql   = "SELECT u.id FROM tweb_penduduk u WHERE (SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(`tanggallahir`)), '%Y')+0 FROM tweb_penduduk WHERE id = u.id) >= '21' ORDER BY id limit 75";
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
 
         while ($i < count($data)) {
             $sql2   = 'SELECT u.*,(SELECT COUNT(id) FROM analisis_parameter WHERE id_indikator = u.id) AS jml FROM analisis_indikator u WHERE id_master = 2 ORDER BY bobot';
             $query2 = $this->db->query($sql2);
-            $res    = $query2->result_array();
+            $res    = $query2->getResultArray();
             $j      = 0;
 
             while ($j < count($res)) {
@@ -187,7 +187,7 @@ class Export_model extends Model
 
                 $sqlx   = 'SELECT id FROM analisis_parameter WHERE id_indikator = ?';
                 $queryx = $this->db->query($sqlx, $res[$j]['id']);
-                $jaw    = $queryx->result_array();
+                $jaw    = $queryx->getResultArray();
 
                 $numbers = mt_rand($jaw[0]['id'], $jaw[$jm]['id']);
 
@@ -216,7 +216,7 @@ class Export_model extends Model
     {
         $sql   = 'SELECT * FROM sheet1 WHERE 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
 
         while ($i < count($data)) {
@@ -230,7 +230,7 @@ class Export_model extends Model
 
             $sql2   = 'SELECT id FROM analisis_indikator ORDER BY id DESC LIMIT 1';
             $query2 = $this->db->query($sql2);
-            $res    = $query2->row_array();
+            $res    = $query2->getRowArray();
 
             $updx['id_indikator'] = $res['id'];
 
@@ -293,7 +293,7 @@ class Export_model extends Model
     {
         $sql   = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='sid'";
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         foreach ($data as $dat) {
             $tbl = $dat['TABLE_NAME'];
@@ -329,6 +329,6 @@ class Export_model extends Model
 
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

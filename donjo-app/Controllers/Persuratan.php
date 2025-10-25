@@ -18,7 +18,7 @@ class Persuratan extends BaseController
         $this->load->model('user_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2' && $grup !== '3') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('config_model');
         $this->load->model('header_model');
@@ -142,9 +142,9 @@ class Persuratan extends BaseController
     {
         $cari = $this->input->post('nik');
         if ($cari !== '') {
-            redirect("persuratan/form/{$cari}");
+            return redirect()->to("persuratan/form/{$cari}");
         } else {
-            redirect('persuratan');
+            return redirect()->to('persuratan');
         }
     }
 }

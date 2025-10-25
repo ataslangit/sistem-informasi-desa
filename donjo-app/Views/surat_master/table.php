@@ -105,7 +105,7 @@
                             <option value="100" <?php selected($per_page,100); ?>>100</option>
                         </select>
                         <label>Dari</label>
-                        <label><?php echo $paging->num_rows?></label>
+                        <label><?php echo $paging->getNumRows?></label>
                         <label>Total Data</label>
                     </form>
                 </div>

@@ -25,7 +25,7 @@ class Garis extends BaseController
     {
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['line'], $_SESSION['subline']);
 
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function index($p = 1, $o = 0)
@@ -115,7 +115,7 @@ class Garis extends BaseController
     public function update_maps($p = 1, $o = 0, $id = '')
     {
         $this->plan_garis_model->update_position($id);
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 
     public function search()
@@ -126,7 +126,7 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function filter()
@@ -137,7 +137,7 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function line()
@@ -148,7 +148,7 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['line']);
         }
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function subline()
@@ -160,42 +160,42 @@ class Garis extends BaseController
         } else {
             unset($_SESSION['subline']);
         }
-        redirect('garis');
+        return redirect()->to('garis');
     }
 
     public function insert($tip = 1)
     {
         $this->plan_garis_model->insert($tip);
-        redirect("garis/index/{$tip}");
+        return redirect()->to("garis/index/{$tip}");
     }
 
     public function update($id = '', $p = 1, $o = 0)
     {
         $this->plan_garis_model->update($id);
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->plan_garis_model->delete($id);
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->plan_garis_model->delete_all();
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 
     public function garis_lock($id = '')
     {
         $this->plan_garis_model->garis_lock($id, 1);
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 
     public function garis_unlock($id = '')
     {
         $this->plan_garis_model->garis_lock($id, 2);
-        redirect("garis/index/{$p}/{$o}");
+        return redirect()->to("garis/index/{$p}/{$o}");
     }
 }

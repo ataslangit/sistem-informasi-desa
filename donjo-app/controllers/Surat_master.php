@@ -20,7 +20,7 @@ class Surat_master extends BaseController
         $this->load->model('header_model');
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
     }
 
@@ -30,7 +30,7 @@ class Surat_master extends BaseController
         $_SESSION['surat']    = $id;
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['tipe'], $_SESSION['kategori']);
 
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function index($p = 1, $o = 0)
@@ -143,7 +143,7 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['cari']);
         }
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function filter()
@@ -154,7 +154,7 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['filter']);
         }
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function tipe()
@@ -165,7 +165,7 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['tipe']);
         }
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function kategori()
@@ -176,72 +176,72 @@ class Surat_master extends BaseController
         } else {
             unset($_SESSION['kategori']);
         }
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function insert()
     {
         $this->surat_master_model->insert();
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function update($p = 1, $o = 0, $id = '')
     {
         $this->surat_master_model->update($id);
-        redirect("surat_master/index/{$p}/{$o}");
+        return redirect()->to("surat_master/index/{$p}/{$o}");
     }
 
     public function upload($p = 1, $o = 0, $url = '')
     {
         $this->surat_master_model->upload($url);
-        redirect("surat_master/index/{$p}/{$o}");
+        return redirect()->to("surat_master/index/{$p}/{$o}");
     }
 
     public function delete($p = 1, $o = 0, $id = '')
     {
         $this->surat_master_model->delete($id);
-        redirect("surat_master/index/{$p}/{$o}");
+        return redirect()->to("surat_master/index/{$p}/{$o}");
     }
 
     public function delete_all($p = 1, $o = 0)
     {
         $this->surat_master_model->delete_all();
-        redirect("surat_master/index/{$p}/{$o}");
+        return redirect()->to("surat_master/index/{$p}/{$o}");
     }
 
     public function p_insert($in = '')
     {
         $this->surat_master_model->p_insert($in);
-        redirect("surat_master/atribut/{$in}");
+        return redirect()->to("surat_master/atribut/{$in}");
     }
 
     public function p_update($in = '', $id = '')
     {
         $this->surat_master_model->p_update($id);
-        redirect("surat_master/atribut/{$in}");
+        return redirect()->to("surat_master/atribut/{$in}");
     }
 
     public function p_delete($in = '', $id = '')
     {
         $this->surat_master_model->p_delete($id);
-        redirect("surat_master/atribut/{$in}");
+        return redirect()->to("surat_master/atribut/{$in}");
     }
 
     public function p_delete_all()
     {
         $this->surat_master_model->p_delete_all();
-        redirect("surat_master/atribut/{$in}");
+        return redirect()->to("surat_master/atribut/{$in}");
     }
 
     public function lock($id = 0, $k = 0)
     {
         $this->surat_master_model->lock($id, $k);
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 
     public function favorit($id = 0, $k = 0)
     {
         $this->surat_master_model->favorit($id, $k);
-        redirect('surat_master');
+        return redirect()->to('surat_master');
     }
 }

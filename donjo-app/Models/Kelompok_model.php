@@ -13,7 +13,7 @@ class Kelompok_model extends Model
     {
         $sql   = 'SELECT nama FROM kelompok';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -58,12 +58,12 @@ class Kelompok_model extends Model
         $sql .= $this->filter_sql();
 
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -105,7 +105,7 @@ class Kelompok_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -145,7 +145,7 @@ class Kelompok_model extends Model
 
         $sql   = 'SELECT id FROM kelompok_anggota WHERE id_kelompok = ? AND id_penduduk = ?';
         $query = $this->db->query($sql, [$data['id_kelompok'], $data['id_penduduk']]);
-        $kel   = $query->row_array();
+        $kel   = $query->getRowArray();
 
         if (! $kel) {
             $outp = $this->db->insert('kelompok_anggota', $data);
@@ -235,7 +235,7 @@ class Kelompok_model extends Model
         $sql   = 'SELECT * FROM kelompok WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_anggota($id = 0, $id_a = 0)
@@ -243,7 +243,7 @@ class Kelompok_model extends Model
         $sql   = 'SELECT * FROM kelompok_anggota WHERE id_kelompok=? AND id_penduduk = ?';
         $query = $this->db->query($sql, [$id, $id_a]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_master()
@@ -251,14 +251,14 @@ class Kelompok_model extends Model
         $sql   = 'SELECT * FROM kelompok_master';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_penduduk()
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE status_dasar = 1';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -274,7 +274,7 @@ class Kelompok_model extends Model
     {
         $sql   = "SELECT u.*,p.nik,p.nama,p.sex,(SELECT DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(tanggallahir)), '%Y')+0 FROM tweb_penduduk WHERE id = p.id) AS umur,a.dusun,a.rw,a.rt FROM kelompok_anggota u LEFT JOIN tweb_penduduk p ON u.id_penduduk = p.id LEFT JOIN tweb_wil_clusterdesa a ON p.id_cluster = a.id WHERE id_kelompok = ?";
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 

@@ -13,7 +13,7 @@ class Kelompok_master_model extends Model
     {
         $sql   = 'SELECT kelompok FROM kelompok_master';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -68,12 +68,12 @@ class Kelompok_master_model extends Model
         $sql .= $this->filter_sql();
         $sql .= $this->state_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -114,7 +114,7 @@ class Kelompok_master_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -189,7 +189,7 @@ class Kelompok_master_model extends Model
         $sql   = 'SELECT * FROM kelompok_master WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_subjek()
@@ -197,6 +197,6 @@ class Kelompok_master_model extends Model
         $sql   = 'SELECT * FROM kelompok_ref_subjek';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 }

@@ -16,7 +16,7 @@ class Program_bantuan_model extends Model
         }
         $query = $this->db->query($strSQL);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function get_program($slug)
@@ -25,11 +25,11 @@ class Program_bantuan_model extends Model
             $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE 1';
             $query  = $this->db->query($strSQL);
 
-            return $query->result_array();
+            return $query->getResultArray();
         }
         $strSQL = 'SELECT p.id,p.nama,p.sasaran,p.ndesc,p.sdate,p.edate,p.userid,p.status FROM program p WHERE p.id=' . $slug;
         $query  = $this->db->query($strSQL);
-        $hasil0 = $query->row_array();
+        $hasil0 = $query->getRowArray();
 
         switch ($hasil0['sasaran']) {
             case 1:
@@ -38,8 +38,8 @@ class Program_bantuan_model extends Model
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
                 $query  = $this->db->query($strSQL);
                 $filter = [];
-                if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                if ($query->getNumRows() > 0) {
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -60,8 +60,8 @@ class Program_bantuan_model extends Model
 						WHERE 1 ORDER BY nama';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
-                if ($query->num_rows() > 0) {
+                $data  = $query->getResultArray();
+                if ($query->getNumRows() > 0) {
                     $i = 0;
                     $j = 0;
 
@@ -91,8 +91,8 @@ class Program_bantuan_model extends Model
 						WHERE p.program_id=' . $slug;
                 $query  = $this->db->query($strSQL);
                 $filter = [];
-                if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                if ($query->getNumRows() > 0) {
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -113,8 +113,8 @@ class Program_bantuan_model extends Model
 					WHERE 1';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
-                if ($query->num_rows() > 0) {
+                $data  = $query->getResultArray();
+                if ($query->getNumRows() > 0) {
                     $i = 0;
                     $j = 0;
 
@@ -141,8 +141,8 @@ class Program_bantuan_model extends Model
 						LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE p.program_id=' . $slug;
                 $query  = $this->db->query($strSQL);
                 $filter = [];
-                if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                if ($query->getNumRows() > 0) {
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -165,8 +165,8 @@ class Program_bantuan_model extends Model
 						';
                 $query = $this->db->query($strSQL);
                 $data  = '';
-                $data  = $query->result_array();
-                if ($query->num_rows() > 0) {
+                $data  = $query->getResultArray();
+                if ($query->getNumRows() > 0) {
                     $i = 0;
                     $j = 0;
 
@@ -192,8 +192,8 @@ class Program_bantuan_model extends Model
 						WHERE p.program_id=' . $slug;
                 $query  = $this->db->query($strSQL);
                 $filter = [];
-                if ($query->num_rows() > 0) {
-                    $data = $query->result_array();
+                if ($query->getNumRows() > 0) {
+                    $data = $query->getResultArray();
                     $i    = 0;
 
                     while ($i < count($data)) {
@@ -211,8 +211,8 @@ class Program_bantuan_model extends Model
                 $strSQL = 'SELECT id,nama FROM kelompok WHERE 1';
                 $query  = $this->db->query($strSQL);
                 $data   = '';
-                $data   = $query->result_array();
-                if ($query->num_rows() > 0) {
+                $data   = $query->getResultArray();
+                if ($query->getNumRows() > 0) {
                     $i = 0;
 
                     while ($i < count($data)) {
@@ -244,8 +244,8 @@ class Program_bantuan_model extends Model
 			LEFT JOIN program p ON p.id = o.program_id
 			WHERE ((o.peserta='" . fixSQL($id) . "') AND (o.sasaran='" . fixSQL($cat) . "'))";
         $query = $this->db->query($strSQL);
-        if ($query->num_rows() > 0) {
-            $data_program = $query->result_array();
+        if ($query->getNumRows() > 0) {
+            $data_program = $query->getResultArray();
         }
 
         switch ($cat) {
@@ -253,8 +253,8 @@ class Program_bantuan_model extends Model
                 $strSQL = "SELECT o.nama,o.foto,o.nik,w.rt,w.rw,w.dusun FROM tweb_penduduk o
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=o.id_cluster WHERE o.nik='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
-                if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                if ($query->getNumRows() > 0) {
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => $row['nama'] . ' - ' . $row['nik'],
@@ -270,8 +270,8 @@ class Program_bantuan_model extends Model
 					LEFT JOIN tweb_penduduk p ON o.nik_kepala=p.id
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster WHERE o.no_kk='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
-                if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                if ($query->getNumRows() > 0) {
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => 'Kepala KK : ' . $row['nama'] . ', NO KK: ' . $row['no_kk'],
@@ -289,8 +289,8 @@ class Program_bantuan_model extends Model
 					WHERE 1
 					';
                 $query = $this->db->query($strSQL);
-                if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                if ($query->getNumRows() > 0) {
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => 'Kepala RTM : ' . $row['nama'] . ', NIK: ' . $row['nik'],
@@ -307,8 +307,8 @@ class Program_bantuan_model extends Model
 				 LEFT JOIN tweb_wil_clusterdesa w ON w.id=p.id_cluster
 				 WHERE k.id='" . fixSQL($id) . "'";
                 $query = $this->db->query($strSQL);
-                if ($query->num_rows() > 0) {
-                    $row         = $query->row_array();
+                if ($query->getNumRows() > 0) {
+                    $row         = $query->getRowArray();
                     $data_profil = [
                         'id'    => $id,
                         'nama'  => $row['nama'],
@@ -345,12 +345,12 @@ class Program_bantuan_model extends Model
     {
         $strSQL = 'SELECT sasaran FROM program WHERE id=' . $id;
         $hasil  = $this->db->query($strSQL);
-        if ($hasil->num_rows() > 0) {
-            $row = $hasil->row_array();
+        if ($hasil->getNumRows() > 0) {
+            $row = $hasil->getRowArray();
         }
         $strSQL = "SELECT id FROM `program_peserta` WHERE program_id='" . fixSQL($id) . "' AND peserta='" . fixSQL($nik) . "'";
         $hasil  = $this->db->query($strSQL);
-        if ($hasil->num_rows() > 0) {
+        if ($hasil->getNumRows() > 0) {
             return false;
         }
         $strSQL = "INSERT INTO `program_peserta`(program_id,peserta,sasaran) VALUES('" . $id . "','" . fixSQL($nik) . "','" . $row['sasaran'] . "')";

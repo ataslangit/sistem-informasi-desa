@@ -14,7 +14,7 @@ class Analisis_laporan_model extends Model
         $sql = 'SELECT no_kk FROM tweb_keluarga
 		UNION SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -168,12 +168,12 @@ class Analisis_laporan_model extends Model
             $query = $this->db->query($sql, [$per, $_SESSION['analisis_master']]);
         }
 
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -254,7 +254,7 @@ class Analisis_laporan_model extends Model
             $sql .= $paging_sql;
             $query = $this->db->query($sql, [$per, $_SESSION['analisis_master']]);
         }
-        $data = $query->result_array();
+        $data = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -291,7 +291,7 @@ class Analisis_laporan_model extends Model
         $per   = $this->get_aktif_periode();
         $sql   = 'SELECT s.id as id_parameter,s.jawaban as jawaban,s.nilai FROM analisis_respon r LEFT JOIN analisis_parameter s ON r.id_parameter = s.id WHERE r.id_subjek = ? AND r.id_periode = ? AND r.id_indikator=?';
         $query = $this->db->query($sql, [$id, $per, $in]);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         if (empty($data['jawaban'])) {
             $data['jawaban'] = '-';
@@ -316,7 +316,7 @@ class Analisis_laporan_model extends Model
         $sql .= $this->master_sql();
         $sql .= ' ORDER BY u.nomor ASC';
         $query = $this->db->query($sql, $id);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
         $i     = 0;
 
         while ($i < count($data)) {
@@ -337,7 +337,7 @@ class Analisis_laporan_model extends Model
         $per   = $this->get_aktif_periode();
         $sql   = 'SELECT akumulasi FROM analisis_respon_hasil u WHERE id_subjek = ? AND id_periode = ? ';
         $query = $this->db->query($sql, [$id, $per]);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         return $data['akumulasi'];
     }
@@ -347,7 +347,7 @@ class Analisis_laporan_model extends Model
         $sql   = 'SELECT * FROM analisis_master WHERE id=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_subjek($id = 0)
@@ -371,7 +371,7 @@ class Analisis_laporan_model extends Model
         }
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function multi_jawab($p = 0, $o = 0)
@@ -406,7 +406,7 @@ class Analisis_laporan_model extends Model
         $sql .= $asign_sql;
         $sql .= $order_sql;
         $query = $this->db->query($sql, $master);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -425,7 +425,7 @@ class Analisis_laporan_model extends Model
             $idcb  = $_SESSION['jawab'];
             $sql   = "SELECT DISTINCT(id_indikator) AS id_jmkf FROM analisis_parameter WHERE id IN({$idcb})";
             $query = $this->db->query($sql);
-            $data  = $query->result_array();
+            $data  = $query->getResultArray();
 
             return $data;
         }
@@ -437,7 +437,7 @@ class Analisis_laporan_model extends Model
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         return $data['id'];
     }
@@ -446,7 +446,7 @@ class Analisis_laporan_model extends Model
     {
         $sql   = 'SELECT * FROM analisis_periode WHERE aktif=1 AND id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->row_array();
+        $data  = $query->getRowArray();
 
         return $data['nama'];
     }
@@ -456,7 +456,7 @@ class Analisis_laporan_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND rw = '0' ";
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_rw($dusun = '')
@@ -464,7 +464,7 @@ class Analisis_laporan_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rt = '0' AND dusun = ? AND rw <> '0'";
         $query = $this->db->query($sql, $dusun);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_rt($dusun = '', $rw = '')
@@ -472,14 +472,14 @@ class Analisis_laporan_model extends Model
         $sql   = "SELECT * FROM tweb_wil_clusterdesa WHERE rw = ? AND dusun = ? AND rt <> '0'";
         $query = $this->db->query($sql, [$rw, $dusun]);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_klasifikasi()
     {
         $sql   = 'SELECT * FROM analisis_klasifikasi WHERE id_master=?';
         $query = $this->db->query($sql, $_SESSION['analisis_master']);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         return $data;
     }

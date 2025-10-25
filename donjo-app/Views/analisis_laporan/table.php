@@ -25,7 +25,7 @@
 
 </style>
 <div id="pageC">
-    <?php view('analisis_master/left',$data);?>
+    <?= view('analisis_master/left',$data);?>
     <div class="content-header">
     </div>
     <div id="contentpane">
@@ -171,7 +171,7 @@
                             <option value="100" <?php selected($per_page,100); ?>>100</option>
                         </select>
                         <label>Dari</label>
-                        <label><?php echo $paging->num_rows?></label>
+                        <label><?php echo $paging->getNumRows?></label>
                         <label>Total Data</label>
                     </form>
                 </div>

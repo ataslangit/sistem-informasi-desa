@@ -13,7 +13,7 @@ class Keluarga_model extends Model
     {
         $sql   = 'SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -36,7 +36,7 @@ class Keluarga_model extends Model
     {
         $sql   = 'SELECT no_kk FROM tweb_keluarga WHERE 1 ';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i    = 0;
         $outp = '';
@@ -55,7 +55,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT no_kk FROM tweb_keluarga WHERE 1 ';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function dn()
@@ -63,7 +63,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT nik FROM tweb_penduduk WHERE 1 ';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function sex_sql()
@@ -209,12 +209,12 @@ class Keluarga_model extends Model
         $sql .= $this->rt_sql();
         $sql .= $this->sex_sql();
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -259,7 +259,7 @@ class Keluarga_model extends Model
         $sql .= $paging_sql;
 
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -303,12 +303,12 @@ class Keluarga_model extends Model
             $sql .= $this->bedah_rumah_sql();
         }
         $query    = $this->db->query($sql);
-        $row      = $query->row_array();
+        $row      = $query->getRowArray();
         $jml_data = $row['id'];
 
         $cfg['page']     = $p;
         $cfg['per_page'] = $_SESSION['per_page'];
-        $cfg['num_rows'] = $jml_data;
+        $cfg['getNumRows'] = $jml_data;
 
         $paging->init($cfg);
 
@@ -359,7 +359,7 @@ class Keluarga_model extends Model
             $sql .= $paging_sql;
         }
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
         $j = $offset;
@@ -386,7 +386,7 @@ class Keluarga_model extends Model
 
         $sql   = 'SELECT id FROM tweb_keluarga WHERE nik_kepala=?';
         $query = $this->db->query($sql, $temp);
-        $kk    = $query->row_array();
+        $kk    = $query->getRowArray();
 
         $default = [
             'id_kk'    => $kk['id'],
@@ -460,7 +460,7 @@ class Keluarga_model extends Model
 
         $sql   = 'SELECT id FROM tweb_penduduk WHERE nik=?';
         $query = $this->db->query($sql, $data['nik']);
-        $temp2 = $query->row_array();
+        $temp2 = $query->getRowArray();
 
         $data2['nik_kepala'] = $temp2['id'];
         $data2['no_kk']      = $_POST['no_kk'];
@@ -469,7 +469,7 @@ class Keluarga_model extends Model
 
         $sql   = 'SELECT id FROM tweb_keluarga WHERE nik_kepala=?';
         $query = $this->db->query($sql, $temp);
-        $kk    = $query->row_array();
+        $kk    = $query->getRowArray();
 
         $default['id_kk']    = $kk['id'];
         $default['kk_level'] = 1;
@@ -572,7 +572,7 @@ class Keluarga_model extends Model
 
         $sql   = 'SELECT id_kk FROM tweb_penduduk WHERE id=?';
         $query = $this->db->query($sql, $id);
-        $pend  = $query->row_array();
+        $pend  = $query->getRowArray();
 
         if ($data['kk_level'] === 1) {
             $lvl['kk_level'] = 11;
@@ -647,7 +647,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT * FROM tweb_keluarga WHERE dusun_id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_keluarga($id = 0)
@@ -655,7 +655,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT * FROM tweb_keluarga WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_anggota($id = 0)
@@ -663,14 +663,14 @@ class Keluarga_model extends Model
         $sql   = 'SELECT * FROM tweb_penduduk WHERE id=?';
         $query = $this->db->query($sql, $id);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_penduduk_lepas()
     {
         $sql   = 'SELECT id,nik,nama FROM tweb_penduduk WHERE id_kk = 0';
         $query = $this->db->query($sql);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -687,7 +687,7 @@ class Keluarga_model extends Model
         $sql = 'SELECT b.dusun,b.rw,b.rt,u.id,nik,dokumen_pasport,dokumen_kitas,x.nama as sex,u.kk_level,tempatlahir,tanggallahir,a.nama as agama, d.nama as pendidikan,j.nama as pekerjaan,w.nama as status_kawin,f.nama as warganegara,nama_ayah,nama_ibu,g.nama as golongan_darah,u.nama,status,h.nama AS hubungan FROM tweb_penduduk u LEFT JOIN tweb_penduduk_agama a ON u.agama_id = a.id LEFT JOIN tweb_penduduk_pekerjaan j ON u.pekerjaan_id = j.id LEFT JOIN tweb_penduduk_pendidikan_kk d ON u.pendidikan_kk_id = d.id LEFT JOIN tweb_penduduk_warganegara f ON u.warganegara_id = f.id LEFT JOIN tweb_golongan_darah g ON u.golongan_darah_id = g.id LEFT JOIN tweb_penduduk_kawin w ON u.status_kawin = w.id LEFT JOIN tweb_penduduk_sex x ON u.sex = x.id LEFT JOIN tweb_penduduk_hubungan h ON u.kk_level = h.id LEFT JOIN tweb_wil_clusterdesa b ON u.id_cluster = b.id WHERE status = 1 AND id_kk = ? ORDER BY kk_level';
 
         $query = $this->db->query($sql, [$id]);
-        $data  = $query->result_array();
+        $data  = $query->getResultArray();
 
         $i = 0;
 
@@ -707,7 +707,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT nik,u.nama,tempatlahir,tanggallahir,a.nama as agama,d.nama as pendidikan,j.nama as pekerjaan, x.nama as sex,w.nama as status_kawin,h.nama as hubungan,warganegara_id,nama_ayah,nama_ibu,g.nama as golongan_darah ,c.rt as rt,c.rw as rw,c.dusun as dusun, (SELECT no_kk FROM tweb_keluarga WHERE id = ?) AS no_kk FROM tweb_penduduk u LEFT JOIN tweb_penduduk_pekerjaan j ON u.pekerjaan_id = j.id LEFT JOIN tweb_golongan_darah g ON u.golongan_darah_id = g.id LEFT JOIN tweb_penduduk_pendidikan_kk d ON u.pendidikan_kk_id = d.id LEFT JOIN tweb_penduduk_agama a ON u.agama_id = a.id LEFT JOIN tweb_penduduk_kawin w ON u.status_kawin = w.id LEFT JOIN tweb_penduduk_sex x ON u.sex = x.id LEFT JOIN tweb_penduduk_hubungan h ON u.kk_level = h.id LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.id = (SELECT nik_kepala FROM tweb_keluarga WHERE id = ?) ';
         $query = $this->db->query($sql, [$id, $id]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function get_kepala_a($id)
@@ -715,7 +715,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT u.*,c.*, (SELECT no_kk FROM tweb_keluarga WHERE id = ?) AS no_kk FROM tweb_penduduk u LEFT JOIN tweb_wil_clusterdesa c ON u.id_cluster = c.id WHERE u.id = (SELECT nik_kepala FROM tweb_keluarga WHERE id = ?) ';
         $query = $this->db->query($sql, [$id, $id]);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function list_hubungan()
@@ -723,7 +723,7 @@ class Keluarga_model extends Model
         $sql   = 'SELECT *,nama as hubungan FROM tweb_penduduk_hubungan WHERE 1';
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function insert_a()
@@ -763,7 +763,7 @@ class Keluarga_model extends Model
 
         $sql          = 'select max(id) as id_pend from tweb_penduduk';
         $query        = $this->db->query($sql);
-        $id_pend      = $query->row_array();
+        $id_pend      = $query->getRowArray();
         $x['id_pend'] = $id_pend['id_pend'];
         $x['bulan']   = $blnskrg;
         $x['tahun']   = $thnskrg;
@@ -809,7 +809,7 @@ class Keluarga_model extends Model
 
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function list_raskin()
@@ -834,7 +834,7 @@ class Keluarga_model extends Model
 
         $query = $this->db->query($sql);
 
-        return $query->result_array();
+        return $query->getResultArray();
     }
 
     public function pindah_proses($id = 0, $id_cluster = '')
@@ -846,7 +846,7 @@ class Keluarga_model extends Model
         $sql = "SELECT id FROM tweb_penduduk WHERE id_kk={$id}";
 
         $query = $this->db->query($sql);
-        $data2 = $query->result_array();
+        $data2 = $query->getResultArray();
 
         foreach ($data2 as $datanya) {
             $log['id_pend']   = $datanya['id'];
@@ -889,7 +889,7 @@ class Keluarga_model extends Model
         }
         $query = $this->db->query($sql, $nomor);
 
-        return $query->row_array();
+        return $query->getRowArray();
     }
 
     public function coba(array $data)

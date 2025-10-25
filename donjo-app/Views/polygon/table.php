@@ -10,7 +10,7 @@
 <div id="pageC">
     <table class="inner">
         <tr style="vertical-align:top">
-            <?php 
+            <?php
 ?>
             <td style="background:#fff;padding:0px;">
                 <div class="content">
@@ -99,7 +99,7 @@
                                         <option value="100" <?php selected($per_page,100); ?>>100</option>
                                     </select>
                                     <label>Dari</label>
-                                    <label><strong><?php echo $paging->num_rows?></strong></label>
+                                    <label><strong><?php echo $paging->getNumRows?></strong></label>
                                     <label>Total Data</label>
                                 </form>
                             </div>

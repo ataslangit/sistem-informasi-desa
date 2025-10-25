@@ -1,8 +1,8 @@
-<?php view('layouts/header.php');?>
+<?= view('layouts/header.php');?>
 <div id="contentwrapper">
     <div id="contentcolumn">
         <div class="innertube">
-            <?php 
+            <?php
 							if($m==1)
 								view('partials/mandiri.php');
 							elseif($m==2)
@@ -15,11 +15,11 @@
 </div>
 <div id="rightcolumn">
     <div class="innertube">
-        <?php view('partials/side.right.php');?>
+        <?= view('partials/side.right.php');?>
     </div>
 </div>
 <div id="footer">
-    <?php view('partials/copywright.tpl.php');?>
+    <?= view('partials/copywright.tpl.php');?>
 </div>
 </div>
 </body>

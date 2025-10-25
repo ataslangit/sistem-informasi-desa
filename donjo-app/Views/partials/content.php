@@ -132,7 +132,7 @@ if($artikel){
 <div class="themes nobig2">
 <div class="bleft">
  <label>Jumlah Total Artikel:</label>
-			<label><strong><?php echo $paging->num_rows?></strong></label>
+			<label><strong><?php echo $paging->getNumRows?></strong></label>
 </div>
  <div class="bright">
  <div class="uibutton-group">

@@ -19,7 +19,7 @@ class Program_bantuan extends BaseController
 
         $grup = $this->user_model->sesi_grup($_SESSION['sesi']);
         if ($grup !== '1' && $grup !== '2') {
-            redirect('siteman');
+            return redirect()->to('siteman');
         }
         $this->load->model('header_model');
         $this->load->model('program_bantuan_model');
@@ -86,7 +86,7 @@ class Program_bantuan extends BaseController
             view('program_bantuan/create');
         } else {
             $this->program_bantuan_model->set_program();
-            redirect('program_bantuan/');
+            return redirect()->to('program_bantuan/');
         }
         view('footer');
     }
@@ -107,7 +107,7 @@ class Program_bantuan extends BaseController
             view('program_bantuan/edit', $data);
         } else {
             $this->program_bantuan_model->update_program($id);
-            redirect('program_bantuan/');
+            return redirect()->to('program_bantuan/');
         }
 
         view('footer');
@@ -116,14 +116,14 @@ class Program_bantuan extends BaseController
     public function update($id)
     {
         $this->program_bantuan_model->update_program($id);
-        redirect('program_bantuan/detail/' . $id);
+        return redirect()->to('program_bantuan/detail/' . $id);
     }
 
     public function hapus($id)
     {
         $this->program_bantuan_model->hapus_program($id);
         // view('program_bantuan/formsuccess');
-        redirect('program_bantuan/');
+        return redirect()->to('program_bantuan/');
     }
 
     public function unduhsheet($id = 0)

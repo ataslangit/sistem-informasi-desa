@@ -8,7 +8,7 @@
 
 </script>
 <div id="pageC">
-    <?php view('analisis_master/left',$data);?>
+    <?= view('analisis_master/left',$data);?>
     <div id="contentpane">
         <form id="mainform" name="mainform" action="" method="post">
             <div class="ui-layout-north panel">
@@ -179,7 +179,7 @@ endforeach; ?>
                             <option value="50" <?php selected($per_page,50); ?>>50</option>
                             <option value="100" <?php selected($per_page,100); ?>>100</option>
                         </select>
-                        <label>Dari <?php echo $paging->num_rows?> Total Data</label>
+                        <label>Dari <?php echo $paging->getNumRows?> Total Data</label>
                     </form>
                 </div>
             </div>

@@ -6,7 +6,7 @@ class Paging
 {
     public $page;
     public $per_page;
-    public $num_rows;
+    public $getNumRows;
     public $num_page;
     public $offset;
     public $prev;
@@ -31,8 +31,8 @@ class Paging
         if (isset($input['per_page'])) {
             $this->per_page = $input['per_page'];
         }
-        if (isset($input['num_rows'])) {
-            $this->num_rows = $input['num_rows'];
+        if (isset($input['getNumRows'])) {
+            $this->getNumRows = $input['getNumRows'];
         }
 
         if ((int) $this->page < 1) {
@@ -41,13 +41,13 @@ class Paging
         if ((int) $this->per_page < 1) {
             $this->per_page = 50;
         }
-        if ((int) $this->num_rows < 1) {
-            $my_num_rows = 1;
+        if ((int) $this->getNumRows < 1) {
+            $my_getNumRows = 1;
         } else {
-            $my_num_rows = (int) $this->num_rows;
+            $my_getNumRows = (int) $this->getNumRows;
         }
 
-        $o              = ($my_num_rows - 1) / $this->per_page;
+        $o              = ($my_getNumRows - 1) / $this->per_page;
         $this->num_page = (int) $o + 1;
 
         $o            = ($this->page - 1) * $this->per_page;
