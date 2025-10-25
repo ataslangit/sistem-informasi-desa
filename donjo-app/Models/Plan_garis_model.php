@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Plan_garis_model extends CI_Model
+class Plan_garis_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql   = 'SELECT nama FROM garis';

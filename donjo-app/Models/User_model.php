@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class User_model extends CI_Model
+class User_model extends Model
 {
+    protected $table            = 'tbl';
     public function siteman()
     {
         $username = $this->input->post('username');

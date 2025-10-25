@@ -1,7 +1,12 @@
 <?php
 
-class Pamong_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Pamong_model extends Model
 {
+    protected $table            = 'tbl';
     public function list_data()
     {
         $sql = 'SELECT u.* FROM tweb_desa_pamong u WHERE 1';

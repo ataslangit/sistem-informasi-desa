@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Surat_keluar_model extends CI_Model
+class Surat_keluar_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql   = 'SELECT no_surat FROM log_surat';

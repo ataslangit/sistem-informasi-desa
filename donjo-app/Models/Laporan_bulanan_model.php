@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Laporan_bulanan_model extends CI_Model
+class Laporan_bulanan_model extends Model
 {
+    protected $table            = 'tbl';
     public function __construct()
     {
         parent::__construct();

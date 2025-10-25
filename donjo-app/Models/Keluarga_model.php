@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Keluarga_model extends CI_Model
+class Keluarga_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql   = 'SELECT t.nama FROM tweb_keluarga u LEFT JOIN tweb_penduduk t ON u.nik_kepala = t.id LEFT JOIN tweb_wil_clusterdesa c ON t.id_cluster = c.id WHERE 1 ';

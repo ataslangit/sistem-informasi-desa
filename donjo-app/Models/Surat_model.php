@@ -1,7 +1,12 @@
 <?php
 
-class Surat_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Surat_model extends Model
 {
+    protected $table            = 'tbl';
     public function list_surat()
     {
         $sql   = 'SELECT * FROM tweb_surat_format WHERE kunci = 0';

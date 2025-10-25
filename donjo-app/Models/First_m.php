@@ -1,7 +1,12 @@
 <?php
 
-class First_m extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class First_m extends Model
 {
+    protected $table            = 'tbl';
     public function siteman()
     {
         $_SESSION['mandiri'] = -1;

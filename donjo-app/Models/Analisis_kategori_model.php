@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Analisis_kategori_model extends CI_Model
+class Analisis_kategori_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql   = 'SELECT kategori FROM analisis_kategori_indikator';

@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Analisis_laporan_model extends CI_Model
+class Analisis_laporan_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql = 'SELECT no_kk FROM tweb_keluarga

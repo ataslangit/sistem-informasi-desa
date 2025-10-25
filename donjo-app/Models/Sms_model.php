@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Sms_model extends CI_Model
+class Sms_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql   = 'SELECT SenderNumber FROM inbox';

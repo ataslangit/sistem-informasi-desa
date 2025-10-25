@@ -1,7 +1,12 @@
 <?php
 
-class First_slide_m extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class First_slide_m extends Model
 {
+    protected $table            = 'tbl';
     public function slide_show()
     {
         $sql   = 'SELECT * FROM gambar_slide WHERE enabled=?';

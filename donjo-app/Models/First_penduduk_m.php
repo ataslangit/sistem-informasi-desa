@@ -1,7 +1,12 @@
 <?php
 
-class First_penduduk_m extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class First_penduduk_m extends Model
 {
+    protected $table            = 'tbl';
     public function list_data($lap = '', $o = 0)
     {
         switch ($lap) {

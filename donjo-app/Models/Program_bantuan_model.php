@@ -1,7 +1,12 @@
 <?php
 
-class Program_bantuan_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Program_bantuan_model extends Model
 {
+    protected $table            = 'tbl';
     public function list_program($sasaran = 0)
     {
         if ($sasaran > 0) {

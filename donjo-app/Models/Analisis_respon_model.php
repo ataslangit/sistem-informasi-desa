@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Analisis_respon_model extends CI_Model
+class Analisis_respon_model extends Model
 {
+    protected $table            = 'tbl';
     public function __construct()
     {
         parent::__construct();

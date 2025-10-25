@@ -1,7 +1,12 @@
 <?php
 
-class Modul_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Modul_model extends Model
 {
+    protected $table            = 'tbl';
     public function list_data()
     {
         $sql = 'SELECT u.* FROM setting_modul u WHERE hidden = 0';

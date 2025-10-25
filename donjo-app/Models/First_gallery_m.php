@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class First_gallery_m extends CI_Model
+class First_gallery_m extends Model
 {
+    protected $table            = 'tbl';
     public function paging($p = 1)
     {
         $paging = new Paging();

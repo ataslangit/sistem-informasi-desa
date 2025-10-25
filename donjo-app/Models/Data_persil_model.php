@@ -1,7 +1,12 @@
 <?php
 
-class Data_persil_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Data_persil_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql = 'SELECT nik FROM data_persil

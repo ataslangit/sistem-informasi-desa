@@ -1,7 +1,12 @@
 <?php
 
-class Web_sosmed_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Web_sosmed_model extends Model
 {
+    protected $table            = 'tbl';
     public function get_sosmed($id = 0)
     {
         $sql   = 'SELECT * FROM media_sosial WHERE id = ?';

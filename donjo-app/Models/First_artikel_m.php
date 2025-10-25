@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class First_artikel_m extends CI_Model
+class First_artikel_m extends Model
 {
+    protected $table            = 'tbl';
     public function get_headline()
     {
         $sql   = 'SELECT a.*,u.nama AS owner FROM artikel a LEFT JOIN user u ON a.id_user = u.id WHERE headline = 1 ORDER BY tgl_upload DESC LIMIT 1 ';

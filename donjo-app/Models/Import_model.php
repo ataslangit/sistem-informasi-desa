@@ -1,7 +1,12 @@
 <?php
 
-class Import_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Import_model extends Model
 {
+    protected $table            = 'tbl';
     public function __construct()
     {
         parent::__construct();

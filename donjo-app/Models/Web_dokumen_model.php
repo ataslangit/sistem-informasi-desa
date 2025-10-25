@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Models;
+
+use CodeIgniter\Model;
+
 use App\Libraries\Paging;
 
-class Web_dokumen_model extends CI_Model
+class Web_dokumen_model extends Model
 {
+    protected $table            = 'tbl';
     public function autocomplete()
     {
         $sql = 'SELECT satuan FROM dokumen WHERE id_pend = 0

@@ -1,7 +1,12 @@
 <?php
 
-class Header_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Header_model extends Model
 {
+    protected $table            = 'tbl';
     public function get_data()
     {
         $this->load->model('config_model');

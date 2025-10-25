@@ -1,7 +1,12 @@
 <?php
 
-class Web_widget_model extends CI_Model
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Web_widget_model extends Model
 {
+    protected $table            = 'tbl';
     public function get_widget()
     {
         $sql   = 'SELECT * FROM widget limit 1';
