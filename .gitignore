@@ -2,12 +2,23 @@
 .env
 composer.lock
 
-donjo-app/cache/*
-!donjo-app/cache/index.html
-!donjo-app/cache/session
+#-------------------------
+# Temporary Files
+#-------------------------
+writable/cache/*
+!writable/cache/index.html
 
-donjo-app/cache/session/*
-!donjo-app/cache/session/index.html
+writable/logs/*
+!writable/logs/index.html
+
+writable/session/*
+!writable/session/index.html
+
+writable/uploads/*
+!writable/uploads/index.html
+
+writable/debugbar/*
+!writable/debugbar/index.html
 
 # abaikan pada donjo-sys
 /donjo-sys/
