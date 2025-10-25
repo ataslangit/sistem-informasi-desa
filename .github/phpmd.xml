@@ -17,6 +17,7 @@
         <exclude name="CamelCasePropertyName"/>
         <exclude name="CamelCaseClassName"/>
         <exclude name="CamelCaseVariableName"/>
+        <exclude name="CamelCaseParameterName"/>
     </rule>
     <rule ref="rulesets/design.xml"/>
         <rule ref="rulesets/naming.xml">
