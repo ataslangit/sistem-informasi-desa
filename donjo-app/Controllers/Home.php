@@ -2,7 +2,10 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;class Home extends BaseController
 {
     public function index(): string
     {
