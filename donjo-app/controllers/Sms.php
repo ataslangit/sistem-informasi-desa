@@ -748,7 +748,7 @@ class Sms extends BaseController
     {
         $data = [];
 
-        $data['main'] = $this->sms_model->get_data_polling($id);
+        $data['main']        = $this->sms_model->get_data_polling($id);
         $data['form_action'] = site_url("sms/insert_polling/{$id}");
         view('sms/ajax_polling_form', $data);
     }
