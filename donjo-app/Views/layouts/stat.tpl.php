@@ -5,16 +5,16 @@
             <?php
 						if($tipe == 2){
 							if($tipex==1){
-								view('partials/statistik_sos.php');
+								echo view('partials/statistik_sos.php');
 							}elseif($tipex==3){
-								view('partials/statistik_ras.php');
+								echo view('partials/statistik_ras.php');
 							}else{
-								view('partials/statistik_jam.php');
+								echo view('partials/statistik_jam.php');
 							}
 						}elseif($tipe == 3){
-							view('partials/wilayah.php');
+							echo view('partials/wilayah.php');
 						}else{
-							view('partials/statistik.php');
+							echo view('partials/statistik.php');
 						}
 						?>
         </div>
@@ -27,9 +27,7 @@
 </div>
 
 <div id="footer">
-    <?php
-				view('partials/copywright.tpl.php');
-				?>
+    <?php echo view('partials/copywright.tpl.php'); ?>
 </div>
 </div>
 </body>

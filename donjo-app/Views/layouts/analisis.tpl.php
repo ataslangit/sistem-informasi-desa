@@ -4,7 +4,7 @@
         <div class="innertube" style="padding-left:10px;">
             <?php
 						if($list_jawab){
-							view('partials/analisis.php');
+							echo view('partials/analisis.php');
 						}else{ ?>
             <h2 class="judul">DAFTAR DATA STATISTIK ANALISIS DI TINGKAT DESA</h2>
             <h3>Klik judul Analisis untuk melihat tampilan detail data statistik</h3><br>
@@ -49,9 +49,7 @@
 </div>
 
 <div id="footer">
-    <?php
-				view('partials/copywright.tpl.php');
-				?>
+    <?= view('partials/copywright.tpl.php'); ?>
 </div>
 </div>
 </body>

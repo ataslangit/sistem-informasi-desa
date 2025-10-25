@@ -156,11 +156,11 @@
 						<td class=\"angka\">".$data['no']."</td>
 						<td>".$data['nama']."</td>
 						<td class=\"angka\">".$data['jumlah']."</td>
-						<td class=\"angka\">".$data['persen']."</td>
+						<td class=\"angka\">". (isset($data['persen'])?$data['persen']:"-")."</td>
 						<td class=\"angka\">".$data['laki']."</td>
-						<td class=\"angka\">".$data['persen1']."</td>
+						<td class=\"angka\">". (isset($data['persen1'])?$data['persen1']:"-")."</td>
 						<td class=\"angka\">".$data['perempuan']."</td>
-						<td class=\"angka\">".$data['persen2']."</td>
+						<td class=\"angka\">".(isset($data['persen2'])?$data['persen2']:"-")."</td>
 					</tr>";
 					$i=$i+$data['jumlah'];
 					$l=$l+$data['laki']; $p=$p+$data['perempuan'];

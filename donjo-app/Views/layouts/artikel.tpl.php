@@ -2,9 +2,7 @@
 <div id="contentwrapper">
     <div id="contentcolumn">
         <div class="innertube">
-            <?php
-						view('partials/artikel.php');
-						?>
+            <?= view('partials/artikel.php'); ?>
         </div>
     </div>
 </div>
@@ -15,9 +13,7 @@
 </div>
 
 <div id="footer">
-    <?php
-				view('partials/copywright.tpl.php');
-				?>
+    <?= view('partials/copywright.tpl.php'); ?>
 </div>
 </div>
 </body>

@@ -116,7 +116,7 @@ class First extends BaseController
             return redirect()->to('first');
         } else {
             $data['p']             = $p;
-            $data['desa']          = $config->find()->get()->getRowArray();
+            $data['desa']          = $config->asArray()->first();
             $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
             $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
             $data['headline']      = $this->first_artikel_m->get_headline();
@@ -155,7 +155,7 @@ class First extends BaseController
         $id           = explode('-', $id);
         $id           = $id[0];
         $data['p']    = $p;
-        $data['desa'] = $config->find()->get()->getRowArray();
+        $data['desa'] = $config->asArray()->first();
 
         $data['paging']  = $this->first_artikel_m->paging($p);
         $data['artikel'] = $this->first_artikel_m->list_artikel(0, $data['paging']->offset, $data['paging']->per_page);
@@ -174,7 +174,7 @@ class First extends BaseController
         $data['w_gal']          = $this->first_gallery_m->gallery_widget();
         $data['w_cos']          = $this->first_artikel_m->cos_widget();
 
-        view('layouts/artikel.tpl.php', $data);
+        return view('layouts/artikel.tpl.php', $data);
     }
 
     public function arsip($p = 1)
@@ -185,7 +185,7 @@ class First extends BaseController
         $data['paging'] = $this->first_artikel_m->paging_arsip($p);
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
-        $data['desa']          = $config->find()->get()->getRowArray();
+        $data['desa']          = $config->asArray()->first();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['sosmed']        = $this->first_artikel_m->list_sosmed();
@@ -208,7 +208,7 @@ class First extends BaseController
 
         $data['p'] = $p;
 
-        $data['desa']          = $config->find()->get()->getRowArray();
+        $data['desa']          = $config->asArray()->first();
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['paging']        = $this->first_artikel_m->paging($p);
         $data['artikel']       = $this->first_artikel_m->artikel_show(0, $data['paging']->offset, $data['paging']->per_page);
@@ -237,7 +237,7 @@ class First extends BaseController
         $data         = [];
         $data['p']    = $p;
         $data['gal']  = $gal;
-        $data['desa'] = $config->find()->get()->getRowArray();
+        $data['desa'] = $config->asArray()->first();
 
         $data['paging']  = $this->first_gallery_m->paging($p);
         $data['gallery'] = $this->first_gallery_m->gallery_show($data['paging']->offset, $data['paging']->per_page);
@@ -308,7 +308,7 @@ class First extends BaseController
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $config->find()->get()->getRowArray();
+        $data['desa']          = $config->asArray()->first();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['stat']          = $this->first_penduduk_m->list_data($stat);
@@ -319,8 +319,7 @@ class First extends BaseController
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
         $data['st'] = $stat;
-
-        view('layouts/stat.tpl.php', $data);
+        return view('layouts/stat.tpl.php', $data);
     }
 
     public function data_analisis($stat = '', $sb = 0, $per = 0)
@@ -330,7 +329,7 @@ class First extends BaseController
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['slide']         = $this->first_artikel_m->slide_show();
-        $data['desa']          = $config->find()->get()->getRowArray();
+        $data['desa']          = $config->asArray()->first();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
 
@@ -347,7 +346,7 @@ class First extends BaseController
         $data['arsip']  = $this->first_artikel_m->arsip_show();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
-        view('layouts/analisis.tpl.php', $data);
+        return view('layouts/analisis.tpl.php', $data);
     }
 
     public function wilayah()
@@ -358,7 +357,7 @@ class First extends BaseController
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['main']          = $this->first_penduduk_m->wilayah();
         $data['heading']       = 'Populasi Per Wilayah';
-        $data['desa']          = $config->find()->get()->getRowArray();
+        $data['desa']          = $config->asArray()->first();
 
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
@@ -373,7 +372,7 @@ class First extends BaseController
         $data['total'] = $this->first_penduduk_m->total();
         $data['st']    = 1;
 
-        view('layouts/stat.tpl.php', $data);
+        return view('layouts/stat.tpl.php', $data);
     }
 
     public function statistik_k($tipex = 0)
@@ -384,7 +383,7 @@ class First extends BaseController
         $data['tipe']  = 2;
         $data['tipex'] = $tipex;
 
-        $data['desa'] = $config->find()->get()->getRowArray();
+        $data['desa'] = $config->asArray()->first();
 
         $data['teks_berjalan'] = $this->first_artikel_m->get_teks_berjalan();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
@@ -398,14 +397,14 @@ class First extends BaseController
 
         $data['main'] = $this->first_keluarga_m->list_raskin($tipex);
 
-        view('layouts/stat.tpl.php', $data);
+        return view('layouts/stat.tpl.php', $data);
     }
 
     public function agenda($stat = 0)
     {
         $config            = new Config();
         $data              = [];
-        $data['desa']      = $config->find()->get()->getRowArray();
+        $data['desa']      = $config->asArray()->first();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['artikel']   = $this->first_artikel_m->agenda_show();
