@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: Validate
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: composer run psalm -- --report=psalm_report.sarif
 
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: psalm_report.sarif

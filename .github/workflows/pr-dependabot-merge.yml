@@ -16,7 +16,7 @@ env:
 jobs:
   build:
     name: MERGE & LOCK
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: >-
       github.event.review.state == 'APPROVED' &&
       github.event.review.user.id == 2387514
