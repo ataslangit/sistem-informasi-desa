@@ -12,11 +12,16 @@
 
     <rule ref="rulesets/cleancode.xml"/>
     <rule ref="rulesets/codesize.xml"/>
-    <rule ref="rulesets/controversial.xml"/>
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="CamelCaseMethodName"/>
+        <exclude name="CamelCasePropertyName"/>
+        <exclude name="CamelCaseClassName"/>
+        <exclude name="CamelCaseVariableName"/>
+        <exclude name="CamelCaseParameterName"/>
+    </rule>
     <rule ref="rulesets/design.xml"/>
         <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable"/>
-        <exclude name="CamelCaseMethodName"/>
     </rule>
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
