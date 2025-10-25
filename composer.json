@@ -3,14 +3,11 @@
   "description": "Sistem Informasi Desa pengambangan dari CRI",
   "license": "GPL-3.0-or-later",
   "require": {
-    "php": ">=7.4",
-    "codeigniter/framework": "^3",
-    "vlucas/phpdotenv": "^5.5",
-    "yidas/codeigniter-model": "^2.19"
+    "php": "^7.4 || ^8.0",
+    "codeigniter4/framework": "^4.0"
   },
   "require-dev": {
-    "codeigniter4/devkit": "^1.1",
-    "filp/whoops": "^2.15",
+    "codeigniter/coding-standard": "^1.7",
     "vimeo/psalm": "^5.22"
   },
   "minimum-stability": "dev",
@@ -26,7 +23,7 @@
     },
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.4.33"
+      "php": "8.0"
     },
     "preferred-install": "dist",
     "sort-packages": true,
