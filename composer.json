@@ -10,7 +10,8 @@
   },
   "require-dev": {
     "codeigniter4/devkit": "^1.1",
-    "filp/whoops": "^2.15"
+    "filp/whoops": "^2.15",
+    "vimeo/psalm": "^5.22"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -36,6 +37,7 @@
     "csfix": [
       "./donjo-sys/bin/rector process --no-progress-bar",
       "./donjo-sys/bin/php-cs-fixer fix --ansi --verbose --diff"
-    ]
+    ],
+    "psalm": "./donjo-sys/bin/psalm"
   }
 }

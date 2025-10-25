@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+  <file src="donjo-app/Libraries/Install.php">
+    <UndefinedFunction>
+      <code><![CDATA[generator()]]></code>
+      <code><![CDATA[get_instance()]]></code>
+      <code><![CDATA[hash_password($passwd)]]></code>
+    </UndefinedFunction>
+  </file>
+  <file src="donjo-app/controllers/Analisis_grafik.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_indikator.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_kategori.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_klasifikasi.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_laporan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_master.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_periode.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_respon.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Analisis_statistik_jawaban.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Area.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Data_persil.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Database.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Dokumen.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Feed.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/First.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Gallery.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Garis.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Gis.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Hom_desa.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Install.php">
+    <MissingDependency>
+      <code><![CDATA[InstallController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Kategori.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Kelompok.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Kelompok_master.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Keluar.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Keluarga.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Komentar.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Lapor.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Laporan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Laporan_rentan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Line.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Main.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Man_user.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Mandiri.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Menu.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Modul.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Penduduk.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Penduduk_log.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Pengurus.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Persuratan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Plan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Point.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Polygon.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Program_bantuan.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Rtm.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Sid_core.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Siteman.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Sms.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Sosmed.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Statistik.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Surat_master.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/User_setting.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Web.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/controllers/Widget.php">
+    <MissingDependency>
+      <code><![CDATA[BaseController]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/core/MY_Controller.php">
+    <MissingDependency>
+      <code><![CDATA[MY_Controller]]></code>
+    </MissingDependency>
+    <UndefinedClass>
+      <code><![CDATA[CI_Controller]]></code>
+      <code><![CDATA[CI_Controller]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/helpers/donjolib_helper.php">
+    <UndefinedConstant>
+      <code><![CDATA[ENVIRONMENT]]></code>
+      <code><![CDATA[ENVIRONMENT]]></code>
+    </UndefinedConstant>
+    <UndefinedFunction>
+      <code><![CDATA[get_instance()]]></code>
+      <code><![CDATA[get_instance()]]></code>
+      <code><![CDATA[mysql_ping()]]></code>
+      <code><![CDATA[mysql_real_escape_string($str)]]></code>
+    </UndefinedFunction>
+  </file>
+  <file src="donjo-app/hooks/WhoopsHook.php">
+    <UndefinedConstant>
+      <code><![CDATA[ENVIRONMENT]]></code>
+    </UndefinedConstant>
+  </file>
+  <file src="donjo-app/models/Analisis_grafik_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_import_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_indikator_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_kategori_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_klasifikasi_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_laporan_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_master_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_periode_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_respon_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Analisis_statistik_jawaban_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Artikel.php">
+    <MissingDependency>
+      <code><![CDATA[Model]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/models/Config.php">
+    <MissingDependency>
+      <code><![CDATA[Model]]></code>
+    </MissingDependency>
+  </file>
+  <file src="donjo-app/models/Config_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Data_persil_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Export_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_artikel_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_gallery_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_keluarga_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_menu_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_penduduk_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/First_slide_m.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Header_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Import_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/KategoriModel.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Kelompok_master_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Kelompok_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Keluarga_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Laporan_bulanan_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Laporan_penduduk_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Laporan_perubahan_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Mandiri_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Modul_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Pamong_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Penduduk_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_area_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_garis_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_line_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_lokasi_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_point_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Plan_polygon_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Program_bantuan_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Rtm_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Sms_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Surat_keluar_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Surat_master_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Surat_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/User_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_artikel_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_dokumen_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_gallery_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_kategori_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_komentar_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_menu_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_sosmed_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_statis_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Web_widget_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="donjo-app/models/Wilayah_model.php">
+    <UndefinedClass>
+      <code><![CDATA[CI_Model]]></code>
+    </UndefinedClass>
+  </file>
+</files>
