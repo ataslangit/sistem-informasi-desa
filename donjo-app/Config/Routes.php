@@ -1,12 +1,14 @@
 <?php
 
 use App\Controllers\Analisis_indikator;
+use App\Controllers\First;
 use CodeIgniter\Router\RouteCollection;
 
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Main::index');
+$routes->get('/', 'Main
+::index');
 
 $routes->get('analisis_indikator/leave', [Analisis_indikator::class, 'leave']);
 $routes->get('analisis_indikator/form','analisis_indikator/form');
@@ -344,8 +346,8 @@ $routes->get('first/statistik_k','first/statistik_k');
 $routes->get('first/statistik_k/(:num)','first/statistik_k/$1');
 $routes->get('first/agenda','first/agenda');
 $routes->get('first/agenda/(:num)','first/agenda/$1');
-$routes->get('first/kategori/(:num)','first/kategori/$1');
-$routes->get('first/kategori/(:num)/(:num)','first/kategori/$1/$2');
+$routes->get('first/kategori/(:num)', [First::class, 'kategori']);
+$routes->get('first/kategori/(:num)/(:num)',[First::class, 'kategori']);
 $routes->get('first/add_comment/(:num)','first/add_comment/$1');
 $routes->get('first/randomap','first/randomap');
 $routes->get('first/randomap/(:num)','first/randomap/$1');

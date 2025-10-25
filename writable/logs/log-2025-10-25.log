@@ -339,3 +339,60 @@ INFO - 2025-10-25 12:02:11 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2025-10-25 12:05:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-10-25 12:05:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-10-25 12:08:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-25 12:12:38 --> CodeIgniter\Router\Exceptions\RouterException: The namespace delimiter is a backslash (\), not a slash (/). Route handler: "\App\Controllers\first/kategori/$1"
+in SYSTEMPATH\Router\Router.php on line 495.
+ 1 SYSTEMPATH\Router\Router.php(495): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName()
+ 2 SYSTEMPATH\Router\Router.php(202): CodeIgniter\Router\Router->checkRoutes()
+ 3 SYSTEMPATH\CodeIgniter.php(825): CodeIgniter\Router\Router->handle()
+ 4 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+CRITICAL - 2025-10-25 12:17:29 --> Error: Call to a member function get() on array
+in APPPATH\Controllers\First.php on line 428.
+ 1 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\First->kategori()
+ 2 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+CRITICAL - 2025-10-25 12:18:51 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+in APPPATH\Models\KategoriModel.php on line 20.
+ 1 APPPATH\Controllers\First.php(446): App\Models\KategoriModel->get()
+ 2 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\First->kategori()
+ 3 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+CRITICAL - 2025-10-25 12:19:10 --> Error: Call to a member function asArray() on array
+in APPPATH\Controllers\First.php on line 428.
+ 1 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\First->kategori()
+ 2 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+CRITICAL - 2025-10-25 12:19:20 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+in APPPATH\Models\KategoriModel.php on line 20.
+ 1 APPPATH\Controllers\First.php(446): App\Models\KategoriModel->get()
+ 2 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\First->kategori()
+ 3 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+CRITICAL - 2025-10-25 12:20:23 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+in APPPATH\Models\KategoriModel.php on line 20.
+ 1 APPPATH\Controllers\First.php(446): App\Models\KategoriModel->get()
+ 2 SYSTEMPATH\CodeIgniter.php(943): App\Controllers\First->kategori()
+ 3 SYSTEMPATH\CodeIgniter.php(503): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\SOURCE\\toto\\ataslangit-sid\\public\\index.php')
+INFO - 2025-10-25 12:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:26:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:26:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:28:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:28:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-25 12:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

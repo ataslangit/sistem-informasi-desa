@@ -70,7 +70,7 @@ class Kategori extends BaseController
     {
         $data['tip'] = 2;
         if ($id) {
-            $data['kategori']    = $this->kategori_model->get($id);
+            $data['kategori']    = $this->kategori_model->select('kategori')->find($id);
             $data['form_action'] = site_url("kategori/update/{$id}");
         } else {
             $data['kategori']    = null;
@@ -106,7 +106,7 @@ class Kategori extends BaseController
         $data['link'] = $this->web_kategori_model->list_link();
 
         if ($id) {
-            $data['subkategori'] = $this->kategori_model->get($id);
+            $data['subkategori'] = $this->kategori_model->select('kategori')->find($id);
             $data['form_action'] = site_url("kategori/update_sub_kategori/{$kategori}/{$id}");
         } else {
             $data['subkategori'] = null;

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -66,7 +65,7 @@ class Web extends BaseController
         $data['main']          = $this->web_artikel_model->list_data($cat, $o, $data['paging']->offset, $data['paging']->per_page);
         $data['keyword']       = $this->web_artikel_model->autocomplete();
         $data['list_kategori'] = $this->kategori_model->getList();
-        $data['kategori']      = $this->kategori_model->get($cat);
+        $data['kategori']      = $this->kategori_model->select('kategori')->find($cat);
         $data['cat']           = $cat;
         $header                = $this->header_model->get_data();
         $nav['act']            = 0;
@@ -91,7 +90,7 @@ class Web extends BaseController
             $data['form_action'] = site_url("web/insert/{$cat}");
         }
 
-        $data['kategori'] = $this->kategori_model->get($cat);
+        $data['kategori'] = $this->kategori_model->select('kategori')->find($cat);
 
         $header = $this->header_model->get_data();
 

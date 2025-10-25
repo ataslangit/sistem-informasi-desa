@@ -78,7 +78,7 @@ class First extends BaseController
         $data   = [];
 
         $data['p']             = $p;
-        $data['desa']          = $config->findAll()[0];
+        $data['desa']          = $config->asArray()->first();
         $data['menu_atas']     = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri']     = $this->first_menu_m->list_menu_kiri();
         $data['headline']      = $this->first_artikel_m->get_headline();
@@ -425,7 +425,7 @@ class First extends BaseController
 
         $data['p'] = $p;
 
-        $data['desa']      = $config->find()->get()->getRowArray();
+        $data['desa']      = $config->asArray()->first();
         $data['menu_atas'] = $this->first_menu_m->list_menu_atas();
         $data['menu_kiri'] = $this->first_menu_m->list_menu_kiri();
         $data['headline']  = null;
@@ -443,9 +443,9 @@ class First extends BaseController
         $data['w_gal']  = $this->first_gallery_m->gallery_widget();
         $data['w_cos']  = $this->first_artikel_m->cos_widget();
 
-        $data['judul_kategori'] = $this->kategori_model->get($kat);
+        $data['judul_kategori'] = $this->kategori_model->select('kategori')->find($kat);
 
-        view('layouts/main.tpl.php', $data);
+        return view('layouts/main.tpl.php', $data);
     }
 
     public function add_comment($id = 0)
