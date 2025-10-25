@@ -28,6 +28,8 @@ class Sms extends BaseController
 
     public function index($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -57,11 +59,14 @@ class Sms extends BaseController
         view('sms/nav', $menu);
         view('sms/manajemen_sms_table', $data);
         view('footer');
+
         unset($_SESSION['cari'], $_SESSION['filter'], $_SESSION['cari1'], $_SESSION['sex1'], $_SESSION['dusun1'], $_SESSION['rw1'], $_SESSION['rt1'], $_SESSION['agama1'], $_SESSION['pekerjaan1'], $_SESSION['status1'], $_SESSION['pendidikan1'], $_SESSION['status_penduduk1'], $_SESSION['TextDecoded1'], $_SESSION['grup1']);
     }
 
     public function setting($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['main']        = $this->sms_model->get_autoreply();
         $data['form_action'] = site_url('sms/insert_autoreply');
         $header              = $this->header_model->get_data();
@@ -81,6 +86,8 @@ class Sms extends BaseController
 
     public function polling($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -109,6 +116,8 @@ class Sms extends BaseController
 
     public function outbox($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -143,6 +152,8 @@ class Sms extends BaseController
 
     public function sentitem($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -177,6 +188,8 @@ class Sms extends BaseController
 
     public function pending($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -211,6 +224,8 @@ class Sms extends BaseController
 
     public function form($p = 1, $o = 0, $tipe = 0, $id = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -233,6 +248,8 @@ class Sms extends BaseController
 
     public function carikontak($tipe = 0)
     {
+        $data = [];
+
         if (isset($_POST['TextDecoded'])) {
             $data['text']['TextDecoded'] = $_POST['TextDecoded'];
         }
@@ -246,6 +263,8 @@ class Sms extends BaseController
 
     public function formaftercari($tipe = 0)
     {
+        $data = [];
+
         $data['sms']['DestinationNumber'] = $_POST['kontak'];
         $data['sms']['TextDecoded']       = $_POST['text'];
         $data['form_action']              = site_url("sms/insert/{$tipe}");
@@ -256,6 +275,8 @@ class Sms extends BaseController
 
     public function send_broadcast()
     {
+        $data = [];
+
         $data['input'] = $_POST;
         if (isset($_SESSION['cari1'])) {
             $data['cari1'] = $_SESSION['cari1'];
@@ -352,6 +373,8 @@ class Sms extends BaseController
 
     public function broadcast()
     {
+        $data = [];
+
         $data['dusun']       = $this->penduduk_model->list_dusun();
         $data['agama']       = $this->penduduk_model->list_agama();
         $data['pendidikan']  = $this->penduduk_model->list_pendidikan();
@@ -363,6 +386,8 @@ class Sms extends BaseController
 
     public function ajax_penduduk_rw($dusun = '')
     {
+        $data = [];
+
         $rw = $this->penduduk_model->list_rw($dusun);
         echo "<td>RW</td>
 		<td><select name='rw' onchange=RWSel('" . $dusun . "',this.value)>
@@ -377,6 +402,8 @@ class Sms extends BaseController
 
     public function ajax_penduduk_rt($dusun = '', $rw = '')
     {
+        $data = [];
+
         $rt = $this->penduduk_model->list_rt($dusun, $rw);
         echo "<td>RT</td>
 		<td><select name='rt'>
@@ -506,6 +533,8 @@ class Sms extends BaseController
 
     public function kontak($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -540,6 +569,8 @@ class Sms extends BaseController
 
     public function form_kontak($id = 0)
     {
+        $data = [];
+
         $data['nama']        = $this->sms_model->list_nama();
         $data['form_action'] = site_url('sms/kontak_insert');
         $data['kontak']      = $this->sms_model->get_kontak($id);
@@ -552,6 +583,8 @@ class Sms extends BaseController
 
     public function kontak_insert()
     {
+        $data = [];
+
         $data['input']  = $_POST;
         $data['insert'] = $this->sms_model->insert_kontak($data);
         redirect('sms/kontak');
@@ -559,6 +592,8 @@ class Sms extends BaseController
 
     public function kontak_delete($id = 0)
     {
+        $data = [];
+
         $data['hapus'] = $this->sms_model->delete_kontak($id);
         redirect('sms/kontak');
     }
@@ -571,6 +606,8 @@ class Sms extends BaseController
 
     public function group($p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -600,6 +637,8 @@ class Sms extends BaseController
 
     public function form_grup($id = 0)
     {
+        $data = [];
+
         if ($id === '0') {
             $data['form_action']       = site_url('sms/grup_insert');
             $data['grup']['nama_grup'] = '';
@@ -612,6 +651,8 @@ class Sms extends BaseController
 
     public function grup_insert()
     {
+        $data = [];
+
         $data['input']  = $_POST;
         $data['insert'] = $this->sms_model->insert_grup($data);
         redirect('sms/group');
@@ -619,6 +660,8 @@ class Sms extends BaseController
 
     public function grup_update()
     {
+        $data = [];
+
         $data['input']  = $_POST;
         $data['update'] = $this->sms_model->update_grup($data);
         redirect('sms/group');
@@ -626,6 +669,8 @@ class Sms extends BaseController
 
     public function grup_delete($id = 0)
     {
+        $data = [];
+
         $data['hapus'] = $this->sms_model->delete_grup($id);
         redirect('sms/group');
     }
@@ -638,6 +683,8 @@ class Sms extends BaseController
 
     public function anggota($id = 0, $p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -668,6 +715,8 @@ class Sms extends BaseController
 
     public function form_anggota($id = 0)
     {
+        $data = [];
+
         $data['form_action'] = site_url("sms/anggota_insert/{$id}");
         $data['main']        = $this->sms_model->list_data_nama($id);
         view('sms/ajax_anggota_form', $data);
@@ -675,12 +724,16 @@ class Sms extends BaseController
 
     public function anggota_insert($id = 0)
     {
+        $data = [];
+
         $data['insert'] = $this->sms_model->insert_anggota($id);
         redirect("sms/anggota/{$id}");
     }
 
     public function anggota_delete($grup = 0, $id = 0)
     {
+        $data = [];
+
         $data['hapus'] = $this->sms_model->delete_anggota($grup, $id);
         redirect("sms/anggota/{$grup}");
     }
@@ -693,20 +746,26 @@ class Sms extends BaseController
 
     public function form_polling($id = 0)
     {
-        $data['main'] = $this->sms_model->get_data_polling($id);
+        $data = [];
 
+        $data['main'] = $this->sms_model->get_data_polling($id);
         $data['form_action'] = site_url("sms/insert_polling/{$id}");
         view('sms/ajax_polling_form', $data);
     }
 
     public function insert_polling($id = 0)
     {
+        $data = [];
+
         $data['insert'] = $this->sms_model->insert_polling($id);
         redirect('sms/polling');
     }
 
     public function polling_delete($id = 0)
     {
+        $data = [];
+
+        $data['hapus'] = $this->sms_model->delete_polling($id);
         redirect('sms/polling');
     }
 
@@ -718,6 +777,8 @@ class Sms extends BaseController
 
     public function pertanyaan($id = 0, $p = 1, $o = 0)
     {
+        $data = [];
+
         $data['p'] = $p;
         $data['o'] = $o;
 
@@ -741,12 +802,16 @@ class Sms extends BaseController
 
     public function form_pertanyaan($id = 0)
     {
+        $data = [];
+
         $data['form_action'] = site_url("sms/pertanyaan_insert/{$id}");
         view('sms/ajax_pertanyaan_form', $data);
     }
 
     public function pertanyaan_insert($id = 0)
     {
+        $data = [];
+
         $data['insert'] = $this->sms_model->insert_pertanyaan($id);
         redirect("sms/pertanyaan/{$id}");
     }
