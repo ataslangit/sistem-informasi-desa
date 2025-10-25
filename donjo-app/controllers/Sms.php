@@ -707,7 +707,6 @@ class Sms extends BaseController
 
     public function polling_delete($id = 0)
     {
-        $data['hapus'] = $this->sms_model->delete_polling($id);
         redirect('sms/polling');
     }
 
