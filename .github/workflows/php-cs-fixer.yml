@@ -1,4 +1,6 @@
 name: PHP-CS-FIXER
+permissions:
+  contents: read
 
 on:
   pull_request:
