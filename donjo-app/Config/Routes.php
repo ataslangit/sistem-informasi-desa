@@ -7,8 +7,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Main
-::index');
+$routes->get('/', 'Main::index');
 
 $routes->get('analisis_indikator/leave', [Analisis_indikator::class, 'leave']);
 $routes->get('analisis_indikator/form','analisis_indikator/form');
