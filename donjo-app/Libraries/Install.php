@@ -39,7 +39,7 @@ class Install
             $filename = '../sid.install';
             $templine = '';
             $lines    = file($filename);
-            $out = [];
+            $out      = [];
 
             foreach ($lines as $line) {
                 if (substr($line, 0, 2) === '--' || $line === '') {
