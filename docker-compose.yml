@@ -4,12 +4,12 @@ services:
     ports:
       - "8080:80"
     environment:
-      # Database configuration to connect to host machine's MariaDB
-      - database.default.hostname=host.docker.internal
-      - database.default.username=root
-      - database.default.password=root
-      - database.default.database=db_ataslangit_sid
-      - CI_ENV=development
+      # Mengambil nilai dari file .env di host
+      - database.default.hostname=${DB_HOSTNAME}
+      - database.default.username=${DB_USERNAME}
+      - database.default.password=${DB_PASSWORD}
+      - database.default.database=${DB_DATABASE}
+      - CI_ENV=${CI_ENVIRONMENT}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
