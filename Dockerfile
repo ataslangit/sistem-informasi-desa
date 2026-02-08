@@ -27,12 +27,14 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Copy application source
-COPY . .
+# Salin file composer
+COPY composer.json composer.lock ./
 
-# Install dependencies via Composer
-# donjo-sys is the configured vendor directory in composer.json
+# Instal dependensi
 RUN composer install --no-dev --optimize-autoloader
+
+# Salin sisa kode aplikasi
+COPY . .
 
 # Set permissions for Apache
 RUN chown -R www-data:www-data /var/www/html
