@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      # Database configuration to connect to host machine's MariaDB
+      - database.default.hostname=host.docker.internal
+      - database.default.username=root
+      - database.default.password=root
+      - database.default.database=db_ataslangit_sid
+      - CI_ENV=development
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./:/var/www/html
