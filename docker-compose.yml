@@ -3,13 +3,8 @@ services:
     build: .
     ports:
       - "8080:80"
-    environment:
-      # Mengambil nilai dari file .env di host
-      - database.default.hostname=${DB_HOSTNAME}
-      - database.default.username=${DB_USERNAME}
-      - database.default.password=${DB_PASSWORD}
-      - database.default.database=${DB_DATABASE}
-      - CI_ENV=${CI_ENVIRONMENT}
+    env_file:
+      - .env
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
