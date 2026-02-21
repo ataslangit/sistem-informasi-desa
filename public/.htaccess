@@ -1,22 +1,17 @@
 # Disable directory browsing
-Options All -Indexes
+Options -Indexes +FollowSymLinks
 
 <IfModule mod_rewrite.c>
-	Options +FollowSymlinks
-	RewriteEngine on
-	
+	RewriteEngine On
+	RewriteBase /
+
+	# Redirect to index.php if not a file or directory
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(index\.php|images|css|js|robots\.txt|favicon\.ico) - [L]
-	RewriteRule ^(.*)$ /index.php/$1 [L,QSA,NC]
+	RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+</IfModule>
 
-	RewriteCond %{HTTP:Authorization} .
-	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-</IfModule>
-<IfModule !mod_rewrite.c>
-	# If we don't have mod_rewrite installed, all 404's
-	# can be sent to index.php, and everything works as normal.
-	ErrorDocument 404 index.php
-</IfModule>
+# Prevent directory listing
+Options -Indexes
 
 ServerSignature Off
