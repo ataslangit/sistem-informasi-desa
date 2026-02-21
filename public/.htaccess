@@ -11,7 +11,4 @@ Options -Indexes +FollowSymLinks
 	RewriteRule ^(.*)$ index.php?$1 [L,QSA]
 </IfModule>
 
-# Prevent directory listing
-Options -Indexes
-
 ServerSignature Off
