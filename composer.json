@@ -1,9 +1,22 @@
 {
-    "name": "laravel/laravel",
+    "name": "ataslangit/sistem-informasi-desa",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
-    "license": "MIT",
+    "description": "SiDesa (Sistem Informasi Desa) - Aplikasi administrasi kependudukan, pelayanan surat mandiri, dan portal CMS desa multi-tema berbasis Laravel.",
+    "keywords": [
+        "sidesa",
+        "sistem-informasi-desa",
+        "desa",
+        "administrasi-desa",
+        "laravel"
+    ],
+    "homepage": "https://github.com/ataslangit/sistem-informasi-desa",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Toto",
+            "email": "totoprayogo1916@gmail.com"
+        }
+    ],
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
