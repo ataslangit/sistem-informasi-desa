@@ -1,0 +1,11 @@
+/* SiDesa Theme Default Styling */
+:root {
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+}
+
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+}
