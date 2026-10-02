@@ -1,66 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏛️ SiDesa - Sistem Informasi Desa (SID)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)
 
-## About Laravel
+**SiDesa** adalah aplikasi Sistem Informasi Desa (SID) berbasis *open-source* yang dibangun menggunakan *framework* Laravel. Sistem ini dirancang sebagai platform administrasi kependudukan, pelayanan surat-menyurat mandiri, dan Content Management System (CMS) portal web desa yang mendukung **multi-tema**. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sistem ini juga dilengkapi dengan API terintegrasi untuk menyinkronkan data agregat ke **Sistem Informasi Kecamatan (SIK)**.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fitur Utama
 
-## Learning Laravel
+### 👥 1. Manajemen Kependudukan (Buku Induk)
+*   Pencatatan biodata penduduk berbasis NIK dan Nomor KK (16 digit).
+*   Manajemen mutasi penduduk (Lahir, Wafat, Pindah, Datang).
+*   Klasifikasi kelompok rentan, penerima bansos, dan status ekonomi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ✉️ 2. Layanan E-Surat
+*   Generator otomatis surat pengantar (SKCK, SKTM, Domisili, dll).
+*   Format surat baku yang siap cetak (PDF/Word).
+*   Layanan mandiri: Warga dapat *login* dan mengajukan surat secara *online*.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🎨 3. CMS & Sistem Multi-Tema (Templating)
+*   Website profil desa dinamis untuk publikasi berita, pengumuman, dan potensi desa.
+*   **Dukungan Multi-Tema:** Antarmuka publik dapat diganti secara modular tanpa mengubah struktur kode *backend* maupun *dashboard* admin.
+*   Manajemen aset (CSS/JS/Gambar) terisolasi untuk setiap tema.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📊 4. Transparansi & Pemetaan
+*   Modul publikasi infografis Anggaran Pendapatan dan Belanja Desa (APBDes).
+*   Peta wilayah administratif desa (batas Dusun/RT/RW).
 
-## Laravel Sponsors
+### 🔗 5. Integrasi SIK (Sistem Informasi Kecamatan)
+*   Otomatisasi pengiriman laporan bulanan (agregat penduduk) ke server kecamatan.
+*   *Endpoint* API yang aman dengan otentikasi *token-based*.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠️ Teknologi yang Digunakan
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+*   **Backend:** PHP 8.2+, Laravel 10.x / 11.x
+*   **Database:** MySQL 8.0+ / MariaDB
+*   **Frontend (Admin):** Tailwind CSS / Bootstrap 5, Alpine.js (Blade Components)
+*   **Frontend (Tema Publik):** Laravel Blade murni (dapat dikustomisasi penuh oleh pembuat tema)
+*   **Containerization:** Docker & Docker Compose
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📂 Struktur Sistem Tema
 
-## Code of Conduct
+Proyek ini memisahkan secara tegas antara area **Admin** dan area **Publik (Tema)**. Jika Anda seorang desainer web yang ingin membuat atau memodifikasi tema publik:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **File Blade (Tampilan/Layout):** `resources/views/themes/{nama_tema}/`
+2. **Assets (CSS/JS/Gambar):** `public/themes/{nama_tema}/`
+3. **Helper Asset:** Gunakan fungsi `theme_asset('path/to/file')` saat memuat aset statis tema.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🚀 Panduan Instalasi (Development)
 
-## License
+Pastikan lingkungan lokal Anda memenuhi persyaratan:
+*   PHP >= 8.2 (dengan ekstensi `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `curl`)
+*   Composer >= 2.x
+*   Node.js & NPM
+*   MySQL / MariaDB (atau gunakan Docker)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Opsi 1: Instalasi Lokal (Native)
+
+**1. Clone Repositori**
+```bash
+# Menggunakan SSH (Rekomendasi)
+git clone git@github.com:ataslangit/sistem-informasi-desa.git
+
+# Atau menggunakan HTTPS
+git clone https://github.com/ataslangit/sistem-informasi-desa.git
+
+cd sistem-informasi-desa
+```
+
+**2. Pasang Dependensi**
+```bash
+composer install
+npm install
+```
+
+**3. Konfigurasi Environment**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+Sesuaikan konfigurasi database dan variabel lainnya pada berkas `.env`:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sidesa
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+**4. Migrasi Database & Seeder**
+```bash
+php artisan migrate --seed
+```
+
+**5. Jalankan Aplikasi**
+```bash
+# Jalankan server aplikasi Laravel
+php artisan serve
+
+# Pada terminal terpisah, jalankan build asset
+npm run dev
+```
+Akses aplikasi melalui peramban di: `http://localhost:8000`
+
+---
+
+### Opsi 2: Menggunakan Docker Compose
+
+Jika Anda ingin menjalankan aplikasi di dalam container Docker:
+
+**1. Clone & Masuk Direktori**
+```bash
+git clone git@github.com:ataslangit/sistem-informasi-desa.git
+cd sistem-informasi-desa
+```
+
+**2. Siapkan File Environment**
+```bash
+cp .env.example .env
+```
+
+**3. Jalankan Container**
+```bash
+docker compose up -d --build
+```
+
+**4. Setup Dependensi & Kunci Aplikasi di Container**
+```bash
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate --seed
+```
+
+Aplikasi dapat diakses melalui port yang dikonfigurasi (default: `http://localhost:8080`).
+
+---
+
+## 🤝 Berkontribusi
+
+Kontribusi untuk pengembangan SiDesa sangat terbuka!
+
+1. *Fork* repositori ini.
+2. Buat *branch* fitur baru (`git checkout -b feature/FiturKeren`).
+3. *Commit* perubahan Anda (`git commit -m 'Menambahkan fitur keren'`).
+4. *Push* ke *branch* (`git push origin feature/FiturKeren`).
+5. Buat *Pull Request*.
+
+---
+
+## 📄 Lisensi
+ 
+Proyek **SiDesa** didistribusikan di bawah lisensi [GNU General Public License v3.0 (GPL-3.0)](LICENSE).
