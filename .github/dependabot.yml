@@ -1,0 +1,48 @@
+version: 2
+updates:
+  # Pembaruan dependensi PHP (Composer)
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "Asia/Jakarta"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "composer"
+      - "php"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # Pembaruan dependensi Frontend (NPM)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:30"
+      timezone: "Asia/Jakarta"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "npm"
+      - "javascript"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # Pembaruan GitHub Actions Workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Jakarta"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(deps)"

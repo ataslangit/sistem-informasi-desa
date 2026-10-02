@@ -1,16 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,9 +23,25 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'password_hash',
+        'is_active',
+        'metadata',
     ];
+
+    /**
+     * Boot model untuk sinkronisasi password_hash dengan password Laravel.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (User $user): void {
+            if (! empty($user->password)) {
+                $user->password_hash = $user->password;
+            }
+        });
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,5 +61,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_active' => 'boolean',
+        'metadata' => 'array',
     ];
 }
