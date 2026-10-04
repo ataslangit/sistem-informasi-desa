@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae07730e9805dc7beed8da927e046fb2",
+    "content-hash": "a9899971e809ec449d5943407bbb43ab",
     "packages": [
         {
             "name": "brick/math",
@@ -5518,6 +5518,52 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.4.0"
             },
             "time": "2025-12-02T11:56:42+00:00"
+        },
+        {
+            "name": "ttpryg/audit-engine",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ttpryg/audit-engine.git",
+                "reference": "719f554564196dd1ee4f0cf460489ae253592028"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ttpryg/audit-engine/zipball/719f554564196dd1ee4f0cf460489ae253592028",
+                "reference": "719f554564196dd1ee4f0cf460489ae253592028",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "ttpryg/event-dispatcher": "^1.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20",
+                "phpunit/phpunit": "^10.0",
+                "rector/rector": "^2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ttpryg\\AuditEngine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toto",
+                    "email": "totoprayogo1916@gmail.com"
+                }
+            ],
+            "description": "A framework-agnostic standalone audit logging engine library for PHP.",
+            "support": {
+                "issues": "https://github.com/ttpryg/audit-engine/issues",
+                "source": "https://github.com/ttpryg/audit-engine/tree/1.0.2"
+            },
+            "time": "2026-09-21T16:16:21+00:00"
         },
         {
             "name": "ttpryg/auth-user",

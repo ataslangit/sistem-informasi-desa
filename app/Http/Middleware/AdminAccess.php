@@ -25,6 +25,7 @@ class AdminAccess
 
         if (! $user->is_active) {
             auth()->logout();
+
             return redirect()->route('login')->withErrors([
                 'email' => 'Akun Anda dinonaktifkan oleh administrator.',
             ]);

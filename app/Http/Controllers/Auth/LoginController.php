@@ -59,7 +59,7 @@ class LoginController extends Controller
             $authenticatedUser = Auth::user();
 
             return $this->redirectBasedOnRole($authenticatedUser)
-                ->with('success', 'Selamat datang kembali, ' . $authenticatedUser->name . '!');
+                ->with('success', 'Selamat datang kembali, '.$authenticatedUser->name.'!');
         }
 
         throw ValidationException::withMessages([
