@@ -31,12 +31,25 @@
                         <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white hover:bg-sky-700 transition shadow-sm">
                             Dashboard Admin →
                         </a>
+                    @elseif(auth()->user()->hasRole('rt'))
+                        <a href="{{ route('admin.letter-requests.index') }}" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
+                            Panel RT/RW →
+                        </a>
                     @else
-                        <span class="text-xs text-slate-600 font-medium">Halo, {{ auth()->user()->name }}</span>
+                        <a href="{{ route('citizen.letters.index') }}" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white hover:bg-sky-700 transition shadow-sm">
+                            ✉️ Layanan Surat Mandiri →
+                        </a>
                     @endif
+
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="p-2 text-slate-400 hover:text-rose-600 transition text-xs font-semibold" title="Keluar / Logout">
+                            Logout
+                        </button>
+                    </form>
                 @else
                     <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow-sm">
-                        Masuk Petugas
+                        Masuk / Layanan Warga
                     </a>
                 @endauth
             </div>

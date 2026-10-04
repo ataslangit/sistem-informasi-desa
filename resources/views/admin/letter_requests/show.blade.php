@@ -133,78 +133,97 @@
 
     <!-- Action Forms for Approvals -->
     @if(!$letterRequest->isApproved() && !$letterRequest->isRejected())
-        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-sm">
-            <h3 class="text-sm font-bold uppercase tracking-wider mb-4">Aksi Verifikasi & Persetujuan</h3>
+        @if($letterRequest->canBeProcessedBy(auth()->user()))
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-sm">
+                <h3 class="text-sm font-bold uppercase tracking-wider mb-4">Aksi Verifikasi & Persetujuan</h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Approval Form -->
-                <div>
-                    @if($letterRequest->status === 'pending_rt')
-                        @if(auth()->user()->hasRole(['superadmin', 'rt']) || auth()->user()->hasPermission('letters.verify_rt'))
-                            <form action="{{ route('admin.letter-requests.verify-rt', $letterRequest) }}" method="POST" class="space-y-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Approval Form -->
+                    <div>
+                        @if($letterRequest->status === 'pending_rt')
+                            @if(auth()->user()->hasRole(['superadmin', 'rt']) || auth()->user()->hasPermission('letters.verify_rt'))
+                                <form action="{{ route('admin.letter-requests.verify-rt', $letterRequest) }}" method="POST" class="space-y-3">
+                                    @csrf
+                                    <label class="block text-xs text-slate-300">Catatan Verifikasi RT/RW (Opsional):</label>
+                                    <input type="text" name="notes" placeholder="cth: Data kependudukan RT/RW sesuai dan disetujui" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                                    <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-bold hover:bg-amber-400 transition">
+                                        Verifikasi & Setujui Tahap RT/RW &rarr;
+                                    </button>
+                                </form>
+                            @endif
+
+                            @if(auth()->user()->hasRole(['superadmin', 'perangkat']) || auth()->user()->hasPermission('letters.process'))
+                                <div class="{{ (auth()->user()->hasRole(['superadmin', 'rt']) || auth()->user()->hasPermission('letters.verify_rt')) ? 'mt-4 pt-4 border-t border-slate-800' : '' }}">
+                                    <form action="{{ route('admin.letter-requests.bypass-rt', $letterRequest) }}" method="POST" class="space-y-3">
+                                        @csrf
+                                        <div class="flex items-center justify-between">
+                                            <label class="block text-xs text-amber-300 font-semibold">⚡ Bypass Verifikasi RT/RW (Staf Desa):</label>
+                                            <span class="text-[10px] text-slate-400">Warga membawa pengantar fisik RT/RW</span>
+                                        </div>
+                                        <input type="text" name="bypass_notes" placeholder="cth: Pengantar fisik RT/RW No. 12/X/2026 diverifikasi manual oleh staf" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                                        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 text-xs font-bold hover:brightness-110 transition shadow">
+                                            Bypass RT/RW & Teruskan ke Kades &rarr;
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        @elseif($letterRequest->status === 'pending_staff' && (auth()->user()->hasRole(['superadmin', 'perangkat']) || auth()->user()->hasPermission('letters.process')))
+                            <form action="{{ route('admin.letter-requests.verify-staff', $letterRequest) }}" method="POST" class="space-y-3">
                                 @csrf
-                                <label class="block text-xs text-slate-300">Catatan Verifikasi RT/RW (Opsional):</label>
-                                <input type="text" name="notes" placeholder="cth: Data kependudukan RT/RW sesuai dan disetujui" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                                <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-bold hover:bg-amber-400 transition">
-                                    Verifikasi & Setujui Tahap RT/RW &rarr;
+                                <label class="block text-xs text-slate-300">Catatan Staf Pelayanan (Opsional):</label>
+                                <input type="text" name="notes" placeholder="cth: Berkas persyaratan lengkap dan valid" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500 transition">
+                                    Verifikasi Staf & Teruskan ke Kades &rarr;
+                                </button>
+                            </form>
+                        @elseif($letterRequest->status === 'pending_kades' && (auth()->user()->hasRole(['superadmin', 'kades']) || auth()->user()->hasPermission('letters.approve')))
+                            <form action="{{ route('admin.letter-requests.approve-kades', $letterRequest) }}" method="POST" class="space-y-3">
+                                @csrf
+                                <label class="block text-xs text-slate-300">Catatan Kepala Desa (Opsional):</label>
+                                <input type="text" name="notes" placeholder="cth: Disetujui dan disahkan" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-bold hover:bg-emerald-400 transition flex items-center justify-center space-x-2">
+                                    <span>✍️</span>
+                                    <span>Sahkan Dokumen & Tanda Tangan Elektronik (TTE)</span>
                                 </button>
                             </form>
                         @endif
+                    </div>
 
-                        @if(auth()->user()->hasRole(['superadmin', 'perangkat']) || auth()->user()->hasPermission('letters.process'))
-                            <div class="{{ (auth()->user()->hasRole(['superadmin', 'rt']) || auth()->user()->hasPermission('letters.verify_rt')) ? 'mt-4 pt-4 border-t border-slate-800' : '' }}">
-                                <form action="{{ route('admin.letter-requests.bypass-rt', $letterRequest) }}" method="POST" class="space-y-3">
-                                    @csrf
-                                    <div class="flex items-center justify-between">
-                                        <label class="block text-xs text-amber-300 font-semibold">⚡ Bypass Verifikasi RT/RW (Staf Desa):</label>
-                                        <span class="text-[10px] text-slate-400">Warga membawa pengantar fisik RT/RW</span>
-                                    </div>
-                                    <input type="text" name="bypass_notes" placeholder="cth: Pengantar fisik RT/RW No. 12/X/2026 diverifikasi manual oleh staf" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                                    <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 text-xs font-bold hover:brightness-110 transition shadow">
-                                        Bypass RT/RW & Teruskan ke Kades &rarr;
-                                    </button>
-                                </form>
-                            </div>
-                        @endif
-                    @elseif($letterRequest->status === 'pending_staff' && (auth()->user()->hasRole(['superadmin', 'perangkat']) || auth()->user()->hasPermission('letters.process')))
-                        <form action="{{ route('admin.letter-requests.verify-staff', $letterRequest) }}" method="POST" class="space-y-3">
+                    <!-- Rejection Form -->
+                    <div class="border-t md:border-t-0 md:border-l border-slate-800 md:pl-6 pt-4 md:pt-0">
+                        <form action="{{ route('admin.letter-requests.reject', $letterRequest) }}" method="POST" class="space-y-3" onsubmit="return confirm('Apakah Anda yakin ingin menolak permohonan surat ini?');">
                             @csrf
-                            <label class="block text-xs text-slate-300">Catatan Staf Pelayanan (Opsional):</label>
-                            <input type="text" name="notes" placeholder="cth: Berkas persyaratan lengkap dan valid" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                            <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500 transition">
-                                Verifikasi Staf & Teruskan ke Kades &rarr;
+                            <label class="block text-xs text-rose-300">Tolak Permohonan Surat:</label>
+                            <input type="text" name="rejection_reason" required placeholder="Tulis alasan penolakan berkas..." class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                            <button type="submit" class="w-full py-2 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-semibold transition">
+                                Tolak Permohonan
                             </button>
                         </form>
-                    @elseif($letterRequest->status === 'pending_kades' && (auth()->user()->hasRole(['superadmin', 'kades']) || auth()->user()->hasPermission('letters.approve')))
-                        <form action="{{ route('admin.letter-requests.approve-kades', $letterRequest) }}" method="POST" class="space-y-3">
-                            @csrf
-                            <label class="block text-xs text-slate-300">Catatan Kepala Desa (Opsional):</label>
-                            <input type="text" name="notes" placeholder="cth: Disetujui dan disahkan" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                            <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-bold hover:bg-emerald-400 transition flex items-center justify-center space-x-2">
-                                <span>✍️</span>
-                                <span>Sahkan Dokumen & Tanda Tangan Elektronik (TTE)</span>
-                            </button>
-                        </form>
-                    @else
-                        <div class="text-xs text-slate-400 italic py-4">
-                            Saat ini surat sedang berada pada status <strong class="text-white">{{ $letterRequest->status_label }}</strong>. Anda tidak memiliki hak otorisasi untuk mengeksekusi tahapan ini.
-                        </div>
-                    @endif
-                </div>
-
-                <!-- Rejection Form -->
-                <div class="border-t md:border-t-0 md:border-l border-slate-800 md:pl-6 pt-4 md:pt-0">
-                    <form action="{{ route('admin.letter-requests.reject', $letterRequest) }}" method="POST" class="space-y-3" onsubmit="return confirm('Apakah Anda yakin ingin menolak permohonan surat ini?');">
-                        @csrf
-                        <label class="block text-xs text-rose-300">Tolak Permohonan Surat:</label>
-                        <input type="text" name="rejection_reason" required placeholder="Tulis alasan penolakan berkas..." class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                        <button type="submit" class="w-full py-2 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-semibold transition">
-                            Tolak Permohonan
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">ℹ️</span>
+                    <div>
+                        <div class="font-bold text-slate-800">
+                            Status Permohonan: <span class="text-amber-600">{{ $letterRequest->status_label }}</span>
+                        </div>
+                        <p class="text-slate-500 mt-0.5">
+                            @if($letterRequest->rt_verified_at && auth()->user()->hasRole('rt'))
+                                Anda telah memverifikasi permohonan ini pada tingkat RT/RW. Berkas saat ini sedang dalam proses oleh tahapan selanjutnya.
+                            @else
+                                Anda tidak memiliki hak otorisasi untuk memproses atau menolak permohonan pada tahapan ini.
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                <div class="text-[11px] bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-slate-500 font-medium self-start sm:self-center">
+                    Hanya Petugas Tahap Aktif
+                </div>
+            </div>
+        @endif
     @endif
 
     <!-- 2 Kolom: Detail Warga vs Preview Surat -->

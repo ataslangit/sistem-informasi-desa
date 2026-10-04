@@ -241,4 +241,57 @@ class LetterManagementTest extends TestCase
         $this->assertEquals($this->perangkat->id, $letter->staff_verified_by);
         $this->assertStringContainsString('Bypass Verifikasi RT', $letter->rt_notes);
     }
+
+    /**
+     * Test RT tidak dapat menolak surat jika sudah lolos tahap verifikasi RT.
+     */
+    public function test_rt_cannot_reject_letter_after_rt_verification(): void
+    {
+        $this->actingAs($this->warga)->post('/citizen/letters', [
+            'letter_template_id' => $this->sktmTemplate->id,
+            'purpose' => 'Surat keterangan untuk beasiswa',
+        ]);
+
+        $letter = LetterRequest::where('user_id', $this->warga->id)->latest('id')->firstOrFail();
+        $this->assertEquals('pending_rt', $letter->status);
+
+        // Pada tahap pending_rt, RT dapat melihat form verifikasi dan form penolakan
+        $responseShowRt = $this->actingAs($this->rt)->get("/admin/letter-requests/{$letter->id}");
+        $responseShowRt->assertStatus(200);
+        $responseShowRt->assertSee('Verifikasi & Setujui Tahap RT/RW', false);
+        $responseShowRt->assertSee('Tolak Permohonan Surat:');
+
+        // RT melakukan verifikasi
+        $this->actingAs($this->rt)->post("/admin/letter-requests/{$letter->id}/verify-rt", [
+            'notes' => 'Disetujui RT 001',
+        ]);
+
+        $letter->refresh();
+        $this->assertEquals('pending_staff', $letter->status);
+
+        // Setelah diverifikasi, RT membuka halaman kembali:
+        // Form penolakan dan form verifikasi HARUS hilang, berganti informasi status
+        $responseShowAfterRt = $this->actingAs($this->rt)->get("/admin/letter-requests/{$letter->id}");
+        $responseShowAfterRt->assertStatus(200);
+        $responseShowAfterRt->assertDontSee('Tolak Permohonan Surat:');
+        $responseShowAfterRt->assertSee('Anda telah memverifikasi permohonan ini pada tingkat RT/RW');
+
+        // Jika RT mencoba mengirim request POST penolakan secara langsung, harus dicegah (403 Forbidden)
+        $responseReject = $this->actingAs($this->rt)->post("/admin/letter-requests/{$letter->id}/reject", [
+            'rejection_reason' => 'Mencoba menolak setelah tahap RT selesai',
+        ]);
+        $responseReject->assertStatus(403);
+
+        // Berkas tetap pending_staff
+        $letter->refresh();
+        $this->assertEquals('pending_staff', $letter->status);
+
+        // Namun staf desa berwenang untuk menolak pada tahap ini
+        $responseStaffReject = $this->actingAs($this->perangkat)->post("/admin/letter-requests/{$letter->id}/reject", [
+            'rejection_reason' => 'Persyaratan berkas KK belum diunggah',
+        ]);
+        $responseStaffReject->assertRedirect();
+        $letter->refresh();
+        $this->assertEquals('rejected', $letter->status);
+    }
 }

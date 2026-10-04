@@ -118,6 +118,24 @@ class LetterRequest extends Model
         };
     }
 
+    public function canBeProcessedBy(?User $user): bool
+    {
+        if (! $user || $this->isApproved() || $this->isRejected()) {
+            return false;
+        }
+
+        if ($user->hasRole('superadmin')) {
+            return true;
+        }
+
+        return match ($this->status) {
+            self::STATUS_PENDING_RT => $user->hasRole(['rt', 'perangkat']) || $user->hasPermission('letters.verify_rt') || $user->hasPermission('letters.process'),
+            self::STATUS_PENDING_STAFF => $user->hasRole('perangkat') || $user->hasPermission('letters.process'),
+            self::STATUS_PENDING_KADES => $user->hasRole('kades') || $user->hasPermission('letters.approve'),
+            default => false,
+        };
+    }
+
     public function scopePending(Builder $query): Builder
     {
         return $query->whereIn('status', [

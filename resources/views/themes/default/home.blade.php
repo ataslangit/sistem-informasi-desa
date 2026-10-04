@@ -17,8 +17,8 @@
         </p>
 
         <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#layanan" class="px-6 py-3.5 rounded-xl font-semibold bg-sky-500 hover:bg-sky-400 text-white transition shadow-lg shadow-sky-950/30 text-sm">
-                ✉️ Layanan Surat Online
+            <a href="{{ route('citizen.letters.create') }}" class="px-6 py-3.5 rounded-xl font-semibold bg-sky-500 hover:bg-sky-400 text-white transition shadow-lg shadow-sky-950/30 text-sm">
+                ✉️ Ajukan Surat Online &rarr;
             </a>
             <a href="#profil" class="px-6 py-3.5 rounded-xl font-semibold bg-white/10 hover:bg-white/20 text-white transition backdrop-blur-md text-sm border border-white/20">
                 📖 Profil & Transparansi

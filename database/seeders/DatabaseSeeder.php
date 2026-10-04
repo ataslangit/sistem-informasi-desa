@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ResidentAndFamilySeeder::class,
             LetterTemplateSeeder::class,
+            LetterRequestSeeder::class,
         ]);
     }
 }

@@ -99,13 +99,18 @@ class LetterRequestController extends Controller
      */
     public function verifyRt(Request $request, LetterRequest $letterRequest): RedirectResponse
     {
+        $user = $request->user();
+        if (! $user->hasRole(['superadmin', 'rt', 'perangkat']) && ! $user->hasPermission('letters.verify_rt') && ! $user->hasPermission('letters.process')) {
+            abort(403, 'Anda tidak memiliki hak otorisasi untuk memverifikasi tahap RT/RW.');
+        }
+
         $request->validate([
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         $this->letterService->verifyByRt(
             $letterRequest,
-            $request->user(),
+            $user,
             $request->input('notes')
         );
 
@@ -118,13 +123,18 @@ class LetterRequestController extends Controller
      */
     public function bypassRt(Request $request, LetterRequest $letterRequest): RedirectResponse
     {
+        $user = $request->user();
+        if (! $user->hasRole(['superadmin', 'perangkat']) && ! $user->hasPermission('letters.process')) {
+            abort(403, 'Hanya Staf / Perangkat Desa yang berwenang melakukan bypass verifikasi RT/RW.');
+        }
+
         $request->validate([
             'bypass_notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         $this->letterService->bypassRtAndVerify(
             $letterRequest,
-            $request->user(),
+            $user,
             $request->input('bypass_notes')
         );
 
@@ -137,13 +147,18 @@ class LetterRequestController extends Controller
      */
     public function verifyStaff(Request $request, LetterRequest $letterRequest): RedirectResponse
     {
+        $user = $request->user();
+        if (! $user->hasRole(['superadmin', 'perangkat']) && ! $user->hasPermission('letters.process')) {
+            abort(403, 'Anda tidak memiliki hak otorisasi untuk memverifikasi tahap Staf Desa.');
+        }
+
         $request->validate([
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         $this->letterService->verifyByStaff(
             $letterRequest,
-            $request->user(),
+            $user,
             $request->input('notes')
         );
 
@@ -156,13 +171,18 @@ class LetterRequestController extends Controller
      */
     public function approveKades(Request $request, LetterRequest $letterRequest): RedirectResponse
     {
+        $user = $request->user();
+        if (! $user->hasRole(['superadmin', 'kades']) && ! $user->hasPermission('letters.approve')) {
+            abort(403, 'Hanya Kepala Desa yang berwenang memberikan pengesahan dan TTE.');
+        }
+
         $request->validate([
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         $this->letterService->approveByKades(
             $letterRequest,
-            $request->user(),
+            $user,
             $request->input('notes')
         );
 
@@ -175,6 +195,10 @@ class LetterRequestController extends Controller
      */
     public function reject(Request $request, LetterRequest $letterRequest): RedirectResponse
     {
+        if (! $letterRequest->canBeProcessedBy($request->user())) {
+            abort(403, 'Anda tidak memiliki hak otorisasi untuk menolak permohonan surat pada tahapan ini.');
+        }
+
         $request->validate([
             'rejection_reason' => ['required', 'string', 'max:1000'],
         ]);
