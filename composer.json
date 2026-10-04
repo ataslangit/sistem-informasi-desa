@@ -23,6 +23,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "ttpryg/audit-engine": "^1.0",
         "ttpryg/auth-user": "^1.1"
     },
     "require-dev": {

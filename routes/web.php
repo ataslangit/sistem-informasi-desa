@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\PopulationReportController;
@@ -44,4 +45,8 @@ Route::prefix('admin')
 
         // Laporan & Statistik Kependudukan
         Route::get('/reports/population', [PopulationReportController::class, 'index'])->name('reports.population');
+
+        // Audit Trail System (Audit Engine)
+        Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
+        Route::get('/audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
     });
