@@ -14,7 +14,6 @@ class EnsureUserHasPermission
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string  $permission
      */
     public function handle(Request $request, Closure $next, string $permission): Response
     {
@@ -26,6 +25,7 @@ class EnsureUserHasPermission
 
         if (! $user->is_active) {
             auth()->logout();
+
             return redirect()->route('login')->withErrors([
                 'email' => 'Akun Anda dinonaktifkan. Silakan hubungi administrator.',
             ]);

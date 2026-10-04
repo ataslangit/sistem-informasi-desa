@@ -14,7 +14,6 @@ class EnsureUserHasRole
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string  ...$roles
      */
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
@@ -26,6 +25,7 @@ class EnsureUserHasRole
 
         if (! $user->is_active) {
             auth()->logout();
+
             return redirect()->route('login')->withErrors([
                 'email' => 'Akun Anda dinonaktifkan. Silakan hubungi administrator.',
             ]);

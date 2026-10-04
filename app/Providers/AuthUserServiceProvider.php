@@ -24,18 +24,21 @@ class AuthUserServiceProvider extends ServiceProvider
         // Bind RbacRepositoryInterface
         $this->app->singleton(RbacRepositoryInterface::class, function () {
             $pdo = DB::connection()->getPdo();
+
             return new PdoRbacRepository($pdo);
         });
 
         // Bind UserRepositoryInterface
         $this->app->singleton(UserRepositoryInterface::class, function () {
             $pdo = DB::connection()->getPdo();
+
             return new PdoUserRepository($pdo);
         });
 
         // Bind TokenRepositoryInterface
         $this->app->singleton(TokenRepositoryInterface::class, function () {
             $pdo = DB::connection()->getPdo();
+
             return new PdoTokenRepository($pdo);
         });
 

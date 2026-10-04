@@ -13,6 +13,7 @@ class AuthAndRbacTest extends TestCase
     use RefreshDatabase;
 
     protected bool $seed = true;
+
     /**
      * Test login page is accessible.
      */

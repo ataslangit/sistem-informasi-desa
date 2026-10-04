@@ -53,8 +53,8 @@ if (! function_exists('theme_view')) {
     /**
      * Memuat view Blade dari tema publik yang aktif.
      *
-     * @param array<string, mixed> $data
-     * @param array<string, mixed> $mergeData
+     * @param  array<string, mixed>  $data
+     * @param  array<string, mixed>  $mergeData
      */
     function theme_view(string $view, array $data = [], array $mergeData = []): View
     {

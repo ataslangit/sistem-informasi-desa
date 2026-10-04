@@ -25,7 +25,7 @@ trait HasRoles
     /**
      * Memeriksa apakah user memiliki salah satu atau beberapa role tertentu.
      *
-     * @param string|array<int, string> $roles
+     * @param  string|array<int, string>  $roles
      */
     public function hasRole(string|array $roles): bool
     {
@@ -103,7 +103,7 @@ trait HasRoles
     /**
      * Sinkronisasi role user.
      *
-     * @param array<int, string|int|Role> $roles
+     * @param  array<int, string|int|Role>  $roles
      */
     public function syncRoles(array $roles): self
     {

@@ -28,8 +28,8 @@
             </div>
             <div>
                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Penduduk</p>
-                <h3 class="text-2xl font-extrabold text-slate-800">1,420</h3>
-                <span class="text-[11px] text-emerald-600 font-medium">Buku Induk Desa</span>
+                <h3 class="text-2xl font-extrabold text-slate-800">{{ number_format($stats['total_residents'] ?? 0) }}</h3>
+                <span class="text-[11px] text-emerald-600 font-medium">Buku Induk Aktif</span>
             </div>
         </div>
 
@@ -39,8 +39,8 @@
             </div>
             <div>
                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Kepala Keluarga</p>
-                <h3 class="text-2xl font-extrabold text-slate-800">415</h3>
-                <span class="text-[11px] text-emerald-600 font-medium">Terdaftar Aktif</span>
+                <h3 class="text-2xl font-extrabold text-slate-800">{{ number_format($stats['total_families'] ?? 0) }}</h3>
+                <span class="text-[11px] text-emerald-600 font-medium">Kartu Keluarga (KK)</span>
             </div>
         </div>
 
