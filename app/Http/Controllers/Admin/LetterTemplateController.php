@@ -42,6 +42,7 @@ class LetterTemplateController extends Controller
     {
         $validated = $request->validate([
             'code' => ['required', 'string', 'max:30', 'unique:letter_templates,code'],
+            'number_format' => ['nullable', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:150'],
             'description' => ['nullable', 'string'],
             'content_template' => ['required', 'string'],
@@ -50,6 +51,7 @@ class LetterTemplateController extends Controller
 
         $validated['is_active'] = $request->boolean('is_active', true);
         $validated['code'] = strtoupper(trim($validated['code']));
+        $validated['number_format'] = $request->filled('number_format') ? trim($request->input('number_format')) : null;
 
         LetterTemplate::create($validated);
 
@@ -72,6 +74,7 @@ class LetterTemplateController extends Controller
     {
         $validated = $request->validate([
             'code' => ['required', 'string', 'max:30', 'unique:letter_templates,code,'.$letterTemplate->id],
+            'number_format' => ['nullable', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:150'],
             'description' => ['nullable', 'string'],
             'content_template' => ['required', 'string'],
@@ -80,6 +83,7 @@ class LetterTemplateController extends Controller
 
         $validated['is_active'] = $request->boolean('is_active');
         $validated['code'] = strtoupper(trim($validated['code']));
+        $validated['number_format'] = $request->filled('number_format') ? trim($request->input('number_format')) : null;
 
         $letterTemplate->update($validated);
 

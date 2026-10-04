@@ -48,6 +48,7 @@ class LetterRequest extends Model
         'rejection_reason',
         'rejected_by',
         'rejected_at',
+        'final_content',
         'qr_token',
         'signed_at',
     ];

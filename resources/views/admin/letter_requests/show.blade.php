@@ -179,9 +179,20 @@
                         @elseif($letterRequest->status === 'pending_kades' && (auth()->user()->hasRole(['superadmin', 'kades']) || auth()->user()->hasPermission('letters.approve')))
                             <form action="{{ route('admin.letter-requests.approve-kades', $letterRequest) }}" method="POST" class="space-y-3">
                                 @csrf
-                                <label class="block text-xs text-slate-300">Catatan Kepala Desa (Opsional):</label>
-                                <input type="text" name="notes" placeholder="cth: Disetujui dan disahkan" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
-                                <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-bold hover:bg-emerald-400 transition flex items-center justify-center space-x-2">
+                                <div>
+                                    <div class="flex items-center justify-between mb-1">
+                                        <label class="block text-xs text-emerald-300 font-semibold">Nomor Surat Resmi:</label>
+                                        <span class="text-[10px] text-slate-400">Format sistem (dapat disesuaikan)</span>
+                                    </div>
+                                    <input type="text" name="letter_number" value="{{ $suggestedLetterNumber ?? '' }}" placeholder="cth: {{ $suggestedLetterNumber ?? '' }}" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-emerald-300 font-mono font-bold focus:outline-none focus:border-emerald-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs text-slate-300 mb-1">Catatan Kepala Desa (Opsional):</label>
+                                    <input type="text" name="notes" placeholder="cth: Disetujui dan disahkan" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-800 border border-slate-700 text-white placeholder-slate-500">
+                                </div>
+
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-bold hover:bg-emerald-400 transition flex items-center justify-center space-x-2 shadow-lg">
                                     <span>✍️</span>
                                     <span>Sahkan Dokumen & Tanda Tangan Elektronik (TTE)</span>
                                 </button>

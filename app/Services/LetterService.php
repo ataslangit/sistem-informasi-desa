@@ -109,18 +109,32 @@ class LetterService
     /**
      * Tahap 3: Persetujuan akhir & TTE oleh Kepala Desa.
      */
-    public function approveByKades(LetterRequest $letterRequest, User $kadesUser, ?string $notes = null): LetterRequest
-    {
+    public function approveByKades(
+        LetterRequest $letterRequest,
+        User $kadesUser,
+        ?string $notes = null,
+        ?string $customLetterNumber = null
+    ): LetterRequest {
         if ($letterRequest->status !== LetterRequest::STATUS_PENDING_KADES) {
             throw new InvalidArgumentException('Surat belum melewati tahapan verifikasi sebelumnya untuk persetujuan Kades.');
         }
 
-        $letterNumber = $this->generateOfficialLetterNumber($letterRequest);
+        $letterNumber = !empty($customLetterNumber)
+            ? trim($customLetterNumber)
+            : $this->generateOfficialLetterNumber($letterRequest);
         $signedAt = Carbon::now();
+
+        // Set atribut pada instance sebelum snapshotting agar nomor surat terkompilasi
+        $letterRequest->letter_number = $letterNumber;
+        $letterRequest->signed_at = $signedAt;
+
+        // Ambil snapshot isi surat final
+        $finalContent = $this->parseTemplateContent($letterRequest);
 
         $letterRequest->update([
             'status' => LetterRequest::STATUS_APPROVED,
             'letter_number' => $letterNumber,
+            'final_content' => $finalContent,
             'kades_approved_at' => $signedAt,
             'kades_approved_by' => $kadesUser->id,
             'kades_notes' => $notes,
@@ -161,17 +175,46 @@ class LetterService
     }
 
     /**
-     * Generate nomor surat resmi (470/{seq}/{code}/Ds/{year}).
+     * Generate nomor surat resmi berdasarkan pola format config atau template.
      */
     public function generateOfficialLetterNumber(LetterRequest $request): string
     {
-        $year = Carbon::now()->format('Y');
+        $now = Carbon::now();
+        $year = $now->format('Y');
+        $month = $now->format('m');
+        $romanMonths = [
+            1 => 'I', 2 => 'II', 3 => 'III', 4 => 'IV', 5 => 'V', 6 => 'VI',
+            7 => 'VII', 8 => 'VIII', 9 => 'IX', 10 => 'X', 11 => 'XI', 12 => 'XII',
+        ];
+        $monthRoman = $romanMonths[(int) $now->format('n')] ?? 'I';
+
         $code = $request->template ? $request->template->code : 'DS';
+        $classification = config("letters.classification_codes.{$code}", config('letters.classification_codes.DEFAULT', '470'));
+        $villageCode = (string) Setting::get('letter_village_code', 'Ds');
+
         $totalApprovedThisYear = LetterRequest::whereYear('signed_at', $year)
             ->whereNotNull('letter_number')
             ->count() + 1;
 
-        return sprintf('470/%03d/%s/Ds/%s', $totalApprovedThisYear, $code, $year);
+        $pattern = $request->template?->number_format
+            ?: config('letters.default_number_format', '{klasifikasi}/{nomor:3}/{kode}/Ds/{tahun}');
+
+        // Ganti placeholder {nomor} atau {nomor:X}
+        $formattedNumber = (string) preg_replace_callback('/\{nomor(?::(\d+))?\}/', function ($matches) use ($totalApprovedThisYear) {
+            $padding = isset($matches[1]) ? (int) $matches[1] : (int) config('letters.number_padding', 3);
+            return sprintf("%0{$padding}d", $totalApprovedThisYear);
+        }, $pattern);
+
+        $replacements = [
+            '{kode}' => $code,
+            '{klasifikasi}' => $classification,
+            '{bulan}' => $month,
+            '{bulan_romawi}' => $monthRoman,
+            '{tahun}' => $year,
+            '{desa}' => $villageCode,
+        ];
+
+        return str_replace(array_keys($replacements), array_values($replacements), $formattedNumber);
     }
 
     /**
@@ -179,11 +222,16 @@ class LetterService
      */
     public function parseTemplateContent(LetterRequest $letterRequest): string
     {
+        // Jika surat telah disahkan dan memiliki snapshot konten final, gunakan snapshot tersebut untuk menjaga immutability
+        if (!empty($letterRequest->final_content)) {
+            return $letterRequest->final_content;
+        }
+
         $template = $letterRequest->template;
         $resident = $letterRequest->resident;
         $family = $resident?->family;
 
-        $content = $template->content_template;
+        $content = $template ? $template->content_template : '';
 
         $replacements = [
             '[NAMA_DESA]' => (string) Setting::get('village_name', 'Sukamaju'),

@@ -104,6 +104,18 @@ class LetterRequestSeeder extends Seeder
 
         // 4. Surat Keterangan Domisili - Sudah Selesai & Disahkan (approved)
         if ($domisili) {
+            $dummyReq = new LetterRequest([
+                'letter_template_id' => $domisili->id,
+                'resident_id' => $resident->id,
+                'user_id' => $wargaUser->id,
+                'letter_number' => '470/025/DOMISILI/Ds/2026',
+                'purpose' => 'Kelengkapan administrasi pembukaan rekening tabungan bank',
+                'extra_data' => [],
+            ]);
+            $dummyReq->setRelation('template', $domisili);
+            $dummyReq->setRelation('resident', $resident);
+            $finalContent = app(\App\Services\LetterService::class)->parseTemplateContent($dummyReq);
+
             LetterRequest::updateOrCreate(
                 ['request_number' => 'REQ-20261001-0004'],
                 [
@@ -113,6 +125,7 @@ class LetterRequestSeeder extends Seeder
                     'letter_number' => '470/025/DOMISILI/Ds/2026',
                     'purpose' => 'Kelengkapan administrasi pembukaan rekening tabungan bank',
                     'extra_data' => [],
+                    'final_content' => $finalContent,
                     'status' => LetterRequest::STATUS_APPROVED,
                     'rt_verified_at' => Carbon::now()->subDays(2),
                     'rt_verified_by' => $rtUser?->id,

@@ -90,8 +90,9 @@ class LetterRequestController extends Controller
         ]);
 
         $previewContent = $this->letterService->parseTemplateContent($letterRequest);
+        $suggestedLetterNumber = $letterRequest->letter_number ?: $this->letterService->generateOfficialLetterNumber($letterRequest);
 
-        return view('admin.letter_requests.show', compact('letterRequest', 'previewContent'));
+        return view('admin.letter_requests.show', compact('letterRequest', 'previewContent', 'suggestedLetterNumber'));
     }
 
     /**
@@ -177,13 +178,15 @@ class LetterRequestController extends Controller
         }
 
         $request->validate([
+            'letter_number' => ['nullable', 'string', 'max:80'],
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         $this->letterService->approveByKades(
             $letterRequest,
             $user,
-            $request->input('notes')
+            $request->input('notes'),
+            $request->input('letter_number')
         );
 
         return redirect()->route('admin.letter-requests.show', $letterRequest)

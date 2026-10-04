@@ -294,4 +294,112 @@ class LetterManagementTest extends TestCase
         $letter->refresh();
         $this->assertEquals('rejected', $letter->status);
     }
+
+    /**
+     * Test format nomor surat menggunakan template custom format dan manual override kades.
+     */
+    public function test_letter_number_supports_custom_template_format_and_manual_override(): void
+    {
+        // 1. Template dengan custom format nomor surat
+        $skuTemplate = LetterTemplate::create([
+            'code' => 'SKU-CUSTOM',
+            'name' => 'Surat Keterangan Usaha Custom',
+            'number_format' => '510/{nomor:4}/EKBANG/{bulan_romawi}/{tahun}',
+            'content_template' => '<p>Surat keterangan usaha [NAMA].</p>',
+            'is_active' => true,
+        ]);
+
+        $this->actingAs($this->warga)->post('/citizen/letters', [
+            'letter_template_id' => $skuTemplate->id,
+            'purpose' => 'Pengajuan pinjaman usaha',
+        ]);
+
+        $letter = LetterRequest::where('letter_template_id', $skuTemplate->id)->latest('id')->firstOrFail();
+
+        // Bypass RT & verifikasi staf
+        $this->actingAs($this->perangkat)->post("/admin/letter-requests/{$letter->id}/bypass-rt", [
+            'bypass_notes' => 'Bypass verifikasi',
+        ]);
+
+        $letter->refresh();
+        $this->assertEquals('pending_kades', $letter->status);
+
+        // Kades menyetujui tanpa nomor manual -> menggunakan format template
+        $this->actingAs($this->kades)->post("/admin/letter-requests/{$letter->id}/approve-kades", [
+            'notes' => 'Disetujui',
+        ]);
+
+        $letter->refresh();
+        $this->assertEquals('approved', $letter->status);
+        $this->assertStringStartsWith('510/', $letter->letter_number);
+        $this->assertStringContainsString('/EKBANG/', $letter->letter_number);
+
+        // 2. Kades dapat meng-override nomor surat secara manual jika ada nomor buku register fisik
+        $letter2 = LetterRequest::create([
+            'request_number' => 'REQ-MANUAL-001',
+            'letter_template_id' => $this->sktmTemplate->id,
+            'resident_id' => $this->residentWarga->id,
+            'user_id' => $this->warga->id,
+            'purpose' => 'Keperluan pendaftaran',
+            'status' => 'pending_kades',
+            'qr_token' => 'token-manual-test-12345678',
+        ]);
+
+        $this->actingAs($this->kades)->post("/admin/letter-requests/{$letter2->id}/approve-kades", [
+            'letter_number' => '470/KHUSUS-99/DS/2026',
+            'notes' => 'Disahkan dengan nomor register khusus',
+        ]);
+
+        $letter2->refresh();
+        $this->assertEquals('approved', $letter2->status);
+        $this->assertEquals('470/KHUSUS-99/DS/2026', $letter2->letter_number);
+    }
+
+    /**
+     * Test konten surat yang sudah disahkan dibekukan (snapshotted) dan kebal perubahan template di masa depan.
+     */
+    public function test_approved_letter_content_is_snapshotted_and_immutable(): void
+    {
+        $this->actingAs($this->warga)->post('/citizen/letters', [
+            'letter_template_id' => $this->sktmTemplate->id,
+            'purpose' => 'Pengajuan beasiswa kuliah tahun 2026',
+        ]);
+
+        $letter = LetterRequest::where('user_id', $this->warga->id)->latest('id')->firstOrFail();
+
+        // Bypass RT & Sahkan oleh Kades
+        $this->actingAs($this->perangkat)->post("/admin/letter-requests/{$letter->id}/bypass-rt");
+        $this->actingAs($this->kades)->post("/admin/letter-requests/{$letter->id}/approve-kades");
+
+        $letter->refresh();
+        $this->assertEquals('approved', $letter->status);
+        $this->assertNotNull($letter->final_content);
+        $this->assertStringContainsString('Budi Santoso', $letter->final_content);
+        $this->assertStringContainsString('Pengajuan beasiswa kuliah tahun 2026', $letter->final_content);
+
+        // Ubah template asli di masa depan
+        $this->sktmTemplate->update([
+            'content_template' => '<p>REDAKSI BARU SKTM TELAH DIUBAH TOTAL OLEH ADMIN</p>',
+        ]);
+
+        // Ubah biodata warga di masa depan
+        $this->residentWarga->update([
+            'name' => 'Budi Santoso Gelar Baru',
+        ]);
+
+        // Verifikasi bahwa konten surat yang sudah terbit tetap menggunakan snapshot asli
+        $letterService = app(\App\Services\LetterService::class);
+        $renderedContent = $letterService->parseTemplateContent($letter);
+
+        $this->assertStringContainsString('Budi Santoso', $renderedContent);
+        $this->assertStringNotContainsString('Budi Santoso Gelar Baru', $renderedContent);
+        $this->assertStringNotContainsString('REDAKSI BARU SKTM TELAH DIUBAH TOTAL', $renderedContent);
+
+        // PDF juga harus tetap menghasilkan konten snapshot asli
+        $pdfService = app(\App\Services\LetterPdfService::class);
+        $pdf = $pdfService->generatePdf($letter);
+        $pdfOutput = $pdf->output();
+
+        $this->assertNotEmpty($pdfOutput);
+    }
 }

@@ -18,6 +18,7 @@ class LetterTemplate extends Model
 
     protected $fillable = [
         'code',
+        'number_format',
         'name',
         'description',
         'content_template',

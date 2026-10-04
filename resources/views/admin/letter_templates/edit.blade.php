@@ -32,6 +32,17 @@
         </div>
 
         <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">
+                Format Penomoran Surat <span class="text-slate-400 font-normal">(Opsional - Kosongkan untuk memakai format standar config)</span>
+            </label>
+            <input type="text" name="number_format" value="{{ old('number_format', $letterTemplate->number_format) }}" placeholder="Default config: {{ config('letters.default_number_format') }}" class="w-full px-3 py-2 border rounded-xl text-xs font-mono @error('number_format') border-rose-500 @enderror">
+            <span class="text-[11px] text-slate-500 mt-1 block">
+                Placeholder yang didukung: <code>{nomor}</code>, <code>{nomor:3}</code>, <code>{kode}</code>, <code>{klasifikasi}</code>, <code>{bulan}</code>, <code>{bulan_romawi}</code>, <code>{tahun}</code>, <code>{desa}</code>.
+            </span>
+            @error('number_format') <p class="text-[11px] text-rose-500 mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Deskripsi / Kegunaan</label>
             <input type="text" name="description" value="{{ old('description', $letterTemplate->description) }}" class="w-full px-3 py-2 border rounded-xl text-xs">
         </div>
