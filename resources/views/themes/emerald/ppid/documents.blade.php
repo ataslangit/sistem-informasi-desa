@@ -1,4 +1,4 @@
-@extends('themes.emerald.layouts.app')
+@extends(theme_layout())
 
 @section('title', 'Daftar Dokumen Informasi Publik (DIP) - PPID Desa ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 

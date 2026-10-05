@@ -1,4 +1,4 @@
-@extends('themes.emerald.layouts.app')
+@extends(theme_layout())
 
 @section('title', \App\Models\Setting::get('app_title', 'SiDesa - Portal Resmi Desa Sukamaju'))
 

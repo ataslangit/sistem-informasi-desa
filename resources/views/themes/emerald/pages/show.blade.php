@@ -1,4 +1,4 @@
-@extends('themes.emerald.layouts.app')
+@extends(theme_layout())
 
 @section('title', $page->title . ' - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 

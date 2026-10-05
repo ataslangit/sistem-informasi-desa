@@ -1,4 +1,4 @@
-@extends('themes.emerald.layouts.app')
+@extends(theme_layout())
 
 @section('title', ($currentCategory ? $currentCategory->name . ' - ' : '') . 'Kabar & Berita - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
