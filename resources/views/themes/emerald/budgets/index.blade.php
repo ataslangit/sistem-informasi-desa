@@ -105,33 +105,29 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pembiayaan Neto</span>
                     <span class="p-2 bg-blue-50 text-blue-600 rounded-xl text-sm">⚖️</span>
                 </div>
-                @php
-                    $penerimaan = $budget->financings->where('category', 'like', '%Penerimaan%')->sum('realized_amount');
-                    $pengeluaran = $budget->financings->where('category', 'like', '%Pengeluaran%')->sum('realized_amount');
-                    $neto = $penerimaan - $pengeluaran;
-                @endphp
                 <div class="text-xl font-black text-slate-800">
-                    Rp {{ number_format($neto, 0, ',', '.') }}
+                    Rp {{ number_format($budget->net_financing_realized, 0, ',', '.') }}
                 </div>
-                <div class="text-xs text-slate-500 pt-2 border-t border-slate-100">
-                    <span>Penerimaan - Pengeluaran</span>
+                <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <span>Target: Rp {{ number_format($budget->net_financing_budgeted, 0, ',', '.') }}</span>
+                    <span class="text-[10px] text-slate-400">Penerimaan - Pengeluaran</span>
                 </div>
             </div>
 
-            <!-- Surplus / Defisit -->
+            <!-- Sisa Lebih Pembiayaan Anggaran (SiLPA) -->
             @php
-                $surplusRealized = $budget->surplus_deficit_realized;
+                $silpaRealized = $budget->silpa_realized;
             @endphp
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Surplus / (Defisit)</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-600">SiLPA Berkenaan</span>
                     <span class="p-2 bg-slate-100 text-slate-600 rounded-xl text-sm">📊</span>
                 </div>
-                <div class="text-xl font-black {{ $surplusRealized >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
-                    Rp {{ number_format($surplusRealized, 0, ',', '.') }}
+                <div class="text-xl font-black {{ $silpaRealized >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
+                    Rp {{ number_format($silpaRealized, 0, ',', '.') }}
                 </div>
                 <div class="text-xs text-slate-500 pt-2 border-t border-slate-100">
-                    <span>{{ $surplusRealized >= 0 ? 'Surplus Realisasi Anggaran' : 'Defisit Anggaran Terkendali' }}</span>
+                    <span>{{ $silpaRealized >= 0 ? 'Sisa Lebih Anggaran Berkenaan' : 'Defisit Anggaran Berkenaan' }}</span>
                 </div>
             </div>
         </div>
@@ -149,11 +145,11 @@
                 </div>
             </div>
 
-            <!-- Grafik Donut: Komposisi Belanja Desa -->
+            <!-- Grafik Donut: Komposisi Belanja Desa (5 Bidang Baku) -->
             <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between">
                 <div>
-                    <h3 class="font-bold text-slate-800 text-base">Komposisi Bidang Belanja</h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Proporsi pembagian alokasi realisasi belanja desa.</p>
+                    <h3 class="font-bold text-slate-800 text-base">Komposisi 5 Bidang Belanja</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Proporsi alokasi belanja terstandar Permendagri No. 20/2018.</p>
                 </div>
                 <div class="h-60 w-full flex items-center justify-center">
                     <canvas id="expenditureDonutChart"></canvas>
@@ -191,7 +187,12 @@
                         <tbody class="divide-y divide-slate-100 text-slate-700">
                             @forelse($budget->revenues as $rev)
                                 <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="py-3 px-6 font-semibold text-slate-800">{{ $rev->category }}</td>
+                                    <td class="py-3 px-6 font-semibold text-slate-800">
+                                        {{ $rev->category }}
+                                        @if($rev->code)
+                                            <span class="text-[10px] font-mono text-slate-400">[{{ $rev->code }}]</span>
+                                        @endif
+                                    </td>
                                     <td class="py-3 px-6 text-right font-mono">{{ number_format($rev->budgeted_amount, 0, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-right font-mono font-bold text-emerald-700">{{ number_format($rev->realized_amount, 0, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-center font-bold">
@@ -210,15 +211,15 @@
                 </div>
             </div>
 
-            <!-- 2. Tabel Belanja Desa -->
+            <!-- 2. Tabel Belanja Desa (5 Bidang Baku Permendagri No. 20/2018) -->
             <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
                 <div class="p-6 bg-gradient-to-r from-rose-50 to-white border-b border-slate-200 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-slate-800 text-base flex items-center space-x-2">
                             <span>2.</span>
-                            <span>Belanja Desa (Akun 5)</span>
+                            <span>Belanja Desa (Akun 5 - 5 Bidang Baku Permendagri 20/2018)</span>
                         </h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Rincian belanja per bidang pembangunan, kemasyarakatan, dan pemerintahan.</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Rincian belanja per bidang pembangunan, kemasyarakatan, pemerintahan, dan bencana.</p>
                     </div>
                     <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800">
                         Total: Rp {{ number_format($budget->total_realized_expenditure, 0, ',', '.') }}
@@ -228,7 +229,7 @@
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
                             <tr class="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200">
-                                <th class="py-3 px-6">Bidang Belanja</th>
+                                <th class="py-3 px-6">Bidang & Uraian Belanja</th>
                                 <th class="py-3 px-6 text-right">Anggaran (Rp)</th>
                                 <th class="py-3 px-6 text-right">Realisasi (Rp)</th>
                                 <th class="py-3 px-6 text-center">% Capaian</th>
@@ -237,7 +238,20 @@
                         <tbody class="divide-y divide-slate-100 text-slate-700">
                             @forelse($budget->expenditures as $exp)
                                 <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="py-3 px-6 font-semibold text-slate-800">{{ $exp->category }}</td>
+                                    <td class="py-3 px-6">
+                                        @if($exp->expenditure_field_info)
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-200 mb-1">
+                                                <span>{{ $exp->expenditure_field_info['icon'] }}</span>
+                                                <span>Bidang {{ $exp->expenditure_field_info['code'] }}: {{ $exp->expenditure_field_info['short_name'] }}</span>
+                                            </span>
+                                        @endif
+                                        <div class="font-semibold text-slate-800">
+                                            {{ $exp->category }}
+                                            @if($exp->code)
+                                                <span class="text-[10px] font-mono text-slate-400">[{{ $exp->code }}]</span>
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td class="py-3 px-6 text-right font-mono">{{ number_format($exp->budgeted_amount, 0, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-right font-mono font-bold text-rose-700">{{ number_format($exp->realized_amount, 0, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-center font-bold">
@@ -256,46 +270,127 @@
                 </div>
             </div>
 
-            <!-- 3. Tabel Pembiayaan Desa -->
+            <!-- 3. Tabel Pembiayaan Desa (Restrukturisasi Permendagri No. 20/2018) -->
             <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
                 <div class="p-6 bg-gradient-to-r from-blue-50 to-white border-b border-slate-200 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-slate-800 text-base flex items-center space-x-2">
                             <span>3.</span>
-                            <span>Pembiayaan Desa (Akun 6)</span>
+                            <span>Pembiayaan Desa (Akun 6 - Restrukturisasi Permendagri 20/2018)</span>
                         </h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Penerimaan SiLPA dan pengeluaran penyertaan modal desa.</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Penerimaan SiLPA tahun lalu vs pengeluaran penyertaan modal BUMDes & dana cadangan.</p>
                     </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
+                        Netto: Rp {{ number_format($budget->net_financing_realized, 0, ',', '.') }}
+                    </span>
+                </div>
+
+                <!-- 3.1 Penerimaan Pembiayaan -->
+                <div class="p-4 bg-teal-50/60 border-b border-slate-100 flex items-center justify-between text-xs">
+                    <span class="font-bold text-teal-950 uppercase tracking-wider">
+                        3.1 Penerimaan Pembiayaan (Akun 6.1 - SiLPA Tahun Sebelumnya dll)
+                    </span>
+                    <span class="font-bold font-mono text-teal-800">
+                        Realisasi: Rp {{ number_format($budget->total_realized_financing_receipt, 0, ',', '.') }}
+                    </span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200">
-                                <th class="py-3 px-6">Uraian Pembiayaan</th>
-                                <th class="py-3 px-6 text-right">Anggaran (Rp)</th>
-                                <th class="py-3 px-6 text-right">Realisasi (Rp)</th>
-                                <th class="py-3 px-6 text-center">% Capaian</th>
+                            <tr class="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200 text-[11px]">
+                                <th class="py-2.5 px-6">Uraian Penerimaan</th>
+                                <th class="py-2.5 px-6 text-right">Anggaran (Rp)</th>
+                                <th class="py-2.5 px-6 text-right">Realisasi (Rp)</th>
+                                <th class="py-2.5 px-6 text-center">% Capaian</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 text-slate-700">
-                            @forelse($budget->financings as $fin)
+                            @forelse($budget->financing_receipts as $fin)
                                 <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="py-3 px-6 font-semibold text-slate-800">{{ $fin->category }}</td>
+                                    <td class="py-3 px-6 font-semibold text-slate-800">
+                                        {{ $fin->category }}
+                                        @if($fin->code)
+                                            <span class="text-[10px] font-mono text-slate-400">[{{ $fin->code }}]</span>
+                                        @endif
+                                    </td>
                                     <td class="py-3 px-6 text-right font-mono">{{ number_format($fin->budgeted_amount, 0, ',', '.') }}</td>
-                                    <td class="py-3 px-6 text-right font-mono font-bold text-blue-700">{{ number_format($fin->realized_amount, 0, ',', '.') }}</td>
+                                    <td class="py-3 px-6 text-right font-mono font-bold text-teal-700">{{ number_format($fin->realized_amount, 0, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-center font-bold">
-                                        <span class="px-2 py-0.5 rounded-full text-[11px] bg-blue-50 text-blue-700">
+                                        <span class="px-2 py-0.5 rounded-full text-[11px] bg-teal-50 text-teal-800">
                                             {{ $fin->realization_percentage }}%
                                         </span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="py-6 text-center text-slate-400">Belum ada rincian data pembiayaan.</td>
+                                    <td colspan="4" class="py-4 text-center text-slate-400">Belum ada pos penerimaan pembiayaan.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+
+                <!-- 3.2 Pengeluaran Pembiayaan -->
+                <div class="p-4 bg-purple-50/60 border-t border-b border-slate-100 flex items-center justify-between text-xs">
+                    <span class="font-bold text-purple-950 uppercase tracking-wider">
+                        3.2 Pengeluaran Pembiayaan (Akun 6.2 - Penyertaan Modal BUMDes dll)
+                    </span>
+                    <span class="font-bold font-mono text-purple-800">
+                        Realisasi: Rp {{ number_format($budget->total_realized_financing_expenditure, 0, ',', '.') }}
+                    </span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200 text-[11px]">
+                                <th class="py-2.5 px-6">Uraian Pengeluaran</th>
+                                <th class="py-2.5 px-6 text-right">Anggaran (Rp)</th>
+                                <th class="py-2.5 px-6 text-right">Realisasi (Rp)</th>
+                                <th class="py-2.5 px-6 text-center">% Capaian</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700">
+                            @forelse($budget->financing_expenditures as $fin)
+                                <tr class="hover:bg-slate-50/80 transition">
+                                    <td class="py-3 px-6 font-semibold text-slate-800">
+                                        {{ $fin->category }}
+                                        @if($fin->code)
+                                            <span class="text-[10px] font-mono text-slate-400">[{{ $fin->code }}]</span>
+                                        @endif
+                                    </td>
+                                    <td class="py-3 px-6 text-right font-mono">{{ number_format($fin->budgeted_amount, 0, ',', '.') }}</td>
+                                    <td class="py-3 px-6 text-right font-mono font-bold text-purple-700">{{ number_format($fin->realized_amount, 0, ',', '.') }}</td>
+                                    <td class="py-3 px-6 text-center font-bold">
+                                        <span class="px-2 py-0.5 rounded-full text-[11px] bg-purple-50 text-purple-800">
+                                            {{ $fin->realization_percentage }}%
+                                        </span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="py-4 text-center text-slate-400">Belum ada pos pengeluaran pembiayaan.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Rangkuman Pembiayaan -->
+                <div class="p-6 bg-slate-50 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 bg-white rounded-2xl border border-slate-200 space-y-1">
+                        <span class="font-bold text-slate-600 block uppercase tracking-wider text-[11px]">Pembiayaan Netto (6.1 - 6.2)</span>
+                        <div class="text-base font-black text-blue-700">
+                            Rp {{ number_format($budget->net_financing_realized, 0, ',', '.') }}
+                        </div>
+                        <span class="text-[11px] text-slate-400 block">Target Anggaran: Rp {{ number_format($budget->net_financing_budgeted, 0, ',', '.') }}</span>
+                    </div>
+                    <div class="p-4 bg-white rounded-2xl border border-slate-200 space-y-1">
+                        <span class="font-bold text-slate-600 block uppercase tracking-wider text-[11px]">Sisa Lebih Anggaran (SiLPA Berkenaan)</span>
+                        <div class="text-base font-black {{ $budget->silpa_realized >= 0 ? 'text-emerald-700' : 'text-rose-700' }}">
+                            Rp {{ number_format($budget->silpa_realized, 0, ',', '.') }}
+                        </div>
+                        <span class="text-[11px] text-slate-400 block">Surplus/Defisit + Pembiayaan Netto</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -56,8 +56,10 @@ class BudgetController extends Controller
     public function show(Budget $budget): View
     {
         $budget->load(['items' => fn ($q) => $q->orderBy('sort_order')->orderBy('id')]);
+        $expenditureFields = BudgetItem::EXPENDITURE_FIELDS;
+        $financingTypes = BudgetItem::FINANCING_TYPES;
 
-        return view('admin.budgets.show', compact('budget'));
+        return view('admin.budgets.show', compact('budget', 'expenditureFields', 'financingTypes'));
     }
 
     /**
@@ -95,6 +97,8 @@ class BudgetController extends Controller
     {
         $validated = $request->validate([
             'type' => ['required', 'in:revenue,expenditure,financing'],
+            'sub_type' => ['nullable', 'string', 'max:50'],
+            'code' => ['nullable', 'string', 'max:50'],
             'category' => ['required', 'string', 'max:255'],
             'budgeted_amount' => ['required', 'numeric', 'min:0'],
             'realized_amount' => ['nullable', 'numeric', 'min:0'],
@@ -105,6 +109,8 @@ class BudgetController extends Controller
 
         $budget->items()->create([
             'type' => $validated['type'],
+            'sub_type' => $validated['sub_type'] ?? null,
+            'code' => $validated['code'] ?? null,
             'category' => $validated['category'],
             'budgeted_amount' => (int) $validated['budgeted_amount'],
             'realized_amount' => (int) ($validated['realized_amount'] ?? 0),
@@ -124,6 +130,8 @@ class BudgetController extends Controller
         abort_if($item->budget_id !== $budget->id, 404);
 
         $validated = $request->validate([
+            'sub_type' => ['nullable', 'string', 'max:50'],
+            'code' => ['nullable', 'string', 'max:50'],
             'category' => ['required', 'string', 'max:255'],
             'budgeted_amount' => ['required', 'numeric', 'min:0'],
             'realized_amount' => ['nullable', 'numeric', 'min:0'],
@@ -131,6 +139,8 @@ class BudgetController extends Controller
         ]);
 
         $item->update([
+            'sub_type' => $validated['sub_type'] ?? $item->sub_type,
+            'code' => $validated['code'] ?? $item->code,
             'category' => $validated['category'],
             'budgeted_amount' => (int) $validated['budgeted_amount'],
             'realized_amount' => (int) ($validated['realized_amount'] ?? 0),
