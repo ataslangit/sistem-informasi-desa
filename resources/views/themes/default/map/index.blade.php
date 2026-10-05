@@ -31,94 +31,169 @@
     <div class="max-w-7xl mx-auto">
         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30 mb-3 space-x-1.5">
             <span>🗺️</span>
-            <span>Geographic Information System (GIS)</span>
+            <span>Geographic Information System (GIS) & Inventarisasi Aset (Permendagri 1/2016)</span>
         </span>
         <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
             Peta Digital & Fasilitas Desa
         </h1>
         <p class="mt-2 text-sm sm:text-base text-sky-200 max-w-2xl leading-relaxed">
-            Eksplorasi batas administratif wilayah, pembagian dusun, dan lokasi persebaran fasilitas publik serta infrastruktur di {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}.
+            Eksplorasi batas administratif wilayah, pembagian dusun, lokasi persebaran fasilitas publik, serta inventarisasi yuridis aset desa di {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}.
         </p>
     </div>
 </section>
 
 <!-- Filter & Map Container -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-    <!-- Category Filter Bar -->
-    <div class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none" id="categoryFilters">
-        <button 
-            type="button" 
-            onclick="filterCategory('all')" 
-            id="btn-all"
-            class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap bg-sky-600 text-white shadow-sm"
-        >
-            🌐 Semua Fasilitas ({{ $facilities->count() }})
-        </button>
-        @foreach($categories as $key => $cat)
-            @php
-                $count = $facilities->where('category', $key)->count();
-            @endphp
-            @if($count > 0)
-                <button 
-                    type="button" 
-                    onclick="filterCategory('{{ $key }}')" 
-                    id="btn-{{ $key }}"
-                    class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
-                >
-                    <span>{{ $cat['icon'] }}</span>
-                    <span class="ml-1">{{ $cat['label'] }} ({{ $count }})</span>
-                </button>
-            @endif
-        @endforeach
+    <!-- Category & Asset Filter Bar -->
+    <div class="space-y-3 bg-white p-4 rounded-3xl border border-slate-200 shadow-xs">
+        <!-- Filter Kategori Fasilitas -->
+        <div class="flex items-center space-x-2 overflow-x-auto pb-1 scrollbar-none" id="categoryFilters">
+            <button 
+                type="button" 
+                onclick="filterCategory('all')" 
+                id="btn-cat-all"
+                class="filter-cat-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap bg-sky-600 text-white shadow-xs"
+            >
+                🌐 Semua Kategori ({{ $facilities->count() }})
+            </button>
+            @foreach($categories as $key => $cat)
+                @php
+                    $count = $facilities->where('category', $key)->count();
+                @endphp
+                @if($count > 0)
+                    <button 
+                        type="button" 
+                        onclick="filterCategory('{{ $key }}')" 
+                        id="btn-cat-{{ $key }}"
+                        class="filter-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200"
+                    >
+                        <span>{{ $cat['icon'] }}</span>
+                        <span class="ml-1">{{ $cat['label'] }} ({{ $count }})</span>
+                    </button>
+                @endif
+            @endforeach
+        </div>
+
+        <!-- Filter Yuridis Aset Desa (Permendagri No. 1/2016) -->
+        <div class="flex items-center space-x-2 overflow-x-auto pt-2 border-t border-slate-100 scrollbar-none" id="assetFilters">
+            <span class="text-[11px] font-bold text-slate-500 uppercase shrink-0 flex items-center gap-1">
+                <span>🏛️</span>
+                <span>Aset Desa:</span>
+            </span>
+            <button 
+                type="button" 
+                onclick="filterAsset('all')" 
+                id="btn-asset-all"
+                class="filter-asset-btn active px-3 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap bg-indigo-600 text-white shadow-2xs"
+            >
+                Semua Titik
+            </button>
+            <button 
+                type="button" 
+                onclick="filterAsset('only_assets')" 
+                id="btn-asset-only_assets"
+                class="filter-asset-btn px-3 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+            >
+                🏛️ Hanya Aset Desa ({{ $facilities->where('is_village_asset', true)->count() }})
+            </button>
+            @foreach($kibMetas as $kCode => $kib)
+                @php
+                    $kCount = $facilities->where('kib_type', $kCode)->count();
+                @endphp
+                @if($kCount > 0)
+                    <button 
+                        type="button" 
+                        onclick="filterAsset('{{ $kCode }}')" 
+                        id="btn-asset-{{ $kCode }}"
+                        class="filter-asset-btn px-3 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                    >
+                        <span>{{ $kib['icon'] }}</span>
+                        <span class="ml-1">{{ $kib['code'] }}: {{ $kib['name'] }} ({{ $kCount }})</span>
+                    </button>
+                @endif
+            @endforeach
+        </div>
     </div>
 
     <!-- Map & Sidebar Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Leaflet Map Container -->
         <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm relative">
-            <div id="villageMap" class="w-full h-[550px] z-10"></div>
+            <div id="villageMap" class="w-full h-[580px] z-10"></div>
             <!-- Legend Overlay -->
-            <div class="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg text-xs space-y-2 hidden sm:block">
+            <div class="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg text-xs space-y-2 hidden sm:block max-w-[220px]">
                 <span class="font-bold text-slate-800 block text-[11px] uppercase tracking-wider">Legenda Batas</span>
                 @foreach($boundaries as $boundary)
                     <div class="flex items-center space-x-2">
-                        <span class="w-3.5 h-3.5 rounded" style="background-color: {{ $boundary->color }}40; border: 2px solid {{ $boundary->color }};"></span>
-                        <span class="text-slate-700 text-[11px] font-medium">{{ $boundary->name }}</span>
+                        <span class="w-3.5 h-3.5 rounded shrink-0" style="background-color: {{ $boundary->color }}40; border: 2px solid {{ $boundary->color }};"></span>
+                        <span class="text-slate-700 text-[11px] font-medium truncate">{{ $boundary->name }}</span>
                     </div>
                 @endforeach
             </div>
         </div>
 
         <!-- Directory Fasilitas List -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm space-y-4 flex flex-col justify-between max-h-[550px]">
+        <div class="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm space-y-4 flex flex-col justify-between max-h-[580px]">
             <div>
                 <h3 class="font-bold text-slate-800 text-sm flex items-center justify-between pb-3 border-b border-slate-100">
                     <span class="flex items-center space-x-1.5">
                         <span>📍</span>
-                        <span>Daftar Fasilitas Desa</span>
+                        <span>Daftar Fasilitas & Aset</span>
                     </span>
                     <span class="text-xs text-slate-400 font-normal" id="visibleCount">{{ $facilities->count() }} titik</span>
                 </h3>
-                <div class="overflow-y-auto space-y-2.5 mt-3 pr-1 max-h-[440px]" id="facilityList">
+                <div class="overflow-y-auto space-y-2.5 mt-3 pr-1 max-h-[470px]" id="facilityList">
                     @forelse($facilities as $facility)
                         <div 
                             onclick="focusFacility({{ $facility->latitude }}, {{ $facility->longitude }}, '{{ addslashes($facility->name) }}')"
                             data-category="{{ $facility->category }}"
+                            data-is-asset="{{ $facility->is_village_asset ? '1' : '0' }}"
+                            data-kib="{{ $facility->kib_type ?? '' }}"
                             class="facility-item p-3 rounded-2xl border border-slate-100 hover:border-sky-300 hover:bg-sky-50/50 transition cursor-pointer group flex items-start space-x-3"
                         >
                             <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
                                 {{ $facility->category_meta['icon'] ?? '📍' }}
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h4 class="text-xs font-bold text-slate-800 group-hover:text-sky-700 transition truncate">
-                                    {{ $facility->name }}
-                                </h4>
+                                <div class="flex items-center space-x-1.5 flex-wrap">
+                                    <h4 class="text-xs font-bold text-slate-800 group-hover:text-sky-700 transition truncate">
+                                        {{ $facility->name }}
+                                    </h4>
+                                    @if($facility->is_village_asset)
+                                        <span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-blue-100 text-blue-700">
+                                            Aset Desa
+                                        </span>
+                                    @endif
+                                </div>
                                 <p class="text-[11px] text-slate-500 truncate mt-0.5">
                                     {{ $facility->address ?? ($facility->category_meta['label'] ?? ucfirst($facility->category)) }}
                                 </p>
-                                <span class="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded-full {{ $facility->condition === 'baik' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700' }}">
-                                    {{ $facility->condition_label ?? 'Kondisi Baik' }}
-                                </span>
+                                
+                                @if($facility->is_village_asset && ($facility->kib_meta || $facility->ownership_meta))
+                                    <div class="mt-1 flex items-center gap-1.5 flex-wrap text-[10px]">
+                                        @if($facility->kib_meta)
+                                            <span class="px-1.5 py-0.5 rounded font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                                {{ $facility->kib_meta['code'] }}
+                                            </span>
+                                        @endif
+                                        @if($facility->ownership_meta)
+                                            <span class="text-slate-500 truncate">
+                                                {{ $facility->ownership_meta['short_label'] }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                @endif
+
+                                <div class="mt-1.5 flex items-center justify-between text-[10px]">
+                                    <span class="inline-block font-semibold px-2 py-0.5 rounded-full {{ $facility->condition === 'baik' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700' }}">
+                                        {{ $facility->condition_label ?? 'Kondisi Baik' }}
+                                    </span>
+                                    @if($facility->register_code)
+                                        <span class="font-mono text-slate-400 text-[9px] truncate max-w-[120px]">
+                                            {{ $facility->register_code }}
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @empty
@@ -137,6 +212,9 @@
 <script>
     let map;
     let markers = [];
+    let currentCategoryFilter = 'all';
+    let currentAssetFilter = 'all';
+
     const facilitiesData = @json($facilities);
     const boundariesData = @json($boundaries);
     const categoriesMap = @json($categories);
@@ -199,8 +277,25 @@
 
             const marker = L.marker([item.latitude, item.longitude], { icon: customIcon }).addTo(map);
 
+            let assetSection = '';
+            if (item.is_village_asset) {
+                assetSection = `
+                    <div class="mt-2 p-2 rounded-xl bg-blue-50/80 border border-blue-200 text-[10px] space-y-1">
+                        <div class="flex items-center justify-between font-bold text-blue-900">
+                            <span>🏛️ ASET RESMI DESA</span>
+                            <span>${item.kib_meta ? item.kib_meta.code : ''}</span>
+                        </div>
+                        ${item.kib_meta ? `<div class="font-semibold text-slate-700">${item.kib_meta.name}</div>` : ''}
+                        ${item.ownership_meta ? `<div class="text-slate-600">${item.ownership_meta.icon} ${item.ownership_meta.label}</div>` : ''}
+                        ${item.register_code ? `<div class="font-mono text-blue-800">No. Reg: <b>${item.register_code}</b></div>` : ''}
+                        ${item.surface_area ? `<div class="text-slate-500">Luas: <b>${Number(item.surface_area).toLocaleString('id-ID')} m²</b></div>` : ''}
+                        ${item.formatted_asset_value ? `<div class="text-emerald-700 font-semibold">Nilai: ${item.formatted_asset_value}</div>` : ''}
+                    </div>
+                `;
+            }
+
             const popupContent = `
-                <div class="p-1 max-w-[240px]">
+                <div class="p-1 max-w-[260px]">
                     ${item.image_url ? `<img src="${item.image_url}" alt="${item.name}" class="w-full h-28 object-cover rounded-xl mb-2">` : ''}
                     <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: ${meta.color};">
                         ${meta.icon} ${meta.label}
@@ -208,6 +303,9 @@
                     <h4 class="font-bold text-slate-800 text-xs mt-0.5 leading-snug">${item.name}</h4>
                     ${item.address ? `<p class="text-[11px] text-slate-500 mt-1">📍 ${item.address}</p>` : ''}
                     ${item.description ? `<p class="text-[11px] text-slate-600 mt-1 line-clamp-2">${item.description}</p>` : ''}
+                    
+                    ${assetSection}
+
                     <div class="mt-2.5 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px]">
                         <span class="text-slate-400">Kondisi:</span>
                         <span class="font-bold ${item.condition === 'baik' ? 'text-emerald-600' : 'text-amber-600'}">${condLabel}</span>
@@ -217,6 +315,8 @@
 
             marker.bindPopup(popupContent);
             marker.category = item.category;
+            marker.isVillageAsset = !!item.is_village_asset;
+            marker.kibType = item.kib_type;
             marker.facilityName = item.name;
             markers.push(marker);
         });
@@ -235,19 +335,49 @@
 
     // Filter Kategori
     function filterCategory(category) {
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
+        currentCategoryFilter = category;
+
+        document.querySelectorAll('.filter-cat-btn').forEach(btn => {
+            btn.className = 'filter-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200';
         });
-        const activeBtn = document.getElementById('btn-' + category);
+        const activeBtn = document.getElementById('btn-cat-' + category);
         if (activeBtn) {
-            activeBtn.className = 'filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap bg-sky-600 text-white shadow-sm';
+            activeBtn.className = 'filter-cat-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap bg-sky-600 text-white shadow-xs';
         }
 
+        applyCombinedFilters();
+    }
+
+    // Filter Aset Desa
+    function filterAsset(assetFilter) {
+        currentAssetFilter = assetFilter;
+
+        document.querySelectorAll('.filter-asset-btn').forEach(btn => {
+            btn.className = 'filter-asset-btn px-3 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200';
+        });
+        const activeBtn = document.getElementById('btn-asset-' + assetFilter);
+        if (activeBtn) {
+            activeBtn.className = 'filter-asset-btn active px-3 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap bg-indigo-600 text-white shadow-2xs';
+        }
+
+        applyCombinedFilters();
+    }
+
+    function applyCombinedFilters() {
         let visibleCount = 0;
         const visibleMarkers = [];
 
         markers.forEach(marker => {
-            if (category === 'all' || marker.category === category) {
+            const matchCategory = (currentCategoryFilter === 'all' || marker.category === currentCategoryFilter);
+            let matchAsset = true;
+
+            if (currentAssetFilter === 'only_assets') {
+                matchAsset = marker.isVillageAsset === true;
+            } else if (currentAssetFilter !== 'all') {
+                matchAsset = (marker.kibType === currentAssetFilter);
+            }
+
+            if (matchCategory && matchAsset) {
                 map.addLayer(marker);
                 visibleMarkers.push(marker);
                 visibleCount++;
@@ -258,7 +388,20 @@
 
         // Filter list di sidebar
         document.querySelectorAll('.facility-item').forEach(item => {
-            if (category === 'all' || item.getAttribute('data-category') === category) {
+            const cat = item.getAttribute('data-category');
+            const isAsset = item.getAttribute('data-is-asset') === '1';
+            const kib = item.getAttribute('data-kib');
+
+            const matchCat = (currentCategoryFilter === 'all' || cat === currentCategoryFilter);
+            let matchAs = true;
+
+            if (currentAssetFilter === 'only_assets') {
+                matchAs = isAsset;
+            } else if (currentAssetFilter !== 'all') {
+                matchAs = (kib === currentAssetFilter);
+            }
+
+            if (matchCat && matchAs) {
                 item.style.display = 'flex';
             } else {
                 item.style.display = 'none';
