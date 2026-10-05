@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\LetterRequestController;
 use App\Http\Controllers\Admin\LetterTemplateController;
+use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
@@ -89,10 +90,11 @@ Route::prefix('admin')
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('/audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
 
-        // CMS & Portal Publik (Berita, Kategori, Halaman Statis & Tema)
+        // CMS & Portal Publik (Berita, Kategori, Halaman Statis, Menu & Tema)
         Route::resource('articles', AdminArticleController::class)->except(['show']);
         Route::resource('categories', AdminCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('pages', AdminPageController::class)->except(['show']);
+        Route::resource('menus', AdminMenuController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::get('/themes', [AdminThemeSettingController::class, 'index'])->name('themes.index');
         Route::post('/themes', [AdminThemeSettingController::class, 'update'])->name('themes.update');
     });

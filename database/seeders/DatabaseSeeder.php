@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             LetterTemplateSeeder::class,
             LetterRequestSeeder::class,
             ContentSeeder::class,
+            MenuSeeder::class,
         ]);
     }
 }

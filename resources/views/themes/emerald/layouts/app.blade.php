@@ -6,6 +6,8 @@
     <title>@yield('title', \App\Models\Setting::get('app_title', 'SiDesa - Portal Resmi Desa'))</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="{{ theme_asset('css/style.css', 'emerald') }}">
 </head>
 <body class="bg-emerald-50/20 text-slate-800 flex flex-col min-h-screen">
