@@ -16,7 +16,7 @@
     </div>
 
     <!-- Form -->
-    <form action="{{ route('admin.articles.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
@@ -101,23 +101,59 @@
                 @enderror
             </div>
 
-            <!-- Gambar Sampul (URL) -->
-            <div>
-                <label for="cover_image" class="block text-xs font-bold text-slate-700 uppercase mb-2">
-                    URL Gambar Sampul (Cover Image)
-                </label>
-                <input 
-                    type="url" 
-                    id="cover_image" 
-                    name="cover_image" 
-                    value="{{ old('cover_image') }}" 
-                    placeholder="https://images.unsplash.com/... atau URL gambar dokumentasi"
-                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                >
-                <p class="text-[11px] text-slate-400 mt-1">Tautan URL gambar untuk ditampilkan sebagai banner utama pada berita.</p>
-                @error('cover_image')
-                    <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
-                @enderror
+            <!-- Gambar Sampul (Dual-Mode: Upload Berkas / URL) -->
+            <div x-data="{ 
+                mode: 'upload', 
+                previewUrl: null,
+                onFileSelected(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        this.previewUrl = URL.createObjectURL(file);
+                    }
+                }
+            }" class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">
+                        Gambar Sampul (Cover Image)
+                    </label>
+                    <div class="flex items-center bg-slate-100 p-0.5 rounded-lg text-[11px] font-medium">
+                        <button type="button" @click="mode = 'upload'" :class="mode === 'upload' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'" class="px-2.5 py-1 rounded-md transition">📁 Unggah Berkas</button>
+                        <button type="button" @click="mode = 'url'" :class="mode === 'url' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'" class="px-2.5 py-1 rounded-md transition">🌐 Tautan URL</button>
+                    </div>
+                </div>
+
+                <!-- Mode 1: File Upload -->
+                <div x-show="mode === 'upload'" class="space-y-2">
+                    <input 
+                        type="file" 
+                        name="cover_image_file" 
+                        id="cover_image_file" 
+                        accept="image/*"
+                        @change="onFileSelected($event)"
+                        class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    >
+                    <p class="text-[11px] text-slate-400">Format: JPG, PNG, WEBP, SVG (Maks. 3MB).</p>
+                    <template x-if="previewUrl">
+                        <div class="mt-2">
+                            <img :src="previewUrl" alt="Pratinjau Foto" class="h-32 w-auto rounded-xl object-cover border border-slate-200 shadow-sm">
+                        </div>
+                    </template>
+                    @error('cover_image_file') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Mode 2: External URL -->
+                <div x-show="mode === 'url'" class="space-y-1" style="display: none;">
+                    <input 
+                        type="url" 
+                        id="cover_image" 
+                        name="cover_image" 
+                        value="{{ old('cover_image') }}" 
+                        placeholder="https://images.unsplash.com/... atau URL gambar dokumentasi"
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                    <p class="text-[11px] text-slate-400">Tautan URL gambar eksternal untuk ditampilkan sebagai banner utama pada berita.</p>
+                    @error('cover_image') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
+                </div>
             </div>
 
             <!-- Status Publikasi & Jadwal -->

@@ -53,7 +53,7 @@
                 @endif
             </div>
 
-            <form action="{{ $editingFacility ? route('admin.facilities.update', $editingFacility) : route('admin.facilities.store') }}" method="POST" class="space-y-4">
+            <form action="{{ $editingFacility ? route('admin.facilities.update', $editingFacility) : route('admin.facilities.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 @if($editingFacility)
                     @method('PUT')
@@ -294,18 +294,63 @@
                     </div>
                 </div>
 
-                <div>
-                    <label for="image_url" class="block text-xs font-bold text-slate-700 uppercase mb-1">
-                        URL Foto Dokumentasi
-                    </label>
-                    <input 
-                        type="url" 
-                        id="image_url" 
-                        name="image_url" 
-                        value="{{ old('image_url', $editingFacility?->image_url) }}" 
-                        placeholder="https://... URL gambar"
-                        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    >
+                <div x-data="{ 
+                    imageMode: '{{ old('image_url', $editingFacility?->image_url && !str_starts_with($editingFacility->image_url, '/storage/facilities/') ? 'url' : 'upload') }}',
+                    previewUrl: '{{ $editingFacility?->image_url ? asset($editingFacility->image_url) : '' }}'
+                }">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-slate-700 uppercase">
+                            Foto Dokumentasi
+                        </label>
+                        <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg text-[10px]">
+                            <button type="button" 
+                                @click="imageMode = 'upload'" 
+                                :class="imageMode === 'upload' ? 'bg-white shadow text-slate-800 font-bold' : 'text-slate-500 hover:text-slate-700'"
+                                class="px-2 py-0.5 rounded-md transition">
+                                Upload File
+                            </button>
+                            <button type="button" 
+                                @click="imageMode = 'url'" 
+                                :class="imageMode === 'url' ? 'bg-white shadow text-slate-800 font-bold' : 'text-slate-500 hover:text-slate-700'"
+                                class="px-2 py-0.5 rounded-md transition">
+                                Input URL
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mode Upload File -->
+                    <div x-show="imageMode === 'upload'" class="space-y-2">
+                        <input 
+                            type="file" 
+                            name="image_file" 
+                            id="image_file" 
+                            accept="image/jpeg,image/png,image/jpg,image/webp,image/svg+xml"
+                            @change="const file = $event.target.files[0]; if (file) { previewUrl = URL.createObjectURL(file) }"
+                            class="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-slate-300 rounded-xl cursor-pointer p-1"
+                        >
+                        <p class="text-[10px] text-slate-500">Format: JPG, PNG, WEBP, SVG (Maks. 5 MB)</p>
+                    </div>
+
+                    <!-- Mode Input URL -->
+                    <div x-show="imageMode === 'url'" class="space-y-2" style="display: none;">
+                        <input 
+                            type="url" 
+                            id="image_url" 
+                            name="image_url" 
+                            value="{{ old('image_url', $editingFacility?->image_url) }}" 
+                            @input="previewUrl = $event.target.value"
+                            placeholder="https://images.unsplash.com/... atau URL gambar"
+                            class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        >
+                        <p class="text-[10px] text-slate-500">Tautan gambar langsung dari internet</p>
+                    </div>
+
+                    <!-- Preview Gambar -->
+                    <template x-if="previewUrl">
+                        <div class="mt-2 relative rounded-lg overflow-hidden border border-slate-200 bg-slate-50 max-h-36 flex items-center justify-center">
+                            <img :src="previewUrl" alt="Preview Gambar" class="max-h-36 w-full object-cover">
+                        </div>
+                    </template>
                 </div>
 
                 <div>

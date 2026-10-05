@@ -9,6 +9,7 @@ use App\Models\VillageFacility;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VillageFacilityController extends Controller
 {
@@ -74,7 +75,8 @@ class VillageFacilityController extends Controller
             'latitude' => ['required', 'numeric', 'between:-90,90'],
             'longitude' => ['required', 'numeric', 'between:-180,180'],
             'address' => ['nullable', 'string', 'max:255'],
-            'image_url' => ['nullable', 'url', 'max:500'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image_url' => ['nullable', 'string', 'max:500'],
             'condition' => ['required', 'in:baik,rusak_ringan,rusak_berat'],
             'description' => ['nullable', 'string', 'max:500'],
 
@@ -89,6 +91,12 @@ class VillageFacilityController extends Controller
         ]);
 
         $validated['is_village_asset'] = $request->boolean('is_village_asset');
+
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('facilities', 'public');
+            $validated['image_url'] = '/storage/'.$path;
+        }
+        unset($validated['image_file']);
 
         VillageFacility::create($validated);
 
@@ -109,7 +117,8 @@ class VillageFacilityController extends Controller
             'latitude' => ['required', 'numeric', 'between:-90,90'],
             'longitude' => ['required', 'numeric', 'between:-180,180'],
             'address' => ['nullable', 'string', 'max:255'],
-            'image_url' => ['nullable', 'url', 'max:500'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image_url' => ['nullable', 'string', 'max:500'],
             'condition' => ['required', 'in:baik,rusak_ringan,rusak_berat'],
             'description' => ['nullable', 'string', 'max:500'],
 
@@ -125,6 +134,20 @@ class VillageFacilityController extends Controller
 
         $validated['is_village_asset'] = $request->boolean('is_village_asset');
 
+        if ($request->hasFile('image_file')) {
+            // Hapus file lama jika disimpan di storage lokal
+            if ($facility->image_url && str_starts_with($facility->image_url, '/storage/facilities/')) {
+                $oldPath = str_replace('/storage/', '', $facility->image_url);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
+
+            $path = $request->file('image_file')->store('facilities', 'public');
+            $validated['image_url'] = '/storage/'.$path;
+        }
+        unset($validated['image_file']);
+
         $facility->update($validated);
 
         return redirect()->route('admin.facilities.index')
@@ -136,6 +159,13 @@ class VillageFacilityController extends Controller
      */
     public function destroy(VillageFacility $facility): RedirectResponse
     {
+        if ($facility->image_url && str_starts_with($facility->image_url, '/storage/facilities/')) {
+            $oldPath = str_replace('/storage/', '', $facility->image_url);
+            if (Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+        }
+
         $facility->delete();
 
         return redirect()->route('admin.facilities.index')
