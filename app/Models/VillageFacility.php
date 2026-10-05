@@ -27,6 +27,11 @@ class VillageFacility extends Model
         'longitude' => 'float',
     ];
 
+    protected $appends = [
+        'category_meta',
+        'condition_label',
+    ];
+
     public static function getCategories(): array
     {
         return [

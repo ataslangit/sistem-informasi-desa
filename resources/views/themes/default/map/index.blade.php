@@ -6,6 +6,26 @@
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
+<style>
+    .facility-marker-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .facility-marker-icon:hover {
+        transform: scale(1.18);
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        z-index: 1000 !important;
+    }
+    .leaflet-popup-content-wrapper {
+        border-radius: 1rem;
+        padding: 0.25rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 <!-- Header Banner -->
 <section class="bg-gradient-to-r from-sky-950 via-indigo-950 to-slate-950 text-white py-14 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
@@ -58,12 +78,12 @@
         <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm relative">
             <div id="villageMap" class="w-full h-[550px] z-10"></div>
             <!-- Legend Overlay -->
-            <div class="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-slate-200 shadow-md text-xs space-y-1.5 hidden sm:block">
-                <span class="font-bold text-slate-800 block text-[11px] uppercase tracking-wider mb-1">Batas Wilayah</span>
+            <div class="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg text-xs space-y-2 hidden sm:block">
+                <span class="font-bold text-slate-800 block text-[11px] uppercase tracking-wider">Legenda Batas</span>
                 @foreach($boundaries as $boundary)
                     <div class="flex items-center space-x-2">
                         <span class="w-3.5 h-3.5 rounded" style="background-color: {{ $boundary->color }}40; border: 2px solid {{ $boundary->color }};"></span>
-                        <span class="text-slate-600 text-[11px]">{{ $boundary->name }}</span>
+                        <span class="text-slate-700 text-[11px] font-medium">{{ $boundary->name }}</span>
                     </div>
                 @endforeach
             </div>
@@ -82,22 +102,22 @@
                 <div class="overflow-y-auto space-y-2.5 mt-3 pr-1 max-h-[440px]" id="facilityList">
                     @forelse($facilities as $facility)
                         <div 
-                            onclick="focusFacility({{ $facility->latitude }}, {{ $facility->longitude }}, '{{ $facility->name }}')"
+                            onclick="focusFacility({{ $facility->latitude }}, {{ $facility->longitude }}, '{{ addslashes($facility->name) }}')"
                             data-category="{{ $facility->category }}"
                             class="facility-item p-3 rounded-2xl border border-slate-100 hover:border-sky-300 hover:bg-sky-50/50 transition cursor-pointer group flex items-start space-x-3"
                         >
                             <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
-                                {{ $facility->category_meta['icon'] }}
+                                {{ $facility->category_meta['icon'] ?? '📍' }}
                             </div>
                             <div class="min-w-0 flex-1">
                                 <h4 class="text-xs font-bold text-slate-800 group-hover:text-sky-700 transition truncate">
                                     {{ $facility->name }}
                                 </h4>
                                 <p class="text-[11px] text-slate-500 truncate mt-0.5">
-                                    {{ $facility->address ?? $facility->category_meta['label'] }}
+                                    {{ $facility->address ?? ($facility->category_meta['label'] ?? ucfirst($facility->category)) }}
                                 </p>
                                 <span class="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded-full {{ $facility->condition === 'baik' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700' }}">
-                                    {{ $facility->condition_label }}
+                                    {{ $facility->condition_label ?? 'Kondisi Baik' }}
                                 </span>
                             </div>
                         </div>
@@ -119,6 +139,7 @@
     let markers = [];
     const facilitiesData = @json($facilities);
     const boundariesData = @json($boundaries);
+    const categoriesMap = @json($categories);
 
     document.addEventListener('DOMContentLoaded', function () {
         // Inisialisasi Peta
@@ -137,14 +158,14 @@
                 const polygon = L.polygon(boundary.coordinates, {
                     color: boundary.color || '#0284c7',
                     weight: 2,
-                    opacity: 0.8,
+                    opacity: 0.85,
                     fillColor: boundary.color || '#0284c7',
                     fillOpacity: 0.15
                 }).addTo(map);
 
                 polygon.bindPopup(`
                     <div class="p-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">${boundary.type.toUpperCase()}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">${(boundary.type || 'WILAYAH').toUpperCase()}</span>
                         <h4 class="font-bold text-slate-800 text-sm">${boundary.name}</h4>
                         ${boundary.area_hectares ? `<p class="text-xs text-slate-600 mt-1">Luas: <b>${boundary.area_hectares} Ha</b></p>` : ''}
                         ${boundary.description ? `<p class="text-xs text-slate-500 mt-1">${boundary.description}</p>` : ''}
@@ -155,33 +176,41 @@
 
         // Tambahkan Markers Fasilitas
         facilitiesData.forEach(item => {
+            const meta = item.category_meta || categoriesMap[item.category] || {
+                label: item.category,
+                icon: '📍',
+                color: '#2563eb'
+            };
+            const condLabel = item.condition_label || (item.condition === 'baik' ? 'Kondisi Baik' : 'Perlu Perbaikan');
+
             const iconHtml = `
-                <div style="background-color: white; border: 2px solid ${item.category_meta.color}; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.15);">
-                    ${item.category_meta.icon}
+                <div class="facility-marker-icon" style="background-color: white; border: 2.5px solid ${meta.color}; border-radius: 50%; width: 36px; height: 36px; font-size: 17px; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
+                    ${meta.icon}
                 </div>
             `;
+
             const customIcon = L.divIcon({
                 html: iconHtml,
                 className: '',
-                iconSize: [34, 34],
-                iconAnchor: [17, 17],
-                popupAnchor: [0, -18]
+                iconSize: [36, 36],
+                iconAnchor: [18, 18],
+                popupAnchor: [0, -20]
             });
 
             const marker = L.marker([item.latitude, item.longitude], { icon: customIcon }).addTo(map);
 
             const popupContent = `
-                <div class="p-1 max-w-[220px]">
-                    ${item.image_url ? `<img src="${item.image_url}" alt="${item.name}" class="w-full h-24 object-cover rounded-lg mb-2">` : ''}
-                    <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: ${item.category_meta.color};">
-                        ${item.category_meta.label}
+                <div class="p-1 max-w-[240px]">
+                    ${item.image_url ? `<img src="${item.image_url}" alt="${item.name}" class="w-full h-28 object-cover rounded-xl mb-2">` : ''}
+                    <span class="text-[10px] font-bold uppercase tracking-wider block" style="color: ${meta.color};">
+                        ${meta.icon} ${meta.label}
                     </span>
                     <h4 class="font-bold text-slate-800 text-xs mt-0.5 leading-snug">${item.name}</h4>
                     ${item.address ? `<p class="text-[11px] text-slate-500 mt-1">📍 ${item.address}</p>` : ''}
                     ${item.description ? `<p class="text-[11px] text-slate-600 mt-1 line-clamp-2">${item.description}</p>` : ''}
-                    <div class="mt-2 pt-1 border-t border-slate-100 flex items-center justify-between text-[10px]">
+                    <div class="mt-2.5 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px]">
                         <span class="text-slate-400">Kondisi:</span>
-                        <span class="font-bold ${item.condition === 'baik' ? 'text-emerald-600' : 'text-amber-600'}">${item.condition_label}</span>
+                        <span class="font-bold ${item.condition === 'baik' ? 'text-emerald-600' : 'text-amber-600'}">${condLabel}</span>
                     </div>
                 </div>
             `;
@@ -191,11 +220,21 @@
             marker.facilityName = item.name;
             markers.push(marker);
         });
+
+        // Fit bounds agar seluruh titik fasilitas & batas wilayah otomatis terlihat
+        if (markers.length > 0) {
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds().pad(0.2));
+        }
+
+        // Pastikan ukuran Leaflet terkalkulasi dengan benar setelah load
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
     });
 
     // Filter Kategori
     function filterCategory(category) {
-        // Update button styles
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200';
         });
@@ -205,9 +244,12 @@
         }
 
         let visibleCount = 0;
+        const visibleMarkers = [];
+
         markers.forEach(marker => {
             if (category === 'all' || marker.category === category) {
                 map.addLayer(marker);
+                visibleMarkers.push(marker);
                 visibleCount++;
             } else {
                 map.removeLayer(marker);
@@ -227,6 +269,11 @@
         if (countEl) {
             countEl.innerText = visibleCount + ' titik';
         }
+
+        if (visibleMarkers.length > 0) {
+            const group = new L.featureGroup(visibleMarkers);
+            map.fitBounds(group.getBounds().pad(0.25));
+        }
     }
 
     // Fokus ke Fasilitas
@@ -234,7 +281,7 @@
         map.flyTo([lat, lng], 17, { duration: 1.2 });
         const targetMarker = markers.find(m => m.facilityName === name);
         if (targetMarker) {
-            setTimeout(() => targetMarker.openPopup(), 1300);
+            setTimeout(() => targetMarker.openPopup(), 1250);
         }
     }
 </script>

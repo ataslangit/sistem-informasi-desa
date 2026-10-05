@@ -33,6 +33,10 @@ class VillageBoundary extends Model
         'area_hectares' => 'float',
     ];
 
+    protected $appends = [
+        'type_label',
+    ];
+
     public function getTypeLabelAttribute(): string
     {
         return match ($this->type) {
