@@ -14,9 +14,12 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
+use App\Http\Controllers\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
 use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
+use App\Http\Controllers\Auth\CitizenRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
@@ -51,6 +54,8 @@ Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 've
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/register', [CitizenRegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [CitizenRegisterController::class, 'register'])->name('register.post');
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
@@ -76,6 +81,7 @@ Route::prefix('admin')
 
         // Manajemen Kependudukan (Buku Induk)
         Route::resource('families', FamilyController::class);
+        Route::post('/residents/{resident}/create-account', [ResidentController::class, 'createAccount'])->name('residents.create-account');
         Route::resource('residents', ResidentController::class);
 
         // Mutasi Penduduk
@@ -122,4 +128,13 @@ Route::prefix('admin')
         // Web GIS & Pemetaan Wilayah Desa
         Route::resource('boundaries', AdminVillageBoundaryController::class)->except(['create', 'show', 'edit']);
         Route::resource('facilities', AdminVillageFacilityController::class)->except(['create', 'show', 'edit']);
+
+        // Konfigurasi Pengguna & Role (Khusus Superadmin)
+        Route::middleware('role:superadmin')->group(function () {
+            Route::patch('/users/{user}/toggle-status', [AdminUserController::class, 'toggleStatus'])->name('users.toggle-status');
+            Route::resource('users', AdminUserController::class);
+            Route::get('/roles', [AdminRoleController::class, 'index'])->name('roles.index');
+            Route::get('/roles/{role}', [AdminRoleController::class, 'show'])->name('roles.show');
+            Route::put('/roles/{role}/permissions', [AdminRoleController::class, 'updatePermissions'])->name('roles.permissions.update');
+        });
     });
