@@ -51,8 +51,8 @@
                 <label for="slug" class="block text-xs font-bold text-slate-700 uppercase mb-2">
                     Slug URL Halaman <span class="text-rose-500">*</span>
                 </label>
-                <div class="flex items-center">
-                    <span class="inline-flex items-center px-3 py-2.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-50 text-slate-500 text-xs font-mono">
+                <div class="flex rounded-xl shadow-sm">
+                    <span class="inline-flex items-center px-3.5 py-2.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-50 text-slate-500 text-xs font-mono whitespace-nowrap select-none flex-shrink-0">
                         /halaman/
                     </span>
                     <input 
@@ -61,7 +61,7 @@
                         name="slug" 
                         value="{{ old('slug', $page->slug) }}" 
                         required 
-                        class="w-full px-4 py-2.5 rounded-r-xl border border-slate-300 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        class="flex-1 min-w-0 block w-full px-4 py-2.5 rounded-none rounded-r-xl border border-slate-300 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
                 </div>
                 @error('slug')
