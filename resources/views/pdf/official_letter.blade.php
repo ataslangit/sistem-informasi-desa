@@ -154,8 +154,14 @@
             <div class="qr-container">
                 <img src="data:image/svg+xml;base64,{{ $qrBase64 }}" alt="QR Verifikasi TTE">
                 <div class="tte-note">
-                    Ditandatangani secara elektronik (TTE)<br>
-                    Scan QR Code untuk cek keaslian surat
+                    @if($isCertifiedTte ?? false)
+                        <b>TTE Tersertifikasi BSrE BSSN</b><br>
+                        UU ITE No. 1/2024 &amp; PP No. 71/2019<br>
+                        <span style="font-family: monospace; font-size: 6.5pt;">Hash: {{ $formattedDocHash ?? '-' }}</span>
+                    @else
+                        Ditandatangani secara elektronik (TTE)<br>
+                        Scan QR Code untuk cek keaslian surat
+                    @endif
                 </div>
             </div>
 

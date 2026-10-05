@@ -62,11 +62,17 @@ class LetterPdfService
             'villageEmail' => $villageEmail,
             'verificationUrl' => $verificationUrl,
             'qrBase64' => $qrBase64,
-            'kadesName' => $kadesName,
-            'kadesNip' => $kadesNip,
+            'kadesName' => $letterRequest->signer_name ?? $kadesName,
+            'kadesNip' => $letterRequest->signer_nip ?? $kadesNip,
             'dateFormatted' => $letterRequest->signed_at
                 ? $letterRequest->signed_at->translatedFormat('d F Y')
                 : Carbon::now()->translatedFormat('d F Y'),
+            'isCertifiedTte' => $letterRequest->isCertifiedTte(),
+            'tteProvider' => $letterRequest->tte_provider_label,
+            'certificateIssuer' => $letterRequest->certificate_issuer,
+            'certificateSerialNumber' => $letterRequest->certificate_serial_number,
+            'documentHash' => $letterRequest->document_hash,
+            'formattedDocHash' => $letterRequest->formatted_document_hash,
         ];
 
         /** @var DomPdfInstance $pdf */

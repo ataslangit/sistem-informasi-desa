@@ -15,6 +15,12 @@ use InvalidArgumentException;
 
 class LetterService
 {
+    public function __construct(
+        protected ?TteService $tteService = null
+    ) {
+        $this->tteService = $tteService ?? app(TteService::class);
+    }
+
     /**
      * Membuat pengajuan surat baru dari warga.
      */
@@ -130,8 +136,12 @@ class LetterService
 
         // Ambil snapshot isi surat final
         $finalContent = $this->parseTemplateContent($letterRequest);
+        $letterRequest->final_content = $finalContent;
 
-        $letterRequest->update([
+        // Proses Tanda Tangan Elektronik (TTE) Tersertifikasi (UU No. 1/2024 & PP No. 71/2019)
+        $tteData = $this->tteService->sign($letterRequest, $kadesUser);
+
+        $letterRequest->update(array_merge([
             'status' => LetterRequest::STATUS_APPROVED,
             'letter_number' => $letterNumber,
             'final_content' => $finalContent,
@@ -139,7 +149,7 @@ class LetterService
             'kades_approved_by' => $kadesUser->id,
             'kades_notes' => $notes,
             'signed_at' => $signedAt,
-        ]);
+        ], $tteData));
 
         return $letterRequest;
     }
