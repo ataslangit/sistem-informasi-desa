@@ -38,8 +38,8 @@ class BudgetController extends Controller
                 ],
             ],
             'expenditures' => [
-                'labels' => $budget?->expenditures->pluck('category')->toArray() ?? [],
-                'values' => $budget?->expenditures->pluck('realized_amount')->toArray() ?? [],
+                'labels' => ! empty($budget?->expenditures_by_standard_fields) ? array_column($budget->expenditures_by_standard_fields, 'short_name') : ($budget?->expenditures->pluck('category')->toArray() ?? []),
+                'values' => ! empty($budget?->expenditures_by_standard_fields) ? array_column($budget->expenditures_by_standard_fields, 'realized') : ($budget?->expenditures->pluck('realized_amount')->toArray() ?? []),
             ],
             'revenues' => [
                 'labels' => $budget?->revenues->pluck('category')->toArray() ?? [],

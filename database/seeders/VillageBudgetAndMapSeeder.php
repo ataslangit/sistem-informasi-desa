@@ -29,23 +29,23 @@ class VillageBudgetAndMapSeeder extends Seeder
         $budget->items()->delete();
 
         $items = [
-            // Pendapatan
-            ['type' => 'revenue', 'category' => 'Pendapatan Asli Desa (PADes)', 'budgeted_amount' => 85000000, 'realized_amount' => 87500000, 'sort_order' => 1],
-            ['type' => 'revenue', 'category' => 'Dana Desa (DDS - APBN)', 'budgeted_amount' => 920000000, 'realized_amount' => 920000000, 'sort_order' => 2],
-            ['type' => 'revenue', 'category' => 'Alokasi Dana Desa (ADD - APBD)', 'budgeted_amount' => 450000000, 'realized_amount' => 450000000, 'sort_order' => 3],
-            ['type' => 'revenue', 'category' => 'Bagi Hasil Pajak & Retribusi (BHPR)', 'budgeted_amount' => 45000000, 'realized_amount' => 42500000, 'sort_order' => 4],
-            ['type' => 'revenue', 'category' => 'Bantuan Keuangan Khusus & Lain-lain', 'budgeted_amount' => 25000000, 'realized_amount' => 25000000, 'sort_order' => 5],
+            // Pendapatan Desa (Akun 4)
+            ['type' => 'revenue', 'sub_type' => 'pades', 'code' => '4.1', 'category' => 'Pendapatan Asli Desa (PADes)', 'budgeted_amount' => 85000000, 'realized_amount' => 87500000, 'sort_order' => 1],
+            ['type' => 'revenue', 'sub_type' => 'transfer', 'code' => '4.2.1', 'category' => 'Dana Desa (DDS - APBN)', 'budgeted_amount' => 920000000, 'realized_amount' => 920000000, 'sort_order' => 2],
+            ['type' => 'revenue', 'sub_type' => 'transfer', 'code' => '4.2.2', 'category' => 'Alokasi Dana Desa (ADD - APBD)', 'budgeted_amount' => 450000000, 'realized_amount' => 450000000, 'sort_order' => 3],
+            ['type' => 'revenue', 'sub_type' => 'transfer', 'code' => '4.2.3', 'category' => 'Bagi Hasil Pajak & Retribusi (BHPR)', 'budgeted_amount' => 45000000, 'realized_amount' => 42500000, 'sort_order' => 4],
+            ['type' => 'revenue', 'sub_type' => 'lain_lain', 'code' => '4.3', 'category' => 'Bantuan Keuangan Khusus & Lain-lain', 'budgeted_amount' => 25000000, 'realized_amount' => 25000000, 'sort_order' => 5],
 
-            // Belanja
-            ['type' => 'expenditure', 'category' => 'Bidang Penyelenggaraan Pemerintahan Desa', 'budgeted_amount' => 420000000, 'realized_amount' => 415000000, 'sort_order' => 1],
-            ['type' => 'expenditure', 'category' => 'Bidang Pelaksanaan Pembangunan Desa', 'budgeted_amount' => 750000000, 'realized_amount' => 742000000, 'sort_order' => 2],
-            ['type' => 'expenditure', 'category' => 'Bidang Pembinaan Kemasyarakatan Desa', 'budgeted_amount' => 135000000, 'realized_amount' => 131500000, 'sort_order' => 3],
-            ['type' => 'expenditure', 'category' => 'Bidang Pemberdayaan Masyarakat Desa', 'budgeted_amount' => 140000000, 'realized_amount' => 137000000, 'sort_order' => 4],
-            ['type' => 'expenditure', 'category' => 'Bidang Penanggulangan Bencana & Mendesak', 'budgeted_amount' => 80000000, 'realized_amount' => 79500000, 'sort_order' => 5],
+            // 5 Bidang Belanja Baku (Akun 5 - Permendagri No. 20/2018)
+            ['type' => 'expenditure', 'sub_type' => \App\Models\BudgetItem::BIDANG_PEMERINTAHAN, 'code' => '5.1', 'category' => 'Bidang Penyelenggaraan Pemerintahan Desa', 'budgeted_amount' => 420000000, 'realized_amount' => 415000000, 'sort_order' => 1],
+            ['type' => 'expenditure', 'sub_type' => \App\Models\BudgetItem::BIDANG_PEMBANGUNAN, 'code' => '5.2', 'category' => 'Bidang Pelaksanaan Pembangunan Desa', 'budgeted_amount' => 750000000, 'realized_amount' => 742000000, 'sort_order' => 2],
+            ['type' => 'expenditure', 'sub_type' => \App\Models\BudgetItem::BIDANG_PEMBINAAN, 'code' => '5.3', 'category' => 'Bidang Pembinaan Kemasyarakatan Desa', 'budgeted_amount' => 135000000, 'realized_amount' => 131500000, 'sort_order' => 3],
+            ['type' => 'expenditure', 'sub_type' => \App\Models\BudgetItem::BIDANG_PEMBERDAYAAN, 'code' => '5.4', 'category' => 'Bidang Pemberdayaan Masyarakat Desa', 'budgeted_amount' => 140000000, 'realized_amount' => 137000000, 'sort_order' => 4],
+            ['type' => 'expenditure', 'sub_type' => \App\Models\BudgetItem::BIDANG_BENCANA_DARURAT, 'code' => '5.5', 'category' => 'Bidang Penanggulangan Bencana, Keadaan Darurat dan Mendesak Desa', 'budgeted_amount' => 80000000, 'realized_amount' => 79500000, 'sort_order' => 5],
 
-            // Pembiayaan
-            ['type' => 'financing', 'category' => 'Penerimaan Pembiayaan (SiLPA Tahun Lalu)', 'budgeted_amount' => 35000000, 'realized_amount' => 35000000, 'sort_order' => 1],
-            ['type' => 'financing', 'category' => 'Pengeluaran Pembiayaan (Penyertaan Modal BUMDes)', 'budgeted_amount' => 35000000, 'realized_amount' => 35000000, 'sort_order' => 2],
+            // Restrukturisasi Pembiayaan Desa (Akun 6 - Permendagri No. 20/2018)
+            ['type' => 'financing', 'sub_type' => \App\Models\BudgetItem::FINANCING_RECEIPT, 'code' => '6.1.1', 'category' => 'Penerimaan Pembiayaan (SiLPA Tahun Lalu)', 'budgeted_amount' => 35000000, 'realized_amount' => 35000000, 'sort_order' => 1],
+            ['type' => 'financing', 'sub_type' => \App\Models\BudgetItem::FINANCING_EXPENDITURE, 'code' => '6.2.1', 'category' => 'Pengeluaran Pembiayaan (Penyertaan Modal BUMDes)', 'budgeted_amount' => 35000000, 'realized_amount' => 35000000, 'sort_order' => 2],
         ];
 
         foreach ($items as $item) {
