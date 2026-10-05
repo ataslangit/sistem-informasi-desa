@@ -10,11 +10,18 @@ use App\Models\Resident;
 use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class LetterService
 {
+    public function __construct(
+        protected ?TteService $tteService = null
+    ) {
+        $this->tteService = $tteService ?? app(TteService::class);
+    }
+
     /**
      * Membuat pengajuan surat baru dari warga.
      */
@@ -130,8 +137,12 @@ class LetterService
 
         // Ambil snapshot isi surat final
         $finalContent = $this->parseTemplateContent($letterRequest);
+        $letterRequest->final_content = $finalContent;
 
-        $letterRequest->update([
+        // Proses Tanda Tangan Elektronik (TTE) Tersertifikasi (UU No. 1/2024 & PP No. 71/2019)
+        $tteData = $this->tteService->sign($letterRequest, $kadesUser);
+
+        $letterRequest->update(array_merge([
             'status' => LetterRequest::STATUS_APPROVED,
             'letter_number' => $letterNumber,
             'final_content' => $finalContent,
@@ -139,7 +150,7 @@ class LetterService
             'kades_approved_by' => $kadesUser->id,
             'kades_notes' => $notes,
             'signed_at' => $signedAt,
-        ]);
+        ], $tteData));
 
         return $letterRequest;
     }
@@ -223,16 +234,9 @@ class LetterService
      */
     public function parseTemplateContent(LetterRequest $letterRequest): string
     {
-        // Jika surat telah disahkan dan memiliki snapshot konten final, gunakan snapshot tersebut untuk menjaga immutability
-        if (! empty($letterRequest->final_content)) {
-            return $letterRequest->final_content;
-        }
-
         $template = $letterRequest->template;
         $resident = $letterRequest->resident;
         $family = $resident?->family;
-
-        $content = $template ? $template->content_template : '';
 
         $replacements = [
             '[NAMA_DESA]' => (string) Setting::get('village_name', 'Sukamaju'),
@@ -259,13 +263,85 @@ class LetterService
             '[TANGGAL_SURAT]' => Carbon::now()->translatedFormat('d F Y'),
         ];
 
-        // Tambahkan placeholder dari extra_data
+        // Tambahkan placeholder dari extra_data dengan pemetaan alias dwi-bahasa (ID & EN)
         if (is_array($letterRequest->extra_data)) {
+            $aliasMap = [
+                'business_name' => ['NAMA_USAHA', 'BUSINESS_NAME', 'JENIS_USAHA'],
+                'nama_usaha' => ['NAMA_USAHA', 'BUSINESS_NAME', 'JENIS_USAHA'],
+                'jenis_usaha' => ['NAMA_USAHA', 'BUSINESS_NAME', 'JENIS_USAHA'],
+                'business_location' => ['LOKASI_USAHA', 'BUSINESS_LOCATION', 'ALAMAT_USAHA'],
+                'lokasi_usaha' => ['LOKASI_USAHA', 'BUSINESS_LOCATION', 'ALAMAT_USAHA'],
+                'alamat_usaha' => ['LOKASI_USAHA', 'BUSINESS_LOCATION', 'ALAMAT_USAHA'],
+                'business_since' => ['LAMA_USAHA', 'BUSINESS_SINCE', 'LAMA_BERDIRI', 'TAHUN_BERDIRI'],
+                'lama_usaha' => ['LAMA_USAHA', 'BUSINESS_SINCE', 'LAMA_BERDIRI', 'TAHUN_BERDIRI'],
+                'lama_berdiri' => ['LAMA_USAHA', 'BUSINESS_SINCE', 'LAMA_BERDIRI', 'TAHUN_BERDIRI'],
+                'tahun_berdiri' => ['LAMA_USAHA', 'BUSINESS_SINCE', 'LAMA_BERDIRI', 'TAHUN_BERDIRI'],
+                'school_or_institution' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
+                'nama_instansi' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
+                'nama_sekolah' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
+            ];
+
             foreach ($letterRequest->extra_data as $key => $val) {
+                $cleanVal = (string) $val;
                 $placeholder = sprintf('[%s]', strtoupper($key));
-                $replacements[$placeholder] = (string) $val;
+                $replacements[$placeholder] = $cleanVal;
+
+                $normalizedKey = strtolower(trim((string) $key));
+                if (isset($aliasMap[$normalizedKey])) {
+                    foreach ($aliasMap[$normalizedKey] as $alias) {
+                        $replacements[sprintf('[%s]', $alias)] = $cleanVal;
+                    }
+                }
             }
         }
+
+        // Nilai fallback default agar placeholder naskah tidak meninggalkan kurung siku mentah
+        $replacements += [
+            '[NAMA_USAHA]' => '-',
+            '[BUSINESS_NAME]' => '-',
+            '[JENIS_USAHA]' => '-',
+            '[LOKASI_USAHA]' => '-',
+            '[BUSINESS_LOCATION]' => '-',
+            '[ALAMAT_USAHA]' => '-',
+            '[LAMA_USAHA]' => '-',
+            '[BUSINESS_SINCE]' => '-',
+            '[LAMA_BERDIRI]' => '-',
+            '[TAHUN_BERDIRI]' => '-',
+            '[NAMA_INSTANSI]' => '-',
+            '[NAMA_SEKOLAH]' => '-',
+            '[SCHOOL_OR_INSTITUTION]' => '-',
+        ];
+
+        // Jika surat telah disahkan dan memiliki snapshot konten final:
+        if (! empty($letterRequest->final_content)) {
+            // Periksa jika ada placeholder un-replaced di dalam snapshot konten (misal SKU yang disahkan sebelum pemetaan alias)
+            if (str_contains($letterRequest->final_content, '[NAMA_USAHA]') ||
+                str_contains($letterRequest->final_content, '[LOKASI_USAHA]') ||
+                str_contains($letterRequest->final_content, '[LAMA_USAHA]') ||
+                str_contains($letterRequest->final_content, '[BUSINESS_NAME]')) {
+                $repairedContent = str_replace(array_keys($replacements), array_values($replacements), $letterRequest->final_content);
+                $letterRequest->updateQuietly(['final_content' => $repairedContent]);
+
+                // Sinkronisasikan kembali hash TTE jika sebelumnya di-hash saat placeholder belum ter-replace
+                if ($letterRequest->isCertifiedTte() && ! empty($letterRequest->signer_name)) {
+                    $newDocHash = $this->tteService->calculateDocumentHash($letterRequest);
+                    $secret = (string) Config::get('app.key', 'sidesa-secret-key');
+                    $timestamp = $letterRequest->tte_timestamp ? Carbon::parse($letterRequest->tte_timestamp)->timestamp : time();
+                    $newSigHash = hash_hmac('sha256', $newDocHash.'|'.$letterRequest->kades_approved_by.'|'.$timestamp, $secret);
+                    $letterRequest->updateQuietly([
+                        'document_hash' => $newDocHash,
+                        'signature_hash' => $newSigHash,
+                        'is_tampered' => false,
+                    ]);
+                }
+
+                return $repairedContent;
+            }
+
+            return $letterRequest->final_content;
+        }
+
+        $content = $template ? $template->content_template : '';
 
         return str_replace(array_keys($replacements), array_values($replacements), $content);
     }

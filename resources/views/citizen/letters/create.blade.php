@@ -30,12 +30,23 @@
             </div>
         </div>
 
-        <form action="{{ route('citizen.letters.store') }}" method="POST" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+        <form action="{{ route('citizen.letters.store') }}" method="POST"
+              x-data="{
+                  selectedTemplateId: '{{ old('letter_template_id', '') }}',
+                  templates: {{ \Illuminate\Support\Js::from($templates) }},
+                  get currentTemplate() {
+                      return this.templates.find(t => t.id == this.selectedTemplateId);
+                  },
+                  get requiredFields() {
+                      return (this.currentTemplate && Array.isArray(this.currentTemplate.required_fields)) ? this.currentTemplate.required_fields : [];
+                  }
+              }"
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
             @csrf
 
             <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Jenis Surat <span class="text-rose-500">*</span></label>
-                <select name="letter_template_id" required class="w-full px-3 py-2 border rounded-xl text-xs @error('letter_template_id') border-rose-500 @enderror">
+                <select name="letter_template_id" x-model="selectedTemplateId" required class="w-full px-3 py-2 border rounded-xl text-xs @error('letter_template_id') border-rose-500 @enderror">
                     <option value="">-- Pilih Jenis Surat --</option>
                     @foreach($templates as $tpl)
                         <option value="{{ $tpl->id }}" {{ old('letter_template_id') == $tpl->id ? 'selected' : '' }}>
@@ -44,7 +55,34 @@
                     @endforeach
                 </select>
                 @error('letter_template_id') <p class="text-[11px] text-rose-500 mt-1">{{ $message }}</p> @enderror
+                <template x-if="currentTemplate && currentTemplate.description">
+                    <p class="text-[11px] text-slate-500 mt-1.5 italic" x-text="currentTemplate.description"></p>
+                </template>
             </div>
+
+            <!-- Dynamic Extra Data Fields (Jika Template Membutuhkan Data Khusus, misal SKU / SKTM) -->
+            <template x-if="requiredFields.length > 0">
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3.5">
+                    <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.5L19 7.5V19a2 2 0 01-2 2z"></path></svg>
+                        <span>Kelengkapan Data Khusus Surat:</span>
+                    </div>
+
+                    <template x-for="field in requiredFields" :key="field.name">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">
+                                <span x-text="field.label"></span>
+                                <span x-show="field.required" class="text-rose-500">*</span>
+                            </label>
+                            <input :type="field.type || 'text'"
+                                   :name="'extra_data[' + field.name + ']'"
+                                   :required="field.required"
+                                   :placeholder="'Masukkan ' + (field.label || '').toLowerCase()"
+                                   class="w-full px-3 py-2 border rounded-xl text-xs bg-white text-slate-800 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </template>
+                </div>
+            </template>
 
             <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Keperluan Pengajuan Surat <span class="text-rose-500">*</span></label>
