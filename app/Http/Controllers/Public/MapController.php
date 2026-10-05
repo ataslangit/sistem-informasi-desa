@@ -19,7 +19,9 @@ class MapController extends Controller
         $boundaries = VillageBoundary::all();
         $facilities = VillageFacility::all();
         $categories = VillageFacility::getCategories();
+        $kibMetas = VillageFacility::getKibMetas();
+        $ownershipStatuses = VillageFacility::getOwnershipStatuses();
 
-        return theme_view('map.index', compact('boundaries', 'facilities', 'categories'));
+        return theme_view('map.index', compact('boundaries', 'facilities', 'categories', 'kibMetas', 'ownershipStatuses'));
     }
 }
