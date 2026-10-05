@@ -1,4 +1,4 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', '404 - Halaman Tidak Ditemukan - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 

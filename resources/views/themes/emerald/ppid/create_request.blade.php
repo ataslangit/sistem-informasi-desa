@@ -1,32 +1,57 @@
 @extends(theme_layout())
 
-@section('title', 'Formulir Permohonan Informasi Publik - PPID Desa')
+@section('title', 'Formulir Permohonan Informasi Publik - PPID Desa ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<!-- Header Banner -->
-<section class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-200 border border-blue-400/30 mb-3 space-x-1.5">
-            <span>📝</span>
-            <span>Layanan Daring PPID Desa</span>
-        </span>
-        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
-            Permohonan Informasi Publik
-        </h1>
-        <p class="mt-2 text-sm sm:text-base text-blue-100 leading-relaxed">
-            Masyarakat dapat mengajukan permohonan informasi publik secara daring. Permohonan Anda akan ditindaklanjuti oleh Pejabat Pengelola Informasi dan Dokumentasi (PPID) Desa dalam batas waktu maksimal 10 hari kerja.
-        </p>
+<!-- Banner Hero Hijau Zamrud (Jumbotron Permohonan PPID Tema Emerald) -->
+<section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/20 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 py-12 sm:py-16 px-6 sm:px-12 text-white">
+            <!-- Background Landscape Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');"></div>
+            <!-- Radial Glow Ornaments -->
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-72 h-72 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <!-- Breadcrumbs Cerah Kontras Tinggi -->
+                <nav class="flex flex-wrap items-center gap-2 text-xs text-emerald-300 font-medium">
+                    <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                        <span>🏡</span>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="text-emerald-500">/</span>
+                    <a href="{{ route('public.ppid.index') }}" class="hover:text-white transition">PPID Desa</a>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-white font-semibold">Permohonan Informasi</span>
+                </nav>
+
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold backdrop-blur-md">
+                    <span>📝</span>
+                    <span>Layanan Daring PPID Desa</span>
+                </div>
+
+                <!-- Judul Halaman Putih Kontras Tinggi -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+                    Permohonan Informasi Publik
+                </h1>
+
+                <p class="text-sm sm:text-base lg:text-lg text-emerald-100/90 leading-relaxed font-normal max-w-3xl">
+                    Masyarakat dapat mengajukan permohonan informasi publik secara daring. Permohonan Anda akan ditindaklanjuti oleh Pejabat Pengelola Informasi dan Dokumentasi (PPID) Desa dalam batas waktu maksimal 10 hari kerja.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 sm:p-10 space-y-8">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-3xl border border-emerald-100 shadow-sm p-8 sm:p-10 space-y-8">
         <!-- Standar Waktu Informasi -->
-        <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100 flex items-start space-x-3 text-xs text-blue-900">
+        <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 flex items-start space-x-3 text-xs text-emerald-950">
             <span class="text-xl shrink-0">ℹ️</span>
             <div class="space-y-1">
-                <span class="font-bold block">Ketentuan Layanan Informasi (UU No. 14 Tahun 2008 & Perki No. 1 Tahun 2018):</span>
-                <p class="text-blue-700 leading-relaxed">
+                <span class="font-bold block text-emerald-900">Ketentuan Layanan Informasi (UU No. 14 Tahun 2008 & Perki No. 1 Tahun 2018):</span>
+                <p class="text-emerald-800/90 leading-relaxed">
                     1. Pemohon wajib mencantumkan identitas diri yang benar dan tujuan peruntukan informasi.<br>
                     2. PPID Desa wajib menyampaikan pemberitahuan tertulis atas permohonan paling lambat <b>10 (sepuluh) hari kerja</b> sejak permohonan diterima.
                 </p>
@@ -52,8 +77,9 @@
 
             <!-- Identitas Pemohon -->
             <div class="space-y-4">
-                <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider text-blue-600">
-                    1. Identitas Pemohon Informasi
+                <h3 class="text-sm font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 inline-flex items-center justify-center text-xs font-bold">1</span>
+                    <span>Identitas Pemohon Informasi</span>
                 </h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -68,7 +94,7 @@
                             value="{{ old('applicant_name', auth()->user()?->name) }}" 
                             required 
                             placeholder="Nama pemohon..."
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                         >
                     </div>
 
@@ -83,7 +109,7 @@
                             maxlength="16"
                             value="{{ old('applicant_nik') }}" 
                             placeholder="320xxxxxxxxxxxxx"
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                         >
                     </div>
                 </div>
@@ -100,7 +126,7 @@
                             value="{{ old('applicant_phone') }}" 
                             required 
                             placeholder="081234567890"
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                         >
                     </div>
 
@@ -115,7 +141,7 @@
                             value="{{ old('applicant_email', auth()->user()?->email) }}" 
                             required 
                             placeholder="nama@email.com"
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                         >
                     </div>
                 </div>
@@ -130,7 +156,7 @@
                         rows="2" 
                         required 
                         placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan/desa..."
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                     >{{ old('applicant_address') }}</textarea>
                 </div>
 
@@ -143,15 +169,16 @@
                         name="identity_card" 
                         id="identity_card" 
                         accept=".jpg,.jpeg,.png,.pdf"
-                        class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-800 hover:file:bg-emerald-100 transition"
                     >
                 </div>
             </div>
 
             <!-- Rincian Informasi -->
             <div class="pt-6 border-t border-slate-100 space-y-4">
-                <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider text-blue-600">
-                    2. Rincian Informasi yang Dibutuhkan
+                <h3 class="text-sm font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 inline-flex items-center justify-center text-xs font-bold">2</span>
+                    <span>Rincian Informasi yang Dibutuhkan</span>
                 </h3>
 
                 <div>
@@ -164,7 +191,7 @@
                         rows="4" 
                         required 
                         placeholder="Jelaskan secara spesifik informasi atau dokumen yang ingin Anda peroleh dari Pemerintah Desa..."
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                     >{{ old('information_requested') }}</textarea>
                 </div>
 
@@ -178,7 +205,7 @@
                         rows="3" 
                         required 
                         placeholder="Jelaskan peruntukan informasi (misal: penelitian akademis, monitoring pembangunan, dll)..."
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                     >{{ old('purpose') }}</textarea>
                 </div>
 
@@ -187,16 +214,16 @@
                         Cara Memperoleh Salinan Informasi <span class="text-rose-500">*</span>
                     </label>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="acquisition_way" value="online" {{ old('acquisition_way', 'online') === 'online' ? 'checked' : '' }} class="h-4 w-4 text-blue-600">
+                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-emerald-50/50 hover:border-emerald-300 transition">
+                            <input type="radio" name="acquisition_way" value="online" {{ old('acquisition_way', 'online') === 'online' ? 'checked' : '' }} class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
                             <span class="ml-2.5 text-xs text-slate-700 font-medium">Elektronik / Unduhan</span>
                         </label>
-                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="acquisition_way" value="direct_view" {{ old('acquisition_way') === 'direct_view' ? 'checked' : '' }} class="h-4 w-4 text-blue-600">
+                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-emerald-50/50 hover:border-emerald-300 transition">
+                            <input type="radio" name="acquisition_way" value="direct_view" {{ old('acquisition_way') === 'direct_view' ? 'checked' : '' }} class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
                             <span class="ml-2.5 text-xs text-slate-700 font-medium">Melihat Langsung</span>
                         </label>
-                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="acquisition_way" value="hardcopy" {{ old('acquisition_way') === 'hardcopy' ? 'checked' : '' }} class="h-4 w-4 text-blue-600">
+                        <label class="flex items-center p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-emerald-50/50 hover:border-emerald-300 transition">
+                            <input type="radio" name="acquisition_way" value="hardcopy" {{ old('acquisition_way') === 'hardcopy' ? 'checked' : '' }} class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
                             <span class="ml-2.5 text-xs text-slate-700 font-medium">Salinan Fisik / Cetak</span>
                         </label>
                     </div>
@@ -204,10 +231,10 @@
             </div>
 
             <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-                <a href="{{ route('public.ppid.index') }}" class="text-xs text-slate-500 hover:text-slate-800">
+                <a href="{{ route('public.ppid.index') }}" class="text-xs text-slate-500 hover:text-emerald-800 transition">
                     &larr; Kembali ke Beranda PPID
                 </a>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition text-xs flex items-center space-x-2">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-md shadow-emerald-600/20 transition text-xs flex items-center space-x-2">
                     <span>📨</span>
                     <span>Kirim Permohonan Informasi</span>
                 </button>

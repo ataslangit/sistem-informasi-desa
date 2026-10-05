@@ -3,34 +3,59 @@
 @section('title', 'Transparansi APBDes ' . ($selectedYear ?? date('Y')) . ' - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<!-- Header Banner -->
-<section class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+<!-- Banner Hero Hijau Zamrud (Jumbotron APBDes Tema Emerald) -->
+<section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
     <div class="max-w-7xl mx-auto">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 mb-3 space-x-1.5">
-            <span>📊</span>
-            <span>Akuntabilitas & Transparansi Publik</span>
-        </span>
-        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
-            Transparansi APBDes {{ $selectedYear }}
-        </h1>
-        <p class="mt-2 text-sm sm:text-base text-emerald-100 max-w-2xl leading-relaxed">
-            Publikasi resmi Anggaran Pendapatan dan Belanja Desa (APBDes) {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }} sebagai wujud keterbukaan informasi dan tata kelola keuangan desa yang akuntabel.
-        </p>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/20 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 py-12 sm:py-16 px-6 sm:px-12 text-white">
+            <!-- Background Landscape Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');"></div>
+            <!-- Radial Glow Ornaments -->
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-72 h-72 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Selector Tahun Anggaran -->
-        @if($budgets->count() > 1)
-            <div class="mt-6 flex flex-wrap items-center gap-2">
-                <span class="text-xs text-emerald-200 font-semibold mr-2">Pilih Tahun:</span>
-                @foreach($budgets as $b)
-                    <a 
-                        href="{{ route('budgets.index', ['year' => $b->year]) }}" 
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition {{ $b->year === $selectedYear ? 'bg-white text-emerald-900 shadow-sm' : 'bg-emerald-800/60 text-emerald-100 hover:bg-emerald-700/60 border border-emerald-600/40' }}"
-                    >
-                        Tahun {{ $b->year }}
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <!-- Breadcrumbs Cerah Kontras Tinggi -->
+                <nav class="flex flex-wrap items-center gap-2 text-xs text-emerald-300 font-medium">
+                    <a href="/" class="hover:text-white transition flex items-center gap-1">
+                        <span>🏡</span>
+                        <span>Beranda</span>
                     </a>
-                @endforeach
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-white font-semibold">Transparansi APBDes</span>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-emerald-300 font-bold">Tahun {{ $selectedYear }}</span>
+                </nav>
+
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold backdrop-blur-md">
+                    <span>📊</span>
+                    <span>Akuntabilitas & Tata Kelola Keuangan Desa</span>
+                </div>
+
+                <!-- Judul Halaman Putih Kontras Tinggi -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+                    Transparansi APBDes {{ $selectedYear }}
+                </h1>
+
+                <p class="text-sm sm:text-base lg:text-lg text-emerald-100/90 leading-relaxed font-normal max-w-3xl">
+                    Publikasi resmi Anggaran Pendapatan dan Belanja Desa (APBDes) {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }} sebagai wujud keterbukaan informasi publik dan akuntabilitas pengelolaan dana desa.
+                </p>
+
+                <!-- Selector Tahun Anggaran Emerald -->
+                @if($budgets->count() > 1)
+                    <div class="pt-2 flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-emerald-300 font-semibold mr-1">Tahun Anggaran:</span>
+                        @foreach($budgets as $b)
+                            <a 
+                                href="{{ route('budgets.index', ['year' => $b->year]) }}" 
+                                class="px-4 py-2 rounded-xl text-xs font-bold transition {{ $b->year === $selectedYear ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-md' : 'bg-white/10 text-white hover:bg-white/20 border border-white/20 backdrop-blur-md' }}"
+                            >
+                                Tahun {{ $b->year }}
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
-        @endif
+        </div>
     </div>
 </section>
 

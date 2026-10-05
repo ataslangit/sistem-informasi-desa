@@ -1,19 +1,26 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', $page->title . ' - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<!-- Header Banner -->
-<section class="bg-gradient-to-r from-sky-900 to-indigo-950 text-white py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30 mb-3">
+<!-- Header Banner Default -->
+<section class="bg-gradient-to-r from-sky-900 via-sky-800 to-indigo-950 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-3">
+        <nav class="flex items-center gap-2 text-xs text-sky-200">
+            <a href="/" class="hover:text-white transition">Beranda</a>
+            <span>/</span>
+            <span class="text-sky-300">Profil Desa</span>
+            <span>/</span>
+            <span class="text-white font-medium truncate">{{ $page->title }}</span>
+        </nav>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30">
             🏛️ Informasi Resmi Desa
         </span>
-        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
+        <h1 class="text-2xl sm:text-4xl font-black tracking-tight">
             {{ $page->title }}
         </h1>
         @if($page->summary)
-            <p class="mt-2 text-sm sm:text-base text-sky-200 max-w-2xl">
+            <p class="text-sm sm:text-base text-sky-100 max-w-3xl leading-relaxed">
                 {{ $page->summary }}
             </p>
         @endif

@@ -3,50 +3,57 @@
 @section('title', $gallery->title . ' - Galeri ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<!-- Breadcrumbs & Album Header -->
-<section class="bg-gradient-to-r from-sky-900 to-indigo-950 text-white py-14 px-4 sm:px-6 lg:px-8">
+<!-- Banner Hero Hijau Zamrud (Jumbotron Detail Album Galeri Tema Emerald) -->
+<section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
     <div class="max-w-7xl mx-auto">
-        <nav class="flex items-center space-x-2 text-xs text-sky-200/80 mb-4 font-medium">
-            <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
-            <span>&rsaquo;</span>
-            <a href="{{ route('galleries.index') }}" class="hover:text-white transition">Galeri Foto</a>
-            <span>&rsaquo;</span>
-            <span class="text-white truncate max-w-xs">{{ $gallery->title }}</span>
-        </nav>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/20 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 py-12 sm:py-16 px-6 sm:px-12 text-white">
+            <!-- Background Landscape Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');"></div>
+            <!-- Radial Glow Ornaments -->
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-72 h-72 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30 mb-3 space-x-1.5">
-            <span>📷</span>
-            <span>Album Dokumentasi</span>
-        </span>
-        <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-            {{ $gallery->title }}
-        </h1>
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <!-- Breadcrumbs Cerah Kontras Tinggi -->
+                <nav class="flex flex-wrap items-center gap-2 text-xs text-emerald-300 font-medium">
+                    <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                        <span>🏡</span>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="text-emerald-500">/</span>
+                    <a href="{{ route('galleries.index') }}" class="hover:text-white transition">Galeri Foto</a>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-white font-semibold truncate max-w-xs">{{ $gallery->title }}</span>
+                </nav>
 
-        <!-- Meta Info -->
-        <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-sky-200/90 font-medium">
-            <span class="flex items-center space-x-1">
-                <span>📅</span>
-                <span>{{ optional($gallery->published_at)->translatedFormat('d F Y') }}</span>
-            </span>
-            <span class="flex items-center space-x-1">
-                <span>👤</span>
-                <span>{{ $gallery->author?->name ?? 'Aparatur Desa' }}</span>
-            </span>
-            <span class="flex items-center space-x-1">
-                <span>🖼️</span>
-                <span>{{ $gallery->photos->count() }} Foto dalam album</span>
-            </span>
-            <span class="flex items-center space-x-1">
-                <span>👁️</span>
-                <span>{{ number_format($gallery->view_count) }} kali dilihat</span>
-            </span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold backdrop-blur-md">
+                    <span>📷</span>
+                    <span>Album Dokumentasi Kegiatan Desa</span>
+                </div>
+
+                <!-- Judul Halaman Putih Kontras Tinggi -->
+                <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+                    {{ $gallery->title }}
+                </h1>
+
+                <!-- Meta Info Bar Cerah -->
+                <div class="pt-4 flex flex-wrap items-center gap-4 text-xs text-emerald-200/80 border-t border-white/10 font-medium">
+                    <span class="flex items-center gap-1.5 text-emerald-200">
+                        <span>📅</span>
+                        <span>{{ optional($gallery->published_at)->translatedFormat('d F Y') }}</span>
+                    </span>
+                    <span class="text-emerald-500">&bull;</span>
+                    <span class="flex items-center gap-1.5 text-emerald-200">
+                        <span>🖼️</span>
+                        <span>{{ $gallery->photos->count() }} Foto Dokumentasi</span>
+                    </span>
+                    @if($gallery->description)
+                        <span class="text-emerald-500">&bull;</span>
+                        <span class="text-emerald-100/90">{{ $gallery->description }}</span>
+                    @endif
+                </div>
+            </div>
         </div>
-
-        @if($gallery->summary)
-            <p class="mt-4 text-sm sm:text-base text-sky-100/90 max-w-3xl leading-relaxed">
-                {{ $gallery->summary }}
-            </p>
-        @endif
     </div>
 </section>
 
@@ -89,7 +96,7 @@
                 <span>Daftar Foto dalam Album</span>
                 <span class="text-xs font-normal text-slate-500">({{ $gallery->photos->count() }} Foto)</span>
             </h2>
-            <a href="{{ route('galleries.index') }}" class="text-xs font-semibold text-sky-600 hover:text-sky-800 transition flex items-center space-x-1">
+            <a href="{{ route('galleries.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 transition flex items-center space-x-1">
                 <span>&larr;</span>
                 <span>Kembali ke Semua Album</span>
             </a>
@@ -223,7 +230,7 @@
                             </span>
                         </div>
                         <div class="p-4">
-                            <h4 class="text-xs font-bold text-slate-800 group-hover:text-sky-600 transition line-clamp-2">
+                            <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition line-clamp-2">
                                 {{ $item->title }}
                             </h4>
                             <span class="text-[10px] text-slate-400 mt-1 block">

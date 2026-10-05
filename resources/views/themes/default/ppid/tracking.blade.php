@@ -1,4 +1,4 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', 'Lacak Status Tiket Layanan Informasi - PPID Desa')
 

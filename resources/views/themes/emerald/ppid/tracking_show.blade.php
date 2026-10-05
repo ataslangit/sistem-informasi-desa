@@ -1,34 +1,61 @@
 @extends(theme_layout())
 
-@section('title', "Status Tiket {$ticket} - PPID Desa")
+@section('title', "Status Tiket {$ticket} - PPID Desa " . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<section class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-        <a href="{{ route('public.ppid.tracking') }}" class="inline-flex items-center text-xs text-blue-200 hover:text-white mb-4 space-x-1">
-            <span>&larr; Lacak Tiket Lain</span>
-        </a>
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-                <span class="text-xs font-mono text-blue-300 block mb-1">HASIL PELACAKAN TIKET:</span>
-                <h1 class="text-2xl sm:text-3xl font-black font-mono tracking-tight">{{ $ticket }}</h1>
-            </div>
-            <div>
-                @if($objection)
-                    <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold border {{ $objection->status_badge_class }}">
-                        {{ $objection->status_label }}
-                    </span>
-                @else
-                    <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold border {{ $infoRequest->status_badge_class }}">
-                        {{ $infoRequest->status_label }}
-                    </span>
-                @endif
+<!-- Banner Hero Hijau Zamrud (Jumbotron Detail Tiket PPID Tema Emerald) -->
+<section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/20 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 py-10 sm:py-14 px-6 sm:px-12 text-white">
+            <!-- Background Landscape Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');"></div>
+            <!-- Radial Glow Ornaments -->
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-72 h-72 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <!-- Breadcrumbs Cerah Kontras Tinggi -->
+                <nav class="flex flex-wrap items-center gap-2 text-xs text-emerald-300 font-medium">
+                    <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                        <span>🏡</span>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="text-emerald-500">/</span>
+                    <a href="{{ route('public.ppid.index') }}" class="hover:text-white transition">PPID Desa</a>
+                    <span class="text-emerald-500">/</span>
+                    <a href="{{ route('public.ppid.tracking') }}" class="hover:text-white transition">Lacak Tiket</a>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-white font-mono font-semibold">{{ $ticket }}</span>
+                </nav>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold backdrop-blur-md mb-2">
+                            <span>🔍</span>
+                            <span>Hasil Pelacakan Tiket Layanan Informasi</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-mono tracking-tight">
+                            {{ $ticket }}
+                        </h1>
+                    </div>
+                    <div>
+                        @if($objection)
+                            <span class="inline-flex items-center px-4 py-2 rounded-2xl text-xs font-bold border backdrop-blur-md shadow-lg {{ $objection->status_badge_class }}">
+                                {{ $objection->status_label }}
+                            </span>
+                        @else
+                            <span class="inline-flex items-center px-4 py-2 rounded-2xl text-xs font-bold border backdrop-blur-md shadow-lg {{ $infoRequest->status_badge_class }}">
+                                {{ $infoRequest->status_label }}
+                            </span>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     @if (session('success'))
         <div class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl text-xs flex items-center space-x-2">
             <span>✅</span>
@@ -74,13 +101,13 @@
     @endif
 
     <!-- Rincian Permohonan Informasi Asal -->
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+    <div class="bg-white rounded-3xl border border-emerald-100 shadow-sm p-6 sm:p-8 space-y-6">
         <div class="flex items-center justify-between pb-4 border-b border-slate-100">
             <div>
                 <h2 class="text-base font-bold text-slate-800">Rincian Permohonan Informasi</h2>
                 <span class="text-xs text-slate-400">Diajukan pada: {{ $infoRequest->created_at->format('d M Y, H:i') }} WIB</span>
             </div>
-            <span class="font-mono text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-xl">
+            <span class="font-mono text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
                 {{ $infoRequest->ticket_number }}
             </span>
         </div>
@@ -154,12 +181,12 @@
                     @endif
                 </div>
             @else
-                <div class="p-5 bg-blue-50 rounded-2xl border border-blue-200 space-y-2 text-xs text-blue-900">
+                <div class="p-5 bg-teal-50 rounded-2xl border border-teal-200 space-y-2 text-xs text-teal-900">
                     <span class="font-bold flex items-center space-x-1.5">
                         <span>⏳</span>
                         <span>Dalam Proses Penanganan PPID Desa</span>
                     </span>
-                    <p class="text-[11px] text-blue-700 leading-relaxed">
+                    <p class="text-[11px] text-teal-700 leading-relaxed">
                         Permohonan Anda telah tercatat dan saat ini sedang ditinjau serta diproses oleh tim PPID Desa. Mohon periksa kembali nomor tiket ini secara berkala.
                     </p>
                 </div>
