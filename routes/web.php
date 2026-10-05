@@ -102,6 +102,7 @@ Route::prefix('admin')
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // Manajemen Kependudukan (Buku Induk)
+        Route::get('/families/{family}/pdf', [FamilyController::class, 'downloadPdf'])->name('families.pdf');
         Route::resource('families', FamilyController::class);
         Route::post('/residents/{resident}/create-account', [ResidentController::class, 'createAccount'])->name('residents.create-account');
         Route::resource('residents', ResidentController::class);
