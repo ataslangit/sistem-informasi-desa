@@ -14,7 +14,9 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
+use App\Http\Controllers\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
 use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
 use App\Http\Controllers\Auth\LoginController;
@@ -122,4 +124,13 @@ Route::prefix('admin')
         // Web GIS & Pemetaan Wilayah Desa
         Route::resource('boundaries', AdminVillageBoundaryController::class)->except(['create', 'show', 'edit']);
         Route::resource('facilities', AdminVillageFacilityController::class)->except(['create', 'show', 'edit']);
+
+        // Konfigurasi Pengguna & Role (Khusus Superadmin)
+        Route::middleware('role:superadmin')->group(function () {
+            Route::patch('/users/{user}/toggle-status', [AdminUserController::class, 'toggleStatus'])->name('users.toggle-status');
+            Route::resource('users', AdminUserController::class);
+            Route::get('/roles', [AdminRoleController::class, 'index'])->name('roles.index');
+            Route::get('/roles/{role}', [AdminRoleController::class, 'show'])->name('roles.show');
+            Route::put('/roles/{role}/permissions', [AdminRoleController::class, 'updatePermissions'])->name('roles.permissions.update');
+        });
     });
