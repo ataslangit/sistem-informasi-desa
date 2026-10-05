@@ -136,4 +136,44 @@ class BudgetPermendagriComplianceTest extends TestCase
         $response->assertSee('Penerimaan Pembiayaan');
         $response->assertSee('Pengeluaran Pembiayaan');
     }
+
+    /**
+     * Test operasi create APBDes dan item anggaran tercatat ke dalam audit log.
+     */
+    public function test_budget_and_items_trigger_audit_trail(): void
+    {
+        $response = $this->actingAs($this->superadmin)->post('/admin/budgets', [
+            'year' => 2026,
+            'title' => 'APBDes Anggaran 2026',
+            'status' => 'draft',
+            'description' => 'Rancangan Anggaran 2026',
+        ]);
+
+        $createdBudget = Budget::where('year', 2026)->firstOrFail();
+        $response->assertRedirect("/admin/budgets/{$createdBudget->id}");
+
+        $this->assertDatabaseHas('audit_logs', [
+            'event_name' => 'BudgetCreated',
+            'entity_type' => 'budget',
+            'entity_id' => (string) $createdBudget->id,
+            'actor_id' => $this->superadmin->id,
+        ]);
+
+        $itemResponse = $this->actingAs($this->superadmin)->post("/admin/budgets/{$createdBudget->id}/items", [
+            'type' => 'revenue',
+            'category' => 'Pendapatan Asli Desa (PADes)',
+            'budgeted_amount' => 150000000,
+            'realized_amount' => 0,
+        ]);
+
+        $createdItem = BudgetItem::where('budget_id', $createdBudget->id)->firstOrFail();
+        $itemResponse->assertRedirect("/admin/budgets/{$createdBudget->id}");
+
+        $this->assertDatabaseHas('audit_logs', [
+            'event_name' => 'BudgetItemCreated',
+            'entity_type' => 'budgetitem',
+            'entity_id' => (string) $createdItem->id,
+            'actor_id' => $this->superadmin->id,
+        ]);
+    }
 }
