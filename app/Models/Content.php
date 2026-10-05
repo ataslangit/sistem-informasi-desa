@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
@@ -22,6 +23,8 @@ class Content extends Model
     public const TYPE_PAGE = 'page';
 
     public const TYPE_ANNOUNCEMENT = 'announcement';
+
+    public const TYPE_GALLERY = 'gallery';
 
     public const STATUS_DRAFT = 'draft';
 
@@ -71,6 +74,14 @@ class Content extends Model
     }
 
     /**
+     * Relasi ke foto-foto dalam album galeri.
+     */
+    public function photos(): HasMany
+    {
+        return $this->hasMany(GalleryPhoto::class, 'gallery_id')->orderBy('sort_order');
+    }
+
+    /**
      * Scope artikel berita (type: post).
      */
     public function scopePosts(Builder $query): Builder
@@ -84,6 +95,27 @@ class Content extends Model
     public function scopePages(Builder $query): Builder
     {
         return $query->where('type', self::TYPE_PAGE);
+    }
+
+    /**
+     * Scope galeri foto (type: gallery).
+     */
+    public function scopeGalleries(Builder $query): Builder
+    {
+        return $query->where('type', self::TYPE_GALLERY);
+    }
+
+    /**
+     * Scope pengumuman (type: announcement atau kategori pengumuman).
+     */
+    public function scopeAnnouncements(Builder $query): Builder
+    {
+        return $query->where(function ($q) {
+            $q->where('type', self::TYPE_ANNOUNCEMENT)
+                ->orWhereHas('categories', function ($catQuery) {
+                    $catQuery->where('slug', 'pengumuman');
+                });
+        });
     }
 
     /**
@@ -101,7 +133,22 @@ class Content extends Model
      */
     public function getCoverImageAttribute(): ?string
     {
-        return $this->meta['cover_image'] ?? null;
+        if (! empty($this->meta['cover_image'])) {
+            return $this->meta['cover_image'];
+        }
+
+        if ($this->relationLoaded('photos')) {
+            if ($this->photos->isNotEmpty()) {
+                return $this->photos->first()->image_url;
+            }
+        } elseif ($this->type === self::TYPE_GALLERY) {
+            $firstPhoto = $this->photos()->first();
+            if ($firstPhoto) {
+                return $firstPhoto->image_url;
+            }
+        }
+
+        return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80';
     }
 
     /**

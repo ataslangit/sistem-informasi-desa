@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\LetterRequestController;
 use App\Http\Controllers\Admin\LetterTemplateController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingContro
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
+use App\Http\Controllers\Public\GalleryController as PublicGalleryController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LetterVerificationController;
 use App\Http\Controllers\Public\PageController as PublicPageController;
@@ -27,12 +29,15 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// --- Rute Publik (Portal Desa, Berita CMS, Halaman Profil & Verifikasi Dokumen) ---
+// --- Rute Publik (Portal Desa, Berita CMS, Halaman Profil, Galeri & Verifikasi Dokumen) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [PublicArticleController::class, 'index'])->name('articles.index');
 Route::get('/berita/{slug}', [PublicArticleController::class, 'show'])->name('articles.show');
+Route::get('/pengumuman', [PublicArticleController::class, 'announcements'])->name('articles.announcements');
 Route::get('/kategori/{slug}', [PublicArticleController::class, 'category'])->name('articles.category');
 Route::get('/halaman/{slug}', [PublicPageController::class, 'show'])->name('pages.show');
+Route::get('/galeri', [PublicGalleryController::class, 'index'])->name('galleries.index');
+Route::get('/galeri/{slug}', [PublicGalleryController::class, 'show'])->name('galleries.show');
 Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 'verify'])->name('verify.letter');
 
 // --- Rute Otentikasi ---
@@ -90,10 +95,13 @@ Route::prefix('admin')
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('/audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
 
-        // CMS & Portal Publik (Berita, Kategori, Halaman Statis, Menu & Tema)
+        // CMS & Portal Publik (Berita, Kategori, Halaman Statis, Galeri, Menu & Tema)
         Route::resource('articles', AdminArticleController::class)->except(['show']);
         Route::resource('categories', AdminCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('pages', AdminPageController::class)->except(['show']);
+        Route::resource('galleries', AdminGalleryController::class)->only(['index', 'store', 'show', 'destroy']);
+        Route::post('/galleries/{gallery}/photos', [AdminGalleryController::class, 'storePhoto'])->name('galleries.photos.store');
+        Route::delete('/galleries/{gallery}/photos/{photo}', [AdminGalleryController::class, 'destroyPhoto'])->name('galleries.photos.destroy');
         Route::resource('menus', AdminMenuController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::get('/themes', [AdminThemeSettingController::class, 'index'])->name('themes.index');
         Route::post('/themes', [AdminThemeSettingController::class, 'update'])->name('themes.update');
