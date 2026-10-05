@@ -62,7 +62,24 @@ class UserSeeder extends Seeder
         );
         $perangkat->assignRole('perangkat');
 
-        // 4. Akun Contoh Warga
+        // 4. Akun Ketua RT
+        $rt = User::updateOrCreate(
+            ['email' => 'rt@sidesa.id'],
+            [
+                'name' => 'Sutrisno (Ketua RT 001)',
+                'username' => 'ketua_rt',
+                'password' => Hash::make('password'),
+                'is_active' => true,
+                'metadata' => [
+                    'jabatan' => 'Ketua RT 001 / RW 002',
+                    'rt' => '001',
+                    'rw' => '002',
+                ],
+            ]
+        );
+        $rt->assignRole('rt');
+
+        // 5. Akun Contoh Warga
         $warga = User::updateOrCreate(
             ['email' => 'warga@sidesa.id'],
             [

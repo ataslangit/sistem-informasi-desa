@@ -109,6 +109,20 @@ class AuthAndRbacTest extends TestCase
     }
 
     /**
+     * Test login warga diarahkan langsung ke halaman permohonan surat warga.
+     */
+    public function test_warga_login_redirects_to_citizen_letters(): void
+    {
+        $response = $this->post('/login', [
+            'login' => 'warga',
+            'password' => 'password',
+        ]);
+
+        $response->assertRedirect('/citizen/letters');
+        $this->assertAuthenticated();
+    }
+
+    /**
      * Test integrasi ttpryg/auth-user RbacManager dan entity.
      */
     public function test_ttpryg_auth_user_rbac_manager_integration(): void

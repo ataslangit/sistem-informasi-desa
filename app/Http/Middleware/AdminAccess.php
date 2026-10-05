@@ -31,8 +31,8 @@ class AdminAccess
             ]);
         }
 
-        // Hanya role staf/pengelola desa yang diizinkan masuk ke dashboard admin
-        $adminRoles = ['superadmin', 'kades', 'perangkat'];
+        // Hanya role staf/pengelola desa dan RT yang diizinkan masuk ke dashboard admin
+        $adminRoles = ['superadmin', 'kades', 'perangkat', 'rt'];
 
         if (! $user->hasRole($adminRoles)) {
             abort(403, 'Akses terbatas. Halaman dashboard admin hanya diperuntukkan bagi aparatur desa dan administrator.');

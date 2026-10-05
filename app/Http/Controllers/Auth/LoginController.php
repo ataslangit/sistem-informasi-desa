@@ -76,7 +76,14 @@ class LoginController extends Controller
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        // Jika warga, arahkan ke beranda atau portal layanan mandiri
+        if ($user->hasRole('rt')) {
+            return redirect()->intended(route('admin.letter-requests.index'));
+        }
+
+        if ($user->hasRole('warga')) {
+            return redirect()->intended(route('citizen.letters.index'));
+        }
+
         return redirect()->intended(route('home'));
     }
 

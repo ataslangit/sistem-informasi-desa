@@ -29,6 +29,10 @@ class RoleAndPermissionSeeder extends Seeder
                 'label' => 'Perangkat Desa',
                 'description' => 'Operator pelayanan administrasi, pengelolaan buku induk kependudukan, dan verifikasi berkas.',
             ],
+            'rt' => [
+                'label' => 'Ketua RT',
+                'description' => 'Verifikasi awal permohonan surat warga tingkat rukun tetangga.',
+            ],
             'warga' => [
                 'label' => 'Warga',
                 'description' => 'Masyarakat desa yang memiliki akun untuk permohonan surat layanan mandiri.',
@@ -54,8 +58,10 @@ class RoleAndPermissionSeeder extends Seeder
             'residents.view' => ['label' => 'Lihat Kependudukan', 'desc' => 'Melihat data penduduk dan kartu keluarga'],
             'residents.manage' => ['label' => 'Kelola Kependudukan', 'desc' => 'Tambah, edit, hapus, dan mutasi data penduduk'],
             'letters.request' => ['label' => 'Pengajuan Surat', 'desc' => 'Mengajukan permohonan surat layanan mandiri'],
-            'letters.process' => ['label' => 'Proses Surat', 'desc' => 'Verifikasi dan cetak surat pengantar'],
-            'letters.approve' => ['label' => 'Persetujuan Surat', 'desc' => 'Tanda tangan elektronik / persetujuan kades'],
+            'letters.verify_rt' => ['label' => 'Verifikasi Surat RT', 'desc' => 'Verifikasi pengantar surat tingkat RT'],
+            'letters.process' => ['label' => 'Proses Surat Desa', 'desc' => 'Verifikasi berkas dan pengesahan staf desa'],
+            'letters.approve' => ['label' => 'Persetujuan & TTE Surat', 'desc' => 'Tanda tangan elektronik / persetujuan kades'],
+            'letters.manage_templates' => ['label' => 'Kelola Template Surat', 'desc' => 'Konfigurasi format dan template surat desa'],
             'reports.view' => ['label' => 'Lihat Laporan', 'desc' => 'Melihat laporan statistik dan agregat'],
         ];
 
@@ -82,13 +88,21 @@ class RoleAndPermissionSeeder extends Seeder
             $permModels['reports.view']->id,
         ]);
 
-        // Perangkat: Admin access, lihat & kelola penduduk, proses surat, lihat laporan
+        // Perangkat: Admin access, lihat & kelola penduduk, proses surat, kelola template, lihat laporan
         $roleModels['perangkat']->permissions()->sync([
             $permModels['admin.access']->id,
             $permModels['residents.view']->id,
             $permModels['residents.manage']->id,
             $permModels['letters.process']->id,
+            $permModels['letters.manage_templates']->id,
             $permModels['reports.view']->id,
+        ]);
+
+        // RT: Admin access (terbatas), lihat penduduk, verifikasi surat RT
+        $roleModels['rt']->permissions()->sync([
+            $permModels['admin.access']->id,
+            $permModels['residents.view']->id,
+            $permModels['letters.verify_rt']->id,
         ]);
 
         // Warga: Pengajuan surat mandiri

@@ -3,11 +3,15 @@
 use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
+use App\Http\Controllers\Admin\LetterRequestController;
+use App\Http\Controllers\Admin\LetterTemplateController;
 use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Citizen\CitizenLetterController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\LetterVerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// --- Rute Publik (Portal Desa Tema Aktif) ---
+// --- Rute Publik (Portal Desa & Verifikasi Dokumen) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 'verify'])->name('verify.letter');
 
 // --- Rute Otentikasi ---
 Route::middleware('guest')->group(function () {
@@ -26,7 +31,19 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-// --- Rute Khusus Admin / Aparatur Desa ---
+// --- Rute Layanan Mandiri Warga ---
+Route::prefix('citizen')
+    ->name('citizen.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/letters', [CitizenLetterController::class, 'index'])->name('letters.index');
+        Route::get('/letters/create', [CitizenLetterController::class, 'create'])->name('letters.create');
+        Route::post('/letters', [CitizenLetterController::class, 'store'])->name('letters.store');
+        Route::get('/letters/{letterRequest}', [CitizenLetterController::class, 'show'])->name('letters.show');
+        Route::get('/letters/{letterRequest}/pdf', [CitizenLetterController::class, 'downloadPdf'])->name('letters.pdf');
+    });
+
+// --- Rute Khusus Admin / Aparatur Desa / RT ---
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
@@ -45,6 +62,18 @@ Route::prefix('admin')
 
         // Laporan & Statistik Kependudukan
         Route::get('/reports/population', [PopulationReportController::class, 'index'])->name('reports.population');
+
+        // Layanan E-Surat Desa
+        Route::get('/letter-templates/{letterTemplate}/preview', [LetterTemplateController::class, 'preview'])->name('letter-templates.preview');
+        Route::resource('letter-templates', LetterTemplateController::class);
+        Route::get('/letter-requests', [LetterRequestController::class, 'index'])->name('letter-requests.index');
+        Route::get('/letter-requests/{letterRequest}', [LetterRequestController::class, 'show'])->name('letter-requests.show');
+        Route::post('/letter-requests/{letterRequest}/verify-rt', [LetterRequestController::class, 'verifyRt'])->name('letter-requests.verify-rt');
+        Route::post('/letter-requests/{letterRequest}/bypass-rt', [LetterRequestController::class, 'bypassRt'])->name('letter-requests.bypass-rt');
+        Route::post('/letter-requests/{letterRequest}/verify-staff', [LetterRequestController::class, 'verifyStaff'])->name('letter-requests.verify-staff');
+        Route::post('/letter-requests/{letterRequest}/approve-kades', [LetterRequestController::class, 'approveKades'])->name('letter-requests.approve-kades');
+        Route::post('/letter-requests/{letterRequest}/reject', [LetterRequestController::class, 'reject'])->name('letter-requests.reject');
+        Route::get('/letter-requests/{letterRequest}/pdf', [LetterRequestController::class, 'downloadPdf'])->name('letter-requests.pdf');
 
         // Audit Trail System (Audit Engine)
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
