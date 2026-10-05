@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuditLogController;
+use App\Http\Controllers\Admin\BudgetController as AdminBudgetController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
@@ -14,12 +15,16 @@ use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
 use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingController;
+use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
+use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
+use App\Http\Controllers\Public\BudgetController as PublicBudgetController;
 use App\Http\Controllers\Public\GalleryController as PublicGalleryController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LetterVerificationController;
+use App\Http\Controllers\Public\MapController as PublicMapController;
 use App\Http\Controllers\Public\PageController as PublicPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +43,8 @@ Route::get('/kategori/{slug}', [PublicArticleController::class, 'category'])->na
 Route::get('/halaman/{slug}', [PublicPageController::class, 'show'])->name('pages.show');
 Route::get('/galeri', [PublicGalleryController::class, 'index'])->name('galleries.index');
 Route::get('/galeri/{slug}', [PublicGalleryController::class, 'show'])->name('galleries.show');
+Route::get('/apbdes', [PublicBudgetController::class, 'index'])->name('budgets.index');
+Route::get('/peta', [PublicMapController::class, 'index'])->name('map.index');
 Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 'verify'])->name('verify.letter');
 
 // --- Rute Otentikasi ---
@@ -105,4 +112,14 @@ Route::prefix('admin')
         Route::resource('menus', AdminMenuController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::get('/themes', [AdminThemeSettingController::class, 'index'])->name('themes.index');
         Route::post('/themes', [AdminThemeSettingController::class, 'update'])->name('themes.update');
+
+        // Transparansi APBDes & Keuangan Desa
+        Route::resource('budgets', AdminBudgetController::class);
+        Route::post('/budgets/{budget}/items', [AdminBudgetController::class, 'storeItem'])->name('budgets.items.store');
+        Route::put('/budgets/{budget}/items/{item}', [AdminBudgetController::class, 'updateItem'])->name('budgets.items.update');
+        Route::delete('/budgets/{budget}/items/{item}', [AdminBudgetController::class, 'destroyItem'])->name('budgets.items.destroy');
+
+        // Web GIS & Pemetaan Wilayah Desa
+        Route::resource('boundaries', AdminVillageBoundaryController::class)->except(['create', 'show', 'edit']);
+        Route::resource('facilities', AdminVillageFacilityController::class)->except(['create', 'show', 'edit']);
     });
