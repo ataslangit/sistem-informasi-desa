@@ -91,6 +91,19 @@ class Resident extends Model
     }
 
     /**
+     * Menampilkan NIK dengan format masking untuk perlindungan privasi (UU No. 27/2022).
+     * Contoh: 320101******0001
+     */
+    public function getMaskedNikAttribute(): string
+    {
+        if (empty($this->nik) || strlen($this->nik) < 10) {
+            return $this->nik ?? '';
+        }
+
+        return substr($this->nik, 0, 6).'******'.substr($this->nik, -4);
+    }
+
+    /**
      * Scope filter berdasarkan jenis kelamin.
      */
     public function scopeGender(Builder $query, ?string $gender): Builder

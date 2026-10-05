@@ -23,16 +23,36 @@ class ResidentController extends Controller
         $keyword = $request->input('keyword');
         $gender = $request->input('gender');
         $status = $request->input('status', 'active');
+        $user = $request->user();
 
-        $residents = Resident::with('family')
+        $scopedRt = null;
+        $scopedRw = null;
+
+        $query = Resident::with('family')
             ->search($keyword)
             ->gender($gender)
-            ->status($status)
-            ->latest()
+            ->status($status);
+
+        // Segmentasi Akses Kependudukan untuk Role RT (UU PDP No. 27/2022: Need-to-know basis)
+        if ($user && $user->hasRole('rt')) {
+            $scopedRt = $user->getAssignedRt();
+            $scopedRw = $user->getAssignedRw();
+
+            if ($scopedRt) {
+                $query->whereHas('family', function ($q) use ($scopedRt, $scopedRw): void {
+                    $q->where('rt', $scopedRt);
+                    if ($scopedRw) {
+                        $q->where('rw', $scopedRw);
+                    }
+                });
+            }
+        }
+
+        $residents = $query->latest()
             ->paginate(15)
             ->withQueryString();
 
-        return view('admin.residents.index', compact('residents', 'keyword', 'gender', 'status'));
+        return view('admin.residents.index', compact('residents', 'keyword', 'gender', 'status', 'scopedRt', 'scopedRw'));
     }
 
     /**
@@ -103,7 +123,26 @@ class ResidentController extends Controller
      */
     public function show(Resident $resident): View
     {
+        $user = auth()->user();
+
+        // Verifikasi wewenang RT (UU PDP No. 27/2022: Prinsip Perlindungan Data Pribadi & Need-to-Know)
+        if ($user && $user->hasRole('rt')) {
+            $scopedRt = $user->getAssignedRt();
+            $residentRt = $resident->family?->rt;
+
+            if ($scopedRt && $residentRt !== $scopedRt) {
+                abort(403, "Akses Ditolak: Anda tidak memiliki wewenang mengakses data warga di luar RT {$scopedRt}.");
+            }
+        }
+
         $resident->load(['family.headOfFamily', 'mutations.creator', 'user.roles']);
+
+        // Catat Audit Trail Pembacaan Data Pribadi Sensitif (UU PDP)
+        $resident->logAccess('Viewed', [
+            'action' => 'Akses Biodata Detail Kependudukan',
+            'accessed_by' => $user?->name ?? 'Tamu/Sistem',
+            'nik_masked' => $resident->masked_nik,
+        ]);
 
         return view('admin.residents.show', compact('resident'));
     }
@@ -153,6 +192,14 @@ class ResidentController extends Controller
      */
     public function edit(Resident $resident): View
     {
+        $user = auth()->user();
+        if ($user && $user->hasRole('rt')) {
+            $scopedRt = $user->getAssignedRt();
+            if ($scopedRt && $resident->family?->rt !== $scopedRt) {
+                abort(403, "Akses Ditolak: Anda tidak memiliki wewenang mengedit data warga di luar RT {$scopedRt}.");
+            }
+        }
+
         $families = Family::select('id', 'family_card_number', 'address', 'rt', 'rw')->get();
 
         return view('admin.residents.edit', compact('resident', 'families'));

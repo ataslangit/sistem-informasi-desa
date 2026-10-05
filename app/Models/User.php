@@ -159,4 +159,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Resident::class, 'user_id');
     }
+
+    /**
+     * Mengambil nomor RT yang diasosiasikan dengan akun ini (jika ada).
+     */
+    public function getAssignedRt(): ?string
+    {
+        return $this->resident?->family?->rt ?? $this->metadata['rt'] ?? null;
+    }
+
+    /**
+     * Mengambil nomor RW yang diasosiasikan dengan akun ini (jika ada).
+     */
+    public function getAssignedRw(): ?string
+    {
+        return $this->resident?->family?->rw ?? $this->metadata['rw'] ?? null;
+    }
 }
