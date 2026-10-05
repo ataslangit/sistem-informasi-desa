@@ -131,5 +131,69 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ]
         );
+
+        // 8. Menu Induk: PPID Desa (Keterbukaan Informasi Publik)
+        $ppidMenu = Menu::updateOrCreate(
+            ['name' => 'PPID Desa', 'location' => 'header'],
+            [
+                'url' => '/ppid',
+                'type' => 'route',
+                'target' => '_self',
+                'sort_order' => 8,
+                'is_active' => true,
+            ]
+        );
+
+        // Submenu: Profil & Maklumat PPID
+        Menu::updateOrCreate(
+            ['name' => 'Profil PPID', 'parent_id' => $ppidMenu->id],
+            [
+                'url' => '/ppid',
+                'type' => 'route',
+                'location' => 'header',
+                'target' => '_self',
+                'sort_order' => 1,
+                'is_active' => true,
+            ]
+        );
+
+        // Submenu: Daftar Dokumen Publik (DIP)
+        Menu::updateOrCreate(
+            ['name' => 'Dokumen Publik (DIP)', 'parent_id' => $ppidMenu->id],
+            [
+                'url' => '/ppid/dokumen',
+                'type' => 'route',
+                'location' => 'header',
+                'target' => '_self',
+                'sort_order' => 2,
+                'is_active' => true,
+            ]
+        );
+
+        // Submenu: Permohonan Informasi Publik
+        Menu::updateOrCreate(
+            ['name' => 'Permohonan Informasi', 'parent_id' => $ppidMenu->id],
+            [
+                'url' => '/ppid/permohonan',
+                'type' => 'route',
+                'location' => 'header',
+                'target' => '_self',
+                'sort_order' => 3,
+                'is_active' => true,
+            ]
+        );
+
+        // Submenu: Cek Status Permohonan / Tiket
+        Menu::updateOrCreate(
+            ['name' => 'Cek Status Tiket', 'parent_id' => $ppidMenu->id],
+            [
+                'url' => '/ppid/tracking',
+                'type' => 'route',
+                'location' => 'header',
+                'target' => '_self',
+                'sort_order' => 4,
+                'is_active' => true,
+            ]
+        );
     }
 }

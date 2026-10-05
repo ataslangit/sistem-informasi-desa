@@ -156,6 +156,8 @@ class MenuManagementTest extends TestCase
         $response->assertSee('APBDes');
         $response->assertSee('Peta Desa');
         $response->assertSee('Layanan Surat');
+        $response->assertSee('PPID Desa');
+        $response->assertSee('Dokumen Publik (DIP)');
     }
 
     /**

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ContentSeeder::class,
             MenuSeeder::class,
             VillageBudgetAndMapSeeder::class,
+            PpidSeeder::class,
         ]);
     }
 }
