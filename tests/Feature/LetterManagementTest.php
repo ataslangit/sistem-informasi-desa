@@ -402,4 +402,51 @@ class LetterManagementTest extends TestCase
 
         $this->assertNotEmpty($pdfOutput);
     }
+
+    /**
+     * Test template Surat Keterangan Usaha (SKU) berhasil mereplace placeholder nama usaha, lokasi usaha, dan lama berdiri.
+     */
+    public function test_sku_letter_replaces_business_placeholders_from_extra_data(): void
+    {
+        $skuTemplate = LetterTemplate::where('code', 'SKU')->firstOrFail();
+
+        // 1. Pengajuan warga dengan field extra_data (business_name, business_location, business_since)
+        $this->actingAs($this->warga)->post('/citizen/letters', [
+            'letter_template_id' => $skuTemplate->id,
+            'purpose' => 'Persyaratan pengajuan Kredit Usaha Rakyat (KUR) BRI',
+            'extra_data' => [
+                'business_name' => 'Toko Kelontong Berkah Mandiri',
+                'business_location' => 'Jl. Merpati No. 12 RT 001 Sukamaju',
+                'business_since' => '2021',
+            ],
+        ]);
+
+        $letter = LetterRequest::where('user_id', $this->warga->id)
+            ->where('letter_template_id', $skuTemplate->id)
+            ->latest('id')
+            ->firstOrFail();
+
+        $letterService = app(\App\Services\LetterService::class);
+        $previewContent = $letterService->parseTemplateContent($letter);
+
+        // Verifikasi placeholder SKU ter-replace dengan sempurna
+        $this->assertStringNotContainsString('[NAMA_USAHA]', $previewContent);
+        $this->assertStringNotContainsString('[LOKASI_USAHA]', $previewContent);
+        $this->assertStringNotContainsString('[LAMA_USAHA]', $previewContent);
+        $this->assertStringContainsString('Toko Kelontong Berkah Mandiri', $previewContent);
+        $this->assertStringContainsString('Jl. Merpati No. 12 RT 001 Sukamaju', $previewContent);
+        $this->assertStringContainsString('2021', $previewContent);
+
+        // 2. Sahkan dan terbitkan oleh Kades
+        $this->actingAs($this->perangkat)->post("/admin/letter-requests/{$letter->id}/bypass-rt");
+        $this->actingAs($this->kades)->post("/admin/letter-requests/{$letter->id}/approve-kades");
+
+        $letter->refresh();
+        $this->assertEquals('approved', $letter->status);
+        $this->assertNotNull($letter->final_content);
+        $this->assertStringNotContainsString('[NAMA_USAHA]', $letter->final_content);
+        $this->assertStringNotContainsString('[LOKASI_USAHA]', $letter->final_content);
+        $this->assertStringNotContainsString('[LAMA_USAHA]', $letter->final_content);
+        $this->assertStringContainsString('Toko Kelontong Berkah Mandiri', $letter->final_content);
+    }
 }

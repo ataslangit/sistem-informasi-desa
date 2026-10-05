@@ -271,13 +271,25 @@
             </div>
 
             @if(!empty($letterRequest->extra_data))
+                @php
+                    $fieldLabels = [
+                        'business_name' => 'Nama / Jenis Usaha',
+                        'nama_usaha' => 'Nama / Jenis Usaha',
+                        'business_location' => 'Lokasi Usaha',
+                        'lokasi_usaha' => 'Lokasi Usaha',
+                        'business_since' => 'Lama / Tahun Berdiri',
+                        'lama_usaha' => 'Lama / Tahun Berdiri',
+                        'school_or_institution' => 'Instansi / Lembaga Tujuan',
+                        'nama_instansi' => 'Instansi / Lembaga Tujuan',
+                    ];
+                @endphp
                 <div class="pt-3 border-t border-slate-100">
                     <span class="block text-slate-400 text-[10px] mb-2 font-bold uppercase">Data Tambahan</span>
                     <div class="space-y-2 text-xs">
                         @foreach($letterRequest->extra_data as $key => $val)
-                            <div class="flex justify-between">
-                                <span class="text-slate-500 font-mono">{{ $key }}:</span>
-                                <span class="font-semibold text-slate-800">{{ $val }}</span>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="text-slate-500 font-medium">{{ $fieldLabels[$key] ?? ucwords(str_replace('_', ' ', (string) $key)) }}:</span>
+                                <span class="font-semibold text-slate-800 text-right">{{ $val }}</span>
                             </div>
                         @endforeach
                     </div>

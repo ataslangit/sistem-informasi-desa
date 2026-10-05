@@ -146,8 +146,18 @@ class LetterTemplateController extends Controller
             '[NOMOR_SURAT]' => "470/001/{$letterTemplate->code}/Ds/".date('Y'),
             '[TANGGAL_SURAT]' => Carbon::now()->translatedFormat('d F Y'),
             '[NAMA_USAHA]' => 'Warung Kelontong Berkah Mandiri',
+            '[BUSINESS_NAME]' => 'Warung Kelontong Berkah Mandiri',
+            '[JENIS_USAHA]' => 'Warung Kelontong Berkah Mandiri',
             '[LOKASI_USAHA]' => 'RT 001 / RW 002 Dusun Sukamaju',
+            '[BUSINESS_LOCATION]' => 'RT 001 / RW 002 Dusun Sukamaju',
+            '[ALAMAT_USAHA]' => 'RT 001 / RW 002 Dusun Sukamaju',
             '[LAMA_USAHA]' => '3 (Tiga) Tahun',
+            '[BUSINESS_SINCE]' => '3 (Tiga) Tahun',
+            '[LAMA_BERDIRI]' => '3 (Tiga) Tahun',
+            '[TAHUN_BERDIRI]' => '2021',
+            '[NAMA_INSTANSI]' => 'Universitas Indonesia',
+            '[NAMA_SEKOLAH]' => 'SMA Negeri 1 Sukamaju',
+            '[SCHOOL_OR_INSTITUTION]' => 'Universitas Indonesia',
         ];
 
         $renderedContent = str_replace(array_keys($replacements), array_values($replacements), $letterTemplate->content_template);
