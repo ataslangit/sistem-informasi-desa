@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             LetterRequestSeeder::class,
             ContentSeeder::class,
             MenuSeeder::class,
+            VillageBudgetAndMapSeeder::class,
         ]);
     }
 }

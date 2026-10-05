@@ -84,14 +84,50 @@ class MenuSeeder extends Seeder
             ]
         );
 
-        // 4. Menu Layanan Surat
+        // 4. Menu Galeri Foto
+        Menu::updateOrCreate(
+            ['name' => 'Galeri', 'location' => 'header'],
+            [
+                'url' => '/galeri',
+                'type' => 'route',
+                'target' => '_self',
+                'sort_order' => 4,
+                'is_active' => true,
+            ]
+        );
+
+        // 5. Menu Transparansi APBDes
+        Menu::updateOrCreate(
+            ['name' => 'APBDes', 'location' => 'header'],
+            [
+                'url' => '/apbdes',
+                'type' => 'route',
+                'target' => '_self',
+                'sort_order' => 5,
+                'is_active' => true,
+            ]
+        );
+
+        // 6. Menu Peta Digital (GIS)
+        Menu::updateOrCreate(
+            ['name' => 'Peta Desa', 'location' => 'header'],
+            [
+                'url' => '/peta',
+                'type' => 'route',
+                'target' => '_self',
+                'sort_order' => 6,
+                'is_active' => true,
+            ]
+        );
+
+        // 7. Menu Layanan Surat
         Menu::updateOrCreate(
             ['name' => 'Layanan Surat', 'location' => 'header'],
             [
                 'url' => '/citizen/letters/create',
                 'type' => 'route',
                 'target' => '_self',
-                'sort_order' => 4,
+                'sort_order' => 7,
                 'is_active' => true,
             ]
         );

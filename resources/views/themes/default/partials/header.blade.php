@@ -68,6 +68,8 @@
                     <a href="{{ route('home') }}" class="text-sm font-semibold {{ request()->routeIs('home') ? 'text-sky-600' : 'text-slate-600 hover:text-sky-600' }}">Beranda</a>
                     <a href="{{ route('pages.show', 'profil-desa') }}" class="text-sm font-medium {{ request()->is('halaman*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">Profil Desa</a>
                     <a href="{{ route('articles.index') }}" class="text-sm font-medium {{ request()->is('berita*') || request()->is('kategori*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">Kabar Desa</a>
+                    <a href="{{ route('budgets.index') }}" class="text-sm font-medium {{ request()->routeIs('budgets.*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">APBDes</a>
+                    <a href="{{ route('map.index') }}" class="text-sm font-medium {{ request()->routeIs('map.*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">Peta Desa</a>
                     <a href="{{ route('citizen.letters.create') }}" class="text-sm font-medium text-slate-600 hover:text-sky-600 transition">Layanan Surat</a>
                 @endforelse
             </nav>

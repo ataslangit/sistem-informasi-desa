@@ -152,6 +152,9 @@ class MenuManagementTest extends TestCase
         $response->assertSee('Visi & Misi');
         $response->assertSee('Struktur Organisasi');
         $response->assertSee('Kabar Desa');
+        $response->assertSee('Galeri');
+        $response->assertSee('APBDes');
+        $response->assertSee('Peta Desa');
         $response->assertSee('Layanan Surat');
     }
 
