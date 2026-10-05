@@ -1,4 +1,4 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', 'Peta Wilayah & Web GIS Fasilitas Desa - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 

@@ -1,4 +1,4 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', "Status Tiket {$ticket} - PPID Desa")
 

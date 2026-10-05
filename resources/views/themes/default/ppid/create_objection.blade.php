@@ -1,4 +1,4 @@
-@extends('themes.default.layouts.app')
+@extends(theme_layout())
 
 @section('title', 'Formulir Pengajuan Keberatan Informasi Publik - PPID Desa')
 

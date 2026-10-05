@@ -49,6 +49,21 @@ if (! function_exists('admin_asset')) {
     }
 }
 
+if (! function_exists('theme_layout')) {
+    /**
+     * Mengambil path layout master utama untuk tema publik yang aktif.
+     */
+    function theme_layout(): string
+    {
+        $theme = active_theme();
+        if (view()->exists("themes.{$theme}.layouts.app")) {
+            return "themes.{$theme}.layouts.app";
+        }
+
+        return 'themes.default.layouts.app';
+    }
+}
+
 if (! function_exists('theme_view')) {
     /**
      * Memuat view Blade dari tema publik yang aktif.
