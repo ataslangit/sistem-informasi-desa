@@ -12,6 +12,10 @@ use App\Http\Controllers\Admin\LetterTemplateController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PopulationReportController;
+use App\Http\Controllers\Admin\PpidDocumentController;
+use App\Http\Controllers\Admin\PpidObjectionController;
+use App\Http\Controllers\Admin\PpidRequestController;
+use App\Http\Controllers\Admin\PpidSettingController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
 use App\Http\Controllers\Admin\RoleController as AdminRoleController;
@@ -29,6 +33,7 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LetterVerificationController;
 use App\Http\Controllers\Public\MapController as PublicMapController;
 use App\Http\Controllers\Public\PageController as PublicPageController;
+use App\Http\Controllers\Public\PpidController as PublicPpidController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +54,20 @@ Route::get('/galeri/{slug}', [PublicGalleryController::class, 'show'])->name('ga
 Route::get('/apbdes', [PublicBudgetController::class, 'index'])->name('budgets.index');
 Route::get('/peta', [PublicMapController::class, 'index'])->name('map.index');
 Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 'verify'])->name('verify.letter');
+
+// --- Layanan PPID Desa (Keterbukaan Informasi Publik - UU 14/2008 & Perki 1/2018) ---
+Route::prefix('ppid')->name('public.ppid.')->group(function () {
+    Route::get('/', [PublicPpidController::class, 'index'])->name('index');
+    Route::get('/dokumen', [PublicPpidController::class, 'documents'])->name('documents');
+    Route::get('/dokumen/{publicDocument}/download', [PublicPpidController::class, 'downloadDocument'])->name('documents.download');
+    Route::get('/permohonan', [PublicPpidController::class, 'createRequest'])->name('requests.create');
+    Route::post('/permohonan', [PublicPpidController::class, 'storeRequest'])->name('requests.store');
+    Route::get('/tracking', [PublicPpidController::class, 'tracking'])->name('tracking');
+    Route::post('/tracking', [PublicPpidController::class, 'checkTracking'])->name('tracking.check');
+    Route::get('/tracking/{ticket}', [PublicPpidController::class, 'showTracking'])->name('tracking.show');
+    Route::get('/keberatan/{ticket}', [PublicPpidController::class, 'createObjection'])->name('objections.create');
+    Route::post('/keberatan/{ticket}', [PublicPpidController::class, 'storeObjection'])->name('objections.store');
+});
 
 // --- Rute Otentikasi ---
 Route::middleware('guest')->group(function () {
@@ -128,6 +147,21 @@ Route::prefix('admin')
         // Web GIS & Pemetaan Wilayah Desa
         Route::resource('boundaries', AdminVillageBoundaryController::class)->except(['create', 'show', 'edit']);
         Route::resource('facilities', AdminVillageFacilityController::class)->except(['create', 'show', 'edit']);
+
+        // Keterbukaan Informasi Publik (PPID Desa)
+        Route::resource('ppid-documents', PpidDocumentController::class)->except(['show']);
+        Route::get('/ppid-requests', [PpidRequestController::class, 'index'])->name('ppid-requests.index');
+        Route::get('/ppid-requests/{ppidRequest}', [PpidRequestController::class, 'show'])->name('ppid-requests.show');
+        Route::post('/ppid-requests/{ppidRequest}/process', [PpidRequestController::class, 'process'])->name('ppid-requests.process');
+        Route::post('/ppid-requests/{ppidRequest}/approve', [PpidRequestController::class, 'approve'])->name('ppid-requests.approve');
+        Route::post('/ppid-requests/{ppidRequest}/reject', [PpidRequestController::class, 'reject'])->name('ppid-requests.reject');
+
+        Route::get('/ppid-objections', [PpidObjectionController::class, 'index'])->name('ppid-objections.index');
+        Route::get('/ppid-objections/{ppidObjection}', [PpidObjectionController::class, 'show'])->name('ppid-objections.show');
+        Route::post('/ppid-objections/{ppidObjection}/respond', [PpidObjectionController::class, 'respond'])->name('ppid-objections.respond');
+
+        Route::get('/ppid-settings', [PpidSettingController::class, 'index'])->name('ppid-settings.index');
+        Route::post('/ppid-settings', [PpidSettingController::class, 'update'])->name('ppid-settings.update');
 
         // Konfigurasi Pengguna & Role (Khusus Superadmin)
         Route::middleware('role:superadmin')->group(function () {
