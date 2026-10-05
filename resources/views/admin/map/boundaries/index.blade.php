@@ -15,8 +15,35 @@
         height: 14px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.35);
         cursor: grab;
+        transition: transform 0.1s ease;
+    }
+    .vertex-marker:hover {
+        transform: scale(1.3);
+        border-color: #0369a1;
     }
     .vertex-marker:active {
+        cursor: grabbing;
+    }
+    .midpoint-marker {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 2px dashed #0284c7;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        cursor: pointer;
+        opacity: 0.85;
+        transition: all 0.15s ease-in-out;
+    }
+    .midpoint-marker:hover {
+        opacity: 1;
+        background-color: #38bdf8;
+        border-color: #0284c7;
+        border-style: solid;
+        transform: scale(1.4);
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.5);
+    }
+    .midpoint-marker:active {
         cursor: grabbing;
     }
 </style>
@@ -117,8 +144,17 @@
                 <!-- Kontainer Leaflet Canvas -->
                 <div class="relative rounded-2xl border border-slate-200 overflow-hidden shadow-inner">
                     <div id="drawMap" class="w-full h-[470px] z-10"></div>
-                    <div class="absolute bottom-3 left-3 z-20 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200 text-[11px] text-slate-700 shadow-sm pointer-events-none">
-                        💡 <b>Tips:</b> Klik peta untuk tambah titik, geser titik sudut untuk edit posisi koordinat.
+                    <div class="absolute bottom-3 left-3 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-slate-200 text-[11px] text-slate-700 shadow-sm max-w-sm pointer-events-none">
+                        <div class="font-bold text-slate-800 flex items-center space-x-1.5 mb-1">
+                            <span>💡</span>
+                            <span>Panduan Titik & Garis Poligon:</span>
+                        </div>
+                        <ul class="text-[10px] text-slate-600 space-y-0.5 list-disc list-inside">
+                            <li><b>Tambah Titik:</b> Klik area kosong di peta untuk menambah titik di akhir.</li>
+                            <li><b>Sisipkan Titik di Tengah:</b> Klik atau geser titik putus-putus (<span class="inline-block w-2.5 h-2.5 rounded-full border border-dashed border-sky-600 bg-white align-middle"></span>) di antara 2 titik sudut.</li>
+                            <li><b>Ubah Titik:</b> Geser titik sudut bulat (<span class="inline-block w-2.5 h-2.5 rounded-full border-2 border-sky-600 bg-white align-middle"></span>) ke posisi baru.</li>
+                            <li><b>Hapus Titik:</b> Klik titik sudut lalu pilih hapus, atau klik kanan.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -361,6 +397,7 @@
     let drawMap;
     let currentPoints = [];
     let currentMarkers = [];
+    let midpointMarkers = [];
     let activePolygon = null;
     let currentColor = '#0284c7';
     const existingBoundaries = @json($allBoundaries ?? $boundaries);
@@ -372,7 +409,7 @@
             currentColor = colorInput.value;
         }
 
-        // 1. Inisialisasi Peta
+        // 1. Inisialisasi Peta Leaflet
         const defaultCenter = [-6.914744, 107.609810];
         drawMap = L.map('drawMap').setView(defaultCenter, 14);
 
@@ -381,10 +418,9 @@
             maxZoom: 19
         }).addTo(drawMap);
 
-        // 2. Gambar Batas Wilayah Lain yang Sudah Ada sebagai Latar Belakang (Transparan)
+        // 2. Gambar Batas Wilayah Lain sebagai Latar Belakang Transparan
         if (existingBoundaries && Array.isArray(existingBoundaries)) {
             existingBoundaries.forEach(b => {
-                // Jangan gambar boundary yang sedang diedit sebagai background agar tidak tumpang tindih
                 if (editingBoundaryData && b.id === editingBoundaryData.id) {
                     return;
                 }
@@ -410,70 +446,71 @@
             });
         }
 
-        // 3. Event Klik pada Peta untuk Menambahkan Titik
+        // 3. Event Klik pada Peta untuk Menambahkan Titik di Akhir
         drawMap.on('click', function (e) {
             addPoint([parseFloat(e.latlng.lat.toFixed(6)), parseFloat(e.latlng.lng.toFixed(6))]);
         });
 
         // 4. Jika sedang mengedit boundary, muat seluruh titik ke studio gambar
         if (editingBoundaryData && editingBoundaryData.coordinates && Array.isArray(editingBoundaryData.coordinates)) {
-            editingBoundaryData.coordinates.forEach(pt => addPoint(pt, false));
-            redrawPolygon();
+            currentPoints = editingBoundaryData.coordinates.map(pt => [parseFloat(pt[0]), parseFloat(pt[1])]);
+            renderAll();
 
             if (currentPoints.length >= 3 && activePolygon) {
                 drawMap.fitBounds(activePolygon.getBounds().pad(0.2));
             }
         } else {
-            // Jika ada koordinat lama (old input) saat validasi gagal, muat kembali
+            // Jika ada koordinat lama saat validasi gagal, muat kembali
             const oldCoordsVal = document.getElementById('coordinates').value.trim();
             if (oldCoordsVal) {
                 try {
                     const parsed = JSON.parse(oldCoordsVal);
                     if (Array.isArray(parsed)) {
-                        parsed.forEach(pt => addPoint(pt, false));
-                        redrawPolygon();
+                        currentPoints = parsed.map(pt => [parseFloat(pt[0]), parseFloat(pt[1])]);
+                        renderAll();
                     }
                 } catch (err) {}
             }
         }
 
+        // Sinkronisasi jika textarea koordinat diedit manual oleh pengguna
+        const coordTextarea = document.getElementById('coordinates');
+        if (coordTextarea) {
+            coordTextarea.addEventListener('change', function () {
+                try {
+                    const parsed = JSON.parse(this.value.trim());
+                    if (Array.isArray(parsed)) {
+                        currentPoints = parsed.map(pt => [parseFloat(pt[0]), parseFloat(pt[1])]);
+                        renderAll();
+                        if (currentPoints.length >= 3 && activePolygon) {
+                            drawMap.fitBounds(activePolygon.getBounds().pad(0.2));
+                        }
+                    }
+                } catch (e) {}
+            });
+        }
+
         setTimeout(() => drawMap.invalidateSize(), 300);
     });
 
-    // Menambah Titik Koordinat
-    function addPoint(latlng, autoRedraw = true) {
-        currentPoints.push(latlng);
-
-        // Marker bulat di setiap titik sudut yang bisa digeser
-        const vertexIcon = L.divIcon({
-            className: 'vertex-marker',
-            iconSize: [14, 14],
-            iconAnchor: [7, 7]
-        });
-
-        const marker = L.marker(latlng, { icon: vertexIcon, draggable: true }).addTo(drawMap);
-        const pointIndex = currentPoints.length - 1;
-
-        marker.on('drag', function (ev) {
-            const pos = ev.target.getLatLng();
-            currentPoints[pointIndex] = [parseFloat(pos.lat.toFixed(6)), parseFloat(pos.lng.toFixed(6))];
-            redrawPolygon();
-        });
-
-        marker.on('dragend', function (ev) {
-            const pos = ev.target.getLatLng();
-            currentPoints[pointIndex] = [parseFloat(pos.lat.toFixed(6)), parseFloat(pos.lng.toFixed(6))];
-            redrawPolygon();
-        });
-
-        currentMarkers.push(marker);
-
-        if (autoRedraw) {
-            redrawPolygon();
-        }
+    // Bersihkan seluruh marker vertex & midpoint
+    function clearMarkers() {
+        currentMarkers.forEach(m => drawMap.removeLayer(m));
+        currentMarkers = [];
+        midpointMarkers.forEach(m => drawMap.removeLayer(m));
+        midpointMarkers = [];
     }
 
-    // Menggambar Ulang Poligon Aktif
+    // Render ulang seluruh canvas poligon dan marker
+    function renderAll() {
+        clearMarkers();
+        redrawPolygon();
+        renderVertexMarkers();
+        renderMidpointMarkers();
+        updateInputsAndStats();
+    }
+
+    // Gambar ulang layer poligon
     function redrawPolygon() {
         if (activePolygon) {
             drawMap.removeLayer(activePolygon);
@@ -488,15 +525,143 @@
                 fillColor: currentColor,
                 fillOpacity: 0.25
             }).addTo(drawMap);
-        }
 
-        // Update indikator teks & form inputs
+            // Mencegah klik di area poligon memicu drawMap.on('click')
+            activePolygon.on('click', function (e) {
+                L.DomEvent.stopPropagation(e);
+            });
+        }
+    }
+
+    // Render titik sudut utama (vertex) yang dapat digeser
+    function renderVertexMarkers() {
+        const vertexIcon = L.divIcon({
+            className: 'vertex-marker',
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+        });
+
+        currentPoints.forEach((pt, index) => {
+            const marker = L.marker(pt, { icon: vertexIcon, draggable: true }).addTo(drawMap);
+            marker._pointIndex = index;
+
+            marker.bindTooltip(`Titik #${index + 1}`, {
+                direction: 'top',
+                offset: [0, -8],
+                className: 'text-[11px] font-bold'
+            });
+
+            // Popup tombol hapus titik
+            const popupDiv = document.createElement('div');
+            popupDiv.className = 'text-center p-1.5 space-y-1';
+            popupDiv.innerHTML = `
+                <div class="font-bold text-xs text-slate-800">Titik Sudut #${index + 1}</div>
+                <div class="font-mono text-[10px] text-slate-500 mb-2">${pt[0].toFixed(6)}, ${pt[1].toFixed(6)}</div>
+                <button type="button" class="w-full px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 font-semibold text-[11px] border border-rose-200 transition" onclick="removePointAtIndex(${index})">
+                    🗑️ Hapus Titik Ini
+                </button>
+            `;
+            marker.bindPopup(popupDiv);
+
+            // Drag titik sudut
+            marker.on('drag', function (ev) {
+                const pos = ev.target.getLatLng();
+                currentPoints[index] = [parseFloat(pos.lat.toFixed(6)), parseFloat(pos.lng.toFixed(6))];
+                if (activePolygon) {
+                    activePolygon.setLatLngs(currentPoints);
+                }
+                updateInputsAndStats();
+            });
+
+            marker.on('dragend', function () {
+                renderAll();
+            });
+
+            // Klik kanan untuk hapus cepat
+            marker.on('contextmenu', function (ev) {
+                L.DomEvent.stopPropagation(ev);
+                if (confirm(`Hapus titik sudut #${index + 1}?`)) {
+                    removePointAtIndex(index);
+                }
+            });
+
+            currentMarkers.push(marker);
+        });
+    }
+
+    // Render titik sisip tengah (midpoint) di setiap segmen garis
+    function renderMidpointMarkers() {
+        if (currentPoints.length < 2) return;
+
+        const midpointIcon = L.divIcon({
+            className: 'midpoint-marker',
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        });
+
+        const numPoints = currentPoints.length;
+        // Jika 3 titik atau lebih, buat midpoint juga untuk garis penutup poligon (titik akhir ke titik awal)
+        const numSegments = numPoints >= 3 ? numPoints : numPoints - 1;
+
+        for (let i = 0; i < numSegments; i++) {
+            const p1 = currentPoints[i];
+            const p2 = currentPoints[(i + 1) % numPoints];
+
+            const midLat = (p1[0] + p2[0]) / 2;
+            const midLng = (p1[1] + p2[1]) / 2;
+            const insertIndex = i + 1; // posisi index yang disisipkan
+
+            const midMarker = L.marker([midLat, midLng], {
+                icon: midpointIcon,
+                draggable: true
+            }).addTo(drawMap);
+
+            midMarker.bindTooltip('➕ Klik atau geser untuk menyisipkan titik', {
+                direction: 'top',
+                offset: [0, -7],
+                className: 'text-[10px]'
+            });
+
+            let isDragging = false;
+
+            midMarker.on('dragstart', function (ev) {
+                isDragging = true;
+                const latlng = ev.target.getLatLng();
+                currentPoints.splice(insertIndex, 0, [parseFloat(latlng.lat.toFixed(6)), parseFloat(latlng.lng.toFixed(6))]);
+            });
+
+            midMarker.on('drag', function (ev) {
+                const latlng = ev.target.getLatLng();
+                currentPoints[insertIndex] = [parseFloat(latlng.lat.toFixed(6)), parseFloat(latlng.lng.toFixed(6))];
+                if (activePolygon) {
+                    activePolygon.setLatLngs(currentPoints);
+                }
+                updateInputsAndStats();
+            });
+
+            midMarker.on('dragend', function () {
+                setTimeout(() => { isDragging = false; }, 50);
+                renderAll();
+            });
+
+            midMarker.on('click', function (ev) {
+                L.DomEvent.stopPropagation(ev);
+                if (isDragging) return;
+                currentPoints.splice(insertIndex, 0, [parseFloat(midLat.toFixed(6)), parseFloat(midLng.toFixed(6))]);
+                renderAll();
+            });
+
+            midpointMarkers.push(midMarker);
+        }
+    }
+
+    // Update Input Form dan Estimasi Luas
+    function updateInputsAndStats() {
         document.getElementById('vertexCounter').innerText = currentPoints.length + ' Titik Ditandai';
 
         const coordsJson = JSON.stringify(currentPoints);
         document.getElementById('coordinates').value = currentPoints.length > 0 ? coordsJson : '';
 
-        // Hitung estimasi luas poligon jika sudah minimal 3 titik
         if (currentPoints.length >= 3) {
             const calculatedArea = calculatePolygonAreaHectares(currentPoints);
             document.getElementById('areaEstimator').innerText = 'Estimasi Luas: ~' + calculatedArea + ' Ha';
@@ -506,31 +671,31 @@
         }
     }
 
+    // Tambah Titik di Akhir
+    function addPoint(latlng) {
+        currentPoints.push(latlng);
+        renderAll();
+    }
+
+    // Hapus Titik Tertentu (dapat dipanggil dari popup tombol hapus)
+    window.removePointAtIndex = function (index) {
+        if (index >= 0 && index < currentPoints.length) {
+            currentPoints.splice(index, 1);
+            renderAll();
+        }
+    };
+
     // Hapus Titik Terakhir (Undo)
     function undoLastPoint() {
         if (currentPoints.length === 0) return;
-
         currentPoints.pop();
-        const lastMarker = currentMarkers.pop();
-        if (lastMarker) {
-            drawMap.removeLayer(lastMarker);
-        }
-
-        redrawPolygon();
+        renderAll();
     }
 
     // Reset Semua Titik
     function resetDrawing() {
         currentPoints = [];
-        currentMarkers.forEach(m => drawMap.removeLayer(m));
-        currentMarkers = [];
-
-        if (activePolygon) {
-            drawMap.removeLayer(activePolygon);
-            activePolygon = null;
-        }
-
-        redrawPolygon();
+        renderAll();
     }
 
     // Update Warna Poligon Real-Time
