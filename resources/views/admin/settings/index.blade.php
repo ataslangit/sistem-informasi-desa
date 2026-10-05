@@ -73,9 +73,203 @@
         <!-- TAB 1: IDENTITAS & WILAYAH DESA -->
         <div x-show="activeTab === 'general'" class="space-y-6">
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
-                <div class="border-b border-slate-100 pb-3">
-                    <h3 class="font-bold text-slate-800 text-sm">Pemerintahan &amp; Batas Administrasi Wilayah</h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Identitas ini digunakan pada kop surat dinas, penomoran dokumen resmi, serta metadata agregat SIK.</p>
+                <div class="border-b border-slate-100 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Pemerintahan &amp; Batas Administrasi Wilayah</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Identitas ini digunakan pada kop surat dinas, penomoran dokumen resmi, serta metadata agregat SIK.</p>
+                    </div>
+                </div>
+
+                <!-- Bantuan Dropdown Wilayah Terpadu (wilayah.id) -->
+                <div class="p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border border-blue-200 rounded-2xl space-y-3"
+                     x-data="{
+                        helperOpen: false,
+                        loadingProvinces: false,
+                        loadingRegencies: false,
+                        loadingDistricts: false,
+                        loadingVillages: false,
+                        provinces: [],
+                        regencies: [],
+                        districts: [],
+                        villages: [],
+                        selectedProvince: '',
+                        selectedRegency: '',
+                        selectedDistrict: '',
+                        selectedVillage: '',
+                        async toggleHelper() {
+                            this.helperOpen = !this.helperOpen;
+                            if (this.helperOpen && this.provinces.length === 0) {
+                                await this.loadProvinces();
+                            }
+                        },
+                        async loadProvinces() {
+                            this.loadingProvinces = true;
+                            try {
+                                const res = await fetch('{{ route('admin.api.wilayah.provinces') }}');
+                                const json = await res.json();
+                                this.provinces = json.data || [];
+                            } catch (e) {
+                                console.error('Gagal memuat provinsi:', e);
+                            } finally {
+                                this.loadingProvinces = false;
+                            }
+                        },
+                        async onProvinceChange() {
+                            const prov = this.provinces.find(p => p.code === this.selectedProvince);
+                            if (prov) {
+                                const inputProv = document.querySelector('input[name=province_name]');
+                                if (inputProv) inputProv.value = prov.name;
+                            }
+                            this.selectedRegency = '';
+                            this.selectedDistrict = '';
+                            this.selectedVillage = '';
+                            this.regencies = [];
+                            this.districts = [];
+                            this.villages = [];
+                            if (!this.selectedProvince) return;
+
+                            this.loadingRegencies = true;
+                            try {
+                                const res = await fetch(`{{ url('/admin/api/wilayah/regencies') }}/${this.selectedProvince}`);
+                                const json = await res.json();
+                                this.regencies = json.data || [];
+                            } catch (e) {
+                                console.error('Gagal memuat kabupaten:', e);
+                            } finally {
+                                this.loadingRegencies = false;
+                            }
+                        },
+                        async onRegencyChange() {
+                            const reg = this.regencies.find(r => r.code === this.selectedRegency);
+                            if (reg) {
+                                const inputKab = document.querySelector('input[name=district_name]');
+                                if (inputKab) inputKab.value = reg.name;
+                            }
+                            this.selectedDistrict = '';
+                            this.selectedVillage = '';
+                            this.districts = [];
+                            this.villages = [];
+                            if (!this.selectedRegency) return;
+
+                            this.loadingDistricts = true;
+                            try {
+                                const res = await fetch(`{{ url('/admin/api/wilayah/districts') }}/${this.selectedRegency}`);
+                                const json = await res.json();
+                                this.districts = json.data || [];
+                            } catch (e) {
+                                console.error('Gagal memuat kecamatan:', e);
+                            } finally {
+                                this.loadingDistricts = false;
+                            }
+                        },
+                        async onDistrictChange() {
+                            const dist = this.districts.find(d => d.code === this.selectedDistrict);
+                            if (dist) {
+                                const inputKec = document.querySelector('input[name=subdistrict_name]');
+                                if (inputKec) inputKec.value = 'Kecamatan ' + dist.name;
+                            }
+                            this.selectedVillage = '';
+                            this.villages = [];
+                            if (!this.selectedDistrict) return;
+
+                            this.loadingVillages = true;
+                            try {
+                                const res = await fetch(`{{ url('/admin/api/wilayah/villages') }}/${this.selectedDistrict}`);
+                                const json = await res.json();
+                                this.villages = json.data || [];
+                            } catch (e) {
+                                console.error('Gagal memuat desa:', e);
+                            } finally {
+                                this.loadingVillages = false;
+                            }
+                        },
+                        onVillageChange() {
+                            const vil = this.villages.find(v => v.code === this.selectedVillage);
+                            if (vil) {
+                                const inputDesa = document.querySelector('input[name=village_name]');
+                                if (inputDesa) {
+                                    inputDesa.value = vil.name.toLowerCase().startsWith('desa') ? vil.name : 'Desa ' + vil.name;
+                                }
+                                const inputCode = document.querySelector('input[name=village_code]');
+                                if (inputCode) {
+                                    inputCode.value = vil.code.replace(/\./g, '');
+                                }
+                            }
+                        }
+                     }">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇮🇩</span>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-800">Bantuan Pencarian Wilayah Kemendagri (via wilayah.id)</h4>
+                                <p class="text-[11px] text-slate-500">Pilih Provinsi &rarr; Kabupaten &rarr; Kecamatan &rarr; Desa untuk mengisi formulir di bawah secara otomatis.</p>
+                            </div>
+                        </div>
+                        <button type="button" @click="toggleHelper()"
+                                class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 transition shadow-sm flex items-center gap-1.5">
+                            <span x-text="helperOpen ? 'Sembunyikan Bantuan' : 'Pilih dari Database Wilayah.id'"></span>
+                            <svg class="w-3.5 h-3.5 transition-transform" :class="helperOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Cascading Dropdowns -->
+                    <div x-show="helperOpen" x-collapse class="pt-3 border-t border-blue-200/60 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <!-- 1. Provinsi -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                1. Provinsi
+                                <span x-show="loadingProvinces" class="text-blue-600 font-normal italic">(Memuat...)</span>
+                            </label>
+                            <select x-model="selectedProvince" @change="onProvinceChange()" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-xl text-xs bg-white text-slate-800 focus:ring-1 focus:ring-blue-500">
+                                <option value="">-- Pilih Provinsi --</option>
+                                <template x-for="p in provinces" :key="p.code">
+                                    <option :value="p.code" x-text="p.name"></option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <!-- 2. Kabupaten / Kota -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                2. Kabupaten / Kota
+                                <span x-show="loadingRegencies" class="text-blue-600 font-normal italic">(Memuat...)</span>
+                            </label>
+                            <select x-model="selectedRegency" @change="onRegencyChange()" :disabled="!selectedProvince || loadingRegencies" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-xl text-xs bg-white text-slate-800 disabled:bg-slate-100 disabled:text-slate-400 focus:ring-1 focus:ring-blue-500">
+                                <option value="">-- Pilih Kabupaten/Kota --</option>
+                                <template x-for="r in regencies" :key="r.code">
+                                    <option :value="r.code" x-text="r.name"></option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <!-- 3. Kecamatan -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                3. Kecamatan
+                                <span x-show="loadingDistricts" class="text-blue-600 font-normal italic">(Memuat...)</span>
+                            </label>
+                            <select x-model="selectedDistrict" @change="onDistrictChange()" :disabled="!selectedRegency || loadingDistricts" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-xl text-xs bg-white text-slate-800 disabled:bg-slate-100 disabled:text-slate-400 focus:ring-1 focus:ring-blue-500">
+                                <option value="">-- Pilih Kecamatan --</option>
+                                <template x-for="d in districts" :key="d.code">
+                                    <option :value="d.code" x-text="d.name"></option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <!-- 4. Desa / Kelurahan -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                4. Desa / Kelurahan
+                                <span x-show="loadingVillages" class="text-blue-600 font-normal italic">(Memuat...)</span>
+                            </label>
+                            <select x-model="selectedVillage" @change="onVillageChange()" :disabled="!selectedDistrict || loadingVillages" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-xl text-xs bg-white text-slate-800 disabled:bg-slate-100 disabled:text-slate-400 focus:ring-1 focus:ring-blue-500">
+                                <option value="">-- Pilih Desa/Kelurahan --</option>
+                                <template x-for="v in villages" :key="v.code">
+                                    <option :value="v.code" x-text="v.name"></option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">

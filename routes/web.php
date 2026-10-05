@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\TteSettingController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
 use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
+use App\Http\Controllers\Admin\WilayahApiController;
 use App\Http\Controllers\Auth\CitizenRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
@@ -172,6 +173,14 @@ Route::prefix('admin')
         // Pengaturan Situs & Profil Desa
         Route::get('/settings', [SiteSettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
+
+        // API Wilayah Indonesia (wilayah.id proxy & cache)
+        Route::prefix('api/wilayah')->name('api.wilayah.')->group(function () {
+            Route::get('/provinces', [WilayahApiController::class, 'provinces'])->name('provinces');
+            Route::get('/regencies/{provinceCode}', [WilayahApiController::class, 'regencies'])->name('regencies');
+            Route::get('/districts/{regencyCode}', [WilayahApiController::class, 'districts'])->name('districts');
+            Route::get('/villages/{districtCode}', [WilayahApiController::class, 'villages'])->name('villages');
+        });
 
         // Konfigurasi Pengguna & Role (Khusus Superadmin)
         Route::middleware('role:superadmin')->group(function () {
