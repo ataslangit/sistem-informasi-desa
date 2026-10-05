@@ -1,17 +1,23 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuditLogController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FamilyController;
 use App\Http\Controllers\Admin\LetterRequestController;
 use App\Http\Controllers\Admin\LetterTemplateController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PopulationReportController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
+use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
+use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\LetterVerificationController;
+use App\Http\Controllers\Public\PageController as PublicPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +26,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// --- Rute Publik (Portal Desa & Verifikasi Dokumen) ---
+// --- Rute Publik (Portal Desa, Berita CMS, Halaman Profil & Verifikasi Dokumen) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/berita', [PublicArticleController::class, 'index'])->name('articles.index');
+Route::get('/berita/{slug}', [PublicArticleController::class, 'show'])->name('articles.show');
+Route::get('/kategori/{slug}', [PublicArticleController::class, 'category'])->name('articles.category');
+Route::get('/halaman/{slug}', [PublicPageController::class, 'show'])->name('pages.show');
 Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 'verify'])->name('verify.letter');
 
 // --- Rute Otentikasi ---
@@ -78,4 +88,11 @@ Route::prefix('admin')
         // Audit Trail System (Audit Engine)
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
         Route::get('/audit-logs/{auditLog}', [AuditLogController::class, 'show'])->name('audit-logs.show');
+
+        // CMS & Portal Publik (Berita, Kategori, Halaman Statis & Tema)
+        Route::resource('articles', AdminArticleController::class)->except(['show']);
+        Route::resource('categories', AdminCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('pages', AdminPageController::class)->except(['show']);
+        Route::get('/themes', [AdminThemeSettingController::class, 'index'])->name('themes.index');
+        Route::post('/themes', [AdminThemeSettingController::class, 'update'])->name('themes.update');
     });

@@ -62,6 +62,7 @@ class RoleAndPermissionSeeder extends Seeder
             'letters.process' => ['label' => 'Proses Surat Desa', 'desc' => 'Verifikasi berkas dan pengesahan staf desa'],
             'letters.approve' => ['label' => 'Persetujuan & TTE Surat', 'desc' => 'Tanda tangan elektronik / persetujuan kades'],
             'letters.manage_templates' => ['label' => 'Kelola Template Surat', 'desc' => 'Konfigurasi format dan template surat desa'],
+            'contents.manage' => ['label' => 'Kelola Konten & Berita', 'desc' => 'Menulis, mengedit, dan mempublikasikan berita dan halaman statis desa'],
             'reports.view' => ['label' => 'Lihat Laporan', 'desc' => 'Melihat laporan statistik dan agregat'],
         ];
 
@@ -80,21 +81,23 @@ class RoleAndPermissionSeeder extends Seeder
         // Superadmin: Semua permission
         $roleModels['superadmin']->permissions()->sync(collect($permModels)->pluck('id'));
 
-        // Kades: Admin access, lihat penduduk, approve surat, lihat laporan
+        // Kades: Admin access, lihat penduduk, approve surat, kelola konten, lihat laporan
         $roleModels['kades']->permissions()->sync([
             $permModels['admin.access']->id,
             $permModels['residents.view']->id,
             $permModels['letters.approve']->id,
+            $permModels['contents.manage']->id,
             $permModels['reports.view']->id,
         ]);
 
-        // Perangkat: Admin access, lihat & kelola penduduk, proses surat, kelola template, lihat laporan
+        // Perangkat: Admin access, lihat & kelola penduduk, proses surat, kelola template, kelola konten, lihat laporan
         $roleModels['perangkat']->permissions()->sync([
             $permModels['admin.access']->id,
             $permModels['residents.view']->id,
             $permModels['residents.manage']->id,
             $permModels['letters.process']->id,
             $permModels['letters.manage_templates']->id,
+            $permModels['contents.manage']->id,
             $permModels['reports.view']->id,
         ]);
 

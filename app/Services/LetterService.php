@@ -119,7 +119,7 @@ class LetterService
             throw new InvalidArgumentException('Surat belum melewati tahapan verifikasi sebelumnya untuk persetujuan Kades.');
         }
 
-        $letterNumber = !empty($customLetterNumber)
+        $letterNumber = ! empty($customLetterNumber)
             ? trim($customLetterNumber)
             : $this->generateOfficialLetterNumber($letterRequest);
         $signedAt = Carbon::now();
@@ -202,6 +202,7 @@ class LetterService
         // Ganti placeholder {nomor} atau {nomor:X}
         $formattedNumber = (string) preg_replace_callback('/\{nomor(?::(\d+))?\}/', function ($matches) use ($totalApprovedThisYear) {
             $padding = isset($matches[1]) ? (int) $matches[1] : (int) config('letters.number_padding', 3);
+
             return sprintf("%0{$padding}d", $totalApprovedThisYear);
         }, $pattern);
 
@@ -223,7 +224,7 @@ class LetterService
     public function parseTemplateContent(LetterRequest $letterRequest): string
     {
         // Jika surat telah disahkan dan memiliki snapshot konten final, gunakan snapshot tersebut untuk menjaga immutability
-        if (!empty($letterRequest->final_content)) {
+        if (! empty($letterRequest->final_content)) {
             return $letterRequest->final_content;
         }
 

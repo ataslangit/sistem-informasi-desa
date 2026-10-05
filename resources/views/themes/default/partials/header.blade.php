@@ -18,10 +18,10 @@
 
             <!-- Navigation Links -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="{{ route('home') }}" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Beranda</a>
-                <a href="#profil" class="text-sm font-medium text-slate-600 hover:text-sky-600 transition">Profil Desa</a>
-                <a href="#layanan" class="text-sm font-medium text-slate-600 hover:text-sky-600 transition">Layanan Surat</a>
-                <a href="#informasi" class="text-sm font-medium text-slate-600 hover:text-sky-600 transition">Kabar Desa</a>
+                <a href="{{ route('home') }}" class="text-sm font-semibold {{ request()->routeIs('home') ? 'text-sky-600' : 'text-slate-600 hover:text-sky-600' }}">Beranda</a>
+                <a href="{{ route('pages.show', 'profil-desa') }}" class="text-sm font-medium {{ request()->is('halaman*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">Profil Desa</a>
+                <a href="{{ route('articles.index') }}" class="text-sm font-medium {{ request()->is('berita*') || request()->is('kategori*') ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-sky-600' }} transition">Kabar Desa</a>
+                <a href="{{ route('citizen.letters.create') }}" class="text-sm font-medium text-slate-600 hover:text-sky-600 transition">Layanan Surat</a>
             </nav>
 
             <!-- Actions / Login Button -->
