@@ -26,21 +26,25 @@ class Setting extends Model
      */
     public static function get(string $key, mixed $default = null): mixed
     {
-        $setting = static::where('key', $key)->first();
+        try {
+            $setting = static::where('key', $key)->first();
 
-        if ($setting === null) {
+            if ($setting === null) {
+                return $default;
+            }
+
+            $value = $setting->value;
+
+            // Cek jika format JSON
+            $decoded = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                return $decoded;
+            }
+
+            return $value;
+        } catch (\Throwable) {
             return $default;
         }
-
-        $value = $setting->value;
-
-        // Cek jika format JSON
-        $decoded = json_decode($value, true);
-        if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
-            return $decoded;
-        }
-
-        return $value;
     }
 
     /**
