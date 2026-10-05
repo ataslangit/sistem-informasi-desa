@@ -194,6 +194,11 @@ class PopulationManagementTest extends TestCase
             'resident_id' => $resident->id,
             'date' => Carbon::now()->format('Y-m-d'),
             'reason' => 'Pindah kerja ke kota lain',
+            'target_province' => 'Jawa Timur',
+            'target_regency' => 'Kota Surabaya',
+            'target_district' => 'Kecamatan Wonokromo',
+            'target_village' => 'Kelurahan Darmo',
+            'target_address' => 'Jl. Diponegoro No. 45',
             'notes' => 'Alamat baru: Surabaya',
         ]);
 
@@ -202,6 +207,13 @@ class PopulationManagementTest extends TestCase
         $this->assertDatabaseHas('residents', [
             'id' => $resident->id,
             'status' => 'moved',
+        ]);
+
+        $this->assertDatabaseHas('resident_mutations', [
+            'resident_id' => $resident->id,
+            'type' => 'moved_out',
+            'target_province' => 'Jawa Timur',
+            'target_regency' => 'Kota Surabaya',
         ]);
     }
 

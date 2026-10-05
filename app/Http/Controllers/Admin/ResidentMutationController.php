@@ -136,6 +136,11 @@ class ResidentMutationController extends Controller
                 'date' => ['required', 'date'],
                 'reason' => ['required', 'string', 'max:150'],
                 'reference_number' => ['nullable', 'string', 'max:100'],
+                'target_province' => ['nullable', 'string', 'max:100'],
+                'target_regency' => ['nullable', 'string', 'max:100'],
+                'target_district' => ['nullable', 'string', 'max:100'],
+                'target_village' => ['nullable', 'string', 'max:100'],
+                'target_address' => ['nullable', 'string', 'max:255'],
                 'notes' => ['nullable', 'string'],
             ], [
                 'resident_id.required' => 'Pilih warga yang pindah keluar.',

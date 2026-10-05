@@ -19,11 +19,13 @@ use App\Http\Controllers\Admin\PpidSettingController;
 use App\Http\Controllers\Admin\ResidentController;
 use App\Http\Controllers\Admin\ResidentMutationController;
 use App\Http\Controllers\Admin\RoleController as AdminRoleController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingController;
 use App\Http\Controllers\Admin\TteSettingController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
 use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
+use App\Http\Controllers\Admin\WilayahApiController;
 use App\Http\Controllers\Auth\CitizenRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
@@ -167,6 +169,19 @@ Route::prefix('admin')
         // Pengaturan Tanda Tangan Elektronik Tersertifikasi (PSrE / BSrE BSSN)
         Route::get('/tte-settings', [TteSettingController::class, 'index'])->name('tte-settings.index');
         Route::post('/tte-settings', [TteSettingController::class, 'update'])->name('tte-settings.update');
+
+        // Pengaturan Situs & Profil Desa
+        Route::get('/settings', [SiteSettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
+
+        // API Wilayah Indonesia (wilayah.id proxy & cache)
+        Route::prefix('api/wilayah')->name('api.wilayah.')->group(function () {
+            Route::get('/provinces', [WilayahApiController::class, 'provinces'])->name('provinces');
+            Route::get('/regencies/{provinceCode}', [WilayahApiController::class, 'regencies'])->name('regencies');
+            Route::get('/districts/{regencyCode}', [WilayahApiController::class, 'districts'])->name('districts');
+            Route::get('/villages/{districtCode}', [WilayahApiController::class, 'villages'])->name('villages');
+            Route::get('/all-regencies', [WilayahApiController::class, 'allRegencies'])->name('all-regencies');
+        });
 
         // Konfigurasi Pengguna & Role (Khusus Superadmin)
         Route::middleware('role:superadmin')->group(function () {
