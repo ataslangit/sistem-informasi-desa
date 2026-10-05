@@ -24,7 +24,9 @@ class WilayahApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data,
-        ]);
+        ])
+            ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
+            ->setEtag(md5(json_encode($data)));
     }
 
     /**
@@ -37,7 +39,9 @@ class WilayahApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data,
-        ]);
+        ])
+            ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
+            ->setEtag(md5(json_encode($data)));
     }
 
     /**
@@ -50,7 +54,9 @@ class WilayahApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data,
-        ]);
+        ])
+            ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
+            ->setEtag(md5(json_encode($data)));
     }
 
     /**
@@ -63,6 +69,8 @@ class WilayahApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data,
-        ]);
+        ])
+            ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
+            ->setEtag(md5(json_encode($data)));
     }
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\WilayahService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -28,6 +29,13 @@ class WilayahApiIntegrationTest extends TestCase
         $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
         $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
         Cache::flush();
+        File::deleteDirectory(storage_path('app/wilayah'));
+    }
+
+    protected function tearDown(): void
+    {
+        File::deleteDirectory(storage_path('app/wilayah'));
+        parent::tearDown();
     }
 
     /**
@@ -50,6 +58,7 @@ class WilayahApiIntegrationTest extends TestCase
         $this->assertCount(2, $provinces);
         $this->assertEquals('Jawa Barat', $provinces[0]['name']);
         $this->assertTrue(Cache::has('wilayah_provinces'));
+        $this->assertFileExists(storage_path('app/wilayah/provinces.json'));
 
         // Panggilan kedua membaca dari cache tanpa request HTTP baru
         Http::fake([
@@ -58,6 +67,11 @@ class WilayahApiIntegrationTest extends TestCase
 
         $cachedProvinces = $service->getProvinces();
         $this->assertCount(2, $cachedProvinces);
+
+        // Jika cache di-flush sekalipun, sistem tetap membaca dari file JSON persisten di disk
+        Cache::flush();
+        $diskCachedProvinces = $service->getProvinces();
+        $this->assertCount(2, $diskCachedProvinces);
     }
 
     /**
