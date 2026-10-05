@@ -151,4 +151,12 @@ class User extends Authenticatable
             default => 'bg-gray-50 text-gray-700 border-gray-200',
         };
     }
+
+    /**
+     * Relasi ke data penduduk (Resident) jika akun ini milik warga.
+     */
+    public function resident(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Resident::class, 'user_id');
+    }
 }

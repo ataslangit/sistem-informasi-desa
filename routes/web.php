@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ThemeSettingController as AdminThemeSettingContro
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\VillageBoundaryController as AdminVillageBoundaryController;
 use App\Http\Controllers\Admin\VillageFacilityController as AdminVillageFacilityController;
+use App\Http\Controllers\Auth\CitizenRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
@@ -53,6 +54,8 @@ Route::get('/verify/letter/{qrToken}', [LetterVerificationController::class, 've
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/register', [CitizenRegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [CitizenRegisterController::class, 'register'])->name('register.post');
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
@@ -78,6 +81,7 @@ Route::prefix('admin')
 
         // Manajemen Kependudukan (Buku Induk)
         Route::resource('families', FamilyController::class);
+        Route::post('/residents/{resident}/create-account', [ResidentController::class, 'createAccount'])->name('residents.create-account');
         Route::resource('residents', ResidentController::class);
 
         // Mutasi Penduduk

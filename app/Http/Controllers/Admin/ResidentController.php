@@ -7,9 +7,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Family;
 use App\Models\Resident;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ResidentController extends Controller
 {
@@ -96,11 +98,54 @@ class ResidentController extends Controller
     /**
      * Menampilkan biodata detail penduduk beserta histori mutasi.
      */
+    /**
+     * Detail biodata penduduk lengkap.
+     */
     public function show(Resident $resident): View
     {
-        $resident->load(['family.headOfFamily', 'mutations.creator']);
+        $resident->load(['family.headOfFamily', 'mutations.creator', 'user.roles']);
 
         return view('admin.residents.show', compact('resident'));
+    }
+
+    /**
+     * Buatkan akun layanan mandiri untuk penduduk yang bersangkutan.
+     */
+    public function createAccount(Request $request, Resident $resident): RedirectResponse
+    {
+        if ($resident->user_id || User::where('username', $resident->nik)->exists()) {
+            return back()->with('error', 'Penduduk ini sudah memiliki akun layanan mandiri terdaftar.');
+        }
+
+        $validated = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8'],
+        ], [
+            'email.required' => 'Email wajib diisi untuk akun warga.',
+            'email.unique' => 'Email ini sudah digunakan oleh akun lain.',
+            'password.required' => 'Kata sandi akun wajib diisi.',
+            'password.min' => 'Kata sandi minimal 8 karakter.',
+        ]);
+
+        $user = User::create([
+            'name' => $resident->name,
+            'username' => $resident->nik, // Default username menggunakan NIK 16 digit
+            'email' => strtolower($validated['email']),
+            'password' => Hash::make($validated['password']),
+            'is_active' => true,
+            'metadata' => array_filter([
+                'nik' => $resident->nik,
+                'no_kk' => $resident->family?->family_card_number,
+                'rt' => $resident->family?->rt,
+                'rw' => $resident->family?->rw,
+            ]),
+        ]);
+
+        $user->assignRole('warga');
+        $resident->update(['user_id' => $user->id]);
+
+        return redirect()->route('admin.residents.show', $resident)
+            ->with('success', "Akun Layanan Mandiri berhasil dibuat! Username: {$user->username}");
     }
 
     /**

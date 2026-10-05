@@ -77,7 +77,17 @@
                 </button>
             </form>
 
-            <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+            <div class="mt-6 pt-5 border-t border-slate-100 text-center space-y-2">
+                <p class="text-xs text-slate-500">
+                    Warga desa dan belum memiliki akun?
+                </p>
+                <a href="{{ route('register') }}" class="inline-flex items-center justify-center w-full px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition space-x-1">
+                    <span>📝</span>
+                    <span>Aktivasi Akun Layanan Mandiri Warga</span>
+                </a>
+            </div>
+
+            <div class="mt-4 text-center">
                 <a href="{{ route('home') }}" class="text-xs text-blue-600 hover:text-blue-800 font-medium">
                     ← Kembali ke Halaman Web Portal Publik
                 </a>
