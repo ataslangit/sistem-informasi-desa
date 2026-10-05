@@ -175,6 +175,34 @@ class BudgetAndGisIntegrationTest extends TestCase
 
         $boundary = VillageBoundary::where('name', 'Batas Dusun Baru RW 05')->firstOrFail();
 
+        // View edit mode
+        $editViewResponse = $this->actingAs($this->superadmin)->get('/admin/boundaries?edit='.$boundary->id);
+        $editViewResponse->assertStatus(200);
+        $editViewResponse->assertSee('Mode Edit Poligon Aktif');
+        $editViewResponse->assertSee('Perbarui Batas Wilayah');
+
+        // Update boundary
+        $updateResponse = $this->actingAs($this->superadmin)->put('/admin/boundaries/'.$boundary->id, [
+            'name' => 'Batas Dusun Baru RW 05 (Telah Direvisi)',
+            'type' => 'dusun',
+            'color' => '#3b82f6',
+            'area_hectares' => 55.0,
+            'coordinates' => json_encode([
+                [-6.910, 107.600],
+                [-6.915, 107.605],
+                [-6.920, 107.605],
+                [-6.910, 107.600],
+            ]),
+            'description' => 'Revisi batas sebelah selatan',
+        ]);
+
+        $updateResponse->assertRedirect('/admin/boundaries');
+        $this->assertDatabaseHas('village_boundaries', [
+            'id' => $boundary->id,
+            'name' => 'Batas Dusun Baru RW 05 (Telah Direvisi)',
+            'color' => '#3b82f6',
+        ]);
+
         // Delete boundary
         $deleteResponse = $this->actingAs($this->superadmin)->delete('/admin/boundaries/'.$boundary->id);
         $deleteResponse->assertRedirect('/admin/boundaries');
@@ -209,6 +237,30 @@ class BudgetAndGisIntegrationTest extends TestCase
         ]);
 
         $facility = VillageFacility::where('name', 'Posyandu Mawar Indah RT 03')->firstOrFail();
+
+        // View edit mode
+        $editViewResponse = $this->actingAs($this->superadmin)->get('/admin/facilities?edit='.$facility->id);
+        $editViewResponse->assertStatus(200);
+        $editViewResponse->assertSee('Mode Edit Titik Fasilitas');
+        $editViewResponse->assertSee('Perbarui Titik Fasilitas');
+
+        // Update facility
+        $updateResponse = $this->actingAs($this->superadmin)->put('/admin/facilities/'.$facility->id, [
+            'name' => 'Posyandu Mawar Indah RT 03 (Renovasi)',
+            'category' => 'kesehatan',
+            'latitude' => -6.915200,
+            'longitude' => 107.611500,
+            'address' => 'Jl. Mawar Utama No. 10 RT 03/01',
+            'condition' => 'baik',
+            'description' => 'Sudah selesai renovasi gedung',
+        ]);
+
+        $updateResponse->assertRedirect('/admin/facilities');
+        $this->assertDatabaseHas('village_facilities', [
+            'id' => $facility->id,
+            'name' => 'Posyandu Mawar Indah RT 03 (Renovasi)',
+            'address' => 'Jl. Mawar Utama No. 10 RT 03/01',
+        ]);
 
         // Delete facility
         $deleteResponse = $this->actingAs($this->superadmin)->delete('/admin/facilities/'.$facility->id);

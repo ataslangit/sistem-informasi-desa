@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Manajemen Fasilitas & Infrastruktur Desa')
+@section('title', ($editingFacility ? 'Edit Fasilitas: ' . $editingFacility->name : 'Manajemen Fasilitas & Infrastruktur Desa'))
 
 @section('content')
 <!-- Leaflet CSS -->
@@ -21,17 +21,43 @@
         </div>
     </div>
 
-    <!-- Layout Form Tambah Fasilitas (1/3) & Daftar Fasilitas (2/3) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Form Tambah Titik Fasilitas -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 h-fit">
-            <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2">
-                <span>📍</span>
-                <span>Tambah Titik Fasilitas Baru</span>
-            </h3>
+    <!-- Alert Mode Edit (Jika sedang mengedit) -->
+    @if($editingFacility)
+        <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-xl">✏️</span>
+                <div>
+                    <h3 class="text-xs font-bold text-amber-900">Mode Edit Titik Fasilitas: {{ $editingFacility->name }}</h3>
+                    <p class="text-[11px] text-amber-700 mt-0.5">Anda sedang mengubah data sarana/fasilitas ini. Geser marker di peta atau klik lokasi baru untuk memperbarui koordinat.</p>
+                </div>
+            </div>
+            <a href="{{ route('admin.facilities.index') }}" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 transition shadow-2xs">
+                Batal Edit
+            </a>
+        </div>
+    @endif
 
-            <form action="{{ route('admin.facilities.store') }}" method="POST" class="space-y-4">
+    <!-- Layout Form Tambah/Edit Fasilitas (1/3) & Daftar Fasilitas (2/3) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Form Fasilitas -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 h-fit">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2">
+                    <span>📍</span>
+                    <span>{{ $editingFacility ? 'Edit Titik Fasilitas' : 'Tambah Titik Fasilitas Baru' }}</span>
+                </h3>
+                @if($editingFacility)
+                    <a href="{{ route('admin.facilities.index') }}" class="text-[11px] text-rose-600 hover:text-rose-800 font-semibold">
+                        &times; Batal
+                    </a>
+                @endif
+            </div>
+
+            <form action="{{ $editingFacility ? route('admin.facilities.update', $editingFacility) : route('admin.facilities.store') }}" method="POST" class="space-y-4">
                 @csrf
+                @if($editingFacility)
+                    @method('PUT')
+                @endif
 
                 <div>
                     <label for="name" class="block text-xs font-bold text-slate-700 uppercase mb-1">
@@ -41,7 +67,7 @@
                         type="text" 
                         id="name" 
                         name="name" 
-                        value="{{ old('name') }}" 
+                        value="{{ old('name', $editingFacility?->name) }}" 
                         required 
                         placeholder="Contoh: Puskesmas Pembantu Sukamaju"
                         class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -62,7 +88,7 @@
                             class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
                         >
                             @foreach($categories as $key => $cat)
-                                <option value="{{ $key }}" {{ old('category') === $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ old('category', $editingFacility?->category) === $key ? 'selected' : '' }}>
                                     {{ $cat['icon'] }} {{ $cat['label'] }}
                                 </option>
                             @endforeach
@@ -78,9 +104,9 @@
                             name="condition" 
                             class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
                         >
-                            <option value="baik" {{ old('condition') === 'baik' ? 'selected' : '' }}>Kondisi Baik</option>
-                            <option value="rusak_ringan" {{ old('condition') === 'rusak_ringan' ? 'selected' : '' }}>Rusak Ringan</option>
-                            <option value="rusak_berat" {{ old('condition') === 'rusak_berat' ? 'selected' : '' }}>Rusak Berat</option>
+                            <option value="baik" {{ old('condition', $editingFacility?->condition) === 'baik' ? 'selected' : '' }}>Kondisi Baik</option>
+                            <option value="rusak_ringan" {{ old('condition', $editingFacility?->condition) === 'rusak_ringan' ? 'selected' : '' }}>Rusak Ringan</option>
+                            <option value="rusak_berat" {{ old('condition', $editingFacility?->condition) === 'rusak_berat' ? 'selected' : '' }}>Rusak Berat</option>
                         </select>
                     </div>
                 </div>
@@ -91,7 +117,7 @@
                         Pilih Titik di Peta (Klik pada Peta)
                     </label>
                     <div id="pickerMap" class="w-full h-44 rounded-xl border border-slate-200 overflow-hidden mb-2 z-10"></div>
-                    <span class="text-[10px] text-slate-400 block">Klik pada peta di atas untuk mengisi koordinat otomatis.</span>
+                    <span class="text-[10px] text-slate-400 block">Klik pada peta di atas atau geser pin untuk memperbarui koordinat.</span>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -104,7 +130,7 @@
                             step="any" 
                             id="latitude" 
                             name="latitude" 
-                            value="{{ old('latitude', '-6.914744') }}" 
+                            value="{{ old('latitude', $editingFacility ? $editingFacility->latitude : '-6.914744') }}" 
                             required 
                             class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono"
                         >
@@ -122,7 +148,7 @@
                             step="any" 
                             id="longitude" 
                             name="longitude" 
-                            value="{{ old('longitude', '107.609810') }}" 
+                            value="{{ old('longitude', $editingFacility ? $editingFacility->longitude : '107.609810') }}" 
                             required 
                             class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono"
                         >
@@ -140,7 +166,7 @@
                         type="text" 
                         id="address" 
                         name="address" 
-                        value="{{ old('address') }}" 
+                        value="{{ old('address', $editingFacility?->address) }}" 
                         placeholder="Contoh: Jl. Raya Desa No. 12 RT 01/02"
                         class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
@@ -154,7 +180,7 @@
                         type="url" 
                         id="image_url" 
                         name="image_url" 
-                        value="{{ old('image_url') }}" 
+                        value="{{ old('image_url', $editingFacility?->image_url) }}" 
                         placeholder="https://... URL gambar"
                         class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
@@ -170,12 +196,19 @@
                         rows="2" 
                         placeholder="Fasilitas penunjang, jam buka, dll..."
                         class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    >{{ old('description') }}</textarea>
+                    >{{ old('description', $editingFacility?->description) }}</textarea>
                 </div>
 
-                <button type="submit" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm">
-                    Simpan Titik Fasilitas
-                </button>
+                <div class="space-y-2">
+                    <button type="submit" class="w-full px-4 py-2.5 rounded-xl text-xs font-semibold {{ $editingFacility ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700' }} text-white transition shadow-sm">
+                        {{ $editingFacility ? 'Perbarui Titik Fasilitas' : 'Simpan Titik Fasilitas' }}
+                    </button>
+                    @if($editingFacility)
+                        <a href="{{ route('admin.facilities.index') }}" class="w-full inline-block text-center py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 transition">
+                            Batalkan Pengeditan
+                        </a>
+                    @endif
+                </div>
             </form>
         </div>
 
@@ -243,7 +276,11 @@
                                             {{ $facility->condition_label }}
                                         </span>
                                     </td>
-                                    <td class="py-3 px-4 text-center">
+                                    <td class="py-3 px-4 text-center whitespace-nowrap space-x-2">
+                                        <a href="{{ route('admin.facilities.index', ['edit' => $facility->id]) }}" class="text-amber-600 hover:text-amber-800 font-semibold text-[11px] inline-flex items-center space-x-1">
+                                            <span>✏️</span>
+                                            <span>Edit</span>
+                                        </a>
                                         <form action="{{ route('admin.facilities.destroy', $facility) }}" method="POST" onsubmit="return confirm('Hapus fasilitas umum ini?');" class="inline">
                                             @csrf
                                             @method('DELETE')
@@ -291,6 +328,10 @@
 
         let marker = L.marker([initialLat, initialLng], { draggable: true }).addTo(pickerMap);
 
+        @if($editingFacility)
+            marker.bindPopup("<b>{{ addslashes($editingFacility->name) }}</b><br><span class='text-[10px] text-slate-500'>Geser pin untuk memindahkan lokasi</span>").openPopup();
+        @endif
+
         marker.on('dragend', function (e) {
             const coord = marker.getLatLng();
             latInput.value = coord.lat.toFixed(6);
@@ -302,6 +343,10 @@
             latInput.value = e.latlng.lat.toFixed(6);
             lngInput.value = e.latlng.lng.toFixed(6);
         });
+
+        setTimeout(function () {
+            pickerMap.invalidateSize();
+        }, 200);
     });
 </script>
 @endsection

@@ -26,8 +26,10 @@ class VillageFacilityController extends Controller
 
         $facilities = $query->latest()->paginate(12)->withQueryString();
         $categories = VillageFacility::getCategories();
+        $editId = $request->input('edit');
+        $editingFacility = $editId ? VillageFacility::find($editId) : null;
 
-        return view('admin.map.facilities.index', compact('facilities', 'categories', 'category'));
+        return view('admin.map.facilities.index', compact('facilities', 'categories', 'category', 'editingFacility'));
     }
 
     /**

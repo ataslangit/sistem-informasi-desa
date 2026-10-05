@@ -15,11 +15,14 @@ class VillageBoundaryController extends Controller
     /**
      * Tampilkan daftar wilayah batas desa & dusun.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
         $boundaries = VillageBoundary::latest()->paginate(10);
+        $allBoundaries = VillageBoundary::all();
+        $editId = $request->query('edit');
+        $editingBoundary = $editId ? VillageBoundary::find($editId) : null;
 
-        return view('admin.map.boundaries.index', compact('boundaries'));
+        return view('admin.map.boundaries.index', compact('boundaries', 'allBoundaries', 'editingBoundary'));
     }
 
     /**
