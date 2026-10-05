@@ -45,7 +45,7 @@
                     <span class="text-emerald-500">&bull;</span>
                     <span class="flex items-center gap-1.5 text-emerald-200">
                         <span>🖼️</span>
-                        <span>{{ $photos->count() }} Foto Dokumentasi</span>
+                        <span>{{ $gallery->photos->count() }} Foto Dokumentasi</span>
                     </span>
                     @if($gallery->description)
                         <span class="text-emerald-500">&bull;</span>
@@ -96,7 +96,7 @@
                 <span>Daftar Foto dalam Album</span>
                 <span class="text-xs font-normal text-slate-500">({{ $gallery->photos->count() }} Foto)</span>
             </h2>
-            <a href="{{ route('galleries.index') }}" class="text-xs font-semibold text-sky-600 hover:text-sky-800 transition flex items-center space-x-1">
+            <a href="{{ route('galleries.index') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 transition flex items-center space-x-1">
                 <span>&larr;</span>
                 <span>Kembali ke Semua Album</span>
             </a>
@@ -230,7 +230,7 @@
                             </span>
                         </div>
                         <div class="p-4">
-                            <h4 class="text-xs font-bold text-slate-800 group-hover:text-sky-600 transition line-clamp-2">
+                            <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition line-clamp-2">
                                 {{ $item->title }}
                             </h4>
                             <span class="text-[10px] text-slate-400 mt-1 block">
