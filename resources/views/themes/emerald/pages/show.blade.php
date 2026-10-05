@@ -3,65 +3,74 @@
 @section('title', $page->title . ' - ' . \App\Models\Setting::get('village_name', 'Desa Sukamaju'))
 
 @section('content')
-<!-- Header Halaman Editorial Modern (Tanpa Kotak Gelap Masif) -->
-<section class="pt-8 pb-6 px-4 sm:px-6 lg:px-8 border-b border-emerald-100/60 bg-gradient-to-b from-emerald-50/40 via-white to-transparent">
+<!-- Banner Hero Hijau Zamrud (Jumbotron Judul Halaman Tema Emerald) -->
+<section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
     <div class="max-w-7xl mx-auto">
-        <!-- Breadcrumb Navigasi -->
-        <nav class="flex items-center gap-2 text-xs text-slate-500 mb-4">
-            <a href="/" class="hover:text-emerald-700 transition flex items-center gap-1">
-                <span>🏡</span>
-                <span>Beranda</span>
-            </a>
-            <span>/</span>
-            <span class="text-emerald-700 font-medium">Informasi & Profil</span>
-            <span>/</span>
-            <span class="text-slate-800 font-semibold truncate">{{ $page->title }}</span>
-        </nav>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/20 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 py-12 sm:py-16 px-6 sm:px-12 text-white">
+            <!-- Tekstur Lanskap Alam Halus di Latar Belakang -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');"></div>
+            <!-- Radial Glow Ornaments -->
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-72 h-72 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-4xl space-y-4">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold tracking-wide">
-                <span>🏛️</span>
-                <span>Dokumentasi Resmi Desa Sukamaju</span>
-            </div>
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <!-- Breadcrumbs Cerah Kontras Tinggi -->
+                <nav class="flex flex-wrap items-center gap-2 text-xs text-emerald-300 font-medium">
+                    <a href="/" class="hover:text-white transition flex items-center gap-1">
+                        <span>🏡</span>
+                        <span>Beranda</span>
+                    </a>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-emerald-300">Informasi & Profil</span>
+                    <span class="text-emerald-500">/</span>
+                    <span class="text-white font-semibold truncate">{{ $page->title }}</span>
+                </nav>
 
-            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                {{ $page->title }}
-            </h1>
-
-            @if($page->summary)
-                <div class="border-l-4 border-emerald-500 pl-4 py-1">
-                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                        {{ $page->summary }}
-                    </p>
-                </div>
-            @endif
-
-            <!-- Metadata Info Bar & Tombol Cetak -->
-            <div class="pt-2 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 border-t border-slate-100">
-                <div class="flex flex-wrap items-center gap-4">
-                    <span class="flex items-center gap-1.5 font-medium text-slate-700">
-                        <span>📅</span>
-                        <span>Diperbarui: {{ $page->updated_at->translatedFormat('d F Y') }}</span>
-                    </span>
-                    <span>&bull;</span>
-                    <span class="flex items-center gap-1.5 text-slate-600">
-                        <span>👁️</span>
-                        <span>{{ number_format($page->view_count) }} kali dibaca</span>
-                    </span>
-                    <span>&bull;</span>
-                    <span class="flex items-center gap-1.5 text-slate-600">
-                        <span>✍️</span>
-                        <span>{{ $page->author?->name ?? 'Admin Desa' }}</span>
-                    </span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold backdrop-blur-md">
+                    <span>🏛️</span>
+                    <span>Dokumentasi Resmi Desa Sukamaju</span>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-xs font-semibold transition border border-slate-200">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                        </svg>
-                        <span>Cetak</span>
-                    </button>
+                <!-- Judul Halaman Putih Kontras Tinggi -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+                    {{ $page->title }}
+                </h1>
+
+                @if($page->summary)
+                    <div class="border-l-4 border-emerald-400/80 pl-4 py-1">
+                        <p class="text-sm sm:text-base lg:text-lg text-emerald-100/90 leading-relaxed font-normal max-w-3xl">
+                            {{ $page->summary }}
+                        </p>
+                    </div>
+                @endif
+
+                <!-- Metadata Info Bar Cerah & Tombol Cetak -->
+                <div class="pt-4 flex flex-wrap items-center justify-between gap-4 text-xs text-emerald-200/80 border-t border-white/10">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <span class="flex items-center gap-1.5 font-medium text-emerald-200">
+                            <span>📅</span>
+                            <span>Diperbarui: {{ $page->updated_at->translatedFormat('d F Y') }}</span>
+                        </span>
+                        <span class="text-emerald-500">&bull;</span>
+                        <span class="flex items-center gap-1.5 text-emerald-200">
+                            <span>👁️</span>
+                            <span>{{ number_format($page->view_count) }} kali dibaca</span>
+                        </span>
+                        <span class="text-emerald-500">&bull;</span>
+                        <span class="flex items-center gap-1.5 text-emerald-200">
+                            <span>✍️</span>
+                            <span>{{ $page->author?->name ?? 'Admin Desa' }}</span>
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold backdrop-blur-md border border-white/20 transition shadow-sm cursor-pointer">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                            <span>Cetak Dokumen</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
