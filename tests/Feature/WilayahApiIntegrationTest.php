@@ -145,6 +145,27 @@ class WilayahApiIntegrationTest extends TestCase
     }
 
     /**
+     * Test admin dapat mengakses endpoint all-regencies untuk autocomplete tempat lahir.
+     */
+    public function test_admin_can_access_all_regencies_endpoint(): void
+    {
+        Http::fake([
+            'https://wilayah.id/api/provinces.json' => Http::response([
+                'data' => [['code' => '32', 'name' => 'Jawa Barat']],
+            ], 200),
+            'https://wilayah.id/api/regencies/32.json' => Http::response([
+                'data' => [['code' => '32.01', 'name' => 'Kabupaten Bogor']],
+            ], 200),
+        ]);
+
+        $response = $this->actingAs($this->superadmin)->getJson('/admin/api/wilayah/all-regencies');
+        $response->assertStatus(200);
+        $response->assertJsonPath('success', true);
+        $response->assertJsonPath('data.0.name', 'Kabupaten Bogor');
+        $this->assertFileExists(storage_path('app/wilayah/all_regencies.json'));
+    }
+
+    /**
      * Test pengguna non-admin (warga / tamu) tidak dapat mengakses API wilayah internal.
      */
     public function test_non_admin_cannot_access_wilayah_api(): void

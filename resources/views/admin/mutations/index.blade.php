@@ -87,6 +87,9 @@
                             </td>
                             <td class="px-5 py-4 text-slate-700">
                                 <div>{{ $mut->reason }}</div>
+                                @if($mut->formatted_target_address)
+                                    <span class="text-blue-600 text-[11px] font-medium block mt-0.5">📍 Tujuan: {{ $mut->formatted_target_address }}</span>
+                                @endif
                                 @if($mut->notes)
                                     <span class="text-slate-400 text-[11px] block">{{ $mut->notes }}</span>
                                 @endif

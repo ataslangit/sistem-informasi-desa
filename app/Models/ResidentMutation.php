@@ -20,6 +20,11 @@ class ResidentMutation extends Model
         'type',
         'date',
         'reason',
+        'target_province',
+        'target_regency',
+        'target_district',
+        'target_village',
+        'target_address',
         'notes',
         'reference_number',
         'created_by',
@@ -28,6 +33,22 @@ class ResidentMutation extends Model
     protected $casts = [
         'date' => 'date',
     ];
+
+    /**
+     * Mendapatkan alamat tujuan mutasi lengkap terformat.
+     */
+    public function getFormattedTargetAddressAttribute(): ?string
+    {
+        $parts = array_filter([
+            $this->target_address,
+            $this->target_village,
+            $this->target_district,
+            $this->target_regency,
+            $this->target_province,
+        ]);
+
+        return ! empty($parts) ? implode(', ', $parts) : null;
+    }
 
     /**
      * Relasi ke Penduduk yang mengalami mutasi.

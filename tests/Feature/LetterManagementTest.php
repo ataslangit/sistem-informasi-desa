@@ -449,4 +449,50 @@ class LetterManagementTest extends TestCase
         $this->assertStringNotContainsString('[LAMA_USAHA]', $letter->final_content);
         $this->assertStringContainsString('Toko Kelontong Berkah Mandiri', $letter->final_content);
     }
+
+    /**
+     * Test surat SKPWNI (Keterangan Pindah) mengganti placeholder tujuan kepindahan dari extra_data.
+     */
+    public function test_skpwni_letter_replaces_destination_placeholders_from_extra_data(): void
+    {
+        $skpwniTemplate = LetterTemplate::where('code', 'SKPWNI')->firstOrFail();
+
+        $this->actingAs($this->warga)->post('/citizen/letters', [
+            'letter_template_id' => $skpwniTemplate->id,
+            'purpose' => 'Pindah domisili mengikuti penempatan kerja di Surabaya',
+            'extra_data' => [
+                'target_province' => 'Jawa Timur',
+                'target_regency' => 'Kota Surabaya',
+                'target_district' => 'Kecamatan Wonokromo',
+                'target_village' => 'Kelurahan Darmo',
+                'target_address' => 'Jl. Darmo Permai No. 10',
+                'move_reason' => 'Tugas Kerja',
+                'family_members_count' => '3',
+            ],
+        ]);
+
+        $letter = LetterRequest::where('user_id', $this->warga->id)
+            ->where('letter_template_id', $skpwniTemplate->id)
+            ->latest('id')
+            ->firstOrFail();
+
+        $letterService = app(\App\Services\LetterService::class);
+        $previewContent = $letterService->parseTemplateContent($letter);
+
+        $this->assertStringNotContainsString('[PROVINSI_TUJUAN]', $previewContent);
+        $this->assertStringNotContainsString('[KABUPATEN_TUJUAN]', $previewContent);
+        $this->assertStringNotContainsString('[KECAMATAN_TUJUAN]', $previewContent);
+        $this->assertStringNotContainsString('[DESA_TUJUAN]', $previewContent);
+        $this->assertStringNotContainsString('[ALAMAT_TUJUAN]', $previewContent);
+        $this->assertStringNotContainsString('[ALASAN_PINDAH]', $previewContent);
+        $this->assertStringNotContainsString('[JUMLAH_PENGIKUT]', $previewContent);
+
+        $this->assertStringContainsString('Jawa Timur', $previewContent);
+        $this->assertStringContainsString('Kota Surabaya', $previewContent);
+        $this->assertStringContainsString('Kecamatan Wonokromo', $previewContent);
+        $this->assertStringContainsString('Kelurahan Darmo', $previewContent);
+        $this->assertStringContainsString('Jl. Darmo Permai No. 10', $previewContent);
+        $this->assertStringContainsString('Tugas Kerja', $previewContent);
+        $this->assertStringContainsString('3 Orang', $previewContent);
+    }
 }

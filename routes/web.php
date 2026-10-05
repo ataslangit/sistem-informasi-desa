@@ -180,6 +180,7 @@ Route::prefix('admin')
             Route::get('/regencies/{provinceCode}', [WilayahApiController::class, 'regencies'])->name('regencies');
             Route::get('/districts/{regencyCode}', [WilayahApiController::class, 'districts'])->name('districts');
             Route::get('/villages/{districtCode}', [WilayahApiController::class, 'villages'])->name('villages');
+            Route::get('/all-regencies', [WilayahApiController::class, 'allRegencies'])->name('all-regencies');
         });
 
         // Konfigurasi Pengguna & Role (Khusus Superadmin)

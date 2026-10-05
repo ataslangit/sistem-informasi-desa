@@ -73,4 +73,19 @@ class WilayahApiController extends Controller
             ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
             ->setEtag(md5(json_encode($data)));
     }
+
+    /**
+     * Mengambil seluruh daftar kabupaten / kota di Indonesia.
+     */
+    public function allRegencies(): JsonResponse
+    {
+        $data = $this->wilayahService->getAllRegencies();
+
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ])
+            ->header('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
+            ->setEtag(md5(json_encode($data)));
+    }
 }

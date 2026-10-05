@@ -240,8 +240,9 @@ class LetterService
 
         $replacements = [
             '[NAMA_DESA]' => (string) Setting::get('village_name', 'Sukamaju'),
-            '[NAMA_KECAMATAN]' => (string) Setting::get('district_name', 'Cibinong'),
-            '[NAMA_KABUPATEN]' => (string) Setting::get('regency_name', 'Bogor'),
+            '[NAMA_KECAMATAN]' => (string) (Setting::get('subdistrict_name') ?: Setting::get('district_name', 'Cibinong')),
+            '[NAMA_KABUPATEN]' => (string) (Setting::get('district_name') ?: Setting::get('regency_name', 'Bogor')),
+            '[NAMA_PROVINSI]' => (string) Setting::get('province_name', 'Jawa Barat'),
             '[NAMA]' => $resident ? $resident->name : '-',
             '[NIK]' => $resident ? $resident->nik : '-',
             '[NO_KK]' => $family ? $family->family_card_number : '-',
@@ -279,6 +280,20 @@ class LetterService
                 'school_or_institution' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
                 'nama_instansi' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
                 'nama_sekolah' => ['NAMA_INSTANSI', 'NAMA_SEKOLAH', 'INSTANSI_TUJUAN', 'SCHOOL_OR_INSTITUTION'],
+                'target_province' => ['PROVINSI_TUJUAN', 'TARGET_PROVINCE'],
+                'provinsi_tujuan' => ['PROVINSI_TUJUAN', 'TARGET_PROVINCE'],
+                'target_regency' => ['KABUPATEN_TUJUAN', 'KOTA_TUJUAN', 'TARGET_REGENCY'],
+                'kabupaten_tujuan' => ['KABUPATEN_TUJUAN', 'KOTA_TUJUAN', 'TARGET_REGENCY'],
+                'target_district' => ['KECAMATAN_TUJUAN', 'TARGET_DISTRICT'],
+                'kecamatan_tujuan' => ['KECAMATAN_TUJUAN', 'TARGET_DISTRICT'],
+                'target_village' => ['DESA_TUJUAN', 'KELURAHAN_TUJUAN', 'TARGET_VILLAGE'],
+                'desa_tujuan' => ['DESA_TUJUAN', 'KELURAHAN_TUJUAN', 'TARGET_VILLAGE'],
+                'target_address' => ['ALAMAT_TUJUAN', 'TARGET_ADDRESS'],
+                'alamat_tujuan' => ['ALAMAT_TUJUAN', 'TARGET_ADDRESS'],
+                'move_reason' => ['ALASAN_PINDAH', 'MOVE_REASON'],
+                'alasan_pindah' => ['ALASAN_PINDAH', 'MOVE_REASON'],
+                'family_members_count' => ['JUMLAH_PENGIKUT', 'FAMILY_MEMBERS_COUNT'],
+                'jumlah_pengikut' => ['JUMLAH_PENGIKUT', 'FAMILY_MEMBERS_COUNT'],
             ];
 
             foreach ($letterRequest->extra_data as $key => $val) {
@@ -310,6 +325,13 @@ class LetterService
             '[NAMA_INSTANSI]' => '-',
             '[NAMA_SEKOLAH]' => '-',
             '[SCHOOL_OR_INSTITUTION]' => '-',
+            '[PROVINSI_TUJUAN]' => '-',
+            '[KABUPATEN_TUJUAN]' => '-',
+            '[KECAMATAN_TUJUAN]' => '-',
+            '[DESA_TUJUAN]' => '-',
+            '[ALAMAT_TUJUAN]' => '-',
+            '[ALASAN_PINDAH]' => '-',
+            '[JUMLAH_PENGIKUT]' => '0',
         ];
 
         // Jika surat telah disahkan dan memiliki snapshot konten final:

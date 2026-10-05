@@ -231,4 +231,59 @@ class WilayahService
 
         return [];
     }
+
+    /**
+     * Mengambil seluruh daftar kabupaten / kota di Indonesia dengan disk caching persisten.
+     *
+     * @return array<int, array{code: string, name: string, province_code: string, province_name: string}>
+     */
+    public function getAllRegencies(): array
+    {
+        $cacheKey = 'wilayah_all_regencies';
+        $diskFile = "{$this->storageDir}/all_regencies.json";
+
+        // 1. Cek di Laravel Cache
+        if (Cache::has($cacheKey)) {
+            $cached = Cache::get($cacheKey);
+            if (is_array($cached) && ! empty($cached)) {
+                return $cached;
+            }
+        }
+
+        // 2. Cek di file JSON lokal disk
+        if (File::exists($diskFile)) {
+            $diskContent = (string) File::get($diskFile);
+            $decoded = json_decode($diskContent, true);
+            if (is_array($decoded) && ! empty($decoded)) {
+                Cache::put($cacheKey, $decoded, $this->cacheTtl);
+
+                return $decoded;
+            }
+        }
+
+        // 3. Compile dari semua provinsi jika belum ada di disk
+        $provinces = $this->getProvinces();
+        $allRegencies = [];
+
+        foreach ($provinces as $prov) {
+            $provCode = (string) ($prov['code'] ?? '');
+            if ($provCode !== '') {
+                $regencies = $this->getRegencies($provCode);
+                foreach ($regencies as $reg) {
+                    $reg['province_code'] = $provCode;
+                    $reg['province_name'] = (string) ($prov['name'] ?? '');
+                    $allRegencies[] = $reg;
+                }
+            }
+        }
+
+        if (! empty($allRegencies)) {
+            File::put($diskFile, json_encode($allRegencies, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            Cache::put($cacheKey, $allRegencies, $this->cacheTtl);
+
+            return $allRegencies;
+        }
+
+        return [];
+    }
 }

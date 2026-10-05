@@ -3,7 +3,19 @@
 @section('title', 'Edit Penduduk: ' . $resident->name)
 
 @section('content')
-<div class="max-w-4xl mx-auto space-y-6">
+<div class="max-w-4xl mx-auto space-y-6"
+     x-data="{
+         regencies: [],
+         async init() {
+             try {
+                 const res = await fetch('{{ route('admin.api.wilayah.all-regencies') }}');
+                 const json = await res.json();
+                 this.regencies = json.data || [];
+             } catch (e) {
+                 console.error('Gagal memuat regencies:', e);
+             }
+         }
+     }">
     <div class="flex items-center justify-between">
         <div>
             <h2 class="text-xl font-bold text-slate-800">Edit Biodata: {{ $resident->name }}</h2>
@@ -94,8 +106,10 @@
                             type="text" 
                             name="birth_place" 
                             id="birth_place" 
+                            list="birth_place_list"
                             value="{{ old('birth_place', $resident->birth_place) }}" 
                             required 
+                            placeholder="Ketik Kota / Kabupaten..."
                             class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         >
                     </div>
@@ -255,5 +269,12 @@
             </div>
         </form>
     </div>
+
+    <!-- Datalist Autocomplete Kabupaten untuk Tempat Lahir -->
+    <datalist id="birth_place_list">
+        <template x-for="r in regencies" :key="r.code">
+            <option :value="r.name"></option>
+        </template>
+    </datalist>
 </div>
 @endsection
