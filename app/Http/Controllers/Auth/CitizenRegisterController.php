@@ -42,6 +42,7 @@ class CitizenRegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'phone' => ['nullable', 'string', 'max:25'],
             'password' => ['required', 'string', Password::min(8), 'confirmed'],
+            'consent' => ['required', 'accepted'],
         ], [
             'nik.required' => 'Nomor Induk Kependudukan (NIK) 16 digit wajib diisi.',
             'nik.size' => 'NIK harus tepat 16 digit angka.',
@@ -52,6 +53,8 @@ class CitizenRegisterController extends Controller
             'email.unique' => 'Alamat email ini sudah digunakan oleh akun lain.',
             'password.required' => 'Kata sandi wajib diisi.',
             'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'consent.required' => 'Anda wajib menyetujui pernyataan pemrosesan data pribadi (UU PDP No. 27/2022).',
+            'consent.accepted' => 'Persetujuan pemrosesan data pribadi wajib dicentang.',
         ]);
 
         // 1. Cari data penduduk aktif berdasarkan NIK di Buku Induk Kependudukan
@@ -108,6 +111,13 @@ class CitizenRegisterController extends Controller
                 'phone' => $validated['phone'] ?? null,
                 'rt' => $resident->family?->rt,
                 'rw' => $resident->family?->rw,
+                'pdp_consent' => [
+                    'agreed' => true,
+                    'agreed_at' => now()->toIso8601String(),
+                    'ip' => $request->ip(),
+                    'user_agent' => substr((string) $request->userAgent(), 0, 250),
+                    'regulation' => 'UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi',
+                ],
             ]),
         ]);
 

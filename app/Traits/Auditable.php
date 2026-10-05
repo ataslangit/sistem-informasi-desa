@@ -121,6 +121,52 @@ trait Auditable
     }
 
     /**
+     * Catat aktivitas pembacaan atau akses data pribadi sensitif (UU PDP No. 27/2022).
+     *
+     * @param  string  $action  Nama aksi pembacaan/akses, misal: 'Viewed', 'Exported'
+     * @param  array<string, mixed>  $details  Detail kontekstual rekam jejak akses
+     */
+    public function logAccess(string $action = 'Viewed', array $details = []): void
+    {
+        try {
+            if (! app()->bound(AuditService::class)) {
+                return;
+            }
+
+            /** @var AuditService $auditService */
+            $auditService = app(AuditService::class);
+            $eventName = class_basename(static::class).$action;
+            $entityType = $this->getAuditEntityType();
+            $entityId = (string) $this->getKey();
+            $actorId = auth()->id() ?? null;
+
+            $ipAddress = null;
+            $userAgent = null;
+            if (app()->bound('request')) {
+                $req = request();
+                $ipAddress = $req?->ip();
+                $userAgent = $req?->userAgent();
+            }
+
+            $auditService->log(
+                eventName: $eventName,
+                entityType: $entityType,
+                entityId: $entityId,
+                oldValues: null,
+                newValues: ! empty($details) ? $details : ['accessed_at' => now()->toIso8601String()],
+                actorId: $actorId,
+                ipAddress: $ipAddress,
+                userAgent: $userAgent
+            );
+        } catch (Throwable $e) {
+            Log::warning("Gagal mencatat audit log akses: {$e->getMessage()}", [
+                'entity' => static::class,
+                'id' => $this->getKey(),
+            ]);
+        }
+    }
+
+    /**
      * Relasi ke riwayat log audit entitas ini.
      */
     public function auditLogs(): HasMany

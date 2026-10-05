@@ -73,6 +73,19 @@ class Family extends Model
     }
 
     /**
+     * Menampilkan Nomor Kartu Keluarga dengan format masking untuk perlindungan privasi (UU No. 27/2022).
+     * Contoh: 320101******0002
+     */
+    public function getMaskedFamilyCardNumberAttribute(): string
+    {
+        if (empty($this->family_card_number) || strlen($this->family_card_number) < 10) {
+            return $this->family_card_number ?? '';
+        }
+
+        return substr($this->family_card_number, 0, 6).'******'.substr($this->family_card_number, -4);
+    }
+
+    /**
      * Scope filter berdasarkan dusun / wilayah.
      */
     public function scopeByHamlet(Builder $query, ?string $hamlet): Builder

@@ -74,6 +74,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
             'phone' => '081234567899',
             'password' => 'secret1234',
             'password_confirmation' => 'secret1234',
+            'consent' => '1',
         ]);
 
         $response->assertRedirect('/citizen/letters');
@@ -88,8 +89,33 @@ class CitizenRegistrationAndAccountTest extends TestCase
         $this->assertTrue($user->hasRole('warga'));
         $this->assertTrue(Hash::check('secret1234', $user->password));
 
+        // Memastikan persetujuan PDP terekam dalam metadata
+        $this->assertNotNull($user->metadata['pdp_consent'] ?? null);
+        $this->assertTrue($user->metadata['pdp_consent']['agreed']);
+
         // Resident harus terhubung ke user
         $this->assertEquals($user->id, $this->unregisteredResident->fresh()->user_id);
+    }
+
+    /**
+     * Test registration fails if PDP consent is not accepted.
+     */
+    public function test_registration_fails_if_pdp_consent_not_accepted(): void
+    {
+        $familyCardNumber = $this->unregisteredResident->family->family_card_number;
+
+        $response = $this->post('/register', [
+            'nik' => '3201019901010001',
+            'family_card_number' => $familyCardNumber,
+            'birth_date' => '1995-05-20',
+            'email' => 'warga.uji@email.com',
+            'password' => 'secret1234',
+            'password_confirmation' => 'secret1234',
+            // Tanpa 'consent'
+        ]);
+
+        $response->assertSessionHasErrors('consent');
+        $this->assertGuest();
     }
 
     /**
@@ -104,6 +130,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
             'email' => 'unknown@email.com',
             'password' => 'secret1234',
             'password_confirmation' => 'secret1234',
+            'consent' => '1',
         ]);
 
         $response->assertSessionHasErrors('nik');
@@ -124,6 +151,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
             'email' => 'warga.uji@email.com',
             'password' => 'secret1234',
             'password_confirmation' => 'secret1234',
+            'consent' => '1',
         ]);
 
         $response->assertSessionHasErrors('birth_date');
@@ -142,6 +170,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
             'email' => 'warga.uji@email.com',
             'password' => 'secret1234',
             'password_confirmation' => 'secret1234',
+            'consent' => '1',
         ]);
 
         $response->assertSessionHasErrors('family_card_number');

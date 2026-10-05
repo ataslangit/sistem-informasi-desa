@@ -173,6 +173,35 @@
                     </div>
                 </div>
 
+                <!-- Bagian 3: Persetujuan Pelindungan Data Pribadi (UU PDP No. 27/2022) -->
+                <div class="pt-4 border-t border-slate-100 space-y-3">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                        Langkah 3: Persetujuan Pelindungan Data Pribadi (UU No. 27/2022)
+                    </span>
+
+                    <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 hover:border-blue-300 transition">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input 
+                                type="checkbox" 
+                                name="consent" 
+                                id="consent" 
+                                value="1" 
+                                {{ old('consent') ? 'checked' : '' }} 
+                                required
+                                class="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                            >
+                            <div class="text-[11px] text-slate-600 leading-relaxed">
+                                <span class="font-semibold text-slate-800 block mb-0.5">
+                                    Pernyataan Persetujuan Pemrosesan Data Pribadi (Explicit Consent) <span class="text-rose-500">*</span>
+                                </span>
+                                <p>
+                                    Saya menyatakan dengan sadar bahwa data yang saya masukkan adalah sah milik saya. Berdasarkan <b>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP)</b>, saya memberikan persetujuan kepada Pemerintah Desa untuk memproses dan mencocokkan data pribadi kependudukan saya (NIK, Nomor Kartu Keluarga, dan Tanggal Lahir) semata-mata untuk tujuan verifikasi identitas resmi dan penyelenggaraan layanan administrasi e-surat desa. Data tidak akan dialihkan ke pihak ketiga di luar ketentuan hukum yang berlaku.
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
                 <div class="pt-2">
                     <button 
                         type="submit" 

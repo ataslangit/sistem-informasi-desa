@@ -22,6 +22,25 @@
         </div>
     </div>
 
+    @if(!empty($scopedRt))
+    <!-- Banner Segmentasi Akses RT (UU PDP) -->
+    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-xs text-emerald-900">
+        <div class="flex items-center space-x-3">
+            <span class="text-xl">🛡️</span>
+            <div>
+                <span class="font-bold">Segmentasi Akses Wilayah RT {{ $scopedRt }} {{ $scopedRw ? '/ RW ' . $scopedRw : '' }} Aktif</span>
+                <p class="text-[11px] text-emerald-700 mt-0.5">
+                    Sesuai prinsip <i>Need-to-Know</i> & Pelindungan Data Pribadi (UU PDP No. 27/2022), akun Ketua RT hanya dapat mengakses data warga dalam wilayah kepengurusannya.
+                </p>
+            </div>
+        </div>
+        <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-200 text-emerald-800">
+            Terproteksi PDP
+        </span>
+    </div>
+    @endif
+
+
     <!-- Filter & Search -->
     <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <form action="{{ route('admin.residents.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-4 gap-4">
