@@ -185,5 +185,105 @@ class ContentSeeder extends Seeder
             $catIds = collect($catSlugs)->map(fn ($slug) => $categories[$slug]->id ?? null)->filter();
             $content->categories()->sync($catIds);
         }
+
+        // 4. Album Galeri Foto Desa (type: gallery)
+        $galleries = [
+            [
+                'title' => 'Dokumentasi Panen Raya Padi Organik Dusun Sukamaju',
+                'slug' => 'panen-raya-padi-organik',
+                'type' => Content::TYPE_GALLERY,
+                'summary' => 'Kegiatan panen raya bersama para petani dan kelompok tani binaan desa.',
+                'body' => 'Foto dokumentasi panen raya musim tanam pertama dengan hasil padi organik melimpah.',
+                'status' => Content::STATUS_PUBLISHED,
+                'view_count' => 45,
+                'published_at' => Carbon::now()->subDays(10),
+                'meta' => [
+                    'cover_image' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
+                ],
+                'photos' => [
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Hamparan sawah padi siap panen di Dusun Sukamaju',
+                    ],
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Proses pemotongan padi bersama kelompok tani desa',
+                    ],
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Pengemasan gabah organik berstandar mutu tinggi',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Gotong Royong Perbaikan Saluran Irigasi Warga',
+                'slug' => 'gotong-royong-saluran-irigasi',
+                'type' => Content::TYPE_GALLERY,
+                'summary' => 'Semangat gotong royong warga membersihkan dan menormalisasi saluran irigasi.',
+                'body' => 'Dokumentasi aksi gotong royong serentak di hari Minggu untuk kelancaran aliran air ke sawah.',
+                'status' => Content::STATUS_PUBLISHED,
+                'view_count' => 38,
+                'published_at' => Carbon::now()->subDays(12),
+                'meta' => [
+                    'cover_image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80',
+                ],
+                'photos' => [
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Warga bergotong royong membersihkan sedimentasi lumpur di saluran air',
+                    ],
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Pemasangan batu kali bronjong penahan tanggul irigasi',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Pelatihan Keterampilan Kerajinan Bambu UMKM Desa',
+                'slug' => 'pelatihan-kerajinan-bambu-umkm',
+                'type' => Content::TYPE_GALLERY,
+                'summary' => 'Pemberdayaan ibu-ibu PKK dan pemuda desa dalam mengolah potensi bambu lokal.',
+                'body' => 'Dokumentasi workshop pelatihan kriya anyaman bambu untuk meningkatkan ekonomi kreatif warga.',
+                'status' => Content::STATUS_PUBLISHED,
+                'view_count' => 52,
+                'published_at' => Carbon::now()->subDays(15),
+                'meta' => [
+                    'cover_image' => 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
+                ],
+                'photos' => [
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Peserta workshop mempraktikkan teknik membelah dan menganyam bilah bambu',
+                    ],
+                    [
+                        'image_url' => 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+                        'caption' => 'Pameran aneka produk perabotan dan souvenir anyaman bambu khas desa',
+                    ],
+                ],
+            ],
+        ];
+
+        foreach ($galleries as $galleryData) {
+            $photos = $galleryData['photos'] ?? [];
+            unset($galleryData['photos']);
+
+            $album = Content::updateOrCreate(
+                ['slug' => $galleryData['slug'], 'type' => Content::TYPE_GALLERY],
+                array_merge($galleryData, [
+                    'author_id' => $admin?->id,
+                    'tenant_type' => 'village',
+                    'tenant_id' => '1',
+                ])
+            );
+
+            $album->photos()->delete();
+            foreach ($photos as $idx => $photo) {
+                $album->photos()->create([
+                    'image_url' => $photo['image_url'],
+                    'caption' => $photo['caption'] ?? $album->title,
+                    'sort_order' => $idx + 1,
+                ]);
+            }
+        }
     }
 }

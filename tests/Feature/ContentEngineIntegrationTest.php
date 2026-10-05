@@ -332,5 +332,96 @@ class ContentEngineIntegrationTest extends TestCase
 
         $themeResponse = $this->actingAs($this->warga)->get('/admin/themes');
         $themeResponse->assertStatus(403);
+
+        $galleryResponse = $this->actingAs($this->warga)->get('/admin/galleries');
+        $galleryResponse->assertStatus(403);
+    }
+
+    /**
+     * Test public announcements page.
+     */
+    public function test_public_announcements_page(): void
+    {
+        $response = $this->get('/pengumuman');
+
+        $response->assertStatus(200);
+        $response->assertSee('Kategori: Pengumuman');
+        $response->assertSee('Jadwal Pelayanan Posyandu Balita dan Lansia Serentak Bulan Ini');
+    }
+
+    /**
+     * Test public galleries page.
+     */
+    public function test_public_galleries_page(): void
+    {
+        $response = $this->get('/galeri');
+
+        $response->assertStatus(200);
+        $response->assertSee('Galeri Foto Desa');
+        $response->assertSee('Dokumentasi Panen Raya Padi Organik Dusun Sukamaju');
+        $response->assertSee('Buka Album');
+    }
+
+    /**
+     * Test public gallery detail show page.
+     */
+    public function test_public_gallery_show_page(): void
+    {
+        $album = Content::galleries()->published()->firstOrFail();
+        $initialViews = $album->view_count;
+
+        $response = $this->get('/galeri/'.$album->slug);
+
+        $response->assertStatus(200);
+        $response->assertSee($album->title);
+        $response->assertSee('Daftar Foto dalam Album');
+        $this->assertEquals($initialViews + 1, $album->fresh()->view_count);
+    }
+
+    /**
+     * Test admin can create gallery album, manage photos inside it, and delete album.
+     */
+    public function test_admin_can_manage_galleries(): void
+    {
+        // 1. Create album
+        $response = $this->actingAs($this->superadmin)->post('/admin/galleries', [
+            'title' => 'Peresmian Balai Warga RW 03',
+            'image_url' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80',
+            'summary' => 'Foto peresmian balai pertemuan warga.',
+        ]);
+
+        $response->assertRedirect('/admin/galleries');
+        $this->assertDatabaseHas('contents', [
+            'type' => 'gallery',
+            'title' => 'Peresmian Balai Warga RW 03',
+        ]);
+
+        $gallery = Content::galleries()->where('title', 'Peresmian Balai Warga RW 03')->firstOrFail();
+        $this->assertEquals(1, $gallery->photos()->count());
+
+        // 2. View album photo management page
+        $showResponse = $this->actingAs($this->superadmin)->get('/admin/galleries/'.$gallery->id);
+        $showResponse->assertStatus(200);
+        $showResponse->assertSee('Kelola Foto: Peresmian Balai Warga RW 03');
+
+        // 3. Add additional photo to album
+        $addPhotoResponse = $this->actingAs($this->superadmin)->post('/admin/galleries/'.$gallery->id.'/photos', [
+            'image_url' => 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80',
+            'caption' => 'Suasana pemotongan pita peresmian',
+        ]);
+        $addPhotoResponse->assertRedirect('/admin/galleries/'.$gallery->id);
+        $this->assertEquals(2, $gallery->fresh()->photos()->count());
+
+        $newPhoto = $gallery->photos()->where('caption', 'Suasana pemotongan pita peresmian')->firstOrFail();
+
+        // 4. Delete photo from album
+        $delPhotoResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id.'/photos/'.$newPhoto->id);
+        $delPhotoResponse->assertRedirect('/admin/galleries/'.$gallery->id);
+        $this->assertDatabaseMissing('gallery_photos', ['id' => $newPhoto->id]);
+
+        // 5. Delete album
+        $deleteResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id);
+        $deleteResponse->assertRedirect('/admin/galleries');
+        $this->assertSoftDeleted('contents', ['id' => $gallery->id]);
     }
 }

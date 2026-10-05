@@ -135,4 +135,30 @@ class ArticleController extends Controller
 
         return theme_view('articles.index', compact('articles', 'categories', 'currentCategory', 'search', 'recentArticles'));
     }
+
+    /**
+     * Tampilkan daftar pengumuman resmi desa.
+     */
+    public function announcements(): View
+    {
+        $articles = Content::announcements()
+            ->published()
+            ->with(['author', 'categories'])
+            ->orderByDesc('published_at')
+            ->paginate(9);
+
+        $categories = Category::categories()
+            ->withCount(['contents' => function ($q) {
+                $q->posts()->published();
+            }])
+            ->having('contents_count', '>', 0)
+            ->orderBy('name')
+            ->get();
+
+        $currentCategory = Category::where('slug', 'pengumuman')->first();
+        $search = null;
+        $recentArticles = collect();
+
+        return theme_view('articles.index', compact('articles', 'categories', 'currentCategory', 'search', 'recentArticles'));
+    }
 }
