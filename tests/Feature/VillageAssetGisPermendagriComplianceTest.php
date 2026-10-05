@@ -8,6 +8,8 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\VillageFacility;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class VillageAssetGisPermendagriComplianceTest extends TestCase
@@ -237,5 +239,66 @@ class VillageAssetGisPermendagriComplianceTest extends TestCase
         $response->assertSee('Hanya Aset Desa');
         $response->assertSee('KIB A: Tanah');
         $response->assertSee('Kawasan Wisata Agro');
+    }
+
+    /**
+     * Test admin dapat mengunggah foto fasilitas/aset dan dibersihkan saat update atau delete.
+     */
+    public function test_admin_can_upload_facility_photo_and_cleanup_on_delete(): void
+    {
+        Storage::fake('public');
+
+        $imageFile = UploadedFile::fake()->image('posyandu_dusun.jpg', 800, 600);
+
+        // 1. Simpan fasilitas dengan file upload
+        $response = $this->actingAs($this->superadmin)->post('/admin/facilities', [
+            'name' => 'Gedung Posyandu Mawar 01',
+            'category' => 'kesehatan',
+            'latitude' => -6.920000,
+            'longitude' => 107.620000,
+            'condition' => 'baik',
+            'is_village_asset' => true,
+            'kib_type' => 'kib_c',
+            'ownership_status' => 'tanah_kas_desa',
+            'image_file' => $imageFile,
+        ]);
+
+        $response->assertRedirect('/admin/facilities');
+        $this->assertDatabaseHas('village_facilities', [
+            'name' => 'Gedung Posyandu Mawar 01',
+        ]);
+
+        $facility = VillageFacility::where('name', 'Gedung Posyandu Mawar 01')->firstOrFail();
+        $this->assertNotNull($facility->image_url);
+        $this->assertStringStartsWith('/storage/facilities/', $facility->image_url);
+
+        $storedPath = str_replace('/storage/', '', $facility->image_url);
+        Storage::disk('public')->assertExists($storedPath);
+
+        // 2. Update dengan foto baru (foto lama harus dihapus)
+        $newImageFile = UploadedFile::fake()->image('posyandu_dusun_baru.png', 800, 600);
+        $updateResponse = $this->actingAs($this->superadmin)->put("/admin/facilities/{$facility->id}", [
+            'name' => 'Gedung Posyandu Mawar 01 - Renovasi',
+            'category' => 'kesehatan',
+            'latitude' => -6.920000,
+            'longitude' => 107.620000,
+            'condition' => 'baik',
+            'is_village_asset' => true,
+            'kib_type' => 'kib_c',
+            'ownership_status' => 'tanah_kas_desa',
+            'image_file' => $newImageFile,
+        ]);
+
+        $updateResponse->assertRedirect('/admin/facilities');
+        Storage::disk('public')->assertMissing($storedPath);
+
+        $facility->refresh();
+        $updatedStoredPath = str_replace('/storage/', '', $facility->image_url);
+        Storage::disk('public')->assertExists($updatedStoredPath);
+
+        // 3. Hapus fasilitas (foto juga harus dibersihkan dari disk storage)
+        $deleteResponse = $this->actingAs($this->superadmin)->delete("/admin/facilities/{$facility->id}");
+        $deleteResponse->assertRedirect('/admin/facilities');
+        Storage::disk('public')->assertMissing($updatedStoredPath);
     }
 }

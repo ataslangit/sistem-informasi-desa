@@ -23,7 +23,7 @@
     </div>
 
     <!-- Form -->
-    <form action="{{ route('admin.articles.update', $article) }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -128,26 +128,70 @@
                 @enderror
             </div>
 
-            <!-- Gambar Sampul (URL) -->
-            <div>
-                <label for="cover_image" class="block text-xs font-bold text-slate-700 uppercase mb-2">
-                    URL Gambar Sampul (Cover Image)
-                </label>
-                <input 
-                    type="url" 
-                    id="cover_image" 
-                    name="cover_image" 
-                    value="{{ old('cover_image', $article->cover_image) }}" 
-                    class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                >
+            <!-- Gambar Sampul (Dual-Mode: Upload Berkas / URL) -->
+            <div x-data="{ 
+                mode: 'upload', 
+                previewUrl: null,
+                onFileSelected(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        this.previewUrl = URL.createObjectURL(file);
+                    }
+                }
+            }" class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <label class="block text-xs font-bold text-slate-700 uppercase">
+                        Gambar Sampul (Cover Image)
+                    </label>
+                    <div class="flex items-center bg-slate-100 p-0.5 rounded-lg text-[11px] font-medium">
+                        <button type="button" @click="mode = 'upload'" :class="mode === 'upload' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'" class="px-2.5 py-1 rounded-md transition">📁 Unggah Berkas Baru</button>
+                        <button type="button" @click="mode = 'url'" :class="mode === 'url' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'" class="px-2.5 py-1 rounded-md transition">🌐 Tautan URL</button>
+                    </div>
+                </div>
+
                 @if($article->cover_image)
-                    <div class="mt-2">
-                        <img src="{{ $article->cover_image }}" alt="Preview cover" class="h-28 w-auto rounded-xl object-cover border border-slate-200 shadow-sm">
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center space-x-3">
+                        <img src="{{ $article->cover_image }}" alt="Current cover" class="h-16 w-24 rounded-lg object-cover border border-slate-200 shadow-sm shrink-0">
+                        <div class="text-xs text-slate-500">
+                            <span class="font-semibold text-slate-700 block">Gambar Sampul Saat Ini</span>
+                            <span class="text-[11px] text-slate-400 truncate block max-w-md">{{ $article->cover_image }}</span>
+                        </div>
                     </div>
                 @endif
-                @error('cover_image')
-                    <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
-                @enderror
+
+                <!-- Mode 1: File Upload -->
+                <div x-show="mode === 'upload'" class="space-y-2">
+                    <input 
+                        type="file" 
+                        name="cover_image_file" 
+                        id="cover_image_file" 
+                        accept="image/*"
+                        @change="onFileSelected($event)"
+                        class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    >
+                    <p class="text-[11px] text-slate-400">Pilih berkas baru jika ingin mengganti gambar sampul (Maks. 3MB).</p>
+                    <template x-if="previewUrl">
+                        <div class="mt-2">
+                            <p class="text-[11px] font-semibold text-emerald-600 mb-1">Pratinjau Berkas Baru:</p>
+                            <img :src="previewUrl" alt="Pratinjau Foto Baru" class="h-28 w-auto rounded-xl object-cover border border-slate-200 shadow-sm">
+                        </div>
+                    </template>
+                    @error('cover_image_file') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Mode 2: External URL -->
+                <div x-show="mode === 'url'" class="space-y-1" style="display: none;">
+                    <input 
+                        type="url" 
+                        id="cover_image" 
+                        name="cover_image" 
+                        value="{{ old('cover_image', $article->cover_image) }}" 
+                        placeholder="https://... URL gambar baru"
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                    <p class="text-[11px] text-slate-400">Tautan URL gambar eksternal.</p>
+                    @error('cover_image') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
+                </div>
             </div>
 
             <!-- Status Publikasi & Jadwal -->

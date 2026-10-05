@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Ttpryg\ContentEngine\Services\ContentService;
 
@@ -86,14 +87,21 @@ class ArticleController extends Controller
             'status' => ['required', 'in:draft,published,archived'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
-            'cover_image' => ['nullable', 'url', 'max:500'],
+            'cover_image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:3072'],
+            'cover_image' => ['nullable', 'string', 'max:500'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string', 'max:255'],
             'published_at' => ['nullable', 'date'],
         ]);
 
+        $coverImage = $validated['cover_image'] ?? null;
+        if ($request->hasFile('cover_image_file')) {
+            $path = $request->file('cover_image_file')->store('articles', 'public');
+            $coverImage = '/storage/'.$path;
+        }
+
         $meta = [
-            'cover_image' => $validated['cover_image'] ?? null,
+            'cover_image' => $coverImage,
             'seo_title' => $validated['seo_title'] ?? null,
             'seo_description' => $validated['seo_description'] ?? null,
         ];
@@ -159,14 +167,27 @@ class ArticleController extends Controller
             'status' => ['required', 'in:draft,published,archived'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
-            'cover_image' => ['nullable', 'url', 'max:500'],
+            'cover_image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:3072'],
+            'cover_image' => ['nullable', 'string', 'max:500'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string', 'max:255'],
             'published_at' => ['nullable', 'date'],
         ]);
 
         $meta = $article->meta ?? [];
-        $meta['cover_image'] = $validated['cover_image'] ?? null;
+
+        if ($request->hasFile('cover_image_file')) {
+            $oldCover = $meta['cover_image'] ?? null;
+            if ($oldCover && str_starts_with($oldCover, '/storage/articles/')) {
+                $oldPath = str_replace('/storage/', '', $oldCover);
+                Storage::disk('public')->delete($oldPath);
+            }
+            $path = $request->file('cover_image_file')->store('articles', 'public');
+            $meta['cover_image'] = '/storage/'.$path;
+        } elseif (array_key_exists('cover_image', $validated)) {
+            $meta['cover_image'] = $validated['cover_image'];
+        }
+
         $meta['seo_title'] = $validated['seo_title'] ?? null;
         $meta['seo_description'] = $validated['seo_description'] ?? null;
 
@@ -200,6 +221,13 @@ class ArticleController extends Controller
      */
     public function destroy(Content $article): RedirectResponse
     {
+        $meta = $article->meta ?? [];
+        $cover = $meta['cover_image'] ?? null;
+        if ($cover && str_starts_with($cover, '/storage/articles/')) {
+            $path = str_replace('/storage/', '', $cover);
+            Storage::disk('public')->delete($path);
+        }
+
         $article->delete();
 
         return redirect()->route('admin.articles.index')

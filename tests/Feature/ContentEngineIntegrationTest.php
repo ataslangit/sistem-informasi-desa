@@ -9,6 +9,8 @@ use App\Models\Content;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Ttpryg\ContentEngine\Contracts\CategoryRepositoryInterface;
 use Ttpryg\ContentEngine\Contracts\ContentRepositoryInterface;
@@ -423,5 +425,111 @@ class ContentEngineIntegrationTest extends TestCase
         $deleteResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id);
         $deleteResponse->assertRedirect('/admin/galleries');
         $this->assertSoftDeleted('contents', ['id' => $gallery->id]);
+    }
+
+    /**
+     * Test admin dapat mengunggah file foto sampul artikel dan membersihkannya saat update / delete.
+     */
+    public function test_admin_can_upload_cover_image_for_article(): void
+    {
+        Storage::fake('public');
+
+        $category = Category::firstOrFail();
+        $file = UploadedFile::fake()->image('berita_desa.jpg', 800, 600);
+
+        // 1. Simpan artikel dengan file upload
+        $response = $this->actingAs($this->superadmin)->post('/admin/articles', [
+            'title' => 'Pelatihan Budidaya Ikan Nila Warga Dusun Karang',
+            'category_id' => $category->id,
+            'summary' => 'Ringkasan pelatihan perikanan air tawar.',
+            'body' => '<p>Artikel lengkap kegiatan pelatihan budidaya ikan nila bersama dinas kelautan.</p>',
+            'status' => 'published',
+            'cover_image_file' => $file,
+        ]);
+
+        $response->assertRedirect('/admin/articles');
+        $this->assertDatabaseHas('contents', [
+            'type' => 'post',
+            'title' => 'Pelatihan Budidaya Ikan Nila Warga Dusun Karang',
+        ]);
+
+        $article = Content::posts()->where('title', 'Pelatihan Budidaya Ikan Nila Warga Dusun Karang')->firstOrFail();
+        $this->assertNotNull($article->cover_image);
+        $this->assertStringStartsWith('/storage/articles/', $article->cover_image);
+
+        $storedFilePath = str_replace('/storage/', '', $article->cover_image);
+        Storage::disk('public')->assertExists($storedFilePath);
+
+        // 2. Update artikel dengan file baru (file lama harus dihapus dari storage)
+        $newFile = UploadedFile::fake()->image('berita_desa_baru.png', 800, 600);
+        $updateResponse = $this->actingAs($this->superadmin)->put('/admin/articles/'.$article->id, [
+            'title' => 'Pelatihan Budidaya Ikan Nila Warga Dusun Karang - Diperbarui',
+            'slug' => $article->slug,
+            'category_id' => $category->id,
+            'summary' => 'Ringkasan yang diperbarui.',
+            'body' => '<p>Konten diperbarui.</p>',
+            'status' => 'published',
+            'cover_image_file' => $newFile,
+        ]);
+
+        $updateResponse->assertRedirect('/admin/articles');
+        Storage::disk('public')->assertMissing($storedFilePath);
+
+        $article->refresh();
+        $updatedStoredPath = str_replace('/storage/', '', $article->cover_image);
+        Storage::disk('public')->assertExists($updatedStoredPath);
+
+        // 3. Hapus artikel (file di storage harus dibersihkan)
+        $deleteResponse = $this->actingAs($this->superadmin)->delete('/admin/articles/'.$article->id);
+        $deleteResponse->assertRedirect('/admin/articles');
+        Storage::disk('public')->assertMissing($updatedStoredPath);
+    }
+
+    /**
+     * Test admin dapat mengunggah file foto untuk album galeri dan foto detailnya.
+     */
+    public function test_admin_can_upload_images_for_gallery_and_photos(): void
+    {
+        Storage::fake('public');
+
+        $albumCover = UploadedFile::fake()->image('album_cover.jpg', 800, 600);
+
+        // 1. Buat album dengan file upload
+        $response = $this->actingAs($this->superadmin)->post('/admin/galleries', [
+            'title' => 'Pameran UMKM Kerajinan Bambu',
+            'image_file' => $albumCover,
+            'summary' => 'Foto produk kerajinan bambu unggulan warga.',
+        ]);
+
+        $response->assertRedirect('/admin/galleries');
+        $gallery = Content::galleries()->where('title', 'Pameran UMKM Kerajinan Bambu')->firstOrFail();
+        $firstPhoto = $gallery->photos()->firstOrFail();
+
+        $this->assertStringStartsWith('/storage/galleries/', $firstPhoto->image_url);
+        $firstPhotoPath = str_replace('/storage/', '', $firstPhoto->image_url);
+        Storage::disk('public')->assertExists($firstPhotoPath);
+
+        // 2. Tambah foto kedua via upload file
+        $secondPhotoFile = UploadedFile::fake()->image('foto_dua.jpg', 800, 600);
+        $addPhotoResponse = $this->actingAs($this->superadmin)->post('/admin/galleries/'.$gallery->id.'/photos', [
+            'image_file' => $secondPhotoFile,
+            'caption' => 'Anyaman tas bambu motif tradisional',
+        ]);
+
+        $addPhotoResponse->assertRedirect('/admin/galleries/'.$gallery->id);
+        $secondPhoto = $gallery->photos()->where('caption', 'Anyaman tas bambu motif tradisional')->firstOrFail();
+        $this->assertStringStartsWith('/storage/galleries/', $secondPhoto->image_url);
+        $secondPhotoPath = str_replace('/storage/', '', $secondPhoto->image_url);
+        Storage::disk('public')->assertExists($secondPhotoPath);
+
+        // 3. Hapus foto kedua secara individual
+        $delPhotoResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id.'/photos/'.$secondPhoto->id);
+        $delPhotoResponse->assertRedirect('/admin/galleries/'.$gallery->id);
+        Storage::disk('public')->assertMissing($secondPhotoPath);
+
+        // 4. Hapus album secara keseluruhan (file foto album juga harus terhapus)
+        $deleteAlbumResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id);
+        $deleteAlbumResponse->assertRedirect('/admin/galleries');
+        Storage::disk('public')->assertMissing($firstPhotoPath);
     }
 }

@@ -11,7 +11,9 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class GalleryController extends Controller
 {
@@ -46,10 +48,24 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'image_url' => ['required', 'url', 'max:500'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image_url' => ['nullable', 'string', 'max:500'],
             'summary' => ['nullable', 'string', 'max:500'],
             'body' => ['nullable', 'string'],
         ]);
+
+        if (! $request->hasFile('image_file') && empty($validated['image_url'])) {
+            throw ValidationException::withMessages([
+                'image_file' => 'Unggah berkas foto atau masukkan URL foto sampul.',
+            ]);
+        }
+
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('galleries', 'public');
+            $imageUrl = '/storage/'.$path;
+        } else {
+            $imageUrl = $validated['image_url'];
+        }
 
         $slug = Str::slug($validated['title']);
         $originalSlug = $slug;
@@ -69,7 +85,7 @@ class GalleryController extends Controller
             'summary' => $validated['summary'] ?? $validated['title'],
             'body' => $validated['body'] ?? $validated['title'],
             'meta' => [
-                'cover_image' => $validated['image_url'],
+                'cover_image' => $imageUrl,
             ],
             'status' => Content::STATUS_PUBLISHED,
             'published_at' => Carbon::now(),
@@ -77,7 +93,7 @@ class GalleryController extends Controller
 
         // Simpan foto cover sebagai foto pertama di dalam album
         $gallery->photos()->create([
-            'image_url' => $validated['image_url'],
+            'image_url' => $imageUrl,
             'caption' => $validated['title'],
             'sort_order' => 1,
         ]);
@@ -106,14 +122,28 @@ class GalleryController extends Controller
         abort_if($gallery->type !== Content::TYPE_GALLERY, 404);
 
         $validated = $request->validate([
-            'image_url' => ['required', 'url', 'max:500'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image_url' => ['nullable', 'string', 'max:500'],
             'caption' => ['nullable', 'string', 'max:255'],
         ]);
+
+        if (! $request->hasFile('image_file') && empty($validated['image_url'])) {
+            throw ValidationException::withMessages([
+                'image_file' => 'Unggah berkas foto atau masukkan URL foto.',
+            ]);
+        }
+
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('galleries', 'public');
+            $imageUrl = '/storage/'.$path;
+        } else {
+            $imageUrl = $validated['image_url'];
+        }
 
         $maxSort = (int) $gallery->photos()->max('sort_order');
 
         $photo = $gallery->photos()->create([
-            'image_url' => $validated['image_url'],
+            'image_url' => $imageUrl,
             'caption' => $validated['caption'] ?? $gallery->title,
             'sort_order' => $maxSort + 1,
         ]);
@@ -136,6 +166,11 @@ class GalleryController extends Controller
     {
         abort_if($photo->gallery_id !== $gallery->id, 404);
 
+        if ($photo->image_url && str_starts_with($photo->image_url, '/storage/galleries/')) {
+            $path = str_replace('/storage/', '', $photo->image_url);
+            Storage::disk('public')->delete($path);
+        }
+
         $photo->delete();
 
         return redirect()->route('admin.galleries.show', $gallery)
@@ -147,6 +182,14 @@ class GalleryController extends Controller
      */
     public function destroy(Content $gallery): RedirectResponse
     {
+        foreach ($gallery->photos as $photo) {
+            if ($photo->image_url && str_starts_with($photo->image_url, '/storage/galleries/')) {
+                $path = str_replace('/storage/', '', $photo->image_url);
+                Storage::disk('public')->delete($path);
+            }
+        }
+
+        $gallery->photos()->delete();
         $gallery->delete();
 
         return redirect()->route('admin.galleries.index')
