@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc335decf9ca41d4f1894915a57a1a9e",
+    "content-hash": "bb0bfd0f71733436bbab9e19f30c2845",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6159,6 +6159,53 @@
                 "source": "https://github.com/ttpryg/auth-user/tree/1.1.1"
             },
             "time": "2026-09-21T15:08:30+00:00"
+        },
+        {
+            "name": "ttpryg/content-engine",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ttpryg/content-engine.git",
+                "reference": "8fe815658bd7c1a9c310a0eca7868333249f1660"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ttpryg/content-engine/zipball/8fe815658bd7c1a9c310a0eca7868333249f1660",
+                "reference": "8fe815658bd7c1a9c310a0eca7868333249f1660",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "ttpryg/event-dispatcher": "^1.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.53",
+                "laravel/pint": "^1.20",
+                "phpunit/phpunit": "^10.0",
+                "rector/rector": "^2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ttpryg\\ContentEngine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toto",
+                    "email": "totoprayogo1916@gmail.com"
+                }
+            ],
+            "description": "A framework-agnostic standalone CMS content engine library for PHP.",
+            "support": {
+                "issues": "https://github.com/ttpryg/content-engine/issues",
+                "source": "https://github.com/ttpryg/content-engine/tree/1.1.2"
+            },
+            "time": "2026-09-21T15:16:30+00:00"
         },
         {
             "name": "ttpryg/event-dispatcher",

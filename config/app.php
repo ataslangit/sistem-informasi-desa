@@ -171,6 +171,7 @@ return [
         App\Providers\AuthUserServiceProvider::class,
         App\Providers\ThemeServiceProvider::class,
         App\Providers\AuditEngineServiceProvider::class,
+        App\Providers\ContentEngineServiceProvider::class,
     ])->toArray(),
 
     /*

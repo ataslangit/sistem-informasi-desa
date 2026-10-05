@@ -8,10 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js CDN -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Theme Specific CSS via theme_asset() helper -->
     <link rel="stylesheet" href="{{ theme_asset('css/style.css') }}">
 </head>
-<body class="bg-white text-slate-800 flex flex-col min-h-screen">
+<body class="bg-emerald-50/20 text-slate-800 flex flex-col min-h-screen">
     @include('themes.default.partials.header')
 
     <main class="flex-1">

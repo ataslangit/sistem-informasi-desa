@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             ResidentAndFamilySeeder::class,
             LetterTemplateSeeder::class,
             LetterRequestSeeder::class,
+            ContentSeeder::class,
+            MenuSeeder::class,
         ]);
     }
 }

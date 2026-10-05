@@ -72,3 +72,28 @@ if (! function_exists('theme_view')) {
         return view($viewPath, $data, $mergeData);
     }
 }
+
+if (! function_exists('public_header_menus')) {
+    /**
+     * Mengambil struktur menu navigasi header publik yang aktif.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<\App\Models\Menu>
+     */
+    function public_header_menus(): \Illuminate\Database\Eloquent\Collection
+    {
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('menus')) {
+                return \App\Models\Menu::header()
+                    ->root()
+                    ->active()
+                    ->with(['children' => fn ($q) => $q->active()->orderBy('sort_order'), 'page'])
+                    ->orderBy('sort_order')
+                    ->get();
+            }
+        } catch (\Throwable $e) {
+            // Fallback saat database belum di-migrate
+        }
+
+        return new \Illuminate\Database\Eloquent\Collection;
+    }
+}
