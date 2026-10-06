@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Family;
+use App\Services\FamilyPdfService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FamilyController extends Controller
 {
@@ -173,5 +175,33 @@ class FamilyController extends Controller
 
         return redirect()->route('admin.families.index')
             ->with('success', 'Data Kartu Keluarga berhasil dihapus.');
+    }
+
+    /**
+     * Unduh / Cetak Salinan Kartu Keluarga Register Desa dalam format PDF (A4 Landscape).
+     */
+    public function downloadPdf(Family $family, FamilyPdfService $pdfService): Response
+    {
+        $user = auth()->user();
+
+        // Verifikasi wewenang RT (UU PDP No. 27/2022: Need-to-Know basis)
+        if ($user && $user->hasRole('rt')) {
+            $scopedRt = $user->getAssignedRt();
+            if ($scopedRt && $family->rt !== $scopedRt) {
+                abort(403, "Akses Ditolak: Anda tidak memiliki wewenang mengunduh Kartu Keluarga di luar RT {$scopedRt}.");
+            }
+        }
+
+        // Catat Audit Trail Pengunduhan Data Pribadi Kartu Keluarga (UU PDP)
+        $family->logAccess('PdfDownloaded', [
+            'action' => 'Unduh Salinan Kartu Keluarga (PDF)',
+            'accessed_by' => $user?->name ?? 'Tamu/Sistem',
+            'kk_masked' => $family->masked_family_card_number,
+        ]);
+
+        $pdf = $pdfService->generatePdf($family, $user);
+        $filename = sprintf('Salinan_KK_%s.pdf', $family->family_card_number);
+
+        return $pdf->stream($filename);
     }
 }

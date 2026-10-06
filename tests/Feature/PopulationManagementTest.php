@@ -228,4 +228,71 @@ class PopulationManagementTest extends TestCase
         $response->assertSee('Distribusi Tingkat Pendidikan');
         $response->assertSee('Sebaran per Wilayah');
     }
+
+    /**
+     * Test admin dapat mengunduh Salinan Kartu Keluarga dalam format PDF dan audit log tercatat.
+     */
+    public function test_admin_can_download_family_card_pdf_and_audit_trail_recorded(): void
+    {
+        $family = Family::with('headOfFamily')->firstOrFail();
+
+        $response = $this->actingAs($this->adminUser)->get("/admin/families/{$family->id}/pdf");
+
+        $response->assertStatus(200);
+        $this->assertEquals('application/pdf', $response->headers->get('content-type'));
+
+        // Cek pencatatan audit log pengunduhan data kependudukan (UU PDP)
+        $this->assertDatabaseHas('audit_logs', [
+            'entity_type' => 'family',
+            'entity_id' => (string) $family->id,
+            'event_name' => 'FamilyPdfDownloaded',
+            'actor_id' => $this->adminUser->id,
+        ]);
+    }
+
+    /**
+     * Test segmentasi akses role RT pada pengunduhan PDF Kartu Keluarga (Need-to-know basis).
+     */
+    public function test_rt_user_access_control_for_family_card_pdf_download(): void
+    {
+        // Buat dua keluarga pada RT berbeda
+        $familyRt01 = Family::create([
+            'family_card_number' => '3201018888880001',
+            'address' => 'Dusun 1 RT 01',
+            'rt' => '001',
+            'rw' => '001',
+            'economic_status' => 'mampu',
+        ]);
+
+        $familyRt02 = Family::create([
+            'family_card_number' => '3201018888880002',
+            'address' => 'Dusun 1 RT 02',
+            'rt' => '002',
+            'rw' => '001',
+            'economic_status' => 'mampu',
+        ]);
+
+        // Buat user Ketua RT 001
+        $rtUser = User::create([
+            'name' => 'Ketua RT 001 Test',
+            'username' => 'ketua_rt_test',
+            'email' => 'rt_test@sidesa.id',
+            'password' => bcrypt('password'),
+            'is_active' => true,
+            'metadata' => [
+                'rt' => '001',
+                'rw' => '001',
+            ],
+        ]);
+        $rtUser->assignRole('rt');
+
+        // 1. RT 001 mengunduh KK RT 001 -> Berhasil (200)
+        $allowedResponse = $this->actingAs($rtUser)->get("/admin/families/{$familyRt01->id}/pdf");
+        $allowedResponse->assertStatus(200);
+        $this->assertEquals('application/pdf', $allowedResponse->headers->get('content-type'));
+
+        // 2. RT 001 mencoba mengunduh KK RT 002 -> Ditolak (403)
+        $forbiddenResponse = $this->actingAs($rtUser)->get("/admin/families/{$familyRt02->id}/pdf");
+        $forbiddenResponse->assertStatus(403);
+    }
 }
