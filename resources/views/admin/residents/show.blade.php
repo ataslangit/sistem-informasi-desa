@@ -227,35 +227,70 @@
                 @endif
             </div>
 
-            <!-- Mutation History -->
+            <!-- Mutation History Timeline -->
             <div>
-                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 border-b border-slate-100 pb-2">
-                    Riwayat Mutasi Kependudukan
-                </h4>
+                <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center space-x-1.5">
+                        <span>📜</span>
+                        <span>Riwayat Mutasi &amp; Peristiwa Warga</span>
+                    </h4>
+                    <a href="{{ route('admin.mutations.create', ['resident_id' => $resident->id]) }}" class="text-[11px] font-semibold text-blue-600 hover:text-blue-800">
+                        + Catat Mutasi
+                    </a>
+                </div>
+
                 @if($resident->mutations->isNotEmpty())
                     <div class="space-y-3">
                         @foreach($resident->mutations as $mut)
-                            <div class="p-3.5 rounded-xl border border-slate-100 bg-slate-50 flex items-start justify-between text-xs">
-                                <div>
+                            <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-xs space-y-2">
+                                <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
                                     <div class="flex items-center space-x-2">
                                         <span class="px-2 py-0.5 rounded text-[10px] font-bold {{ $mut->type_badge_class }}">
-                                            {{ $mut->type_label }}
+                                            @if($mut->type === 'birth') 👶 Kelahiran
+                                            @elseif($mut->type === 'death') 🕊️ Kematian
+                                            @elseif($mut->type === 'moved_out') 📦 Pindah Keluar
+                                            @elseif($mut->type === 'moved_in') 🏡 Pindah Datang
+                                            @else {{ $mut->type_label }} @endif
                                         </span>
-                                        <span class="text-slate-400 font-mono">{{ $mut->date ? $mut->date->translatedFormat('d F Y') : '-' }}</span>
                                     </div>
-                                    <p class="font-medium text-slate-700 mt-1">{{ $mut->reason }}</p>
-                                    @if($mut->notes)
-                                        <p class="text-slate-500 mt-0.5 text-[11px]">{{ $mut->notes }}</p>
-                                    @endif
+                                    <span class="text-slate-500 font-mono text-[11px]">
+                                        📅 {{ $mut->date ? $mut->date->translatedFormat('d F Y') : '-' }}
+                                    </span>
                                 </div>
-                                @if($mut->reference_number)
-                                    <span class="text-[11px] text-slate-400 font-mono">No: {{ $mut->reference_number }}</span>
+
+                                <div>
+                                    <span class="text-slate-400 text-[11px]">Keterangan:</span>
+                                    <p class="font-semibold text-slate-800 mt-0.5">{{ $mut->reason ?: '-' }}</p>
+                                </div>
+
+                                @if($mut->formatted_target_address)
+                                    <div class="p-2.5 rounded-lg bg-slate-50 text-[11px] text-slate-600">
+                                        <span class="font-semibold block text-slate-700">📍 Tujuan:</span>
+                                        {{ $mut->formatted_target_address }}
+                                    </div>
                                 @endif
+
+                                @if($mut->notes)
+                                    <p class="text-slate-500 italic text-[11px]">"{{ $mut->notes }}"</p>
+                                @endif
+
+                                <div class="pt-1.5 flex flex-wrap items-center justify-between text-[10px] text-slate-400 border-t border-slate-100">
+                                    <span>
+                                        @if($mut->reference_number)
+                                            No. Berkas: <strong class="font-mono text-slate-600">{{ $mut->reference_number }}</strong>
+                                        @endif
+                                    </span>
+                                    <span>
+                                        Dicatat oleh: <strong class="text-slate-600">{{ $mut->creator?->name ?? 'Sistem' }}</strong>
+                                    </span>
+                                </div>
                             </div>
                         @endforeach
                     </div>
                 @else
-                    <p class="text-xs text-slate-400 italic">Belum ada catatan mutasi untuk warga ini.</p>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                        <p class="text-xs text-slate-400 italic">Belum ada catatan mutasi atau peristiwa kependudukan untuk warga ini.</p>
+                    </div>
                 @endif
             </div>
         </div>
