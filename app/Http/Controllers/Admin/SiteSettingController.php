@@ -31,6 +31,7 @@ class SiteSettingController extends Controller
             'province_name' => (string) Setting::get('province_name', 'Jawa Barat'),
             'postal_code' => (string) Setting::get('postal_code', '16911'),
             'village_head_name' => (string) Setting::get('village_head_name', 'H. Mulyadi, S.Sos.'),
+            'timezone' => (string) Setting::get('timezone', config('app.timezone', 'Asia/Jakarta')),
 
             // Kontak & Lokasi Kantor Desa
             'village_address' => (string) Setting::get('village_address', 'Jl. Raya Desa Sukamaju No. 01'),
@@ -74,6 +75,7 @@ class SiteSettingController extends Controller
             'province_name' => ['required', 'string', 'max:255'],
             'postal_code' => ['nullable', 'string', 'max:10'],
             'village_head_name' => ['nullable', 'string', 'max:255'],
+            'timezone' => ['required', 'string', 'in:Asia/Jakarta,Asia/Makassar,Asia/Jayapura'],
 
             // Kontak & Lokasi Kantor
             'village_address' => ['required', 'string', 'max:500'],
@@ -113,6 +115,7 @@ class SiteSettingController extends Controller
             'province_name' => ['village', 'Nama Provinsi'],
             'postal_code' => ['village', 'Kode Pos Kantor Desa'],
             'village_head_name' => ['village', 'Nama Kepala Desa'],
+            'timezone' => ['general', 'Zona Waktu Wilayah Desa (WIB/WITA/WIT)'],
             'village_address' => ['village', 'Alamat Lengkap Kantor Desa'],
             'village_phone' => ['village', 'Telepon / WhatsApp Resmi Desa'],
             'village_email' => ['village', 'Email Resmi Kantor Desa'],
@@ -131,6 +134,12 @@ class SiteSettingController extends Controller
             $group = $groupMapping[$key][0] ?? 'general';
             $description = $groupMapping[$key][1] ?? $key;
             Setting::set($key, (string) ($value ?? ''), $group, $description);
+        }
+
+        // Terapkan langsung zona waktu aktif pada proses saat ini
+        if (isset($validated['timezone'])) {
+            date_default_timezone_set($validated['timezone']);
+            config(['app.timezone' => $validated['timezone']]);
         }
 
         // Sinkronisasi ganda untuk konsistensi pembacaan kabupaten / kota

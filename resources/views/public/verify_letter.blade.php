@@ -115,7 +115,7 @@
                         <div class="flex justify-between py-1 border-b border-indigo-100">
                             <span class="text-slate-500">Stempel Waktu Digital (TSA)</span>
                             <span class="font-medium text-slate-800">
-                                {{ ($letter->tte_timestamp ?? $letter->signed_at)?->translatedFormat('d F Y - H:i:s') }} WIB
+                                {{ ($letter->tte_timestamp ?? $letter->signed_at)?->translatedFormat('d F Y - H:i:s') }} {{ timezone_label() }}
                             </span>
                         </div>
                         <div>

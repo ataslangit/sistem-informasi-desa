@@ -47,7 +47,7 @@ class FamilyPdfService
             : null;
 
         $downloadedByName = $downloadedBy ? $downloadedBy->name : 'Administrator Kependudukan';
-        $downloadedAt = Carbon::now()->isoFormat('D MMMM Y HH:mm:ss').' WIB';
+        $downloadedAt = Carbon::now()->isoFormat('D MMMM Y HH:mm:ss').' '.timezone_label();
 
         $data = [
             'family' => $family,

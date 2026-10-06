@@ -4,7 +4,7 @@
         <div class="flex items-center space-x-4">
             <span class="inline-flex items-center gap-1.5 font-medium">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                Jam Pelayanan: Senin - Jumat (08.00 - 15.00 WIB)
+                Jam Pelayanan: {{ \App\Models\Setting::get('office_hours', 'Senin - Jumat 08.00 - 15.00 ' . timezone_label()) }}
             </span>
             <span class="hidden md:inline text-emerald-400/40">|</span>
             <span class="hidden md:inline text-emerald-200">

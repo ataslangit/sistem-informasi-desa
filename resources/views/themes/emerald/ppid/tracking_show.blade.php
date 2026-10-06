@@ -105,7 +105,7 @@
         <div class="flex items-center justify-between pb-4 border-b border-slate-100">
             <div>
                 <h2 class="text-base font-bold text-slate-800">Rincian Permohonan Informasi</h2>
-                <span class="text-xs text-slate-400">Diajukan pada: {{ $infoRequest->created_at->format('d M Y, H:i') }} WIB</span>
+                <span class="text-xs text-slate-400">Diajukan pada: {{ $infoRequest->created_at->format('d M Y, H:i') }} {{ timezone_label() }}</span>
             </div>
             <span class="font-mono text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
                 {{ $infoRequest->ticket_number }}
@@ -153,7 +153,7 @@
                         </div>
                     @endif
                     <div class="text-[11px] text-slate-400">
-                        Ditanggapi pada: {{ $infoRequest->responded_at?->format('d/m/Y H:i') }} WIB
+                        Ditanggapi pada: {{ $infoRequest->responded_at?->format('d/m/Y H:i') }} {{ timezone_label() }}
                     </div>
                 </div>
             @elseif($infoRequest->status === 'rejected')
@@ -167,7 +167,7 @@
                         {{ $infoRequest->rejection_reason }}
                     </div>
                     <div class="text-[11px] text-slate-400">
-                        Diputuskan pada: {{ $infoRequest->responded_at?->format('d/m/Y H:i') }} WIB
+                        Diputuskan pada: {{ $infoRequest->responded_at?->format('d/m/Y H:i') }} {{ timezone_label() }}
                     </div>
 
                     <!-- Tombol Pengajuan Keberatan jika ditolak -->

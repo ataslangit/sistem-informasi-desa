@@ -69,7 +69,7 @@
             <div class="relative">
                 <div class="absolute -left-[33px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white ring-2 ring-emerald-500"></div>
                 <div class="font-bold text-xs text-slate-800">1. Pengajuan Surat Dikirim</div>
-                <div class="text-[11px] text-slate-500 mt-0.5">Dikirim pada {{ $letterRequest->created_at->translatedFormat('l, d F Y - H:i') }} WIB</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Dikirim pada {{ $letterRequest->created_at->translatedFormat('l, d F Y - H:i') }} {{ timezone_label() }}</div>
                 <div class="text-xs text-slate-600 mt-2 p-3 bg-slate-50 rounded-xl">
                     Keperluan: <em>"{{ $letterRequest->purpose }}"</em>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="font-bold text-xs text-slate-800">2. Verifikasi Pengantar RT / RW</div>
                 @if($letterRequest->rt_verified_at)
                     <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">
-                        Telah disetujui RT/RW pada {{ $letterRequest->rt_verified_at->translatedFormat('d M Y - H:i') }} WIB
+                        Telah disetujui RT/RW pada {{ $letterRequest->rt_verified_at->translatedFormat('d M Y - H:i') }} {{ timezone_label() }}
                     </div>
                     @if($letterRequest->rt_notes)
                         <div class="text-[11px] text-slate-500 italic mt-1">Catatan: {{ $letterRequest->rt_notes }}</div>
@@ -105,7 +105,7 @@
                 <div class="font-bold text-xs text-slate-800">3. Verifikasi Administrasi Staf Desa</div>
                 @if($letterRequest->staff_verified_at)
                     <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">
-                        Diverifikasi oleh Staf Pelayanan pada {{ $letterRequest->staff_verified_at->translatedFormat('d M Y - H:i') }} WIB
+                        Diverifikasi oleh Staf Pelayanan pada {{ $letterRequest->staff_verified_at->translatedFormat('d M Y - H:i') }} {{ timezone_label() }}
                     </div>
                     @if($letterRequest->staff_notes)
                         <div class="text-[11px] text-slate-500 italic mt-1">Catatan: {{ $letterRequest->staff_notes }}</div>
@@ -126,7 +126,7 @@
                 <div class="font-bold text-xs text-slate-800">4. Tanda Tangan Elektronik (TTE) Kepala Desa</div>
                 @if($letterRequest->kades_approved_at)
                     <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">
-                        Disahkan secara elektronik oleh Kepala Desa pada {{ $letterRequest->kades_approved_at->translatedFormat('d M Y - H:i') }} WIB
+                        Disahkan secara elektronik oleh Kepala Desa pada {{ $letterRequest->kades_approved_at->translatedFormat('d M Y - H:i') }} {{ timezone_label() }}
                     </div>
                 @elseif($letterRequest->status === 'pending_kades')
                     <div class="text-[11px] text-indigo-600 font-semibold mt-0.5">Sedang menunggu penandatanganan elektronik oleh Kepala Desa...</div>

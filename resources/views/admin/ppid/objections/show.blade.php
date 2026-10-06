@@ -66,7 +66,7 @@
                 <span class="text-slate-400 block mb-1">Rincian Kronologi & Argumentasi Pemohon:</span>
                 <div class="p-4 bg-white rounded-xl border border-slate-200 text-slate-800 leading-relaxed">{{ $ppidObjection->objection_detail }}</div>
             </div>
-            <span class="text-[11px] text-slate-400 block">Diajukan pada: {{ $ppidObjection->created_at->format('d M Y, H:i') }} WIB</span>
+            <span class="text-[11px] text-slate-400 block">Diajukan pada: {{ $ppidObjection->created_at->format('d M Y, H:i') }} {{ timezone_label() }}</span>
         </div>
     </div>
 

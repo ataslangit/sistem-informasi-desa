@@ -79,10 +79,11 @@ class SiteSettingManagementTest extends TestCase
             'province_name' => 'Jawa Barat',
             'postal_code' => '16915',
             'village_head_name' => 'H. Mulyadi Saputra, S.Sos.',
+            'timezone' => 'Asia/Makassar',
             'village_address' => 'Jl. Pahlawan Kemerdekaan No. 45 RT 02/RW 03',
             'village_phone' => '021-99887766',
             'village_email' => 'sekretariat@sukamaju.desa.id',
-            'office_hours' => 'Senin - Jumat: 08.00 - 16.00 WIB',
+            'office_hours' => 'Senin - Jumat: 08.00 - 16.00 WITA',
             'app_title' => 'SiDesa - Portal Resmi Sukamaju Mandiri',
             'app_tagline' => 'Bersama Membangun Desa Mandiri, Cerdas, dan Berbudaya',
             'meta_description' => 'Website resmi desa Sukamaju Mandiri untuk transparansi publik dan administrasi.',
@@ -105,13 +106,16 @@ class SiteSettingManagementTest extends TestCase
         $this->assertEquals('Kabupaten Bogor Raya', Setting::get('district_name'));
         $this->assertEquals('Kabupaten Bogor Raya', Setting::get('regency_name'));
         $this->assertEquals('H. Mulyadi Saputra, S.Sos.', Setting::get('village_head_name'));
+        $this->assertEquals('Asia/Makassar', Setting::get('timezone'));
+        $this->assertEquals('Asia/Makassar', config('app.timezone'));
+        $this->assertEquals('WITA', timezone_label());
         $this->assertEquals('sekretariat@sukamaju.desa.id', Setting::get('village_email'));
         $this->assertEquals('SiDesa - Portal Resmi Sukamaju Mandiri', Setting::get('app_title'));
         $this->assertEquals('https://instagram.com/sukamajumandiri', Setting::get('instagram_url'));
     }
 
     /**
-     * Test validasi gagal jika kolom wajib dikosongkan.
+     * Test validasi gagal jika kolom wajib dikosongkan atau zona waktu tidak valid.
      */
     public function test_site_setting_validation_fails_on_invalid_data(): void
     {
@@ -121,6 +125,7 @@ class SiteSettingManagementTest extends TestCase
             'district_name' => '', // Wajib
             'village_email' => 'bukan-email-valid', // Format email
             'app_title' => '', // Wajib
+            'timezone' => 'America/New_York', // Harus zona waktu resmi Indonesia
         ]);
 
         $response->assertSessionHasErrors([
@@ -129,6 +134,22 @@ class SiteSettingManagementTest extends TestCase
             'district_name',
             'village_email',
             'app_title',
+            'timezone',
         ]);
+    }
+
+    /**
+     * Test fungsi helper zona waktu Indonesia (WIB, WITA, WIT).
+     */
+    public function test_indonesian_timezone_helpers(): void
+    {
+        $this->assertEquals('WIB', timezone_label('Asia/Jakarta'));
+        $this->assertEquals('WITA', timezone_label('Asia/Makassar'));
+        $this->assertEquals('WIT', timezone_label('Asia/Jayapura'));
+
+        $timezones = indonesian_timezones();
+        $this->assertArrayHasKey('Asia/Jakarta', $timezones);
+        $this->assertArrayHasKey('Asia/Makassar', $timezones);
+        $this->assertArrayHasKey('Asia/Jayapura', $timezones);
     }
 }
