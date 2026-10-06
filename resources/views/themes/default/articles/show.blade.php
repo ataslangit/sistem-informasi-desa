@@ -34,7 +34,7 @@
     <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-slate-200 text-xs text-slate-500 mb-8">
         <div class="flex items-center space-x-4">
             <span class="font-medium text-slate-700">✍️ Oleh: <strong>{{ $article->author->name ?? 'Aparatur Desa' }}</strong></span>
-            <span>📅 {{ optional($article->published_at)->translatedFormat('l, d F Y - H:i') }} WIB</span>
+            <span>📅 {{ optional($article->published_at)->translatedFormat('l, d F Y - H:i') }} {{ timezone_label() }}</span>
         </div>
         <div class="flex items-center space-x-4">
             <span>⏱️ {{ $article->reading_time }} menit baca</span>

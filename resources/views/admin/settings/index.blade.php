@@ -362,13 +362,30 @@
                     </div>
 
                     <!-- 7. Nama Kepala Desa -->
-                    <div class="md:col-span-2">
+                    <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Kepala Desa (Kades)</label>
                         <input type="text" name="village_head_name" value="{{ old('village_head_name', $settings['village_head_name']) }}"
                                placeholder="Contoh: H. Mulyadi, S.Sos."
                                class="w-full px-3 py-2 border rounded-xl text-xs bg-slate-50/50 focus:bg-white focus:ring-1 focus:ring-blue-500 @error('village_head_name') border-rose-500 @enderror">
                         @error('village_head_name') <p class="text-[11px] text-rose-500 mt-1">{{ $message }}</p> @enderror
-                        <p class="text-[10px] text-slate-400 mt-1">Nama lengkap beserta gelar jabatan Kepala Desa yang menjabat.</p>
+                        <p class="text-[10px] text-slate-400 mt-1">Nama lengkap beserta gelar jabatan Kepala Desa.</p>
+                    </div>
+
+                    <!-- 8. Zona Waktu Wilayah (WIB / WITA / WIT) -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">
+                            Zona Waktu Wilayah (Timezone) <span class="text-rose-500">*</span>
+                        </label>
+                        <select name="timezone" required
+                                class="w-full px-3 py-2 border rounded-xl text-xs bg-white text-slate-800 focus:ring-1 focus:ring-blue-500 border-slate-300 @error('timezone') border-rose-500 @enderror">
+                            @foreach(indonesian_timezones() as $tzKey => $tzLabel)
+                                <option value="{{ $tzKey }}" {{ old('timezone', $settings['timezone'] ?? 'Asia/Jakarta') === $tzKey ? 'selected' : '' }}>
+                                    {{ $tzLabel }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('timezone') <p class="text-[11px] text-rose-500 mt-1">{{ $message }}</p> @enderror
+                        <p class="text-[10px] text-slate-400 mt-1">Digunakan untuk penanggalan surat resmi, audit trail, dan jam layanan desa.</p>
                     </div>
                 </div>
             </div>

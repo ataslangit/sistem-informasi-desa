@@ -112,3 +112,45 @@ if (! function_exists('public_header_menus')) {
         return new \Illuminate\Database\Eloquent\Collection;
     }
 }
+
+if (! function_exists('app_timezone')) {
+    /**
+     * Mengambil identifier zona waktu aktif aplikasi.
+     */
+    function app_timezone(): string
+    {
+        return (string) config('app.timezone', 'Asia/Jakarta');
+    }
+}
+
+if (! function_exists('timezone_label')) {
+    /**
+     * Mengambil singkatan resmi zona waktu Indonesia (WIB, WITA, atau WIT).
+     */
+    function timezone_label(?string $timezone = null): string
+    {
+        $tz = $timezone ?: app_timezone();
+
+        return match ($tz) {
+            'Asia/Makassar', 'Asia/Ujung_Pandang' => 'WITA',
+            'Asia/Jayapura' => 'WIT',
+            default => 'WIB',
+        };
+    }
+}
+
+if (! function_exists('indonesian_timezones')) {
+    /**
+     * Daftar pilihan zona waktu resmi di Indonesia beserta deskripsinya.
+     *
+     * @return array<string, string>
+     */
+    function indonesian_timezones(): array
+    {
+        return [
+            'Asia/Jakarta' => 'WIB - Waktu Indonesia Barat (UTC+7 / Jakarta, Sumatera, Jawa, Kalbar, Kalteng)',
+            'Asia/Makassar' => 'WITA - Waktu Indonesia Tengah (UTC+8 / Bali, NTB, NTT, Kalsel, Kaltim, Kaltara, Sulawesi)',
+            'Asia/Jayapura' => 'WIT - Waktu Indonesia Timur (UTC+9 / Maluku, Papua)',
+        ];
+    }
+}
