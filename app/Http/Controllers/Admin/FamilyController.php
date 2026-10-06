@@ -104,9 +104,14 @@ class FamilyController extends Controller
             }
         }
 
-        $family->load(['headOfFamily', 'members' => function ($q): void {
-            $q->orderByRaw("CASE WHEN family_relationship_status = 'Kepala Keluarga' THEN 1 WHEN family_relationship_status = 'Istri' THEN 2 WHEN family_relationship_status = 'Anak' THEN 3 ELSE 4 END");
-        }]);
+        $family->load([
+            'headOfFamily',
+            'members' => function ($q): void {
+                $q->orderByRaw("CASE WHEN family_relationship_status = 'Kepala Keluarga' THEN 1 WHEN family_relationship_status = 'Istri' THEN 2 WHEN family_relationship_status = 'Anak' THEN 3 ELSE 4 END");
+            },
+            'mutations.resident',
+            'mutations.creator',
+        ]);
 
         // Catat Audit Trail Pembacaan Data Pribadi Kartu Keluarga (UU PDP)
         $family->logAccess('Viewed', [

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Family extends Model
@@ -52,6 +53,15 @@ class Family extends Model
     public function activeMembers(): HasMany
     {
         return $this->hasMany(Resident::class, 'family_id')->where('status', 'active');
+    }
+
+    /**
+     * Relasi ke seluruh log peristiwa dan mutasi kependudukan dari seluruh anggota keluarga ini.
+     */
+    public function mutations(): HasManyThrough
+    {
+        return $this->hasManyThrough(ResidentMutation::class, Resident::class, 'family_id', 'resident_id')
+            ->latest('resident_mutations.date');
     }
 
     /**

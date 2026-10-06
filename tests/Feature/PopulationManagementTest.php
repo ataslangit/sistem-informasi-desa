@@ -295,4 +295,48 @@ class PopulationManagementTest extends TestCase
         $forbiddenResponse = $this->actingAs($rtUser)->get("/admin/families/{$familyRt02->id}/pdf");
         $forbiddenResponse->assertStatus(403);
     }
+
+    /**
+     * Test halaman detail KK dan detail warga menampilkan riwayat mutasi kependudukan.
+     */
+    public function test_family_show_and_resident_show_render_mutation_history(): void
+    {
+        $family = Family::with('members')->whereHas('members')->firstOrFail();
+        $resident = $family->members->first();
+
+        // Buat data mutasi untuk warga tersebut
+        $mutation = \App\Models\ResidentMutation::create([
+            'resident_id' => $resident->id,
+            'type' => 'moved_out',
+            'date' => Carbon::now()->subDays(2)->format('Y-m-d'),
+            'reason' => 'Pindah domisili ke perumahan baru',
+            'target_province' => 'Jawa Barat',
+            'target_regency' => 'Kota Bandung',
+            'target_district' => 'Coblong',
+            'target_village' => 'Dago',
+            'target_address' => 'Jl. Ir. H. Juanda No. 12',
+            'notes' => 'Surat pindah diterbitkan',
+            'reference_number' => 'SKPWNI-001-2026',
+            'created_by' => $this->adminUser->id,
+        ]);
+
+        // Verifikasi relasi HasManyThrough pada model Family
+        $this->assertTrue($family->mutations->contains('id', $mutation->id));
+
+        // 1. Verifikasi halaman detail Kartu Keluarga menampilkan tab mutasi
+        $familyResponse = $this->actingAs($this->adminUser)->get("/admin/families/{$family->id}");
+        $familyResponse->assertStatus(200);
+        $familyResponse->assertSee('Riwayat Mutasi &amp; Peristiwa', false);
+        $familyResponse->assertSee('Pindah Keluar');
+        $familyResponse->assertSee('Pindah domisili ke perumahan baru');
+        $familyResponse->assertSee('SKPWNI-001-2026');
+
+        // 2. Verifikasi halaman detail Warga menampilkan blok riwayat mutasi
+        $residentResponse = $this->actingAs($this->adminUser)->get("/admin/residents/{$resident->id}");
+        $residentResponse->assertStatus(200);
+        $residentResponse->assertSee('Riwayat Mutasi &amp; Peristiwa Warga', false);
+        $residentResponse->assertSee('Pindah Keluar');
+        $residentResponse->assertSee('Pindah domisili ke perumahan baru');
+        $residentResponse->assertSee('SKPWNI-001-2026');
+    }
 }
