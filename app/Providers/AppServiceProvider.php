@@ -33,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
         } catch (\Throwable $e) {
             // Fallback jika database belum siap / belum di-migrate
         }
+        // Daftarkan View Composer untuk Sidebar Dashboard Admin & Portal Warga
+        \Illuminate\Support\Facades\View::composer('admin.layouts.app', \App\Http\ViewComposers\AdminSidebarComposer::class);
     }
 }
