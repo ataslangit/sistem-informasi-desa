@@ -44,7 +44,6 @@ Sistem ini juga dilengkapi dengan API terintegrasi untuk menyinkronkan data agre
 *   **Database:** MySQL 8.0+ / MariaDB
 *   **Frontend (Admin):** Tailwind CSS / Bootstrap 5, Alpine.js (Blade Components)
 *   **Frontend (Tema Publik):** Laravel Blade murni (dapat dikustomisasi penuh oleh pembuat tema)
-*   **Containerization:** Docker & Docker Compose
 
 ---
 
@@ -64,19 +63,19 @@ Pastikan lingkungan lokal Anda memenuhi persyaratan:
 *   PHP >= 8.2 (dengan ekstensi `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `curl`)
 *   Composer >= 2.x
 *   Node.js & NPM
-*   MySQL / MariaDB (atau gunakan Docker)
+*   MySQL / MariaDB
 
-### Opsi 1: Instalasi Lokal (Native)
+### Langkah-langkah Instalasi
 
 **1. Clone Repositori**
 ```bash
 # Menggunakan SSH (Rekomendasi)
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
+git clone git@github.com:TIMA-Codecraft/sidesa.git
 
 # Atau menggunakan HTTPS
-git clone https://github.com/ataslangit/sistem-informasi-desa.git
+git clone https://github.com/TIMA-Codecraft/sidesa.git
 
-cd sistem-informasi-desa
+cd sidesa
 ```
 
 **2. Pasang Dependensi**
@@ -114,37 +113,6 @@ php artisan serve
 npm run dev
 ```
 Akses aplikasi melalui peramban di: `http://localhost:8000`
-
----
-
-### Opsi 2: Menggunakan Docker Compose
-
-Jika Anda ingin menjalankan aplikasi di dalam container Docker:
-
-**1. Clone & Masuk Direktori**
-```bash
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
-cd sistem-informasi-desa
-```
-
-**2. Siapkan File Environment**
-```bash
-cp .env.example .env
-```
-
-**3. Jalankan Container**
-```bash
-docker compose up -d --build
-```
-
-**4. Setup Dependensi & Kunci Aplikasi di Container**
-```bash
-docker compose exec app composer install
-docker compose exec app php artisan key:generate
-docker compose exec app php artisan migrate --seed
-```
-
-Aplikasi dapat diakses melalui port yang dikonfigurasi (default: `http://localhost:8080`).
 
 ---
 

@@ -1,0 +1,15 @@
+{
+  "name": "sidesa-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dokumentasi SiDesa (Sistem Informasi Desa) - VitePress",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

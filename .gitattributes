@@ -7,5 +7,10 @@
 *.php diff=php
 
 /.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+/docs export-ignore
+/tests export-ignore
+.editorconfig export-ignore
+.gitattributes export-ignore
+package.json export-ignore
+phpunit.xml export-ignore
+vite.config.js export-ignore
