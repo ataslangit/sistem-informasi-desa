@@ -175,4 +175,25 @@ class User extends Authenticatable
     {
         return $this->resident?->family?->rw ?? $this->metadata['rw'] ?? null;
     }
+
+    /**
+     * Mengambil Nomor Induk Kependudukan (NIK) akun pengguna (dari relasi Resident atau metadata).
+     */
+    public function getNikAttribute(): ?string
+    {
+        return $this->resident?->nik ?? $this->metadata['nik'] ?? null;
+    }
+
+    /**
+     * NIK tersamar sesuai standar UU PDP No. 27/2022 (misal: 320101******0001).
+     */
+    public function getMaskedNikAttribute(): ?string
+    {
+        $nik = $this->nik;
+        if (! $nik || strlen((string) $nik) !== 16) {
+            return $nik;
+        }
+
+        return substr($nik, 0, 6).'******'.substr($nik, -4);
+    }
 }

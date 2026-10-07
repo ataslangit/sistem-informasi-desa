@@ -125,9 +125,23 @@
                                                 <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-800">Anda</span>
                                             @endif
                                         </div>
-                                        <span class="text-[11px] text-slate-400 block truncate">
-                                            {{ $user->metadata['jabatan'] ?? ($user->metadata['phone'] ?? '-') }}
-                                        </span>
+                                        <div class="flex items-center flex-wrap gap-1.5 mt-0.5">
+                                            @if($user->nik)
+                                                <span class="font-mono text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded text-[10px] border border-slate-200" title="NIK Warga / Aparatur (Disamarkan PDP)">
+                                                    🪪 {{ $user->masked_nik }}
+                                                </span>
+                                            @endif
+                                            @if($user->getAssignedRt())
+                                                <span class="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded text-[10px] font-semibold border border-emerald-200">
+                                                    RT {{ $user->getAssignedRt() }}
+                                                </span>
+                                            @endif
+                                            @if($user->metadata['jabatan'] ?? ($user->metadata['phone'] ?? null))
+                                                <span class="text-[11px] text-slate-400 block truncate">
+                                                    {{ $user->metadata['jabatan'] ?? $user->metadata['phone'] }}
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </td>
