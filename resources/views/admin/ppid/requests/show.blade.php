@@ -34,6 +34,18 @@
         </div>
     @endif
 
+    @if($ppidRequest->objection && $ppidRequest->objection->status === 'upheld')
+        <div class="p-4 bg-emerald-50 border-2 border-emerald-300 text-emerald-900 rounded-2xl text-xs space-y-1 shadow-sm">
+            <div class="flex items-center space-x-2 font-bold text-emerald-800">
+                <span class="text-base">📢</span>
+                <span>Perintah Kepala Desa (Atasan PPID): Keberatan Pemohon DITERIMA</span>
+            </div>
+            <p class="text-emerald-700">
+                Keberatan atas penolakan tiket ini telah disetujui oleh Kepala Desa (Tiket: <a href="{{ route('admin.ppid-objections.show', $ppidRequest->objection) }}" class="underline font-mono font-bold">{{ $ppidRequest->objection->ticket_number }}</a>). PPID Desa diperintahkan untuk segera mengunggah dokumen/jawaban informasi publik di formulir bawah ini.
+            </p>
+        </div>
+    @endif
+
     <!-- Data Pemohon -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Identitas Pemohon Informasi</h3>

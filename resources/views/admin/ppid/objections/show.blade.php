@@ -82,6 +82,15 @@
                 </div>
                 <p class="text-slate-700 leading-relaxed">{{ $ppidObjection->response_text }}</p>
                 <span class="text-[10px] text-slate-400 block">Penandatangan/Pemeriksa: {{ $ppidObjection->responder?->name ?? 'Kepala Desa' }}</span>
+                
+                @if($ppidObjection->status === 'upheld')
+                    <div class="pt-2">
+                        <a href="{{ route('admin.ppid-requests.show', $ppidObjection->request) }}" class="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs space-x-1.5 transition shadow-sm">
+                            <span>📂</span>
+                            <span>Buka & Unggah Dokumen di Permohonan Asal ({{ $ppidObjection->request->ticket_number }})</span>
+                        </a>
+                    </div>
+                @endif
             </div>
         @endif
 

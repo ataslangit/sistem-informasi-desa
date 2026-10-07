@@ -68,6 +68,14 @@ class PpidObjectionController extends Controller
             'responded_by' => auth()->id(),
         ]);
 
+        // Jika keberatan diterima oleh Kepala Desa, perintahkan pembukaan kembali permohonan ke status 'processed'
+        // agar PPID Desa (Sekdes/Petugas) dapat menindaklanjuti dan mengunggah dokumen yang diminta.
+        if ($validated['status'] === 'upheld') {
+            $ppidObjection->request->update([
+                'status' => 'processed',
+            ]);
+        }
+
         return back()->with('success', "Tanggapan resmi Atasan PPID atas tiket keberatan {$ppidObjection->ticket_number} berhasil disimpan.");
     }
 }

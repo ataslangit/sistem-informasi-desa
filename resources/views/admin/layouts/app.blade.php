@@ -63,9 +63,21 @@
                 Pelayanan Surat
             </div>
 
-            <a href="{{ route('admin.letter-requests.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.letter-requests.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                <span x-show="sidebarOpen">Permohonan Surat</span>
+            <a href="{{ route('admin.letter-requests.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.letter-requests.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                    <div class="relative flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        @if(($pendingCounts['letters'] ?? 0) > 0)
+                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['letters'] }} permohonan surat menunggu"></span>
+                        @endif
+                    </div>
+                    <span x-show="sidebarOpen" class="truncate">Permohonan Surat</span>
+                </div>
+                @if(($pendingCounts['letters'] ?? 0) > 0)
+                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu tindak lanjut">
+                        {{ $pendingCounts['letters'] }}
+                    </span>
+                @endif
             </a>
 
             @if(auth()->user()->hasRole(['superadmin', 'perangkat']))
@@ -148,14 +160,38 @@
                 <span x-show="sidebarOpen">Dokumen Publik (DIP)</span>
             </a>
 
-            <a href="{{ route('admin.ppid-requests.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-requests.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
-                <span x-show="sidebarOpen">Permohonan Informasi</span>
+            <a href="{{ route('admin.ppid-requests.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-requests.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                    <div class="relative flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
+                        @if(($pendingCounts['ppid_requests'] ?? 0) > 0)
+                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_requests'] }} permohonan informasi menunggu"></span>
+                        @endif
+                    </div>
+                    <span x-show="sidebarOpen" class="truncate">Permohonan Informasi</span>
+                </div>
+                @if(($pendingCounts['ppid_requests'] ?? 0) > 0)
+                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu verifikasi">
+                        {{ $pendingCounts['ppid_requests'] }}
+                    </span>
+                @endif
             </a>
 
-            <a href="{{ route('admin.ppid-objections.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-objections.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                <span x-show="sidebarOpen">Keberatan Informasi</span>
+            <a href="{{ route('admin.ppid-objections.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-objections.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                    <div class="relative flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                        @if(($pendingCounts['ppid_objections'] ?? 0) > 0)
+                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_objections'] }} keberatan informasi menunggu"></span>
+                        @endif
+                    </div>
+                    <span x-show="sidebarOpen" class="truncate">Keberatan Informasi</span>
+                </div>
+                @if(($pendingCounts['ppid_objections'] ?? 0) > 0)
+                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-rose-500 text-white shadow-sm flex-shrink-0" title="Menunggu tinjauan Atasan PPID">
+                        {{ $pendingCounts['ppid_objections'] }}
+                    </span>
+                @endif
             </a>
 
             <a href="{{ route('admin.ppid-settings.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-settings.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
@@ -169,9 +205,21 @@
                 Layanan Mandiri Warga
             </div>
 
-            <a href="{{ route('citizen.letters.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('citizen.letters.index') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                <span x-show="sidebarOpen">Surat Saya</span>
+            <a href="{{ route('citizen.letters.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('citizen.letters.index') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                    <div class="relative flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
+                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['citizen_letters'] }} permohonan surat sedang diproses"></span>
+                        @endif
+                    </div>
+                    <span x-show="sidebarOpen" class="truncate">Surat Saya</span>
+                </div>
+                @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
+                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Sedang diproses">
+                        {{ $pendingCounts['citizen_letters'] }}
+                    </span>
+                @endif
             </a>
 
             <a href="{{ route('citizen.letters.create') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('citizen.letters.create') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">

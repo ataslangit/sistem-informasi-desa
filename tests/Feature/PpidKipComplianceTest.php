@@ -285,6 +285,61 @@ class PpidKipComplianceTest extends TestCase
         $this->assertEquals('upheld', $freshObjection->status);
         $this->assertStringContainsString('Keberatan DITERIMA', (string) $freshObjection->response_text);
         $this->assertEquals($this->kades->id, $freshObjection->responded_by);
+        // Permohonan asal otomatis kembali ke status 'processed' agar PPID dapat memberikan dokumen
+        $this->assertEquals('processed', $infoRequest->fresh()->status);
+    }
+
+    /**
+     * Test staf PPID dapat menindaklanjuti dan mengunggah berkas setelah keberatan diterima Kades.
+     */
+    public function test_ppid_staff_can_fulfill_request_after_objection_upheld(): void
+    {
+        $infoRequest = InformationRequest::create([
+            'ticket_number' => 'INF-20261005-7777',
+            'applicant_name' => 'Warga Pemohon',
+            'applicant_phone' => '081200000007',
+            'applicant_email' => 'pemohon@example.com',
+            'applicant_address' => 'Dusun 1',
+            'information_requested' => 'Dokumen APBDes',
+            'purpose' => 'Kajian desa',
+            'acquisition_way' => 'online',
+            'status' => 'rejected',
+        ]);
+
+        $objection = InformationObjection::create([
+            'ticket_number' => 'KBR-20261005-0002',
+            'information_request_id' => $infoRequest->id,
+            'reason_code' => 'rejected',
+            'objection_detail' => 'Penolakan tidak berdasar hukum.',
+            'status' => 'submitted',
+        ]);
+
+        // Kades menerima keberatan
+        $this->actingAs($this->kades)->post(route('admin.ppid-objections.respond', $objection), [
+            'status' => 'upheld',
+            'response_text' => 'Keberatan Diterima, berikan dokumen APBDes.',
+        ]);
+
+        $this->assertEquals('processed', $infoRequest->fresh()->status);
+
+        // PPID Desa (Perangkat/Sekdes) membuka form dan mengunggah dokumen pemenuhan
+        $dummyPdf = UploadedFile::fake()->create('dokumen_apbdes.pdf', 500, 'application/pdf');
+        $approveResponse = $this->actingAs($this->perangkat)->post(route('admin.ppid-requests.approve', $infoRequest), [
+            'response_text' => 'Dokumen APBDes diserahkan sesuai putusan Atasan PPID.',
+            'response_file' => $dummyPdf,
+        ]);
+
+        $approveResponse->assertStatus(302);
+        $freshRequest = $infoRequest->fresh();
+        $this->assertEquals('approved', $freshRequest->status);
+        $this->assertNotNull($freshRequest->response_file_path);
+        Storage::disk('public')->assertExists($freshRequest->response_file_path);
+
+        // Pemohon warga melacak tiket permohonan di web publik dan melihat dokumen
+        $trackResponse = $this->get(route('public.ppid.tracking.show', ['ticket' => $infoRequest->ticket_number]));
+        $trackResponse->assertStatus(200);
+        $trackResponse->assertSee('Permohonan Telah Disetujui / Selesai');
+        $trackResponse->assertSee('Unduh Berkas Salinan Informasi');
     }
 
     /**
