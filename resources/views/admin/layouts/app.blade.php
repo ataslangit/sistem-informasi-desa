@@ -261,17 +261,18 @@
 
         <!-- User Profile Bottom Bar -->
         <div class="p-3 border-t border-slate-800 bg-slate-950 flex items-center justify-between">
-            <div class="flex items-center space-x-3 overflow-hidden">
-                <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+            <a href="{{ route('profile.edit') }}" title="Pengaturan Profil Akun" class="flex items-center space-x-3 overflow-hidden group hover:opacity-90 transition flex-1 mr-2">
+                <div class="w-8 h-8 rounded-full bg-blue-600 group-hover:bg-blue-500 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">
                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                 </div>
                 <div x-show="sidebarOpen" class="overflow-hidden">
-                    <div class="text-xs font-medium text-white truncate">{{ auth()->user()->name }}</div>
-                    <div class="text-[10px] text-blue-400 uppercase font-semibold">
-                        {{ auth()->user()->roles->pluck('label')->first() ?? 'Staff' }}
+                    <div class="text-xs font-medium text-white group-hover:text-blue-300 truncate transition">{{ auth()->user()->name }}</div>
+                    <div class="text-[10px] text-blue-400 uppercase font-semibold flex items-center gap-1">
+                        <span>{{ auth()->user()->roles->pluck('label')->first() ?? 'Staff' }}</span>
+                        <span class="text-slate-500 group-hover:text-slate-300 text-[9px]">⚙️</span>
                     </div>
                 </div>
-            </div>
+            </a>
             <form action="{{ route('logout') }}" method="POST" class="inline">
                 @csrf
                 <button type="submit" title="Logout" class="text-slate-400 hover:text-red-400 p-1 rounded">
@@ -292,9 +293,15 @@
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
                     Sistem Aktif
                 </span>
-                <div class="text-sm text-slate-500">
+                <div class="text-sm text-slate-500 hidden md:block">
                     {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
                 </div>
+                <a href="{{ route('profile.edit') }}" class="flex items-center space-x-2 pl-3 border-l border-slate-200 text-slate-700 hover:text-blue-600 transition group" title="Pengaturan Profil">
+                    <div class="w-8 h-8 rounded-full bg-slate-900 group-hover:bg-blue-600 text-white font-bold flex items-center justify-center text-xs transition">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    </div>
+                    <span class="text-xs font-medium hidden sm:inline">{{ auth()->user()->name }}</span>
+                </a>
             </div>
         </header>
 

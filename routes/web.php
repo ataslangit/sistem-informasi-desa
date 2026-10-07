@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\WilayahApiController;
 use App\Http\Controllers\Auth\CitizenRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Citizen\CitizenLetterController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\BudgetController as PublicBudgetController;
 use App\Http\Controllers\Public\GalleryController as PublicGalleryController;
@@ -81,6 +82,13 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+// --- Rute Profil Pengguna (Semua Akun Terotentikasi) ---
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+});
+
 // --- Rute Layanan Mandiri Warga ---
 Route::prefix('citizen')
     ->name('citizen.')
@@ -100,6 +108,7 @@ Route::prefix('admin')
     ->group(function () {
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
 
         // Manajemen Kependudukan (Buku Induk)
         Route::get('/families/{family}/pdf', [FamilyController::class, 'downloadPdf'])->name('families.pdf');
