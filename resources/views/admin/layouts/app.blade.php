@@ -14,9 +14,10 @@
     <aside :class="sidebarOpen ? 'w-64' : 'w-20'" class="bg-slate-900 text-slate-300 flex flex-col transition-all duration-300 z-30">
         <!-- Logo Brand -->
         <div class="h-16 flex items-center justify-between px-4 border-b border-slate-800 bg-slate-950">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 overflow-hidden">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2 overflow-hidden">
                 <span class="text-2xl">🏛️</span>
                 <span x-show="sidebarOpen" class="font-bold text-lg text-white tracking-wide">SiDesa</span>
+                <span x-show="sidebarOpen" class="text-[10px] font-mono font-medium text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">{{ app_version(true) }}</span>
             </a>
             <button @click="sidebarOpen = !sidebarOpen" class="text-slate-400 hover:text-white p-1 rounded focus:outline-none">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -320,6 +321,10 @@
             @endif
 
             @yield('content')
+
+            <footer class="mt-12 pt-4 border-t border-slate-200 text-center text-xs text-slate-400">
+                <span>{{ app_name_version() }} &bull; Sistem Informasi Desa</span>
+            </footer>
         </main>
     </div>
 </body>

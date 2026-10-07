@@ -119,6 +119,7 @@ class InstallerController extends Controller
             'subdistrict_name' => ['required', 'string', 'max:100'],
             'district_name' => ['required', 'string', 'max:100'],
             'province_name' => ['required', 'string', 'max:100'],
+            'timezone' => ['required', 'string', 'in:Asia/Jakarta,Asia/Makassar,Asia/Jayapura'],
             'village_address' => ['nullable', 'string', 'max:255'],
             'postal_code' => ['nullable', 'string', 'max:10'],
             'village_phone' => ['nullable', 'string', 'max:50'],

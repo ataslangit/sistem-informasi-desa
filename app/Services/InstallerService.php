@@ -41,7 +41,7 @@ class InstallerService
     {
         $data = [
             'installed_at' => now()->toIso8601String(),
-            'app_version' => '1.0.0',
+            'app_version' => (string) config('app.version', '1.0.0'),
             'meta' => $meta,
         ];
 
@@ -220,13 +220,16 @@ class InstallerService
     public function runInstallation(array $dbConfig, array $setupData): array
     {
         try {
-            // 1. Simpan konfigurasi database ke .env
+            $timezone = $setupData['timezone'] ?? 'Asia/Jakarta';
+
+            // 1. Simpan konfigurasi database dan zona waktu ke .env
             $this->updateEnvironment([
                 'DB_HOST' => $dbConfig['host'],
                 'DB_PORT' => $dbConfig['port'],
                 'DB_DATABASE' => $dbConfig['database'],
                 'DB_USERNAME' => $dbConfig['username'],
                 'DB_PASSWORD' => $dbConfig['password'],
+                'APP_TIMEZONE' => $timezone,
             ]);
 
             // 2. Set konfigurasi koneksi database runtime
@@ -302,6 +305,11 @@ class InstallerService
                 : ('kantor@'.\Illuminate\Support\Str::slug($setupData['village_name']).'.desa.id');
             Setting::set('village_email', $villageEmail, 'village', 'Email Resmi Kantor Desa');
 
+            // Simpan konfigurasi timezone operasional desa
+            Setting::set('timezone', $timezone, 'general', 'Zona Waktu Wilayah Desa (WIB/WITA/WIT)');
+            date_default_timezone_set($timezone);
+            config(['app.timezone' => $timezone]);
+
             // 8. Muat Data Demo jika dipilih oleh pengguna
             $loadDemo = ! empty($setupData['load_demo_data']);
             if ($loadDemo) {
@@ -321,6 +329,7 @@ class InstallerService
                 'village_name' => $setupData['village_name'],
                 'admin_username' => $setupData['admin_username'],
                 'admin_email' => $setupData['admin_email'],
+                'timezone' => $timezone,
                 'demo_loaded' => $loadDemo,
             ]);
 

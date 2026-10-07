@@ -169,6 +169,7 @@ class InstallerWorkflowTest extends TestCase
             'subdistrict_name' => 'Kecamatan Makmur Sejati',
             'district_name' => 'Kabupaten Sukabumi',
             'province_name' => 'Jawa Barat',
+            'timezone' => 'Asia/Jakarta',
             'village_address' => 'Jl. Pelabuhan Ratu No. 99, Karanganyar',
             'postal_code' => '43364',
             'village_phone' => '081234567899',
@@ -209,6 +210,7 @@ class InstallerWorkflowTest extends TestCase
 
                     Setting::set('village_name', $setupData['village_name']);
                     Setting::set('subdistrict_name', $setupData['subdistrict_name']);
+                    Setting::set('timezone', $setupData['timezone']);
                     Setting::set('village_address', $setupData['village_address']);
                     Setting::set('postal_code', $setupData['postal_code']);
                     Setting::set('village_postal_code', $setupData['postal_code']);
@@ -218,6 +220,7 @@ class InstallerWorkflowTest extends TestCase
                     InstallerService::createLockFile([
                         'village_name' => $setupData['village_name'],
                         'admin_email' => $setupData['admin_email'],
+                        'timezone' => $setupData['timezone'],
                     ]);
 
                     return ['success' => true, 'message' => 'Instalasi sukses'];
@@ -235,6 +238,7 @@ class InstallerWorkflowTest extends TestCase
         ]);
 
         $this->assertEquals('Desa Karanganyar Sejahtera', Setting::get('village_name'));
+        $this->assertEquals('Asia/Jakarta', Setting::get('timezone'));
         $this->assertEquals('Jl. Pelabuhan Ratu No. 99, Karanganyar', Setting::get('village_address'));
         $this->assertEquals('43364', Setting::get('postal_code'));
         $this->assertEquals('081234567899', Setting::get('village_phone'));

@@ -154,3 +154,50 @@ if (! function_exists('indonesian_timezones')) {
         ];
     }
 }
+
+if (! function_exists('app_name')) {
+    /**
+     * Mengambil nama resmi aplikasi (misal: "SiDesa").
+     */
+    function app_name(): string
+    {
+        return (string) config('app.name', 'SiDesa');
+    }
+}
+
+if (! function_exists('app_version')) {
+    /**
+     * Mengambil nomor versi rilis aplikasi SiDesa.
+     *
+     * @param  bool  $withPrefix  Jika true, menyertakan awalan 'v' (misal: "v1.0.0").
+     * @param  bool  $withName  Jika true, menyertakan nama aplikasi (misal: "SiDesa v1.0.0").
+     */
+    function app_version(bool $withPrefix = false, bool $withName = false): string
+    {
+        $version = (string) config('app.version', '1.0.0');
+        $formatted = $withPrefix ? 'v'.$version : $version;
+
+        if ($withName) {
+            $name = app_name();
+
+            return "{$name} ".($withPrefix ? $formatted : 'v'.$version);
+        }
+
+        return $formatted;
+    }
+}
+
+if (! function_exists('app_name_version')) {
+    /**
+     * Menghasilkan nama aplikasi beserta nomor versinya (misal: "SiDesa v1.0.0").
+     *
+     * @param  string|null  $customName  Nama kustom jika ingin menimpa nama default aplikasi.
+     */
+    function app_name_version(?string $customName = null): string
+    {
+        $name = $customName ?: app_name();
+        $version = app_version(withPrefix: true);
+
+        return "{$name} {$version}";
+    }
+}

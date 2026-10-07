@@ -23,7 +23,10 @@
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600 text-white text-3xl shadow-lg shadow-blue-500/20 mb-2">
                 🏛️
             </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">SiDesa Installer</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center justify-center gap-2">
+                <span>SiDesa Installer</span>
+                <span class="text-xs font-mono font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">{{ app_version(true) }}</span>
+            </h1>
             <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
                 Panduan Pemasangan Mandiri Sistem Informasi Administrasi & Layanan Kependudukan Desa
             </p>

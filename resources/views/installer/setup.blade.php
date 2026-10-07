@@ -17,6 +17,7 @@
     postalCode: '{{ old('postal_code', '') }}',
     villagePhone: '{{ old('village_phone', '') }}',
     villageEmail: '{{ old('village_email', '') }}',
+    timezone: '{{ old('timezone', config('app.timezone', 'Asia/Jakarta')) }}',
 
     // Daftar referensi
     provinces: {{ \Illuminate\Support\Js::from($provinces ?? []) }},
@@ -34,6 +35,14 @@
         const p = this.provinces.find(item => item.code === this.provinceCode);
         if (p) {
             this.provinceName = p.name;
+            const code = p.code;
+            if (['81', '82', '91', '92', '93', '94', '95', '96'].includes(code)) {
+                this.timezone = 'Asia/Jayapura';
+            } else if (['51', '52', '53', '63', '64', '65', '71', '72', '73', '74', '75', '76'].includes(code)) {
+                this.timezone = 'Asia/Makassar';
+            } else {
+                this.timezone = 'Asia/Jakarta';
+            }
         }
         this.regencyCode = '';
         this.districtName = '';
@@ -318,6 +327,27 @@
                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
                     @error('province_name')
+                        <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="timezone" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        Zona Waktu Operasional <span class="text-rose-500">*</span>
+                    </label>
+                    <select 
+                        id="timezone" 
+                        name="timezone" 
+                        x-model="timezone" 
+                        required 
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                        @foreach(indonesian_timezones() as $tzKey => $tzDesc)
+                            <option value="{{ $tzKey }}">{{ $tzDesc }}</option>
+                        @endforeach
+                    </select>
+                    <span class="text-[10px] text-slate-400 mt-0.5 block">Zona waktu resmi untuk penanggalan surat, presensi, berita, dan log audit.</span>
+                    @error('timezone')
                         <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
