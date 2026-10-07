@@ -22,3 +22,6 @@ yarn-error.log
 docker-compose.yml
 AGENTS.md
 todo.md
+/docs/node_modules
+/docs/.vitepress/dist
+/docs/.vitepress/cache
