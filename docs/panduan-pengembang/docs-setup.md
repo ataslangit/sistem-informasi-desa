@@ -32,30 +32,9 @@ npm run preview    # pratinjau hasil build
 - Komponen VitePress yang sering dipakai: `::: info`, `::: tip`, `::: warning`, `::: danger`.
 - Per baris sidebar yang ditambahkan di `.vitepress/config.mts` harus punya file Markdown-nya — build akan **gagal** jika tautan patah (itu disengaja).
 
-## Deploy ke GitHub Pages
+## Otomasi Deploy (CI/CD)
 
-Hasil build ada di `docs/.vitepress/dist`. Alur yang disarankan:
-
-1. Buat workflow GitHub Actions baru (mis. `docs.yml`) yang menjalankan:
-
-```yaml
-- uses: actions/checkout@v4
-- uses: actions/setup-node@v4
-  with: { node-version: 20 }
-- run: npm ci
-  working-directory: docs
-- run: npm run build
-  working-directory: docs
-- uses: actions/upload-pages-artifact@v3
-  with: { path: docs/.vitepress/dist }
-- uses: actions/deploy-pages@v4
-```
-
-2. Jika repo di-deploy ke project page (`https://tima-codecraft.github.io/sidesa/`), set `base: '/sidesa/'` di `.vitepress/config.mts`.
-
-::: tip
-Alternatif tanpa Actions: commit folder hasil build ke branch `gh-pages` (mis. dengan `gh-pages -d docs/.vitepress/dist`).
-:::
+Dokumentasi ini otomatis di-build dan di-deploy ke GitHub Pages menggunakan GitHub Actions (`.github/workflows/docs.yml`) setiap kali ada *push* pada branch `develop` atau `master` yang mengubah berkas di folder `docs/`.
 
 ## Menambah Halaman Baru
 
