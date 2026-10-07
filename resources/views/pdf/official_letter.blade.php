@@ -124,13 +124,30 @@
 <body>
     <!-- KOP SURAT -->
     <div class="header">
-        <h3>PEMERINTAH KABUPATEN {{ strtoupper($regencyName) }}</h3>
-        <h3>KECAMATAN {{ strtoupper($districtName) }}</h3>
-        <h2>DESA {{ strtoupper($villageName) }}</h2>
-        <div class="address">
-            {{ $villageAddress }} | Kode Pos: {{ $postalCode }}<br>
-            Telp: {{ $villagePhone }} | Email: {{ $villageEmail }}
-        </div>
+        @php
+            $kopLogo = village_logo_base64();
+        @endphp
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 0;">
+            <tr>
+                @if($kopLogo)
+                    <td style="width: 80px; vertical-align: middle; text-align: center; padding-right: 12px;">
+                        <img src="{{ $kopLogo }}" style="width: 70px; height: auto; max-height: 80px;" alt="Logo Desa">
+                    </td>
+                @endif
+                <td style="vertical-align: middle; text-align: center;">
+                    <h3>PEMERINTAH KABUPATEN {{ strtoupper($regencyName) }}</h3>
+                    <h3>KECAMATAN {{ strtoupper($districtName) }}</h3>
+                    <h2>DESA {{ strtoupper($villageName) }}</h2>
+                    <div class="address">
+                        {{ $villageAddress }} | Kode Pos: {{ $postalCode }}<br>
+                        Telp: {{ $villagePhone }} | Email: {{ $villageEmail }}
+                    </div>
+                </td>
+                @if($kopLogo)
+                    <td style="width: 80px;"></td>
+                @endif
+            </tr>
+        </table>
         <div class="double-line"></div>
     </div>
 

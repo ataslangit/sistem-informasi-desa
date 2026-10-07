@@ -3,9 +3,13 @@
         <div class="flex justify-between items-center h-20">
             <!-- Logo & Brand -->
             <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center text-2xl shadow-sm">
-                    🏛️
-                </div>
+                @if($logo = village_logo())
+                    <img src="{{ $logo }}" alt="Logo {{ \App\Models\Setting::get('village_name', 'Desa') }}" class="w-12 h-12 object-contain rounded-xl p-1 bg-white border border-slate-200/80 shadow-xs">
+                @else
+                    <div class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center text-2xl shadow-sm">
+                        🏛️
+                    </div>
+                @endif
                 <div>
                     <span class="block font-black text-xl text-slate-800 tracking-tight leading-tight">
                         {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}

@@ -15,7 +15,11 @@
         <!-- Logo Brand -->
         <div class="h-16 flex items-center justify-between px-4 border-b border-slate-800 bg-slate-950">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2 overflow-hidden">
-                <span class="text-2xl">🏛️</span>
+                @if($logo = village_logo())
+                    <img src="{{ $logo }}" alt="Logo" class="w-7 h-7 object-contain rounded-lg bg-white p-0.5 shadow-xs flex-shrink-0">
+                @else
+                    <span class="text-2xl flex-shrink-0">🏛️</span>
+                @endif
                 <span x-show="sidebarOpen" class="font-bold text-lg text-white tracking-wide">SiDesa</span>
                 <span x-show="sidebarOpen" class="text-[10px] font-mono font-medium text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">{{ app_version(true) }}</span>
             </a>

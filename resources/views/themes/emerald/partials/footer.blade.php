@@ -5,9 +5,13 @@
             <!-- Kolom 1: Profil & Identitas Desa Asri -->
             <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-md shadow-emerald-500/20">
-                        🌿
-                    </div>
+                    @if($logo = village_logo())
+                        <img src="{{ $logo }}" alt="Logo {{ \App\Models\Setting::get('village_name', 'Desa') }}" class="w-10 h-10 object-contain rounded-xl bg-white/10 p-1 border border-emerald-800 shadow-md">
+                    @else
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-md shadow-emerald-500/20">
+                            🌿
+                        </div>
+                    @endif
                     <div>
                         <h4 class="font-extrabold text-white text-base leading-tight">
                             {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}

@@ -50,4 +50,37 @@ class AppVersionHelperTest extends TestCase
         $this->assertEquals('SiDesa v1.0.0', app_name_version());
         $this->assertEquals('CustomSiDesa v1.0.0', app_name_version('CustomSiDesa'));
     }
+
+    /**
+     * Test village_logo() mengembalikan null jika belum diset, dan URL jika sudah diset.
+     */
+    public function test_village_logo_returns_url_or_null(): void
+    {
+        \App\Models\Setting::set('village_logo', '');
+        $this->assertNull(village_logo());
+
+        \App\Models\Setting::set('village_logo', '/storage/settings/logo.png');
+        $this->assertStringContainsString('storage/settings/logo.png', (string) village_logo());
+    }
+
+    /**
+     * Test village_logo_base64() mengembalikan null jika file tidak ada, dan data URI jika file ada.
+     */
+    public function test_village_logo_base64_returns_data_uri_when_file_exists(): void
+    {
+        \App\Models\Setting::set('village_logo', '');
+        $this->assertNull(village_logo_base64());
+
+        // Buat file dummy PNG 1x1 di storage/app/public/settings/test-logo.png
+        $png1x1 = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+        \Illuminate\Support\Facades\Storage::disk('public')->put('settings/test-logo.png', $png1x1);
+        \App\Models\Setting::set('village_logo', '/storage/settings/test-logo.png');
+
+        $base64 = village_logo_base64();
+        $this->assertNotNull($base64);
+        $this->assertStringStartsWith('data:image/png;base64,', (string) $base64);
+
+        // Cleanup
+        \Illuminate\Support\Facades\Storage::disk('public')->delete('settings/test-logo.png');
+    }
 }

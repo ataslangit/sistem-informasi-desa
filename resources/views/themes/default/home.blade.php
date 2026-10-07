@@ -96,7 +96,11 @@
             </div>
 
             <div class="bg-gradient-to-tr from-sky-100 to-indigo-50 p-8 rounded-3xl border border-sky-100 flex flex-col justify-center items-center text-center">
-                <div class="text-8xl mb-4 select-none">🏛️</div>
+                @if($logo = village_logo())
+                    <img src="{{ $logo }}" alt="Logo {{ \App\Models\Setting::get('village_name', 'Desa') }}" class="w-24 h-24 object-contain mb-4 drop-shadow-md">
+                @else
+                    <div class="text-8xl mb-4 select-none">🏛️</div>
+                @endif
                 <h3 class="font-bold text-xl text-slate-800">{{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}</h3>
                 <p class="text-xs text-slate-500 mt-1">Kode Wilayah: {{ \App\Models\Setting::get('village_code', '3201012001') }}</p>
             </div>
