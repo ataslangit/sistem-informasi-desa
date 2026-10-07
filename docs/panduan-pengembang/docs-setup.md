@@ -34,7 +34,7 @@ npm run preview    # pratinjau hasil build
 
 ## Otomasi Deploy (CI/CD)
 
-Dokumentasi ini otomatis di-build dan di-deploy ke GitHub Pages menggunakan GitHub Actions (`.github/workflows/docs.yml`) setiap kali ada *push* pada branch `develop` atau `master` yang mengubah berkas di folder `docs/`.
+Dokumentasi ini otomatis di-build dan di-deploy ke branch `gh-pages` menggunakan GitHub Actions (`.github/workflows/docs.yml`) setiap kali ada *push* pada branch `develop` yang mengubah berkas di folder `docs/`.
 
 ## Menambah Halaman Baru
 
