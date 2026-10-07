@@ -46,10 +46,10 @@ class SiteSettingController extends Controller
             'meta_keywords' => (string) Setting::get('meta_keywords', 'desa sukamaju, sistem informasi desa, sid, ppid desa, apbdes, surat desa'),
 
             // Media Sosial & Branding
-            'facebook_url' => (string) Setting::get('facebook_url', 'https://facebook.com/desasukamaju'),
-            'instagram_url' => (string) Setting::get('instagram_url', 'https://instagram.com/desasukamaju'),
-            'youtube_url' => (string) Setting::get('youtube_url', 'https://youtube.com/@desasukamaju'),
-            'twitter_url' => (string) Setting::get('twitter_url', 'https://twitter.com/desasukamaju'),
+            'facebook_url' => (string) Setting::get('facebook_url', 'https://facebook.com/'),
+            'instagram_url' => (string) Setting::get('instagram_url', 'https://instagram.com/'),
+            'youtube_url' => (string) Setting::get('youtube_url', 'https://youtube.com/'),
+            'twitter_url' => (string) Setting::get('twitter_url', 'https://twitter.com/'),
             'village_logo' => (string) Setting::get('village_logo', ''),
         ];
 

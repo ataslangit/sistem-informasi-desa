@@ -31,12 +31,27 @@
     <!-- Paper Container Simulation (A4 Look) -->
     <div class="bg-white p-10 sm:p-14 rounded-2xl border border-slate-200 shadow-md font-serif text-slate-900 leading-relaxed max-w-3xl mx-auto">
         <!-- KOP SURAT DESA -->
-        <div class="text-center pb-3 border-b-4 border-double border-slate-900 mb-6">
-            <h3 class="text-xs sm:text-sm font-bold tracking-wider uppercase m-0">PEMERINTAH KABUPATEN {{ strtoupper($regencyName) }}</h3>
-            <h3 class="text-xs sm:text-sm font-bold tracking-wider uppercase m-0">KECAMATAN {{ strtoupper($districtName) }}</h3>
-            <h2 class="text-base sm:text-xl font-extrabold tracking-widest uppercase m-0 mt-1">DESA {{ strtoupper($villageName) }}</h2>
-            <div class="text-[11px] text-slate-600 italic mt-1 font-sans">
-                {{ $villageAddress }} | Kode Pos: {{ $postalCode }} | Telp: {{ $villagePhone }} | Email: {{ $villageEmail }}
+        <div class="pb-3 border-b-4 border-double border-slate-900 mb-6">
+            @php
+                $kopLogo = village_logo();
+            @endphp
+            <div class="flex items-center justify-between gap-4">
+                @if($kopLogo)
+                    <div class="w-20 flex-shrink-0 text-center">
+                        <img src="{{ $kopLogo }}" alt="Logo Desa" class="w-16 h-16 object-contain mx-auto">
+                    </div>
+                @endif
+                <div class="flex-1 text-center">
+                    <h3 class="text-xs sm:text-sm font-bold tracking-wider uppercase m-0">PEMERINTAH KABUPATEN {{ strtoupper($regencyName) }}</h3>
+                    <h3 class="text-xs sm:text-sm font-bold tracking-wider uppercase m-0">KECAMATAN {{ strtoupper($districtName) }}</h3>
+                    <h2 class="text-base sm:text-xl font-extrabold tracking-widest uppercase m-0 mt-1">DESA {{ strtoupper($villageName) }}</h2>
+                    <div class="text-[11px] text-slate-600 italic mt-1 font-sans">
+                        {{ $villageAddress }} | Kode Pos: {{ $postalCode }} | Telp: {{ $villagePhone }} | Email: {{ $villageEmail }}
+                    </div>
+                </div>
+                @if($kopLogo)
+                    <div class="w-20 flex-shrink-0"></div>
+                @endif
             </div>
         </div>
 

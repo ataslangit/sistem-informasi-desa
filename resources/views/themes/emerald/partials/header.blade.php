@@ -27,9 +27,13 @@
         <div class="flex items-center justify-between">
             <!-- Brand & Village Logo -->
             <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform duration-200">
-                    🌿
-                </div>
+                @if($logo = village_logo())
+                    <img src="{{ $logo }}" alt="Logo {{ \App\Models\Setting::get('village_name', 'Desa') }}" class="w-11 h-11 object-contain rounded-2xl p-1 bg-white border border-emerald-100 shadow-md shadow-emerald-600/10 group-hover:scale-105 transition-transform duration-200">
+                @else
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform duration-200">
+                        🌿
+                    </div>
+                @endif
                 <div>
                     <span class="block font-black text-lg text-slate-800 tracking-tight leading-tight group-hover:text-emerald-700 transition">
                         {{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}

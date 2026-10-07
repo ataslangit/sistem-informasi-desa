@@ -4,7 +4,11 @@
             <!-- Col 1: Profil -->
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
-                    <span class="text-3xl">🏛️</span>
+                    @if($logo = village_logo())
+                        <img src="{{ $logo }}" alt="Logo {{ \App\Models\Setting::get('village_name', 'Desa') }}" class="w-10 h-10 object-contain rounded-xl bg-white/10 p-1 border border-slate-700">
+                    @else
+                        <span class="text-3xl">🏛️</span>
+                    @endif
                     <h4 class="text-lg font-bold text-white">{{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}</h4>
                 </div>
                 <p class="text-sm text-slate-400 leading-relaxed">

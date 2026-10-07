@@ -12,7 +12,11 @@
         <!-- Header -->
         <div class="bg-gradient-to-r from-blue-700 to-indigo-800 p-8 text-center text-white">
             <div class="inline-block p-3 bg-white/10 rounded-2xl mb-3 backdrop-blur-sm">
-                <span class="text-4xl">🏛️</span>
+                @if($logo = village_logo())
+                    <img src="{{ $logo }}" alt="Logo" class="w-12 h-12 object-contain mx-auto">
+                @else
+                    <span class="text-4xl">🏛️</span>
+                @endif
             </div>
             <h2 class="text-2xl font-bold tracking-tight">SiDesa</h2>
             <p class="text-blue-100 text-sm mt-1">Portal Layanan & Administrasi Desa Terpadu</p>

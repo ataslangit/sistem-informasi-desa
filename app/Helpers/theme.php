@@ -201,3 +201,59 @@ if (! function_exists('app_name_version')) {
         return "{$name} {$version}";
     }
 }
+
+if (! function_exists('village_logo')) {
+    /**
+     * Mengambil URL logo resmi desa atau null jika belum diunggah.
+     */
+    function village_logo(): ?string
+    {
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                $logo = \App\Models\Setting::get('village_logo');
+                if (! empty($logo)) {
+                    $logoStr = (string) $logo;
+
+                    return str_starts_with($logoStr, 'http') ? $logoStr : asset($logoStr);
+                }
+            }
+        } catch (\Throwable $e) {
+            // Fallback jika database belum siap
+        }
+
+        return null;
+    }
+}
+
+if (! function_exists('village_logo_base64')) {
+    /**
+     * Mengambil konten logo resmi desa dalam format Data URI Base64 (untuk DomPDF / cetak offline).
+     */
+    function village_logo_base64(): ?string
+    {
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                $logo = \App\Models\Setting::get('village_logo');
+                if (! empty($logo)) {
+                    $clean = str_replace('/storage/', '', (string) $logo);
+                    if (\Illuminate\Support\Facades\Storage::disk('public')->exists($clean)) {
+                        $path = \Illuminate\Support\Facades\Storage::disk('public')->path($clean);
+                        $mime = mime_content_type($path) ?: 'image/png';
+
+                        return 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
+                    }
+                    if (file_exists(public_path(ltrim((string) $logo, '/')))) {
+                        $path = public_path(ltrim((string) $logo, '/'));
+                        $mime = mime_content_type($path) ?: 'image/png';
+
+                        return 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
+                    }
+                }
+            }
+        } catch (\Throwable $e) {
+            // Fallback jika database belum siap
+        }
+
+        return null;
+    }
+}
