@@ -169,6 +169,10 @@ class InstallerWorkflowTest extends TestCase
             'subdistrict_name' => 'Kecamatan Makmur Sejati',
             'district_name' => 'Kabupaten Sukabumi',
             'province_name' => 'Jawa Barat',
+            'village_address' => 'Jl. Pelabuhan Ratu No. 99, Karanganyar',
+            'postal_code' => '43364',
+            'village_phone' => '081234567899',
+            'village_email' => 'desa@karanganyar.desa.id',
             'admin_name' => 'Admin Baru Sukamaju',
             'admin_username' => 'admin_baru',
             'admin_email' => 'admin.baru@desa.id',
@@ -205,6 +209,11 @@ class InstallerWorkflowTest extends TestCase
 
                     Setting::set('village_name', $setupData['village_name']);
                     Setting::set('subdistrict_name', $setupData['subdistrict_name']);
+                    Setting::set('village_address', $setupData['village_address']);
+                    Setting::set('postal_code', $setupData['postal_code']);
+                    Setting::set('village_postal_code', $setupData['postal_code']);
+                    Setting::set('village_phone', $setupData['village_phone']);
+                    Setting::set('village_email', $setupData['village_email']);
 
                     InstallerService::createLockFile([
                         'village_name' => $setupData['village_name'],
@@ -226,6 +235,10 @@ class InstallerWorkflowTest extends TestCase
         ]);
 
         $this->assertEquals('Desa Karanganyar Sejahtera', Setting::get('village_name'));
+        $this->assertEquals('Jl. Pelabuhan Ratu No. 99, Karanganyar', Setting::get('village_address'));
+        $this->assertEquals('43364', Setting::get('postal_code'));
+        $this->assertEquals('081234567899', Setting::get('village_phone'));
+        $this->assertEquals('desa@karanganyar.desa.id', Setting::get('village_email'));
     }
 
     /**

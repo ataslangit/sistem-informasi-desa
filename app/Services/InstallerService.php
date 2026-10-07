@@ -281,6 +281,27 @@ class InstallerService
             Setting::set('province_name', $setupData['province_name'], 'village', 'Nama Provinsi');
             Setting::set('app_title', 'SiDesa - Portal Resmi '.$setupData['village_name'], 'general', 'Judul Halaman Web Portal Publik');
 
+            $villageAddress = ! empty($setupData['village_address'])
+                ? $setupData['village_address']
+                : ('Jl. Raya '.$setupData['village_name'].' No. 01, '.$setupData['subdistrict_name'].', '.$setupData['district_name']);
+            Setting::set('village_address', $villageAddress, 'village', 'Alamat Kantor Desa');
+
+            $postalCode = ! empty($setupData['postal_code'])
+                ? $setupData['postal_code']
+                : '16911';
+            Setting::set('postal_code', $postalCode, 'village', 'Kode Pos Kantor Desa');
+            Setting::set('village_postal_code', $postalCode, 'village', 'Kode Pos Kantor Desa');
+
+            $villagePhone = ! empty($setupData['village_phone'])
+                ? $setupData['village_phone']
+                : ($setupData['admin_phone'] ?? '081234567890');
+            Setting::set('village_phone', $villagePhone, 'village', 'Telepon / WhatsApp Kantor Desa');
+
+            $villageEmail = ! empty($setupData['village_email'])
+                ? $setupData['village_email']
+                : ('kantor@'.\Illuminate\Support\Str::slug($setupData['village_name']).'.desa.id');
+            Setting::set('village_email', $villageEmail, 'village', 'Email Resmi Kantor Desa');
+
             // 8. Muat Data Demo jika dipilih oleh pengguna
             $loadDemo = ! empty($setupData['load_demo_data']);
             if ($loadDemo) {

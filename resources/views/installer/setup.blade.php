@@ -6,13 +6,17 @@
 <div class="space-y-6" x-data="{
     // State form wilayah
     provinceCode: '',
-    provinceName: '{{ old('province_name', 'Jawa Barat') }}',
+    provinceName: '{{ old('province_name', '') }}',
     regencyCode: '',
-    districtName: '{{ old('district_name', 'Kabupaten Bogor') }}',
+    districtName: '{{ old('district_name', '') }}',
     subdistrictCode: '',
-    subdistrictName: '{{ old('subdistrict_name', 'Kecamatan Makmur') }}',
-    villageCode: '{{ old('village_code', '32.01.01.2001') }}',
-    villageName: '{{ old('village_name', 'Desa Sukamaju') }}',
+    subdistrictName: '{{ old('subdistrict_name', '') }}',
+    villageCode: '{{ old('village_code', '') }}',
+    villageName: '{{ old('village_name', '') }}',
+    villageAddress: '{{ old('village_address', '') }}',
+    postalCode: '{{ old('postal_code', '') }}',
+    villagePhone: '{{ old('village_phone', '') }}',
+    villageEmail: '{{ old('village_email', '') }}',
 
     // Daftar referensi
     provinces: {{ \Illuminate\Support\Js::from($provinces ?? []) }},
@@ -119,6 +123,9 @@
         if (v) {
             this.villageCode = v.code;
             this.villageName = 'Desa ' + v.name;
+            this.villageAddress = 'Jl. Raya ' + this.villageName + ' No. 01, ' + this.subdistrictName + ', ' + this.districtName;
+            const cleanSlug = v.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+            this.villageEmail = 'kantor@' + (cleanSlug || 'desa') + '.desa.id';
         }
     }
 }">
@@ -311,6 +318,72 @@
                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
                     @error('province_name')
+                        <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="village_address" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        Alamat Kantor Desa <span class="text-rose-500">*</span> <span class="text-slate-400 font-normal text-[11px]">(Ditampilkan di Footer Website & KOP Surat Resmi)</span>
+                    </label>
+                    <textarea 
+                        id="village_address" 
+                        name="village_address" 
+                        rows="2"
+                        x-model="villageAddress" 
+                        placeholder="Contoh: Jl. Raya Desa No. 01, RT 01/RW 02"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    ></textarea>
+                    <span class="text-[10px] text-slate-400 mt-0.5 block">Alamat ini otomatis disinkronkan ke footer tema dan surat resmi desa.</span>
+                    @error('village_address')
+                        <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="postal_code" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        Kode Pos
+                    </label>
+                    <input 
+                        type="text" 
+                        id="postal_code" 
+                        name="postal_code" 
+                        x-model="postalCode" 
+                        placeholder="Contoh: 16911"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                    @error('postal_code')
+                        <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="village_phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        Telepon / WhatsApp Kantor
+                    </label>
+                    <input 
+                        type="text" 
+                        id="village_phone" 
+                        name="village_phone" 
+                        x-model="villagePhone" 
+                        placeholder="Contoh: 081234567890 / 021-88889999"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="village_email" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        Alamat Email Resmi Desa
+                    </label>
+                    <input 
+                        type="email" 
+                        id="village_email" 
+                        name="village_email" 
+                        x-model="villageEmail" 
+                        placeholder="Contoh: kantor@desa.id"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                    @error('village_email')
                         <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
                     @enderror
                 </div>

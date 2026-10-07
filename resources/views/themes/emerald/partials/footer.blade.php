@@ -50,11 +50,11 @@
             <div class="space-y-3">
                 <h5 class="text-xs font-bold text-white uppercase tracking-wider text-emerald-400">Kantor Pemerintah Desa</h5>
                 <p class="text-xs text-emerald-200/80 leading-relaxed">
-                    📍 {{ \App\Models\Setting::get('village_address', 'Jl. Raya Desa Sukamaju No. 01') }}
+                    📍 {{ \App\Models\Setting::get('village_address', 'Jl. Raya Desa No. 01') }}
                 </p>
                 <div class="text-xs text-emerald-200/80 space-y-1">
-                    <p>📞 Telp: {{ \App\Models\Setting::get('village_phone', '021-87654321') }}</p>
-                    <p>✉️ Email: {{ \App\Models\Setting::get('village_email', 'desa@sidesa.id') }}</p>
+                    <p>📞 Telp: {{ \App\Models\Setting::get('village_phone', '-') }}</p>
+                    <p>✉️ Email: {{ \App\Models\Setting::get('village_email', 'kantor@desa.id') }}</p>
                 </div>
                 <div class="pt-2">
                     <span class="inline-block px-3 py-1 rounded-lg bg-emerald-900/80 text-[11px] font-semibold text-teal-300 border border-emerald-700/60">
