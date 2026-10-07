@@ -46,6 +46,24 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// --- Rute Wizard Instalasi Sistem (Mirip WordPress Installer) ---
+Route::prefix('install')->name('installer.')->middleware('redirect.installed')->group(function () {
+    Route::get('/', [\App\Http\Controllers\InstallerController::class, 'index'])->name('index');
+    Route::get('/database', [\App\Http\Controllers\InstallerController::class, 'database'])->name('database');
+    Route::post('/database', [\App\Http\Controllers\InstallerController::class, 'storeDatabase'])->name('database.store');
+    Route::get('/setup', [\App\Http\Controllers\InstallerController::class, 'setup'])->name('setup');
+    Route::post('/process', [\App\Http\Controllers\InstallerController::class, 'process'])->name('process');
+    Route::get('/completed', [\App\Http\Controllers\InstallerController::class, 'completed'])->name('completed');
+
+    // API Wilayah untuk Wizard Installer
+    Route::prefix('wilayah')->name('wilayah.')->group(function () {
+        Route::get('/provinces', [\App\Http\Controllers\InstallerController::class, 'wilayahProvinces'])->name('provinces');
+        Route::get('/regencies/{provinceCode}', [\App\Http\Controllers\InstallerController::class, 'wilayahRegencies'])->name('regencies');
+        Route::get('/districts/{regencyCode}', [\App\Http\Controllers\InstallerController::class, 'wilayahDistricts'])->name('districts');
+        Route::get('/villages/{districtCode}', [\App\Http\Controllers\InstallerController::class, 'wilayahVillages'])->name('villages');
+    });
+});
+
 // --- Rute Publik (Portal Desa, Berita CMS, Halaman Profil, Galeri & Verifikasi Dokumen) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [PublicArticleController::class, 'index'])->name('articles.index');

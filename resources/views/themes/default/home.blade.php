@@ -99,9 +99,6 @@
                 <div class="text-8xl mb-4 select-none">🏛️</div>
                 <h3 class="font-bold text-xl text-slate-800">{{ \App\Models\Setting::get('village_name', 'Desa Sukamaju') }}</h3>
                 <p class="text-xs text-slate-500 mt-1">Kode Wilayah: {{ \App\Models\Setting::get('village_code', '3201012001') }}</p>
-                <div class="mt-6 inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-700 shadow-sm border border-slate-200">
-                    Sistem Multi-Tema Terisolasi
-                </div>
             </div>
         </div>
     </div>
@@ -128,9 +125,9 @@
                 <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="relative h-48 bg-slate-100 overflow-hidden">
-                            <img 
-                                src="{{ $article->cover_image ?: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80' }}" 
-                                alt="{{ $article->title }}" 
+                            <img
+                                src="{{ $article->cover_image ?: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80' }}"
+                                alt="{{ $article->title }}"
                                 class="w-full h-full object-cover transition duration-300 hover:scale-105"
                             >
                             @if($article->categories->isNotEmpty())
