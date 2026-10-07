@@ -26,7 +26,7 @@
     @endif
 
     <!-- Form Card -->
-    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm" x-data="{ selectedRole: '{{ old('role', $user->roles->first()?->name ?? 'perangkat') }}' }">
         <form action="{{ route('admin.users.update', $user) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
@@ -91,6 +91,25 @@
                     </div>
 
                     <div>
+                        <label for="nik" class="block text-xs font-bold text-slate-700 uppercase mb-1">
+                            NIK (16 Digit)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nik" 
+                            name="nik" 
+                            maxlength="16"
+                            value="{{ old('nik', $user->nik) }}" 
+                            placeholder="320101xxxxxxxxxx"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        >
+                        <span class="text-[10px] text-slate-400 mt-0.5 block">16 digit angka identitas resmi kependudukan.</span>
+                        @error('nik')
+                            <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
                         <label for="phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">
                             Nomor WhatsApp / HP
                         </label>
@@ -104,7 +123,7 @@
                         >
                     </div>
 
-                    <div>
+                    <div class="sm:col-span-2">
                         <label for="jabatan" class="block text-xs font-bold text-slate-700 uppercase mb-1">
                             Jabatan / Keterangan
                         </label>
@@ -133,11 +152,12 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     @foreach($roles as $r)
-                        <label class="relative flex items-start p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white hover:bg-slate-50/50 cursor-pointer transition {{ old('role', $currentRoleName) === $r->name ? 'border-blue-500 ring-1 ring-blue-500 bg-blue-50/20' : '' }}">
+                        <label class="relative flex items-start p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white hover:bg-slate-50/50 cursor-pointer transition">
                             <input 
                                 type="radio" 
                                 name="role" 
                                 value="{{ $r->name }}" 
+                                x-model="selectedRole"
                                 {{ old('role', $currentRoleName) === $r->name ? 'checked' : '' }}
                                 class="mt-0.5 text-blue-600 focus:ring-blue-500"
                             >
@@ -151,6 +171,79 @@
                 @error('role')
                     <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
                 @enderror
+            </div>
+
+            <!-- Bagian Khusus: Tautkan Warga (Wajib Jika Role Warga) -->
+            <div x-show="selectedRole === 'warga'" class="p-5 bg-blue-50/70 rounded-3xl border border-blue-200 space-y-3">
+                <div class="flex items-center space-x-2 text-xs font-bold text-blue-900">
+                    <span class="text-base">🪪</span>
+                    <span>Tautkan Data Penduduk Desa (Buku Induk Kependudukan)</span>
+                </div>
+                <p class="text-[11px] text-blue-700 leading-relaxed">
+                    Sesuai ketentuan administrasi, akun peran <b>Warga</b> wajib ditautkan dengan data penduduk desa yang sah dan aktif agar dapat mengajukan permohonan surat layanan mandiri.
+                </p>
+                <div>
+                    <label for="resident_id" class="block text-xs font-bold text-blue-900 uppercase mb-1">
+                        Pilih Penduduk Terdaftar <span class="text-rose-500">*</span>
+                    </label>
+                    <select 
+                        name="resident_id" 
+                        id="resident_id" 
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-blue-300 text-xs bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    >
+                        <option value="">-- Pilih Penduduk (Nama &bull; NIK) --</option>
+                        @foreach($residents as $res)
+                            <option value="{{ $res->id }}" {{ old('resident_id', $user->resident?->id) == $res->id ? 'selected' : '' }}>
+                                {{ $res->name }} &bull; NIK: {{ $res->masked_nik }} (RT {{ $res->family?->rt ?? '-' }} / RW {{ $res->family?->rw ?? '-' }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('resident_id')
+                        <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Bagian Khusus: Wilayah RT (Khusus Role RT) -->
+            <div x-show="selectedRole === 'rt'" class="p-5 bg-emerald-50/70 rounded-3xl border border-emerald-200 space-y-3">
+                <div class="flex items-center space-x-2 text-xs font-bold text-emerald-900">
+                    <span class="text-base">📍</span>
+                    <span>Penetapan Wilayah Tugas Ketua RT / RW</span>
+                </div>
+                <p class="text-[11px] text-emerald-700 leading-relaxed">
+                    Sesuai Permendagri 18/2018 (LKD) & UU PDP, akun Ketua RT hanya berwenang memverifikasi surat dan melihat data warga di wilayah RT yang ditugaskan.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="rt" class="block text-xs font-bold text-emerald-900 uppercase mb-1">
+                            Nomor RT <span class="text-rose-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="rt" 
+                            id="rt" 
+                            value="{{ old('rt', $user->metadata['rt'] ?? ($user->resident?->family?->rt ?? '')) }}" 
+                            placeholder="Contoh: 001"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-emerald-300 text-xs font-mono bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                        >
+                        @error('rt')
+                            <p class="text-xs text-rose-500 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="rw" class="block text-xs font-bold text-emerald-900 uppercase mb-1">
+                            Nomor RW
+                        </label>
+                        <input 
+                            type="text" 
+                            name="rw" 
+                            id="rw" 
+                            value="{{ old('rw', $user->metadata['rw'] ?? ($user->resident?->family?->rw ?? '')) }}" 
+                            placeholder="Contoh: 002"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-emerald-300 text-xs font-mono bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                        >
+                    </div>
+                </div>
             </div>
 
             <!-- Ganti Password (Opsional) -->

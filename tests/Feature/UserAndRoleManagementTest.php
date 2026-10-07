@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Family;
 use App\Models\Permission;
+use App\Models\Resident;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -228,5 +230,122 @@ class UserAndRoleManagementTest extends TestCase
 
         $rolesResponse = $this->actingAs($this->kades)->get('/admin/roles');
         $rolesResponse->assertStatus(403);
+    }
+
+    /**
+     * Test pembuatan akun peran warga gagal jika tidak ditautkan dengan NIK data penduduk desa.
+     */
+    public function test_warga_user_creation_fails_without_resident(): void
+    {
+        $response = $this->actingAs($this->superadmin)->post('/admin/users', [
+            'name' => 'Warga Tanpa NIK',
+            'username' => 'warga_tanpa_nik',
+            'email' => 'warga_tanpa_nik@desa.id',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+            'role' => 'warga',
+        ]);
+
+        $response->assertSessionHasErrors(['resident_id']);
+        $this->assertDatabaseMissing('users', ['username' => 'warga_tanpa_nik']);
+    }
+
+    /**
+     * Test pembuatan akun peran warga berhasil jika ditautkan dengan data penduduk desa yang valid.
+     */
+    public function test_warga_user_creation_succeeds_when_linked_to_resident(): void
+    {
+        $family = Family::first();
+        $resident = Resident::create([
+            'family_id' => $family?->id,
+            'nik' => '3201019999990001',
+            'name' => 'Warga Calon Pengguna',
+            'birth_place' => 'Bogor',
+            'birth_date' => '1992-08-17',
+            'gender' => 'L',
+            'blood_type' => 'A',
+            'religion' => 'Islam',
+            'marital_status' => 'Kawin',
+            'family_relationship_status' => 'Kepala Keluarga',
+            'education_level' => 'SMA/Sederajat',
+            'occupation' => 'Wiraswasta',
+            'nationality' => 'WNI',
+            'status' => 'active',
+        ]);
+
+        $response = $this->actingAs($this->superadmin)->post('/admin/users', [
+            'name' => 'Nama Acak Di Form',
+            'username' => 'warga_terdaftar',
+            'email' => 'warga_terdaftar@desa.id',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+            'role' => 'warga',
+            'resident_id' => $resident->id,
+        ]);
+
+        $response->assertRedirect('/admin/users');
+        $response->assertSessionHas('success');
+
+        $user = User::where('username', 'warga_terdaftar')->firstOrFail();
+        $this->assertTrue($user->hasRole('warga'));
+        $this->assertEquals('Warga Calon Pengguna', $user->name);
+        $this->assertEquals('3201019999990001', $user->nik);
+        $this->assertEquals('320101******0001', $user->masked_nik);
+        $this->assertEquals($user->id, $resident->fresh()->user_id);
+    }
+
+    /**
+     * Test pembuatan akun peran RT menyimpan wilayah tugas RT/RW dan NIK.
+     */
+    public function test_rt_user_creation_stores_rt_rw_and_nik(): void
+    {
+        $response = $this->actingAs($this->superadmin)->post('/admin/users', [
+            'name' => 'Pak RT 05',
+            'username' => 'ketua_rt05',
+            'email' => 'rt05@desa.id',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+            'role' => 'rt',
+            'nik' => '3201015505050001',
+            'rt' => '005',
+            'rw' => '002',
+            'phone' => '081234567899',
+        ]);
+
+        $response->assertRedirect('/admin/users');
+        $response->assertSessionHas('success');
+
+        $user = User::where('username', 'ketua_rt05')->firstOrFail();
+        $this->assertTrue($user->hasRole('rt'));
+        $this->assertEquals('005', $user->getAssignedRt());
+        $this->assertEquals('002', $user->getAssignedRw());
+        $this->assertEquals('3201015505050001', $user->nik);
+        $this->assertEquals('320101******0001', $user->masked_nik);
+    }
+
+    /**
+     * Test tampilan daftar user menampilkan lencana NIK tersamar dan penetapan RT.
+     */
+    public function test_users_index_displays_masked_nik_and_rt_badges(): void
+    {
+        $user = User::create([
+            'name' => 'Ketua RT Teladan',
+            'username' => 'rt_teladan',
+            'email' => 'rt_teladan@desa.id',
+            'password' => Hash::make('password123'),
+            'is_active' => true,
+            'metadata' => [
+                'nik' => '3201018808080001',
+                'rt' => '007',
+                'rw' => '003',
+            ],
+        ]);
+        $user->assignRole('rt');
+
+        $response = $this->actingAs($this->superadmin)->get('/admin/users');
+
+        $response->assertStatus(200);
+        $response->assertSee('320101******0001');
+        $response->assertSee('RT 007');
     }
 }

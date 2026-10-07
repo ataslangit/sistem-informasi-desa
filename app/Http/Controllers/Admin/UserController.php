@@ -53,8 +53,9 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = Role::orderBy('id')->get();
+        $residents = \App\Models\Resident::whereNull('user_id')->orderBy('name')->get();
 
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles', 'residents'));
     }
 
     /**
@@ -68,24 +69,66 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', Password::min(8), 'confirmed'],
             'role' => ['required', 'string', 'exists:roles,name'],
+            'nik' => ['nullable', 'string', 'size:16', 'regex:/^[0-9]{16}$/'],
+            'resident_id' => ['nullable', 'exists:residents,id'],
+            'rt' => ['nullable', 'string', 'max:5'],
+            'rw' => ['nullable', 'string', 'max:5'],
             'phone' => ['nullable', 'string', 'max:25'],
             'jabatan' => ['nullable', 'string', 'max:100'],
             'is_active' => ['nullable', 'boolean'],
+        ], [
+            'nik.size' => 'NIK harus tepat 16 digit angka.',
+            'nik.regex' => 'Format NIK hanya boleh berisi 16 digit angka.',
+        ]);
+
+        // Validasi khusus: Role 'warga' wajib terdaftar NIK-nya di database penduduk desa
+        $resident = null;
+        if ($validated['role'] === 'warga') {
+            if (! empty($validated['resident_id'])) {
+                $resident = \App\Models\Resident::find($validated['resident_id']);
+            } elseif (! empty($validated['nik'])) {
+                $resident = \App\Models\Resident::where('nik', $validated['nik'])->first();
+            }
+
+            if (! $resident) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'resident_id' => 'Akun peran warga wajib ditautkan dengan data penduduk desa (NIK) yang terdaftar di Buku Induk Penduduk.',
+                ]);
+            }
+
+            if ($resident->user_id) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'resident_id' => 'Penduduk atas nama '.$resident->name.' (NIK: '.$resident->nik.') sudah memiliki akun pengguna aktif.',
+                ]);
+            }
+        }
+
+        $nikToSave = $resident?->nik ?? $validated['nik'] ?? null;
+        $rtToSave = $validated['rt'] ?? ($resident?->family?->rt ?? null);
+        $rwToSave = $validated['rw'] ?? ($resident?->family?->rw ?? null);
+
+        $metadata = array_filter([
+            'nik' => $nikToSave,
+            'rt' => $rtToSave,
+            'rw' => $rwToSave,
+            'phone' => $validated['phone'] ?? null,
+            'jabatan' => $validated['jabatan'] ?? null,
         ]);
 
         $user = User::create([
-            'name' => $validated['name'],
+            'name' => $resident ? $resident->name : $validated['name'],
             'username' => strtolower($validated['username']),
             'email' => strtolower($validated['email']),
             'password' => Hash::make($validated['password']),
             'is_active' => $request->boolean('is_active', true),
-            'metadata' => array_filter([
-                'phone' => $validated['phone'] ?? null,
-                'jabatan' => $validated['jabatan'] ?? null,
-            ]),
+            'metadata' => ! empty($metadata) ? $metadata : null,
         ]);
 
         $user->assignRole($validated['role']);
+
+        if ($resident) {
+            $resident->update(['user_id' => $user->id]);
+        }
 
         return redirect()->route('admin.users.index')
             ->with('success', "Akun pengguna {$user->name} berhasil ditambahkan.");
@@ -96,10 +139,14 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        $user->load('roles');
+        $user->load(['roles', 'resident']);
         $roles = Role::orderBy('id')->get();
+        $residents = \App\Models\Resident::whereNull('user_id')
+            ->orWhere('user_id', $user->id)
+            ->orderBy('name')
+            ->get();
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'residents'));
     }
 
     /**
@@ -113,9 +160,16 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
             'password' => ['nullable', 'string', Password::min(8), 'confirmed'],
             'role' => ['required', 'string', 'exists:roles,name'],
+            'nik' => ['nullable', 'string', 'size:16', 'regex:/^[0-9]{16}$/'],
+            'resident_id' => ['nullable', 'exists:residents,id'],
+            'rt' => ['nullable', 'string', 'max:5'],
+            'rw' => ['nullable', 'string', 'max:5'],
             'phone' => ['nullable', 'string', 'max:25'],
             'jabatan' => ['nullable', 'string', 'max:100'],
             'is_active' => ['nullable', 'boolean'],
+        ], [
+            'nik.size' => 'NIK harus tepat 16 digit angka.',
+            'nik.regex' => 'Format NIK hanya boleh berisi 16 digit angka.',
         ]);
 
         $isSelf = $user->id === auth()->id();
@@ -123,15 +177,72 @@ class UserController extends Controller
         // Mencegah superadmin menonaktifkan akunnya sendiri
         $isActive = $isSelf ? true : $request->boolean('is_active', false);
 
+        // Penanganan khusus untuk role 'warga'
+        $resident = null;
+        if ($validated['role'] === 'warga') {
+            if (! empty($validated['resident_id'])) {
+                $resident = \App\Models\Resident::find($validated['resident_id']);
+            } elseif (! empty($validated['nik'])) {
+                $resident = \App\Models\Resident::where('nik', $validated['nik'])->first();
+            } else {
+                $resident = $user->resident;
+            }
+
+            if (! $resident) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'resident_id' => 'Akun peran warga wajib ditautkan dengan data penduduk desa (NIK) yang terdaftar di Buku Induk Penduduk.',
+                ]);
+            }
+
+            if ($resident->user_id && $resident->user_id !== $user->id) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'resident_id' => 'Penduduk atas nama '.$resident->name.' sudah memiliki akun pengguna lain.',
+                ]);
+            }
+        }
+
+        $nikToSave = $resident?->nik ?? ($request->has('nik') ? $validated['nik'] : ($user->metadata['nik'] ?? null));
+        $rtToSave = $validated['rt'] ?? ($resident?->family?->rt ?? ($request->has('rt') ? null : ($user->metadata['rt'] ?? null)));
+        $rwToSave = $validated['rw'] ?? ($resident?->family?->rw ?? ($request->has('rw') ? null : ($user->metadata['rw'] ?? null)));
+
+        $metadata = $user->metadata ?? [];
+
+        if (! empty($nikToSave)) {
+            $metadata['nik'] = $nikToSave;
+        } else {
+            unset($metadata['nik']);
+        }
+
+        if (! empty($rtToSave)) {
+            $metadata['rt'] = $rtToSave;
+        } else {
+            unset($metadata['rt']);
+        }
+
+        if (! empty($rwToSave)) {
+            $metadata['rw'] = $rwToSave;
+        } else {
+            unset($metadata['rw']);
+        }
+
+        if (! empty($validated['phone'])) {
+            $metadata['phone'] = $validated['phone'];
+        } else {
+            unset($metadata['phone']);
+        }
+
+        if (! empty($validated['jabatan'])) {
+            $metadata['jabatan'] = $validated['jabatan'];
+        } else {
+            unset($metadata['jabatan']);
+        }
+
         $updateData = [
-            'name' => $validated['name'],
+            'name' => $resident ? $resident->name : $validated['name'],
             'username' => strtolower($validated['username']),
             'email' => strtolower($validated['email']),
             'is_active' => $isActive,
-            'metadata' => array_filter([
-                'phone' => $validated['phone'] ?? null,
-                'jabatan' => $validated['jabatan'] ?? null,
-            ]),
+            'metadata' => ! empty($metadata) ? $metadata : null,
         ];
 
         if (! empty($validated['password'])) {
@@ -139,6 +250,17 @@ class UserController extends Controller
         }
 
         $user->update($updateData);
+
+        // Sinkronisasi relasi resident
+        if ($resident && $resident->user_id !== $user->id) {
+            // Lepas resident lama jika ganti
+            if ($user->resident && $user->resident->id !== $resident->id) {
+                $user->resident->update(['user_id' => null]);
+            }
+            $resident->update(['user_id' => $user->id]);
+        } elseif ($validated['role'] !== 'warga' && $user->resident) {
+            // Jika role diubah dari warga ke non-warga, biarkan atau lepaskan relasi
+        }
 
         // Mencegah superadmin mencabut role superadmin dari akunnya sendiri jika tidak ada superadmin lain
         if ($isSelf && $user->hasRole('superadmin') && $validated['role'] !== 'superadmin') {
