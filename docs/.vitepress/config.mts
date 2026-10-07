@@ -132,7 +132,7 @@ export default defineConfig({
     lastUpdated: { text: 'Terakhir diperbarui' },
     editLink: {
       text: 'Edit halaman ini di GitHub',
-      pattern: 'https://github.com/ataslangit/sistem-informasi-desa/edit/develop/docs/:path',
+      pattern: 'https://github.com/TIMA-Codecraft/sidesa/edit/develop/docs/:path',
     },
 
     footer: {

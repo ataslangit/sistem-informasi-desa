@@ -54,7 +54,7 @@ sistem-informasi-desa/
 
 ## Konvensi Kode
 
-Mengikuti [AGENTS.md](https://github.com/ataslangit/sistem-informasi-desa/blob/develop/AGENTS.md):
+Mengikuti [AGENTS.md](https://github.com/TIMA-Codecraft/sidesa/blob/develop/AGENTS.md):
 
 - **PSR-12**, strict type declaration + return type hint wajib.
 - Penamaan kelas/variabel/fungsi/tabel: **Bahasa Inggris** (`Resident`, `getResidentByNik()`).

@@ -15,8 +15,8 @@ Bagian ini ditujukan untuk developer yang ingin **menginstal, mengembangkan, dan
 ## Alur Cepat
 
 ```bash
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
-cd sistem-informasi-desa
+git clone git@github.com:TIMA-Codecraft/sidesa.git
+cd sidesa
 composer install && npm install
 cp .env.example .env
 php artisan key:generate

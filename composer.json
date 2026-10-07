@@ -1,15 +1,16 @@
 {
-    "name": "ataslangit/sistem-informasi-desa",
+    "name": "tima-codecraft/sidesa",
     "type": "project",
     "description": "SiDesa (Sistem Informasi Desa) - Aplikasi administrasi kependudukan, pelayanan surat mandiri, dan portal CMS desa multi-tema berbasis Laravel.",
     "keywords": [
         "sidesa",
         "sistem-informasi-desa",
+        "sid",
         "desa",
         "administrasi-desa",
         "laravel"
     ],
-    "homepage": "https://github.com/ataslangit/sistem-informasi-desa",
+    "homepage": "https://github.com/TIMA-Codecraft/sidesa",
     "license": "GPL-3.0-or-later",
     "authors": [
         {

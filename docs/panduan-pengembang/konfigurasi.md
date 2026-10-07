@@ -7,6 +7,7 @@ Seluruh konfigurasi rahasia dan lingkungan berada di berkas `.env` (contoh lengk
 | Variabel | Default | Keterangan |
 | --- | --- | --- |
 | `APP_NAME` | `SiDesa` | Nama aplikasi (tampil di judul & PDF). |
+| `APP_VERSION` | `1.0.0` | Versi rilis aplikasi (helper `app_version()`, `app_name_version()`). |
 | `APP_URL` | `http://localhost` | URL publik; penting untuk link PDF & QR verifikasi. |
 | `APP_DEBUG` | `true` | Set `false` di produksi. |
 | `APP_TIMEZONE` | `Asia/Jakarta` | Zona waktu; helper `timezone_label()` menghasilkan label WIB/WITA/WIT. |

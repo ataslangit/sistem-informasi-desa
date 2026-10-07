@@ -1,7 +1,7 @@
 # API SIK (Roadmap)
 
 ::: warning Status: Dalam Pengembangan
-Modul ini masih pada **Fase 6** pada [roadmap proyek](https://github.com/ataslangit/sistem-informasi-desa/blob/develop/todo.md) — belum diimplementasikan. Halaman ini mendokumentasikan rancangan agar integrator Kecamatan dapat mempersiapkan sisi server mereka.
+Modul ini masih pada **Fase 6** pada roadmap proyek — belum diimplementasikan. Halaman ini mendokumentasikan rancangan agar integrator Kecamatan dapat mempersiapkan sisi server mereka.
 :::
 
 ## Tujuan

@@ -12,7 +12,7 @@ git checkout develop
 git checkout -b feature/fitur-keren
 ```
 
-3. Kembangkan perubahan. Patuhi [konvensi kode](/panduan-pengembang/struktur-proyek#konvensi-kode) dan [AGENTS.md](https://github.com/ataslangit/sistem-informasi-desa/blob/develop/AGENTS.md).
+3. Kembangkan perubahan. Patuhi [konvensi kode](/panduan-pengembang/struktur-proyek#konvensi-kode) dan [AGENTS.md](https://github.com/TIMA-Codecraft/sidesa/blob/develop/AGENTS.md).
 4. Jalankan quality gate:
 
 ```bash
@@ -45,4 +45,4 @@ Dokumentasi ini ditulis dalam Markdown + [VitePress](https://vitepress.dev). Pan
 
 ## Lisensi
 
-Kontribusi didistribusikan di bawah [GPL-3.0-or-later](https://github.com/ataslangit/sistem-informasi-desa/blob/develop/LICENSE).
+Kontribusi didistribusikan di bawah [GPL-3.0-or-later](https://github.com/TIMA-Codecraft/sidesa/blob/develop/LICENSE).

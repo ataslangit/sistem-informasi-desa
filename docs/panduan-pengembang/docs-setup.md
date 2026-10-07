@@ -51,7 +51,7 @@ Hasil build ada di `docs/.vitepress/dist`. Alur yang disarankan:
 - uses: actions/deploy-pages@v4
 ```
 
-2. Jika repo di-deploy ke project page (`https://ataslangit.github.io/sistem-informasi-desa/`), set `base: '/sistem-informasi-desa/'` di `.vitepress/config.mts`.
+2. Jika repo di-deploy ke project page (`https://tima-codecraft.github.io/sidesa/`), set `base: '/sidesa/'` di `.vitepress/config.mts`.
 
 ::: tip
 Alternatif tanpa Actions: commit folder hasil build ke branch `gh-pages` (mis. dengan `gh-pages -d docs/.vitepress/dist`).

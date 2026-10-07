@@ -16,9 +16,9 @@ http://localhost:8000/install
 | --- | --- | --- |
 | 1. Pemeriksaan | `/install` | Cek versi PHP (min. `8.1.0`), ekstensi wajib, dan kesiapan direktori `storage/` + `bootstrap/cache` (lihat `config/installer.php`). |
 | 2. Database | `/install/database` | Form kredensial DB + tombol uji koneksi (`testDatabaseConnection`). |
-| 3. Setup Desa | `/install/setup` | Identitas desa, pemilihan wilayah (Provinsi → Kabupaten → Kecamatan → Desa) via API Wilayah. |
-| 4. Proses | `/install/process` | Menulis `.env` (`updateEnvironment`), `key:generate`, `migrate`, lalu menjalankan seeder inti: `RoleAndPermissionSeeder`, `SettingSeeder`, `LetterTemplateSeeder`, `MenuSeeder`. |
-| 5. Selesai | `/install/completed` | Membuat berkas kunci `storage/installed` berisi metadata instalasi. |
+| 3. Setup Desa | `/install/setup` | Identitas desa, hierarki wilayah (Provinsi → Kabupaten → Kecamatan → Desa) via API Wilayah Kemendagri, akun Super Administrator utama, zona waktu (WIB/WITA/WIT dengan deteksi otomatis provinsi), alamat lengkap kantor desa, kode pos, telepon/WA, email resmi desa, serta opsi muat data contoh/demo. |
+| 4. Proses | `/install/process` | Menulis `.env` (`updateEnvironment` termasuk `APP_TIMEZONE`), `key:generate`, `migrate`, lalu menjalankan seeder inti: `RoleAndPermissionSeeder`, `SettingSeeder`, `LetterTemplateSeeder`, `MenuSeeder`. |
+| 5. Selesai | `/install/completed` | Menulis berkas kunci `storage/installed` berisi metadata instalasi dan versi aplikasi (`app_version`). |
 
 Opsional pada tahap setup, wizard juga menjalankan seeder data contoh (`ResidentAndFamilySeeder`, `ContentSeeder`, `VillageBudgetAndMapSeeder`, `PpidSeeder`).
 

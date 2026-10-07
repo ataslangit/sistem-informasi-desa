@@ -19,7 +19,8 @@ Mengelola identitas desa dan parameter portal (tersimpan di tabel `settings` per
 | Kunci | Fungsi |
 | --- | --- |
 | `app_title`, `app_tagline` | Judul & tagline situs publik |
-| Logo desa | Dipakai pada header portal & PDF (helper `village_logo()`) |
+| `timezone` | Zona waktu wilayah desa (WIB/WITA/WIT) |
+| `village_logo` | Logo resmi desa — ditampilkan pada header portal publik, kartu profil landing page, footer website, KOP surat resmi (PDF & pratinjau), sidebar admin, dan halaman login |
 
 ### Grup: Tema (`theme`)
 

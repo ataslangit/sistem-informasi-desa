@@ -71,12 +71,12 @@ Pastikan lingkungan lokal Anda memenuhi persyaratan:
 **1. Clone Repositori**
 ```bash
 # Menggunakan SSH (Rekomendasi)
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
+git clone git@github.com:TIMA-Codecraft/sidesa.git
 
 # Atau menggunakan HTTPS
-git clone https://github.com/ataslangit/sistem-informasi-desa.git
+git clone https://github.com/TIMA-Codecraft/sidesa.git
 
-cd sistem-informasi-desa
+cd sidesa
 ```
 
 **2. Pasang Dependensi**
@@ -123,8 +123,8 @@ Jika Anda ingin menjalankan aplikasi di dalam container Docker:
 
 **1. Clone & Masuk Direktori**
 ```bash
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
-cd sistem-informasi-desa
+git clone git@github.com:TIMA-Codecraft/sidesa.git
+cd sidesa
 ```
 
 **2. Siapkan File Environment**

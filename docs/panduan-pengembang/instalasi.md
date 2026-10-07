@@ -14,12 +14,12 @@ Berdasarkan `composer.json`: PHP `^8.1` dan Laravel `^10.10`. Pastikan Anda bera
 
 ```bash
 # SSH (rekomendasi)
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
+git clone git@github.com:TIMA-Codecraft/sidesa.git
 
 # atau HTTPS
-git clone https://github.com/ataslangit/sistem-informasi-desa.git
+git clone https://github.com/TIMA-Codecraft/sidesa.git
 
-cd sistem-informasi-desa
+cd sidesa
 git checkout develop
 ```
 
@@ -81,8 +81,8 @@ Buka `http://localhost:8000` (atau `http://localhost:8000/install` untuk [wizard
 Konfigurasi Docker tersedia di `docker-compose.yml` (dua service: `app` PHP-FPM dan `web` Nginx).
 
 ```bash
-git clone git@github.com:ataslangit/sistem-informasi-desa.git
-cd sistem-informasi-desa
+git clone git@github.com:TIMA-Codecraft/sidesa.git
+cd sidesa
 
 cp .env.example .env
 docker compose up -d --build
