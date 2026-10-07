@@ -1,0 +1,37 @@
+import{_ as s,o as n,c as e,ag as t}from"./chunks/framework.Dx86EdC1.js";const m=JSON.parse('{"title":"Struktur Proyek","description":"","frontmatter":{},"headers":[],"relativePath":"panduan-pengembang/struktur-proyek.md","filePath":"panduan-pengembang/struktur-proyek.md","lastUpdated":1791382762000}'),i={name:"panduan-pengembang/struktur-proyek.md"};function p(l,a,r,d,o,c){return n(),e("div",null,[...a[0]||(a[0]=[t(`<h1 id="struktur-proyek" tabindex="-1">Struktur Proyek <a class="header-anchor" href="#struktur-proyek" aria-label="Permalink to &quot;Struktur Proyek&quot;">​</a></h1><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>sistem-informasi-desa/</span></span>
+<span class="line"><span>├── app/</span></span>
+<span class="line"><span>│   ├── Helpers/theme.php          # Helper multi-tema (theme_view, theme_asset, dll.)</span></span>
+<span class="line"><span>│   ├── Http/</span></span>
+<span class="line"><span>│   │   ├── Controllers/</span></span>
+<span class="line"><span>│   │   │   ├── Admin/             # Back-office /admin/*</span></span>
+<span class="line"><span>│   │   │   ├── Auth/              # Login &amp; registrasi warga</span></span>
+<span class="line"><span>│   │   │   ├── Citizen/           # Portal layanan mandiri /citizen/*</span></span>
+<span class="line"><span>│   │   │   ├── Public/            # Portal publik (berita, peta, PPID, verifikasi)</span></span>
+<span class="line"><span>│   │   │   └── InstallerController.php</span></span>
+<span class="line"><span>│   │   ├── Middleware/            # admin, role, redirect.installed, dll.</span></span>
+<span class="line"><span>│   │   └── Kernel.php             # Pendaftaran middleware</span></span>
+<span class="line"><span>│   ├── Models/</span></span>
+<span class="line"><span>│   └── Services/                  # Logika bisnis (InstallerService, WilayahService, ...)</span></span>
+<span class="line"><span>├── bootstrap/app.php</span></span>
+<span class="line"><span>├── config/                        # app, letters, tte, installer, sanctum, ...</span></span>
+<span class="line"><span>├── database/</span></span>
+<span class="line"><span>│   ├── migrations/</span></span>
+<span class="line"><span>│   └── seeders/                   # DatabaseSeeder + 10 seeder modular</span></span>
+<span class="line"><span>├── public/</span></span>
+<span class="line"><span>│   ├── assets_admin/              # Aset dashboard admin</span></span>
+<span class="line"><span>│   └── themes/{nama_tema}/        # Aset tema publik</span></span>
+<span class="line"><span>├── resources/views/</span></span>
+<span class="line"><span>│   ├── admin/                     # Blade dashboard admin (statis)</span></span>
+<span class="line"><span>│   ├── citizen/                   # Portal warga</span></span>
+<span class="line"><span>│   ├── pdf/                       # Template cetak (DomPDF)</span></span>
+<span class="line"><span>│   └── themes/{nama_tema}/        # Blade tema publik (dinamis)</span></span>
+<span class="line"><span>├── routes/</span></span>
+<span class="line"><span>│   ├── web.php                    # Seluruh rute web (publik, admin, citizen, ppid, install)</span></span>
+<span class="line"><span>│   └── api.php                    # Endpoint API (SIK)</span></span>
+<span class="line"><span>├── storage/app|framework|logs</span></span>
+<span class="line"><span>├── tests/</span></span>
+<span class="line"><span>│   ├── Feature/                   # 20+ test integrasi (RBAC, surat, PPID, PDP, ...)</span></span>
+<span class="line"><span>│   └── Unit/</span></span>
+<span class="line"><span>├── .docker/                       # Dockerfile PHP &amp; konfigurasi Nginx</span></span>
+<span class="line"><span>├── docker-compose.yml</span></span>
+<span class="line"><span>└── docs/                          # Dokumentasi VitePress ini</span></span></code></pre></div><h2 id="peta-rute-utama" tabindex="-1">Peta Rute Utama <a class="header-anchor" href="#peta-rute-utama" aria-label="Permalink to &quot;Peta Rute Utama&quot;">​</a></h2><table tabindex="0"><thead><tr><th>Prefix</th><th>Middleware</th><th>Isi</th></tr></thead><tbody><tr><td><code>/install</code></td><td><code>redirect.installed</code></td><td>Wizard instalasi web</td></tr><tr><td><code>/</code></td><td>publik</td><td>Berita, galeri, APBDes, peta, verifikasi surat QR</td></tr><tr><td><code>/ppid</code></td><td>publik</td><td>PPID: dokumen, permohonan, tracking, keberatan</td></tr><tr><td><code>/login</code>, <code>/register</code></td><td><code>guest</code></td><td>Otentikasi &amp; registrasi warga</td></tr><tr><td><code>/citizen/*</code></td><td><code>auth</code></td><td>Layanan mandiri warga (permohonan surat)</td></tr><tr><td><code>/admin/*</code></td><td><code>auth</code>, <code>admin</code></td><td>Dashboard back-office (lihat <a href="/panduan-pengembang/otorisasi.html">Role &amp; Otorisasi</a>)</td></tr><tr><td><code>/admin/users</code>, <code>/admin/roles</code></td><td><code>role:superadmin</code></td><td>Manajemen pengguna &amp; matriks permission</td></tr></tbody></table><h2 id="konvensi-kode" tabindex="-1">Konvensi Kode <a class="header-anchor" href="#konvensi-kode" aria-label="Permalink to &quot;Konvensi Kode&quot;">​</a></h2><p>Mengikuti <a href="https://github.com/TIMA-Codecraft/sidesa/blob/develop/AGENTS.md" target="_blank" rel="noreferrer">AGENTS.md</a>:</p><ul><li><strong>PSR-12</strong>, strict type declaration + return type hint wajib.</li><li>Penamaan kelas/variabel/fungsi/tabel: <strong>Bahasa Inggris</strong> (<code>Resident</code>, <code>getResidentByNik()</code>).</li><li>Komentar business logic, pesan error, dan teks UI: <strong>Bahasa Indonesia</strong>.</li><li>Logika kompleks di <code>Services</code>/<code>Actions</code>, bukan di controller (<em>Fat Controller</em> dilarang).</li><li>Query via Eloquent/Query Builder; <strong>dilarang</strong> <code>DB::raw()</code> dengan input pengguna.</li><li>NIK &amp; No KK selalu <code>VARCHAR(16)</code> string.</li></ul><h2 id="testing" tabindex="-1">Testing <a class="header-anchor" href="#testing" aria-label="Permalink to &quot;Testing&quot;">​</a></h2><div class="language-bash vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">bash</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">php</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> artisan</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> test</span></span></code></pre></div><p>Detail di <a href="/panduan-pengembang/testing.html">Menjalankan &amp; Menguji</a>.</p>`,10)])])}const h=s(i,[["render",p]]);export{m as __pageData,h as default};
