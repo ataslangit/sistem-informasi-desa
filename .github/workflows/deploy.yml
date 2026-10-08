@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - '**/*.php'                      # Deploy jika ada edit di file berekstensi .php di folder manapun
+      - '.github/workflows/deploy.yml'  # Deploy jika file workflow ini diedit
+      - 'composer.json'                 # Deploy jika ada perubahan dependensi/library
+      - 'composer.lock'                 # Deploy jika ada pembaruan versi dependensi
 
 jobs:
   build-and-deploy:
@@ -37,3 +42,11 @@ jobs:
             **/.github*/**
             **/docs*/**
             **/tests*/**
+            .editorconfig
+            .gitattributes
+            .gitignore
+            LICENSE
+            README.md
+            package.json
+            phpunit.xml
+            vite.config.js
