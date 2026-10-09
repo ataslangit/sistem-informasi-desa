@@ -43,6 +43,7 @@ jobs:
             **/.github*/**
             **/docs*/**
             **/tests*/**
+            **/vendor*/**
             .editorconfig
             .gitattributes
             .gitignore
