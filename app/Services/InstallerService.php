@@ -185,7 +185,13 @@ class InstallerService
         }
 
         foreach ($values as $key => $val) {
-            $escapedVal = str_contains((string) $val, ' ') ? '"'.$val.'"' : (string) $val;
+            $valStr = (string) $val;
+            // Bungkus dengan tanda petik jika mengandung karakter khusus, spasi, atau tanda petik
+            if ($valStr !== '' && (preg_match('/[\s#@=\'\"]/', $valStr) || str_starts_with($valStr, '"') || str_ends_with($valStr, '"'))) {
+                $escapedVal = '"'.addcslashes($valStr, '"\\').'"';
+            } else {
+                $escapedVal = $valStr;
+            }
             $pattern = "/^{$key}=.*/m";
 
             if (preg_match($pattern, $content)) {
