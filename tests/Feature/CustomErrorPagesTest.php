@@ -51,7 +51,7 @@ class CustomErrorPagesTest extends TestCase
      */
     public function test_403_page_renders_custom_view(): void
     {
-        $warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
 
         $response = $this->actingAs($warga)->get('/admin/users');
 

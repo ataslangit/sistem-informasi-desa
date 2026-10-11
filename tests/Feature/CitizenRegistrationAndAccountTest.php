@@ -25,7 +25,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
 
         // Cari atau buat resident tanpa akun untuk pengujian
         $family = Family::first();
@@ -186,7 +186,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
 
         $response = $this->actingAs($this->superadmin)
             ->post('/admin/residents/'.$resident->id.'/create-account', [
-                'email' => 'direct.account@sidesa.id',
+                'email' => 'direct.account@sidesa.timacodecraft.com',
                 'password' => 'desa123456',
             ]);
 
@@ -195,7 +195,7 @@ class CitizenRegistrationAndAccountTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'username' => $resident->nik,
-            'email' => 'direct.account@sidesa.id',
+            'email' => 'direct.account@sidesa.timacodecraft.com',
         ]);
 
         $user = User::where('username', $resident->nik)->firstOrFail();

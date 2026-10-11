@@ -26,9 +26,9 @@ class MenuManagementTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->perangkat = User::where('email', 'perangkat@sidesa.id')->firstOrFail();
-        $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->perangkat = User::where('email', 'perangkat@sidesa.timacodecraft.com')->firstOrFail();
+        $this->warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**

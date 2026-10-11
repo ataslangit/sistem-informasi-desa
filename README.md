@@ -17,11 +17,11 @@ Anda dapat mencoba langsung aplikasi SiDesa melalui tautan demo berikut:
 
 * **URL Demo:** [https://sidesa.timacodecraft.com](https://sidesa.timacodecraft.com)
 * **Kredensial Login Default:**
-  * **Super Administrator:** `admin@sidesa.id` / `password`
-  * **Kepala Desa:** `kades@sidesa.id` / `password`
-  * **Perangkat Desa:** `perangkat@sidesa.id` / `password`
-  * **Ketua RT:** `rt@sidesa.id` / `password`
-  * **Warga / Layanan Mandiri:** `warga@sidesa.id` / `password`
+  * **Super Administrator:** `admin@sidesa.timacodecraft.com` / `password`
+  * **Kepala Desa:** `kades@sidesa.timacodecraft.com` / `password`
+  * **Perangkat Desa:** `perangkat@sidesa.timacodecraft.com` / `password`
+  * **Ketua RT:** `rt@sidesa.timacodecraft.com` / `password`
+  * **Warga / Layanan Mandiri:** `warga@sidesa.timacodecraft.com` / `password`
 
 > **Catatan:** Basis data demo direset secara berkala setiap hari pukul 00:00 WIB ke data awal (*clean seed*).
 

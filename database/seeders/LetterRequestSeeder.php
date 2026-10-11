@@ -19,10 +19,10 @@ class LetterRequestSeeder extends Seeder
      */
     public function run(): void
     {
-        $wargaUser = User::where('email', 'warga@sidesa.id')->first();
-        $rtUser = User::where('email', 'rt@sidesa.id')->first();
-        $staffUser = User::where('email', 'perangkat@sidesa.id')->first();
-        $kadesUser = User::where('email', 'kades@sidesa.id')->first();
+        $wargaUser = User::where('email', 'warga@sidesa.timacodecraft.com')->first();
+        $rtUser = User::where('email', 'rt@sidesa.timacodecraft.com')->first();
+        $staffUser = User::where('email', 'perangkat@sidesa.timacodecraft.com')->first();
+        $kadesUser = User::where('email', 'kades@sidesa.timacodecraft.com')->first();
 
         $resident = Resident::where('nik', '3201011508900001')->first();
 

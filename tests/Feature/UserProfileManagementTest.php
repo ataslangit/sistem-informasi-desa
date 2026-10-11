@@ -23,8 +23,8 @@ class UserProfileManagementTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**
@@ -70,7 +70,7 @@ class UserProfileManagementTest extends TestCase
         $response = $this->actingAs($this->superadmin)->put(route('profile.update'), [
             'name' => 'Super Administrator Baru',
             'username' => 'superadmin_baru',
-            'email' => 'admin_baru@sidesa.id',
+            'email' => 'admin_baru@sidesa.timacodecraft.com',
             'phone' => '081299998888',
         ]);
 
@@ -80,7 +80,7 @@ class UserProfileManagementTest extends TestCase
         $this->superadmin->refresh();
         $this->assertEquals('Super Administrator Baru', $this->superadmin->name);
         $this->assertEquals('superadmin_baru', $this->superadmin->username);
-        $this->assertEquals('admin_baru@sidesa.id', $this->superadmin->email);
+        $this->assertEquals('admin_baru@sidesa.timacodecraft.com', $this->superadmin->email);
         $this->assertEquals('081299998888', $this->superadmin->metadata['phone']);
     }
 

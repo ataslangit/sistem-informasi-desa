@@ -29,9 +29,9 @@ class UserAndRoleManagementTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->kades = User::where('email', 'kades@sidesa.id')->firstOrFail();
-        $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->kades = User::where('email', 'kades@sidesa.timacodecraft.com')->firstOrFail();
+        $this->warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**
@@ -70,7 +70,7 @@ class UserAndRoleManagementTest extends TestCase
         $response = $this->actingAs($this->superadmin)->post('/admin/users', [
             'name' => 'Budi Santoso',
             'username' => 'budi_santoso',
-            'email' => 'budi@sidesa.id',
+            'email' => 'budi@sidesa.timacodecraft.com',
             'password' => 'secret1234',
             'password_confirmation' => 'secret1234',
             'role' => 'perangkat',
@@ -84,7 +84,7 @@ class UserAndRoleManagementTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'username' => 'budi_santoso',
-            'email' => 'budi@sidesa.id',
+            'email' => 'budi@sidesa.timacodecraft.com',
             'is_active' => true,
         ]);
 
@@ -102,7 +102,7 @@ class UserAndRoleManagementTest extends TestCase
         $response = $this->actingAs($this->superadmin)->post('/admin/users', [
             'name' => 'Duplikat User',
             'username' => 'superadmin',
-            'email' => 'admin@sidesa.id',
+            'email' => 'admin@sidesa.timacodecraft.com',
             'password' => 'short',
             'password_confirmation' => 'mismatch',
             'role' => 'invalid_role',
@@ -121,7 +121,7 @@ class UserAndRoleManagementTest extends TestCase
         $response = $this->actingAs($this->superadmin)->put('/admin/users/'.$user->id, [
             'name' => 'Ahmad Fauzi, S.E.',
             'username' => 'ahmad_fauzi_se',
-            'email' => 'ahmad.fauzi@sidesa.id',
+            'email' => 'ahmad.fauzi@sidesa.timacodecraft.com',
             'password' => 'newpassword123',
             'password_confirmation' => 'newpassword123',
             'role' => 'kades',

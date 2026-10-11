@@ -17,8 +17,8 @@ class ContentSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::where('email', 'admin@sidesa.id')->first()
-            ?? User::where('email', 'perangkat@sidesa.id')->first();
+        $admin = User::where('email', 'admin@sidesa.timacodecraft.com')->first()
+            ?? User::where('email', 'perangkat@sidesa.timacodecraft.com')->first();
 
         // 1. Kategori Berita & Artikel
         $categoriesData = [

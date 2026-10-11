@@ -23,7 +23,7 @@ class AuditEngineIntegrationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->adminUser = User::where('email', 'admin@sidesa.id')->firstOrFail();
+        $this->adminUser = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**

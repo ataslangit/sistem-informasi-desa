@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: Panduan Operator Desa
       link: /panduan-pengguna/
+    - theme: alt
+      text: 🌐 Coba Demo Online
+      link: https://sidesa.timacodecraft.com
 
 features:
   - title: 👥 Manajemen Kependudukan

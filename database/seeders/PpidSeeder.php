@@ -17,7 +17,7 @@ class PpidSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminUser = User::where('email', 'admin@sidesa.id')->first() ?? User::first();
+        $adminUser = User::where('email', 'admin@sidesa.timacodecraft.com')->first() ?? User::first();
         $userId = $adminUser?->id;
 
         // Pastikan direktori ppid_documents ada di disk public

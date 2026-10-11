@@ -23,7 +23,7 @@ class VillageAssetGisPermendagriComplianceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**
