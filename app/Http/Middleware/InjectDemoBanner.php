@@ -69,9 +69,10 @@ class InjectDemoBanner
             <span>admin@sidesa.timacodecraft.com</span>
             <span style="color: #94a3b8;">password</span>
         </div>
-        <div style="display: flex; gap: 8px;">
-            <a href="/login" style="flex: 1; text-align: center; background: #2563eb; color: #ffffff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">Masuk Admin</a>
-            <a href="https://github.com/TIMA-Codecraft/sidesa" target="_blank" rel="noopener noreferrer" style="text-align: center; background: rgba(255, 255, 255, 0.1); color: #e2e8f0; padding: 6px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">GitHub</a>
+        <div style="display: flex; gap: 6px; align-items: center;">
+            <a href="/login" style="flex: 1; text-align: center; background: #2563eb; color: #ffffff; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">Masuk Admin</a>
+            <a href="https://sidesa-7ch.pages.dev" target="_blank" rel="noopener noreferrer" style="text-align: center; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.3)'" onmouseout="this.style.background='rgba(16, 185, 129, 0.2)'">Dokumentasi</a>
+            <a href="https://github.com/TIMA-Codecraft/sidesa" target="_blank" rel="noopener noreferrer" style="text-align: center; background: rgba(255, 255, 255, 0.1); color: #e2e8f0; padding: 6px 10px; border-radius: 6px; font-size: 11px; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">GitHub</a>
             <button type="button" onclick="document.getElementById('sidesa-demo-badge').style.display='none'" style="background: transparent; border: none; color: #94a3b8; cursor: pointer; padding: 4px 6px; border-radius: 4px; font-size: 14px; line-height: 1;" title="Tutup Banner">&times;</button>
         </div>
     </div>

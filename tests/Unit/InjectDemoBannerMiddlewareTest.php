@@ -43,6 +43,7 @@ class InjectDemoBannerMiddlewareTest extends TestCase
         $content = (string) $response->getContent();
         $this->assertStringContainsString('sidesa-demo-badge', $content);
         $this->assertStringContainsString('admin@sidesa.timacodecraft.com', $content);
+        $this->assertStringContainsString('https://sidesa-7ch.pages.dev', $content);
         $this->assertStringContainsString('Mode Demo Publik', $content);
         $this->assertStringContainsString('</body>', $content);
     }
