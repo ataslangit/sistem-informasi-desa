@@ -48,7 +48,7 @@ class AuthAndRbacTest extends TestCase
      */
     public function test_superadmin_can_access_admin_dashboard(): void
     {
-        $superadmin = User::where('email', 'admin@sidesa.id')->first();
+        $superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->first();
         $this->assertNotNull($superadmin);
 
         $response = $this->actingAs($superadmin)->get('/admin/dashboard');
@@ -61,7 +61,7 @@ class AuthAndRbacTest extends TestCase
      */
     public function test_kades_can_access_admin_dashboard(): void
     {
-        $kades = User::where('email', 'kades@sidesa.id')->first();
+        $kades = User::where('email', 'kades@sidesa.timacodecraft.com')->first();
         $this->assertNotNull($kades);
 
         $response = $this->actingAs($kades)->get('/admin/dashboard');
@@ -74,7 +74,7 @@ class AuthAndRbacTest extends TestCase
      */
     public function test_perangkat_can_access_admin_dashboard(): void
     {
-        $perangkat = User::where('email', 'perangkat@sidesa.id')->first();
+        $perangkat = User::where('email', 'perangkat@sidesa.timacodecraft.com')->first();
         $this->assertNotNull($perangkat);
 
         $response = $this->actingAs($perangkat)->get('/admin/dashboard');
@@ -87,7 +87,7 @@ class AuthAndRbacTest extends TestCase
      */
     public function test_warga_cannot_access_admin_dashboard(): void
     {
-        $warga = User::where('email', 'warga@sidesa.id')->first();
+        $warga = User::where('email', 'warga@sidesa.timacodecraft.com')->first();
         $this->assertNotNull($warga);
 
         $response = $this->actingAs($warga)->get('/admin/dashboard');
@@ -133,7 +133,7 @@ class AuthAndRbacTest extends TestCase
 
         /** @var \Ttpryg\AuthUser\Contracts\UserRepositoryInterface $userRepo */
         $userRepo = app(\Ttpryg\AuthUser\Contracts\UserRepositoryInterface::class);
-        $user = $userRepo->findByEmail('admin@sidesa.id');
+        $user = $userRepo->findByEmail('admin@sidesa.timacodecraft.com');
         $this->assertNotNull($user);
 
         $loadedUser = $rbacManager->loadUserWithRbac($user);

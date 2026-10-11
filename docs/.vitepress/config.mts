@@ -24,6 +24,7 @@ export default defineConfig({
       { text: 'Beranda', link: '/' },
       { text: 'Panduan Pengguna', link: '/panduan-pengguna/' },
       { text: 'Panduan Pengembang', link: '/panduan-pengembang/' },
+      { text: 'Demo Online', link: 'https://sidesa.timacodecraft.com' },
     ],
 
     sidebar: {

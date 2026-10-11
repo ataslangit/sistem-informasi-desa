@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         // 1. Akun Super Administrator
         $superadmin = User::updateOrCreate(
-            ['email' => 'admin@sidesa.id'],
+            ['email' => 'admin@sidesa.timacodecraft.com'],
             [
                 'name' => 'Super Administrator',
                 'username' => 'superadmin',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
 
         // 2. Akun Kepala Desa
         $kades = User::updateOrCreate(
-            ['email' => 'kades@sidesa.id'],
+            ['email' => 'kades@sidesa.timacodecraft.com'],
             [
                 'name' => 'H. Mulyadi, S.Sos.',
                 'username' => 'kades',
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
 
         // 3. Akun Perangkat Desa / Kasi Pelayanan
         $perangkat = User::updateOrCreate(
-            ['email' => 'perangkat@sidesa.id'],
+            ['email' => 'perangkat@sidesa.timacodecraft.com'],
             [
                 'name' => 'Ahmad Fauzi',
                 'username' => 'perangkat',
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
 
         // 4. Akun Ketua RT
         $rt = User::updateOrCreate(
-            ['email' => 'rt@sidesa.id'],
+            ['email' => 'rt@sidesa.timacodecraft.com'],
             [
                 'name' => 'Sutrisno (Ketua RT 001)',
                 'username' => 'ketua_rt',
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
 
         // 5. Akun Contoh Warga
         $warga = User::updateOrCreate(
-            ['email' => 'warga@sidesa.id'],
+            ['email' => 'warga@sidesa.timacodecraft.com'],
             [
                 'name' => 'Budi Santoso',
                 'username' => 'warga',

@@ -29,9 +29,9 @@ class PpidKipComplianceTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->kades = User::where('email', 'kades@sidesa.id')->firstOrFail();
-        $this->perangkat = User::where('email', 'perangkat@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->kades = User::where('email', 'kades@sidesa.timacodecraft.com')->firstOrFail();
+        $this->perangkat = User::where('email', 'perangkat@sidesa.timacodecraft.com')->firstOrFail();
 
         Storage::fake('public');
     }
@@ -353,7 +353,7 @@ class PpidKipComplianceTest extends TestCase
             'ppid_desk_officers' => "Kaur TU\nKasi Pemerintahan",
             'ppid_maklumat' => 'Maklumat pelayanan informasi publik baru sesuai Perki 1/2018.',
             'ppid_phone' => '081122334455',
-            'ppid_email' => 'ppid.baru@sidesa.id',
+            'ppid_email' => 'ppid.baru@sidesa.timacodecraft.com',
             'ppid_service_hours' => 'Senin - Jumat: 08.00 - 15.00 WIB',
         ]);
 

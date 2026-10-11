@@ -25,8 +25,8 @@ class BudgetAndGisIntegrationTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**

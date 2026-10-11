@@ -18,8 +18,8 @@ class ResidentAndFamilySeeder extends Seeder
      */
     public function run(): void
     {
-        $adminUser = User::where('email', 'admin@sidesa.id')->first();
-        $wargaUser = User::where('email', 'warga@sidesa.id')->first();
+        $adminUser = User::where('email', 'admin@sidesa.timacodecraft.com')->first();
+        $wargaUser = User::where('email', 'warga@sidesa.timacodecraft.com')->first();
 
         // --- KELUARGA 1: Keluarga Budi Santoso (Dusun Sukamaju) ---
         $family1 = Family::create([

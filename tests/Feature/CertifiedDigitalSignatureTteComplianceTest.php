@@ -38,9 +38,9 @@ class CertifiedDigitalSignatureTteComplianceTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
-        $this->kades = User::where('email', 'kades@sidesa.id')->firstOrFail();
-        $this->warga = User::where('email', 'warga@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
+        $this->kades = User::where('email', 'kades@sidesa.timacodecraft.com')->firstOrFail();
+        $this->warga = User::where('email', 'warga@sidesa.timacodecraft.com')->firstOrFail();
 
         $this->residentWarga = Resident::where('nik', '3201011508900001')->firstOrFail();
         $this->sktmTemplate = LetterTemplate::where('code', 'SKTM')->firstOrFail();

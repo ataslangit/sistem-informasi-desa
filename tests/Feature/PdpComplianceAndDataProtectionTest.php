@@ -32,7 +32,7 @@ class PdpComplianceAndDataProtectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->superadmin = User::where('email', 'admin@sidesa.id')->firstOrFail();
+        $this->superadmin = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
 
         // 1. Buat dua keluarga di RT berbeda
         $this->familyRt01 = Family::create([
@@ -94,7 +94,7 @@ class PdpComplianceAndDataProtectionTest extends TestCase
         $this->rtUser = User::create([
             'name' => 'Ketua RT 001',
             'username' => 'ketua_rt_001',
-            'email' => 'rt001@sidesa.id',
+            'email' => 'rt001@sidesa.timacodecraft.com',
             'password' => bcrypt('password'),
             'is_active' => true,
             'metadata' => [

@@ -8,17 +8,23 @@
 
 Semua akun terotentikasi dapat mengelola [Profil & Kata Sandi](/panduan-pengguna/pengaturan) di menu profil (halaman `/profile`).
 
-## Akun Demo (Hasil Seeder)
+## Akun & Website Demo
 
-Saat instalasi dengan seeder, tersedia akun berikut — **kata sandi seluruh akun: `password`**:
+Aplikasi SiDesa dapat dicoba langsung di [https://sidesa.timacodecraft.com](https://sidesa.timacodecraft.com).
+
+Tersedia akun demo bawaan berikut (**kata sandi seluruh akun: `password`**):
+
+::: info Reset Rutin Demo
+Data pada website demo direset otomatis setiap hari pukul **00:00 WIB** ke kondisi awal seeder.
+:::
 
 | Email | Username | Role |
 | --- | --- | --- |
-| `admin@sidesa.id` | `superadmin` | Super Administrator |
-| `kades@sidesa.id` | `kades` | Kepala Desa |
-| `perangkat@sidesa.id` | `perangkat` | Perangkat Desa (Kasi Pelayanan) |
-| `rt@sidesa.id` | `ketua_rt` | Ketua RT 001 / RW 002 |
-| `warga@sidesa.id` | `warga` | Warga (Budi Santoso) |
+| `admin@sidesa.timacodecraft.com` | `superadmin` | Super Administrator |
+| `kades@sidesa.timacodecraft.com` | `kades` | Kepala Desa |
+| `perangkat@sidesa.timacodecraft.com` | `perangkat` | Perangkat Desa (Kasi Pelayanan) |
+| `rt@sidesa.timacodecraft.com` | `ketua_rt` | Ketua RT 001 / RW 002 |
+| `warga@sidesa.timacodecraft.com` | `warga` | Warga (Budi Santoso) |
 
 ::: danger Produksi
 Hapus atau ganti seluruh kata sandi akun demo sebelum sistem dipakai nyata. Akun demo dibuat oleh `database/seeders/UserSeeder.php`.

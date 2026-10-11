@@ -22,7 +22,7 @@ class PopulationManagementTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->adminUser = User::where('email', 'admin@sidesa.id')->firstOrFail();
+        $this->adminUser = User::where('email', 'admin@sidesa.timacodecraft.com')->firstOrFail();
     }
 
     /**
@@ -276,7 +276,7 @@ class PopulationManagementTest extends TestCase
         $rtUser = User::create([
             'name' => 'Ketua RT 001 Test',
             'username' => 'ketua_rt_test',
-            'email' => 'rt_test@sidesa.id',
+            'email' => 'rt_test@sidesa.timacodecraft.com',
             'password' => bcrypt('password'),
             'is_active' => true,
             'metadata' => [
