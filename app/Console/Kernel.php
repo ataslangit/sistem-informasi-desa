@@ -12,7 +12,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        if (config('app.demo_mode', false)) {
+            $schedule->command('demo:reset --force')
+                ->dailyAt('00:00')
+                ->timezone(config('app.timezone', 'Asia/Jakarta'))
+                ->withoutOverlapping()
+                ->runInBackground();
+        }
     }
 
     /**

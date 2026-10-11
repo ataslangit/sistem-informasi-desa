@@ -11,6 +11,22 @@ Sistem ini juga dilengkapi dengan API terintegrasi untuk menyinkronkan data agre
 
 ---
 
+## 🌐 Demo Online
+
+Anda dapat mencoba langsung aplikasi SiDesa melalui tautan demo berikut:
+
+* **URL Demo:** [https://sidesa.timacodecraft.com](https://sidesa.timacodecraft.com)
+* **Kredensial Login Default:**
+  * **Super Administrator:** `admin@sidesa.id` / `password`
+  * **Kepala Desa:** `kades@sidesa.id` / `password`
+  * **Perangkat Desa:** `perangkat@sidesa.id` / `password`
+  * **Ketua RT:** `rt@sidesa.id` / `password`
+  * **Warga / Layanan Mandiri:** `warga@sidesa.id` / `password`
+
+> **Catatan:** Basis data demo direset secara berkala setiap hari pukul 00:00 WIB ke data awal (*clean seed*).
+
+---
+
 ## ✨ Fitur Utama
 
 ### 👥 1. Manajemen Kependudukan (Buku Induk)
