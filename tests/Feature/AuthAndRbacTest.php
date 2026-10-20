@@ -127,8 +127,8 @@ class AuthAndRbacTest extends TestCase
      */
     public function test_ttpryg_auth_user_rbac_manager_integration(): void
     {
-        /** @var \Ttpryg\AuthUser\Services\RbacManager $rbacManager */
-        $rbacManager = app(\Ttpryg\AuthUser\Services\RbacManager::class);
+        /** @var \Ttpryg\AuthUser\Application\Service\RbacManager $rbacManager */
+        $rbacManager = app(\Ttpryg\AuthUser\Application\Service\RbacManager::class);
         $this->assertNotNull($rbacManager);
 
         /** @var \Ttpryg\AuthUser\Contracts\UserRepositoryInterface $userRepo */
