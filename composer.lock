@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdbbe969dab399f42211e58b1f903ea4",
+    "content-hash": "3e140910c6e88b5311d5bda3bc1e09e3",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6123,16 +6123,16 @@
         },
         {
             "name": "ttpryg/auth-user",
-            "version": "dev-develop",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ttpryg/auth-user.git",
-                "reference": "70e198f360f97a6d79c13529efc4b38518d65919"
+                "reference": "003c0132dd3c1d6d9cf4c0195071217120eb076c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ttpryg/auth-user/zipball/70e198f360f97a6d79c13529efc4b38518d65919",
-                "reference": "70e198f360f97a6d79c13529efc4b38518d65919",
+                "url": "https://api.github.com/repos/ttpryg/auth-user/zipball/003c0132dd3c1d6d9cf4c0195071217120eb076c",
+                "reference": "003c0132dd3c1d6d9cf4c0195071217120eb076c",
                 "shasum": ""
             },
             "require": {
@@ -6145,7 +6145,6 @@
                 "phpunit/phpunit": "^10.0",
                 "rector/rector": "^2.6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6166,9 +6165,9 @@
             "description": "A framework-agnostic standalone user management and authentication library for PHP.",
             "support": {
                 "issues": "https://github.com/ttpryg/auth-user/issues",
-                "source": "https://github.com/ttpryg/auth-user/tree/develop"
+                "source": "https://github.com/ttpryg/auth-user/tree/2.0.0"
             },
-            "time": "2026-10-20T22:02:18+00:00"
+            "time": "2026-10-20T23:26:57+00:00"
         },
         {
             "name": "ttpryg/content-engine",
@@ -9032,9 +9031,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "ttpryg/auth-user": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
