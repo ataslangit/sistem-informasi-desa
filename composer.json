@@ -26,7 +26,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "ttpryg/audit-engine": "^1.0",
+        "ttpryg/audit-engine": "^2.0",
         "ttpryg/auth-user": "^1.1",
         "ttpryg/content-engine": "^1.1"
     },

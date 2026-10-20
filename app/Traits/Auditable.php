@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Throwable;
-use Ttpryg\AuditEngine\Services\AuditService;
+use Ttpryg\AuditEngine\Application\DTO\LogAuditRequest;
+use Ttpryg\AuditEngine\Application\Service\AuditService;
+use Ttpryg\AuditEngine\Domain\ValueObject\AuditLogContext;
 
 trait Auditable
 {
@@ -102,16 +104,18 @@ trait Auditable
                 $userAgent = $req?->userAgent();
             }
 
-            $auditService->log(
+            $auditService->log(new LogAuditRequest(
                 eventName: $eventName,
                 entityType: $entityType,
                 entityId: $entityId,
                 oldValues: $oldValues,
                 newValues: $newValues,
-                actorId: $actorId,
-                ipAddress: $ipAddress,
-                userAgent: $userAgent
-            );
+                context: new AuditLogContext(
+                    actorId: $actorId,
+                    ipAddress: $ipAddress,
+                    userAgent: $userAgent,
+                ),
+            ));
         } catch (Throwable $e) {
             Log::warning("Gagal mencatat audit log: {$e->getMessage()}", [
                 'entity' => static::class,
@@ -148,16 +152,18 @@ trait Auditable
                 $userAgent = $req?->userAgent();
             }
 
-            $auditService->log(
+            $auditService->log(new LogAuditRequest(
                 eventName: $eventName,
                 entityType: $entityType,
                 entityId: $entityId,
                 oldValues: null,
                 newValues: ! empty($details) ? $details : ['accessed_at' => now()->toIso8601String()],
-                actorId: $actorId,
-                ipAddress: $ipAddress,
-                userAgent: $userAgent
-            );
+                context: new AuditLogContext(
+                    actorId: $actorId,
+                    ipAddress: $ipAddress,
+                    userAgent: $userAgent,
+                ),
+            ));
         } catch (Throwable $e) {
             Log::warning("Gagal mencatat audit log akses: {$e->getMessage()}", [
                 'entity' => static::class,

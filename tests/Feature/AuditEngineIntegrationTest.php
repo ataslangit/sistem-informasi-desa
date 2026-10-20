@@ -10,7 +10,7 @@ use App\Models\Resident;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Ttpryg\AuditEngine\Services\AuditService;
+use Ttpryg\AuditEngine\Application\Service\AuditService;
 
 class AuditEngineIntegrationTest extends TestCase
 {
