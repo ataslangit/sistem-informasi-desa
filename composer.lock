@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb0bfd0f71733436bbab9e19f30c2845",
+    "content-hash": "3aabf6d6dc4ba3f566e09e7925c369a3",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6070,31 +6070,37 @@
         },
         {
             "name": "ttpryg/audit-engine",
-            "version": "1.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ttpryg/audit-engine.git",
-                "reference": "719f554564196dd1ee4f0cf460489ae253592028"
+                "reference": "3644ff13dd2fc04e5246908d6fc3c4af6ad048b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ttpryg/audit-engine/zipball/719f554564196dd1ee4f0cf460489ae253592028",
-                "reference": "719f554564196dd1ee4f0cf460489ae253592028",
+                "url": "https://api.github.com/repos/ttpryg/audit-engine/zipball/3644ff13dd2fc04e5246908d6fc3c4af6ad048b2",
+                "reference": "3644ff13dd2fc04e5246908d6fc3c4af6ad048b2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "ttpryg/event-dispatcher": "^1.0"
+                "psr/event-dispatcher": "^1.0",
+                "ttpryg/database-migrator": "^1.0"
             },
             "require-dev": {
                 "laravel/pint": "^1.20",
+                "phpstan/phpstan": "^2.3",
                 "phpunit/phpunit": "^10.0",
                 "rector/rector": "^2.6"
+            },
+            "suggest": {
+                "ttpryg/event-dispatcher": "Provides a lightweight PSR-14 event dispatcher implementation."
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Ttpryg\\AuditEngine\\": "src/"
+                    "Ttpryg\\AuditEngine\\": "src/",
+                    "Ttpryg\\AuditEngine\\Infrastructure\\": "infrastructure/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6104,15 +6110,16 @@
             "authors": [
                 {
                     "name": "Toto",
-                    "email": "totoprayogo1916@gmail.com"
+                    "email": "totoprayogo1916@gmail.com",
+                    "homepage": "https://ttpryg.my.id"
                 }
             ],
             "description": "A framework-agnostic standalone audit logging engine library for PHP.",
             "support": {
                 "issues": "https://github.com/ttpryg/audit-engine/issues",
-                "source": "https://github.com/ttpryg/audit-engine/tree/1.0.2"
+                "source": "https://github.com/ttpryg/audit-engine/tree/2.0.0"
             },
-            "time": "2026-09-21T16:16:21+00:00"
+            "time": "2026-10-20T15:15:51+00:00"
         },
         {
             "name": "ttpryg/auth-user",
@@ -6206,6 +6213,61 @@
                 "source": "https://github.com/ttpryg/content-engine/tree/1.1.2"
             },
             "time": "2026-09-21T15:16:30+00:00"
+        },
+        {
+            "name": "ttpryg/database-migrator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ttpryg/database-migrator.git",
+                "reference": "b65f2330164594d380af50e374736f5de1bd1c6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ttpryg/database-migrator/zipball/b65f2330164594d380af50e374736f5de1bd1c6a",
+                "reference": "b65f2330164594d380af50e374736f5de1bd1c6a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20",
+                "phpstan/phpstan": "^2.3",
+                "phpunit/phpunit": "^10.0",
+                "rector/rector": "^2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ttpryg\\DatabaseMigrator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toto",
+                    "email": "totoprayogo1916@gmail.com",
+                    "homepage": "https://ttpryg.my.id"
+                }
+            ],
+            "description": "Framework-agnostic PDO schema migration runner with tracking and rollback for PHP 8.1+.",
+            "keywords": [
+                "database",
+                "migration",
+                "migrator",
+                "pdo",
+                "schema"
+            ],
+            "support": {
+                "issues": "https://github.com/ttpryg/database-migrator/issues",
+                "source": "https://github.com/ttpryg/database-migrator/tree/1.0.0"
+            },
+            "time": "2026-10-20T13:21:29+00:00"
         },
         {
             "name": "ttpryg/event-dispatcher",

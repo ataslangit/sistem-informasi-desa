@@ -6,9 +6,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use Ttpryg\AuditEngine\Contracts\AuditRepositoryInterface;
-use Ttpryg\AuditEngine\Services\AuditService;
-use Ttpryg\AuditEngine\Storage\PdoAuditStorage;
+use Ttpryg\AuditEngine\Application\Service\AuditService;
+use Ttpryg\AuditEngine\Domain\Repository\AuditRepositoryInterface;
+use Ttpryg\AuditEngine\Infrastructure\Persistence\Pdo\PdoAuditStorage;
 
 class AuditEngineServiceProvider extends ServiceProvider
 {
