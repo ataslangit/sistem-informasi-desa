@@ -6123,16 +6123,16 @@
         },
         {
             "name": "ttpryg/auth-user",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ttpryg/auth-user.git",
-                "reference": "cb8e331ba1b6c8b8b7c63e72a3a09c5bd44e86d6"
+                "reference": "1891cdb718fba3469499553c70d168651439a877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ttpryg/auth-user/zipball/cb8e331ba1b6c8b8b7c63e72a3a09c5bd44e86d6",
-                "reference": "cb8e331ba1b6c8b8b7c63e72a3a09c5bd44e86d6",
+                "url": "https://api.github.com/repos/ttpryg/auth-user/zipball/1891cdb718fba3469499553c70d168651439a877",
+                "reference": "1891cdb718fba3469499553c70d168651439a877",
                 "shasum": ""
             },
             "require": {
@@ -6163,9 +6163,9 @@
             "description": "A framework-agnostic standalone user management and authentication library for PHP.",
             "support": {
                 "issues": "https://github.com/ttpryg/auth-user/issues",
-                "source": "https://github.com/ttpryg/auth-user/tree/1.1.1"
+                "source": "https://github.com/ttpryg/auth-user/tree/1.2.0"
             },
-            "time": "2026-09-21T15:08:30+00:00"
+            "time": "2026-10-15T17:53:04+00:00"
         },
         {
             "name": "ttpryg/content-engine",
@@ -6271,16 +6271,16 @@
         },
         {
             "name": "ttpryg/event-dispatcher",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ttpryg/event-dispatcher.git",
-                "reference": "16d777b8ceeacd527061d85d7b7df9035045eddd"
+                "reference": "f6afeafb1525eca979039c10ec8daf1035a84045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ttpryg/event-dispatcher/zipball/16d777b8ceeacd527061d85d7b7df9035045eddd",
-                "reference": "16d777b8ceeacd527061d85d7b7df9035045eddd",
+                "url": "https://api.github.com/repos/ttpryg/event-dispatcher/zipball/f6afeafb1525eca979039c10ec8daf1035a84045",
+                "reference": "f6afeafb1525eca979039c10ec8daf1035a84045",
                 "shasum": ""
             },
             "require": {
@@ -6311,9 +6311,9 @@
             "description": "PSR-14 Compliant Event Dispatcher & Listener Provider standalone PHP 8.1+ library",
             "support": {
                 "issues": "https://github.com/ttpryg/event-dispatcher/issues",
-                "source": "https://github.com/ttpryg/event-dispatcher/tree/1.0.0"
+                "source": "https://github.com/ttpryg/event-dispatcher/tree/1.1.0"
             },
-            "time": "2026-09-21T14:33:46+00:00"
+            "time": "2026-10-18T06:25:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
