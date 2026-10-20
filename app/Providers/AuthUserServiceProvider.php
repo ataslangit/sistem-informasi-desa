@@ -6,13 +6,13 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Ttpryg\AuthUser\Application\Service\RbacManager;
 use Ttpryg\AuthUser\Contracts\RbacRepositoryInterface;
 use Ttpryg\AuthUser\Contracts\TokenRepositoryInterface;
 use Ttpryg\AuthUser\Contracts\UserRepositoryInterface;
-use Ttpryg\AuthUser\Repositories\PdoRbacRepository;
-use Ttpryg\AuthUser\Repositories\PdoTokenRepository;
-use Ttpryg\AuthUser\Repositories\PdoUserRepository;
-use Ttpryg\AuthUser\Services\RbacManager;
+use Ttpryg\AuthUser\Infrastructure\Persistence\Pdo\PdoRbacRepository;
+use Ttpryg\AuthUser\Infrastructure\Persistence\Pdo\PdoTokenRepository;
+use Ttpryg\AuthUser\Infrastructure\Persistence\Pdo\PdoUserRepository;
 
 class AuthUserServiceProvider extends ServiceProvider
 {

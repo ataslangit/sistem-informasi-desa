@@ -27,7 +27,7 @@
         "laravel/tinker": "^2.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "ttpryg/audit-engine": "^2.0",
-        "ttpryg/auth-user": "^1.1",
+        "ttpryg/auth-user": "dev-develop",
         "ttpryg/content-engine": "^1.1"
     },
     "require-dev": {

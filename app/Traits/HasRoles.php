@@ -8,9 +8,9 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Ttpryg\AuthUser\Entities\Permission as AuthUserPermission;
-use Ttpryg\AuthUser\Entities\Role as AuthUserRole;
-use Ttpryg\AuthUser\Entities\User as AuthUserEntity;
+use Ttpryg\AuthUser\Domain\Entity\Permission as AuthUserPermission;
+use Ttpryg\AuthUser\Domain\Entity\Role as AuthUserRole;
+use Ttpryg\AuthUser\Domain\Entity\User as AuthUserEntity;
 
 trait HasRoles
 {
@@ -156,7 +156,7 @@ trait HasRoles
             roles: $roles,
             permissions: $permissions,
             createdAt: $this->created_at,
-            updated_at: $this->updated_at,
+            updatedAt: $this->updated_at,
             deletedAt: $this->deleted_at
         );
     }
