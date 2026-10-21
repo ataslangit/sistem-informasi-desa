@@ -6,13 +6,13 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use Ttpryg\ContentEngine\Contracts\CategoryRepositoryInterface;
-use Ttpryg\ContentEngine\Contracts\ContentRepositoryInterface;
+use Ttpryg\ContentEngine\Application\Service\CategoryService;
+use Ttpryg\ContentEngine\Application\Service\ContentService;
 use Ttpryg\ContentEngine\Contracts\SlugGeneratorInterface;
-use Ttpryg\ContentEngine\Repositories\PdoCategoryRepository;
-use Ttpryg\ContentEngine\Repositories\PdoContentRepository;
-use Ttpryg\ContentEngine\Services\CategoryService;
-use Ttpryg\ContentEngine\Services\ContentService;
+use Ttpryg\ContentEngine\Domain\Repository\CategoryRepositoryInterface;
+use Ttpryg\ContentEngine\Domain\Repository\ContentRepositoryInterface;
+use Ttpryg\ContentEngine\Infrastructure\Persistence\Pdo\PdoCategoryRepository;
+use Ttpryg\ContentEngine\Infrastructure\Persistence\Pdo\PdoContentRepository;
 use Ttpryg\ContentEngine\Utilities\NativeSlugGenerator;
 
 class ContentEngineServiceProvider extends ServiceProvider
