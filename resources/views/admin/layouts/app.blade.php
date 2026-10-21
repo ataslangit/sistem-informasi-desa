@@ -9,62 +9,97 @@
     <link rel="stylesheet" href="{{ admin_asset('css/admin.css') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased flex h-screen overflow-hidden" x-data="{ sidebarOpen: true }">
+<body
+    class="bg-slate-100 text-slate-800 antialiased flex h-screen overflow-hidden"
+    x-data="{ 
+        sidebarOpen: localStorage.getItem('admin_sidebar_open') !== 'false', 
+        mobileMenuOpen: false 
+    }"
+    x-init="$watch('sidebarOpen', val => localStorage.setItem('admin_sidebar_open', val))"
+    @keydown.escape.window="mobileMenuOpen = false"
+>
+    <!-- Mobile Backdrop Overlay -->
+    <div
+        x-show="mobileMenuOpen"
+        @click="mobileMenuOpen = false"
+        x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 md:hidden"
+        style="display: none;"
+    ></div>
+
     <!-- Sidebar -->
-    <aside :class="sidebarOpen ? 'w-64' : 'w-20'" class="bg-slate-900 text-slate-300 flex flex-col transition-all duration-300 z-30">
+    <aside
+        :class="[
+            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
+            (sidebarOpen || mobileMenuOpen) ? 'md:w-64' : 'md:w-20 md:overflow-visible'
+        ]"
+        class="fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] bg-slate-900 text-slate-300 flex flex-col transition-all duration-300 ease-in-out md:static md:z-30 md:max-w-none flex-shrink-0 shadow-2xl md:shadow-none"
+    >
         <!-- Logo Brand -->
-        <div class="h-16 flex items-center justify-between px-4 border-b border-slate-800 bg-slate-950">
+        <div class="h-16 flex items-center justify-between px-4 border-b border-slate-800 bg-slate-950 flex-shrink-0">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2 overflow-hidden">
                 @if($logo = village_logo())
                     <img src="{{ $logo }}" alt="Logo" class="w-7 h-7 object-contain rounded-lg bg-white p-0.5 shadow-xs flex-shrink-0">
                 @else
                     <span class="text-2xl flex-shrink-0">🏛️</span>
                 @endif
-                <span x-show="sidebarOpen" class="font-bold text-lg text-white tracking-wide">SiDesa</span>
-                <span x-show="sidebarOpen" class="text-[10px] font-mono font-medium text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">{{ app_version(true) }}</span>
+                <span x-show="sidebarOpen || mobileMenuOpen" class="font-bold text-lg text-white tracking-wide">SiDesa</span>
+                <span x-show="sidebarOpen || mobileMenuOpen" class="text-[10px] font-mono font-medium text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">{{ app_version(true) }}</span>
             </a>
-            <button @click="sidebarOpen = !sidebarOpen" class="text-slate-400 hover:text-white p-1 rounded focus:outline-none">
+            <!-- Desktop collapse toggle -->
+            <button @click="sidebarOpen = !sidebarOpen" class="hidden md:block text-slate-400 hover:text-white p-1 rounded focus:outline-none" title="Perluas / Kecilkan Sidebar">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <!-- Mobile close drawer button -->
+            <button @click="mobileMenuOpen = false" class="md:hidden text-slate-400 hover:text-white p-1 rounded focus:outline-none" title="Tutup Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
 
         <!-- Menu Navigation -->
-        <nav class="flex-1 overflow-y-auto py-4 px-2 space-y-1">
+        <nav :class="(sidebarOpen || mobileMenuOpen) ? 'overflow-y-auto' : 'md:overflow-visible'" class="flex-1 py-4 px-2 space-y-1">
+            <!-- Mode 1: Expanded Menu List (Full Navigation) -->
+            <div x-show="sidebarOpen || mobileMenuOpen" class="space-y-1">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                <span x-show="sidebarOpen">Dashboard</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Dashboard</span>
             </a>
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat', 'rt']))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Administrasi Kependudukan
             </div>
 
             <a href="{{ route('admin.families.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.families.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                <span x-show="sidebarOpen">Kartu Keluarga</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Kartu Keluarga</span>
             </a>
 
             <a href="{{ route('admin.residents.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.residents.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <span x-show="sidebarOpen">Buku Induk Penduduk</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Buku Induk Penduduk</span>
             </a>
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
             <a href="{{ route('admin.mutations.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.mutations.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                <span x-show="sidebarOpen">Mutasi Penduduk</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Mutasi Penduduk</span>
             </a>
 
             <a href="{{ route('admin.reports.population') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.reports.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                <span x-show="sidebarOpen">Statistik Penduduk</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Statistik Penduduk</span>
             </a>
             @endif
             @endif
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat', 'rt']))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Pelayanan Surat
             </div>
 
@@ -73,13 +108,13 @@
                     <div class="relative flex-shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         @if(($pendingCounts['letters'] ?? 0) > 0)
-                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['letters'] }} permohonan surat menunggu"></span>
+                            <span x-show="!sidebarOpen && !mobileMenuOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['letters'] }} permohonan surat menunggu"></span>
                         @endif
                     </div>
-                    <span x-show="sidebarOpen" class="truncate">Permohonan Surat</span>
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="truncate">Permohonan Surat</span>
                 </div>
                 @if(($pendingCounts['letters'] ?? 0) > 0)
-                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu tindak lanjut">
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu tindak lanjut">
                         {{ $pendingCounts['letters'] }}
                     </span>
                 @endif
@@ -88,81 +123,81 @@
             @if(auth()->user()->hasRole(['superadmin', 'perangkat']))
             <a href="{{ route('admin.letter-templates.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.letter-templates.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span x-show="sidebarOpen">Template Surat</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Template Surat</span>
             </a>
             @endif
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
             <a href="{{ route('admin.tte-settings.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.tte-settings.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                <span x-show="sidebarOpen">Konfigurasi TTE (BSrE)</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Konfigurasi TTE (BSrE)</span>
             </a>
             @endif
             @endif
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 CMS & Portal Publik
             </div>
 
             <a href="{{ route('admin.articles.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.articles.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-                <span x-show="sidebarOpen">Kabar & Berita</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Kabar & Berita</span>
             </a>
 
             <a href="{{ route('admin.categories.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.categories.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                <span x-show="sidebarOpen">Kategori & Tag</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Kategori & Tag</span>
             </a>
 
             <a href="{{ route('admin.pages.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.pages.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span x-show="sidebarOpen">Halaman Statis</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Halaman Statis</span>
             </a>
 
             <a href="{{ route('admin.menus.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.menus.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                <span x-show="sidebarOpen">Menu Navigasi</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Menu Navigasi</span>
             </a>
 
             <a href="{{ route('admin.galleries.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.galleries.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                <span x-show="sidebarOpen">Galeri Foto</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Galeri Foto</span>
             </a>
 
             <a href="{{ route('admin.themes.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.themes.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4 4 4 0 014-4c.48 0 .942.083 1.373.238l5.88-5.88a2.5 2.5 0 013.536 3.536l-5.88 5.88A3.996 3.996 0 017 21z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 5l3 3"></path></svg>
-                <span x-show="sidebarOpen">Tema Portal</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Tema Portal</span>
             </a>
 
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Keuangan & Pemetaan (GIS)
             </div>
 
             <a href="{{ route('admin.budgets.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.budgets.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span x-show="sidebarOpen">Transparansi APBDes</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Transparansi APBDes</span>
             </a>
 
             <a href="{{ route('admin.boundaries.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.boundaries.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                <span x-show="sidebarOpen">Batas Wilayah</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Batas Wilayah</span>
             </a>
 
             <a href="{{ route('admin.facilities.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <span x-show="sidebarOpen">Fasilitas & Sarana</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Fasilitas & Sarana</span>
             </a>
             @endif
 
             @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Keterbukaan Informasi (PPID)
             </div>
 
             <a href="{{ route('admin.ppid-documents.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-documents.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span x-show="sidebarOpen">Dokumen Publik (DIP)</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Dokumen Publik (DIP)</span>
             </a>
 
             <a href="{{ route('admin.ppid-requests.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-requests.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
@@ -170,13 +205,13 @@
                     <div class="relative flex-shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
                         @if(($pendingCounts['ppid_requests'] ?? 0) > 0)
-                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_requests'] }} permohonan informasi menunggu"></span>
+                            <span x-show="!sidebarOpen && !mobileMenuOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_requests'] }} permohonan informasi menunggu"></span>
                         @endif
                     </div>
-                    <span x-show="sidebarOpen" class="truncate">Permohonan Informasi</span>
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="truncate">Permohonan Informasi</span>
                 </div>
                 @if(($pendingCounts['ppid_requests'] ?? 0) > 0)
-                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu verifikasi">
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Menunggu verifikasi">
                         {{ $pendingCounts['ppid_requests'] }}
                     </span>
                 @endif
@@ -187,13 +222,13 @@
                     <div class="relative flex-shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
                         @if(($pendingCounts['ppid_objections'] ?? 0) > 0)
-                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_objections'] }} keberatan informasi menunggu"></span>
+                            <span x-show="!sidebarOpen && !mobileMenuOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['ppid_objections'] }} keberatan informasi menunggu"></span>
                         @endif
                     </div>
-                    <span x-show="sidebarOpen" class="truncate">Keberatan Informasi</span>
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="truncate">Keberatan Informasi</span>
                 </div>
                 @if(($pendingCounts['ppid_objections'] ?? 0) > 0)
-                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-rose-500 text-white shadow-sm flex-shrink-0" title="Menunggu tinjauan Atasan PPID">
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-rose-500 text-white shadow-sm flex-shrink-0" title="Menunggu tinjauan Atasan PPID">
                         {{ $pendingCounts['ppid_objections'] }}
                     </span>
                 @endif
@@ -201,12 +236,12 @@
 
             <a href="{{ route('admin.ppid-settings.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.ppid-settings.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
-                <span x-show="sidebarOpen">Profil & Struktur PPID</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Profil & Struktur PPID</span>
             </a>
             @endif
 
             @if(auth()->user()->hasRole('warga'))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Layanan Mandiri Warga
             </div>
 
@@ -215,13 +250,13 @@
                     <div class="relative flex-shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                         @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
-                            <span x-show="!sidebarOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['citizen_letters'] }} permohonan surat sedang diproses"></span>
+                            <span x-show="!sidebarOpen && !mobileMenuOpen" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['citizen_letters'] }} permohonan surat sedang diproses"></span>
                         @endif
                     </div>
-                    <span x-show="sidebarOpen" class="truncate">Surat Saya</span>
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="truncate">Surat Saya</span>
                 </div>
                 @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
-                    <span x-show="sidebarOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Sedang diproses">
+                    <span x-show="sidebarOpen || mobileMenuOpen" class="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-sm flex-shrink-0" title="Sedang diproses">
                         {{ $pendingCounts['citizen_letters'] }}
                     </span>
                 @endif
@@ -229,58 +264,354 @@
 
             <a href="{{ route('citizen.letters.create') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('citizen.letters.create') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                <span x-show="sidebarOpen">Buat Permohonan</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Buat Permohonan</span>
             </a>
             @endif
 
             @if(auth()->user()->hasRole(['superadmin', 'kades']))
-            <div x-show="sidebarOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div x-show="sidebarOpen || mobileMenuOpen" class="px-3 pt-4 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 Konfigurasi & Audit
             </div>
 
             <a href="{{ route('admin.settings.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.settings.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
-                <span x-show="sidebarOpen">Pengaturan Situs</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Pengaturan Situs</span>
             </a>
 
             @if(auth()->user()->hasRole('superadmin'))
             <a href="{{ route('admin.users.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <span x-show="sidebarOpen">Pengguna & Role</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Pengguna & Role</span>
             </a>
             @endif
 
             <a href="{{ route('admin.audit-logs.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-800 {{ request()->routeIs('admin.audit-logs.*') ? 'bg-blue-600 text-white' : 'text-slate-300' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span x-show="sidebarOpen">Audit Trail</span>
+                <span x-show="sidebarOpen || mobileMenuOpen">Audit Trail</span>
             </a>
             @endif
 
             <div class="pt-4 border-t border-slate-800">
                 <a href="{{ route('home') }}" target="_blank" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-slate-800">
                     <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    <span x-show="sidebarOpen">Lihat Portal Web</span>
+                    <span x-show="sidebarOpen || mobileMenuOpen">Lihat Portal Web</span>
                 </a>
+            </div>
+            </div>
+
+            <!-- Mode 2: Collapsed Grouped Menu List with Flyout Popovers (Desktop Collapsed Only) -->
+            <div x-show="!sidebarOpen && !mobileMenuOpen" class="hidden md:flex md:flex-col items-center space-y-2 py-1">
+                <!-- Group 1: Dashboard -->
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <a href="{{ route('admin.dashboard') }}" class="w-11 h-11 rounded-xl flex items-center justify-center transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </a>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-1 pl-2.5 z-50 pointer-events-none" style="display: none;">
+                        <div class="px-3 py-1.5 bg-slate-950 border border-slate-800 text-white text-xs font-semibold rounded-lg shadow-xl whitespace-nowrap">
+                            Dashboard
+                        </div>
+                    </div>
+                </div>
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat', 'rt']))
+                <!-- Group 2: Administrasi Kependudukan -->
+                @php
+                    $isKependudukanActive = request()->routeIs('admin.families.*') || request()->routeIs('admin.residents.*') || request()->routeIs('admin.mutations.*') || request()->routeIs('admin.reports.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isKependudukanActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Administrasi Kependudukan">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1">
+                                Kependudukan
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.families.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.families.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Kartu Keluarga
+                                </a>
+                                <a href="{{ route('admin.residents.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.residents.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Buku Induk Penduduk
+                                </a>
+                                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
+                                <a href="{{ route('admin.mutations.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.mutations.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Mutasi Penduduk
+                                </a>
+                                <a href="{{ route('admin.reports.population') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.reports.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Statistik Penduduk
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat', 'rt']))
+                <!-- Group 3: Pelayanan Surat -->
+                @php
+                    $isSuratActive = request()->routeIs('admin.letter-requests.*') || request()->routeIs('admin.letter-templates.*') || request()->routeIs('admin.tte-settings.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="relative w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isSuratActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Pelayanan Surat">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        @if(($pendingCounts['letters'] ?? 0) > 0)
+                            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['letters'] }} permohonan surat menunggu"></span>
+                        @endif
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1 flex items-center justify-between">
+                                <span>Pelayanan Surat</span>
+
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.letter-requests.index') }}" class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.letter-requests.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    <span>Permohonan Surat</span>
+                                    @if(($pendingCounts['letters'] ?? 0) > 0)
+                                        <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-500 text-white font-bold">{{ $pendingCounts['letters'] }}</span>
+                                    @endif
+                                </a>
+                                @if(auth()->user()->hasRole(['superadmin', 'perangkat']))
+                                <a href="{{ route('admin.letter-templates.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.letter-templates.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Template Surat
+                                </a>
+                                @endif
+                                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
+                                <a href="{{ route('admin.tte-settings.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.tte-settings.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Konfigurasi TTE
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
+                <!-- Group 4: CMS & Portal Publik -->
+                @php
+                    $isCmsActive = request()->routeIs('admin.articles.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.pages.*') || request()->routeIs('admin.menus.*') || request()->routeIs('admin.galleries.*') || request()->routeIs('admin.themes.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isCmsActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="CMS & Portal Publik">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1">
+                                CMS & Berita
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.articles.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.articles.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Kabar & Berita
+                                </a>
+                                <a href="{{ route('admin.categories.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.categories.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Kategori & Tag
+                                </a>
+                                <a href="{{ route('admin.pages.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.pages.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Halaman Statis
+                                </a>
+                                <a href="{{ route('admin.menus.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.menus.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Menu Navigasi
+                                </a>
+                                <a href="{{ route('admin.galleries.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.galleries.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Galeri Foto
+                                </a>
+                                <a href="{{ route('admin.themes.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.themes.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Tema Portal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
+                <!-- Group 5: Keuangan & Pemetaan (GIS) -->
+                @php
+                    $isGisActive = request()->routeIs('admin.budgets.*') || request()->routeIs('admin.boundaries.*') || request()->routeIs('admin.facilities.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isGisActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Keuangan & Pemetaan (GIS)">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1">
+                                Keuangan & GIS
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.budgets.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.budgets.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Transparansi APBDes
+                                </a>
+                                <a href="{{ route('admin.boundaries.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.boundaries.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Batas Wilayah
+                                </a>
+                                <a href="{{ route('admin.facilities.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Fasilitas & Sarana
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades', 'perangkat']))
+                <!-- Group 6: Keterbukaan Informasi (PPID) -->
+                @php
+                    $isPpidActive = request()->routeIs('admin.ppid-documents.*') || request()->routeIs('admin.ppid-requests.*') || request()->routeIs('admin.ppid-objections.*') || request()->routeIs('admin.ppid-settings.*');
+                    $ppidPending = ($pendingCounts['ppid_requests'] ?? 0) + ($pendingCounts['ppid_objections'] ?? 0);
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="relative w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isPpidActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Keterbukaan Informasi (PPID)">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        @if($ppidPending > 0)
+                            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-slate-900" title="{{ $ppidPending }} permohonan/keberatan informasi menunggu"></span>
+                        @endif
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1 flex items-center justify-between">
+                                <span>PPID Desa</span>
+                                @if($ppidPending > 0)
+                                    <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-500 text-white font-bold">{{ $ppidPending }}</span>
+                                @endif
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.ppid-documents.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.ppid-documents.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Dokumen Publik (DIP)
+                                </a>
+                                <a href="{{ route('admin.ppid-requests.index') }}" class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.ppid-requests.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    <span>Permohonan Info</span>
+                                    @if(($pendingCounts['ppid_requests'] ?? 0) > 0)
+                                        <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-500 text-white font-bold">{{ $pendingCounts['ppid_requests'] }}</span>
+                                    @endif
+                                </a>
+                                <a href="{{ route('admin.ppid-objections.index') }}" class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.ppid-objections.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    <span>Keberatan Info</span>
+                                    @if(($pendingCounts['ppid_objections'] ?? 0) > 0)
+                                        <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-rose-500 text-white font-bold">{{ $pendingCounts['ppid_objections'] }}</span>
+                                    @endif
+                                </a>
+                                <a href="{{ route('admin.ppid-settings.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.ppid-settings.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Profil & Struktur PPID
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole('warga'))
+                <!-- Group 7: Layanan Mandiri Warga -->
+                @php
+                    $isCitizenActive = request()->routeIs('citizen.letters.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="relative w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isCitizenActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Layanan Mandiri Warga">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
+                            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-amber-500 rounded-full ring-2 ring-slate-900" title="{{ $pendingCounts['citizen_letters'] }} permohonan surat sedang diproses"></span>
+                        @endif
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1 flex items-center justify-between">
+                                <span>Layanan Mandiri</span>
+                                @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
+                                    <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500 text-white font-bold">{{ $pendingCounts['citizen_letters'] }}</span>
+                                @endif
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('citizen.letters.index') }}" class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('citizen.letters.index') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    <span>Surat Saya</span>
+                                    @if(($pendingCounts['citizen_letters'] ?? 0) > 0)
+                                        <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-500 text-white font-bold">{{ $pendingCounts['citizen_letters'] }}</span>
+                                    @endif
+                                </a>
+                                <a href="{{ route('citizen.letters.create') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('citizen.letters.create') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Buat Permohonan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(auth()->user()->hasRole(['superadmin', 'kades']))
+                <!-- Group 8: Konfigurasi & Audit -->
+                @php
+                    $isConfigActive = request()->routeIs('admin.settings.*') || request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') || request()->routeIs('admin.audit-logs.*');
+                @endphp
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button type="button" class="w-11 h-11 rounded-xl flex items-center justify-center transition {{ $isConfigActive ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800' }}" title="Konfigurasi & Audit">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-0 pl-2.5 z-50 pointer-events-auto" style="display: none;">
+                        <div class="w-56 bg-slate-900 border border-slate-700/90 rounded-xl shadow-2xl py-2 text-slate-200">
+                            <div class="px-3.5 py-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1">
+                                Konfigurasi & Audit
+                            </div>
+                            <div class="space-y-0.5 px-1.5">
+                                <a href="{{ route('admin.settings.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.settings.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Pengaturan Situs
+                                </a>
+                                @if(auth()->user()->hasRole('superadmin'))
+                                <a href="{{ route('admin.users.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Pengguna & Role
+                                </a>
+                                @endif
+                                <a href="{{ route('admin.audit-logs.index') }}" class="flex items-center px-2.5 py-1.5 rounded-lg text-xs font-medium {{ request()->routeIs('admin.audit-logs.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                                    Audit Trail
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                <!-- Group 9: Lihat Portal Web -->
+                <div class="pt-2 border-t border-slate-800 w-full flex justify-center">
+                    <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <a href="{{ route('home') }}" target="_blank" class="w-11 h-11 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition" title="Lihat Portal Web">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                        <div x-show="open" x-transition.opacity.duration.150ms class="absolute left-full top-1 pl-2.5 z-50 pointer-events-none" style="display: none;">
+                            <div class="px-3 py-1.5 bg-slate-950 border border-slate-800 text-white text-xs font-semibold rounded-lg shadow-xl whitespace-nowrap">
+                                Lihat Portal Web
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
 
         <!-- User Profile Bottom Bar -->
-        <div class="p-3 border-t border-slate-800 bg-slate-950 flex items-center justify-between">
-            <a href="{{ route('profile.edit') }}" title="Pengaturan Profil Akun" class="flex items-center space-x-3 overflow-hidden group hover:opacity-90 transition flex-1 mr-2">
-                <div class="w-8 h-8 rounded-full bg-blue-600 group-hover:bg-blue-500 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                </div>
-                <div x-show="sidebarOpen" class="overflow-hidden">
-                    <div class="text-xs font-medium text-white group-hover:text-blue-300 truncate transition">{{ auth()->user()->name }}</div>
-                    <div class="text-[10px] text-blue-400 uppercase font-semibold flex items-center gap-1">
-                        <span>{{ auth()->user()->roles->pluck('label')->first() ?? 'Staff' }}</span>
-                        <span class="text-slate-500 group-hover:text-slate-300 text-[9px]">⚙️</span>
+        <div :class="(sidebarOpen || mobileMenuOpen) ? 'p-3 flex items-center justify-between' : 'p-3 flex flex-col items-center space-y-2'" class="border-t border-slate-800 bg-slate-950 flex-shrink-0">
+            <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                <a href="{{ route('profile.edit') }}" title="Pengaturan Profil Akun" class="flex items-center space-x-3 overflow-hidden group hover:opacity-90 transition">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 group-hover:bg-blue-500 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    </div>
+                    <div x-show="sidebarOpen || mobileMenuOpen" class="overflow-hidden">
+                        <div class="text-xs font-medium text-white group-hover:text-blue-300 truncate transition">{{ auth()->user()->name }}</div>
+                        <div class="text-[10px] text-blue-400 uppercase font-semibold flex items-center gap-1">
+                            <span>{{ auth()->user()->roles->pluck('label')->first() ?? 'Staff' }}</span>
+                            <span class="text-slate-500 group-hover:text-slate-300 text-[9px]">⚙️</span>
+                        </div>
+                    </div>
+                </a>
+                <div x-show="open && !sidebarOpen && !mobileMenuOpen" x-transition.opacity.duration.150ms class="absolute left-full bottom-0 pl-2.5 z-50 pointer-events-none" style="display: none;">
+                    <div class="px-3 py-1.5 bg-slate-950 border border-slate-800 text-white text-xs font-semibold rounded-lg shadow-xl whitespace-nowrap">
+                        {{ auth()->user()->name }} ({{ auth()->user()->roles->pluck('label')->first() ?? 'Staff' }})
                     </div>
                 </div>
-            </a>
+            </div>
             <form action="{{ route('logout') }}" method="POST" class="inline">
                 @csrf
-                <button type="submit" title="Logout" class="text-slate-400 hover:text-red-400 p-1 rounded">
+                <button type="submit" title="Logout" class="text-slate-400 hover:text-red-400 p-1.5 rounded hover:bg-slate-800 transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                 </button>
             </form>
@@ -290,22 +621,34 @@
     <!-- Main Content Area -->
     <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Top Navbar -->
-        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-20">
-            <div>
-                <h1 class="text-lg font-bold text-slate-800">@yield('title')</h1>
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-6 z-20 flex-shrink-0">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <!-- Mobile Hamburger Button -->
+                <button
+                    @click="mobileMenuOpen = true"
+                    type="button"
+                    class="p-2 -ml-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg focus:outline-none md:hidden flex-shrink-0"
+                    aria-label="Buka Menu Navigasi"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <h1 class="text-base sm:text-lg font-bold text-slate-800 truncate">@yield('title')</h1>
             </div>
-            <div class="flex items-center space-x-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-                    Sistem Aktif
+            <div class="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
+                <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full text-[11px] sm:text-xs font-medium bg-emerald-100 text-emerald-800">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+                    <span class="hidden sm:inline">Sistem </span>Aktif
                 </span>
-                <div class="text-sm text-slate-500 hidden md:block">
+                <div class="text-xs sm:text-sm text-slate-500 hidden md:block">
                     {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
                 </div>
             </div>
         </header>
 
         <!-- Body Scrollable Content -->
-        <main class="flex-1 overflow-y-auto p-6 bg-slate-50">
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50">
             @if(session('success'))
             <div class="mb-4 bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded text-emerald-800 text-sm">
                 {{ session('success') }}
