@@ -16,7 +16,7 @@ class InjectDemoBannerMiddlewareTest extends TestCase
         config(['app.demo_mode' => false]);
 
         $request = Request::create('/', 'GET');
-        $middleware = new InjectDemoBanner();
+        $middleware = new InjectDemoBanner;
 
         $response = $middleware->handle($request, function () {
             return new Response('<html><body><h1>Halo Desa</h1></body></html>', 200, [
@@ -32,7 +32,7 @@ class InjectDemoBannerMiddlewareTest extends TestCase
         config(['app.demo_mode' => true]);
 
         $request = Request::create('/', 'GET');
-        $middleware = new InjectDemoBanner();
+        $middleware = new InjectDemoBanner;
 
         $response = $middleware->handle($request, function () {
             return new Response('<html><body><h1>Halo Desa</h1></body></html>', 200, [
@@ -53,7 +53,7 @@ class InjectDemoBannerMiddlewareTest extends TestCase
         config(['app.demo_mode' => true]);
 
         $request = Request::create('/api/status', 'GET');
-        $middleware = new InjectDemoBanner();
+        $middleware = new InjectDemoBanner;
 
         $response = $middleware->handle($request, function () {
             return new Response('{"status":"ok"}', 200, [
