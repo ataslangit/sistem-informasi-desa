@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76a060c4fad4e30c8372d929edc229d4",
+    "content-hash": "99fe69205117808b64cafcaf28cdf3a3",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6171,32 +6171,38 @@
         },
         {
             "name": "ttpryg/content-engine",
-            "version": "1.3.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ttpryg/content-engine.git",
-                "reference": "0f07bb1ecdb785fa298457842a462f204fd48242"
+                "reference": "9e594427656fba1c0cbfc9ab2a346b3bde65deaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ttpryg/content-engine/zipball/0f07bb1ecdb785fa298457842a462f204fd48242",
-                "reference": "0f07bb1ecdb785fa298457842a462f204fd48242",
+                "url": "https://api.github.com/repos/ttpryg/content-engine/zipball/9e594427656fba1c0cbfc9ab2a346b3bde65deaf",
+                "reference": "9e594427656fba1c0cbfc9ab2a346b3bde65deaf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "ttpryg/event-dispatcher": "^1.0"
+                "psr/event-dispatcher": "^1.0",
+                "ttpryg/database-migrator": "^1.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.53",
                 "laravel/pint": "^1.20",
+                "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^10.0",
                 "rector/rector": "^2.6"
+            },
+            "suggest": {
+                "ttpryg/event-dispatcher": "Provides a lightweight PSR-14 event dispatcher implementation."
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Ttpryg\\ContentEngine\\": "src/"
+                    "Ttpryg\\ContentEngine\\": "src/",
+                    "Ttpryg\\ContentEngine\\Infrastructure\\": "infrastructure/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6213,9 +6219,9 @@
             "description": "A framework-agnostic standalone CMS content engine library for PHP.",
             "support": {
                 "issues": "https://github.com/ttpryg/content-engine/issues",
-                "source": "https://github.com/ttpryg/content-engine/tree/1.3.0"
+                "source": "https://github.com/ttpryg/content-engine/tree/2.0.0"
             },
-            "time": "2026-10-18T06:11:31+00:00"
+            "time": "2026-10-21T14:21:11+00:00"
         },
         {
             "name": "ttpryg/database-migrator",
