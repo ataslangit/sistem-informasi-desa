@@ -301,12 +301,6 @@
                 <div class="text-sm text-slate-500 hidden md:block">
                     {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
                 </div>
-                <a href="{{ route('profile.edit') }}" class="flex items-center space-x-2 pl-3 border-l border-slate-200 text-slate-700 hover:text-blue-600 transition group" title="Pengaturan Profil">
-                    <div class="w-8 h-8 rounded-full bg-slate-900 group-hover:bg-blue-600 text-white font-bold flex items-center justify-center text-xs transition">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                    </div>
-                    <span class="text-xs font-medium hidden sm:inline">{{ auth()->user()->name }}</span>
-                </a>
             </div>
         </header>
 
