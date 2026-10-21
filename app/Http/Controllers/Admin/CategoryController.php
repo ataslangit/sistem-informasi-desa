@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Ttpryg\ContentEngine\Services\CategoryService;
+use Ttpryg\ContentEngine\Application\Service\CategoryService;
 
 class CategoryController extends Controller
 {

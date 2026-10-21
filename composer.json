@@ -28,7 +28,7 @@
         "simplesoftwareio/simple-qrcode": "^4.2",
         "ttpryg/audit-engine": "^2.0",
         "ttpryg/auth-user": "^2.0",
-        "ttpryg/content-engine": "^1.1"
+        "ttpryg/content-engine": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

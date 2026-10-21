@@ -12,11 +12,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use Ttpryg\ContentEngine\Contracts\CategoryRepositoryInterface;
-use Ttpryg\ContentEngine\Contracts\ContentRepositoryInterface;
+use Ttpryg\ContentEngine\Application\Service\CategoryService;
+use Ttpryg\ContentEngine\Application\Service\ContentService;
 use Ttpryg\ContentEngine\Contracts\SlugGeneratorInterface;
-use Ttpryg\ContentEngine\Services\CategoryService;
-use Ttpryg\ContentEngine\Services\ContentService;
+use Ttpryg\ContentEngine\Domain\Repository\CategoryRepositoryInterface;
+use Ttpryg\ContentEngine\Domain\Repository\ContentRepositoryInterface;
 
 class ContentEngineIntegrationTest extends TestCase
 {
@@ -531,5 +531,31 @@ class ContentEngineIntegrationTest extends TestCase
         $deleteAlbumResponse = $this->actingAs($this->superadmin)->delete('/admin/galleries/'.$gallery->id);
         $deleteAlbumResponse->assertRedirect('/admin/galleries');
         Storage::disk('public')->assertMissing($firstPhotoPath);
+    }
+
+    /**
+     * Test unique tenant slug constraint (uk_tenant_slug) on contents table.
+     */
+    public function test_unique_tenant_slug_constraint_prevents_duplicate_slug_for_same_tenant_and_type(): void
+    {
+        Content::create([
+            'tenant_type' => 'village',
+            'tenant_id' => '1',
+            'type' => Content::TYPE_POST,
+            'title' => 'Berita Pertama',
+            'slug' => 'berita-sama',
+            'status' => Content::STATUS_PUBLISHED,
+        ]);
+
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Content::create([
+            'tenant_type' => 'village',
+            'tenant_id' => '1',
+            'type' => Content::TYPE_POST,
+            'title' => 'Berita Kedua',
+            'slug' => 'berita-sama',
+            'status' => Content::STATUS_PUBLISHED,
+        ]);
     }
 }

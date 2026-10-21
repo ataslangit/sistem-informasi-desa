@@ -33,14 +33,14 @@ class InjectDemoBanner
         }
 
         $content = $response->getContent();
-        if (false === $content || ! str_contains($content, '</body>')) {
+        if ($content === false || ! str_contains($content, '</body>')) {
             return $response;
         }
 
         $bannerHtml = $this->renderBanner();
 
         // Inject banner dan style tepat sebelum penutup tag </body>
-        $newContent = str_replace('</body>', $bannerHtml . "\n</body>", $content);
+        $newContent = str_replace('</body>', $bannerHtml."\n</body>", $content);
         $response->setContent($newContent);
 
         return $response;

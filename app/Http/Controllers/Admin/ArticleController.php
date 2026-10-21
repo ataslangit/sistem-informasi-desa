@@ -13,7 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Ttpryg\ContentEngine\Services\ContentService;
+use Ttpryg\ContentEngine\Application\Service\ContentService;
 
 class ArticleController extends Controller
 {
