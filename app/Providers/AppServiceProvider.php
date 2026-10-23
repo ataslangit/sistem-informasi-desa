@@ -2,7 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Budget;
+use App\Models\Category;
+use App\Models\Content;
+use App\Models\PublicDocument;
 use App\Models\Setting;
+use App\Services\SitemapService;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -64,5 +70,25 @@ class AppServiceProvider extends ServiceProvider
 
         // Daftarkan View Composer untuk Sidebar Dashboard Admin & Portal Warga
         \Illuminate\Support\Facades\View::composer('admin.layouts.app', \App\Http\ViewComposers\AdminSidebarComposer::class);
+
+        $this->registerSitemapCacheInvalidation();
+    }
+
+    /**
+     * Bersihkan cache sitemap setiap kali konten publik berubah.
+     */
+    private function registerSitemapCacheInvalidation(): void
+    {
+        $invalidate = static function (): void {
+            Cache::forget(SitemapService::CACHE_KEY);
+        };
+
+        foreach ([Content::class, Category::class, Budget::class, PublicDocument::class] as $model) {
+            $model::saved($invalidate);
+            $model::deleted($invalidate);
+        }
+
+        Content::restored($invalidate);
+        PublicDocument::restored($invalidate);
     }
 }
