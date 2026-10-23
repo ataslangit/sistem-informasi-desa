@@ -38,6 +38,7 @@ use App\Http\Controllers\Public\LetterVerificationController;
 use App\Http\Controllers\Public\MapController as PublicMapController;
 use App\Http\Controllers\Public\PageController as PublicPageController;
 use App\Http\Controllers\Public\PpidController as PublicPpidController;
+use App\Http\Controllers\Public\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,8 @@ Route::prefix('install')->name('installer.')->middleware('redirect.installed')->
 
 // --- Rute Publik (Portal Desa, Berita CMS, Halaman Profil, Galeri & Verifikasi Dokumen) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
 Route::get('/berita', [PublicArticleController::class, 'index'])->name('articles.index');
 Route::get('/berita/{slug}', [PublicArticleController::class, 'show'])->name('articles.show');
 Route::get('/pengumuman', [PublicArticleController::class, 'announcements'])->name('articles.announcements');
